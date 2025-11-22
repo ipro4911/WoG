@@ -1,0 +1,166 @@
+\doxysection{Magix\+Sky\+Manager Class Reference}
+\hypertarget{class_magix_sky_manager}{}\label{class_magix_sky_manager}\index{MagixSkyManager@{MagixSkyManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_sky_manager_adab3966ce0b60cb69cf33a8ab9ae7105}\label{class_magix_sky_manager_adab3966ce0b60cb69cf33a8ab9ae7105} 
+void {\bfseries initialize} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, \mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*}camera, \mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*}sound\+Mgr)
+\item 
+\Hypertarget{class_magix_sky_manager_a7269ac4bd8b2e71122c605c999e9be1b}\label{class_magix_sky_manager_a7269ac4bd8b2e71122c605c999e9be1b} 
+void {\bfseries update\+Sky} ()
+\item 
+\Hypertarget{class_magix_sky_manager_a782fb743ddb8e36a4bdece6638a3a82b}\label{class_magix_sky_manager_a782fb743ddb8e36a4bdece6638a3a82b} 
+void {\bfseries reset\+Sky} ()
+\item 
+\Hypertarget{class_magix_sky_manager_a2c0c8ddef6e82fb89a914a1f27b8ca86}\label{class_magix_sky_manager_a2c0c8ddef6e82fb89a914a1f27b8ca86} 
+void {\bfseries update\+Celestials} (const Real \&day\+Time)
+\item 
+\Hypertarget{class_magix_sky_manager_abe8bcf1e82b9f62a70ae0ed6f9e09b4d}\label{class_magix_sky_manager_abe8bcf1e82b9f62a70ae0ed6f9e09b4d} 
+void {\bfseries update\+Weather} ()
+\item 
+\Hypertarget{class_magix_sky_manager_ace79ad8e8ce3e0ac057d3f67a94df3c3}\label{class_magix_sky_manager_ace79ad8e8ce3e0ac057d3f67a94df3c3} 
+void {\bfseries update\+Weather\+Effect} (const Real \&time\+Elapsed, bool clear\+Effect=false)
+\item 
+\Hypertarget{class_magix_sky_manager_ad24b2e51201d0f1933ad801699af0b28}\label{class_magix_sky_manager_ad24b2e51201d0f1933ad801699af0b28} 
+void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_sky_manager_abb2509da8b2dc170e016a607f488f692}\label{class_magix_sky_manager_abb2509da8b2dc170e016a607f488f692} 
+void {\bfseries show\+Sky} (bool flag)
+\item 
+\Hypertarget{class_magix_sky_manager_a880d1ca81c17b77765afdbc506731ba6}\label{class_magix_sky_manager_a880d1ca81c17b77765afdbc506731ba6} 
+void {\bfseries show\+Weather} (bool flag)
+\item 
+\Hypertarget{class_magix_sky_manager_a2d89adf9b0848d4bc8bbe3b01853511b}\label{class_magix_sky_manager_a2d89adf9b0848d4bc8bbe3b01853511b} 
+bool {\bfseries is\+Weather\+Visible} ()
+\item 
+\Hypertarget{class_magix_sky_manager_a497fceb99183973817473868e21db740}\label{class_magix_sky_manager_a497fceb99183973817473868e21db740} 
+void {\bfseries set\+Day\+Time} (const Real \&time)
+\item 
+\Hypertarget{class_magix_sky_manager_a4392922e2db2530edbe3fa35b1bfce22}\label{class_magix_sky_manager_a4392922e2db2530edbe3fa35b1bfce22} 
+const Real {\bfseries get\+Day\+Time} ()
+\item 
+\Hypertarget{class_magix_sky_manager_aca3a4106056aed353886b0eb44a2eeb9}\label{class_magix_sky_manager_aca3a4106056aed353886b0eb44a2eeb9} 
+const Real {\bfseries get\+Weather\+Time} ()
+\item 
+\Hypertarget{class_magix_sky_manager_a50f81028df7ae1ec7d7cf85337b95781}\label{class_magix_sky_manager_a50f81028df7ae1ec7d7cf85337b95781} 
+void {\bfseries freeze\+Day\+Time} (bool flag, const Real \&time=0)
+\item 
+\Hypertarget{class_magix_sky_manager_aae0e7c5165ab3cd3357c94bd04d3b3a7}\label{class_magix_sky_manager_aae0e7c5165ab3cd3357c94bd04d3b3a7} 
+void {\bfseries set\+Weather\+Time} (const Real \&time)
+\item 
+\Hypertarget{class_magix_sky_manager_a93ccc15cf6dc016579c820c197af47c2}\label{class_magix_sky_manager_a93ccc15cf6dc016579c820c197af47c2} 
+void {\bfseries lock\+Weather} (bool flag)
+\item 
+\Hypertarget{class_magix_sky_manager_a76d4435cdcafddb21ad6eeea5b4bd9b3}\label{class_magix_sky_manager_a76d4435cdcafddb21ad6eeea5b4bd9b3} 
+void {\bfseries set\+Weather} (const String \&type)
+\item 
+\Hypertarget{class_magix_sky_manager_aceef1eddcbc911260fd16e402a932081}\label{class_magix_sky_manager_aceef1eddcbc911260fd16e402a932081} 
+void {\bfseries destroy\+Weather} ()
+\item 
+\Hypertarget{class_magix_sky_manager_aee2009be315335b7eabfd315f24afc46}\label{class_magix_sky_manager_aee2009be315335b7eabfd315f24afc46} 
+const Vector4 {\bfseries Vec4} (const Colour\+Value \&colour)
+\item 
+\Hypertarget{class_magix_sky_manager_aaafa9ac44e00a1d8dcd12027221b34a4}\label{class_magix_sky_manager_aaafa9ac44e00a1d8dcd12027221b34a4} 
+void {\bfseries set\+Weather\+Effect} (const String \&type)
+\item 
+\Hypertarget{class_magix_sky_manager_a76b1101ffd50aba8d6583f3e1b18aff9}\label{class_magix_sky_manager_a76b1101ffd50aba8d6583f3e1b18aff9} 
+void {\bfseries set\+Interior\+Sky} (bool flag, const Colour\+Value \&fog\+Colour=Colour\+Value(0.\+06, 0.\+05, 0.\+07))
+\item 
+\Hypertarget{class_magix_sky_manager_ab39053afd03a089c59ee469a057c20a9}\label{class_magix_sky_manager_ab39053afd03a089c59ee469a057c20a9} 
+void {\bfseries set\+Weather\+Cycle} (const String \&type)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_sky_manager_a2663731b567b3cd2a630bcb9ce5e61f6}\label{class_magix_sky_manager_a2663731b567b3cd2a630bcb9ce5e61f6} 
+\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Def}
+\item 
+\Hypertarget{class_magix_sky_manager_a20fc2f47cdc1b62a8b70e2942e528a35}\label{class_magix_sky_manager_a20fc2f47cdc1b62a8b70e2942e528a35} 
+\mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Camera}
+\item 
+\Hypertarget{class_magix_sky_manager_ab0819284397b58796c17739319bf6c82}\label{class_magix_sky_manager_ab0819284397b58796c17739319bf6c82} 
+\mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Sound\+Manager}
+\item 
+\Hypertarget{class_magix_sky_manager_acdfe91c99b595d9ae4364853e2d6087a}\label{class_magix_sky_manager_acdfe91c99b595d9ae4364853e2d6087a} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_sky_manager_ad1955b25bab263e05b710908238752a5}\label{class_magix_sky_manager_ad1955b25bab263e05b710908238752a5} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Sky\+Node}
+\item 
+\Hypertarget{class_magix_sky_manager_a32ad742d036fe5571fbc272377746e01}\label{class_magix_sky_manager_a32ad742d036fe5571fbc272377746e01} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Sky\+Dome}
+\item 
+\Hypertarget{class_magix_sky_manager_a203e1694272f3b63f6cbce0bfdf23b85}\label{class_magix_sky_manager_a203e1694272f3b63f6cbce0bfdf23b85} 
+Billboard\+Set \texorpdfstring{$\ast$}{*} {\bfseries m\+Sun}
+\item 
+\Hypertarget{class_magix_sky_manager_a30f8f38b34b1a1f4cc05785335a2e932}\label{class_magix_sky_manager_a30f8f38b34b1a1f4cc05785335a2e932} 
+Billboard\+Set \texorpdfstring{$\ast$}{*} {\bfseries m\+Sun\+Radiance}
+\item 
+\Hypertarget{class_magix_sky_manager_ad95aeca9e3f2c2f71f17f6d93cd97b35}\label{class_magix_sky_manager_ad95aeca9e3f2c2f71f17f6d93cd97b35} 
+Billboard\+Set \texorpdfstring{$\ast$}{*} {\bfseries m\+Moon}
+\item 
+\Hypertarget{class_magix_sky_manager_aabe3a84ae9cf81004f20e228cd1bcd4f}\label{class_magix_sky_manager_aabe3a84ae9cf81004f20e228cd1bcd4f} 
+Billboard\+Set \texorpdfstring{$\ast$}{*} {\bfseries m\+Stars}
+\item 
+\Hypertarget{class_magix_sky_manager_a8234580719e6c08ccc4e1326b915c7f9}\label{class_magix_sky_manager_a8234580719e6c08ccc4e1326b915c7f9} 
+Light \texorpdfstring{$\ast$}{*} {\bfseries m\+Sun\+Light}
+\item 
+\Hypertarget{class_magix_sky_manager_a799380d955843ebcbc9d880a20d5259e}\label{class_magix_sky_manager_a799380d955843ebcbc9d880a20d5259e} 
+Light \texorpdfstring{$\ast$}{*} {\bfseries m\+Moon\+Light}
+\item 
+\Hypertarget{class_magix_sky_manager_af9bb7d3cda7b59eb759f9d79ab27c7df}\label{class_magix_sky_manager_af9bb7d3cda7b59eb759f9d79ab27c7df} 
+Real {\bfseries sky\+Day\+Time}
+\item 
+\Hypertarget{class_magix_sky_manager_a1e45296a13a2d2124e7a0d350da57951}\label{class_magix_sky_manager_a1e45296a13a2d2124e7a0d350da57951} 
+bool {\bfseries day\+Time\+Frozen}
+\item 
+\Hypertarget{class_magix_sky_manager_a7043825bd2be13983e0b16451c294862}\label{class_magix_sky_manager_a7043825bd2be13983e0b16451c294862} 
+Real {\bfseries frozen\+Day\+Time}
+\item 
+\Hypertarget{class_magix_sky_manager_a90f5f3a51095b856aaced9cb633d876d}\label{class_magix_sky_manager_a90f5f3a51095b856aaced9cb633d876d} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Weather\+Node}
+\item 
+\Hypertarget{class_magix_sky_manager_a7e2fa950fd9c952adb5b34cf84b5c672}\label{class_magix_sky_manager_a7e2fa950fd9c952adb5b34cf84b5c672} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries m\+Weather\+System}
+\item 
+\Hypertarget{class_magix_sky_manager_a650c33701900eb5c278baebc7e29a050}\label{class_magix_sky_manager_a650c33701900eb5c278baebc7e29a050} 
+Real {\bfseries weather\+Time}
+\item 
+\Hypertarget{class_magix_sky_manager_a8af86a0cb975fd8c0bb3703ae522d961}\label{class_magix_sky_manager_a8af86a0cb975fd8c0bb3703ae522d961} 
+bool {\bfseries weather\+Locked}
+\item 
+\Hypertarget{class_magix_sky_manager_ade6e2c295589898025fc901fbcd1ae9a}\label{class_magix_sky_manager_ade6e2c295589898025fc901fbcd1ae9a} 
+String {\bfseries weather\+Type}
+\item 
+\Hypertarget{class_magix_sky_manager_a75f4d551636b0f322ab40bb8af9bf959}\label{class_magix_sky_manager_a75f4d551636b0f322ab40bb8af9bf959} 
+String {\bfseries weather\+Cycle}
+\item 
+\Hypertarget{class_magix_sky_manager_afb8a67ea793252efba620a9c5fd720eb}\label{class_magix_sky_manager_afb8a67ea793252efba620a9c5fd720eb} 
+Colour\+Value {\bfseries weather\+Sky\+Shader}
+\item 
+\Hypertarget{class_magix_sky_manager_abb6377c19459f30046a65a0bd5db3631}\label{class_magix_sky_manager_abb6377c19459f30046a65a0bd5db3631} 
+String {\bfseries weather\+Effect}
+\item 
+\Hypertarget{class_magix_sky_manager_ad1a0e43270ce311b10906ba7c59c896d}\label{class_magix_sky_manager_ad1a0e43270ce311b10906ba7c59c896d} 
+Real {\bfseries weather\+Effect\+Countdown}
+\item 
+\Hypertarget{class_magix_sky_manager_aefe6f632b19b11dfb2a89db8e2733d8c}\label{class_magix_sky_manager_aefe6f632b19b11dfb2a89db8e2733d8c} 
+vector$<$ \mbox{\hyperlink{struct_weather_event}{Weather\+Event}} $>$\+::type {\bfseries weather\+Cycle\+Event\+List}
+\item 
+\Hypertarget{class_magix_sky_manager_a93827eee9c5916d9c3ffc4af3853df61}\label{class_magix_sky_manager_a93827eee9c5916d9c3ffc4af3853df61} 
+bool {\bfseries has\+Weather\+Sound}
+\item 
+\Hypertarget{class_magix_sky_manager_a0923c057675aec2e39c51b65cb29afef}\label{class_magix_sky_manager_a0923c057675aec2e39c51b65cb29afef} 
+bool {\bfseries interior\+Sky}
+\item 
+\Hypertarget{class_magix_sky_manager_a60233d9578760cf04f87efd070bf4f05}\label{class_magix_sky_manager_a60233d9578760cf04f87efd070bf4f05} 
+Real {\bfseries FOG\+\_\+\+START}
+\item 
+\Hypertarget{class_magix_sky_manager_aa14440d2e9cbb07cdde6bc9b29b0ec56}\label{class_magix_sky_manager_aa14440d2e9cbb07cdde6bc9b29b0ec56} 
+Real {\bfseries FOG\+\_\+\+END}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Sky\+Manager.\+h\end{DoxyCompactItemize}

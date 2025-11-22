@@ -1,0 +1,430 @@
+\doxysection{Magix\+Critter Class Reference}
+\hypertarget{class_magix_critter}{}\label{class_magix_critter}\index{MagixCritter@{MagixCritter}}
+Inheritance diagram for Magix\+Critter\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=4.000000cm]{class_magix_critter}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_critter_a45f981ccdfe68bd67ba3cc31861721e1}\label{class_magix_critter_a45f981ccdfe68bd67ba3cc31861721e1} 
+{\bfseries Magix\+Critter} (Scene\+Node \texorpdfstring{$\ast$}{*}node, const unsigned short \&id, const String \&type\+Name, Entity \texorpdfstring{$\ast$}{*}ent)
+\item 
+const OBJECT\+\_\+\+TYPE \mbox{\hyperlink{class_magix_critter_aae913b33a76e48a8845898a139f580a0}{get\+Type}} ()
+\item 
+\Hypertarget{class_magix_critter_a34af5657e51072d2960f010db280f5fa}\label{class_magix_critter_a34af5657e51072d2960f010db280f5fa} 
+const unsigned short {\bfseries get\+ID} ()
+\item 
+\Hypertarget{class_magix_critter_a82120c8c9d9b01f0d4067463916537ad}\label{class_magix_critter_a82120c8c9d9b01f0d4067463916537ad} 
+const String {\bfseries get\+Critter\+Type} ()
+\item 
+\Hypertarget{class_magix_critter_ab85ef54c8a5def16e1dcc6bb520ff66f}\label{class_magix_critter_ab85ef54c8a5def16e1dcc6bb520ff66f} 
+void {\bfseries set\+Owner\+Index} (const short \&index)
+\item 
+\Hypertarget{class_magix_critter_aa4468635567c820e7fa01fe1d0e6d07c}\label{class_magix_critter_aa4468635567c820e7fa01fe1d0e6d07c} 
+const short {\bfseries get\+Owner\+Index} ()
+\item 
+\Hypertarget{class_magix_critter_a07c4478f1c97ea30b1d0e085e8fd4cf7}\label{class_magix_critter_a07c4478f1c97ea30b1d0e085e8fd4cf7} 
+void {\bfseries set\+Im\+The\+Owner} ()
+\item 
+\Hypertarget{class_magix_critter_a46b1826e9abed78de16a27f143cb6d57}\label{class_magix_critter_a46b1826e9abed78de16a27f143cb6d57} 
+bool {\bfseries im\+The\+Owner} ()
+\item 
+\Hypertarget{class_magix_critter_ae4fe4098ca72fa699f4dd1ce90aec4ea}\label{class_magix_critter_ae4fe4098ca72fa699f4dd1ce90aec4ea} 
+void {\bfseries set\+Last\+Hit\+Index} (const short \&index)
+\item 
+\Hypertarget{class_magix_critter_ad72731a50ab0484692a134633d552adf}\label{class_magix_critter_ad72731a50ab0484692a134633d552adf} 
+const short {\bfseries get\+Last\+Hit\+Index} ()
+\item 
+\Hypertarget{class_magix_critter_ae453dbbc2613601b9f26871156125c23}\label{class_magix_critter_ae453dbbc2613601b9f26871156125c23} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Ent} ()
+\item 
+\Hypertarget{class_magix_critter_a59620a19c11c9bc563b0dd31f67f4f5d}\label{class_magix_critter_a59620a19c11c9bc563b0dd31f67f4f5d} 
+void {\bfseries update} (const Frame\+Event \&evt, bool \&killed\+Flag, bool \&decomposed\+Flag)
+\item 
+\Hypertarget{class_magix_critter_a850d34f65c3b188caa6ba1e65cafcdaa}\label{class_magix_critter_a850d34f65c3b188caa6ba1e65cafcdaa} 
+void {\bfseries update\+Sound} (const Frame\+Event \&evt)
+\item 
+void \mbox{\hyperlink{class_magix_critter_a33fdbbea11195b38bed01e9b74846a8e}{update\+Animation}} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_critter_a5ff1cd7ee76a5d2bfe7c041c42b565a3}\label{class_magix_critter_a5ff1cd7ee76a5d2bfe7c041c42b565a3} 
+void {\bfseries update\+Action} ()
+\item 
+\Hypertarget{class_magix_critter_af57fef1432f6bd5025c6fcbda6a13fd4}\label{class_magix_critter_af57fef1432f6bd5025c6fcbda6a13fd4} 
+bool {\bfseries is\+Attacking} ()
+\item 
+\Hypertarget{class_magix_critter_adba10b09bebc920f3f420910b03f2926}\label{class_magix_critter_adba10b09bebc920f3f420910b03f2926} 
+const String {\bfseries get\+Anim} ()
+\item 
+\Hypertarget{class_magix_critter_a640c0058f734785e7c2553ff79d48694}\label{class_magix_critter_a640c0058f734785e7c2553ff79d48694} 
+bool {\bfseries set\+Animation} (const String \&type, const Real \&speed=1, bool loop=false)
+\item 
+\Hypertarget{class_magix_critter_a999638ac7019231af33f4652aac13827}\label{class_magix_critter_a999638ac7019231af33f4652aac13827} 
+void {\bfseries update\+Decision} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_critter_aa5e126c6799cb1a51e1c13312adbafbf}\label{class_magix_critter_aa5e126c6799cb1a51e1c13312adbafbf} 
+void {\bfseries update\+Chase} ()
+\item 
+\Hypertarget{class_magix_critter_a8f5dba533de832266feb90490aa226dc}\label{class_magix_critter_a8f5dba533de832266feb90490aa226dc} 
+void {\bfseries update\+Movement} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_critter_a880732b498def7d47058f0333b34787e}\label{class_magix_critter_a880732b498def7d47058f0333b34787e} 
+void {\bfseries update\+Death} (const Frame\+Event \&evt, bool \&killed\+Flag, bool \&decomposed\+Flag)
+\item 
+\Hypertarget{class_magix_critter_a9b703872c665fda7df682d14b13bc6e7}\label{class_magix_critter_a9b703872c665fda7df682d14b13bc6e7} 
+void {\bfseries set\+Full\+Colour} (const Colour\+Value \&full\+Colour)
+\item 
+\Hypertarget{class_magix_critter_ad9c31291ad68a0425ceb06c133cea6d0}\label{class_magix_critter_ad9c31291ad68a0425ceb06c133cea6d0} 
+void {\bfseries kill} ()
+\item 
+\Hypertarget{class_magix_critter_af934ad24709519e84ed9e5f5abfb1aac}\label{class_magix_critter_af934ad24709519e84ed9e5f5abfb1aac} 
+void {\bfseries set\+Target} (const Vector3 \&position, bool clear\+Chase\+Target=true)
+\item 
+\Hypertarget{class_magix_critter_aca5856600cee59117bc01e8dd9009a04}\label{class_magix_critter_aca5856600cee59117bc01e8dd9009a04} 
+void {\bfseries set\+Target} (\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*}target, const unsigned char \&att\+ID=0)
+\item 
+\Hypertarget{class_magix_critter_abf3700660fb2afd14f5512d999a5d02b}\label{class_magix_critter_abf3700660fb2afd14f5512d999a5d02b} 
+const Vector3 {\bfseries get\+Target} ()
+\item 
+\Hypertarget{class_magix_critter_abd9206ab54a9866aae5790dfc704c990}\label{class_magix_critter_abd9206ab54a9866aae5790dfc704c990} 
+void {\bfseries set\+Decision\+Timer} (const Real \&value)
+\item 
+\Hypertarget{class_magix_critter_a40bbdbd482fae9fc9e6ee74d704f806c}\label{class_magix_critter_a40bbdbd482fae9fc9e6ee74d704f806c} 
+const Real {\bfseries get\+Decision\+Timer} ()
+\item 
+\Hypertarget{class_magix_critter_adbc122645c331d5fe7e8067038201746}\label{class_magix_critter_adbc122645c331d5fe7e8067038201746} 
+bool {\bfseries get\+Is\+Dead} ()
+\item 
+\Hypertarget{class_magix_critter_a3e5c0495ae3aa4b89755e650e31302be}\label{class_magix_critter_a3e5c0495ae3aa4b89755e650e31302be} 
+void {\bfseries set\+Roam\+Area} (bool flag)
+\item 
+\Hypertarget{class_magix_critter_a2d445616e07db6a29a9bc0d4fcb86c25}\label{class_magix_critter_a2d445616e07db6a29a9bc0d4fcb86c25} 
+bool {\bfseries get\+Roam\+Area} ()
+\item 
+\Hypertarget{class_magix_critter_a12966f747b16750b08f466d57452ed64}\label{class_magix_critter_a12966f747b16750b08f466d57452ed64} 
+void {\bfseries set\+Roam\+Area\+ID} (const unsigned char \&i\+ID)
+\item 
+\Hypertarget{class_magix_critter_a2c16d467d8ee9e3ea980c5af2160d7a6}\label{class_magix_critter_a2c16d467d8ee9e3ea980c5af2160d7a6} 
+const unsigned char {\bfseries get\+Roam\+Area\+ID} ()
+\item 
+\Hypertarget{class_magix_critter_ab205be22e34122b8913f33516f8659f7}\label{class_magix_critter_ab205be22e34122b8913f33516f8659f7} 
+void {\bfseries set\+World\+Critter\+ID} (const unsigned char \&i\+ID)
+\item 
+\Hypertarget{class_magix_critter_a3579f1165e0d08d18574bfbf753c02b2}\label{class_magix_critter_a3579f1165e0d08d18574bfbf753c02b2} 
+bool {\bfseries get\+Is\+World\+Critter} ()
+\item 
+\Hypertarget{class_magix_critter_a45e78fa3856aa3aab36da9851df0ca89}\label{class_magix_critter_a45e78fa3856aa3aab36da9851df0ca89} 
+const unsigned char {\bfseries get\+World\+Critter\+ID} ()
+\item 
+\Hypertarget{class_magix_critter_ac656f70e86c7a3afe616695d6275048b}\label{class_magix_critter_ac656f70e86c7a3afe616695d6275048b} 
+const Vector3 {\bfseries get\+Position} (bool head\+Position=false)
+\item 
+const Real \mbox{\hyperlink{class_magix_critter_af08bd8789aeabc6105616042c3ed0d8d}{get\+Height}} ()
+\item 
+\Hypertarget{class_magix_critter_a8e5b8d20361f2a19fe586afbb569cf7b}\label{class_magix_critter_a8e5b8d20361f2a19fe586afbb569cf7b} 
+const Real {\bfseries get\+Length} ()
+\item 
+\Hypertarget{class_magix_critter_ab58f4c1f21afcb40c46839d7a185ef55}\label{class_magix_critter_ab58f4c1f21afcb40c46839d7a185ef55} 
+void {\bfseries reset\+Size} ()
+\item 
+\Hypertarget{class_magix_critter_a7a4f837382eb2d928bf931a4334fb628}\label{class_magix_critter_a7a4f837382eb2d928bf931a4334fb628} 
+void {\bfseries set\+Is\+Pet} (bool flag)
+\item 
+\Hypertarget{class_magix_critter_a1d90d39f2ee15de0ee331551a153ef18}\label{class_magix_critter_a1d90d39f2ee15de0ee331551a153ef18} 
+bool {\bfseries get\+Is\+Pet} ()
+\item 
+\Hypertarget{class_magix_critter_acc6824a11c4780404e628371912bc310}\label{class_magix_critter_acc6824a11c4780404e628371912bc310} 
+void {\bfseries set\+Has\+Attack} (bool flag)
+\item 
+\Hypertarget{class_magix_critter_ac990c56348d80cbeb0c4899913151447}\label{class_magix_critter_ac990c56348d80cbeb0c4899913151447} 
+bool {\bfseries get\+Has\+Attack} ()
+\item 
+\Hypertarget{class_magix_critter_afd974a08cf2f3bd3edfee3bb9bca9c71}\label{class_magix_critter_afd974a08cf2f3bd3edfee3bb9bca9c71} 
+bool {\bfseries pop\+Attack\+Has\+Ended} ()
+\item 
+\Hypertarget{class_magix_critter_a51677265450f4921173d4cb0d5a6f9f2}\label{class_magix_critter_a51677265450f4921173d4cb0d5a6f9f2} 
+bool {\bfseries pop\+Is\+Ready\+To\+Attack} ()
+\item 
+\Hypertarget{class_magix_critter_a4ab1f9319e7211df75d8c76ba3e3b350}\label{class_magix_critter_a4ab1f9319e7211df75d8c76ba3e3b350} 
+const unsigned char {\bfseries get\+Attack\+ID} ()
+\item 
+\Hypertarget{class_magix_critter_a07b9805a6988064b393016efb4642e7c}\label{class_magix_critter_a07b9805a6988064b393016efb4642e7c} 
+void {\bfseries set\+Stop\+Chase\+Limit} (const Real \&y)
+\item 
+\Hypertarget{class_magix_critter_a5df967954b2f2d6c1bd60987dc18343d}\label{class_magix_critter_a5df967954b2f2d6c1bd60987dc18343d} 
+\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Chase\+Target} ()
+\item 
+\Hypertarget{class_magix_critter_a09cd6d9ef52a3050c5d0b73c487a6c15}\label{class_magix_critter_a09cd6d9ef52a3050c5d0b73c487a6c15} 
+void {\bfseries set\+Sound\+Timer} (const Real \&timer)
+\item 
+\Hypertarget{class_magix_critter_a8812fad35f8228419872bec3b8d706ef}\label{class_magix_critter_a8812fad35f8228419872bec3b8d706ef} 
+const Real {\bfseries get\+Sound\+Timer} ()
+\item 
+\Hypertarget{class_magix_critter_a6e5021a9efccfdd08c06740fbd25bed5}\label{class_magix_critter_a6e5021a9efccfdd08c06740fbd25bed5} 
+void {\bfseries set\+Is\+Draw\+Point} (bool flag)
+\item 
+\Hypertarget{class_magix_critter_a127afa30ed7a12072f3207387aaa2dfb}\label{class_magix_critter_a127afa30ed7a12072f3207387aaa2dfb} 
+bool {\bfseries get\+Is\+Draw\+Point} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries set\+HP} (const short \&i\+Max\+HP, const Real \&ratio=1)
+\item 
+virtual void {\bfseries set\+HPRatio} (const Real \&ratio)
+\item 
+virtual bool {\bfseries add\+HP} (const short \&value)
+\item 
+const Real {\bfseries get\+HPRatio} ()
+\item 
+const short {\bfseries get\+HP} ()
+\item 
+const short {\bfseries get\+Max\+HP} ()
+\item 
+void {\bfseries set\+Alliance} (const unsigned char \&ally)
+\item 
+const unsigned char {\bfseries get\+Alliance} ()
+\item 
+bool {\bfseries match\+Alliance} (const unsigned char \&ally)
+\item 
+bool {\bfseries is\+Invulnerable} ()
+\item 
+void {\bfseries set\+Invulnerable} (bool flag)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries create\+Object} (const unsigned short \&i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&object\+Mesh, const String \&mat\+Name)
+\item 
+void {\bfseries destroy\+Object} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+virtual void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Face\+Direction} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Physics} (const Frame\+Event \&evt)
+\item 
+void {\bfseries add\+Force} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Force} (const Vector3 \&value)
+\item 
+const Vector3 {\bfseries get\+Force} ()
+\item 
+void {\bfseries set\+Position} (const Real \&x, const Real \&y, const Real \&z)
+\item 
+void {\bfseries set\+Position} (const Vector3 \&position)
+\item 
+virtual const Vector3 \mbox{\hyperlink{class_magix_animated_a793515d34f0aea1719683ed834e9f013}{get\+Position}} ()
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_magix_animated_ac51fdd53bb77c9e8ba6191318e8de9b7}{get\+Object\+Node}} ()
+\item 
+void {\bfseries set\+Ground\+Height} (const Real \&value)
+\item 
+const Real {\bfseries get\+Ground\+Height} ()
+\item 
+const Real {\bfseries distance\+From\+Ground} ()
+\item 
+bool {\bfseries is\+Position\+Changed} (bool exclude\+YAxis=false)
+\item 
+const Vector3 {\bfseries get\+Last\+Position} ()
+\item 
+bool {\bfseries is\+Moving\+Reverse} ()
+\item 
+void {\bfseries yaw} (const Degree \&angle, bool instant=false)
+\item 
+void {\bfseries set\+Yaw} (const Degree \&angle, bool instant=false)
+\item 
+const Degree {\bfseries get\+Yaw} ()
+\item 
+const Quaternion {\bfseries get\+Face\+Direction} ()
+\item 
+void {\bfseries set\+Anti\+Gravity} (bool flag)
+\item 
+bool {\bfseries is\+Anti\+Gravity} ()
+\item 
+void {\bfseries toggle\+Anti\+Gravity} ()
+\item 
+void {\bfseries add\+Penalty\+Velocity} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Speed\+Multiplier} (const Real \&value)
+\item 
+const Real {\bfseries get\+Speed\+Multiplier} ()
+\item 
+void {\bfseries set\+Max\+Speed} (const Real \&value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_critter_acd19b2c63b79f12025d204fe6005889f}\label{class_magix_critter_acd19b2c63b79f12025d204fe6005889f} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Ent}
+\item 
+\Hypertarget{class_magix_critter_a54ded971843c06c70e78fc393950c02b}\label{class_magix_critter_a54ded971843c06c70e78fc393950c02b} 
+unsigned short {\bfseries ID}
+\item 
+\Hypertarget{class_magix_critter_a25d50950d7d30b4398022bee749fd77e}\label{class_magix_critter_a25d50950d7d30b4398022bee749fd77e} 
+String {\bfseries type}
+\item 
+\Hypertarget{class_magix_critter_ae6933a57c8db0941f2ba9056a03a6ed0}\label{class_magix_critter_ae6933a57c8db0941f2ba9056a03a6ed0} 
+short {\bfseries owner\+Index}
+\item 
+\Hypertarget{class_magix_critter_ac524e41c6bfdafe813352d8a29c2f297}\label{class_magix_critter_ac524e41c6bfdafe813352d8a29c2f297} 
+short {\bfseries last\+Hit\+Index}
+\item 
+\Hypertarget{class_magix_critter_a2d327426c9c950fd08216ee4bf90c501}\label{class_magix_critter_a2d327426c9c950fd08216ee4bf90c501} 
+String {\bfseries anim}
+\item 
+\Hypertarget{class_magix_critter_a6025030efda11993a8fe2a8dff707fcb}\label{class_magix_critter_a6025030efda11993a8fe2a8dff707fcb} 
+Real {\bfseries anim\+Speed}
+\item 
+\Hypertarget{class_magix_critter_ae2e5c869a2f2fe461273d065259e0976}\label{class_magix_critter_ae2e5c869a2f2fe461273d065259e0976} 
+Real {\bfseries decision\+Timer}
+\item 
+\Hypertarget{class_magix_critter_a56a76837a7ed302a3e5f2a62411a67de}\label{class_magix_critter_a56a76837a7ed302a3e5f2a62411a67de} 
+Vector3 {\bfseries target\+Position}
+\item 
+\Hypertarget{class_magix_critter_a1418de56863e88a4652f4ac87c677644}\label{class_magix_critter_a1418de56863e88a4652f4ac87c677644} 
+bool {\bfseries is\+Dead}
+\item 
+\Hypertarget{class_magix_critter_adcf99ab4f927b2f9f55d542f28415f10}\label{class_magix_critter_adcf99ab4f927b2f9f55d542f28415f10} 
+bool {\bfseries has\+Sent\+Death}
+\item 
+\Hypertarget{class_magix_critter_ae7eb7379f475301ffb25af903f11ddb5}\label{class_magix_critter_ae7eb7379f475301ffb25af903f11ddb5} 
+bool {\bfseries is\+Decomposing}
+\item 
+\Hypertarget{class_magix_critter_ab0eaa846df980ff5ffcd0fe20582af7f}\label{class_magix_critter_ab0eaa846df980ff5ffcd0fe20582af7f} 
+bool {\bfseries has\+Roam\+Area}
+\item 
+\Hypertarget{class_magix_critter_ac0edffc4381090eee59283b5ca13ced5}\label{class_magix_critter_ac0edffc4381090eee59283b5ca13ced5} 
+unsigned char {\bfseries roam\+Area\+ID}
+\item 
+\Hypertarget{class_magix_critter_a10511fed30701a8d9f69c3dca2012d36}\label{class_magix_critter_a10511fed30701a8d9f69c3dca2012d36} 
+unsigned char {\bfseries world\+Critter\+ID}
+\item 
+\Hypertarget{class_magix_critter_a0d1bbda88a6aca823175b946bdbc4e87}\label{class_magix_critter_a0d1bbda88a6aca823175b946bdbc4e87} 
+bool {\bfseries is\+World\+Critter}
+\item 
+\Hypertarget{class_magix_critter_a5be7a59af5772171c54a09aa774e6003}\label{class_magix_critter_a5be7a59af5772171c54a09aa774e6003} 
+Real {\bfseries length}
+\item 
+\Hypertarget{class_magix_critter_a347a9db59036d3eb0b542aa8123d8f84}\label{class_magix_critter_a347a9db59036d3eb0b542aa8123d8f84} 
+Real {\bfseries height}
+\item 
+\Hypertarget{class_magix_critter_a435bbbeb86493ac41efe22549c86a410}\label{class_magix_critter_a435bbbeb86493ac41efe22549c86a410} 
+bool {\bfseries is\+Pet}
+\item 
+\Hypertarget{class_magix_critter_aa8e253db049e9214f250f35e75d2c00a}\label{class_magix_critter_aa8e253db049e9214f250f35e75d2c00a} 
+bool {\bfseries has\+Attack}
+\item 
+\Hypertarget{class_magix_critter_a433fff572b800615d56fcb51684da650}\label{class_magix_critter_a433fff572b800615d56fcb51684da650} 
+bool {\bfseries is\+Ready\+To\+Attack}
+\item 
+\Hypertarget{class_magix_critter_a0a9d812d264a1a4065e0035df0d82936}\label{class_magix_critter_a0a9d812d264a1a4065e0035df0d82936} 
+bool {\bfseries attack\+Has\+Ended}
+\item 
+\Hypertarget{class_magix_critter_a765ca43dc0cc3507953c5748f44260be}\label{class_magix_critter_a765ca43dc0cc3507953c5748f44260be} 
+\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Chase\+Target}
+\item 
+\Hypertarget{class_magix_critter_aae09811b57f6659c9d21ed3a5398a732}\label{class_magix_critter_aae09811b57f6659c9d21ed3a5398a732} 
+unsigned char {\bfseries attack\+ID}
+\item 
+\Hypertarget{class_magix_critter_aa6e790401274627eee5d8349c4a4ac7a}\label{class_magix_critter_aa6e790401274627eee5d8349c4a4ac7a} 
+Real {\bfseries stop\+Chase\+Limit}
+\item 
+\Hypertarget{class_magix_critter_ac466f649a382d424c58dd10b677f63ba}\label{class_magix_critter_ac466f649a382d424c58dd10b677f63ba} 
+Real {\bfseries sound\+Timer}
+\item 
+\Hypertarget{class_magix_critter_a66c745ea0d246de4d07b84f709b3841f}\label{class_magix_critter_a66c745ea0d246de4d07b84f709b3841f} 
+bool {\bfseries is\+Draw\+Point}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+short {\bfseries max\+HP}
+\item 
+short {\bfseries hp}
+\item 
+unsigned char {\bfseries alliance}
+\item 
+bool {\bfseries invulnerable}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short {\bfseries object\+ID}
+\item 
+Vector3 {\bfseries m\+Force}
+\item 
+Real {\bfseries ground\+Height}
+\item 
+Real {\bfseries max\+Speed}
+\item 
+Real {\bfseries speed\+Multiplier}
+\item 
+Vector3 {\bfseries last\+Position}
+\item 
+Real {\bfseries update\+Time}
+\item 
+Degree {\bfseries face\+Direction\+Yaw}
+\item 
+bool {\bfseries anti\+Gravity}
+\item 
+Vector3 {\bfseries penalty\+Velocity}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Object\+Node}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_critter_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_critter_af08bd8789aeabc6105616042c3ed0d8d}\index{MagixCritter@{MagixCritter}!getHeight@{getHeight}}
+\index{getHeight@{getHeight}!MagixCritter@{MagixCritter}}
+\doxysubsubsection{\texorpdfstring{getHeight()}{getHeight()}}
+{\footnotesize\ttfamily \label{class_magix_critter_af08bd8789aeabc6105616042c3ed0d8d} 
+const Real Magix\+Critter\+::get\+Height (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}.
+
+\Hypertarget{class_magix_critter_aae913b33a76e48a8845898a139f580a0}\index{MagixCritter@{MagixCritter}!getType@{getType}}
+\index{getType@{getType}!MagixCritter@{MagixCritter}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_magix_critter_aae913b33a76e48a8845898a139f580a0} 
+const OBJECT\+\_\+\+TYPE Magix\+Critter\+::get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}.
+
+\Hypertarget{class_magix_critter_a33fdbbea11195b38bed01e9b74846a8e}\index{MagixCritter@{MagixCritter}!updateAnimation@{updateAnimation}}
+\index{updateAnimation@{updateAnimation}!MagixCritter@{MagixCritter}}
+\doxysubsubsection{\texorpdfstring{updateAnimation()}{updateAnimation()}}
+{\footnotesize\ttfamily \label{class_magix_critter_a33fdbbea11195b38bed01e9b74846a8e} 
+void Magix\+Critter\+::update\+Animation (\begin{DoxyParamCaption}\item[{const Frame\+Event \&}]{evt}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Critter\+Manager.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,185 @@
+\doxysection{Magix\+Animated Class Reference}
+\hypertarget{class_magix_animated}{}\label{class_magix_animated}\index{MagixAnimated@{MagixAnimated}}
+Inheritance diagram for Magix\+Animated\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_magix_animated}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_animated_ad199797b0aafebe9aef6d97d3dda1c63}\label{class_magix_animated_ad199797b0aafebe9aef6d97d3dda1c63} 
+void {\bfseries create\+Object} (const unsigned short \&i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&object\+Mesh, const String \&mat\+Name)
+\item 
+\Hypertarget{class_magix_animated_a970004bd436d7090b71faa32734c45c6}\label{class_magix_animated_a970004bd436d7090b71faa32734c45c6} 
+void {\bfseries destroy\+Object} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+\Hypertarget{class_magix_animated_a9d3abc9cb4b0c51c402371e1fd5b8406}\label{class_magix_animated_a9d3abc9cb4b0c51c402371e1fd5b8406} 
+virtual void {\bfseries update\+Animation} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_animated_ace1f680191d23e177ecd88c98d3808d3}\label{class_magix_animated_ace1f680191d23e177ecd88c98d3808d3} 
+virtual void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_animated_a599b3521dec3221dda57aeb87e56d41e}\label{class_magix_animated_a599b3521dec3221dda57aeb87e56d41e} 
+void {\bfseries update\+Face\+Direction} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_animated_add1caa064b084210d34d19b2d04c09fe}\label{class_magix_animated_add1caa064b084210d34d19b2d04c09fe} 
+void {\bfseries update\+Physics} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_animated_a172940ce214e49892ea80fceffe22f02}\label{class_magix_animated_a172940ce214e49892ea80fceffe22f02} 
+void {\bfseries add\+Force} (const Vector3 \&value)
+\item 
+\Hypertarget{class_magix_animated_a9e4f3527231dce9d11ab03ceb83d44fa}\label{class_magix_animated_a9e4f3527231dce9d11ab03ceb83d44fa} 
+void {\bfseries set\+Force} (const Vector3 \&value)
+\item 
+\Hypertarget{class_magix_animated_a2a2411f64811595027a898fbb5d90ba5}\label{class_magix_animated_a2a2411f64811595027a898fbb5d90ba5} 
+const Vector3 {\bfseries get\+Force} ()
+\item 
+\Hypertarget{class_magix_animated_ac7d3319bcf74167e1d15047fcd5b4da2}\label{class_magix_animated_ac7d3319bcf74167e1d15047fcd5b4da2} 
+void {\bfseries set\+Position} (const Real \&x, const Real \&y, const Real \&z)
+\item 
+\Hypertarget{class_magix_animated_aaf863b8766ff0636677d04a08b93982a}\label{class_magix_animated_aaf863b8766ff0636677d04a08b93982a} 
+void {\bfseries set\+Position} (const Vector3 \&position)
+\item 
+virtual const Vector3 \mbox{\hyperlink{class_magix_animated_a793515d34f0aea1719683ed834e9f013}{get\+Position}} ()
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_magix_animated_ac51fdd53bb77c9e8ba6191318e8de9b7}{get\+Object\+Node}} ()
+\item 
+\Hypertarget{class_magix_animated_a0b80317009b1fed55def8e7e83ccd7dd}\label{class_magix_animated_a0b80317009b1fed55def8e7e83ccd7dd} 
+void {\bfseries set\+Ground\+Height} (const Real \&value)
+\item 
+\Hypertarget{class_magix_animated_a3f49384dbce4cbb0c5a0b36d9b9af529}\label{class_magix_animated_a3f49384dbce4cbb0c5a0b36d9b9af529} 
+const Real {\bfseries get\+Ground\+Height} ()
+\item 
+\Hypertarget{class_magix_animated_aeb74caf5709ab40eeabbe3972cb68b62}\label{class_magix_animated_aeb74caf5709ab40eeabbe3972cb68b62} 
+const Real {\bfseries distance\+From\+Ground} ()
+\item 
+virtual const OBJECT\+\_\+\+TYPE \mbox{\hyperlink{class_magix_animated_aea8a927aff56bcc2016dc49a04e00fbe}{get\+Type}} ()
+\item 
+\Hypertarget{class_magix_animated_ada61c2c9aca22e3c5e8763d1391e94cb}\label{class_magix_animated_ada61c2c9aca22e3c5e8763d1391e94cb} 
+bool {\bfseries is\+Position\+Changed} (bool exclude\+YAxis=false)
+\item 
+\Hypertarget{class_magix_animated_a0667b54c9c720e0aa1083a278d520b9c}\label{class_magix_animated_a0667b54c9c720e0aa1083a278d520b9c} 
+const Vector3 {\bfseries get\+Last\+Position} ()
+\item 
+\Hypertarget{class_magix_animated_aef6c8e5abf98ae2d6a2dcde7f1aed69b}\label{class_magix_animated_aef6c8e5abf98ae2d6a2dcde7f1aed69b} 
+bool {\bfseries is\+Moving\+Reverse} ()
+\item 
+\Hypertarget{class_magix_animated_af424a41a5f446d36353840d60e44a918}\label{class_magix_animated_af424a41a5f446d36353840d60e44a918} 
+void {\bfseries yaw} (const Degree \&angle, bool instant=false)
+\item 
+\Hypertarget{class_magix_animated_a93ff472f169263904194ee32907a9080}\label{class_magix_animated_a93ff472f169263904194ee32907a9080} 
+void {\bfseries set\+Yaw} (const Degree \&angle, bool instant=false)
+\item 
+\Hypertarget{class_magix_animated_a0b88be84baab7b66975cdabc2689eb4f}\label{class_magix_animated_a0b88be84baab7b66975cdabc2689eb4f} 
+const Degree {\bfseries get\+Yaw} ()
+\item 
+\Hypertarget{class_magix_animated_a84cc3dec83575c2d7a66453815e61727}\label{class_magix_animated_a84cc3dec83575c2d7a66453815e61727} 
+const Quaternion {\bfseries get\+Face\+Direction} ()
+\item 
+\Hypertarget{class_magix_animated_a446ba712256d7d24088b9ab8f7592000}\label{class_magix_animated_a446ba712256d7d24088b9ab8f7592000} 
+void {\bfseries set\+Anti\+Gravity} (bool flag)
+\item 
+\Hypertarget{class_magix_animated_a08eb43a21561ebbe60b5264f01537bca}\label{class_magix_animated_a08eb43a21561ebbe60b5264f01537bca} 
+bool {\bfseries is\+Anti\+Gravity} ()
+\item 
+\Hypertarget{class_magix_animated_ad103891c65e5d58b3e6e09e623df9a05}\label{class_magix_animated_ad103891c65e5d58b3e6e09e623df9a05} 
+void {\bfseries toggle\+Anti\+Gravity} ()
+\item 
+\Hypertarget{class_magix_animated_aaa5e4baf03086f1af8dd5f7eb59729f3}\label{class_magix_animated_aaa5e4baf03086f1af8dd5f7eb59729f3} 
+void {\bfseries add\+Penalty\+Velocity} (const Vector3 \&value)
+\item 
+\Hypertarget{class_magix_animated_ad812e49d00ae80f54e2583621fdb5efa}\label{class_magix_animated_ad812e49d00ae80f54e2583621fdb5efa} 
+void {\bfseries set\+Speed\+Multiplier} (const Real \&value)
+\item 
+\Hypertarget{class_magix_animated_a28d7e67dfabfb17f39f873573668a7b9}\label{class_magix_animated_a28d7e67dfabfb17f39f873573668a7b9} 
+const Real {\bfseries get\+Speed\+Multiplier} ()
+\item 
+\Hypertarget{class_magix_animated_a31272022a83bf43815352a6211eabe6b}\label{class_magix_animated_a31272022a83bf43815352a6211eabe6b} 
+void {\bfseries set\+Max\+Speed} (const Real \&value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_animated_a62aa523dea3388bb38f1d64ccafe27a2}\label{class_magix_animated_a62aa523dea3388bb38f1d64ccafe27a2} 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_animated_a66b376f9cc24036e8b770f08b3948c37}\label{class_magix_animated_a66b376f9cc24036e8b770f08b3948c37} 
+unsigned short {\bfseries object\+ID}
+\item 
+\Hypertarget{class_magix_animated_aa15c639e64af23e804ec33fa598ad854}\label{class_magix_animated_aa15c639e64af23e804ec33fa598ad854} 
+Vector3 {\bfseries m\+Force}
+\item 
+\Hypertarget{class_magix_animated_a516ce154fff98483f0fdb825ab7a9152}\label{class_magix_animated_a516ce154fff98483f0fdb825ab7a9152} 
+Real {\bfseries ground\+Height}
+\item 
+\Hypertarget{class_magix_animated_ad843748c206ba3c8e27d2bba335062e5}\label{class_magix_animated_ad843748c206ba3c8e27d2bba335062e5} 
+Real {\bfseries max\+Speed}
+\item 
+\Hypertarget{class_magix_animated_a1abca6091dd5f25c34fdf1ab4128fe58}\label{class_magix_animated_a1abca6091dd5f25c34fdf1ab4128fe58} 
+Real {\bfseries speed\+Multiplier}
+\item 
+\Hypertarget{class_magix_animated_a8daffece6a933e4f4081b0e77a903303}\label{class_magix_animated_a8daffece6a933e4f4081b0e77a903303} 
+Vector3 {\bfseries last\+Position}
+\item 
+\Hypertarget{class_magix_animated_ae6d0da180b4bb25b9bc6d59af40eeed8}\label{class_magix_animated_ae6d0da180b4bb25b9bc6d59af40eeed8} 
+Real {\bfseries update\+Time}
+\item 
+\Hypertarget{class_magix_animated_af448a48f7d66cdae01da86dfa54cb70c}\label{class_magix_animated_af448a48f7d66cdae01da86dfa54cb70c} 
+Degree {\bfseries face\+Direction\+Yaw}
+\item 
+\Hypertarget{class_magix_animated_a3b3765fed8ccab0257a4dd8f036104cc}\label{class_magix_animated_a3b3765fed8ccab0257a4dd8f036104cc} 
+bool {\bfseries anti\+Gravity}
+\item 
+\Hypertarget{class_magix_animated_a88f8fbc7f33ede42a191a425f8543b2c}\label{class_magix_animated_a88f8fbc7f33ede42a191a425f8543b2c} 
+Vector3 {\bfseries penalty\+Velocity}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Object\+Node}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_animated_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_animated_ac51fdd53bb77c9e8ba6191318e8de9b7}\index{MagixAnimated@{MagixAnimated}!getObjectNode@{getObjectNode}}
+\index{getObjectNode@{getObjectNode}!MagixAnimated@{MagixAnimated}}
+\doxysubsubsection{\texorpdfstring{getObjectNode()}{getObjectNode()}}
+{\footnotesize\ttfamily \label{class_magix_animated_ac51fdd53bb77c9e8ba6191318e8de9b7} 
+Scene\+Node \texorpdfstring{$\ast$}{*} Magix\+Animated\+::get\+Object\+Node (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}.
+
+\Hypertarget{class_magix_animated_a793515d34f0aea1719683ed834e9f013}\index{MagixAnimated@{MagixAnimated}!getPosition@{getPosition}}
+\index{getPosition@{getPosition}!MagixAnimated@{MagixAnimated}}
+\doxysubsubsection{\texorpdfstring{getPosition()}{getPosition()}}
+{\footnotesize\ttfamily \label{class_magix_animated_a793515d34f0aea1719683ed834e9f013} 
+virtual const Vector3 Magix\+Animated\+::get\+Position (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}.
+
+\Hypertarget{class_magix_animated_aea8a927aff56bcc2016dc49a04e00fbe}\index{MagixAnimated@{MagixAnimated}!getType@{getType}}
+\index{getType@{getType}!MagixAnimated@{MagixAnimated}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_magix_animated_aea8a927aff56bcc2016dc49a04e00fbe} 
+virtual const OBJECT\+\_\+\+TYPE Magix\+Animated\+::get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Object.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,1610 @@
+\doxysection{Magix\+Char\+Screen\+Manager.\+h}
+\hypertarget{_magix_char_screen_manager_8h_source}{}\label{_magix_char_screen_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixCharScreenManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixCharScreenManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ this\ is\ going\ to\ be\ a\ challenge,\ at\ least\ populate\ some\ functions\ for\ pages\ as\ the\ setup\ is\ quite\ massive\ as\ it\ is..}}
+\DoxyCodeLine{00002\ }
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixCharScreenManager\_h\_}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ \_\_MagixCharScreenManager\_h\_}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ FILENAME\_CHARACTERS\ "{}characters.sav"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MAX\_COLOURS\ 11}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\#define\ MAX\_SERVERS\ 2}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ PAGE\_SELECT\ 0}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ PAGE\_CUSTOM1\ 1}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ PAGE\_CUSTOM2\ 2}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ PAGE\_CUSTOM3\ 3}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ PAGE\_CUSTOM4\ 4}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ PAGE\_EDIT\ 5}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ PAGE\_PRESET1\ 6}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ PAGE\_PRESET2\ 7}}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ CHARSCREEN\_STARTGAME\ 1}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ CHARSCREEN\_CREATECHAR\ 2}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ CHARSCREEN\_DELETECHAR\ 3}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ CHARSCREEN\_UPDATEGUI\ 4}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ CHARSCREEN\_EDITCHAR\ 5}}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }MagixCharScreenManager}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *mDef;}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_magix_effects_manager}{MagixEffectsManager}}\ *mEffectsManager;}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_magix_alert_box}{MagixAlertBox}}\ *mAlertBox;}
+\DoxyCodeLine{00032\ \ \ \ \ \mbox{\hyperlink{class_magix_unit}{MagixUnit}}\ *mUnit;}
+\DoxyCodeLine{00033\ \ \ \ \ SceneManager\ *mSceneMgr;}
+\DoxyCodeLine{00034\ \ \ \ \ OverlayElement\ *mName;}
+\DoxyCodeLine{00035\ \ \ \ \ OverlayElement\ *mText[MAX\_CHARSCREENTEXT];}
+\DoxyCodeLine{00036\ \ \ \ \ OverlayElement\ *mLButton[MAX\_CHARSCREENTEXT];}
+\DoxyCodeLine{00037\ \ \ \ \ OverlayElement\ *mRButton[MAX\_CHARSCREENTEXT];}
+\DoxyCodeLine{00038\ \ \ \ \ OverlayElement\ *mSlider[3];}
+\DoxyCodeLine{00039\ \ \ \ \ OverlayElement\ *mSliderMarker[3];}
+\DoxyCodeLine{00040\ \ \ \ \ OverlayElement\ *mColourBox;}
+\DoxyCodeLine{00041\ \ \ \ \ OverlayElement\ *mBackdrop;}
+\DoxyCodeLine{00042\ \ \ \ \ OverlayElement\ *mBackButton;}
+\DoxyCodeLine{00043\ \ \ \ \ OverlayElement\ *mNextButton;}
+\DoxyCodeLine{00044\ \ \ \ \ OverlayElement\ *mDeleteButton;}
+\DoxyCodeLine{00045\ \ \ \ \ OverlayElement\ *mBackButtonText;}
+\DoxyCodeLine{00046\ \ \ \ \ OverlayElement\ *mNextButtonText;}
+\DoxyCodeLine{00047\ \ \ \ \ OverlayElement\ *mDeleteButtonText;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{short}\ page;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{short}\ charID;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{short}\ numChars;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{comment}{//bool\ isMale;}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{short}\ maneID;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{short}\ headID;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{short}\ tailID;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{short}\ wingID;}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{short}\ tuftID;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{short}\ bodyMarkID;}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keywordtype}{short}\ headMarkID;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{short}\ tailMarkID;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{short}\ colourPartID;}
+\DoxyCodeLine{00061\ \ \ \ \ ColourValue\ colourVal[MAX\_COLOURS];}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{bool}\ isRotateUnit;}
+\DoxyCodeLine{00063\ \ \ \ \ Real\ rotateStartX;}
+\DoxyCodeLine{00064\ \ \ \ \ Real\ rotateStartY;}
+\DoxyCodeLine{00065\ \ \ \ \ Degree\ dYaw;}
+\DoxyCodeLine{00066\ \ \ \ \ Real\ camZoom;}
+\DoxyCodeLine{00067\ \ \ \ \ Real\ startGameCount;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ isCharIDChanged;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEditMode;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ doReequip;}
+\DoxyCodeLine{00071\ \ \ \ \ String\ deleteConfirmation;}
+\DoxyCodeLine{00072\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00073\ \ \ \ \ MagixCharScreenManager()}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ mDef\ =\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ mEffectsManager\ =\ 0;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ mUnit\ =\ 0;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ mName\ =\ 0;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_CHARSCREENTEXT;i++)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]\ =\ 0;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[i]\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[i]\ =\ 0;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<3;i++)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ mSlider[i]\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ mSliderMarker[i]\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ mColourBox\ =\ 0;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ mAlertBox\ =\ 0;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ mBackdrop\ =\ 0;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ mBackButton\ =\ 0;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ mNextButton\ =\ 0;}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ mBackButtonText\ =\ 0;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ mNextButtonText\ =\ 0;}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \string~MagixCharScreenManager()}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(\mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def,\ \mbox{\hyperlink{class_magix_effects_manager}{MagixEffectsManager}}\ *effectsMgr,\ \mbox{\hyperlink{class_magix_alert_box}{MagixAlertBox}}\ *alertBox,\ \mbox{\hyperlink{class_magix_unit}{MagixUnit}}\ *unit,\ SceneManager\ *sceneMgr,\ OverlayElement\ *name,\ OverlayElement\ *backdrop)}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ mDef\ =\ def;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ mEffectsManager\ =\ effectsMgr;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ mAlertBox\ =\ alertBox;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ mUnit\ =\ unit;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ sceneMgr;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ mName\ =\ name;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ mBackdrop\ =\ backdrop;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ mColourBox\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}GUI/CharScreenColourBox"{}});}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeText(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&i,\ OverlayElement\ *text)}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ mText[i]\ =\ text;}
+\DoxyCodeLine{00121\ \ \ \ \ \}}
+\DoxyCodeLine{00122\ }
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeBackNextButtons(OverlayElement\ *back,\ OverlayElement\ *next,\ OverlayElement\ *del,\ OverlayElement\ *backText,\ OverlayElement\ *nextText,\ OverlayElement\ *delText)}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ mBackButton\ =\ back;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ mNextButton\ =\ next;}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ mDeleteButton\ =\ del;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ mBackButtonText\ =\ backText;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ mNextButtonText\ =\ nextText;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ mDeleteButtonText\ =\ delText;}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeLRButtons(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&i,\ OverlayElement\ *lButton,\ OverlayElement\ *rButton)}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ mLButton[i]\ =\ lButton;}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ mRButton[i]\ =\ rButton;}
+\DoxyCodeLine{00137\ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeSliders(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&i,\ OverlayElement\ *slider,\ OverlayElement\ *sliderMarker)}
+\DoxyCodeLine{00140\ \ \ \ \ \{}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ mSlider[i]\ =\ slider;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ mSliderMarker[i]\ =\ sliderMarker;}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ reset(\textcolor{keywordtype}{bool}\ load=\textcolor{keyword}{false})}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ startGameCount\ =\ 0;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ isRotateUnit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ dYaw\ =\ Degree(0);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ camZoom\ =\ 0;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ page\ =\ PAGE\_SELECT;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ charID\ =\ 0;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ mName-\/>setCaption(\textcolor{stringliteral}{"{}Name:\ "{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{comment}{//isMale\ =\ true;}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ maneID\ =\ 0;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ headID\ =\ 0;}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ tailID\ =\ 0;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ wingID\ =\ 0;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ tuftID\ =\ 0;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ bodyMarkID\ =\ 0;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ headMarkID\ =\ 0;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ tailMarkID\ =\ 0;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ colourPartID\ =\ 0;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ colourVal[0]\ =\ ColourValue(0.45,0.35,0.25);\ \textcolor{comment}{//Pelt}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ colourVal[1]\ =\ ColourValue(0.65,0.55,0.35);\ \textcolor{comment}{//Underfur}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ colourVal[2]\ =\ ColourValue(0.2,0.15,0);\ \textcolor{comment}{//Mane}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ colourVal[3]\ =\ ColourValue(0.02,0.02,0.02);\ \textcolor{comment}{//Nose}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ colourVal[4]\ =\ ColourValue(0.25,0.15,0.05);\ \textcolor{comment}{//Above\ eyes}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ colourVal[5]\ =\ ColourValue(0.55,0.45,0.25);\ \textcolor{comment}{//Below\ eyes}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ colourVal[6]\ =\ ColourValue(0.25,0.25,0.05);\ \textcolor{comment}{//Ears}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ colourVal[7]\ =\ ColourValue(0.2,0.15,0);\ \textcolor{comment}{//Tailtip}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ colourVal[8]\ =\ ColourValue(0.55,0.3,0.15);\ \textcolor{comment}{//Eyes}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ colourVal[9]\ =\ ColourValue(1,1,1);\ \textcolor{comment}{//Wings}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ colourVal[10]\ =\ ColourValue(0,0,0);\ \textcolor{comment}{//Markings}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(load)loadChar(0);}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ isCharIDChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ isEditMode\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ doReequip\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ deleteConfirmation\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{00181\ \ \ \ \ \}}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ buttonClicked(OverlayElement\ *button)}
+\DoxyCodeLine{00184\ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ updateGUI\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(button==mDeleteButton)}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_SELECT)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ page\ =\ PAGE\_EDIT;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positionUnitForEdit();}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_EDIT)}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ kids,\ this\ is\ a\ lesson\ from\ uncle\ purring\ bytes.}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ do\ you\ know\ why\ we\ need\ casting\ ?}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ BECAUSE\ SOMEONE\ USED\ MAGIC\ NUMBERS\ LIKE\ AN\ IDIOT\ INSTEAD\ OF\ DECLARING\ A\ VAR\ !!!}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deleteConfirmation==\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteConfirmation\ =\ getName();}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setName(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>setPosition(0.05,0.5);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>show();}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>showAlert(\textcolor{stringliteral}{"{}Enter\ character\ name\ to\ confirm\ delete"{}},\ mName-\/>getLeft()\ +\ (Real)0.25,\ mName-\/>getTop()\ +\ mName-\/>getHeight()\ +\ (Real)0.05);}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deleteConfirmation!=getName())}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>showAlert(\textcolor{stringliteral}{"{}Character\ name\ mismatch"{}},\ mName-\/>getLeft()\ +\ (Real)0.25,\ mName-\/>getTop()\ +\ mName-\/>getHeight()\ +\ (Real)0.05);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ tID\ =\ charID;}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ charID\ =\ tID;}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CHARSCREEN\_DELETECHAR;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if(page==PAGE\_CREATENEW)}}
+\DoxyCodeLine{00223\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00224\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ page\ =\ PAGE\_PRESET1;}}
+\DoxyCodeLine{00225\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ createDefaultUnit();}}
+\DoxyCodeLine{00226\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loadPreset();}}
+\DoxyCodeLine{00227\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (updateGUI?CHARSCREEN\_UPDATEGUI:0);}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ buttonNo\ =\ 0;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ buttonIsRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ MAX\_CHARSCREENTEXT;\ i++)}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(button==mLButton[i])}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buttonNo\ =\ i;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buttonIsRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(button==mRButton[i])}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buttonNo\ =\ i;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buttonIsRight\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_SELECT)}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numChars!=0)}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(buttonIsRight)charID\ +=\ 1;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ charID\ -\/=\ 1;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(charID<0)charID\ =\ numChars;}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(charID>numChars)charID\ =\ 0;}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//refreshPage();}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isCharIDChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(charID!=numChars)}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>hide();}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>hide();}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateChar(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM1||page==PAGE\_PRESET1)}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ changeTrait(buttonNo,buttonIsRight);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM2||page==PAGE\_PRESET2)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ changeTrait(buttonNo+4,buttonIsRight);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM3)}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ok\ integrated\ logic\ :\ do\ while\ condition\ met,\ run\ once\ at\ least}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{do}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(buttonIsRight)}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colourPartID\ +=\ 1;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colourPartID\ -\/=\ 1;}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(colourPartID\ <\ 0)}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colourPartID\ =\ MAX\_COLOURS\ -\/\ 1;}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(colourPartID\ >=\ MAX\_COLOURS)}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colourPartID\ =\ 0;}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ colourpart\ is\ either\ 9\ or\ 2\ or\ 10,\ if\ 9\ and\ 0\ its\ valid,\ same\ for\ 2\ and\ 0\ but\ also\ required\ tuftid\ to\ be\ 0\ and\ the\ last\ case\ is\ a\ more\ refined\ research}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colourPartID\ ==\ 9\ \&\&\ wingID\ ==\ 0\ ||\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colourPartID\ ==\ 2\ \&\&\ maneID\ ==\ 0\ \&\&\ tuftID\ ==\ 0\ ||\ }
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colourPartID\ ==\ 10\ \&\&\ bodyMarkID\ ==\ 0\ \&\&\ headMarkID\ ==\ 0\ \&\&\ tailMarkID\ ==\ 0}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ );}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ massive\ bit\ of\ code}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ updateGUI\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ }
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (updateGUI?CHARSCREEN\_UPDATEGUI:0);;}
+\DoxyCodeLine{00319\ \ \ \ \ \}}
+\DoxyCodeLine{00320\ }
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordtype}{void}\ changeTrait(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID,\ \textcolor{keywordtype}{bool}\ increment)}
+\DoxyCodeLine{00322\ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{comment}{//head}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(iID\ ==\ 0)}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ headID\ +=\ (increment\ ?\ 1\ :\ -\/1);}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(headID\ <\ 0)headID\ =\ mDef-\/>maxHeads\ -\/\ 1;}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(headID\ >=\ mDef-\/>maxHeads)headID\ =\ 0;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ applyRestrictions(\textcolor{stringliteral}{"{}Head"{}},\ increment);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>replaceHeadMesh(mSceneMgr,\ meshName(\textcolor{stringliteral}{"{}Head"{}},\ headID),\ (page\ ==\ PAGE\_PRESET1\ ||\ page\ ==\ PAGE\_PRESET2));}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ doReequip\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mane}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(iID\ ==\ 1)}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ maneID\ +=\ (increment\ ?\ 1\ :\ -\/1);}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maneID\ <\ 0)maneID\ =\ mDef-\/>maxManes\ -\/\ 1;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maneID\ >=\ mDef-\/>maxManes)maneID\ =\ 0;}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ applyRestrictions(\textcolor{stringliteral}{"{}Mane"{}},\ increment);}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>replaceManeMesh(mSceneMgr,\ meshName(\textcolor{stringliteral}{"{}Mane"{}},\ maneID),\ (page\ ==\ PAGE\_PRESET1\ ||\ page\ ==\ PAGE\_PRESET2));}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{comment}{//tail}}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(iID\ ==\ 2)}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ tailID\ +=\ (increment\ ?\ 1\ :\ -\/1);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tailID\ <\ 0)tailID\ =\ mDef-\/>maxTails\ -\/\ 1;}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tailID\ >=\ mDef-\/>maxTails)tailID\ =\ 0;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>replaceTailMesh(mSceneMgr,\ meshName(\textcolor{stringliteral}{"{}Tail"{}},\ tailID),\ (page\ ==\ PAGE\_PRESET1\ ||\ page\ ==\ PAGE\_PRESET2));}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{comment}{//wings}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(iID==3)}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ wingID\ +=\ (increment?1:-\/1);}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(wingID<0)wingID\ =\ mDef-\/>maxWings-\/1;}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(wingID>=mDef-\/>maxWings)wingID\ =\ 0;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>replaceWingMesh(mSceneMgr,meshName(\textcolor{stringliteral}{"{}Wing"{}},wingID),(page==PAGE\_PRESET1||page==PAGE\_PRESET2));}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \textcolor{comment}{//tuft}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(iID==4)}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ tuftID\ +=\ (increment?1:-\/1);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tuftID<0)tuftID\ =\ mDef-\/>maxTufts-\/1;}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tuftID>=mDef-\/>maxTufts)tuftID\ =\ 0;}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ applyRestrictions(\textcolor{stringliteral}{"{}Tuft"{}},increment);}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>replaceTuftMesh(mSceneMgr,meshName(\textcolor{stringliteral}{"{}Tuft"{}},tuftID),(page==PAGE\_PRESET1||page==PAGE\_PRESET2));}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \textcolor{comment}{//body\ mark}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(iID==5)}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ bodyMarkID\ +=\ (increment?1:-\/1);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bodyMarkID<0)}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bodyMarkID\ =\ mDef-\/>maxBodyMarks\ -\/\ 1;}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bodyMarkID>=mDef-\/>maxBodyMarks)}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bodyMarkID\ =\ 0;}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>setMarkings((\textcolor{keywordtype}{char})bodyMarkID,\ (\textcolor{keywordtype}{char})headMarkID,\ (\textcolor{keywordtype}{char})tailMarkID);}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{comment}{//head\ mark}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(iID==6)}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ headMarkID\ +=\ (increment\ ?\ 1\ :\ -\/1);}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(headMarkID<0)}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ headMarkID\ =\ mDef-\/>maxHeadMarks\ -\/\ 1;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00391\ }
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(headMarkID>=mDef-\/>maxHeadMarks)}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ headMarkID\ =\ 0;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>setMarkings((\textcolor{keywordtype}{char})bodyMarkID,\ (\textcolor{keywordtype}{char})headMarkID,\ (\textcolor{keywordtype}{char})tailMarkID);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//tail\ mark}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(iID==7)}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ tailMarkID\ +=\ (increment?1:-\/1);}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tailMarkID<0)}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tailMarkID\ =\ mDef-\/>maxTailMarks\ -\/\ 1;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tailMarkID>=mDef-\/>maxTailMarks)}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tailMarkID\ =\ 0;}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00413\ }
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>setMarkings((\textcolor{keywordtype}{char})bodyMarkID,\ (\textcolor{keywordtype}{char})headMarkID,\ (\textcolor{keywordtype}{char})tailMarkID);}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ }
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{comment}{//\ this\ needs\ a\ switch\ ?\ but\ on\ the\ other\ end,\ maybe\ not\ as\ its\ strings}}
+\DoxyCodeLine{00420\ \ \ \ \ \textcolor{keyword}{const}\ String\ meshName(\textcolor{keyword}{const}\ String\ \&type,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{00421\ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Mane"{}})\textcolor{keywordflow}{return}\ mDef-\/>maneMesh[iID];}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Head"{}})\textcolor{keywordflow}{return}\ mDef-\/>headMesh[iID];}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Tail"{}})\textcolor{keywordflow}{return}\ mDef-\/>tailMesh[iID];}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Wing"{}})\textcolor{keywordflow}{return}\ mDef-\/>wingMesh[iID];}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Tuft"{}})\textcolor{keywordflow}{return}\ mDef-\/>tuftMesh[iID];}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}BodyMark"{}})\textcolor{keywordflow}{return}\ (iID==0?\textcolor{stringliteral}{"{}No\ Markings"{}}:\textcolor{stringliteral}{"{}BodyMark"{}}+StringConverter::toString(iID));}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}HeadMark"{}})\textcolor{keywordflow}{return}\ (iID==0?\textcolor{stringliteral}{"{}No\ Markings"{}}:\textcolor{stringliteral}{"{}HeadMark"{}}+StringConverter::toString(iID));}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}TailMark"{}})\textcolor{keywordflow}{return}\ (iID==0?\textcolor{stringliteral}{"{}No\ Markings"{}}:\textcolor{stringliteral}{"{}TailMark"{}}+StringConverter::toString(iID));}
+\DoxyCodeLine{00430\ }
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00432\ \ \ \ \ \}}
+\DoxyCodeLine{00433\ }
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keyword}{const}\ String\ partName(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{00435\ \ \ \ \ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tPart[MAX\_COLOURS]\ =\ \{\textcolor{stringliteral}{"{}Pelt"{}},\textcolor{stringliteral}{"{}Underfur"{}},\textcolor{stringliteral}{"{}Mane"{}},\textcolor{stringliteral}{"{}Nose"{}},\textcolor{stringliteral}{"{}Above\ Eyes"{}},\textcolor{stringliteral}{"{}Below\ Eyes"{}},\textcolor{stringliteral}{"{}Ears"{}},\textcolor{stringliteral}{"{}Tailtip"{}},\textcolor{stringliteral}{"{}Eyes"{}},\textcolor{stringliteral}{"{}Wings"{}},\textcolor{stringliteral}{"{}Markings"{}}\};}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tPart[iID];}
+\DoxyCodeLine{00438\ \ \ \ \ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keywordtype}{void}\ applyRestrictions(\textcolor{keyword}{const}\ String\ \&partChanged,\ \textcolor{keywordtype}{bool}\ increment)}
+\DoxyCodeLine{00441\ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(partChanged==\textcolor{stringliteral}{"{}Head"{}})}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//back\ to\ maneless}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ maneID\ =\ 0;}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>replaceManeMesh(mSceneMgr,meshName(\textcolor{stringliteral}{"{}Mane"{}},maneID));}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(partChanged==\textcolor{stringliteral}{"{}Mane"{}})}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(mDef-\/>isRestricted(headID,maneID))}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maneID\ +=\ (increment?1:-\/1);}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maneID<0)maneID\ =\ mDef-\/>maxManes-\/1;}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maneID>=mDef-\/>maxManes)maneID\ =\ 0;}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(partChanged==\textcolor{stringliteral}{"{}Tuft"{}})}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(mDef-\/>isRestrictedTuft(tuftID))}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tuftID\ +=\ (increment?1:-\/1);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tuftID<0)tuftID\ =\ mDef-\/>maxTufts-\/1;}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tuftID>=mDef-\/>maxTufts)tuftID\ =\ 0;}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00469\ \ \ \ \ \}}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \textcolor{keywordtype}{void}\ refreshPage()}
+\DoxyCodeLine{00472\ \ \ \ \ \{}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Char\ select\ page}}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_SELECT)}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mName-\/>isVisible())mName-\/>hide();}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mText[0]-\/>isVisible())mText[0]-\/>show();}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption(getName());}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.45,0.02);}
+\DoxyCodeLine{00482\ }
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<MAX\_CHARSCREENTEXT;i++)}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mLButton[i]-\/>isVisible())}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[i]-\/>hide();}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRButton[i]-\/>isVisible())}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[i]-\/>hide();}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mText[i]-\/>isVisible())}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]-\/>hide();}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mLButton[0]-\/>isVisible())}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[0]-\/>show();}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mRButton[0]-\/>isVisible())}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[0]-\/>show();}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[0]-\/>setPosition(0.01,0.05);}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[0]-\/>setPosition(0.85,0.05);}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<3;i++)}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSlider[i]-\/>isVisible())mSlider[i]-\/>hide();}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSliderMarker[i]-\/>isVisible())mSliderMarker[i]-\/>hide();}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mColourBox-\/>isVisible())}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>hide();}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mBackdrop-\/>isVisible())}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>show();}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/Backdrop2"{}});}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/None"{}});}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.01,0.85);}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(getName()!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mNextButton-\/>isVisible())}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>show();}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Start"{}});}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.38,\ 0.85);}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mDeleteButton-\/>isVisible())}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>show();}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>setPosition((Real)0.85\ -\/\ mDeleteButton-\/>getWidth()\ +\ mRButton[0]-\/>getWidth(),\ 0.85);}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Edit"{}});}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(charID==numChars)}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mNextButton-\/>isVisible())}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>show();}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}New"{}});}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition((Real)0.85\ -\/\ mNextButton-\/>getWidth()\ +\ mRButton[0]-\/>getWidth(),\ 0.85);}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(mNextButton-\/>isVisible())}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>hide();}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDeleteButton-\/>isVisible())}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>hide();}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ new/method\ selection\ page}}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if(page==PAGE\_CREATENEW)}}
+\DoxyCodeLine{00579\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00580\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(mName-\/>isVisible())mName-\/>hide();}}
+\DoxyCodeLine{00581\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(!mText[0]-\/>isVisible())mText[0]-\/>show();}}
+\DoxyCodeLine{00582\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.05);}}
+\DoxyCodeLine{00583\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption("{}Create\ new\(\backslash\)ncharacter"{});}}
+\DoxyCodeLine{00584\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ for(int\ i=0;i<MAX\_CHARSCREENTEXT;i++)}}
+\DoxyCodeLine{00585\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00586\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mLButton[i]-\/>isVisible())mLButton[i]-\/>hide();}}
+\DoxyCodeLine{00587\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mRButton[i]-\/>isVisible())mRButton[i]-\/>hide();}}
+\DoxyCodeLine{00588\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(i!=0\ \&\&\ mText[i]-\/>isVisible())mText[i]-\/>hide();}}
+\DoxyCodeLine{00589\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00590\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ for(int\ i=0;i<3;i++)}}
+\DoxyCodeLine{00591\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00592\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mSlider[i]-\/>isVisible())mSlider[i]-\/>hide();}}
+\DoxyCodeLine{00593\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mSliderMarker[i]-\/>isVisible())mSliderMarker[i]-\/>hide();}}
+\DoxyCodeLine{00594\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00595\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(mColourBox-\/>isVisible())mColourBox-\/>hide();}}
+\DoxyCodeLine{00596\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(mBackdrop-\/>isVisible())mBackdrop-\/>hide();}}
+\DoxyCodeLine{00597\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName("{}GUIMat/StartScreen"{});}}
+\DoxyCodeLine{00598\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}}
+\DoxyCodeLine{00599\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.18,0.30);}}
+\DoxyCodeLine{00600\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption("{}Custom"{});}}
+\DoxyCodeLine{00601\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(!mDeleteButton-\/>isVisible())mDeleteButton-\/>show();}}
+\DoxyCodeLine{00602\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>setPosition(0.18,0.45);}}
+\DoxyCodeLine{00603\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mDeleteButtonText-\/>setCaption("{}Preset"{});}}
+\DoxyCodeLine{00604\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return;}}
+\DoxyCodeLine{00605\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00606\ }
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Mesh\ page\ 1}}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM1)}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mName-\/>isVisible())}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>show();}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00614\ }
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>setPosition(0.05,0.1);}
+\DoxyCodeLine{00616\ }
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.2);}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Head"{}},headID));}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Mane"{}},maneID));}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ mText[2]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Tail"{}},tailID));}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ mText[3]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Wing"{}},wingID));}
+\DoxyCodeLine{00622\ }
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ MAX\_CHARSCREENTEXT;\ i++)}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mLButton[i]-\/>isVisible())}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[i]-\/>show();}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mRButton[i]-\/>isVisible())}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[i]-\/>show();}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mText[i]-\/>isVisible())}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]-\/>show();}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]-\/>setLeft(0.25);}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[0]-\/>setPosition(0.05,0.2);}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[0]-\/>setPosition(0.4,0.2);}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<3;i++)}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSlider[i]-\/>isVisible())mSlider[i]-\/>hide();}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSliderMarker[i]-\/>isVisible())mSliderMarker[i]-\/>hide();}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mColourBox-\/>isVisible())}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>hide();}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>setColours(colourVal[0],colourVal[1],colourVal[2],colourVal[3],colourVal[4],colourVal[5],colourVal[6],colourVal[7],colourVal[8],colourVal[9],colourVal[10]);}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBackdrop-\/>isVisible())}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>hide();}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/StartScreen"{}});}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.3,0.6);}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Next"{}});}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDeleteButton-\/>isVisible())}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>hide();}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00673\ }
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00676\ }
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Mesh\ page\ 2}}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM2)}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mName-\/>isVisible())mName-\/>hide();}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.2);}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Tuft"{}},tuftID));}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}BodyMark"{}},bodyMarkID));}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ mText[2]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}HeadMark"{}},headMarkID));}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ mText[3]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}TailMark"{}},tailMarkID));}
+\DoxyCodeLine{00686\ }
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_CHARSCREENTEXT;i++)}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mLButton[i]-\/>isVisible())mLButton[i]-\/>show();}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mRButton[i]-\/>isVisible())mRButton[i]-\/>show();}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mText[i]-\/>isVisible())mText[i]-\/>show();}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]-\/>setLeft(0.25);}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00694\ }
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[0]-\/>setPosition(0.05,0.2);}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[0]-\/>setPosition(0.4,0.2);}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<3;i++)}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSlider[i]-\/>isVisible())mSlider[i]-\/>hide();}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSliderMarker[i]-\/>isVisible())mSliderMarker[i]-\/>hide();}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00703\ }
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mColourBox-\/>isVisible())}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>hide();}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>setColours(colourVal[0],\ colourVal[1],\ colourVal[2],\ colourVal[3],\ colourVal[4],\ colourVal[5],\ colourVal[6],\ colourVal[7],\ colourVal[8],\ colourVal[9],\ colourVal[10]);}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBackdrop-\/>isVisible())}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>hide();}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/StartScreen"{}});}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.3,0.6);}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Next"{}});}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDeleteButton-\/>isVisible())}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>hide();}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Colour\ page}}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM3)}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mName-\/>isVisible())mName-\/>hide();}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mText[0]-\/>isVisible())mText[0]-\/>show();}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption(partName(colourPartID));}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.1);}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setCaption(\textcolor{stringliteral}{"{}R:\ "{}}+StringConverter::toString(\textcolor{keywordtype}{int}(colourVal[colourPartID].r*255)));}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ mText[2]-\/>setCaption(\textcolor{stringliteral}{"{}G:\ "{}}+StringConverter::toString(\textcolor{keywordtype}{int}(colourVal[colourPartID].g*255)));}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ mText[3]-\/>setCaption(\textcolor{stringliteral}{"{}B:\ "{}}+StringConverter::toString(\textcolor{keywordtype}{int}(colourVal[colourPartID].b*255)));}
+\DoxyCodeLine{00739\ }
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<MAX\_CHARSCREENTEXT;i++)}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mLButton[i]-\/>isVisible())mLButton[i]-\/>hide();}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRButton[i]-\/>isVisible())mRButton[i]-\/>hide();}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mText[i]-\/>isVisible())mText[i]-\/>show();}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]-\/>setLeft(0.4);}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mLButton[0]-\/>isVisible())}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[0]-\/>show();}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mRButton[0]-\/>isVisible())}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[0]-\/>show();}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[0]-\/>setPosition(0.05,0.1);}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[0]-\/>setPosition(0.4,0.1);}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<3;i++)}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSlider[i]-\/>isVisible())mSlider[i]-\/>show();}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSliderMarker[i]-\/>isVisible())mSliderMarker[i]-\/>show();}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mColourBox-\/>isVisible())}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>show();}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>setCustomParameter(1,Vector4(colourVal[colourPartID].r,colourVal[colourPartID].g,colourVal[colourPartID].b,1));}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00774\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ warning(push)}}
+\DoxyCodeLine{00775\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ warning(disable\ :\ 4482)}}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mColourBox-\/>getTechnique()-\/>getName()==\textcolor{stringliteral}{"{}2"{}})}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(0)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_SOURCE1,}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(colourVal[colourPartID].r,\ colourVal[colourPartID].g,\ colourVal[colourPartID].b));}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00783\ }
+\DoxyCodeLine{00784\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ warning(pop)}}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>setColours(colourVal[0],colourVal[1],colourVal[2],colourVal[3],colourVal[4],colourVal[5],colourVal[6],colourVal[7],colourVal[8],colourVal[9],colourVal[10]);}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBackdrop-\/>isVisible())}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>hide();}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/StartScreen"{}});}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.3,0.6);}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Next"{}});}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00799\ }
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Traits\ page}}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM4)}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption(\textcolor{stringliteral}{"{}Size"{}});}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.1);}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setCaption(StringConverter::toString(mUnit-\/>getObjectNode()-\/>getScale().x,3));}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setLeft(0.4);}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_CHARSCREENTEXT;i++)}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[i]-\/>hide();}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[i]-\/>hide();}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i>1)mText[i]-\/>hide();}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<3;i++)}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSlider[i]-\/>hide();}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSliderMarker[i]-\/>hide();}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>hide();}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBackdrop-\/>isVisible())}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>hide();}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00826\ }
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/StartScreen"{}});}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.3,0.6);}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Finish"{}});}
+\DoxyCodeLine{00831\ }
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00834\ }
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Preset\ page}}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if(page==PAGE\_PRESET1)}}
+\DoxyCodeLine{00837\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00838\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(!mName-\/>isVisible())mName-\/>show();}}
+\DoxyCodeLine{00839\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(!mText[0]-\/>isVisible())mText[0]-\/>show();}}
+\DoxyCodeLine{00840\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.35);}}
+\DoxyCodeLine{00841\ \textcolor{comment}{}}
+\DoxyCodeLine{00842\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ for(int\ i=1;i<MAX\_CHARSCREENTEXT;i++)}}
+\DoxyCodeLine{00843\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00844\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mLButton[i]-\/>isVisible())mLButton[i]-\/>hide();}}
+\DoxyCodeLine{00845\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mRButton[i]-\/>isVisible())mRButton[i]-\/>hide();}}
+\DoxyCodeLine{00846\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mText[i]-\/>isVisible())mText[i]-\/>hide();}}
+\DoxyCodeLine{00847\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00848\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(!mLButton[0]-\/>isVisible())mLButton[0]-\/>show();}}
+\DoxyCodeLine{00849\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(!mRButton[0]-\/>isVisible())mRButton[0]-\/>show();}}
+\DoxyCodeLine{00850\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mLButton[0]-\/>setPosition(0.05,0.35);}}
+\DoxyCodeLine{00851\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mRButton[0]-\/>setPosition(0.4,0.35);}}
+\DoxyCodeLine{00852\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ for(int\ i=0;i<3;i++)}}
+\DoxyCodeLine{00853\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00854\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mSlider[i]-\/>isVisible())mSlider[i]-\/>hide();}}
+\DoxyCodeLine{00855\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mSliderMarker[i]-\/>isVisible())mSliderMarker[i]-\/>hide();}}
+\DoxyCodeLine{00856\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00857\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(mColourBox-\/>isVisible())mColourBox-\/>hide();}}
+\DoxyCodeLine{00858\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(mBackdrop-\/>isVisible())mBackdrop-\/>hide();}}
+\DoxyCodeLine{00859\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName("{}GUIMat/StartScreen"{});}}
+\DoxyCodeLine{00860\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}}
+\DoxyCodeLine{00861\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.3,0.6);}}
+\DoxyCodeLine{00862\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption("{}Finish"{});}}
+\DoxyCodeLine{00863\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(mDeleteButton-\/>isVisible())mDeleteButton-\/>hide();}}
+\DoxyCodeLine{00864\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ return;}}
+\DoxyCodeLine{00865\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Edit\ Page}}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_EDIT)}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mName-\/>isVisible())}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>hide();}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mText[0]-\/>isVisible())}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>show();}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.05);}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption(\textcolor{stringliteral}{"{}Edit\ Character"{}});}
+\DoxyCodeLine{00881\ }
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_CHARSCREENTEXT;i++)}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mLButton[i]-\/>isVisible())}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[i]-\/>hide();}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRButton[i]-\/>isVisible())}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[i]-\/>hide();}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i!=0\ \&\&\ mText[i]-\/>isVisible())}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]-\/>hide();}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00899\ }
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 3;\ i++)}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSlider[i]-\/>isVisible())}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSlider[i]-\/>hide();}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00906\ }
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSliderMarker[i]-\/>isVisible())}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSliderMarker[i]-\/>hide();}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ repeated\ code\ ?\ may\ want\ to\ do\ a\ single\ function\ and\ call\ it..\ (especially\ since\ this\ use\ class\ vars)}}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mColourBox-\/>isVisible())}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>hide();}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBackdrop-\/>isVisible())}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>hide();}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/StartScreen"{}});}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.18,0.30);}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Edit"{}});}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mDeleteButton-\/>isVisible())}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>show();}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00933\ }
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>setPosition(0.18,0.45);}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Delete"{}});}
+\DoxyCodeLine{00936\ }
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00939\ }
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Preset\ page\ (edit)}}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_PRESET1)}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mName-\/>isVisible())mName-\/>show();}
+\DoxyCodeLine{00944\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>setPosition(0.05,0.1);}
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mText[0]-\/>isVisible())mText[0]-\/>show();}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*mText[0]-\/>setCaption("{}Size"{});}}
+\DoxyCodeLine{00947\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.2);}}
+\DoxyCodeLine{00948\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setCaption(StringConverter::toString(mUnit-\/>getObjectNode()-\/>getScale().x,3));}}
+\DoxyCodeLine{00949\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setLeft(0.4);}}
+\DoxyCodeLine{00950\ \textcolor{comment}{}}
+\DoxyCodeLine{00951\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ for(int\ i=0;i<MAX\_CHARSCREENTEXT;i++)}}
+\DoxyCodeLine{00952\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00953\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mLButton[i]-\/>isVisible())mLButton[i]-\/>hide();}}
+\DoxyCodeLine{00954\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mRButton[i]-\/>isVisible())mRButton[i]-\/>hide();}}
+\DoxyCodeLine{00955\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(i>1\ \&\&\ mText[i]-\/>isVisible())mText[i]-\/>hide();}}
+\DoxyCodeLine{00956\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00957\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>show();}}
+\DoxyCodeLine{00958\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ for(int\ i=1;i<3;i++)}}
+\DoxyCodeLine{00959\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00960\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mSlider[i]-\/>isVisible())mSlider[i]-\/>hide();}}
+\DoxyCodeLine{00961\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(mSliderMarker[i]-\/>isVisible())mSliderMarker[i]-\/>hide();}}
+\DoxyCodeLine{00962\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00963\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mSlider[0]-\/>show();}}
+\DoxyCodeLine{00964\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mSliderMarker[0]-\/>show();*/}}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.2);}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Head"{}},headID));}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Mane"{}},maneID));}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \ \ \ \ mText[2]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Tail"{}},tailID));}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \ \ \ \ mText[3]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Wing"{}},wingID));}
+\DoxyCodeLine{00970\ }
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_CHARSCREENTEXT;i++)}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mLButton[i]-\/>isVisible())}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[i]-\/>show();}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00977\ }
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mRButton[i]-\/>isVisible())}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[i]-\/>show();}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00982\ }
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mText[i]-\/>isVisible())}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]-\/>show();}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00987\ }
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mText[i]-\/>setLeft(0.25);}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00990\ }
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[0]-\/>setPosition(0.05,0.2);}
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[0]-\/>setPosition(0.4,0.2);}
+\DoxyCodeLine{00993\ }
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<3;i++)}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSlider[i]-\/>isVisible())mSlider[i]-\/>hide();}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSliderMarker[i]-\/>isVisible())mSliderMarker[i]-\/>hide();}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mColourBox-\/>isVisible())}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>hide();}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBackdrop-\/>isVisible())}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>hide();}
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/StartScreen"{}});}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.3,0.6);}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Next"{}});}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDeleteButton-\/>isVisible())}
+\DoxyCodeLine{01016\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>hide();}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01022\ }
+\DoxyCodeLine{01023\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Preset\ page2\ (edit)}}
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_PRESET2)}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mName-\/>isVisible())mName-\/>hide();}
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setPosition(0.25,0.2);}
+\DoxyCodeLine{01028\ \ \ \ \ \ \ \ \ \ \ \ \ mText[0]-\/>setCaption(meshName(\textcolor{stringliteral}{"{}Tuft"{}},tuftID));}
+\DoxyCodeLine{01029\ \ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setCaption(\textcolor{stringliteral}{"{}Size"{}});}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \ \ \ \ mText[1]-\/>setLeft(0.25);}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \ \ \ \ mText[2]-\/>setCaption(StringConverter::toString(mUnit-\/>getObjectNode()-\/>getScale().x,3));}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \ \ \ \ mText[2]-\/>setLeft(0.4);}
+\DoxyCodeLine{01033\ }
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<MAX\_CHARSCREENTEXT;i++)}
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLButton[i]-\/>hide();}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mRButton[i]-\/>hide();}
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i>2)mText[i]-\/>hide();}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \ \ \ \ \ \ mSlider[1]-\/>show();}
+\DoxyCodeLine{01042\ \ \ \ \ \ \ \ \ \ \ \ \ mSliderMarker[1]-\/>show();}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01044\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i!=1\&\&i<3;i++)}
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSlider[i]-\/>hide();}
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSliderMarker[i]-\/>hide();}
+\DoxyCodeLine{01048\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mColourBox-\/>isVisible())}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mColourBox-\/>hide();}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBackdrop-\/>isVisible())}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>hide();}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01059\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01060\ \ \ \ \ \ \ \ \ \ \ \ \ mName-\/>getParent()-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/StartScreen"{}});}
+\DoxyCodeLine{01061\ \ \ \ \ \ \ \ \ \ \ \ \ mBackButton-\/>setPosition(0.05,0.6);}
+\DoxyCodeLine{01062\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButton-\/>setPosition(0.3,0.6);}
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \ \ \ \ \ \ mNextButtonText-\/>setCaption(\textcolor{stringliteral}{"{}Finish"{}});}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDeleteButton-\/>isVisible())}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDeleteButton-\/>hide();}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01069\ }
+\DoxyCodeLine{01070\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01072\ \ \ \ \ \}}
+\DoxyCodeLine{01073\ }
+\DoxyCodeLine{01074\ \ \ \ \ \textcolor{keywordtype}{bool}\ previousPage()}
+\DoxyCodeLine{01075\ \ \ \ \ \{}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//back\ to\ startscreen}}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_SELECT)}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01081\ }
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//back\ to\ char\ select\ page}}
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM1\ ||\ page==PAGE\_PRESET1\ ||\ page==PAGE\_EDIT)}
+\DoxyCodeLine{01084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit-\/>getObjectNode())}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>destroyParticleByObjectNode(mUnit-\/>getObjectNode());}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>destroyItemEffectByOwnerNode(mUnit-\/>getObjectNode());}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>destroyUnit(mSceneMgr);}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isEditMode\ \&\&\ page!=PAGE\_EDIT)}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ charID\ =\ numChars;}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ page\ =\ 0;}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ tID\ =\ charID;}
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{01101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ charID\ =\ tID;}
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isCharIDChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01103\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ \ \ \ \ \ \ positionUnitForSelect();}
+\DoxyCodeLine{01105\ \ \ \ \ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{01106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01107\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01108\ }
+\DoxyCodeLine{01109\ \ \ \ \ \ \ \ \ page\ -\/=\ 1;}
+\DoxyCodeLine{01110\ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{01111\ }
+\DoxyCodeLine{01112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01113\ \ \ \ \ \}}
+\DoxyCodeLine{01114\ }
+\DoxyCodeLine{01115\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ nextPage()}
+\DoxyCodeLine{01116\ \ \ \ \ \{}
+\DoxyCodeLine{01117\ \ \ \ \ \ \ \ \ \textcolor{comment}{//start\ game}}
+\DoxyCodeLine{01118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_SELECT\ \&\&\ getName()!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//startGameCount\ =\ 3;}}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CHARSCREEN\_STARTGAME;}
+\DoxyCodeLine{01122\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ \textcolor{comment}{//next\ to\ custom\ char\ page1}}
+\DoxyCodeLine{01124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_SELECT)}
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01126\ \ \ \ \ \ \ \ \ \ \ \ \ createDefaultUnit();}
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \ \ \ \ \ \ isEditMode\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Name\ not\ valid,\ pop\ an\ alert}}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((page==PAGE\_CUSTOM1\ ||\ page==PAGE\_PRESET1)\ \&\&\ (!validateName()\ ||\ getName().length()==0\ ||\ getName()[0]==\textcolor{charliteral}{'\ '}))}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ \ \ \ \ String\ tAlert\ =\ \textcolor{stringliteral}{"{}Must\ not\ include\ :\ ;\ |\ *\ ?\ <\ >\ /\ \(\backslash\)\(\backslash\)"{}};}
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(getName().length()\ ==\ 0)}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAlert\ =\ \textcolor{stringliteral}{"{}Enter\ a\ name"{}};}
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ a\ switch\ case\ with\ a\ regexp\ would\ catch\ more\ cases}}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(getName()[0]==\textcolor{charliteral}{'\ '})}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAlert\ =\ \textcolor{stringliteral}{"{}Must\ not\ start\ with\ a\ space"{}};}
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ your\ problem\ ?\ magic\ numbers,\ declare\ the\ vars\ and\ use\ them\ everywhere\ ?\ no\ ?\ OH\ WELL\ NICE\ MEMORY\ LEAKS\ WHEN\ IT\ ASSUME\ A\ FLOAT\ OR\ OTHER\ TYPES\ !}}
+\DoxyCodeLine{01145\ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>showAlert(tAlert,\ mName-\/>getLeft()\ +\ (Real)0.25,\ mName-\/>getTop()\ +\ mName-\/>getHeight()\ +\ (Real)0.05);}
+\DoxyCodeLine{01146\ }
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01149\ }
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//create\ char\ and\ return\ to\ char\ select\ page}}
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM4\textcolor{comment}{/*\ ||\ page==PAGE\_PRESET1*/})}
+\DoxyCodeLine{01152\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*createChar(charID);}}
+\DoxyCodeLine{01154\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>destroyUnit(mSceneMgr);}}
+\DoxyCodeLine{01155\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getCamera("{}PlayerCam"{})-\/>setOrientation(Quaternion(Degree(-\/40),Vector3::UNIT\_Y));}}
+\DoxyCodeLine{01156\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getCamera("{}PlayerCam"{})-\/>setPosition(3200,120,2770);}}
+\DoxyCodeLine{01157\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ short\ tCharID\ =\ charID;}}
+\DoxyCodeLine{01158\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ reset();}}
+\DoxyCodeLine{01159\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ page\ =\ 0;}}
+\DoxyCodeLine{01160\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ charID\ =\ tCharID;}}
+\DoxyCodeLine{01161\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ loadChar(charID);}}
+\DoxyCodeLine{01162\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ refreshPage();*/}}
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (isEditMode?CHARSCREEN\_EDITCHAR:CHARSCREEN\_CREATECHAR);}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01165\ }
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ \textcolor{comment}{//edit\ char}}
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_EDIT)}
+\DoxyCodeLine{01168\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01169\ \ \ \ \ \ \ \ \ \ \ \ \ isEditMode\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(deleteConfirmation!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setName(deleteConfirmation);}
+\DoxyCodeLine{01173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01174\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit-\/>getMatGroupName()==\textcolor{stringliteral}{"{}CustomMat"{}})}
+\DoxyCodeLine{01176\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ page\ =\ PAGE\_CUSTOM1;}
+\DoxyCodeLine{01178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCharData();}
+\DoxyCodeLine{01179\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01181\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ page\ =\ PAGE\_PRESET1;}
+\DoxyCodeLine{01183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCharData(\textcolor{keyword}{true});}
+\DoxyCodeLine{01184\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01186\ \ \ \ \ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{01187\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01188\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01189\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01190\ }
+\DoxyCodeLine{01191\ \ \ \ \ \ \ \ \ \textcolor{comment}{//finish\ edit\ char\ (preset)}}
+\DoxyCodeLine{01192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_PRESET2)}
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ CHARSCREEN\_EDITCHAR;}
+\DoxyCodeLine{01195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01196\ }
+\DoxyCodeLine{01197\ \ \ \ \ \ \ \ \ page\ +=\ 1;}
+\DoxyCodeLine{01198\ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{01199\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01201\ \ \ \ \ \}}
+\DoxyCodeLine{01202\ }
+\DoxyCodeLine{01203\ \ \ \ \ \textcolor{keywordtype}{void}\ updateSliders(\textcolor{keyword}{const}\ Real\ \&one,\ \textcolor{keyword}{const}\ Real\ \&two,\ \textcolor{keyword}{const}\ Real\ \&three)}
+\DoxyCodeLine{01204\ \ \ \ \ \{}
+\DoxyCodeLine{01205\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM3)}
+\DoxyCodeLine{01206\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01207\ \ \ \ \ \ \ \ \ \ \ \ \ colourVal[colourPartID].r\ =\ one;}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ \ \ \ \ colourVal[colourPartID].g\ =\ two;}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \ \ \ \ colourVal[colourPartID].b\ =\ three;}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM4\ ||\ page==PAGE\_PRESET2)}
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01213\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ another\ nasty\ case\ of\ "{}magic\ numbers"{}}}
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tScale\ =\ (Real)0.25\ +\ (page\ ==\ PAGE\_PRESET2\ ?\ two\ :\ one)\ *\ (Real)1.25;}
+\DoxyCodeLine{01215\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>getObjectNode()-\/>setScale(tScale,tScale,tScale);}
+\DoxyCodeLine{01216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01217\ }
+\DoxyCodeLine{01218\ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{01219\ \ \ \ \ \}}
+\DoxyCodeLine{01220\ }
+\DoxyCodeLine{01221\ \ \ \ \ \textcolor{keywordtype}{void}\ getSliderValue(Real\ \&one,\ Real\ \&two,\ Real\ \&three)}
+\DoxyCodeLine{01222\ \ \ \ \ \{}
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM3)}
+\DoxyCodeLine{01224\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01225\ \ \ \ \ \ \ \ \ \ \ \ \ one\ =\ colourVal[colourPartID].r;}
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ \ \ \ \ two\ =\ colourVal[colourPartID].g;}
+\DoxyCodeLine{01227\ \ \ \ \ \ \ \ \ \ \ \ \ three\ =\ colourVal[colourPartID].b;}
+\DoxyCodeLine{01228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(page==PAGE\_CUSTOM4)}
+\DoxyCodeLine{01230\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01231\ \ \ \ \ \ \ \ \ \ \ \ \ one\ =\ (Real)((mUnit-\/>getObjectNode()-\/>getScale().x\ -\/\ 0.25)\ /\ 1.25);}
+\DoxyCodeLine{01232\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(page==PAGE\_PRESET2)}
+\DoxyCodeLine{01234\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01235\ \ \ \ \ \ \ \ \ \ \ \ \ two\ =\ (Real)((mUnit-\/>getObjectNode()-\/>getScale().x\ -\/\ 0.25)\ /\ 1.25);}
+\DoxyCodeLine{01236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01237\ \ \ \ \ \}}
+\DoxyCodeLine{01238\ }
+\DoxyCodeLine{01239\ \ \ \ \ \textcolor{keyword}{const}\ String\ getName()}
+\DoxyCodeLine{01240\ \ \ \ \ \{}
+\DoxyCodeLine{01241\ \ \ \ \ \ \ \ \ String\ tName\ =\ mName-\/>getCaption();}
+\DoxyCodeLine{01242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tName.length()>=6)tName.erase(0,6);}
+\DoxyCodeLine{01243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tName;}
+\DoxyCodeLine{01244\ \ \ \ \ \}}
+\DoxyCodeLine{01245\ }
+\DoxyCodeLine{01246\ \ \ \ \ \textcolor{keywordtype}{void}\ setName(\textcolor{keyword}{const}\ String\ \&name)}
+\DoxyCodeLine{01247\ \ \ \ \ \{}
+\DoxyCodeLine{01248\ \ \ \ \ \ \ \ \ mName-\/>setCaption(\textcolor{stringliteral}{"{}Name:\ "{}}\ +\ name);}
+\DoxyCodeLine{01249\ \ \ \ \ \}}
+\DoxyCodeLine{01250\ }
+\DoxyCodeLine{01251\ \ \ \ \ \textcolor{keywordtype}{bool}\ validateName()}
+\DoxyCodeLine{01252\ \ \ \ \ \{}
+\DoxyCodeLine{01253\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tName\ =\ getName();}
+\DoxyCodeLine{01254\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<int(tName.length());\ i++)}
+\DoxyCodeLine{01255\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01256\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tName[i]\ ==\ \textcolor{charliteral}{'/'}\ ||\ tName[i]\ ==\ \textcolor{charliteral}{'\(\backslash\)\(\backslash\)'}\ ||\ tName[i]\ ==\ \textcolor{charliteral}{':'}\ ||\ tName[i]\ ==\ \textcolor{charliteral}{';'}\ ||}
+\DoxyCodeLine{01257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tName[i]\ ==\ \textcolor{charliteral}{'*'}\ ||\ tName[i]\ ==\ \textcolor{charliteral}{'?'}\ ||\ tName[i]\ ==\ \textcolor{charliteral}{'\(\backslash\)"{}'}\ ||}
+\DoxyCodeLine{01258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tName[i]\ ==\ \textcolor{charliteral}{'<'}\ ||\ tName[i]\ ==\ \textcolor{charliteral}{'>'}\ ||\ tName[i]\ ==\ \textcolor{charliteral}{'|'}\ ||}
+\DoxyCodeLine{01259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tName[i]\ ==\ \textcolor{charliteral}{'\(\backslash\)t'}\ ||\ tName[i]\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{01260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01261\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01262\ }
+\DoxyCodeLine{01263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01264\ \ \ \ \ \}}
+\DoxyCodeLine{01265\ }
+\DoxyCodeLine{01266\ \ \ \ \ \textcolor{keywordtype}{void}\ doRotateUnit(Real\ x,\ Real\ y)}
+\DoxyCodeLine{01267\ \ \ \ \ \{}
+\DoxyCodeLine{01268\ \ \ \ \ \ \ \ \ rotateStartX\ =\ x;}
+\DoxyCodeLine{01269\ \ \ \ \ \ \ \ \ rotateStartY\ =\ y;}
+\DoxyCodeLine{01270\ \ \ \ \ \ \ \ \ isRotateUnit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01271\ \ \ \ \ \}}
+\DoxyCodeLine{01272\ }
+\DoxyCodeLine{01273\ \ \ \ \ \textcolor{keywordtype}{void}\ endRotateUnit()}
+\DoxyCodeLine{01274\ \ \ \ \ \{}
+\DoxyCodeLine{01275\ \ \ \ \ \ \ \ \ isRotateUnit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01276\ \ \ \ \ \}}
+\DoxyCodeLine{01277\ }
+\DoxyCodeLine{01278\ \ \ \ \ \textcolor{keywordtype}{void}\ stopRotateUnit()}
+\DoxyCodeLine{01279\ \ \ \ \ \{}
+\DoxyCodeLine{01280\ \ \ \ \ \ \ \ \ endRotateUnit();}
+\DoxyCodeLine{01281\ \ \ \ \ \ \ \ \ dYaw\ =\ Degree(0);}
+\DoxyCodeLine{01282\ \ \ \ \ \}}
+\DoxyCodeLine{01283\ }
+\DoxyCodeLine{01284\ \ \ \ \ \textcolor{keywordtype}{bool}\ isRotatingUnit()}
+\DoxyCodeLine{01285\ \ \ \ \ \{}
+\DoxyCodeLine{01286\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isRotateUnit;}
+\DoxyCodeLine{01287\ \ \ \ \ \}}
+\DoxyCodeLine{01288\ }
+\DoxyCodeLine{01289\ \ \ \ \ \textcolor{keywordtype}{void}\ startGame()}
+\DoxyCodeLine{01290\ \ \ \ \ \{}
+\DoxyCodeLine{01291\ \ \ \ \ \ \ \ \ startGameCount\ =\ 3;}
+\DoxyCodeLine{01292\ \ \ \ \ \}}
+\DoxyCodeLine{01293\ }
+\DoxyCodeLine{01294\ \ \ \ \ \textcolor{keywordtype}{bool}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt,\ \textcolor{keyword}{const}\ Real\ \&x,\ \textcolor{keyword}{const}\ Real\ \&y)}
+\DoxyCodeLine{01295\ \ \ \ \ \{}
+\DoxyCodeLine{01296\ \ \ \ \ \ \ \ \ \textcolor{comment}{//First\ page,\ stop\ any\ rotation\ and\ check\ if\ game\ started}}
+\DoxyCodeLine{01297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(page==PAGE\_SELECT)}
+\DoxyCodeLine{01298\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01299\ \ \ \ \ \ \ \ \ \ \ \ \ stopRotateUnit();}
+\DoxyCodeLine{01300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(startGameCount>0)}
+\DoxyCodeLine{01301\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startGameCount\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{01303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>setDimensions((Real)(1\ +\ (3\ -\/\ startGameCount)\ /\ 3\ *\ 0.4),\ (Real)(1\ +\ (3\ -\/\ startGameCount)\ /\ 3\ *\ 0.6));}
+\DoxyCodeLine{01305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>setPosition(-\/(mBackdrop-\/>getWidth()\ -\/\ 1)\ /\ 2,\ -\/(mBackdrop-\/>getHeight()\ -\/\ 1)\ /\ 2);}
+\DoxyCodeLine{01306\ }
+\DoxyCodeLine{01307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ char\ selector\ cam\ ?}}
+\DoxyCodeLine{01308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tVect\ =\ mUnit-\/>getPosition(\textcolor{keyword}{true})\ +\ mUnit-\/>getObjectNode()-\/>getOrientation()\ *\ Vector3(0,\ 1,\ 4)\ -\/\ Vector3(3200,\ 120,\ 2770);}
+\DoxyCodeLine{01309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>setPosition(Vector3(3200,\ 120,\ 2770)\ +\ tVect\ *\ (3\ -\/\ startGameCount)\ /\ 3\ *\ 0.25);}
+\DoxyCodeLine{01310\ }
+\DoxyCodeLine{01311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(startGameCount<=0)}
+\DoxyCodeLine{01312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ startGameCount\ =\ 0;}
+\DoxyCodeLine{01314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/Backdrop1"{}});}
+\DoxyCodeLine{01315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>setDimensions(1,1);}
+\DoxyCodeLine{01316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBackdrop-\/>setPosition(0,0);}
+\DoxyCodeLine{01317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01319\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01320\ }
+\DoxyCodeLine{01321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01322\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01323\ }
+\DoxyCodeLine{01324\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Do\ rotation/zoom\ otherwise}}
+\DoxyCodeLine{01325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isRotateUnit)}
+\DoxyCodeLine{01326\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01327\ \ \ \ \ \ \ \ \ \ \ \ \ dYaw\ =\ Degree((x-\/rotateStartX)*180);}
+\DoxyCodeLine{01328\ \ \ \ \ \ \ \ \ \ \ \ \ camZoom\ +=\ y\ -\/\ rotateStartY;}
+\DoxyCodeLine{01329\ \ \ \ \ \ \ \ \ \ \ \ \ rotateStartX\ =\ x;}
+\DoxyCodeLine{01330\ \ \ \ \ \ \ \ \ \ \ \ \ rotateStartY\ =\ y;}
+\DoxyCodeLine{01331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(dYaw)\ >\ Degree(15))}
+\DoxyCodeLine{01332\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ dYaw\ =\ Degree((Real)(15\ *\ dYaw\ <\ Degree(0)\ ?\ -\/1\ :\ 1));}
+\DoxyCodeLine{01334\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01335\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camZoom<0)}
+\DoxyCodeLine{01337\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ camZoom\ =\ 0;}
+\DoxyCodeLine{01339\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01340\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camZoom>0.75)}
+\DoxyCodeLine{01342\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ camZoom\ =\ 0.75;}
+\DoxyCodeLine{01344\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01345\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01346\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit-\/>getObjectNode())}
+\DoxyCodeLine{01348\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Rotate\ unit}}
+\DoxyCodeLine{01350\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>yaw(dYaw);}
+\DoxyCodeLine{01351\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>getObjectNode()-\/>yaw(dYaw);}
+\DoxyCodeLine{01352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Camera\ zoom}}
+\DoxyCodeLine{01353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tVect\ =\ mUnit-\/>getPosition(\textcolor{keyword}{true})+mUnit-\/>getObjectNode()-\/>getOrientation()*Vector3(0,1,4)-\/Vector3(3200,120,2770);}
+\DoxyCodeLine{01354\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>setPosition(Vector3(3200,120,2770)+tVect*camZoom);}
+\DoxyCodeLine{01355\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01357\ \ \ \ \ \}}
+\DoxyCodeLine{01358\ \ \ \ \ }
+\DoxyCodeLine{01359\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteChar()}
+\DoxyCodeLine{01360\ \ \ \ \ \{}
+\DoxyCodeLine{01361\ \ \ \ \ \ \ \ \ updateChar(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01362\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numChars>0)numChars-\/-\/;}
+\DoxyCodeLine{01363\ \ \ \ \ \ \ \ \ charID\ =\ numChars;}
+\DoxyCodeLine{01364\ \ \ \ \ \ \ \ \ positionUnitForSelect();}
+\DoxyCodeLine{01365\ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{01366\ \ \ \ \ \}}
+\DoxyCodeLine{01367\ }
+\DoxyCodeLine{01368\ \ \ \ \ \textcolor{keyword}{const}\ String\ getCharData()}
+\DoxyCodeLine{01369\ \ \ \ \ \{}
+\DoxyCodeLine{01370\ \ \ \ \ \ \ \ \ \textcolor{comment}{//char\ name}}
+\DoxyCodeLine{01371\ \ \ \ \ \ \ \ \ String\ tBuffer\ =\ getName();}
+\DoxyCodeLine{01372\ \ \ \ \ \ \ \ \ StringUtil::trim(tBuffer);}
+\DoxyCodeLine{01373\ \ \ \ \ \ \ \ \ tBuffer\ +=\ \textcolor{stringliteral}{"{};"{}};}
+\DoxyCodeLine{01374\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01375\ \ \ \ \ \ \ \ \ \textcolor{comment}{//char\ meshstring}}
+\DoxyCodeLine{01376\ \ \ \ \ \ \ \ \ tBuffer\ +=\ mUnit-\/>getMeshString()\ +\ \textcolor{stringliteral}{"{};"{}};}
+\DoxyCodeLine{01377\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01378\ \ \ \ \ \ \ \ \ \textcolor{comment}{//char\ matgroupname}}
+\DoxyCodeLine{01379\ \ \ \ \ \ \ \ \ tBuffer\ +=\ mUnit-\/>getMatGroupName()\ +\ \textcolor{stringliteral}{"{};"{}};}
+\DoxyCodeLine{01380\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01381\ \ \ \ \ \ \ \ \ \textcolor{comment}{//char\ meshstring2}}
+\DoxyCodeLine{01382\ \ \ \ \ \ \ \ \ tBuffer\ +=\ mUnit-\/>getMeshString2()\ +\ \textcolor{stringliteral}{"{};"{}};}
+\DoxyCodeLine{01383\ }
+\DoxyCodeLine{01384\ \ \ \ \ \ \ \ \ \textcolor{comment}{//markings}}
+\DoxyCodeLine{01385\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit-\/>getMatGroupName()\ ==\ \textcolor{stringliteral}{"{}CustomMat"{}})}
+\DoxyCodeLine{01386\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ tBodyMark,tHeadMark,tTailMark;}
+\DoxyCodeLine{01388\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>getMarkings(tBodyMark,tHeadMark,tTailMark);}
+\DoxyCodeLine{01389\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ +=\ StringConverter::toString(tBodyMark)\ +\ \textcolor{stringliteral}{"{};"{}};}
+\DoxyCodeLine{01390\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ +=\ StringConverter::toString(tHeadMark)\ +\ \textcolor{stringliteral}{"{};"{}};}
+\DoxyCodeLine{01391\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ +=\ StringConverter::toString(tTailMark);}
+\DoxyCodeLine{01392\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01393\ }
+\DoxyCodeLine{01394\ \ \ \ \ \ \ \ \ \textcolor{comment}{//char\ scale}}
+\DoxyCodeLine{01395\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit-\/>getObjectNode()-\/>getScale().x\ !=\ 1)}
+\DoxyCodeLine{01396\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01397\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ +=\ \textcolor{stringliteral}{"{};"{}}\ +\ StringConverter::toString(mUnit-\/>getObjectNode()-\/>getScale().x,3);}
+\DoxyCodeLine{01398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01399\ }
+\DoxyCodeLine{01400\ \ \ \ \ \ \ \ \ \textcolor{comment}{//char\ colours}}
+\DoxyCodeLine{01401\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit-\/>getMatGroupName()\ ==\ \textcolor{stringliteral}{"{}CustomMat"{}})}
+\DoxyCodeLine{01402\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01403\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ +=\ \textcolor{stringliteral}{"{}|"{}}\ +\ mUnit-\/>getColourString();}
+\DoxyCodeLine{01404\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01405\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tBuffer;}
+\DoxyCodeLine{01407\ \ \ \ \ \}}
+\DoxyCodeLine{01408\ }
+\DoxyCodeLine{01409\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCharData(\textcolor{keywordtype}{bool}\ isPreset=\textcolor{keyword}{false})}
+\DoxyCodeLine{01410\ \ \ \ \ \{}
+\DoxyCodeLine{01411\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMesh\ =\ StringUtil::split(mUnit-\/>getMeshString(),\textcolor{stringliteral}{"{};"{}},5);}
+\DoxyCodeLine{01412\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMesh.size()==5)}
+\DoxyCodeLine{01413\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01414\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<mDef-\/>maxHeads;i++)}
+\DoxyCodeLine{01415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>headMesh[i]==tMesh[1])}
+\DoxyCodeLine{01416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ headID\ =\ i;}
+\DoxyCodeLine{01418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<mDef-\/>maxManes;i++)}
+\DoxyCodeLine{01421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>maneMesh[i]==tMesh[2])}
+\DoxyCodeLine{01422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ maneID\ =\ i;}
+\DoxyCodeLine{01424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01426\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<mDef-\/>maxTails;i++)}
+\DoxyCodeLine{01427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>tailMesh[i]==tMesh[3])}
+\DoxyCodeLine{01428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tailID\ =\ i;}
+\DoxyCodeLine{01430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<mDef-\/>maxWings;i++)}
+\DoxyCodeLine{01433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>wingMesh[i]==tMesh[4])}
+\DoxyCodeLine{01434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wingID\ =\ i;}
+\DoxyCodeLine{01436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01438\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01439\ }
+\DoxyCodeLine{01440\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMesh2\ =\ StringUtil::split(mUnit-\/>getMeshString2(),\ \textcolor{stringliteral}{"{};"{}},\ 1);}
+\DoxyCodeLine{01441\ }
+\DoxyCodeLine{01442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMesh2.size()==1)}
+\DoxyCodeLine{01443\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01444\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<mDef-\/>maxTufts;i++)}
+\DoxyCodeLine{01445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>tuftMesh[i]==tMesh2[0])}
+\DoxyCodeLine{01446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tuftID\ =\ i;}
+\DoxyCodeLine{01448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01450\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01451\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isPreset)}
+\DoxyCodeLine{01452\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01453\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>getMarkings(bodyMarkID,headMarkID,tailMarkID);}
+\DoxyCodeLine{01454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tColour\ =\ StringUtil::split(mUnit-\/>getColourString(),\textcolor{stringliteral}{"{};"{}},MAX\_COLOURS);}
+\DoxyCodeLine{01455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)tColour.size();i++)}
+\DoxyCodeLine{01456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ colourVal[i]\ =\ StringConverter::parseColourValue(tColour[i]);}
+\DoxyCodeLine{01457\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01458\ \ \ \ \ \}}
+\DoxyCodeLine{01459\ }
+\DoxyCodeLine{01460\ \ \ \ \ \textcolor{keywordtype}{void}\ updateChar(\textcolor{keyword}{const}\ String\ \&data)}
+\DoxyCodeLine{01461\ \ \ \ \ \{}
+\DoxyCodeLine{01462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit-\/>getObjectNode())}
+\DoxyCodeLine{01463\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01464\ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>destroyParticleByObjectNode(mUnit-\/>getObjectNode());}
+\DoxyCodeLine{01465\ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>destroyItemEffectByOwnerNode(mUnit-\/>getObjectNode());}
+\DoxyCodeLine{01466\ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>destroyUnit(mSceneMgr);}
+\DoxyCodeLine{01467\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01468\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit-\/>getType()==OBJECT\_PLAYER)}
+\DoxyCodeLine{01469\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}\mbox{\hyperlink{class_magix_player}{MagixPlayer}}*\textcolor{keyword}{>}(mUnit)-\/>reset();}
+\DoxyCodeLine{01471\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01472\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01473\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tString\ =\ StringUtil::split(data,\textcolor{stringliteral}{"{}|\(\backslash\)n"{}},2);}
+\DoxyCodeLine{01474\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Loaded\ successfully}}
+\DoxyCodeLine{01475\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tString.size()>0)}
+\DoxyCodeLine{01476\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01477\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tParam\ =\ StringUtil::split(tString[0],\textcolor{stringliteral}{"{};"{}});}
+\DoxyCodeLine{01478\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tParam.size()>=7\ \&\&\ tParam.size()<=12)}
+\DoxyCodeLine{01479\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01480\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setName(tParam[0]);}
+\DoxyCodeLine{01481\ }
+\DoxyCodeLine{01482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ tScale\ =\ 0;}
+\DoxyCodeLine{01483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ tHasNewMeshes\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tParam.size()==8)tScale\ =\ StringConverter::parseReal(tParam[7]);}
+\DoxyCodeLine{01485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tParam.size()==9)tScale\ =\ StringConverter::parseReal(tParam[8]);}
+\DoxyCodeLine{01486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tParam.size()==12)tScale\ =\ StringConverter::parseReal(tParam[11]);}
+\DoxyCodeLine{01487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tParam.size()>8\ ||\ tParam.size()==8\&\&tScale<0.0000005)tHasNewMeshes\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01488\ }
+\DoxyCodeLine{01489\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnit-\/>createUnit(1,mSceneMgr,tParam[1],tParam[2],tParam[3],tParam[4],tParam[5],tParam[6],(tHasNewMeshes?tParam[7]:mDef-\/>tuftMesh[0]));}
+\DoxyCodeLine{01490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tScale>0.0000005\ \&\&\ tScale<10)mUnit-\/>getObjectNode()-\/>setScale(tScale,tScale,tScale);}
+\DoxyCodeLine{01492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tParam[6]==\textcolor{stringliteral}{"{}CustomMat"{}})}
+\DoxyCodeLine{01493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tHasNewMeshes)mUnit-\/>setMarkings(StringConverter::parseInt(tParam[8]),StringConverter::parseInt(tParam[9]),StringConverter::parseInt(tParam[10]));}
+\DoxyCodeLine{01495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tString.size()==2)mUnit-\/>setColours(tString[1]);}
+\DoxyCodeLine{01496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ positionUnitForSelect();}
+\DoxyCodeLine{01498\ }
+\DoxyCodeLine{01499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01500\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01501\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01502\ \ \ \ \ \ \ \ \ \textcolor{comment}{//no\ data}}
+\DoxyCodeLine{01503\ \ \ \ \ \ \ \ \ setName(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01504\ \ \ \ \ \}}
+\DoxyCodeLine{01505\ }
+\DoxyCodeLine{01506\ \ \ \ \ \textcolor{keywordtype}{void}\ createCharSuccess()}
+\DoxyCodeLine{01507\ \ \ \ \ \{}
+\DoxyCodeLine{01508\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tName\ =\ getName();}
+\DoxyCodeLine{01509\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mUnit-\/>destroyUnit(mSceneMgr);}}
+\DoxyCodeLine{01510\ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{01511\ \ \ \ \ \ \ \ \ charID\ =\ numChars;}
+\DoxyCodeLine{01512\ \ \ \ \ \ \ \ \ numChars++;}
+\DoxyCodeLine{01513\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01514\ \ \ \ \ \ \ \ \ setName(tName);}
+\DoxyCodeLine{01515\ \ \ \ \ \ \ \ \ positionUnitForSelect();}
+\DoxyCodeLine{01516\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnit)mUnit-\/>setHP(500);}
+\DoxyCodeLine{01517\ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{01518\ \ \ \ \ \}}
+\DoxyCodeLine{01519\ }
+\DoxyCodeLine{01520\ \ \ \ \ \textcolor{keywordtype}{void}\ editCharSuccess()}
+\DoxyCodeLine{01521\ \ \ \ \ \{}
+\DoxyCodeLine{01522\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tName\ =\ getName();}
+\DoxyCodeLine{01523\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ tID\ =\ charID;}
+\DoxyCodeLine{01524\ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{01525\ \ \ \ \ \ \ \ \ charID\ =\ tID;}
+\DoxyCodeLine{01526\ \ \ \ \ \ \ \ \ setName(tName);}
+\DoxyCodeLine{01527\ \ \ \ \ \ \ \ \ positionUnitForSelect();}
+\DoxyCodeLine{01528\ \ \ \ \ \ \ \ \ refreshPage();}
+\DoxyCodeLine{01529\ \ \ \ \ \}}
+\DoxyCodeLine{01530\ \ \ \ \ }
+\DoxyCodeLine{01531\ \ \ \ \ \textcolor{keywordtype}{void}\ createDefaultUnit()}
+\DoxyCodeLine{01532\ \ \ \ \ \{}
+\DoxyCodeLine{01533\ \ \ \ \ \ \ \ \ mUnit-\/>createUnit(1,mSceneMgr,\textcolor{stringliteral}{"{}Body"{}},meshName(\textcolor{stringliteral}{"{}Head"{}},headID),meshName(\textcolor{stringliteral}{"{}Mane"{}},maneID),meshName(\textcolor{stringliteral}{"{}Tail"{}},tailID),meshName(\textcolor{stringliteral}{"{}Wing"{}},wingID),\textcolor{stringliteral}{"{}KovMat"{}},meshName(\textcolor{stringliteral}{"{}Tuft"{}},tuftID));}
+\DoxyCodeLine{01534\ \ \ \ \ \ \ \ \ positionUnitForEdit();}
+\DoxyCodeLine{01535\ \ \ \ \ \}}
+\DoxyCodeLine{01536\ }
+\DoxyCodeLine{01537\ \ \ \ \ \textcolor{keywordtype}{void}\ positionUnitForEdit()}
+\DoxyCodeLine{01538\ \ \ \ \ \{}
+\DoxyCodeLine{01539\ \ \ \ \ \ \ \ \ mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>setOrientation(Quaternion(Degree(-\/80),Vector3::UNIT\_Y));}
+\DoxyCodeLine{01540\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mUnit-\/>getObjectNode())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01541\ \ \ \ \ \ \ \ \ mUnit-\/>setPosition(3235,113,2774);}
+\DoxyCodeLine{01542\ \ \ \ \ \ \ \ \ mUnit-\/>resetTarget();}
+\DoxyCodeLine{01543\ \ \ \ \ \ \ \ \ mUnit-\/>setGroundHeight(113);}
+\DoxyCodeLine{01544\ \ \ \ \ \ \ \ \ mUnit-\/>yaw(Degree(-\/120));}
+\DoxyCodeLine{01545\ \ \ \ \ \ \ \ \ mUnit-\/>getObjectNode()-\/>yaw(Degree(-\/120));}
+\DoxyCodeLine{01546\ \ \ \ \ \ \ \ \ mUnit-\/>setFreeLook(\textcolor{keyword}{false},\textcolor{keyword}{false});}
+\DoxyCodeLine{01547\ \ \ \ \ \}}
+\DoxyCodeLine{01548\ }
+\DoxyCodeLine{01549\ \ \ \ \ \textcolor{keywordtype}{void}\ positionUnitForSelect()}
+\DoxyCodeLine{01550\ \ \ \ \ \{}
+\DoxyCodeLine{01551\ \ \ \ \ \ \ \ \ mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>setOrientation(Quaternion(Degree(-\/40),Vector3::UNIT\_Y));}
+\DoxyCodeLine{01552\ \ \ \ \ \ \ \ \ mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>setPosition(3200,120,2770);}
+\DoxyCodeLine{01553\ }
+\DoxyCodeLine{01554\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ why\ is\ this\ not\ on\ top\ ?\ and\ when\ can\ it\ happen\ actually\ ?}}
+\DoxyCodeLine{01555\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mUnit-\/>getObjectNode())}
+\DoxyCodeLine{01556\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01557\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01558\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01559\ }
+\DoxyCodeLine{01560\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tDist\ =\ (mUnit-\/>getObjectNode()-\/>getScale().x\ -\/\ 1)\ *\ -\/11;}
+\DoxyCodeLine{01561\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01562\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C4244,\ pain\ to\ fix;\ probably\ better\ to\ build\ a\ vec\ 3\ ?\ magic\ numbers\ everywhere\ yey\ again}}
+\DoxyCodeLine{01563\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ multiline\ could\ improve\ readability}}
+\DoxyCodeLine{01564\ \ \ \ \ \ \ \ \ mUnit-\/>setPosition((Real)(3215\ -\/\ (tDist\ <\ 0\ ?\ tDist\ :\ 0)\ *\ 0.6),\ 113\ +\ (Real)((tDist\ <\ 0\ ?\ tDist\ :\ 0)),\ 2750\ +\ (Real)((tDist\ <\ 0\ ?\ tDist\ :\ 0)\ *\ 0.6));}
+\DoxyCodeLine{01565\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01566\ \ \ \ \ \ \ \ \ mUnit-\/>resetTarget();}
+\DoxyCodeLine{01567\ \ \ \ \ \ \ \ \ mUnit-\/>setGroundHeight(113\ +\ (tDist<0?tDist:0));}
+\DoxyCodeLine{01568\ \ \ \ \ \ \ \ \ mUnit-\/>yaw(Degree(-\/80));}
+\DoxyCodeLine{01569\ \ \ \ \ \ \ \ \ mUnit-\/>getObjectNode()-\/>yaw(Degree(-\/80));}
+\DoxyCodeLine{01570\ \ \ \ \ \ \ \ \ mUnit-\/>setFreeLook(\textcolor{keyword}{false},\textcolor{keyword}{false});}
+\DoxyCodeLine{01571\ \ \ \ \ \ \ \ \ mUnit-\/>update(FrameEvent(),mDef);}
+\DoxyCodeLine{01572\ \ \ \ \ \}}
+\DoxyCodeLine{01573\ }
+\DoxyCodeLine{01578\ }
+\DoxyCodeLine{01579\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_char_screen_manager_a98a1931cb262d8c949f7a86908a412b4}{setNumChars}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&tNum)}
+\DoxyCodeLine{01580\ \ \ \ \ \{}
+\DoxyCodeLine{01581\ \ \ \ \ \ \ \ \ numChars\ =\ tNum;}
+\DoxyCodeLine{01582\ \ \ \ \ \}}
+\DoxyCodeLine{01583\ }
+\DoxyCodeLine{01584\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getNumChars()}
+\DoxyCodeLine{01585\ \ \ \ \ \{}
+\DoxyCodeLine{01586\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ numChars;}
+\DoxyCodeLine{01587\ \ \ \ \ \}}
+\DoxyCodeLine{01588\ }
+\DoxyCodeLine{01589\ \ \ \ \ \textcolor{keywordtype}{bool}\ popIsCharIDChanged()}
+\DoxyCodeLine{01590\ \ \ \ \ \{}
+\DoxyCodeLine{01591\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ charIDChanged\ =\ isCharIDChanged;}
+\DoxyCodeLine{01592\ \ \ \ \ \ \ \ \ isCharIDChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01593\ }
+\DoxyCodeLine{01594\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ charIDChanged;}
+\DoxyCodeLine{01595\ \ \ \ \ \}}
+\DoxyCodeLine{01596\ }
+\DoxyCodeLine{01597\ \ \ \ \ \textcolor{keywordtype}{bool}\ popDoReequip()}
+\DoxyCodeLine{01598\ \ \ \ \ \{}
+\DoxyCodeLine{01599\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ reequip\ =\ doReequip;}
+\DoxyCodeLine{01600\ \ \ \ \ \ \ \ \ doReequip\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01601\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ reequip;}
+\DoxyCodeLine{01602\ \ \ \ \ \}}
+\DoxyCodeLine{01603\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getCharID()}
+\DoxyCodeLine{01604\ \ \ \ \ \{}
+\DoxyCodeLine{01605\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ charID;}
+\DoxyCodeLine{01606\ \ \ \ \ \}}
+\DoxyCodeLine{01607\ \};}
+\DoxyCodeLine{01608\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

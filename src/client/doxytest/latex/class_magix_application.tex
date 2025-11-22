@@ -1,0 +1,122 @@
+\doxysection{Magix\+Application Class Reference}
+\hypertarget{class_magix_application}{}\label{class_magix_application}\index{MagixApplication@{MagixApplication}}
+
+
+{\ttfamily \#include $<$Magix\+Application.\+h$>$}
+
+Inheritance diagram for Magix\+Application\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_magix_application}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_application_a4aea0f09a61394dc7510aa90d77088ee}\label{class_magix_application_a4aea0f09a61394dc7510aa90d77088ee} 
+{\bfseries Magix\+Application} (\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*}magix\+Handler)
+\begin{DoxyCompactList}\small\item\em Standard constructor. \end{DoxyCompactList}\item 
+\Hypertarget{class_magix_application_a5280bd628bc633fe25d4391466762ee2}\label{class_magix_application_a5280bd628bc633fe25d4391466762ee2} 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Magix\+Application} ()
+\begin{DoxyCompactList}\small\item\em Game destructor, to be renamed. \end{DoxyCompactList}\item 
+\Hypertarget{class_magix_application_adf168d67d9b21491983c65a498912b8c}\label{class_magix_application_adf168d67d9b21491983c65a498912b8c} 
+virtual void {\bfseries go} (void)
+\begin{DoxyCompactList}\small\item\em Start the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{class_magix_application_a3c00f44f1b727c5a35dd35214a90506e}{setup}} (void)
+\item 
+virtual bool \mbox{\hyperlink{class_magix_application_adb1087954e6c39877cbdd863d98324ed}{configure}} (void)
+\item 
+\Hypertarget{class_magix_application_a788c4f5d8b9f918c31b2cde497653596}\label{class_magix_application_a788c4f5d8b9f918c31b2cde497653596} 
+virtual void {\bfseries choose\+Scene\+Manager} (void)
+\item 
+\Hypertarget{class_magix_application_a7be875e0d84d2d101b4d4c2316c7972f}\label{class_magix_application_a7be875e0d84d2d101b4d4c2316c7972f} 
+virtual void {\bfseries create\+Camera} (void)
+\item 
+\Hypertarget{class_magix_application_a99c2020a93f03729b7f069c953674b0f}\label{class_magix_application_a99c2020a93f03729b7f069c953674b0f} 
+virtual void {\bfseries create\+Frame\+Listener} (void)
+\item 
+\Hypertarget{class_magix_application_a069def1d6b089d63de6f4ebe2927ddf5}\label{class_magix_application_a069def1d6b089d63de6f4ebe2927ddf5} 
+virtual void {\bfseries create\+Scene} (void)=0
+\item 
+\Hypertarget{class_magix_application_a18ebdca8af9be3a0f49356095320828e}\label{class_magix_application_a18ebdca8af9be3a0f49356095320828e} 
+virtual void {\bfseries destroy\+Scene} (void)
+\item 
+\Hypertarget{class_magix_application_a0a84708132617e0e6de2a27e8fe276f5}\label{class_magix_application_a0a84708132617e0e6de2a27e8fe276f5} 
+virtual void {\bfseries create\+Viewports} (void)
+\item 
+\Hypertarget{class_magix_application_a690278088e8b7e0c01598375c35fb760}\label{class_magix_application_a690278088e8b7e0c01598375c35fb760} 
+virtual void {\bfseries setup\+Resources} (void)
+\begin{DoxyCompactList}\small\item\em Method which will define the source of resources (other than current folder) \end{DoxyCompactList}\item 
+\Hypertarget{class_magix_application_aa45bc324b4686199c6c78eb54310c9cd}\label{class_magix_application_aa45bc324b4686199c6c78eb54310c9cd} 
+virtual void {\bfseries create\+Resource\+Listener} (void)
+\begin{DoxyCompactList}\small\item\em Optional override method where you can create resource listeners (e.\+g. for loading screens) \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_magix_application_a998196b3ca9f4e49089c7d568f6cd71f}{load\+Resources}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_application_a6dc4c579a4bc163e31dac49af8424a80}\label{class_magix_application_a6dc4c579a4bc163e31dac49af8424a80} 
+Root \texorpdfstring{$\ast$}{*} {\bfseries m\+Root}
+\item 
+\Hypertarget{class_magix_application_a660834f759239b898c8dfd4e09f17829}\label{class_magix_application_a660834f759239b898c8dfd4e09f17829} 
+Camera \texorpdfstring{$\ast$}{*} {\bfseries m\+Camera}
+\item 
+\Hypertarget{class_magix_application_a865d6a96bad1cb22514c6aec152e1cf7}\label{class_magix_application_a865d6a96bad1cb22514c6aec152e1cf7} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_application_ac460948c73705c417956ad974eaea23f}\label{class_magix_application_ac460948c73705c417956ad974eaea23f} 
+\mbox{\hyperlink{class_magix_frame_listener}{Magix\+Frame\+Listener}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Frame\+Listener}
+\item 
+\Hypertarget{class_magix_application_ab70a448d14c0c3880d77f4ca328caece}\label{class_magix_application_ab70a448d14c0c3880d77f4ca328caece} 
+Render\+Window \texorpdfstring{$\ast$}{*} {\bfseries m\+Window}
+\item 
+\Hypertarget{class_magix_application_ac3adb235fb99d572ccf7698b2d70e65e}\label{class_magix_application_ac3adb235fb99d572ccf7698b2d70e65e} 
+Ogre\+::\+String {\bfseries m\+Resource\+Path}
+\item 
+\Hypertarget{class_magix_application_af1507d0b9ab47838f6d16394dc5c227d}\label{class_magix_application_af1507d0b9ab47838f6d16394dc5c227d} 
+\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Magix\+Handler}
+\item 
+\Hypertarget{class_magix_application_af4407cbae6e9d1164faafba9a537ae05}\label{class_magix_application_af4407cbae6e9d1164faafba9a537ae05} 
+\mbox{\hyperlink{class_magix_loading_bar}{Magix\+Loading\+Bar}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Loading\+Bar}
+\item 
+\Hypertarget{class_magix_application_a8f6bdc53b469240984dabe6c9b515632}\label{class_magix_application_a8f6bdc53b469240984dabe6c9b515632} 
+\mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory}{Obfuscated\+Zip\+::\+Obfuscated\+Zip\+Factory}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Obfuscated\+Zip\+Factory}
+\begin{DoxyCompactList}\small\item\em we declare our own namespaces now. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Base class which manages the standard startup of an Ogre application. Designed to be subclassed for specific examples if required. 
+
+\label{doc-func-members}
+\Hypertarget{class_magix_application_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_application_adb1087954e6c39877cbdd863d98324ed}\index{MagixApplication@{MagixApplication}!configure@{configure}}
+\index{configure@{configure}!MagixApplication@{MagixApplication}}
+\doxysubsubsection{\texorpdfstring{configure()}{configure()}}
+{\footnotesize\ttfamily \label{class_magix_application_adb1087954e6c39877cbdd863d98324ed} 
+virtual bool Magix\+Application\+::configure (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Configures the application -\/ returns false if the user chooses to abandon configuration. 
+
+Reimplemented in \mbox{\hyperlink{classogremagix_app_ac094104ec9da776d1431a44748a22d89}{ogremagix\+App}}.
+
+\Hypertarget{class_magix_application_a998196b3ca9f4e49089c7d568f6cd71f}\index{MagixApplication@{MagixApplication}!loadResources@{loadResources}}
+\index{loadResources@{loadResources}!MagixApplication@{MagixApplication}}
+\doxysubsubsection{\texorpdfstring{loadResources()}{loadResources()}}
+{\footnotesize\ttfamily \label{class_magix_application_a998196b3ca9f4e49089c7d568f6cd71f} 
+virtual void Magix\+Application\+::load\+Resources (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Optional override method where you can perform resource group loading Must at least do Resource\+Group\+Manager\+::get\+Singleton().initialise\+All\+Resource\+Groups(); \Hypertarget{class_magix_application_a3c00f44f1b727c5a35dd35214a90506e}\index{MagixApplication@{MagixApplication}!setup@{setup}}
+\index{setup@{setup}!MagixApplication@{MagixApplication}}
+\doxysubsubsection{\texorpdfstring{setup()}{setup()}}
+{\footnotesize\ttfamily \label{class_magix_application_a3c00f44f1b727c5a35dd35214a90506e} 
+virtual bool Magix\+Application\+::setup (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Sets up the application -\/ returns false if the user chooses to abandon configuration. 
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Application.\+h\end{DoxyCompactItemize}

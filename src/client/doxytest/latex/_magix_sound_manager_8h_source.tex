@@ -1,0 +1,428 @@
+\doxysection{Magix\+Sound\+Manager.\+h}
+\hypertarget{_magix_sound_manager_8h_source}{}\label{_magix_sound_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixSoundManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixSoundManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixSoundManager\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixSoundManager\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SoundManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}MagixCamera.h"{}}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ SOUND\_CLICK\ "{}click.wav"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ SOUND\_HIT\ "{}hit.wav"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ SOUND\_HEALHIT\ "{}healhit.wav"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ SOUND\_WATERWADE\ "{}waterwade.wav"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ SOUND\_RAIN1\ "{}rain1.wav"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ SOUND\_THUNDER1\ "{}thunder1.mp3"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ SOUND\_THUNDER2\ "{}thunder2.mp3"{}}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ SOUND\_SPLASH\ "{}splash.wav"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ SOUND\_RUN\_GRASS\ "{}run\_grass.wav"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ SOUND\_WALK\_GRASS\ "{}walk\_grass.wav"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ SOUND\_ROAR1\ "{}roar1.mp3"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ SOUND\_ROAR2\ "{}roar2.mp3"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ SOUND\_EARTHQUAKE\ "{}quake.wav"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ SOUND\_DRAW\ "{}draw.mp3"{}}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ MUSIC\_TITLE\ "{}title.mp3"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ MUSIC\_HURRY\ "{}hurry.mp3"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ MUSIC\_BOSS1\ "{}boss1.mp3"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ MUSIC\_FINALE\ "{}finale.mp3"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ MUSIC\_CREDITS\ "{}credits.mp3"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ MUSIC\_AMBIENT1\ "{}ambient1.mp3"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ MUSIC\_AMBIENT2\ "{}ambient2.mp3"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ MUSIC\_AMBIENT3\ "{}ambient3.mp3"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ MUSIC\_AMBIENT4\ "{}ambient4.mp3"{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ MUSIC\_AMBIENT5\ "{}ambient5.mp3"{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ MUSIC\_AMBIENT6\ "{}ambient6.mp3"{}}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ LOOPEDSOUND\_RANGE\ 2250000}}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }LoopedSound}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{int}\ sound;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{int}\ channel;}
+\DoxyCodeLine{00042\ \ \ \ \ SceneNode\ *mNode;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{float}\ volume;}
+\DoxyCodeLine{00044\ \ \ \ \ Real\ delay;}
+\DoxyCodeLine{00045\ \ \ \ \ LoopedSound()}
+\DoxyCodeLine{00046\ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ sound\ =\ INVALID\_SOUND\_INDEX;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ channel\ =\ INVALID\_SOUND\_CHANNEL;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ mNode\ =\ 0;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ volume\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ delay\ =\ 0;}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{class\ }MagixSoundManager}
+\DoxyCodeLine{00056\ \{}
+\DoxyCodeLine{00057\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{class_sound_manager}{SoundManager}}\ *mSoundMgr;}
+\DoxyCodeLine{00059\ \ \ \ \ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *mCamera;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{int}\ music;}
+\DoxyCodeLine{00061\ \ \ \ \ FMOD::Channel\ *mMusicChannel;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{bool}\ loopMusic;}
+\DoxyCodeLine{00063\ \ \ \ \ Real\ musicFadeTimeout;}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{int}\ guiSound;}
+\DoxyCodeLine{00065\ \ \ \ \ FMOD::Channel\ *mGuiChannel;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{int}\ ambientSound;}
+\DoxyCodeLine{00067\ \ \ \ \ FMOD::Channel\ *mAmbientChannel;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{float}\ musicVolume;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{float}\ guiVolume;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{float}\ soundVolume;}
+\DoxyCodeLine{00071\ \ \ \ \ list<LoopedSound>::type\ loopedSound;}
+\DoxyCodeLine{00072\ \ \ \ \ Real\ musicSilenceTimeout;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{bool}\ isRandomPlaylist;}
+\DoxyCodeLine{00074\ \ \ \ \ vector<String>::type\ musicList;}
+\DoxyCodeLine{00075\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00076\ \ \ \ \ MagixSoundManager()}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ mSoundMgr\ =\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ mCamera\ =\ 0;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ music\ =\ INVALID\_SOUND\_INDEX;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ mMusicChannel\ =\ 0;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ loopMusic\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ musicFadeTimeout\ =\ 0;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ guiSound\ =\ INVALID\_SOUND\_INDEX;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ mGuiChannel\ =\ 0;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ ambientSound\ =\ INVALID\_SOUND\_INDEX;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ mAmbientChannel\ =\ 0;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ musicVolume\ =\ 1;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ guiVolume\ =\ 1;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ soundVolume\ =\ 1;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ loopedSound.clear();}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ musicSilenceTimeout\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ isRandomPlaylist\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ musicList.clear();}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \string~MagixSoundManager()}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSoundMgr)\textcolor{keyword}{delete}\ mSoundMgr;}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(\mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *camera)}
+\DoxyCodeLine{00102\ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ mCamera\ =\ camera;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ mSoundMgr\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_sound_manager}{SoundManager}}();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasSound\ =\ mSoundMgr-\/>Initialize();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!hasSound)}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mSoundMgr;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr\ =\ 0;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ resetMusicList();}
+\DoxyCodeLine{00112\ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{void}\ reset()}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ stopAllLoopedSounds();}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>getCameraMode()==CAMERA\_FREE)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ updateLoopedSounds(mCamera-\/>getCamera()-\/>getPosition(),evt.timeSinceLastFrame);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>FrameStarted(mCamera-\/>getCamera(),evt.timeSinceLastFrame);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ updateLoopedSounds(mCamera-\/>getActiveCamNode()-\/>\_getDerivedPosition(),evt.timeSinceLastFrame);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>FrameStarted(mCamera-\/>getActiveCamNode(),evt.timeSinceLastFrame);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ updateMusic(evt);}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ updateMusic(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMusicChannel)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isPlaying\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ mMusicChannel-\/>isPlaying(\&isPlaying);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(musicFadeTimeout>0\ \&\&\ isPlaying)}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ musicFadeTimeout\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(musicFadeTimeout<=0)}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ musicFadeTimeout\ =\ 0;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMusicChannel-\/>stop();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMusicChannel-\/>setVolume(musicFadeTimeout/2*musicVolume);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(loopMusic)}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isPlaying)playMusic(music);}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Random\ playlist}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isRandomPlaylist\ \&\&\ !isPlaying)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(musicSilenceTimeout==0)}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ musicSilenceTimeout\ =\ Math::RangeRandom(5,10);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(musicSilenceTimeout\ >\ 0)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ musicSilenceTimeout\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(musicSilenceTimeout<=0)}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ musicSilenceTimeout\ =\ 0;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playRandomAmbientMusic();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \}}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{void}\ updateLoopedSounds(\textcolor{keyword}{const}\ Vector3\ \&camPosition,\ \textcolor{keyword}{const}\ Real\ \&timeElapsed)}
+\DoxyCodeLine{00177\ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ list<LoopedSound>::type::iterator\ it\ =\ loopedSound.begin();}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=loopedSound.end())}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_looped_sound}{LoopedSound}}\ *sound\ =\ \&*it;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sound-\/>sound!=INVALID\_SOUND\_INDEX)}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sound-\/>delay>0)\{sound-\/>delay\ -\/=\ timeElapsed;\ \textcolor{keywordflow}{if}(sound-\/>delay<0)sound-\/>delay=0;\}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sound-\/>delay<=0)}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ distToCameraSquared\ =\ sound-\/>mNode-\/>getPosition().squaredDistance(camPosition);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(distToCameraSquared\ <\ LOOPEDSOUND\_RANGE)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>PlaySound(sound-\/>sound,\ sound-\/>mNode,\ \&sound-\/>channel);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>GetSoundChannel(sound-\/>channel)-\/>setVolume(sound-\/>volume*soundVolume);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(sound-\/>channel\ !=\ INVALID\_SOUND\_CHANNEL)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>StopSound(\&sound-\/>channel);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{keywordtype}{void}\ playMusic(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type,\ \textcolor{keywordtype}{bool}\ loop=\textcolor{keyword}{true})}
+\DoxyCodeLine{00201\ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ music\ =\ mSoundMgr-\/>CreateStream(String(type));}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ playMusic(music,loop);}
+\DoxyCodeLine{00206\ \ \ \ \ \}}
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ playMusic(\textcolor{keywordtype}{int}\ musicID,\ \textcolor{keywordtype}{bool}\ loop=\textcolor{keyword}{true})}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00210\ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ music\ =\ musicID;}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMusicChannel)mMusicChannel-\/>stop();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ mSoundMgr-\/>PlayMusic(musicID,\&mMusicChannel);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ setMusicVolume(musicVolume);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ loopMusic\ =\ loop;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ musicFadeTimeout\ =\ 0;}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \textcolor{keywordtype}{void}\ stopMusic(\textcolor{keywordtype}{bool}\ fadeOut=\textcolor{keyword}{false})}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ loopMusic\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMusicChannel)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(fadeOut)}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ musicFadeTimeout\ =\ 2;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ mMusicChannel-\/>stop();}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \}}
+\DoxyCodeLine{00231\ \ \ \ \ \textcolor{keywordtype}{void}\ setRandomPlaylist(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00232\ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ isRandomPlaylist\ =\ flag;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(flag)loopMusic\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00235\ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \textcolor{keywordtype}{bool}\ getRandomPlaylist()}
+\DoxyCodeLine{00237\ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isRandomPlaylist;}
+\DoxyCodeLine{00239\ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \textcolor{keywordtype}{void}\ playRandomAmbientMusic()}
+\DoxyCodeLine{00241\ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(musicList.size()>1)}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ isRepeat\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(isRepeat)}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID\ =\ \textcolor{keywordtype}{unsigned}\ short(Math::RangeRandom(0,(\textcolor{keywordtype}{int})musicList.size()));}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID>=(\textcolor{keywordtype}{int})musicList.size())tID\ =\ 0;}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ tLastMusic\ =\ music;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ playMusic(musicList[tID].c\_str(),\textcolor{keyword}{false});}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isRepeat\ =\ (tLastMusic==music);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(musicList.size()>0)playMusic(musicList[0].c\_str(),\textcolor{keyword}{true});}
+\DoxyCodeLine{00256\ \ \ \ \ \}}
+\DoxyCodeLine{00257\ \ \ \ \ \textcolor{keywordtype}{void}\ pushMusicList(\textcolor{keyword}{const}\ String\ \&name)}
+\DoxyCodeLine{00258\ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)musicList.size();i++)}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(musicList[i]==name)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ musicList.push\_back(name);}
+\DoxyCodeLine{00262\ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \textcolor{keywordtype}{void}\ resetMusicList(\textcolor{keywordtype}{bool}\ useDefault=\textcolor{keyword}{true})}
+\DoxyCodeLine{00264\ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ musicList.clear();}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(useDefault)}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ musicList.push\_back(MUSIC\_AMBIENT1);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ musicList.push\_back(MUSIC\_AMBIENT2);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ musicList.push\_back(MUSIC\_AMBIENT3);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ musicList.push\_back(MUSIC\_AMBIENT4);}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ musicList.push\_back(MUSIC\_AMBIENT5);}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ musicList.push\_back(MUSIC\_AMBIENT6);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordtype}{void}\ playGUISound(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type)}
+\DoxyCodeLine{00277\ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ guiSound\ =\ mSoundMgr-\/>CreateStream(String(type));}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSoundMgr-\/>StopSound(\&guiChannel);}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ mSoundMgr-\/>PlayMusic(guiSound,\&mGuiChannel);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ setGUISoundVolume(guiVolume);}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordtype}{void}\ playSound(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type,\ SceneNode\ *node=0)}
+\DoxyCodeLine{00286\ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tSound\ =\ node?mSoundMgr-\/>CreateSound(String(type)):mSoundMgr-\/>CreateStream(String(type));}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tSoundChannel\ =\ INVALID\_SOUND\_CHANNEL;}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ FMOD::Channel\ *tStreamChannel\ =\ 0;}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(node)}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>PlaySound(tSound,node,\&tSoundChannel);}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>GetSoundChannel(tSoundChannel)-\/>setVolume(soundVolume);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>PlayMusic(tSound,\&tStreamChannel);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tStreamChannel)tStreamChannel-\/>setVolume(soundVolume);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \ \ \ \ \}}
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{keywordtype}{void}\ playLoopedSound(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type,\ SceneNode\ *node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&volume=1,\ \textcolor{keyword}{const}\ Real\ \&delay=0)}
+\DoxyCodeLine{00304\ \ \ \ \ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00306\ }
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_looped_sound}{LoopedSound}}\ tSound;}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ tSound.sound\ =\ mSoundMgr-\/>CreateLoopedSound(String(type));}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ tSound.channel\ =\ INVALID\_SOUND\_CHANNEL;}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ tSound.mNode\ =\ node;}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ tSound.volume\ =\ volume;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ tSound.delay\ =\ delay;}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ loopedSound.push\_back(tSound);}
+\DoxyCodeLine{00314\ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keyword}{const}\ list<LoopedSound>::type::iterator\ stopLoopedSound(\textcolor{keyword}{const}\ list<LoopedSound>::type::iterator\ \&it)}
+\DoxyCodeLine{00316\ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return}\ loopedSound.end();}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_looped_sound}{LoopedSound}}\ *sound\ =\ \&*it;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sound-\/>channel\ !=\ INVALID\_SOUND\_CHANNEL)mSoundMgr-\/>StopSound(\&sound-\/>channel);}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ loopedSound.erase(it);}
+\DoxyCodeLine{00322\ \ \ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \textcolor{keywordtype}{void}\ stopLoopedSoundByNode(SceneNode\ *node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00324\ \ \ \ \ \{}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!node)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00327\ }
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ tLoopedSound\ =\ (\ type==\textcolor{stringliteral}{"{}"{}}\ ?\ INVALID\_SOUND\_INDEX\ :\ mSoundMgr-\/>CreateLoopedSound(String(type))\ );}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ list<LoopedSound>::type::iterator\ it\ =\ loopedSound.begin();}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=loopedSound.end())}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_looped_sound}{LoopedSound}}\ *sound\ =\ \&*it;}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sound-\/>mNode==node\ \&\&\ (type==\textcolor{stringliteral}{"{}"{}}||sound-\/>sound==tLoopedSound))it\ =\ stopLoopedSound(it);}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ it++;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \}}
+\DoxyCodeLine{00337\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasLoopedSound(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type,SceneNode\ *node=0)}
+\DoxyCodeLine{00338\ \ \ \ \ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ tLoopedSound\ =\ mSoundMgr-\/>CreateLoopedSound(String(type));}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ list<LoopedSound>::type::iterator\ it\ =\ loopedSound.begin();}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=loopedSound.end())}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_looped_sound}{LoopedSound}}\ *sound\ =\ \&*it;}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((sound-\/>mNode==node||!node)\ \&\&\ sound-\/>sound==tLoopedSound)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00349\ \ \ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordtype}{void}\ stopAllLoopedSounds()}
+\DoxyCodeLine{00351\ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ list<LoopedSound>::type::iterator\ it\ =\ loopedSound.begin();}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=loopedSound.end())it\ =\ stopLoopedSound(it);}
+\DoxyCodeLine{00354\ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \ \ \textcolor{keywordtype}{void}\ playAmbientSound(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *type,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&volume=1)}
+\DoxyCodeLine{00356\ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00358\ }
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ ambientSound\ =\ mSoundMgr-\/>CreateLoopedStream(String(type));}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mAmbientChannel)mAmbientChannel-\/>stop();}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ mSoundMgr-\/>PlayMusic(ambientSound,\&mAmbientChannel);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ mAmbientChannel-\/>setVolume(soundVolume\ *\ volume);}
+\DoxyCodeLine{00363\ \ \ \ \ \}}
+\DoxyCodeLine{00364\ \ \ \ \ \textcolor{keywordtype}{void}\ setAmbientSoundVolume(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&volume)}
+\DoxyCodeLine{00365\ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr\ ||\ !mAmbientChannel)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ mAmbientChannel-\/>setVolume(soundVolume\ *\ volume);}
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \ \ \ \ \textcolor{keywordtype}{void}\ stopAmbientSound()}
+\DoxyCodeLine{00370\ \ \ \ \ \{}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr\ ||\ !mAmbientChannel)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ mAmbientChannel-\/>stop();}
+\DoxyCodeLine{00373\ \ \ \ \ \}}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordtype}{void}\ setMusicVolume(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&ratio)}
+\DoxyCodeLine{00375\ \ \ \ \ \{}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00377\ }
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMusicChannel)mMusicChannel-\/>setVolume(ratio);}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ musicVolume\ =\ ratio;}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordtype}{float}\ getMusicVolume()}
+\DoxyCodeLine{00382\ \ \ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ musicVolume;}
+\DoxyCodeLine{00384\ \ \ \ \ \}}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordtype}{void}\ setGUISoundVolume(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&ratio)}
+\DoxyCodeLine{00386\ \ \ \ \ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00388\ }
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGuiChannel)mGuiChannel-\/>setVolume(ratio);}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ guiVolume\ =\ ratio;}
+\DoxyCodeLine{00391\ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordtype}{float}\ getGUISoundVolume()}
+\DoxyCodeLine{00393\ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ guiVolume;}
+\DoxyCodeLine{00395\ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keywordtype}{void}\ setSoundVolume(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ \&ratio)}
+\DoxyCodeLine{00397\ \ \ \ \ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ soundVolume\ =\ ratio;}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ list<LoopedSound>::type::iterator\ it\ =\ loopedSound.begin();}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=loopedSound.end())}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_looped_sound}{LoopedSound}}\ *sound\ =\ \&*it;}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundMgr-\/>GetSoundChannel(sound-\/>channel)-\/>setVolume(sound-\/>volume\ *\ ratio);}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \textcolor{keywordtype}{float}\ getSoundVolume()}
+\DoxyCodeLine{00410\ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ soundVolume;}
+\DoxyCodeLine{00412\ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keywordtype}{void}\ clearChannelsConnectedToSceneNode(SceneNode\ *node)}
+\DoxyCodeLine{00414\ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSoundMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ stopLoopedSoundByNode(node);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ mSoundMgr-\/>clearChannelsConnectedToSceneNode(node);}
+\DoxyCodeLine{00419\ \ \ \ \ \}}
+\DoxyCodeLine{00420\ \};}
+\DoxyCodeLine{00421\ }
+\DoxyCodeLine{00422\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

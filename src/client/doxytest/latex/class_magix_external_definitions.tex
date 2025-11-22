@@ -1,0 +1,383 @@
+\doxysection{Magix\+External\+Definitions Class Reference}
+\hypertarget{class_magix_external_definitions}{}\label{class_magix_external_definitions}\index{MagixExternalDefinitions@{MagixExternalDefinitions}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_external_definitions_a03eec1c88d9d4c441856425f25295db3}\label{class_magix_external_definitions_a03eec1c88d9d4c441856425f25295db3} 
+void {\bfseries initialize} ()
+\item 
+\Hypertarget{class_magix_external_definitions_aef0f8c3f769a9313e9bd7f0eda3c1f41}\label{class_magix_external_definitions_aef0f8c3f769a9313e9bd7f0eda3c1f41} 
+void {\bfseries initialize\+Capabilities} (const Render\+System\+Capabilities \texorpdfstring{$\ast$}{*}capabilities)
+\item 
+\Hypertarget{class_magix_external_definitions_ad8bf7795d5c219be754c26fc306658a7}\label{class_magix_external_definitions_ad8bf7795d5c219be754c26fc306658a7} 
+void {\bfseries load\+Unit\+Meshes} (const String \&filename)
+\item 
+\Hypertarget{class_magix_external_definitions_a1dbab88d733042226863af0097dde677}\label{class_magix_external_definitions_a1dbab88d733042226863af0097dde677} 
+void {\bfseries load\+Unit\+Emotes} (const String \&filename)
+\item 
+bool \mbox{\hyperlink{class_magix_external_definitions_ae7d8ef4025459a7e966ca372804e340e}{is\+Restricted}} (const short \&head\+ID, const short \&mane\+ID)
+\item 
+\Hypertarget{class_magix_external_definitions_aa5322776e640427d1a8ad694f26c6af3}\label{class_magix_external_definitions_aa5322776e640427d1a8ad694f26c6af3} 
+bool {\bfseries is\+Restricted\+Tuft} (const short \&tuft\+ID)
+\item 
+\Hypertarget{class_magix_external_definitions_a4030c51ff775cf3029f773c9098607c2}\label{class_magix_external_definitions_a4030c51ff775cf3029f773c9098607c2} 
+void {\bfseries decrypt} (String \&input)
+\item 
+\Hypertarget{class_magix_external_definitions_a3d1b7a56bb8c754d87baa6c16019e8ff}\label{class_magix_external_definitions_a3d1b7a56bb8c754d87baa6c16019e8ff} 
+void {\bfseries encrypt} (String \&input)
+\item 
+\Hypertarget{class_magix_external_definitions_a8376c7e7f852257b41cb021709e58daf}\label{class_magix_external_definitions_a8376c7e7f852257b41cb021709e58daf} 
+const String {\bfseries get\+Map\+Name} (const String \&name)
+\item 
+\Hypertarget{class_magix_external_definitions_ae6f2edfdc299f528b0e7bceebd468e22}\label{class_magix_external_definitions_ae6f2edfdc299f528b0e7bceebd468e22} 
+void {\bfseries load\+Settings} (bool \&is\+Tablet, Real \&mouse\+Sensitivity, Real \&music\+Vol, Real \&gui\+Vol, Real \&sound\+Vol, bool \&is\+Shadows\+On, bool \&is\+Bloom, String \&username, bool \&general\+Charname, bool \&local\+Username, bool \&channel\+Blink, bool \&run\+Mode, bool \&double\+Jump\+On, bool \&auto\+Lip\+Sync, bool \&use\+Windows\+Cursor)
+\begin{DoxyCompactList}\small\item\em end of Utilities \end{DoxyCompactList}\item 
+\Hypertarget{class_magix_external_definitions_a889f80036dc599379c331208e0bebf73}\label{class_magix_external_definitions_a889f80036dc599379c331208e0bebf73} 
+void {\bfseries save\+Settings} (bool is\+Tablet, const Real \&mouse\+Sensitivity, const Real \&music\+Vol, const Real \&gui\+Vol, const Real \&sound\+Vol, const bool \&is\+Shadows\+On, bool is\+Bloom, const String \&username="{}"{}, bool general\+Charname=false, bool local\+Username=false, bool channel\+Blink=true, bool run\+Mode=true, bool double\+Jump\+On=true, bool auto\+Lip\+Sync=false, bool use\+Windows\+Cursor=false)
+\item 
+\Hypertarget{class_magix_external_definitions_a7cffa506eb1dc30ab3f678551c0ac9bc}\label{class_magix_external_definitions_a7cffa506eb1dc30ab3f678551c0ac9bc} 
+void {\bfseries save\+Password} (bool flag, const String \&password="{}"{})
+\item 
+\Hypertarget{class_magix_external_definitions_aded744072f73cca6cf99bd06fb14d207}\label{class_magix_external_definitions_aded744072f73cca6cf99bd06fb14d207} 
+const String {\bfseries load\+Password} ()
+\item 
+\Hypertarget{class_magix_external_definitions_a271f41ec05f51ae13834821111dd3007}\label{class_magix_external_definitions_a271f41ec05f51ae13834821111dd3007} 
+void {\bfseries save\+Ban\+File} (bool flag, const unsigned short \&num\+Days=0)
+\item 
+\Hypertarget{class_magix_external_definitions_af04fd8a6d1d6a7981ff758c30d43d382}\label{class_magix_external_definitions_af04fd8a6d1d6a7981ff758c30d43d382} 
+const bool {\bfseries load\+Ban\+File} (unsigned short \&num\+Days)
+\item 
+\Hypertarget{class_magix_external_definitions_a35adb3ee3f4101130b4ff744ce965b7b}\label{class_magix_external_definitions_a35adb3ee3f4101130b4ff744ce965b7b} 
+const String {\bfseries load\+World\+Objects} (const String \&filename)
+\item 
+\Hypertarget{class_magix_external_definitions_a66fb48f72874c88aa0f106cda11a58ee}\label{class_magix_external_definitions_a66fb48f72874c88aa0f106cda11a58ee} 
+void {\bfseries load\+Campaign\+List} (vector$<$ String $>$\+::type \&list, bool custom\+Campaigns=false)
+\item 
+\Hypertarget{class_magix_external_definitions_abda1cdfeb8be63ee65bca083380ae58c}\label{class_magix_external_definitions_abda1cdfeb8be63ee65bca083380ae58c} 
+bool {\bfseries load\+Campaign} (const String \&name, Campaign\+Event\+List \&data, String \&file\+Name, bool custom\+Campaigns=false)
+\item 
+\Hypertarget{class_magix_external_definitions_af514be44102da86842e80fc315882e6d}\label{class_magix_external_definitions_af514be44102da86842e80fc315882e6d} 
+void {\bfseries load\+Campaign\+Script} (const String \&filename, const vector$<$ String $>$\+::type \&next\+Event, Campaign\+Event\+List \&data, const unsigned short \&event\+Count=0, bool load\+First\+Section=false)
+\item 
+\Hypertarget{class_magix_external_definitions_ad098ced43affe2ab43e51e355cf4b4f4}\label{class_magix_external_definitions_ad098ced43affe2ab43e51e355cf4b4f4} 
+bool {\bfseries load\+Credits} (const String \&filename, vector$<$ String $>$\+::type \&credits)
+\item 
+\Hypertarget{class_magix_external_definitions_a17c77cdc3dd5eff7d9485f4857c12edb}\label{class_magix_external_definitions_a17c77cdc3dd5eff7d9485f4857c12edb} 
+bool {\bfseries load\+Save\+Point} (String \&map\+Name, Vector2 \&point, unsigned char \&dimension)
+\item 
+\Hypertarget{class_magix_external_definitions_a1e56cb7bea6ca45e410f319bdd58af21}\label{class_magix_external_definitions_a1e56cb7bea6ca45e410f319bdd58af21} 
+bool {\bfseries load\+Home\+Point} (String \&map\+Name, Vector2 \&point, unsigned char \&dimension, bool is\+Save\+Point=false)
+\item 
+\Hypertarget{class_magix_external_definitions_ad92cdbd75dcdc3623ab8fb21c9b40620}\label{class_magix_external_definitions_ad92cdbd75dcdc3623ab8fb21c9b40620} 
+void {\bfseries save\+Save\+Point} (const String \&map\+Name, const Vector2 \&point, const unsigned char \&dimension)
+\item 
+\Hypertarget{class_magix_external_definitions_a6526e41219337c0d2d7f20c5b0afc5d3}\label{class_magix_external_definitions_a6526e41219337c0d2d7f20c5b0afc5d3} 
+void {\bfseries save\+Home\+Point} (const String \&map\+Name, const Vector2 \&point, const unsigned char \&dimension, bool is\+Save\+Point=false)
+\item 
+\Hypertarget{class_magix_external_definitions_a2a8c18509221ca0cedc82226076ea471}\label{class_magix_external_definitions_a2a8c18509221ca0cedc82226076ea471} 
+const vector$<$ String $>$\+::type {\bfseries load\+Friend\+List} (bool is\+Block\+List=false)
+\item 
+\Hypertarget{class_magix_external_definitions_ab3e25429e13f147108f117ca88bfeca5}\label{class_magix_external_definitions_ab3e25429e13f147108f117ca88bfeca5} 
+const vector$<$ String $>$\+::type {\bfseries load\+Blocked\+List} ()
+\item 
+\Hypertarget{class_magix_external_definitions_a3833721b1de124227d19db1009f9212a}\label{class_magix_external_definitions_a3833721b1de124227d19db1009f9212a} 
+void {\bfseries edit\+Friend\+List} (const String \&name, bool add, bool is\+Block\+List=false)
+\item 
+\Hypertarget{class_magix_external_definitions_a39ccf02a83404b481a0364bbaf79a39e}\label{class_magix_external_definitions_a39ccf02a83404b481a0364bbaf79a39e} 
+void {\bfseries edit\+Blocked\+List} (const String \&name, bool add)
+\item 
+\Hypertarget{class_magix_external_definitions_a99a5718f3831944ba96c37e2a0227b8f}\label{class_magix_external_definitions_a99a5718f3831944ba96c37e2a0227b8f} 
+bool {\bfseries is\+In\+Friend\+List} (String name, bool is\+Block\+List=false)
+\item 
+\Hypertarget{class_magix_external_definitions_a12aa529a95e946d76d6ee693fda72a2b}\label{class_magix_external_definitions_a12aa529a95e946d76d6ee693fda72a2b} 
+bool {\bfseries is\+In\+Blocked\+List} (String name)
+\item 
+\Hypertarget{class_magix_external_definitions_a1ed97187b366c3035b114f0a1034062c}\label{class_magix_external_definitions_a1ed97187b366c3035b114f0a1034062c} 
+void {\bfseries save\+Bio} (const String \&name, const String \&bio)
+\item 
+\Hypertarget{class_magix_external_definitions_a5c3cb38ce1b72dd34cf3f592a533a8af}\label{class_magix_external_definitions_a5c3cb38ce1b72dd34cf3f592a533a8af} 
+const String {\bfseries load\+Bio} (const String \&name="{}"{})
+\item 
+const String \mbox{\hyperlink{class_magix_external_definitions_a1b97cea79da1fb528e3d25f70e595b1d}{load\+Update\+Caption}} ()
+\begin{DoxyCompactList}\small\item\em end of logic stuf to be separated \end{DoxyCompactList}\item 
+\Hypertarget{class_magix_external_definitions_a4c5fa69b4c97a833354aecfb98dc6543}\label{class_magix_external_definitions_a4c5fa69b4c97a833354aecfb98dc6543} 
+void {\bfseries load\+Items} (const String \&filename, const bool decrypt)
+\item 
+\Hypertarget{class_magix_external_definitions_acb9b39bf99ceb939c669c3cd00522684}\label{class_magix_external_definitions_acb9b39bf99ceb939c669c3cd00522684} 
+const String {\bfseries get\+Item\+Name} (const String \&mesh\+Name)
+\item 
+\Hypertarget{class_magix_external_definitions_a29e4213dfb303935e7e5acb9fda8323b}\label{class_magix_external_definitions_a29e4213dfb303935e7e5acb9fda8323b} 
+const String {\bfseries get\+Item\+Bone} (const String \&mesh\+Name)
+\item 
+\Hypertarget{class_magix_external_definitions_a0fdc1735acc7f4e9fa4c675ca763f3e5}\label{class_magix_external_definitions_a0fdc1735acc7f4e9fa4c675ca763f3e5} 
+const bool {\bfseries get\+Item\+Is\+Private} (const String \&mesh\+Name)
+\item 
+\Hypertarget{class_magix_external_definitions_a90fb147cc9fabcc8c10eeaaef15e4604}\label{class_magix_external_definitions_a90fb147cc9fabcc8c10eeaaef15e4604} 
+const bool {\bfseries get\+Item\+Has\+Offset} (const String \&mesh\+Name)
+\item 
+\Hypertarget{class_magix_external_definitions_aa24d79ced166c76c562b146f61e6ad1b}\label{class_magix_external_definitions_aa24d79ced166c76c562b146f61e6ad1b} 
+const bool {\bfseries get\+Item\+Has\+Alt\+Anim} (const String \&mesh\+Name)
+\item 
+\Hypertarget{class_magix_external_definitions_a957267b06e8ccc7e740f9d985de76f53}\label{class_magix_external_definitions_a957267b06e8ccc7e740f9d985de76f53} 
+const String {\bfseries get\+Item\+Particle} (const String \&mesh\+Name)
+\item 
+\Hypertarget{class_magix_external_definitions_aad3e5c36e3fc7095c44c17700569977e}\label{class_magix_external_definitions_aad3e5c36e3fc7095c44c17700569977e} 
+const std\+::pair$<$ Vector3, bool $>$ {\bfseries get\+Item\+Particle\+Offset} (const String \&mesh\+Name)
+\item 
+\Hypertarget{class_magix_external_definitions_a22f2d950c252dff7de71ac4b07185780}\label{class_magix_external_definitions_a22f2d950c252dff7de71ac4b07185780} 
+const bool {\bfseries item\+Mesh\+Exists} (const String \&mesh\+Name)
+\item 
+\Hypertarget{class_magix_external_definitions_af50efbde213e6b580c8291a5d6a46a47}\label{class_magix_external_definitions_af50efbde213e6b580c8291a5d6a46a47} 
+void {\bfseries load\+Hotkeys} (const String \&filename)
+\item 
+\Hypertarget{class_magix_external_definitions_aee2fe287aaf4dac01781eb25a133b3eb}\label{class_magix_external_definitions_aee2fe287aaf4dac01781eb25a133b3eb} 
+const void {\bfseries save\+Hotkeys} (const String \&filename)
+\item 
+\Hypertarget{class_magix_external_definitions_ae27b2bad499978238c0cfba2727a94ab}\label{class_magix_external_definitions_ae27b2bad499978238c0cfba2727a94ab} 
+void {\bfseries set\+HotkeyF} (const int \&key, const String \&value)
+\item 
+\Hypertarget{class_magix_external_definitions_ab197faf5412521d9c084112dcad14746}\label{class_magix_external_definitions_ab197faf5412521d9c084112dcad14746} 
+const String {\bfseries get\+HotkeyF} (const int \&key)
+\item 
+\Hypertarget{class_magix_external_definitions_ab3188486d7b8dd722e8b848d71768b1d}\label{class_magix_external_definitions_ab3188486d7b8dd722e8b848d71768b1d} 
+bool {\bfseries has\+Mane\+Mesh} (const String \&mesh)
+\item 
+\Hypertarget{class_magix_external_definitions_a018e6bf7afc0f6b0d67b89751e5cdc42}\label{class_magix_external_definitions_a018e6bf7afc0f6b0d67b89751e5cdc42} 
+bool {\bfseries has\+Tail\+Mesh} (const String \&mesh)
+\item 
+\Hypertarget{class_magix_external_definitions_ac63e463bccc7fdc188bd0d1907d0b0f2}\label{class_magix_external_definitions_ac63e463bccc7fdc188bd0d1907d0b0f2} 
+bool {\bfseries has\+Wing\+Mesh} (const String \&mesh)
+\item 
+\Hypertarget{class_magix_external_definitions_a4f8c36ab2cbcf918d6ef484b38bd74de}\label{class_magix_external_definitions_a4f8c36ab2cbcf918d6ef484b38bd74de} 
+bool {\bfseries has\+Tuft\+Mesh} (const String \&mesh)
+\item 
+\Hypertarget{class_magix_external_definitions_a7bc55aa2f186e430899e00fbfea68d15}\label{class_magix_external_definitions_a7bc55aa2f186e430899e00fbfea68d15} 
+const bool {\bfseries has\+Body\+Mark} (const unsigned char \&id)
+\item 
+\Hypertarget{class_magix_external_definitions_a9e8305bd5789f66b101d2daeb4b226f7}\label{class_magix_external_definitions_a9e8305bd5789f66b101d2daeb4b226f7} 
+const bool {\bfseries has\+Head\+Mark} (const unsigned char \&id)
+\item 
+\Hypertarget{class_magix_external_definitions_a4a6fd46dd62b07f103874835f0ce50d8}\label{class_magix_external_definitions_a4a6fd46dd62b07f103874835f0ce50d8} 
+const bool {\bfseries has\+Tail\+Mark} (const unsigned char \&id)
+\item 
+void \mbox{\hyperlink{class_magix_external_definitions_a4b8be9e536d38a74efbdb7a6b2301241}{load\+Weather\+Cycle}} (const String \&type, vector$<$ \mbox{\hyperlink{struct_weather_event}{Weather\+Event}} $>$\+::type \&list, bool is\+Custom=false)
+\item 
+\Hypertarget{class_magix_external_definitions_ad8b2efeadb2c872d9315f208b4163b13}\label{class_magix_external_definitions_ad8b2efeadb2c872d9315f208b4163b13} 
+void {\bfseries load\+Weather} (const String \&type, String \&particle, Vector3 \&offset, String \&sound, bool is\+Custom=false)
+\item 
+\Hypertarget{class_magix_external_definitions_a07d26e668fe3a7af74896ec1dfd5e1db}\label{class_magix_external_definitions_a07d26e668fe3a7af74896ec1dfd5e1db} 
+void {\bfseries load\+Attacks} (const String \&filename, bool is\+Custom)
+\item 
+\Hypertarget{class_magix_external_definitions_a2d1580fa63d060cc53c7d1c4b43c074f}\label{class_magix_external_definitions_a2d1580fa63d060cc53c7d1c4b43c074f} 
+const \mbox{\hyperlink{struct_attack}{Attack}} {\bfseries get\+Attack} (const String \&name)
+\item 
+\Hypertarget{class_magix_external_definitions_a0708b72588a84861fb4e599dc42785e6}\label{class_magix_external_definitions_a0708b72588a84861fb4e599dc42785e6} 
+const String {\bfseries get\+Attack\+Anim} (const String \&name)
+\item 
+\Hypertarget{class_magix_external_definitions_a483efeadbd7e69d9a2b1a4d10fdcb44e}\label{class_magix_external_definitions_a483efeadbd7e69d9a2b1a4d10fdcb44e} 
+bool {\bfseries is\+Skill\+Targets\+Allies} (const String \&name)
+\item 
+\Hypertarget{class_magix_external_definitions_af642e0c013fef4b0d768ac0b4c262a0e}\label{class_magix_external_definitions_af642e0c013fef4b0d768ac0b4c262a0e} 
+bool {\bfseries is\+Skill\+Targets\+Self} (const String \&name)
+\item 
+\Hypertarget{class_magix_external_definitions_af917d0af77502d1415ef79161c8f306f}\label{class_magix_external_definitions_af917d0af77502d1415ef79161c8f306f} 
+void {\bfseries load\+Critters} (const String \&filename, bool is\+Custom)
+\item 
+\Hypertarget{class_magix_external_definitions_a00545c2a83634c5ac7ffc35a329ff815}\label{class_magix_external_definitions_a00545c2a83634c5ac7ffc35a329ff815} 
+const \mbox{\hyperlink{struct_critter}{Critter}} {\bfseries get\+Critter} (const String \&type)
+\item 
+\Hypertarget{class_magix_external_definitions_a18acd75790770db969af3806198f4115}\label{class_magix_external_definitions_a18acd75790770db969af3806198f4115} 
+const vector$<$ std\+::pair$<$ String, Real $>$ $>$\+::type {\bfseries get\+Critter\+Drop\+List} (const String \&type)
+\item 
+\Hypertarget{class_magix_external_definitions_aebf3bfeeac27e9d5f5b1e9cc0bb3bab3}\label{class_magix_external_definitions_aebf3bfeeac27e9d5f5b1e9cc0bb3bab3} 
+const std\+::pair$<$ String, unsigned char $>$ {\bfseries get\+Critter\+Skill\+Drop} (const String \&type)
+\item 
+\Hypertarget{class_magix_external_definitions_a109abe873f8d9fbe2c479bd443000339}\label{class_magix_external_definitions_a109abe873f8d9fbe2c479bd443000339} 
+const std\+::pair$<$ String, unsigned char $>$ {\bfseries get\+Random\+Skill\+Drop} ()
+\item 
+\Hypertarget{class_magix_external_definitions_a65f915bc2027a2720f66dd7fb82cc9d4}\label{class_magix_external_definitions_a65f915bc2027a2720f66dd7fb82cc9d4} 
+const unsigned char {\bfseries get\+Critter\+Random\+Attack} (const String \&type, bool \texorpdfstring{$\ast$}{*}hit\+Ally=0)
+\item 
+\Hypertarget{class_magix_external_definitions_a202b0e60a0b6ce5a5ef93b0eff2eb817}\label{class_magix_external_definitions_a202b0e60a0b6ce5a5ef93b0eff2eb817} 
+const unsigned char {\bfseries get\+Critter\+Random\+Specific\+Attack} (const String \&type, bool get\+Non\+Heal)
+\item 
+\Hypertarget{class_magix_external_definitions_ad06104f19961d77597815776843c6d94}\label{class_magix_external_definitions_ad06104f19961d77597815776843c6d94} 
+const std\+::pair$<$ \mbox{\hyperlink{struct_critter_attack}{Critter\+Attack}}, String $>$ {\bfseries get\+Critter\+Attack\+And\+Sound} (const String \&type, const unsigned char \&i\+ID)
+\item 
+\Hypertarget{class_magix_external_definitions_a40e0d37facd437b1adc81e474b5f597b}\label{class_magix_external_definitions_a40e0d37facd437b1adc81e474b5f597b} 
+bool {\bfseries load\+Critter\+Spawn\+List} (const String \&world\+Name, unsigned short \&limit, vector$<$ \mbox{\hyperlink{struct_world_critter}{World\+Critter}} $>$\+::type \&list, vector$<$ std\+::pair$<$ Vector3, Vector3 $>$ $>$\+::type \&roam\+Area, const String \&custom\+Filename="{}"{})
+\item 
+\Hypertarget{class_magix_external_definitions_aef055f6c7151fa44b57b48f7c1ad72ab}\label{class_magix_external_definitions_aef055f6c7151fa44b57b48f7c1ad72ab} 
+bool {\bfseries load\+Critter\+Spawn\+List\+File} (const String \&filename, const String \&world\+Name, unsigned short \&limit, vector$<$ \mbox{\hyperlink{struct_world_critter}{World\+Critter}} $>$\+::type \&list, vector$<$ std\+::pair$<$ Vector3, Vector3 $>$ $>$\+::type \&roam\+Area)
+\item 
+\Hypertarget{class_magix_external_definitions_a565746a34c7d24ce9e4734576932db37}\label{class_magix_external_definitions_a565746a34c7d24ce9e4734576932db37} 
+bool {\bfseries load\+Custom\+Critter\+Spawn\+List} (const String \&filename, unsigned short \&limit, vector$<$ \mbox{\hyperlink{struct_world_critter}{World\+Critter}} $>$\+::type \&list, vector$<$ std\+::pair$<$ Vector3, Vector3 $>$ $>$\+::type \&roam\+Area)
+\item 
+\Hypertarget{class_magix_external_definitions_a0f578438d90d69cd604fafe145cd6285}\label{class_magix_external_definitions_a0f578438d90d69cd604fafe145cd6285} 
+const String {\bfseries load\+Local\+IP} (const String \&filename)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_external_definitions_a151d9d609d9cfa37499a19abc0b7ae2b}\label{class_magix_external_definitions_a151d9d609d9cfa37499a19abc0b7ae2b} 
+\mbox{\hyperlink{class_k_i_t_f___utils_1_1_magix_utils}{KITF\+\_\+\+Utils\+::\+Magix\+Utils}} {\bfseries m\+Magix\+Utils}
+\item 
+\Hypertarget{class_magix_external_definitions_a3397a5496c451803844ff017231f34f7}\label{class_magix_external_definitions_a3397a5496c451803844ff017231f34f7} 
+bool {\bfseries is\+Admin}
+\item 
+\Hypertarget{class_magix_external_definitions_a5abe69fb125d8938676963523763dfc4}\label{class_magix_external_definitions_a5abe69fb125d8938676963523763dfc4} 
+bool {\bfseries is\+Mod}
+\item 
+\Hypertarget{class_magix_external_definitions_adeba2925e9fe84bba69278eaf5249b42}\label{class_magix_external_definitions_adeba2925e9fe84bba69278eaf5249b42} 
+bool {\bfseries is\+Mod\+On}
+\item 
+\Hypertarget{class_magix_external_definitions_a67b32a4259c3ed87ffd2be3eb97fa100}\label{class_magix_external_definitions_a67b32a4259c3ed87ffd2be3eb97fa100} 
+Colour\+Value {\bfseries admin\+Aura\+Colour}
+\item 
+\Hypertarget{class_magix_external_definitions_abb01afaadc68996e947ca9dfe7a4ee8a}\label{class_magix_external_definitions_abb01afaadc68996e947ca9dfe7a4ee8a} 
+bool {\bfseries has\+Vertex\+Program}
+\item 
+\Hypertarget{class_magix_external_definitions_afe045d30310cbc26b7e10c8badc73b8d}\label{class_magix_external_definitions_afe045d30310cbc26b7e10c8badc73b8d} 
+bool {\bfseries has\+Fragment\+Program}
+\item 
+\Hypertarget{class_magix_external_definitions_ad39525e3042b91e26333d908ced4c192}\label{class_magix_external_definitions_ad39525e3042b91e26333d908ced4c192} 
+bool {\bfseries paged\+Geometry\+On}
+\item 
+\Hypertarget{class_magix_external_definitions_aa3a7a9a5fcd0209ba4dd2a44b060b450}\label{class_magix_external_definitions_aa3a7a9a5fcd0209ba4dd2a44b060b450} 
+bool {\bfseries paged\+Geometry\+Forced}
+\item 
+\Hypertarget{class_magix_external_definitions_ad21cd5482cca919acf483e08a2e3a03b}\label{class_magix_external_definitions_ad21cd5482cca919acf483e08a2e3a03b} 
+Real {\bfseries view\+Distance}
+\item 
+\Hypertarget{class_magix_external_definitions_af60d127dcc8156d5d7c514a9a65de2cd}\label{class_magix_external_definitions_af60d127dcc8156d5d7c514a9a65de2cd} 
+unsigned short {\bfseries max\+Heads}
+\item 
+\Hypertarget{class_magix_external_definitions_a875c801b31e71b22dd7a46d2e3355d8f}\label{class_magix_external_definitions_a875c801b31e71b22dd7a46d2e3355d8f} 
+unsigned short {\bfseries max\+Manes}
+\item 
+\Hypertarget{class_magix_external_definitions_af8a3e68f3cd197810876580a69b8b11e}\label{class_magix_external_definitions_af8a3e68f3cd197810876580a69b8b11e} 
+unsigned short {\bfseries max\+Tails}
+\item 
+\Hypertarget{class_magix_external_definitions_adc892285d6aef2fa1e9b96566a0531a3}\label{class_magix_external_definitions_adc892285d6aef2fa1e9b96566a0531a3} 
+unsigned short {\bfseries max\+Wings}
+\item 
+\Hypertarget{class_magix_external_definitions_a9b6f549f542db6b2194022ea30b344ca}\label{class_magix_external_definitions_a9b6f549f542db6b2194022ea30b344ca} 
+unsigned short {\bfseries max\+Tufts}
+\item 
+\Hypertarget{class_magix_external_definitions_ad029b383429780b3de54a683ccd7cf04}\label{class_magix_external_definitions_ad029b383429780b3de54a683ccd7cf04} 
+unsigned short {\bfseries max\+Body\+Marks}
+\item 
+\Hypertarget{class_magix_external_definitions_ac85c1438b55aff5241bfa966fe952755}\label{class_magix_external_definitions_ac85c1438b55aff5241bfa966fe952755} 
+unsigned short {\bfseries max\+Head\+Marks}
+\item 
+\Hypertarget{class_magix_external_definitions_a36d17d3a8c3ed563bdbb9b45fbec78d7}\label{class_magix_external_definitions_a36d17d3a8c3ed563bdbb9b45fbec78d7} 
+unsigned short {\bfseries max\+Tail\+Marks}
+\item 
+\Hypertarget{class_magix_external_definitions_adb863a6bda7b4ee0bba079d551e0ba06}\label{class_magix_external_definitions_adb863a6bda7b4ee0bba079d551e0ba06} 
+vector$<$ String $>$\+::type {\bfseries head\+Mesh}
+\item 
+\Hypertarget{class_magix_external_definitions_a00e49f1995d1e3672882d23baab4a764}\label{class_magix_external_definitions_a00e49f1995d1e3672882d23baab4a764} 
+vector$<$ String $>$\+::type {\bfseries mane\+Mesh}
+\item 
+\Hypertarget{class_magix_external_definitions_a3f47d5dc177c508e7a7bc5c9c5fb5608}\label{class_magix_external_definitions_a3f47d5dc177c508e7a7bc5c9c5fb5608} 
+vector$<$ String $>$\+::type {\bfseries tail\+Mesh}
+\item 
+\Hypertarget{class_magix_external_definitions_ad2460ed1b780f8654626ac7c125e3407}\label{class_magix_external_definitions_ad2460ed1b780f8654626ac7c125e3407} 
+vector$<$ String $>$\+::type {\bfseries wing\+Mesh}
+\item 
+\Hypertarget{class_magix_external_definitions_aa8632140ec4647b70e56f282fc98ea34}\label{class_magix_external_definitions_aa8632140ec4647b70e56f282fc98ea34} 
+vector$<$ String $>$\+::type {\bfseries tuft\+Mesh}
+\item 
+\Hypertarget{class_magix_external_definitions_a7fc0ba80f0b3d17374c9dbfa47aa7213}\label{class_magix_external_definitions_a7fc0ba80f0b3d17374c9dbfa47aa7213} 
+unsigned short {\bfseries max\+Emotes}
+\item 
+\Hypertarget{class_magix_external_definitions_ab1b9443d55cd2eb5616716437669b4f8}\label{class_magix_external_definitions_ab1b9443d55cd2eb5616716437669b4f8} 
+vector$<$ String $>$\+::type {\bfseries emote\+Name}
+\item 
+\Hypertarget{class_magix_external_definitions_a490fc7d6e10bc9e2536499fecd0a5b0a}\label{class_magix_external_definitions_a490fc7d6e10bc9e2536499fecd0a5b0a} 
+vector$<$ String $>$\+::type {\bfseries emote\+Anims}
+\item 
+\Hypertarget{class_magix_external_definitions_a108316ae27d5d2217ab2e3ccb1afd876}\label{class_magix_external_definitions_a108316ae27d5d2217ab2e3ccb1afd876} 
+vector$<$ Real $>$\+::type {\bfseries emote\+Eyelid\+State}
+\item 
+\Hypertarget{class_magix_external_definitions_a3563cbb34d08d88e034d0b53c68f8467}\label{class_magix_external_definitions_a3563cbb34d08d88e034d0b53c68f8467} 
+unsigned short {\bfseries max\+Items}
+\item 
+\Hypertarget{class_magix_external_definitions_a8fd6257f1d7db655496950e18ec93acd}\label{class_magix_external_definitions_a8fd6257f1d7db655496950e18ec93acd} 
+vector$<$ String $>$\+::type {\bfseries item\+Mesh}
+\item 
+\Hypertarget{class_magix_external_definitions_ac0f15ddb6abfdc8c4ab4b6ea93e0cd66}\label{class_magix_external_definitions_ac0f15ddb6abfdc8c4ab4b6ea93e0cd66} 
+vector$<$ String $>$\+::type {\bfseries item\+Bone}
+\item 
+\Hypertarget{class_magix_external_definitions_a047c6e0f898f6f2993bbf71c428d24d4}\label{class_magix_external_definitions_a047c6e0f898f6f2993bbf71c428d24d4} 
+vector$<$ String $>$\+::type {\bfseries item\+Name}
+\item 
+\Hypertarget{class_magix_external_definitions_a2b784444435be58a1a4e3de73c1eff45}\label{class_magix_external_definitions_a2b784444435be58a1a4e3de73c1eff45} 
+vector$<$ bool $>$\+::type {\bfseries item\+Is\+Private}
+\item 
+\Hypertarget{class_magix_external_definitions_ac56af86a7e5670e6e3a799cfef950fbe}\label{class_magix_external_definitions_ac56af86a7e5670e6e3a799cfef950fbe} 
+vector$<$ bool $>$\+::type {\bfseries item\+Has\+Offset}
+\item 
+\Hypertarget{class_magix_external_definitions_a5604780a5a24d92dee2efc88e5c7df09}\label{class_magix_external_definitions_a5604780a5a24d92dee2efc88e5c7df09} 
+vector$<$ bool $>$\+::type {\bfseries item\+Has\+Alt\+Anim}
+\item 
+\Hypertarget{class_magix_external_definitions_a1d129d31b7c7deee33ee6f0140296eda}\label{class_magix_external_definitions_a1d129d31b7c7deee33ee6f0140296eda} 
+vector$<$ String $>$\+::type {\bfseries item\+Particle}
+\item 
+\Hypertarget{class_magix_external_definitions_a64269b3633e962728f4ffd3aa3c5b195}\label{class_magix_external_definitions_a64269b3633e962728f4ffd3aa3c5b195} 
+vector$<$ String $>$\+::type {\bfseries item\+Particle\+Offset}
+\item 
+\Hypertarget{class_magix_external_definitions_a55658f6402135fbd1cc59701f08ab95d}\label{class_magix_external_definitions_a55658f6402135fbd1cc59701f08ab95d} 
+vector$<$ bool $>$\+::type {\bfseries item\+Particle\+On\+Node}
+\item 
+\Hypertarget{class_magix_external_definitions_a98bd9a60939e3bc61d99c684586485e0}\label{class_magix_external_definitions_a98bd9a60939e3bc61d99c684586485e0} 
+vector$<$ \mbox{\hyperlink{struct_attack}{Attack}} $>$\+::type {\bfseries attack\+List}
+\item 
+\Hypertarget{class_magix_external_definitions_a543cbc1ce9bc366eca7c9a211d2bf0ed}\label{class_magix_external_definitions_a543cbc1ce9bc366eca7c9a211d2bf0ed} 
+vector$<$ \mbox{\hyperlink{struct_critter}{Critter}} $>$\+::type {\bfseries critter\+List}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_external_definitions_a767beea094a12f889ab2010ff3d0af9d}\label{class_magix_external_definitions_a767beea094a12f889ab2010ff3d0af9d} 
+String {\bfseries last\+Bio\+Name}
+\item 
+\Hypertarget{class_magix_external_definitions_a30c542c3000015d2f032ba3679cc4a18}\label{class_magix_external_definitions_a30c542c3000015d2f032ba3679cc4a18} 
+String {\bfseries hotkeyF} \mbox{[}MAX\+\_\+\+HOTKEYF\mbox{]}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_external_definitions_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_external_definitions_ae7d8ef4025459a7e966ca372804e340e}\index{MagixExternalDefinitions@{MagixExternalDefinitions}!isRestricted@{isRestricted}}
+\index{isRestricted@{isRestricted}!MagixExternalDefinitions@{MagixExternalDefinitions}}
+\doxysubsubsection{\texorpdfstring{isRestricted()}{isRestricted()}}
+{\footnotesize\ttfamily \label{class_magix_external_definitions_ae7d8ef4025459a7e966ca372804e340e} 
+bool Magix\+External\+Definitions\+::is\+Restricted (\begin{DoxyParamCaption}\item[{const short \&}]{head\+ID}{, }\item[{const short \&}]{mane\+ID}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+Utilities to move out \Hypertarget{class_magix_external_definitions_a1b97cea79da1fb528e3d25f70e595b1d}\index{MagixExternalDefinitions@{MagixExternalDefinitions}!loadUpdateCaption@{loadUpdateCaption}}
+\index{loadUpdateCaption@{loadUpdateCaption}!MagixExternalDefinitions@{MagixExternalDefinitions}}
+\doxysubsubsection{\texorpdfstring{loadUpdateCaption()}{loadUpdateCaption()}}
+{\footnotesize\ttfamily \label{class_magix_external_definitions_a1b97cea79da1fb528e3d25f70e595b1d} 
+const String Magix\+External\+Definitions\+::load\+Update\+Caption (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+end of logic stuf to be separated 
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\Hypertarget{class_magix_external_definitions_a4b8be9e536d38a74efbdb7a6b2301241}\index{MagixExternalDefinitions@{MagixExternalDefinitions}!loadWeatherCycle@{loadWeatherCycle}}
+\index{loadWeatherCycle@{loadWeatherCycle}!MagixExternalDefinitions@{MagixExternalDefinitions}}
+\doxysubsubsection{\texorpdfstring{loadWeatherCycle()}{loadWeatherCycle()}}
+{\footnotesize\ttfamily \label{class_magix_external_definitions_a4b8be9e536d38a74efbdb7a6b2301241} 
+void Magix\+External\+Definitions\+::load\+Weather\+Cycle (\begin{DoxyParamCaption}\item[{const String \&}]{type}{, }\item[{vector$<$ \mbox{\hyperlink{struct_weather_event}{Weather\+Event}} $>$\+::type \&}]{list}{, }\item[{bool}]{is\+Custom}{ = {\ttfamily false}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+The function unders are going to move they should not be there 
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+External\+Definitions.\+h\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/src/Magix\+External\+Definitions.\+cpp\end{DoxyCompactItemize}

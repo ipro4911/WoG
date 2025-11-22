@@ -1,0 +1,497 @@
+\doxysection{Movable\+Text\+Overlay.\+h}
+\hypertarget{_movable_text_overlay_8h_source}{}\label{_movable_text_overlay_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MovableTextOverlay.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MovableTextOverlay.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ after\ research,\ this\ is\ probably\ from\ https://forums.ogre3d.org/viewtopic.php?t=34197\ or\ a\ similar\ resources}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ \_\_MovableTextOverlay\_H\_\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ \_\_MovableTextOverlay\_H\_\_}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}OgreFont.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}OgreFontManager.h"{}}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }MovableTextOverlayAttributes}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ MovableTextOverlayAttributes(\textcolor{keyword}{const}\ Ogre::String\ \&\ name,\ \textcolor{keyword}{const}\ Ogre::Camera\ *cam,}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\ \&\ fontName\ =\ \textcolor{stringliteral}{"{}Tahoma"{}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&charHeight\ =\ 16,\ \textcolor{keyword}{const}\ Ogre::ColourValue\ \&\ color\ =\ Ogre::ColourValue::White,\ \textcolor{keyword}{const}\ Ogre::String\ \&\ materialName\ =\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00016\ \ \ \ \ \string~MovableTextOverlayAttributes();}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{void}\ setFontName(\textcolor{keyword}{const}\ Ogre::String\ \&\ fontName);}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaterialName(\textcolor{keyword}{const}\ Ogre::String\ \&\ materialName);}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ setColor(\textcolor{keyword}{const}\ Ogre::ColourValue\ \&\ color);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{void}\ setCharacterHeight(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \&height);}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\&\ getName()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mName;\}}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Camera*\ getCamera()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mpCam;\}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Font*\ getFont()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mpFont;\}}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\&\ getFontName()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mFontName;\}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\&\ getMaterialName()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mMaterialName;\}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::ColourValue\&\ getColor()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mColor;\}}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Real\ getCharacterHeight()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mCharHeight;\}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\ mName;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Camera\ *mpCam;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ Ogre::Font*\ mpFont;}
+\DoxyCodeLine{00035\ \ \ \ \ Ogre::String\ mFontName;}
+\DoxyCodeLine{00036\ \ \ \ \ Ogre::String\ mMaterialName;}
+\DoxyCodeLine{00037\ \ \ \ \ Ogre::ColourValue\ mColor;}
+\DoxyCodeLine{00038\ \ \ \ \ Ogre::Real\ mCharHeight;}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{class\ }MovableTextOverlay\ \{}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ MovableTextOverlay(\textcolor{keyword}{const}\ Ogre::String\ \&\ name,\ \textcolor{keyword}{const}\ Ogre::String\ \&\ caption,}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Ogre::MovableObject\ *mov,\ \mbox{\hyperlink{class_movable_text_overlay_attributes}{MovableTextOverlayAttributes}}\ *attrs,\ \textcolor{keyword}{const}\ Real\ \&tLeft=0.0,\ \textcolor{keyword}{const}\ Real\ \&tTop=0.0,\ \textcolor{keyword}{const}\ Real\ \&yOffset=0);}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~MovableTextOverlay();}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{void}\ setCaption(\textcolor{keyword}{const}\ Ogre::String\ \&\ caption);}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ setUpdateFrequency(Ogre::Real\ updateFrequency)\ \{mUpdateFrequency\ =\ updateFrequency;\}}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{void}\ setAttributes(\mbox{\hyperlink{class_movable_text_overlay_attributes}{MovableTextOverlayAttributes}}\ *attrs)}
+\DoxyCodeLine{00051\ \ \ \ \ \{}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ mAttrs\ =\ attrs;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \_updateOverlayAttrs();}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\&\ getName()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mName;\}}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\&\ getCaption()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mCaption;\}}
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Real\ getUpdateFrequency()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mUpdateFrequency;\}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isOnScreen()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mOnScreen;\}}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ isEnabled()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mEnabled;\}}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_movable_text_overlay_attributes}{MovableTextOverlayAttributes}}*\ getAttributes()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mAttrs;\}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{void}\ enable(\textcolor{keywordtype}{bool}\ enable);}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ Real\ \&timeSincelastFrame,\ \textcolor{keywordtype}{bool}\ placeAtTop,\ \textcolor{keyword}{const}\ Real\ \&borderSizeOffset=0,\ \textcolor{keywordtype}{bool}\ chaseUpdate=\textcolor{keyword}{false});}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{comment}{//\ Needed\ for\ RectLayoutManager.}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{int}\ getPixelsTop()\ \{\textcolor{keywordflow}{return}\ Ogre::OverlayManager::getSingleton().getViewportHeight()\ *\ (mpOvContainer-\/>getTop());\}}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{int}\ getPixelsBottom()\ \{\textcolor{keywordflow}{return}\ Ogre::OverlayManager::getSingleton().getViewportHeight()\ *\ (mpOvContainer-\/>getTop()\ +\ mpOvContainer-\/>getHeight());\}}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{int}\ getPixelsLeft()\ \{\textcolor{keywordflow}{return}\ Ogre::OverlayManager::getSingleton().getViewportWidth()\ *\ mpOvContainer-\/>getLeft();\}}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{int}\ getPixelsRight()\ \{\textcolor{keywordflow}{return}\ Ogre::OverlayManager::getSingleton().getViewportWidth()\ *\ (mpOvContainer-\/>getLeft()\ +\ mpOvContainer-\/>getWidth());\}}
+\DoxyCodeLine{00071\ }
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{void}\ setPixelsTop(\textcolor{keywordtype}{int}\ px)\ \{mpOvContainer-\/>setTop((Ogre::Real)px\ /\ Ogre::OverlayManager::getSingleton().getViewportHeight());\}}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{void}\ setPixelsLeft(\textcolor{keywordtype}{int}\ px)\ \{mpOvContainer-\/>setLeft((Ogre::Real)px\ /\ Ogre::OverlayManager::getSingleton().getViewportWidth());\}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{comment}{//\ end}}
+\DoxyCodeLine{00075\ }
+\DoxyCodeLine{00076\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{void}\ \_computeTextSize();}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{void}\ \_updateOverlayAttrs();}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ \_getMinMaxEdgesOfAABBIn2D(Ogre::Real\&\ MinX,\ Ogre::Real\&\ MinY,\ Ogre::Real\&\ MaxX,\ Ogre::Real\&\ MaxY,\ \textcolor{keywordtype}{bool}\ getTop);}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{void}\ \_getScreenCoordinates(\textcolor{keyword}{const}\ Ogre::Vector3\&\ position,\ Ogre::Real\&\ x,\ Ogre::Real\&\ y);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\ mName;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::MovableObject*\ mpMov;}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ Ogre::Overlay*\ mpOv;}
+\DoxyCodeLine{00086\ \ \ \ \ Ogre::OverlayContainer*\ mpOvContainer;}
+\DoxyCodeLine{00087\ \ \ \ \ Ogre::OverlayElement*\ mpOvText;}
+\DoxyCodeLine{00088\ \ \ \ \ }
+\DoxyCodeLine{00089\ \ \ \ \ \textcolor{comment}{//\ true\ if\ mpOvContainer\ is\ visible,\ false\ otherwise}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keywordtype}{bool}\ mEnabled;}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{comment}{//\ true\ if\ mTextWidth\ needs\ to\ be\ recalculated}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{bool}\ mNeedUpdate;}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ Text\ width\ in\ pixels}}
+\DoxyCodeLine{00096\ \ \ \ \ Ogre::Real\ mTextWidth;}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mNoOfLines;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ the\ Text}}
+\DoxyCodeLine{00100\ \ \ \ \ Ogre::String\ mCaption;}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ true\ if\ the\ upper\ vertices\ projections\ of\ the\ MovableObject\ are\ on\ screen}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{bool}\ mOnScreen;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{comment}{//\ the\ update\ frequency\ in\ seconds}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{comment}{//\ mpOvContainer\ coordinates\ get\ updated\ each\ mUpdateFrequency\ seconds.}}
+\DoxyCodeLine{00107\ \ \ \ \ Ogre::Real\ mUpdateFrequency;}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{comment}{//\ the\ Font/Material/Color\ text\ attributes}}
+\DoxyCodeLine{00110\ \ \ \ \ \mbox{\hyperlink{class_movable_text_overlay_attributes}{MovableTextOverlayAttributes}}\ *mAttrs;}
+\DoxyCodeLine{00111\ \ \ \ \ Real\ mYOffset;}
+\DoxyCodeLine{00112\ \};}
+\DoxyCodeLine{00113\ }
+\DoxyCodeLine{00114\ MovableTextOverlay::MovableTextOverlay(\textcolor{keyword}{const}\ Ogre::String\ \&\ name,\ \textcolor{keyword}{const}\ Ogre::String\ \&\ caption,}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Ogre::MovableObject\ *mov,\ \mbox{\hyperlink{class_movable_text_overlay_attributes}{MovableTextOverlayAttributes}}\ *attrs,\ \textcolor{keyword}{const}\ Real\ \&tLeft,\ \textcolor{keyword}{const}\ Real\ \&tTop,\ \textcolor{keyword}{const}\ Real\ \&yOffset)}
+\DoxyCodeLine{00116\ :\ mpMov(mov)}
+\DoxyCodeLine{00117\ ,\ mpOv(NULL)}
+\DoxyCodeLine{00118\ ,\ mpOvContainer(NULL)}
+\DoxyCodeLine{00119\ ,\ mpOvText(NULL)}
+\DoxyCodeLine{00120\ ,\ mAttrs(attrs)}
+\DoxyCodeLine{00121\ ,\ mName(name)}
+\DoxyCodeLine{00122\ ,\ mCaption(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00123\ ,\ mUpdateFrequency(0.01)}
+\DoxyCodeLine{00124\ ,\ mNeedUpdate(TRUE)}
+\DoxyCodeLine{00125\ ,\ mOnScreen(FALSE)}
+\DoxyCodeLine{00126\ ,\ mEnabled(FALSE)}
+\DoxyCodeLine{00127\ ,\ mYOffset(yOffset/OverlayManager::getSingleton().getViewportHeight())}
+\DoxyCodeLine{00128\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordflow}{if}(name\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ Ogre::Exception(Ogre::Exception::ERR\_INVALIDPARAMS,\ \textcolor{stringliteral}{"{}Trying\ to\ create\ MovableTextOverlay\ without\ name"{}},\ \textcolor{stringliteral}{"{}MovableTextOverlay::MovableTextOverlay"{}});}
+\DoxyCodeLine{00131\ }
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordflow}{if}(caption\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ Ogre::Exception(Ogre::Exception::ERR\_INVALIDPARAMS,\ \textcolor{stringliteral}{"{}Trying\ to\ create\ MovableTextOverlay\ without\ caption"{}},\ \textcolor{stringliteral}{"{}MovableTextOverlay::MovableTextOverlay"{}});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}(mAttrs\ ==\ NULL)}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ Ogre::Exception(Ogre::Exception::ERR\_INVALIDPARAMS,\ \textcolor{stringliteral}{"{}Trying\ to\ create\ MovableTextOverlay\ without\ Attributes"{}},\ \textcolor{stringliteral}{"{}MovableTextOverlay::MovableTextOverlay"{}});}
+\DoxyCodeLine{00137\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00138\ \textcolor{comment}{\ \ \ \ if(Ogre::OverlayManager::getSingleton().getByName(name\ +\ "{}\_Ov"{}))\ }}
+\DoxyCodeLine{00139\ \textcolor{comment}{\ \ \ \ \{\ }}
+\DoxyCodeLine{00140\ \textcolor{comment}{\ \ \ \ \ \ \ \ Ogre::Exception(Ogre::Exception::ERR\_INVALIDPARAMS,\ "{}Trying\ to\ create\ MovableTextOverlay\ with\ a\ duplicate\ name"{},\ "{}MovableTextOverlay::MovableTextOverlay"{});}}
+\DoxyCodeLine{00141\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{00142\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ create\ an\ overlay\ that\ we\ can\ use\ for\ later}}
+\DoxyCodeLine{00144\ \ \ \ \ mpOv\ =\ Ogre::OverlayManager::getSingleton().create(name+\textcolor{stringliteral}{"{}\_Ov"{}});}
+\DoxyCodeLine{00145\ \ \ \ \ mpOv-\/>hide();}
+\DoxyCodeLine{00146\ \ \ \ \ mpOvContainer\ =\ \textcolor{keyword}{static\_cast<}Ogre::OverlayContainer*\textcolor{keyword}{>}(Ogre::OverlayManager::getSingleton().createOverlayElement(}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Panel"{}},\ name+\textcolor{stringliteral}{"{}\_OvC"{}}));}
+\DoxyCodeLine{00148\ \ \ \ \ mpOvContainer-\/>setPosition(tLeft,\ tTop);}
+\DoxyCodeLine{00149\ \ \ \ \ mpOvContainer-\/>setDimensions(0.0,\ 0.0);}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ mpOv-\/>add2D(mpOvContainer);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ mpOvText\ =\ Ogre::OverlayManager::getSingleton().createOverlayElement(\textcolor{stringliteral}{"{}TextArea"{}},\ name+\textcolor{stringliteral}{"{}\_OvTxt"{}});}
+\DoxyCodeLine{00154\ \ \ \ \ mpOvContainer-\/>addChild(mpOvText);}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ mpOvText-\/>setMetricsMode(Ogre::GMM\_RELATIVE);}
+\DoxyCodeLine{00157\ \ \ \ \ mpOvText-\/>setDimensions(1.0,\ 1.0);}
+\DoxyCodeLine{00158\ \ \ \ \ mpOvText-\/>setMetricsMode(Ogre::GMM\_PIXELS);}
+\DoxyCodeLine{00159\ \ \ \ \ mpOvText-\/>setPosition(0,\ 0);}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ mpOv-\/>setZOrder(450);}
+\DoxyCodeLine{00162\ }
+\DoxyCodeLine{00163\ \ \ \ \ \_updateOverlayAttrs();}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \ \ \ \ setCaption(caption);}
+\DoxyCodeLine{00166\ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ MovableTextOverlay::\string~MovableTextOverlay()}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{comment}{//\ overlay\ cleanup\ -\/-\/\ Ogre\ would\ clean\ this\ up\ at\ app\ exit\ but\ if\ your\ app\ }}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{comment}{//\ tends\ to\ create\ and\ delete\ these\ objects\ often\ it's\ a\ good\ idea\ to\ do\ it\ here.}}
+\DoxyCodeLine{00172\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\ mmName\ =\ mName;}
+\DoxyCodeLine{00173\ \ \ \ \ mpOv-\/>hide();}
+\DoxyCodeLine{00174\ \ \ \ \ Ogre::OverlayManager\ *overlayManager\ =\ Ogre::OverlayManager::getSingletonPtr();}
+\DoxyCodeLine{00175\ \ \ \ \ mpOvContainer-\/>removeChild(mmName+\textcolor{stringliteral}{"{}\_OvTxt"{}});}
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{comment}{//mpOv-\/>remove2D(mpOvContainer);}}
+\DoxyCodeLine{00177\ \ \ \ \ \textcolor{comment}{//Ogre::Overlay*\ mpOv;}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{comment}{//Ogre::OverlayContainer*\ mpOvContainer;}}
+\DoxyCodeLine{00179\ \ \ \ \ \textcolor{comment}{//Ogre::OverlayElement*\ mpOvText;}}
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}(mpOv)}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ overlayManager-\/>destroy(mpOv);}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordflow}{if}(mpOvText)\ }
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ overlayManager-\/>destroyOverlayElement(mpOvText);}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordflow}{if}(mpOvContainer)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ overlayManager-\/>destroyOverlayElement(mpOvContainer);}
+\DoxyCodeLine{00186\ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \textcolor{keywordtype}{void}\ MovableTextOverlay::setCaption(\textcolor{keyword}{const}\ Ogre::String\ \&\ caption)}
+\DoxyCodeLine{00189\ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}(caption\ !=\ mCaption)}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ mCaption\ =\ caption;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ mpOvText-\/>setCaption(mCaption);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ mNeedUpdate\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00195\ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \textcolor{keywordtype}{void}\ MovableTextOverlay::\_computeTextSize()}
+\DoxyCodeLine{00199\ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \textcolor{comment}{//compute\ text\ width/height}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keyword}{const}\ Font\ *pFont\ =\ mAttrs-\/>getFont();}
+\DoxyCodeLine{00202\ }
+\DoxyCodeLine{00203\ \ \ \ \ vector<String>::type\ tText\ =\ StringUtil::split(mCaption,\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00204\ \ \ \ \ Real\ tLongestWidth\ =\ 0;}
+\DoxyCodeLine{00205\ }
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<int(tText.size());\ i++)}
+\DoxyCodeLine{00207\ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ String\ tLine\ =\ tText[i];}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ Real\ tTextWidth\ =\ 0;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(Ogre::String::iterator\ i\ =\ tLine.begin();\ i\ <\ tLine.end();i++)}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*i\ ==\ 0x0020)}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTextWidth\ +=\ pFont-\/>getGlyphAspectRatio(0x0030);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTextWidth\ +=\ pFont-\/>getGlyphAspectRatio(*i);}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTextWidth>tLongestWidth)tLongestWidth\ =\ tTextWidth;}
+\DoxyCodeLine{00220\ \ \ \ \ \}}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ mTextWidth\ =\ tLongestWidth;}
+\DoxyCodeLine{00223\ \ \ \ \ mTextWidth\ *=\ mAttrs-\/>getCharacterHeight();}
+\DoxyCodeLine{00224\ \ \ \ \ mNoOfLines\ =\ int(tText.size());}
+\DoxyCodeLine{00225\ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \textcolor{keywordtype}{void}\ MovableTextOverlay::\_getMinMaxEdgesOfAABBIn2D(Ogre::Real\&\ MinX,\ Ogre::Real\&\ MinY,\ Ogre::Real\&\ MaxX,\ Ogre::Real\&\ MaxY,\ \textcolor{keywordtype}{bool}\ getTop)}
+\DoxyCodeLine{00228\ \{}
+\DoxyCodeLine{00229\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Camera*\ mpCam\ =\ mAttrs-\/>getCamera();}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ MinX\ =\ 0;}
+\DoxyCodeLine{00232\ \ \ \ \ MinY\ =\ 0;}
+\DoxyCodeLine{00233\ \ \ \ \ MaxX\ =\ 0;}
+\DoxyCodeLine{00234\ \ \ \ \ MaxY\ =\ 0;}
+\DoxyCodeLine{00235\ }
+\DoxyCodeLine{00236\ \ \ \ \ Ogre::Real\ X[4];\textcolor{comment}{//\ the\ 2D\ dots\ of\ the\ AABB\ in\ screencoordinates}}
+\DoxyCodeLine{00237\ \ \ \ \ Ogre::Real\ Y[4];}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordflow}{if}(!mpMov-\/>isInScene())}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00241\ }
+\DoxyCodeLine{00242\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::AxisAlignedBox\ \&AABB\ =\ mpMov-\/>getWorldBoundingBox(\textcolor{keyword}{true});\textcolor{comment}{//\ the\ AABB\ of\ the\ target}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Vector3\ CornersOfTopAABB[4]\ =}
+\DoxyCodeLine{00244\ \ \ \ \ \{getTop\ ?\ AABB.getCorner(AxisAlignedBox::FAR\_LEFT\_TOP)\ :\ AABB.getCorner(AxisAlignedBox::FAR\_LEFT\_BOTTOM),}
+\DoxyCodeLine{00245\ \ \ \ \ getTop\ ?\ AABB.getCorner(AxisAlignedBox::FAR\_RIGHT\_TOP)\ :\ AABB.getCorner(AxisAlignedBox::FAR\_RIGHT\_BOTTOM),}
+\DoxyCodeLine{00246\ \ \ \ \ getTop\ ?\ AABB.getCorner(AxisAlignedBox::NEAR\_LEFT\_TOP)\ :\ AABB.getCorner(AxisAlignedBox::NEAR\_LEFT\_BOTTOM),}
+\DoxyCodeLine{00247\ \ \ \ \ getTop\ ?\ AABB.getCorner(AxisAlignedBox::NEAR\_RIGHT\_TOP)\ :\ AABB.getCorner(AxisAlignedBox::NEAR\_RIGHT\_BOTTOM)\};}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ Ogre::Vector3\ CameraPlainNormal\ =\ mpCam-\/>getDerivedOrientation().zAxis();\textcolor{comment}{//The\ normal\ vector\ of\ the\ plaine.this\ points\ directly\ infront\ of\ the\ cam}}
+\DoxyCodeLine{00250\ }
+\DoxyCodeLine{00251\ \ \ \ \ Ogre::Plane\ CameraPlain\ =\ Plane(CameraPlainNormal,mpCam-\/>getDerivedPosition());\textcolor{comment}{//the\ plaine\ that\ devides\ the\ space\ bevor\ and\ behin\ the\ cam}}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ 4;\ i++)}
+\DoxyCodeLine{00254\ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ X[i]\ =\ 0;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ Y[i]\ =\ 0;}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \_getScreenCoordinates(CornersOfTopAABB[i],X[i],Y[i]);\textcolor{comment}{//\ transfor\ into\ 2d\ dots}}
+\DoxyCodeLine{00259\ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(CameraPlain.getSide(CornersOfTopAABB[i])\ ==\ Plane::NEGATIVE\_SIDE)}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ ==\ 0)\textcolor{comment}{//\ accept\ the\ first\ set\ of\ values,\ no\ matter\ how\ bad\ it\ might\ be.}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MinX\ =\ X[i];}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MinY\ =\ Y[i];}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MaxX\ =\ X[i];}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MaxY\ =\ Y[i];}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\textcolor{comment}{//\ now\ compare\ if\ you\ get\ "{}better"{}\ values}}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(MinX\ >\ X[i])\textcolor{comment}{//\ get\ the\ x\ minimum}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MinX\ =\ X[i];}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(MinY\ >\ Y[i])\textcolor{comment}{//\ get\ the\ y\ minimum}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MinY\ =\ Y[i];}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(MaxX\ <\ X[i])\textcolor{comment}{//\ get\ the\ x\ maximum}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MaxX\ =\ X[i];}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(MaxY\ <\ Y[i])\textcolor{comment}{//\ get\ the\ y\ maximum}}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MaxY\ =\ Y[i];}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ MinX\ =\ 0;}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ MinY\ =\ 0;}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ MaxX\ =\ 0;}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ MaxY\ =\ 0;}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \}\ }
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \textcolor{keywordtype}{void}\ MovableTextOverlay::\_getScreenCoordinates(\textcolor{keyword}{const}\ Ogre::Vector3\&\ position,\ Ogre::Real\&\ x,\ Ogre::Real\&\ y)}
+\DoxyCodeLine{00305\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Camera*\ mpCam\ =\ mAttrs-\/>getCamera();}
+\DoxyCodeLine{00307\ \ \ \ \ Vector3\ hcsPosition\ =\ mpCam-\/>getProjectionMatrix()\ *\ (mpCam-\/>getViewMatrix()\ *\ position);}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ x\ =\ 1.0f\ -\/\ ((hcsPosition.x\ *\ 0.5f)\ +\ 0.5f);\textcolor{comment}{//\ 0\ <=\ x\ <=\ 1\ //\ left\ :=\ 0,right\ :=\ 1}}
+\DoxyCodeLine{00310\ \ \ \ \ y\ =\ ((hcsPosition.y\ *\ 0.5f)\ +\ 0.5f);\textcolor{comment}{//\ 0\ <=\ y\ <=\ 1\ //\ bottom\ :=\ 0,top\ :=\ 1}}
+\DoxyCodeLine{00311\ \}}
+\DoxyCodeLine{00312\ }
+\DoxyCodeLine{00313\ \textcolor{keywordtype}{void}\ MovableTextOverlay::enable(\textcolor{keywordtype}{bool}\ enable)}
+\DoxyCodeLine{00314\ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordflow}{if}(mEnabled\ ==\ enable)}
+\DoxyCodeLine{00316\ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00318\ \ \ \ \ \}}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ mEnabled\ =\ enable;}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keywordflow}{if}(mEnabled)}
+\DoxyCodeLine{00322\ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ mpOv-\/>show();}
+\DoxyCodeLine{00324\ \ \ \ \ \}}
+\DoxyCodeLine{00325\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00326\ \ \ \ \ \{}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ mpOv-\/>hide();}
+\DoxyCodeLine{00328\ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \}}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \textcolor{keywordtype}{void}\ MovableTextOverlay::update(\textcolor{keyword}{const}\ Real\ \&timeSincelastFrame,\ \textcolor{keywordtype}{bool}\ placeAtTop,\ \textcolor{keyword}{const}\ Real\ \&borderSizeOffset,\ \textcolor{keywordtype}{bool}\ chaseUpdate)}
+\DoxyCodeLine{00332\ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \textcolor{keyword}{static}\ Real\ timeTillUpdate\ =\ 0;}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ timeTillUpdate\ -\/=\ timeSincelastFrame;}
+\DoxyCodeLine{00336\ \ \ \ \ \textcolor{keywordflow}{if}(timeTillUpdate\ >\ 0)}
+\DoxyCodeLine{00337\ \ \ \ \ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ }
+\DoxyCodeLine{00341\ \ \ \ \ timeTillUpdate\ =\ mUpdateFrequency;}
+\DoxyCodeLine{00342\ }
+\DoxyCodeLine{00343\ \ \ \ \ Ogre::Real\ min\_x,\ max\_x,\ min\_y,\ max\_y;}
+\DoxyCodeLine{00344\ \ \ \ \ \_getMinMaxEdgesOfAABBIn2D(min\_x,\ min\_y,\ max\_x,\ max\_y,\ placeAtTop);}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \textcolor{keywordflow}{if}(mNeedUpdate)}
+\DoxyCodeLine{00347\ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \_computeTextSize();}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ mNeedUpdate\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00350\ \ \ \ \ \}}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ Real\ relTextWidth\ =\ mTextWidth\ /\ OverlayManager::getSingleton().getViewportWidth();}
+\DoxyCodeLine{00353\ \ \ \ \ Real\ relTextHeight\ =\ mAttrs-\/>getCharacterHeight()*mNoOfLines\ /\ OverlayManager::getSingleton().getViewportHeight();}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ Real\ tX\ =\ 1-\/(min\_x\ +\ max\_x\ +\ relTextWidth)/2;}
+\DoxyCodeLine{00356\ \ \ \ \ Real\ tY\ =\ 1-\/max\_y-\/(placeAtTop?relTextHeight+borderSizeOffset:0)\ +\ mYOffset;}
+\DoxyCodeLine{00357\ \ \ \ \ }
+\DoxyCodeLine{00358\ \ \ \ \ \textcolor{comment}{//container\ "{}chases"{}\ towards\ update\ position}}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keywordflow}{if}(chaseUpdate)}
+\DoxyCodeLine{00360\ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ tX\ =\ (tX\ -\/\ mpOvContainer-\/>getLeft())\ *\ (Real)0.08;}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ tY\ =\ (tY\ -\/\ mpOvContainer-\/>getTop())\ *\ (Real)0.08;}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ mpOvContainer-\/>setPosition(mpOvContainer-\/>getLeft()+tX,\ mpOvContainer-\/>getTop()+tY);}
+\DoxyCodeLine{00365\ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00367\ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ mpOvContainer-\/>setPosition(tX,\ tY);}
+\DoxyCodeLine{00369\ \ \ \ \ \}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ mpOvContainer-\/>setDimensions(relTextWidth+borderSizeOffset,\ relTextHeight+borderSizeOffset);}
+\DoxyCodeLine{00372\ \ \ \ \ \textcolor{keywordflow}{if}(borderSizeOffset!=0)}
+\DoxyCodeLine{00373\ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ mpOvText-\/>setPosition(0,borderSizeOffset*600);}
+\DoxyCodeLine{00375\ \ \ \ \ \}}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordflow}{if}((min\_x+relTextWidth>0.0)\ \&\&\ (max\_x-\/relTextWidth<1.0)\ \&\&\ (min\_y+relTextHeight>0.0)\ \&\&\ (max\_y-\/relTextHeight<1.0)}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \&\&\ !(min\_x==0\&\&max\_x==0\&\&min\_y==0\&\&max\_y==0)\ )}
+\DoxyCodeLine{00379\ \ \ \ \ \{}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ mOnScreen\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00381\ \ \ \ \ \}}
+\DoxyCodeLine{00382\ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00383\ \ \ \ \ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ mOnScreen\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00385\ \ \ \ \ \}}
+\DoxyCodeLine{00386\ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \textcolor{keywordtype}{void}\ MovableTextOverlay::\_updateOverlayAttrs()}
+\DoxyCodeLine{00389\ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \textcolor{keyword}{const}\ String\ \&newMatName\ =\ mAttrs-\/>getMaterialName();}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keyword}{const}\ String\ \&oldMatName\ =\ mpOvContainer-\/>getMaterialName();}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keywordflow}{if}(oldMatName\ !=\ newMatName)}
+\DoxyCodeLine{00393\ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(oldMatName.length())}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ mpOvContainer-\/>getMaterial()-\/>unload();}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(newMatName.length())}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ mpOvContainer-\/>setMaterialName(newMatName);}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00403\ }
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ mpOvText-\/>setColour(mAttrs-\/>getColor());}
+\DoxyCodeLine{00406\ \ \ \ \ mpOvText-\/>setParameter(\textcolor{stringliteral}{"{}font\_name"{}},\ mAttrs-\/>getFontName());}
+\DoxyCodeLine{00407\ \ \ \ \ mpOvText-\/>setParameter(\textcolor{stringliteral}{"{}char\_height"{}},\ Ogre::StringConverter::toString(mAttrs-\/>getCharacterHeight()));}
+\DoxyCodeLine{00408\ \ \ \ \ mpOvText-\/>setParameter(\textcolor{stringliteral}{"{}alignment"{}},\ \textcolor{stringliteral}{"{}center"{}});}
+\DoxyCodeLine{00409\ \ \ \ \ mpOvText-\/>setParameter(\textcolor{stringliteral}{"{}horz\_align"{}},\ \textcolor{stringliteral}{"{}center"{}});}
+\DoxyCodeLine{00410\ \ \ \ \ mpOvText-\/>setParameter(\textcolor{stringliteral}{"{}vert\_align"{}},\ \textcolor{stringliteral}{"{}top"{}});}
+\DoxyCodeLine{00411\ \}}
+\DoxyCodeLine{00412\ }
+\DoxyCodeLine{00413\ MovableTextOverlayAttributes::MovableTextOverlayAttributes(\textcolor{keyword}{const}\ Ogre::String\ \&\ name,\ \textcolor{keyword}{const}\ Ogre::Camera\ *cam,}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\ \&\ fontName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ \&charHeight,\ \textcolor{keyword}{const}\ Ogre::ColourValue\ \&\ color,\ \textcolor{keyword}{const}\ Ogre::String\ \&\ materialName)}
+\DoxyCodeLine{00415\ \ \ \ \ :\ mpCam(cam)}
+\DoxyCodeLine{00416\ \ \ \ \ ,\ mpFont(NULL)}
+\DoxyCodeLine{00417\ \ \ \ \ ,\ mName(name)}
+\DoxyCodeLine{00418\ \ \ \ \ ,\ mFontName(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00419\ \ \ \ \ ,\ mMaterialName(\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00420\ \ \ \ \ ,\ mCharHeight(charHeight)}
+\DoxyCodeLine{00421\ \ \ \ \ ,\ mColor(ColourValue::ZERO)}
+\DoxyCodeLine{00422\ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \textcolor{keywordflow}{if}(fontName.length()\ ==\ 0)}
+\DoxyCodeLine{00424\ \ \ \ \ \{}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ Ogre::Exception(Ogre::Exception::ERR\_INVALIDPARAMS,\ \textcolor{stringliteral}{"{}Invalid\ font\ name"{}},\ \textcolor{stringliteral}{"{}MovableTextOverlayAttributes::MovableTextOverlayAttributes"{}});}
+\DoxyCodeLine{00426\ \ \ \ \ \}}
+\DoxyCodeLine{00427\ \ \ \ \ setFontName(fontName);}
+\DoxyCodeLine{00428\ \ \ \ \ setMaterialName(materialName);}
+\DoxyCodeLine{00429\ \ \ \ \ setColor(color);}
+\DoxyCodeLine{00430\ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ MovableTextOverlayAttributes::\string~MovableTextOverlayAttributes()}
+\DoxyCodeLine{00433\ \{}
+\DoxyCodeLine{00434\ \ \ \ \ setFontName(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00435\ \ \ \ \ setMaterialName(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00436\ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \textcolor{keywordtype}{void}\ MovableTextOverlayAttributes::setFontName(\textcolor{keyword}{const}\ Ogre::String\ \&\ fontName)}
+\DoxyCodeLine{00439\ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \textcolor{keywordflow}{if}(mFontName\ !=\ fontName\ ||\ !mpFont)}
+\DoxyCodeLine{00441\ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mpFont)}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ mpFont-\/>unload();}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ mpFont\ =\ NULL;}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00447\ }
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ mFontName\ =\ fontName;}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mFontName.length())}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ mpFont\ =\ \textcolor{keyword}{dynamic\_cast<}Ogre::Font*\textcolor{keyword}{>}(Ogre::FontManager::getSingleton().getByName(mFontName).getPointer());}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mpFont)}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::Exception(Ogre::Exception::ERR\_ITEM\_NOT\_FOUND,\ \textcolor{stringliteral}{"{}Could\ not\ find\ font\ "{}}\ +\ fontName,\ \textcolor{stringliteral}{"{}MovableTextOverlay::setFontName"{}});}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ mpFont-\/>load();}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \}}
+\DoxyCodeLine{00458\ }
+\DoxyCodeLine{00459\ \textcolor{keywordtype}{void}\ MovableTextOverlayAttributes::setMaterialName(\textcolor{keyword}{const}\ Ogre::String\ \&\ materialName)}
+\DoxyCodeLine{00460\ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordflow}{if}(mMaterialName\ !=\ materialName)}
+\DoxyCodeLine{00462\ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMaterialName.length())}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::MaterialManager::getSingletonPtr()-\/>getByName(mMaterialName).getPointer()-\/>unload();}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ mMaterialName\ =\ materialName;}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMaterialName.length())}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::Material\ *mpMaterial\ =\ \textcolor{keyword}{dynamic\_cast<}Ogre::Material*\textcolor{keyword}{>}(Ogre::MaterialManager::getSingletonPtr()-\/>getByName(mMaterialName).getPointer());}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mpMaterial)}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::Exception(Ogre::Exception::ERR\_ITEM\_NOT\_FOUND,\ \textcolor{stringliteral}{"{}Could\ not\ find\ material\ "{}}\ +\ materialName,\ \textcolor{stringliteral}{"{}MovableTextOverlay::setMaterialName"{}});}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ mpMaterial-\/>load();}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00479\ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \}}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \textcolor{keywordtype}{void}\ MovableTextOverlayAttributes::setColor(\textcolor{keyword}{const}\ Ogre::ColourValue\ \&\ color)}
+\DoxyCodeLine{00483\ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ mColor\ =\ color;}
+\DoxyCodeLine{00485\ \}}
+\DoxyCodeLine{00486\ }
+\DoxyCodeLine{00487\ \textcolor{keywordtype}{void}\ MovableTextOverlayAttributes::setCharacterHeight(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ \&height)}
+\DoxyCodeLine{00488\ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ mCharHeight\ =\ (Real)height;}
+\DoxyCodeLine{00490\ \}}
+\DoxyCodeLine{00491\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,579 @@
+\doxysection{Magix\+Chat\+Manager.\+h}
+\hypertarget{_magix_chat_manager_8h_source}{}\label{_magix_chat_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixChatManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixChatManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixChatManager\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixChatManager\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ MAX\_LINES\ 200}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ MAX\_CHANNELS\ 3}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ CHAT\_INVALID\ 0}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ CHAT\_GENERAL\ 1}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ CHAT\_PRIVATE\ 2}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ CHAT\_PARTY\ 3}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ CHAT\_ADMIN\ 4}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ CHAT\_ACTION\ 5}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ CHAT\_PARTYACTION\ 6}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ CHAT\_COMMAND\ 7}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ CHAT\_LOCAL\ 8}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ CHAT\_LOCALACTION\ 9}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ CHAT\_EVENT\ 10}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ CHAT\_LOCALEVENT\ 11}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ CHAT\_MOD\ 12}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ CHAT\_LIPSYNC\ 13}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ CHAT\_PARTYEVENT\ 14}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ COMMAND\_SETHOME\ "{}/sethome"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ COMMAND\_GOHOME\ "{}/gohome"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ COMMAND\_RESETHOME\ "{}/resethome"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ COMMAND\_POSITION\ "{}/position"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ COMMAND\_FRIEND\ "{}/friend\ "{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ COMMAND\_UNFRIEND\ "{}/unfriend\ "{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ COMMAND\_BLOCK\ "{}/block\ "{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ COMMAND\_UNBLOCK\ "{}/unblock\ "{}}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ COMMAND\_KICK\ "{}/kick\ "{}}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ COMMAND\_ROLL\ "{}/roll\ "{}}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ COMMAND\_CREATEITEM\ "{}/crooteitom\ "{}}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ COMMAND\_GODSPEAK\ "{}/godspeak\ "{}}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ COMMAND\_MODON\ "{}/modon"{}}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ COMMAND\_MODOFF\ "{}/modoff"{}}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ COMMAND\_EARTHQUAKE\ "{}/earthquake"{}}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ COMMAND\_CLEARALL\ "{}/clearall"{}}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ COMMAND\_CLEAR\ "{}/clear"{}}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ COMMAND\_LIPSYNC\ "{}/lipsync\ "{}}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ COMMAND\_GOTO\ "{}/goto\ "{}}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ COMMAND\_SPAWN\ "{}/spoon\ "{}}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ COMMAND\_WHERE\ "{}/where\ "{}}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ COMMAND\_WHOIS\ "{}/whois\ "{}}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ COMMAND\_RELEASEPET\ "{}/releasepet"{}}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ COMMAND\_PETFOLLOW\ "{}/petfollow"{}}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ COMMAND\_COMMANDS\ "{}/?"{}}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ COMMAND\_MASSBLOCK\ "{}/massblock\ "{}}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ COMMAND\_BAN\ "{}/ban\ "{}}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ COMMAND\_PARTY\ "{}/party\ "{}}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ COMMAND\_SAVECHAT\ "{}/savechat"{}}}
+\DoxyCodeLine{00052\ \textcolor{comment}{//\ KITO}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ COMMAND\_SPAWNITEM\ "{}/spoonitom\ "{}}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{preprocessor}{\#include\ "{}GameConfig.h"{}}}
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#include\ "{}MagixUnitManager.h"{}}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \textcolor{keyword}{class\ }MagixChatManager}
+\DoxyCodeLine{00059\ \{}
+\DoxyCodeLine{00060\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00061\ \ \ \ \ vector<String>::type\ chatString[MAX\_CHANNELS];}
+\DoxyCodeLine{00062\ \ \ \ \ vector<String>::type\ chatSayer[MAX\_CHANNELS];}
+\DoxyCodeLine{00063\ \ \ \ \ vector<unsigned\ char>::type\ chatType[MAX\_CHANNELS];}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasNewLine[MAX\_CHANNELS];}
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ channel;}
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ doLocalUsername;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ doGeneralCharname;}
+\DoxyCodeLine{00069\ \ \ \ \ MagixChatManager()}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ channel\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ doLocalUsername\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ doGeneralCharname\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00075\ \ \ \ \ \}}
+\DoxyCodeLine{00076\ \ \ \ \ \string~MagixChatManager()}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{void}\ reset(\textcolor{keywordtype}{bool}\ clearHistory=\textcolor{keyword}{false})}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(clearHistory)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_CHANNELS;i++)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chatString[i].clear();}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chatSayer[i].clear();}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ chatType[i].clear();}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasNewLine[i]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ push(\textcolor{keyword}{const}\ String\ \&caption,\ \textcolor{keyword}{const}\ String\ \&sayer=\textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&type=CHAT\_GENERAL)}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tChannel\ =\ (type==CHAT\_PRIVATE\ ?\ channel\ :\ ((type==CHAT\_LOCAL||type==CHAT\_LOCALACTION||type==CHAT\_LOCALEVENT)\ ?\ 0\ :\ ((type==CHAT\_PARTY||type==CHAT\_PARTYACTION||type==CHAT\_PARTYEVENT)?2:1))\ );}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ chatString[tChannel].push\_back(caption);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ chatSayer[tChannel].push\_back(sayer);}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ chatType[tChannel].push\_back(type);}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\textcolor{keywordtype}{int}(chatString[tChannel].size())>MAX\_LINES)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ chatString[tChannel].erase(chatString[tChannel].begin(),++chatString[tChannel].begin());}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ chatSayer[tChannel].erase(chatSayer[tChannel].begin(),++chatSayer[tChannel].begin());}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ chatType[tChannel].erase(chatType[tChannel].begin(),++chatType[tChannel].begin());}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ hasNewLine[tChannel]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \ \ \ \ \textcolor{keyword}{const}\ String\ getChatBlock(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&lines,\ \textcolor{keyword}{const}\ Real\ \&boxWidth,\ \textcolor{keyword}{const}\ Real\ \&charHeight,\ \textcolor{keyword}{const}\ Real\ \&lastOffset)}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ vector<String>::type\ tChatBlock;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ tChatBlock.clear();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ String\ tFinalChat\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tFinalLines\ =\ 0;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ again,\ bad\ ypes..}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ start\ =\ (int)((\textcolor{keywordtype}{int})(chatString[channel].size())\ -\/\ lines\ -\/\ lastOffset\ *\ (\textcolor{keywordtype}{int}(chatString[channel].size())\ -\/\ lines));}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(start<0)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ start\ =\ 0;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Process\ entire\ chatblock\ within\ estimated\ range}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=start;i<int(chatString[channel].size());i++)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tLineBlock\ =\ prefixChatLine(processChatString(chatString[channel][i],chatSayer[channel][i],chatType[channel][i],boxWidth,charHeight),chatSayer[channel][i],chatType[channel][i]);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ vector<String>::type\ tCaption\ =\ StringUtil::split(tLineBlock,\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<int(tCaption.size());j++)}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tChatBlock.push\_back(tCaption[j]);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Process\ actual\ block\ to\ return}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ start\ =\ (int)(\textcolor{keywordtype}{int}(tChatBlock.size())\ -\/\ lines\ -\/\ lastOffset\ *\ (\textcolor{keywordtype}{int}(tChatBlock.size())\ -\/\ lines));}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(start<0)}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ start\ =\ 0;}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00146\ }
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=start;i<int(tChatBlock.size());i++)}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ tFinalChat\ +=\ (i==start?\textcolor{stringliteral}{"{}"{}}:\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ tFinalChat\ +=\ tChatBlock[i];}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ tFinalLines\ +=\ 1;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tFinalLines>=lines)\textcolor{keywordflow}{return}\ tFinalChat;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tFinalChat;}
+\DoxyCodeLine{00156\ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{void}\ processInput(String\ \&caption,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&type,\ String\ \&param)}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(channel==0)type\ =\ CHAT\_LOCAL;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(channel==2)type\ =\ CHAT\_PARTY;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ param\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Set\ home\ point}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_SETHOME))}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_SETHOME;}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Go\ home\ point}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_GOHOME))}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_GOHOME;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Reset\ home\ point}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_RESETHOME))}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_RESETHOME;}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//get\ position}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_POSITION))}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_POSITION;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//friend}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_FRIEND))}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,8);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_FRIEND;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{//unfriend}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_UNFRIEND))}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,10);}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_UNFRIEND;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{comment}{//block}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_BLOCK))}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,7);}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_BLOCK;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{comment}{//unblock}}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_UNBLOCK))}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,9);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_UNBLOCK;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{comment}{//kick}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_KICK))}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,6);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_KICK;}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \textcolor{comment}{//roll}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_ROLL))}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,6);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_ROLL;}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{comment}{//createitem}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_CREATEITEM))}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,12);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_CREATEITEM;}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{comment}{//godspeak}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_GODSPEAK))}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,10);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_GODSPEAK;}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{comment}{//modon/off}}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_MODON))}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_MODON;}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_MODOFF))}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_MODOFF;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Earthquakeeeeeee}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_EARTHQUAKE))}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_EARTHQUAKE;}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Clear\ All\ history}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_CLEARALL))}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_CLEARALL;}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ reset(\textcolor{keyword}{true});}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Clear\ history}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_CLEAR))}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_CLEAR;}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ chatString[channel].clear();}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ chatSayer[channel].clear();}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ chatType[channel].clear();}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ hasNewLine[channel]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Lipsync\ :U}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_LIPSYNC))}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,9);}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_LIPSYNC;}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Goto}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_GOTO))}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,6);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_GOTO;}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Spawn}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_SPAWN))}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,7);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_SPAWN;}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Where}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_WHERE))}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,7);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_WHERE;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Whois}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_WHOIS))}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,7);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_WHOIS;}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Release\ pet}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_RELEASEPET))}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_RELEASEPET;}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Pet\ follow}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_PETFOLLOW))}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_PETFOLLOW;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Commands}}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_COMMANDS))}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_COMMANDS;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Massblock}}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_MASSBLOCK))}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,11);}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_MASSBLOCK;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ban}}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_BAN))}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,5);}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_BAN;}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Party}}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_PARTY))}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,7);}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_PARTY;}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Savechat}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_SAVECHAT))}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(caption.length()>10)caption.erase(0,10);}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ caption\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_SAVECHAT;}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Action}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,\textcolor{stringliteral}{"{}/me\ "{}}))}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,4);}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(type)}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CHAT\_PARTY:\ type\ =\ CHAT\_PARTYACTION;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CHAT\_LOCAL:\ type\ =\ CHAT\_LOCALACTION;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:\ type\ =\ CHAT\_ACTION;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00398\ }
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \textcolor{comment}{//spawnitem}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,COMMAND\_SPAWNITEM))}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ caption.erase(0,11);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_COMMAND;}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ COMMAND\_SPAWNITEM;}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Private\ message}}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(caption,\textcolor{stringliteral}{"{}/"{}}))}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tSplit\ =\ StringUtil::split(caption,\textcolor{stringliteral}{"{}:"{}},1);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSplit.size()>1\ \&\&\ tSplit[0].length()>1)}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ param\ =\ tSplit[0];}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ param.erase(0,1);}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ caption\ =\ tSplit[1];}
+\DoxyCodeLine{00419\ }
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ type\ =\ CHAT\_PRIVATE;}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ type\ =\ CHAT\_INVALID;}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00425\ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \textcolor{keywordtype}{void}\ say(\mbox{\hyperlink{class_magix_unit_manager}{MagixUnitManager}}\ *unitMgr,\ \mbox{\hyperlink{class_magix_unit}{MagixUnit}}\ *target,\ \textcolor{keyword}{const}\ String\ \&caption,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&type=CHAT\_GENERAL)}
+\DoxyCodeLine{00427\ \ \ \ \ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tName\ =\ ((\ (!doLocalUsername\&\&(type==CHAT\_LOCAL||type==CHAT\_LOCALACTION||type==CHAT\_LOCALEVENT||type==CHAT\_PARTY||type==CHAT\_PARTYACTION||type==CHAT\_PARTYEVENT))||}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (doGeneralCharname\&\&(type==CHAT\_GENERAL||type==CHAT\_ACTION||type==CHAT\_EVENT))||}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ target-\/>getUser()==\textcolor{stringliteral}{"{}"{}})?target-\/>getName():target-\/>getUser());}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((type!=CHAT\_LOCAL\ \&\&\ type!=CHAT\_LOCALACTION)\ ||\ target-\/>getBodyEnt()-\/>isVisible())push(caption,tName,type);}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((type==CHAT\_LOCAL||type==CHAT\_PARTY)\ \&\&\ target-\/>getBodyEnt()-\/>isVisible())unitMgr-\/>createChatBubble(target,caption);}
+\DoxyCodeLine{00433\ \ \ \ \ \}}
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keywordtype}{void}\ message(\textcolor{keyword}{const}\ String\ \&caption,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&type=0)}
+\DoxyCodeLine{00435\ \ \ \ \ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==0)push(caption,\textcolor{stringliteral}{"{}"{}},(channel==0\ ?\ CHAT\_LOCAL\ :\ (channel==1?CHAT\_GENERAL:CHAT\_PARTY)));}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ push(caption,\textcolor{stringliteral}{"{}"{}},type);}
+\DoxyCodeLine{00438\ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{bool}\ popHasNewLine(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&chan)}
+\DoxyCodeLine{00440\ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tNewLine\ =\ hasNewLine[chan];}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ hasNewLine[chan]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tNewLine;}
+\DoxyCodeLine{00444\ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \textcolor{keywordtype}{bool}\ getHasNewLine(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&chan)}
+\DoxyCodeLine{00446\ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hasNewLine[chan];}
+\DoxyCodeLine{00448\ \ \ \ \ \}}
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keyword}{const}\ String\ prefixChatLine(\textcolor{keyword}{const}\ String\ \&caption,\ \textcolor{keyword}{const}\ String\ \&sayer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&type,\ \textcolor{keywordtype}{bool}\ isPostfixLength=\textcolor{keyword}{false})}
+\DoxyCodeLine{00450\ \ \ \ \ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Prefix}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ String\ tLine\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sayer!=\textcolor{stringliteral}{"{}"{}}\ \&\&\ !isPostfixLength)}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==CHAT\_ADMIN)tLine\ +=\ \textcolor{stringliteral}{"{}("{}}\ USER\_ADMIN\_TEXT\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(type==CHAT\_MOD)tLine\ +=\ \textcolor{stringliteral}{"{}("{}}\ USER\_MOD\_TEXT\ \textcolor{stringliteral}{"{})"{}};}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==CHAT\_ACTION||type==CHAT\_PARTYACTION||type==CHAT\_LOCALACTION)tLine\ +=\ sayer\ +\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(type==CHAT\_PRIVATE)tLine\ +=\ \textcolor{stringliteral}{"{}(("{}}\ +\ sayer\ +\ \textcolor{stringliteral}{"{}))\ "{}};}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(type==CHAT\_EVENT||type==CHAT\_LOCALEVENT||type==CHAT\_PARTYEVENT)tLine\ +=\ \textcolor{stringliteral}{"{}["{}}\ +\ sayer\ +\ \textcolor{stringliteral}{"{}\ "{}};}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ tLine\ +=\ \textcolor{stringliteral}{"{}<"{}}\ +\ sayer\ +\ \textcolor{stringliteral}{"{}>\ "{}};}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Caption}}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ tLine\ +=\ caption;}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Postfix}}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sayer!=\textcolor{stringliteral}{"{}"{}}\ \&\&\ (caption!=\textcolor{stringliteral}{"{}"{}}||isPostfixLength))}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==CHAT\_EVENT||type==CHAT\_LOCALEVENT||type==CHAT\_PARTYEVENT)tLine\ +=\ \textcolor{stringliteral}{"{}]"{}};}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00469\ }
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tLine;}
+\DoxyCodeLine{00471\ \ \ \ \ \}}
+\DoxyCodeLine{00472\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getPrefixLength(\textcolor{keyword}{const}\ String\ \&sayer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&type)}
+\DoxyCodeLine{00473\ \ \ \ \ \{}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})prefixChatLine(\textcolor{stringliteral}{"{}"{}},sayer,type,\textcolor{keyword}{false}).length();}
+\DoxyCodeLine{00475\ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getPostfixLength(\textcolor{keyword}{const}\ String\ \&sayer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&type)}
+\DoxyCodeLine{00477\ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{int})prefixChatLine(\textcolor{stringliteral}{"{}"{}},sayer,type,\textcolor{keyword}{true}).length();}
+\DoxyCodeLine{00479\ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keyword}{const}\ String\ processChatString(\textcolor{keyword}{const}\ String\ \&caption,\ \textcolor{keyword}{const}\ String\ \&sayer,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&type,\ \textcolor{keyword}{const}\ Real\ \&boxWidth,\ \textcolor{keyword}{const}\ Real\ \&charHeight)}
+\DoxyCodeLine{00481\ \ \ \ \ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ String\ tCaption\ =\ prefixChatLine(caption,sayer,type);}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{comment}{//String\ tPrefix\ =\ prefixChatLine("{}"{},sayer,type);}}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tPrefix\ =\ getPrefixLength(sayer,type);}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tPostfix\ =\ getPostfixLength(sayer,type);}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCaption.length()>0)}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//size\ caption}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Font\ *pFont\ =\ \textcolor{keyword}{dynamic\_cast<}Ogre::Font*\textcolor{keyword}{>}(Ogre::FontManager::getSingleton().getByName(\textcolor{stringliteral}{"{}Tahoma"{}}).getPointer());}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tHeight\ =\ charHeight;}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tSpacePos\ =\ -\/1;}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ Real\ tTextWidth\ =\ 0;}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ Real\ tWidthFromSpace\ =\ 0;}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;\ i<int(tCaption.length());i++)}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCaption[i]\ ==\ 0x0020)}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTextWidth\ +=\ pFont-\/>getGlyphAspectRatio(0x0030);}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tWidthFromSpace\ +=\ pFont-\/>getGlyphAspectRatio(0x0030);}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTextWidth\ +=\ pFont-\/>getGlyphAspectRatio(tCaption[i]);}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tWidthFromSpace\ +=\ pFont-\/>getGlyphAspectRatio(tCaption[i]);}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00507\ }
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCaption[i]\ ==\ \textcolor{charliteral}{'\ '}\ \&\&\ i>tPrefix)}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tSpacePos\ =\ i;}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tWidthFromSpace\ =\ pFont-\/>getGlyphAspectRatio(0x0030);}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTextWidth*tHeight>=boxWidth)}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSpacePos!=-\/1)}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tCaption[tSpacePos]\ =\ \textcolor{charliteral}{'\(\backslash\)n'};}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTextWidth\ =\ tWidthFromSpace;}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tSpacePos\ =\ -\/1;}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tCaption.insert(i+1,String(1,\textcolor{charliteral}{'\(\backslash\)n'}));}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTextWidth\ =\ 0;}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ tCaption.erase(0,tPrefix);}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ tCaption.erase(tCaption.length()-\/tPostfix,tPostfix);}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tCaption;}
+\DoxyCodeLine{00533\ \ \ \ \ \}}
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleChannel()}
+\DoxyCodeLine{00535\ \ \ \ \ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ channel++;}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(channel>=MAX\_CHANNELS)channel\ =\ 0;}
+\DoxyCodeLine{00538\ \ \ \ \ \}}
+\DoxyCodeLine{00539\ \ \ \ \ \textcolor{keywordtype}{void}\ setChannel(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&value)}
+\DoxyCodeLine{00540\ \ \ \ \ \{}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ channel\ =\ value;}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(channel>=MAX\_CHANNELS)channel\ =\ MAX\_CHANNELS\ -\/\ 1;}
+\DoxyCodeLine{00543\ \ \ \ \ \}}
+\DoxyCodeLine{00544\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getChannel()}
+\DoxyCodeLine{00545\ \ \ \ \ \{}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ channel;}
+\DoxyCodeLine{00547\ \ \ \ \ \}}
+\DoxyCodeLine{00548\ \ \ \ \ \textcolor{keyword}{const}\ vector<unsigned\ char>::type\ getOtherChannels()}
+\DoxyCodeLine{00549\ \ \ \ \ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ vector<unsigned\ char>::type\ tChannels;}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_CHANNELS;i++)}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i!=channel)tChannels.push\_back(i);}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tChannels;}
+\DoxyCodeLine{00554\ \ \ \ \ \}}
+\DoxyCodeLine{00555\ \ \ \ \ \textcolor{keywordtype}{void}\ saveChatLog(\textcolor{keyword}{const}\ String\ \&directory,\ \textcolor{keyword}{const}\ String\ \&filename)}
+\DoxyCodeLine{00556\ \ \ \ \ \{}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tFilename\ =\ directory+filename;}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ outFile.open(tFilename.c\_str());}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(outFile.good())}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)chatString[channel].size();i++)}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ prefixChatLine(chatString[channel][i],chatSayer[channel][i],chatType[channel][i])\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),(\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ message(\textcolor{stringliteral}{"{}Saved\ chat\ log\ as\ "{}}+filename+\textcolor{stringliteral}{"{}."{}});}
+\DoxyCodeLine{00570\ \ \ \ \ \}}
+\DoxyCodeLine{00571\ \};}
+\DoxyCodeLine{00572\ }
+\DoxyCodeLine{00573\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

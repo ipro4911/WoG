@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\BatchPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\BatchedGeometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\GrassLoader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\ImpostorPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\PagedGeometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\PropertyMaps.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\StaticBillboardSet.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\TreeLoader2D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\TreeLoader3D.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\WindBatchPage.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\WindBatchedGeometry.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\BatchPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\BatchedGeometry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\GrassLoader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\HeightFunction.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\ImpostorPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\MersenneTwister.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\PGExampleApplication.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\PGExampleFrameListener.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\PagedGeometry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\PagedGeometryConfig.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\PropertyMaps.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\RandomTable.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\StaticBillboardSet.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\TreeLoader2D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\TreeLoader3D.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\WindBatchPage.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\include\WindBatchedGeometry.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\source\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{733E21E1-A64E-3D2F-8A3C-321A2D4E5471}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{C66E499B-2EA3-39AB-9177-F8726DBA0A8B}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

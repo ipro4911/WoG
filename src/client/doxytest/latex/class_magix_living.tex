@@ -1,0 +1,186 @@
+\doxysection{Magix\+Living Class Reference}
+\hypertarget{class_magix_living}{}\label{class_magix_living}\index{MagixLiving@{MagixLiving}}
+Inheritance diagram for Magix\+Living\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_magix_living}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_living_a897c01818dbb9c33d8a86b29f6e49058}\label{class_magix_living_a897c01818dbb9c33d8a86b29f6e49058} 
+virtual void {\bfseries set\+HP} (const short \&i\+Max\+HP, const Real \&ratio=1)
+\item 
+\Hypertarget{class_magix_living_ace66d7861ad33ab260b587d85176f029}\label{class_magix_living_ace66d7861ad33ab260b587d85176f029} 
+virtual void {\bfseries set\+HPRatio} (const Real \&ratio)
+\item 
+\Hypertarget{class_magix_living_a7ca2da4094c2ed9f3e0015c20ea4d6b8}\label{class_magix_living_a7ca2da4094c2ed9f3e0015c20ea4d6b8} 
+virtual bool {\bfseries add\+HP} (const short \&value)
+\item 
+\Hypertarget{class_magix_living_a1d50f823c0f865cceb7395c328b06dc7}\label{class_magix_living_a1d50f823c0f865cceb7395c328b06dc7} 
+const Real {\bfseries get\+HPRatio} ()
+\item 
+\Hypertarget{class_magix_living_abe1d240dc3e37fa9142e00cf7d97f769}\label{class_magix_living_abe1d240dc3e37fa9142e00cf7d97f769} 
+const short {\bfseries get\+HP} ()
+\item 
+\Hypertarget{class_magix_living_a2ba38afb41f57649314b39eca4f93526}\label{class_magix_living_a2ba38afb41f57649314b39eca4f93526} 
+const short {\bfseries get\+Max\+HP} ()
+\item 
+\Hypertarget{class_magix_living_aa25326c22f4e02bee83ef303cc87b19d}\label{class_magix_living_aa25326c22f4e02bee83ef303cc87b19d} 
+void {\bfseries set\+Alliance} (const unsigned char \&ally)
+\item 
+\Hypertarget{class_magix_living_abc698f089aaa1d1995b4c819e293141d}\label{class_magix_living_abc698f089aaa1d1995b4c819e293141d} 
+const unsigned char {\bfseries get\+Alliance} ()
+\item 
+\Hypertarget{class_magix_living_ae828b2cace400544906c4d70a3bc2e64}\label{class_magix_living_ae828b2cace400544906c4d70a3bc2e64} 
+bool {\bfseries match\+Alliance} (const unsigned char \&ally)
+\item 
+virtual const OBJECT\+\_\+\+TYPE \mbox{\hyperlink{class_magix_living_a557ae86fd3cb192783bce71e7a0fddb9}{get\+Type}} ()
+\item 
+\Hypertarget{class_magix_living_a23a76b6f3796db371a83035fe8c448e9}\label{class_magix_living_a23a76b6f3796db371a83035fe8c448e9} 
+bool {\bfseries is\+Invulnerable} ()
+\item 
+\Hypertarget{class_magix_living_ad16a533b411aee7442aed54e13fce656}\label{class_magix_living_ad16a533b411aee7442aed54e13fce656} 
+void {\bfseries set\+Invulnerable} (bool flag)
+\item 
+\Hypertarget{class_magix_living_ab7e645bec2c5a2057a8d161e0b0d0de3}\label{class_magix_living_ab7e645bec2c5a2057a8d161e0b0d0de3} 
+virtual const Real {\bfseries get\+Height} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries create\+Object} (const unsigned short \&i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&object\+Mesh, const String \&mat\+Name)
+\item 
+void {\bfseries destroy\+Object} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+virtual void {\bfseries update\+Animation} (const Frame\+Event \&evt)
+\item 
+virtual void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Face\+Direction} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Physics} (const Frame\+Event \&evt)
+\item 
+void {\bfseries add\+Force} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Force} (const Vector3 \&value)
+\item 
+const Vector3 {\bfseries get\+Force} ()
+\item 
+void {\bfseries set\+Position} (const Real \&x, const Real \&y, const Real \&z)
+\item 
+void {\bfseries set\+Position} (const Vector3 \&position)
+\item 
+virtual const Vector3 \mbox{\hyperlink{class_magix_animated_a793515d34f0aea1719683ed834e9f013}{get\+Position}} ()
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_magix_animated_ac51fdd53bb77c9e8ba6191318e8de9b7}{get\+Object\+Node}} ()
+\item 
+void {\bfseries set\+Ground\+Height} (const Real \&value)
+\item 
+const Real {\bfseries get\+Ground\+Height} ()
+\item 
+const Real {\bfseries distance\+From\+Ground} ()
+\item 
+bool {\bfseries is\+Position\+Changed} (bool exclude\+YAxis=false)
+\item 
+const Vector3 {\bfseries get\+Last\+Position} ()
+\item 
+bool {\bfseries is\+Moving\+Reverse} ()
+\item 
+void {\bfseries yaw} (const Degree \&angle, bool instant=false)
+\item 
+void {\bfseries set\+Yaw} (const Degree \&angle, bool instant=false)
+\item 
+const Degree {\bfseries get\+Yaw} ()
+\item 
+const Quaternion {\bfseries get\+Face\+Direction} ()
+\item 
+void {\bfseries set\+Anti\+Gravity} (bool flag)
+\item 
+bool {\bfseries is\+Anti\+Gravity} ()
+\item 
+void {\bfseries toggle\+Anti\+Gravity} ()
+\item 
+void {\bfseries add\+Penalty\+Velocity} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Speed\+Multiplier} (const Real \&value)
+\item 
+const Real {\bfseries get\+Speed\+Multiplier} ()
+\item 
+void {\bfseries set\+Max\+Speed} (const Real \&value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_living_aa240670694f3dbb01182ef31427ce8ff}\label{class_magix_living_aa240670694f3dbb01182ef31427ce8ff} 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_living_ab5bc3188fc503e2f695bbd3b74580472}\label{class_magix_living_ab5bc3188fc503e2f695bbd3b74580472} 
+short {\bfseries max\+HP}
+\item 
+\Hypertarget{class_magix_living_a77b9b6cf59f6302435e1d7f194bee877}\label{class_magix_living_a77b9b6cf59f6302435e1d7f194bee877} 
+short {\bfseries hp}
+\item 
+\Hypertarget{class_magix_living_a163c15f02df09fb17817f35cd51cc6f4}\label{class_magix_living_a163c15f02df09fb17817f35cd51cc6f4} 
+unsigned char {\bfseries alliance}
+\item 
+\Hypertarget{class_magix_living_abea8d579c09881e885184687ad745102}\label{class_magix_living_abea8d579c09881e885184687ad745102} 
+bool {\bfseries invulnerable}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short {\bfseries object\+ID}
+\item 
+Vector3 {\bfseries m\+Force}
+\item 
+Real {\bfseries ground\+Height}
+\item 
+Real {\bfseries max\+Speed}
+\item 
+Real {\bfseries speed\+Multiplier}
+\item 
+Vector3 {\bfseries last\+Position}
+\item 
+Real {\bfseries update\+Time}
+\item 
+Degree {\bfseries face\+Direction\+Yaw}
+\item 
+bool {\bfseries anti\+Gravity}
+\item 
+Vector3 {\bfseries penalty\+Velocity}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Object\+Node}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_living_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_living_a557ae86fd3cb192783bce71e7a0fddb9}\index{MagixLiving@{MagixLiving}!getType@{getType}}
+\index{getType@{getType}!MagixLiving@{MagixLiving}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_magix_living_a557ae86fd3cb192783bce71e7a0fddb9} 
+virtual const OBJECT\+\_\+\+TYPE Magix\+Living\+::get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Object.\+h\end{DoxyCompactItemize}

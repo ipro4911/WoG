@@ -1,0 +1,123 @@
+\doxysection{Magix\+Loading\+Bar Class Reference}
+\hypertarget{class_magix_loading_bar}{}\label{class_magix_loading_bar}\index{MagixLoadingBar@{MagixLoadingBar}}
+Inheritance diagram for Magix\+Loading\+Bar\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_magix_loading_bar}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{class_magix_loading_bar_a0bb8d294ea3d574a61019bcb978df632}{start}} (Render\+Window \texorpdfstring{$\ast$}{*}window, unsigned short num\+Groups\+Init=1, unsigned short num\+Groups\+Load=1, Real init\+Proportion=0.\+70f)
+\item 
+virtual void \mbox{\hyperlink{class_magix_loading_bar_a381af7ed737af67e16f48aecbeb7464c}{finish}} (void)
+\item 
+\Hypertarget{class_magix_loading_bar_af558043e0c150f45ff6dbef74c098a37}\label{class_magix_loading_bar_af558043e0c150f45ff6dbef74c098a37} 
+void {\bfseries Font\+Gen} (String \&font\+Name, bool \&asked\+By\+User)
+\item 
+\Hypertarget{class_magix_loading_bar_a2d9410c005ca01f0c71b46cb884cfee9}\label{class_magix_loading_bar_a2d9410c005ca01f0c71b46cb884cfee9} 
+void {\bfseries resource\+Group\+Scripting\+Started} (const String \&group\+Name, size\+\_\+t script\+Count)
+\item 
+\Hypertarget{class_magix_loading_bar_a25d81da7810b7e63d085f54eb71286b3}\label{class_magix_loading_bar_a25d81da7810b7e63d085f54eb71286b3} 
+void {\bfseries script\+Parse\+Started} (const String \&script\+Name, bool \&skip\+This\+Script)
+\item 
+\Hypertarget{class_magix_loading_bar_acb96eccb8099adb9c59e599edbc558b1}\label{class_magix_loading_bar_acb96eccb8099adb9c59e599edbc558b1} 
+void {\bfseries script\+Parse\+Ended} (const String \&script\+Name, bool skipped)
+\item 
+\Hypertarget{class_magix_loading_bar_a1ca04512d9d9c317587193ca15f47bdb}\label{class_magix_loading_bar_a1ca04512d9d9c317587193ca15f47bdb} 
+void {\bfseries resource\+Group\+Scripting\+Ended} (const String \&group\+Name)
+\item 
+\Hypertarget{class_magix_loading_bar_a75638b5da6510af14ae7a835bae713ff}\label{class_magix_loading_bar_a75638b5da6510af14ae7a835bae713ff} 
+void {\bfseries resource\+Group\+Load\+Started} (const String \&group\+Name, size\+\_\+t resource\+Count)
+\item 
+\Hypertarget{class_magix_loading_bar_afdd15bd51647ba8b020a4bf94d5779b5}\label{class_magix_loading_bar_afdd15bd51647ba8b020a4bf94d5779b5} 
+void {\bfseries resource\+Load\+Started} (const Resource\+Ptr \&resource)
+\item 
+\Hypertarget{class_magix_loading_bar_a674d28d813ce8d66360f8295b8540f8a}\label{class_magix_loading_bar_a674d28d813ce8d66360f8295b8540f8a} 
+void {\bfseries resource\+Load\+Ended} (void)
+\item 
+\Hypertarget{class_magix_loading_bar_a3a88c1e4ed4d68419acbe5b1910607a3}\label{class_magix_loading_bar_a3a88c1e4ed4d68419acbe5b1910607a3} 
+void {\bfseries world\+Geometry\+Stage\+Started} (const String \&description)
+\item 
+\Hypertarget{class_magix_loading_bar_a222dbf16abc44c0ebd2863b8bd51577e}\label{class_magix_loading_bar_a222dbf16abc44c0ebd2863b8bd51577e} 
+void {\bfseries world\+Geometry\+Stage\+Ended} (void)
+\item 
+\Hypertarget{class_magix_loading_bar_a9819cac230edbae68fe56a6548802b02}\label{class_magix_loading_bar_a9819cac230edbae68fe56a6548802b02} 
+void {\bfseries resource\+Group\+Load\+Ended} (const String \&group\+Name)
+\item 
+\Hypertarget{class_magix_loading_bar_acdb381a2a2bf7026e75dd939a51af389}\label{class_magix_loading_bar_acdb381a2a2bf7026e75dd939a51af389} 
+Ogre\+::\+Data\+Stream\+Ptr {\bfseries resource\+Loading} (const String \&name, const String \&group, Resource \texorpdfstring{$\ast$}{*}resource)
+\item 
+\Hypertarget{class_magix_loading_bar_a655bed0b5c33c4c1a1b2ee912dee7e12}\label{class_magix_loading_bar_a655bed0b5c33c4c1a1b2ee912dee7e12} 
+bool {\bfseries resource\+Collision} (Resource\+Ptr \&resource, Resource\+Manager \texorpdfstring{$\ast$}{*}resource\+Manager)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_loading_bar_a17afcb2bcca8fc9829d80688b2ac9d79}\label{class_magix_loading_bar_a17afcb2bcca8fc9829d80688b2ac9d79} 
+Render\+Window \texorpdfstring{$\ast$}{*} {\bfseries m\+Window}
+\item 
+\Hypertarget{class_magix_loading_bar_ac7c33759822c40d71c61ec5117b36825}\label{class_magix_loading_bar_ac7c33759822c40d71c61ec5117b36825} 
+Overlay \texorpdfstring{$\ast$}{*} {\bfseries m\+Load\+Overlay}
+\item 
+\Hypertarget{class_magix_loading_bar_a62c686607abb81394a7e7e3aec4f2eb8}\label{class_magix_loading_bar_a62c686607abb81394a7e7e3aec4f2eb8} 
+Real {\bfseries m\+Init\+Proportion}
+\item 
+\Hypertarget{class_magix_loading_bar_ab3e23ad9cc64bc31f96117cf0bec15f8}\label{class_magix_loading_bar_ab3e23ad9cc64bc31f96117cf0bec15f8} 
+unsigned short {\bfseries m\+Num\+Groups\+Init}
+\item 
+\Hypertarget{class_magix_loading_bar_a206d9f6e417abcae6b1bb899153c7e9d}\label{class_magix_loading_bar_a206d9f6e417abcae6b1bb899153c7e9d} 
+unsigned short {\bfseries m\+Num\+Groups\+Load}
+\item 
+\Hypertarget{class_magix_loading_bar_a3361b5546b156db7e06b12e926180217}\label{class_magix_loading_bar_a3361b5546b156db7e06b12e926180217} 
+Real {\bfseries m\+Progress\+Bar\+Max\+Size}
+\item 
+\Hypertarget{class_magix_loading_bar_a7a323a5d2d5e2f43802350f4d3d46404}\label{class_magix_loading_bar_a7a323a5d2d5e2f43802350f4d3d46404} 
+Real {\bfseries m\+Progress\+Bar\+Script\+Size}
+\item 
+\Hypertarget{class_magix_loading_bar_ae5a893dffc84272fb35678ba5738ca1e}\label{class_magix_loading_bar_ae5a893dffc84272fb35678ba5738ca1e} 
+Real {\bfseries m\+Progress\+Bar\+Inc}
+\item 
+\Hypertarget{class_magix_loading_bar_ae4e4f57bd699ae426fa998f5023aa4df}\label{class_magix_loading_bar_ae4e4f57bd699ae426fa998f5023aa4df} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Loading\+Bar\+Element}
+\item 
+\Hypertarget{class_magix_loading_bar_a07f419cec3faa880f2820d0f9084b9d7}\label{class_magix_loading_bar_a07f419cec3faa880f2820d0f9084b9d7} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Loading\+Description\+Element}
+\item 
+\Hypertarget{class_magix_loading_bar_ad9ea1153578205f1ed500cc2bbee521b}\label{class_magix_loading_bar_ad9ea1153578205f1ed500cc2bbee521b} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Loading\+Comment\+Element}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_loading_bar_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_loading_bar_a381af7ed737af67e16f48aecbeb7464c}\index{MagixLoadingBar@{MagixLoadingBar}!finish@{finish}}
+\index{finish@{finish}!MagixLoadingBar@{MagixLoadingBar}}
+\doxysubsubsection{\texorpdfstring{finish()}{finish()}}
+{\footnotesize\ttfamily \label{class_magix_loading_bar_a381af7ed737af67e16f48aecbeb7464c} 
+virtual void Magix\+Loading\+Bar\+::finish (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Hide the loading bar and stop listening. \Hypertarget{class_magix_loading_bar_a0bb8d294ea3d574a61019bcb978df632}\index{MagixLoadingBar@{MagixLoadingBar}!start@{start}}
+\index{start@{start}!MagixLoadingBar@{MagixLoadingBar}}
+\doxysubsubsection{\texorpdfstring{start()}{start()}}
+{\footnotesize\ttfamily \label{class_magix_loading_bar_a0bb8d294ea3d574a61019bcb978df632} 
+virtual void Magix\+Loading\+Bar\+::start (\begin{DoxyParamCaption}\item[{Render\+Window \texorpdfstring{$\ast$}{*}}]{window}{, }\item[{unsigned short}]{num\+Groups\+Init}{ = {\ttfamily 1}, }\item[{unsigned short}]{num\+Groups\+Load}{ = {\ttfamily 1}, }\item[{Real}]{init\+Proportion}{ = {\ttfamily 0.70f}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+Show the loading bar and start listening. 
+\begin{DoxyParams}{Parameters}
+{\em window} & The window to update \\
+\hline
+{\em num\+Groups\+Init} & The number of groups you\textquotesingle{}re going to be initialising \\
+\hline
+{\em num\+Groups\+Load} & The number of groups you\textquotesingle{}re going to be loading \\
+\hline
+{\em init\+Proportion} & The proportion of the progress which will be taken up by initialisation (ie script parsing etc). Defaults to 0.\+7 since script parsing can often take the majority of the time. \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Loading\+Bar.\+h\end{DoxyCompactItemize}

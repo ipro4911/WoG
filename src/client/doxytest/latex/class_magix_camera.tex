@@ -1,0 +1,202 @@
+\doxysection{Magix\+Camera Class Reference}
+\hypertarget{class_magix_camera}{}\label{class_magix_camera}\index{MagixCamera@{MagixCamera}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_camera_a21ae4d8b9dad2c4c6cbde93c5643e876}\label{class_magix_camera_a21ae4d8b9dad2c4c6cbde93c5643e876} 
+void {\bfseries initialize} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_player}{Magix\+Player}} \texorpdfstring{$\ast$}{*}player, \mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*}coll\+Mgr)
+\item 
+\Hypertarget{class_magix_camera_a6df3c617b3d722d2f2456ce3f41bb06a}\label{class_magix_camera_a6df3c617b3d722d2f2456ce3f41bb06a} 
+void {\bfseries reset} (bool reset\+Cam\+Zoom=true)
+\item 
+\Hypertarget{class_magix_camera_a230502684e817e1e4ac784ea12b55788}\label{class_magix_camera_a230502684e817e1e4ac784ea12b55788} 
+void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_camera_a418a483cf5c0eeda313825c9ab74dbe5}\label{class_magix_camera_a418a483cf5c0eeda313825c9ab74dbe5} 
+const unsigned char {\bfseries get\+Camera\+Mode} ()
+\item 
+\Hypertarget{class_magix_camera_a4d30ff5750a71cb0f470327858d7823f}\label{class_magix_camera_a4d30ff5750a71cb0f470327858d7823f} 
+void {\bfseries set\+Camera\+Mode} (const unsigned char \&mode, bool first\+Person=false, bool force\+Update=false)
+\item 
+\Hypertarget{class_magix_camera_a732d2e75c5fd6c2a0387bf3b1a751e89}\label{class_magix_camera_a732d2e75c5fd6c2a0387bf3b1a751e89} 
+bool {\bfseries get\+Is\+First\+Person} ()
+\item 
+\Hypertarget{class_magix_camera_a4d52b0ec81a8438b667be9b39011620b}\label{class_magix_camera_a4d52b0ec81a8438b667be9b39011620b} 
+void {\bfseries yaw} (const Degree \&angle)
+\item 
+\Hypertarget{class_magix_camera_aef44b914e1c88945ddf922d6ee57e3aa}\label{class_magix_camera_aef44b914e1c88945ddf922d6ee57e3aa} 
+void {\bfseries pitch} (const Degree \&angle)
+\item 
+\Hypertarget{class_magix_camera_a7a22b6f712b9b296a72abe2391427a5d}\label{class_magix_camera_a7a22b6f712b9b296a72abe2391427a5d} 
+void {\bfseries set\+Orientation} (const Quaternion \&direction)
+\item 
+\Hypertarget{class_magix_camera_a4dc747f3a8846abd7eec62bcac97a821}\label{class_magix_camera_a4dc747f3a8846abd7eec62bcac97a821} 
+void {\bfseries clamp\+Camera\+To\+Terrain} ()
+\item 
+\Hypertarget{class_magix_camera_a31cea6f6698acf3e2e8940c582b344c5}\label{class_magix_camera_a31cea6f6698acf3e2e8940c582b344c5} 
+const Real {\bfseries get\+Ground\+Height} (const Real \&x, const Real \&z)
+\item 
+\Hypertarget{class_magix_camera_a6019d77fec017e58c874f08780d246ce}\label{class_magix_camera_a6019d77fec017e58c874f08780d246ce} 
+void {\bfseries translate} (const Vector3 \&vec)
+\item 
+\Hypertarget{class_magix_camera_a008e8a2d5446a4c49244a623479898a6}\label{class_magix_camera_a008e8a2d5446a4c49244a623479898a6} 
+void {\bfseries held\+Move} (const unsigned short dir, bool flag)
+\item 
+\Hypertarget{class_magix_camera_ab3d03f395219a44144044490bcbaaa38}\label{class_magix_camera_ab3d03f395219a44144044490bcbaaa38} 
+void {\bfseries held\+Turn} (const unsigned short dir, bool flag)
+\item 
+\Hypertarget{class_magix_camera_a7c74f8d146bb8e9391ed6c0df82ea7d9}\label{class_magix_camera_a7c74f8d146bb8e9391ed6c0df82ea7d9} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries get\+Cam\+Pivot\+Node} ()
+\item 
+\Hypertarget{class_magix_camera_a2778ac76477b5c849ee1b4e2ef7a1485}\label{class_magix_camera_a2778ac76477b5c849ee1b4e2ef7a1485} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries get\+Cam\+Node} ()
+\item 
+\Hypertarget{class_magix_camera_a174d1fc9fb8717c20a32030fefd7642d}\label{class_magix_camera_a174d1fc9fb8717c20a32030fefd7642d} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries get\+Active\+Cam\+Node} ()
+\item 
+\Hypertarget{class_magix_camera_aecb5b09201fa5a069a5622e3eece4c55}\label{class_magix_camera_aecb5b09201fa5a069a5622e3eece4c55} 
+Camera \texorpdfstring{$\ast$}{*} {\bfseries get\+Camera} ()
+\item 
+\Hypertarget{class_magix_camera_a3b82dd792d678803db6012b2f8ebc823}\label{class_magix_camera_a3b82dd792d678803db6012b2f8ebc823} 
+const Vector3 {\bfseries get\+Position} ()
+\item 
+\Hypertarget{class_magix_camera_ae25959e06b5ba8db93c4850878e1d455}\label{class_magix_camera_ae25959e06b5ba8db93c4850878e1d455} 
+const Quaternion {\bfseries get\+Camera\+Orientation} ()
+\item 
+\Hypertarget{class_magix_camera_adc16d9aebc01fd63117660bb98c75a9c}\label{class_magix_camera_adc16d9aebc01fd63117660bb98c75a9c} 
+void {\bfseries do\+Camera\+Zoom} (Real dY)
+\item 
+\Hypertarget{class_magix_camera_a668996f10dbd38144db2dcd2144a1d61}\label{class_magix_camera_a668996f10dbd38144db2dcd2144a1d61} 
+void {\bfseries reset\+Camera\+Track} (Real length)
+\item 
+\Hypertarget{class_magix_camera_abb4a180345b24d800f6c26cf4eb2ea7e}\label{class_magix_camera_abb4a180345b24d800f6c26cf4eb2ea7e} 
+void {\bfseries add\+Camera\+Track\+Key\+Frame} (const Real \&time\+Position, const Vector3 \&translation, const Quaternion \&rotation=Quaternion(Degree(180), Vector3\+::\+UNIT\+\_\+Y))
+\item 
+\Hypertarget{class_magix_camera_a91f12b825a0f75d0414a7fe44afe74f6}\label{class_magix_camera_a91f12b825a0f75d0414a7fe44afe74f6} 
+void {\bfseries do\+Camera\+Track} (bool loop, bool auto\+Track=false, Scene\+Node \texorpdfstring{$\ast$}{*}node=0)
+\item 
+\Hypertarget{class_magix_camera_a5b7a4114b8251d4a003c94d64312026e}\label{class_magix_camera_a5b7a4114b8251d4a003c94d64312026e} 
+void {\bfseries stop\+Camera\+Track} ()
+\item 
+\Hypertarget{class_magix_camera_ac0c537b7d2d2b5d0e1179c38fd97006f}\label{class_magix_camera_ac0c537b7d2d2b5d0e1179c38fd97006f} 
+bool {\bfseries update\+Camera\+Track} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_camera_a194bafd7f412d68b751eec879a78c4eb}\label{class_magix_camera_a194bafd7f412d68b751eec879a78c4eb} 
+void {\bfseries update\+Water\+Collision} ()
+\item 
+\Hypertarget{class_magix_camera_a076817e435f7df27509d0c6565fe7492}\label{class_magix_camera_a076817e435f7df27509d0c6565fe7492} 
+bool {\bfseries get\+Is\+Underwater} ()
+\item 
+\Hypertarget{class_magix_camera_a885b44e0a0ace5b80f5558be65a5a588}\label{class_magix_camera_a885b44e0a0ace5b80f5558be65a5a588} 
+const Degree {\bfseries get\+Yaw} ()
+\item 
+\Hypertarget{class_magix_camera_ad8823ca76642c87402aa0db4fb1eaca2}\label{class_magix_camera_ad8823ca76642c87402aa0db4fb1eaca2} 
+void {\bfseries do\+Quake} (bool flag, bool fade=false)
+\item 
+\Hypertarget{class_magix_camera_ae75f7bfdb9136c7b79a58c4f4dc4d572}\label{class_magix_camera_ae75f7bfdb9136c7b79a58c4f4dc4d572} 
+void {\bfseries update\+Camera\+Effects} (const Real \&time\+Elapsed)
+\item 
+\Hypertarget{class_magix_camera_a18318479bf06903d3295330b46920265}\label{class_magix_camera_a18318479bf06903d3295330b46920265} 
+void {\bfseries change\+Speed} (const Real \&ratio)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_camera_a43ecd4ee17290844a7180523754033cb}\label{class_magix_camera_a43ecd4ee17290844a7180523754033cb} 
+\mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Collision\+Manager}
+\item 
+\Hypertarget{class_magix_camera_aa42279c6a30701f16f91c1b7aee6d08c}\label{class_magix_camera_aa42279c6a30701f16f91c1b7aee6d08c} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_camera_ab858dc985e52489d3292c584945af859}\label{class_magix_camera_ab858dc985e52489d3292c584945af859} 
+Camera \texorpdfstring{$\ast$}{*} {\bfseries m\+Camera}
+\item 
+\Hypertarget{class_magix_camera_a9f2fa25742e6ab7580875291c28440f7}\label{class_magix_camera_a9f2fa25742e6ab7580875291c28440f7} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Cam\+Node}
+\item 
+\Hypertarget{class_magix_camera_accfaa7a4fdc7d752baad4342b7ab3319}\label{class_magix_camera_accfaa7a4fdc7d752baad4342b7ab3319} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Cam\+Pivot\+Node}
+\item 
+\Hypertarget{class_magix_camera_a7bcd285d532e893d32e8a830effafb65}\label{class_magix_camera_a7bcd285d532e893d32e8a830effafb65} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Cam\+Pivot\+Pitch\+Node}
+\item 
+\Hypertarget{class_magix_camera_a0a8ff5909ad8a294aec6129209b12f20}\label{class_magix_camera_a0a8ff5909ad8a294aec6129209b12f20} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Cam\+Track\+Node}
+\item 
+\Hypertarget{class_magix_camera_a802a89fc4ff29f41a41270627227eec7}\label{class_magix_camera_a802a89fc4ff29f41a41270627227eec7} 
+Node\+Animation\+Track \texorpdfstring{$\ast$}{*} {\bfseries m\+Cam\+Node\+Track}
+\item 
+\Hypertarget{class_magix_camera_af6194aceff312b80f2cdb94a626baac0}\label{class_magix_camera_af6194aceff312b80f2cdb94a626baac0} 
+\mbox{\hyperlink{class_magix_player}{Magix\+Player}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Player}
+\item 
+\Hypertarget{class_magix_camera_a0fdddab99ff991d64ec523c0734770b8}\label{class_magix_camera_a0fdddab99ff991d64ec523c0734770b8} 
+Ray\+Scene\+Query \texorpdfstring{$\ast$}{*} {\bfseries m\+Ray\+Query}
+\item 
+\Hypertarget{class_magix_camera_a109c2bd2cb08f8fa3e518d07a01b3eb5}\label{class_magix_camera_a109c2bd2cb08f8fa3e518d07a01b3eb5} 
+unsigned char {\bfseries cam\+Mode}
+\item 
+\Hypertarget{class_magix_camera_a42351ae83341e3366d0608d17fc32063}\label{class_magix_camera_a42351ae83341e3366d0608d17fc32063} 
+bool {\bfseries move\+Forward}
+\item 
+\Hypertarget{class_magix_camera_af71a6f544a5c4d48cdcb213b5afbfb4b}\label{class_magix_camera_af71a6f544a5c4d48cdcb213b5afbfb4b} 
+bool {\bfseries move\+Back}
+\item 
+\Hypertarget{class_magix_camera_aeba770ef3562cae5db3043eb1d2c03cc}\label{class_magix_camera_aeba770ef3562cae5db3043eb1d2c03cc} 
+bool {\bfseries move\+Left}
+\item 
+\Hypertarget{class_magix_camera_aee930a6264ada11989fe8a4140ddd072}\label{class_magix_camera_aee930a6264ada11989fe8a4140ddd072} 
+bool {\bfseries move\+Right}
+\item 
+\Hypertarget{class_magix_camera_a017adfc68f039df019d31f751545019c}\label{class_magix_camera_a017adfc68f039df019d31f751545019c} 
+bool {\bfseries move\+Up}
+\item 
+\Hypertarget{class_magix_camera_aa58efd997982641636da1119d74d8044}\label{class_magix_camera_aa58efd997982641636da1119d74d8044} 
+bool {\bfseries move\+Down}
+\item 
+\Hypertarget{class_magix_camera_a05729e739822ba0844978c869832aad0}\label{class_magix_camera_a05729e739822ba0844978c869832aad0} 
+bool {\bfseries turn\+Up}
+\item 
+\Hypertarget{class_magix_camera_af23cfa5432f3fefec043410dd5ab890e}\label{class_magix_camera_af23cfa5432f3fefec043410dd5ab890e} 
+bool {\bfseries turn\+Down}
+\item 
+\Hypertarget{class_magix_camera_a0de2878aee8655ae269111c9e8c7733e}\label{class_magix_camera_a0de2878aee8655ae269111c9e8c7733e} 
+bool {\bfseries turn\+Left}
+\item 
+\Hypertarget{class_magix_camera_a812292d300f43163e944c602abc918ac}\label{class_magix_camera_a812292d300f43163e944c602abc918ac} 
+bool {\bfseries turn\+Right}
+\item 
+\Hypertarget{class_magix_camera_ad0694e6e0a7b71d80a7c5bdd0b6c102b}\label{class_magix_camera_ad0694e6e0a7b71d80a7c5bdd0b6c102b} 
+Degree {\bfseries cam\+Pitch}
+\item 
+\Hypertarget{class_magix_camera_a91e3770a258a53dc8b000eaf5607921f}\label{class_magix_camera_a91e3770a258a53dc8b000eaf5607921f} 
+Real {\bfseries cam\+Zoom}
+\item 
+\Hypertarget{class_magix_camera_a7d0390d55d423665dad69fcf5685e8f3}\label{class_magix_camera_a7d0390d55d423665dad69fcf5685e8f3} 
+Real {\bfseries cam\+Speed}
+\item 
+\Hypertarget{class_magix_camera_a265b8b9f65dceed59b13e2c16b8ef57a}\label{class_magix_camera_a265b8b9f65dceed59b13e2c16b8ef57a} 
+Quaternion {\bfseries cam\+Transition\+Orientation}
+\item 
+\Hypertarget{class_magix_camera_a9b6f2f72f77c46d0b6810629107d980a}\label{class_magix_camera_a9b6f2f72f77c46d0b6810629107d980a} 
+bool {\bfseries is\+First\+Person}
+\item 
+\Hypertarget{class_magix_camera_a3c30434742540ca5562940920a7ef80f}\label{class_magix_camera_a3c30434742540ca5562940920a7ef80f} 
+bool {\bfseries is\+Underwater}
+\item 
+\Hypertarget{class_magix_camera_ad9065935c5b40da336aa048e49f554b1}\label{class_magix_camera_ad9065935c5b40da336aa048e49f554b1} 
+bool {\bfseries is\+Quake}
+\item 
+\Hypertarget{class_magix_camera_a9e87e04baa3948cf4fb50021d2747642}\label{class_magix_camera_a9e87e04baa3948cf4fb50021d2747642} 
+bool {\bfseries is\+Quake\+Fade\+Out}
+\item 
+\Hypertarget{class_magix_camera_a17c99fcee947072d7b6b62d554472aab}\label{class_magix_camera_a17c99fcee947072d7b6b62d554472aab} 
+Vector3 {\bfseries quake\+Offset}
+\item 
+\Hypertarget{class_magix_camera_aa430b106beb2a8d7edb7a40511964250}\label{class_magix_camera_aa430b106beb2a8d7edb7a40511964250} 
+Real {\bfseries quake\+Countdown}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Camera.\+h\end{DoxyCompactItemize}

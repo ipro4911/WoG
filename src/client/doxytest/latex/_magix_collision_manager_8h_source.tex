@@ -1,0 +1,687 @@
+\doxysection{Magix\+Collision\+Manager.\+h}
+\hypertarget{_magix_collision_manager_8h_source}{}\label{_magix_collision_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixCollisionManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixCollisionManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixCollisionManager\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixCollisionManager\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{struct\ }Collision}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ SceneNode\ *mNode;}
+\DoxyCodeLine{00007\ \ \ \ \ Real\ range;}
+\DoxyCodeLine{00008\ \ \ \ \ Vector3\ offset;}
+\DoxyCodeLine{00009\ \ \ \ \ Vector3\ force;}
+\DoxyCodeLine{00010\ \ \ \ \ vector<unsigned\ short>::type\ hitID;}
+\DoxyCodeLine{00011\ \ \ \ \ vector<unsigned\ short>::type\ critterHitID;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{short}\ hp;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ alliance;}
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keywordtype}{bool}\ hitAlly;}
+\DoxyCodeLine{00015\ \ \ \ \ Collision()}
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ mNode\ =\ 0;}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ range\ =\ 0;}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ offset\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ force\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ hitID.clear();}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ critterHitID.clear();}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ hp\ =\ 0;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ alliance\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ hitAlly\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00026\ \ \ \ \ \}}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ getPivot()}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(!mCollOwnerNode[iID])return\ Vector3::ZERO;}}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \textcolor{comment}{//return\ mCollOwnerNode[iID]-\/>getPosition()+mCollOwnerNode[iID]-\/>getOrientation()*collOffset[iID];}}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mNode)\textcolor{keywordflow}{return}\ Vector3::ZERO;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mNode-\/>getPosition()+mNode-\/>getOrientation()*offset;}
+\DoxyCodeLine{00033\ \ \ \ \ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ getForce(\textcolor{keywordtype}{bool}\ fromPivot=\textcolor{keyword}{false},\ \textcolor{keyword}{const}\ Vector3\ \&targetPosition=Vector3::ZERO)}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(fromPivot)}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tVect\ =\ targetPosition-\/getPivot();}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Quaternion\ tQuat\ =\ force.getRotationTo(tVect);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tQuat*force;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ force;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{bool}\ collides(\textcolor{keyword}{const}\ AxisAlignedBox\ \&target)}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mNode)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(mCollEnt[iID]-\/>getWorldBoundingSphere().intersects(target))return\ true;}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Sphere(getPivot(),range).intersects(target))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00050\ \ \ \ \ \}}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasHitID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&\textcolor{keywordtype}{id})}
+\DoxyCodeLine{00052\ \ \ \ \ \{}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)hitID.size();i++)}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hitID[i]==\textcolor{keywordtype}{id})\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasCritterHitID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&\textcolor{keywordtype}{id})}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)critterHitID.size();i++)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterHitID[i]==\textcolor{keywordtype}{id})\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{keyword}{struct\ }Wall}
+\DoxyCodeLine{00070\ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{bool}\ isActive;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSphere;}
+\DoxyCodeLine{00073\ \ \ \ \ Vector3\ center;}
+\DoxyCodeLine{00074\ \ \ \ \ Vector3\ range;}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInside;}
+\DoxyCodeLine{00076\ \ \ \ \ Wall()}
+\DoxyCodeLine{00077\ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ isActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ isSphere\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ center\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ range\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ isInside\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00083\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{bool}\ collides(\textcolor{keyword}{const}\ Vector3\ \&target)}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isActive)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isSphere)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Fix\ y\ coordinate\ to\ that\ of\ target's\ to\ create\ a\ Cylinder\ wall}}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Sphere\ tSphere(Vector3(center.x,target.y,center.z),range.x);}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isInside)\textcolor{keywordflow}{return}(tSphere.intersects(target));}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}(!tSphere.intersects(target));}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Fix\ y\ coordinate\ to\ that\ of\ target's\ to\ create\ an\ infinitely\ tall\ wall}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ AxisAlignedBox\ tBox(Vector3(center.x-\/range.x/2,target.y,center.z-\/range.z/2),}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3(center.x+range.x/2,target.y,center.z+range.z/2));}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isInside)\textcolor{keywordflow}{return}(tBox.intersects(target));}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}(!tBox.intersects(target));}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \};}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \textcolor{keyword}{struct\ }Portal}
+\DoxyCodeLine{00108\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ SceneNode\ *mNode;}
+\DoxyCodeLine{00110\ \ \ \ \ Entity\ *mEnt;}
+\DoxyCodeLine{00111\ \ \ \ \ String\ dest;}
+\DoxyCodeLine{00112\ \ \ \ \ Portal()}
+\DoxyCodeLine{00113\ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ mNode\ =\ 0;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ mEnt\ =\ 0;}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ dest\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00117\ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \textcolor{keywordtype}{bool}\ collides(\textcolor{keyword}{const}\ AxisAlignedBox\ \&target)}
+\DoxyCodeLine{00119\ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mEnt\ ||\ dest==\textcolor{stringliteral}{"{}"{}})\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mEnt-\/>getWorldBoundingSphere().intersects(target))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ getWorldBoundingSphere\ doesn't\ work\ properly}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00123\ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \textcolor{keywordtype}{void}\ disable()}
+\DoxyCodeLine{00125\ \ \ \ \ \{}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ dest\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \};}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \textcolor{keyword}{struct\ }Gate}
+\DoxyCodeLine{00131\ \{}
+\DoxyCodeLine{00132\ \ \ \ \ SceneNode\ *mNode;}
+\DoxyCodeLine{00133\ \ \ \ \ Entity\ *mEnt;}
+\DoxyCodeLine{00134\ \ \ \ \ String\ dest;}
+\DoxyCodeLine{00135\ \ \ \ \ Vector3\ destVect;}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasVectY;}
+\DoxyCodeLine{00137\ \ \ \ \ Gate()}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ mNode\ =\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ mEnt\ =\ 0;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ dest\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ destVect\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ hasVectY\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{bool}\ collides(\textcolor{keyword}{const}\ AxisAlignedBox\ \&target)}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mEnt\ ||\ dest==\textcolor{stringliteral}{"{}"{}})\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mEnt-\/>getWorldBoundingSphere().intersects(target))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ getWorldBoundingSphere\ doesn't\ work\ properly}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00150\ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{void}\ disable()}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ dest\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \textcolor{keyword}{struct\ }WaterBox}
+\DoxyCodeLine{00158\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keywordtype}{bool}\ isActive;}
+\DoxyCodeLine{00160\ \ \ \ \ Vector3\ center;}
+\DoxyCodeLine{00161\ \ \ \ \ Vector2\ scale;}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSolid;}
+\DoxyCodeLine{00163\ \ \ \ \ WaterBox()}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ isActive\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ center\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ scale\ =\ Vector2::ZERO;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ isSolid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{bool}\ collides(\textcolor{keyword}{const}\ Vector3\ \&target)}
+\DoxyCodeLine{00171\ \ \ \ \ \{}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isActive)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(target.y\ >\ center.y)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ infinite\ depth\ box}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ AxisAlignedBox\ tBox(Vector3(center.x-\/scale.x/2,target.y,center.z-\/scale.y/2),}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3(center.x+scale.x/2,target.y,center.z+scale.y/2));}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBox.intersects(target))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \};}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \textcolor{keyword}{struct\ }CollBox}
+\DoxyCodeLine{00183\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//Collbox\ takes\ center\ like\ a\ typical\ mesh,\ i.e.\ midpoint\ of\ "{}feet"{}}}
+\DoxyCodeLine{00185\ \ \ \ \ Vector3\ center;}
+\DoxyCodeLine{00186\ \ \ \ \ Vector3\ range;}
+\DoxyCodeLine{00187\ \ \ \ \ CollBox()}
+\DoxyCodeLine{00188\ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ center\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ range\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00191\ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \textcolor{keywordtype}{bool}\ collides(\textcolor{keyword}{const}\ Vector3\ \&target,\ \textcolor{keyword}{const}\ Real\ \&headHeight)}
+\DoxyCodeLine{00193\ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Extend\ below\ by\ unit\ height\ to\ detect\ head\ collision}}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ AxisAlignedBox\ tBox(Vector3(center.x-\/range.x/2,center.y-\/headHeight,center.z-\/range.z/2),}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3(center.x+range.x/2,center.y+range.y,center.z+range.z/2));}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBox.intersects(target))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00199\ \ \ \ \ \}}
+\DoxyCodeLine{00200\ \};}
+\DoxyCodeLine{00201\ \textcolor{keyword}{struct\ }CollSphere}
+\DoxyCodeLine{00202\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ Vector3\ center;}
+\DoxyCodeLine{00204\ \ \ \ \ Real\ range;}
+\DoxyCodeLine{00205\ \ \ \ \ CollSphere()}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ center\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ range\ =\ 0;}
+\DoxyCodeLine{00209\ \ \ \ \ \}}
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{keywordtype}{bool}\ collides(\textcolor{keyword}{const}\ Vector3\ \&target)}
+\DoxyCodeLine{00211\ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Sphere\ tSphere(center,range);}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSphere.intersects(target))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00215\ \ \ \ \ \}}
+\DoxyCodeLine{00216\ \};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \textcolor{keyword}{class\ }MagixCollisionManager}
+\DoxyCodeLine{00219\ \{}
+\DoxyCodeLine{00220\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00221\ \ \ \ \ SceneManager\ *mSceneMgr;}
+\DoxyCodeLine{00222\ \ \ \ \ }
+\DoxyCodeLine{00223\ \ \ \ \ list<Wall>::type\ wall;}
+\DoxyCodeLine{00224\ \ \ \ \ list<Portal>::type\ portal;}
+\DoxyCodeLine{00225\ \ \ \ \ list<Gate>::type\ gate;}
+\DoxyCodeLine{00226\ \ \ \ \ list<WaterBox>::type\ waterBox;}
+\DoxyCodeLine{00227\ \ \ \ \ list<CollBox>::type\ collBox;}
+\DoxyCodeLine{00228\ \ \ \ \ list<CollSphere>::type\ collSphere;}
+\DoxyCodeLine{00229\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00230\ \ \ \ \ list<Collision>::type\ coll;}
+\DoxyCodeLine{00231\ \ \ \ \ MagixCollisionManager()}
+\DoxyCodeLine{00232\ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ 0;}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ coll.clear();}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ wall.clear();}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ portal.clear();}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ gate.clear();}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ waterBox.clear();}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ collBox.clear();}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ collSphere.clear();}
+\DoxyCodeLine{00241\ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \string~MagixCollisionManager()}
+\DoxyCodeLine{00243\ \ \ \ \ \{}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ destroyAllWaterBoxes();}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ destroyAllPortals();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ destroyAllGates();}
+\DoxyCodeLine{00248\ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(SceneManager\ *sceneMgr)}
+\DoxyCodeLine{00250\ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ sceneMgr;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ createSphereMesh(\textcolor{stringliteral}{"{}CollSphere"{}},1);}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{void}\ reset()}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ coll.clear();}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ wall.clear();}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ collBox.clear();}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ collSphere.clear();}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{void}\ createSphereMesh(\textcolor{keyword}{const}\ std::string\&\ strName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ r,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ nRings\ =\ 16,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ nSegments\ =\ 16)}
+\DoxyCodeLine{00262\ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ MeshPtr\ pSphere\ =\ MeshManager::getSingleton().createManual(strName,\ ResourceGroupManager::DEFAULT\_RESOURCE\_GROUP\_NAME);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ SubMesh\ *pSphereVertex\ =\ pSphere-\/>createSubMesh();}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ pSphere-\/>sharedVertexData\ =\ \textcolor{keyword}{new}\ VertexData();}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ VertexData*\ vertexData\ =\ pSphere-\/>sharedVertexData;}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ define\ the\ vertex\ format}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ VertexDeclaration*\ vertexDecl\ =\ vertexData-\/>vertexDeclaration;}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ currOffset\ =\ 0;}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ positions}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ vertexDecl-\/>addElement(0,\ currOffset,\ VET\_FLOAT3,\ VES\_POSITION);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ currOffset\ +=\ VertexElement::getTypeSize(VET\_FLOAT3);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ normals}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ vertexDecl-\/>addElement(0,\ currOffset,\ VET\_FLOAT3,\ VES\_NORMAL);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ currOffset\ +=\ VertexElement::getTypeSize(VET\_FLOAT3);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ two\ dimensional\ texture\ coordinates}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ vertexDecl-\/>addElement(0,\ currOffset,\ VET\_FLOAT2,\ VES\_TEXTURE\_COORDINATES,\ 0);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ currOffset\ +=\ VertexElement::getTypeSize(VET\_FLOAT2);}
+\DoxyCodeLine{00281\ }
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ allocate\ the\ vertex\ buffer}}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ vertexData-\/>vertexCount\ =\ (nRings\ +\ 1)\ *\ (nSegments+1);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ HardwareVertexBufferSharedPtr\ vBuf\ =\ HardwareBufferManager::getSingleton().createVertexBuffer(vertexDecl-\/>getVertexSize(0),\ vertexData-\/>vertexCount,\ HardwareBuffer::HBU\_STATIC\_WRITE\_ONLY,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ VertexBufferBinding*\ binding\ =\ vertexData-\/>vertexBufferBinding;}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ binding-\/>setBinding(0,\ vBuf);}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}*\ pVertex\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{float}*\textcolor{keyword}{>}(vBuf-\/>lock(HardwareBuffer::HBL\_DISCARD));}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ allocate\ index\ buffer}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ pSphereVertex-\/>indexData-\/>indexCount\ =\ 6\ *\ nRings\ *\ (nSegments\ +\ 1);}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ pSphereVertex-\/>indexData-\/>indexBuffer\ =\ HardwareBufferManager::getSingleton().createIndexBuffer(HardwareIndexBuffer::IT\_16BIT,\ pSphereVertex-\/>indexData-\/>indexCount,\ HardwareBuffer::HBU\_STATIC\_WRITE\_ONLY,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ HardwareIndexBufferSharedPtr\ iBuf\ =\ pSphereVertex-\/>indexData-\/>indexBuffer;}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}*\ pIndices\ =\ \textcolor{keyword}{static\_cast<}\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}*\textcolor{keyword}{>}(iBuf-\/>lock(HardwareBuffer::HBL\_DISCARD));}
+\DoxyCodeLine{00294\ }
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ fDeltaRingAngle\ =\ (Math::PI\ /\ nRings);}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ fDeltaSegAngle\ =\ (2\ *\ Math::PI\ /\ nSegments);}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ wVerticeIndex\ =\ 0\ ;}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ the\ group\ of\ rings\ for\ the\ sphere}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\ \textcolor{keywordtype}{int}\ ring\ =\ 0;\ ring\ <=\ nRings;\ ring++\ )\ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ r0\ =\ r\ *\ sinf\ (ring\ *\ fDeltaRingAngle);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ y0\ =\ r\ *\ cosf\ (ring\ *\ fDeltaRingAngle);}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ the\ group\ of\ segments\ for\ the\ current\ ring}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ seg\ =\ 0;\ seg\ <=\ nSegments;\ seg++)\ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ x0\ =\ r0\ *\ sinf(seg\ *\ fDeltaSegAngle);}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ z0\ =\ r0\ *\ cosf(seg\ *\ fDeltaSegAngle);}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Add\ one\ vertex\ to\ the\ strip\ which\ makes\ up\ the\ sphere}}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pVertex++\ =\ x0;}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pVertex++\ =\ y0;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pVertex++\ =\ z0;}
+\DoxyCodeLine{00313\ }
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ vNormal\ =\ Vector3(x0,\ y0,\ z0).normalisedCopy();}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pVertex++\ =\ vNormal.x;}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pVertex++\ =\ vNormal.y;}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pVertex++\ =\ vNormal.z;}
+\DoxyCodeLine{00318\ }
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pVertex++\ =\ (float)\ seg\ /\ (\textcolor{keywordtype}{float})\ nSegments;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pVertex++\ =\ (float)\ ring\ /\ (\textcolor{keywordtype}{float})\ nRings;}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ring\ !=\ nRings)\ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ each\ vertex\ (except\ the\ last)\ has\ six\ indices\ pointing\ to\ it}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pIndices++\ =\ wVerticeIndex\ +\ nSegments\ +\ 1;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pIndices++\ =\ wVerticeIndex;\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pIndices++\ =\ wVerticeIndex\ +\ nSegments;}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pIndices++\ =\ wVerticeIndex\ +\ nSegments\ +\ 1;}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pIndices++\ =\ wVerticeIndex\ +\ 1;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *pIndices++\ =\ wVerticeIndex;}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ wVerticeIndex\ ++;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \};\ \textcolor{comment}{//\ end\ for\ seg}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \}\ \textcolor{comment}{//\ end\ for\ ring}}
+\DoxyCodeLine{00334\ }
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unlock}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ vBuf-\/>unlock();}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ iBuf-\/>unlock();}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Generate\ face\ list}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ pSphereVertex-\/>useSharedVertices\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ original\ code\ was\ missing\ this\ line:}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ pSphere-\/>\_setBounds(\ AxisAlignedBox(\ Vector3(-\/0.1,\ -\/0.1,\ -\/0.1),\ Vector3(0.1,\ 0.1,\ 0.1)\ ),\ \textcolor{keyword}{false}\ );}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ pSphere-\/>\_setBoundingSphereRadius(r);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ line\ makes\ clear\ the\ mesh\ is\ loaded\ (avoids\ memory\ leaks)}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ pSphere-\/>load();}
+\DoxyCodeLine{00346\ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \textcolor{keywordtype}{void}\ createCollision(SceneNode\ *node,\ \textcolor{keyword}{const}\ Real\ \&range,\ \textcolor{keyword}{const}\ Vector3\ \&force,\ \textcolor{keyword}{const}\ Vector3\ \&offset=Vector3::ZERO,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&hp=0,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&alliance=0,\ \textcolor{keywordtype}{bool}\ hitAlly=\textcolor{keyword}{false})}
+\DoxyCodeLine{00348\ \ \ \ \ \{}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_collision}{Collision}}\ tColl;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ tColl.mNode\ =\ node;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ tColl.offset\ =\ offset;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ tColl.range\ =\ range;}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ tColl.force\ =\ force;}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ tColl.hp\ =\ hp;}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ tColl.alliance\ =\ alliance;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ tColl.hitAlly\ =\ hitAlly;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ coll.push\_back(tColl);}
+\DoxyCodeLine{00358\ \ \ \ \ \}}
+\DoxyCodeLine{00359\ \ \ \ \ \textcolor{keyword}{const}\ list<Collision>::type::iterator\ destroyCollision(\textcolor{keyword}{const}\ list<Collision>::type::iterator\ \&it)}
+\DoxyCodeLine{00360\ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ coll.erase(it);}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyCollisionByOwnerNode(SceneNode\ *node)}
+\DoxyCodeLine{00364\ \ \ \ \ \{}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ list<Collision>::type::iterator\ it\ =\ coll.begin();}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=coll.end())}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_collision}{Collision}}\ *tColl\ =\ \&*it;}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tColl-\/>mNode==node)it\ =\ destroyCollision(it);}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ it++;}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \}}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keyword}{const}\ vector<Collision*>::type\ getCollisionHitList(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&unitID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&alliance,\ \textcolor{keyword}{const}\ AxisAlignedBox\ \&target)}
+\DoxyCodeLine{00374\ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ vector<Collision*>::type\ tList;}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ list<Collision>::type::iterator\ it\ =\ coll.begin();}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=coll.end())}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_collision}{Collision}}\ *tColl\ =\ \&*it;}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tColl-\/>hitAlly\ \&\&\ tColl-\/>alliance==alliance\ ||\ !tColl-\/>hitAlly\ \&\&\ tColl-\/>alliance!=alliance)}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tColl-\/>hasHitID(unitID))}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tColl-\/>collides(target))}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tColl-\/>hitID.push\_back(unitID);}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tList.push\_back(tColl);}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{00391\ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \textcolor{keyword}{const}\ vector<Collision*>::type\ getCollisionHitListForCritter(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&alliance,\ \textcolor{keyword}{const}\ AxisAlignedBox\ \&target)}
+\DoxyCodeLine{00393\ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ vector<Collision*>::type\ tList;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ list<Collision>::type::iterator\ it\ =\ coll.begin();}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=coll.end())}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_collision}{Collision}}\ *tColl\ =\ \&*it;}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tColl-\/>hitAlly\ \&\&\ tColl-\/>alliance==alliance\ ||\ !tColl-\/>hitAlly\ \&\&\ tColl-\/>alliance!=alliance)}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tColl-\/>hasCritterHitID(iID))}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tColl-\/>collides(target))}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tColl-\/>critterHitID.push\_back(iID);}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tList.push\_back(tColl);}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ }
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{00410\ \ \ \ \ \}}
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordtype}{void}\ createBoxWall(\textcolor{keyword}{const}\ Vector3\ \&center,\ \textcolor{keyword}{const}\ Vector3\ \&range,\ \textcolor{keywordtype}{bool}\ isInside)}
+\DoxyCodeLine{00412\ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_wall}{Wall}}\ tWall;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ tWall.isActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ tWall.isSphere\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ tWall.isInside\ =\ isInside;}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ tWall.center\ =\ center;}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ tWall.range\ =\ range;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ wall.push\_back(tWall);}
+\DoxyCodeLine{00420\ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordtype}{void}\ createSphereWall(\textcolor{keyword}{const}\ Vector3\ \&center,\ \textcolor{keyword}{const}\ Real\ \&range,\ \textcolor{keywordtype}{bool}\ isInside)}
+\DoxyCodeLine{00422\ \ \ \ \ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_wall}{Wall}}\ tWall;}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ tWall.isActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ tWall.isSphere\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ tWall.isInside\ =\ isInside;}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ tWall.center\ =\ center;}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ tWall.range\ =\ Vector3(range,0,0);}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ wall.push\_back(tWall);}
+\DoxyCodeLine{00430\ \ \ \ \ \}}
+\DoxyCodeLine{00431\ \ \ \ \ \textcolor{keyword}{const}\ list<Wall>::type::iterator\ destroyWall(\textcolor{keyword}{const}\ list<Wall>::type::iterator\ \&it)}
+\DoxyCodeLine{00432\ \ \ \ \ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ wall.erase(it);}
+\DoxyCodeLine{00434\ \ \ \ \ \}}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyWall(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{00436\ \ \ \ \ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID\ =\ 0;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ list<Wall>::type::iterator\ it\ =\ wall.begin();}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=wall.end())}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID==iID)\{wall.erase(it);\textcolor{keywordflow}{return};\}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ tID++;}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keyword}{const}\ vector<Wall*>::type\ getWallHitList(\textcolor{keyword}{const}\ Vector3\ \&target)}
+\DoxyCodeLine{00447\ \ \ \ \ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ vector<Wall*>::type\ tList;}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ list<Wall>::type::iterator\ it\ =\ wall.begin();}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=wall.end())}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_wall}{Wall}}\ *tWall\ =\ \&*it;}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tWall-\/>collides(target))tList.push\_back(tWall);}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{00457\ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \ \ \ \ \textcolor{keywordtype}{void}\ createPortal(\textcolor{keyword}{const}\ Vector3\ \&center,\ \textcolor{keyword}{const}\ Real\ \&range,\ String\ destName)}
+\DoxyCodeLine{00459\ \ \ \ \ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSceneMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_portal}{Portal}}\ tPortal;}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ tPortal.mEnt\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}PortalSphere"{}}+StringConverter::toString(portal.size()+1),\textcolor{stringliteral}{"{}CollSphere"{}});}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ tPortal.mNode\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ tPortal.mNode-\/>attachObject(tPortal.mEnt);}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{comment}{//tPortal.mNode-\/>setInheritScale(false);}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ tPortal.mNode-\/>setScale(range,range,range);}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ogre::Sphere\ t\ =\ tPortal.mEnt-\/>getWorldBoundingSphere(true);}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ tPortal.mNode-\/>setPosition(center);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ogre::Node*\ n\ =\ tPortal.mEnt-\/>getParentNode();}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{comment}{//n-\/>setScale(range,range,range);}}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*const\ Vector3\&\ scl\ =\ n-\/>\_getDerivedScale();}}
+\DoxyCodeLine{00474\ \textcolor{comment}{\ \ \ \ \ \ \ \ Real\ factor\ =\ std::max(std::max(scl.x,\ scl.y),\ scl.z);}}
+\DoxyCodeLine{00475\ \textcolor{comment}{\ \ \ \ \ \ \ \ Real\ bRadius\ =\ tPortal.mEnt-\/>getBoundingRadius();}}
+\DoxyCodeLine{00476\ \textcolor{comment}{\ \ \ \ \ \ \ \ Ogre::Sphere\ t\ =\ tPortal.mEnt-\/>getWorldBoundingSphere();}}
+\DoxyCodeLine{00477\ \textcolor{comment}{\ \ \ \ \ \ \ \ Ogre::LogManager::getSingleton().logMessage("{}Portal\ to:\ "{}+destName+\ "{}\ Radius:\ "{}+Ogre::StringConverter::toString(tPortal.mEnt-\/>getWorldBoundingSphere().getRadius()));*/}}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Sphere\ mSph\ =\ tPortal.mEnt-\/>getWorldBoundingSphere();}}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSph.setRadius((Real)0.00025);}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ tPortal.mNode-\/>\_updateBounds();}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{comment}{//tPortal.mNode-\/>showBoundingBox(true);}}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ tPortal.dest\ =\ destName;}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)destName.length();i++)\textcolor{keywordflow}{if}(destName[i]==\textcolor{charliteral}{'\ '})destName[i]\ =\ \textcolor{charliteral}{'\_'};}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ tPortal.mEnt-\/>setMaterialName(\textcolor{stringliteral}{"{}Portal/"{}}+destName);}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ portal.push\_back(tPortal);}
+\DoxyCodeLine{00486\ \ \ \ \ \}}
+\DoxyCodeLine{00487\ \ \ \ \ \textcolor{keyword}{const}\ list<Portal>::type::iterator\ destroyPortal(list<Portal>::type::iterator\ it)}
+\DoxyCodeLine{00488\ \ \ \ \ \{}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSceneMgr)\textcolor{keywordflow}{return}\ ++it;}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_portal}{Portal}}\ *tPortal\ =\ \&*it;}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPortal-\/>mEnt\ \&\&\ mSceneMgr-\/>hasEntity(tPortal-\/>mEnt-\/>getName()))}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ tPortal-\/>mNode-\/>detachObject(tPortal-\/>mEnt);}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getRootSceneNode()-\/>removeChild(tPortal-\/>mNode);}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyEntity(tPortal-\/>mEnt);}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(tPortal-\/>mNode-\/>getName());}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ portal.erase(it);}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyAllPortals()}
+\DoxyCodeLine{00501\ \ \ \ \ \{}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ list<Portal>::type::iterator\ it\ =\ portal.begin();}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=portal.end())}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ destroyPortal(it);}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00507\ \ \ \ \ \}}
+\DoxyCodeLine{00508\ \ \ \ \ \mbox{\hyperlink{struct_portal}{Portal}}*\ getPortalHit(\textcolor{keyword}{const}\ AxisAlignedBox\ \&target)}
+\DoxyCodeLine{00509\ \ \ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ list<Portal>::type::iterator\ it\ =\ portal.begin();}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=portal.end())}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_portal}{Portal}}\ *tPortal\ =\ \&*it;}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPortal-\/>collides(target))\textcolor{keywordflow}{return}\ tPortal;}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00518\ \ \ \ \ \}}
+\DoxyCodeLine{00519\ \ \ \ \ \textcolor{keywordtype}{void}\ getPortalMap(vector<std::pair<Vector2,String>>::type\ \&map)}
+\DoxyCodeLine{00520\ \ \ \ \ \{}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ map.clear();}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ list<Portal>::type::iterator\ it\ =\ portal.begin();}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=portal.end())}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_portal}{Portal}}\ *tPortal\ =\ \&*it;}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPortal-\/>mNode)}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::pair<Vector2,String>\ tData\ =\ std::pair<Vector2,String>(Vector2(tPortal-\/>mNode-\/>getPosition().x,tPortal-\/>mNode-\/>getPosition().z),tPortal-\/>dest);}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ map.push\_back(tData);}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00533\ \ \ \ \ \}}
+\DoxyCodeLine{00534\ \ \ \ \ \textcolor{keywordtype}{void}\ createWaterBox(\textcolor{keyword}{const}\ Vector3\ \&center,\ \textcolor{keyword}{const}\ Real\ \&scaleX,\ \textcolor{keyword}{const}\ Real\ \&scaleZ,\ \textcolor{keywordtype}{bool}\ isSolid=\textcolor{keyword}{false})}
+\DoxyCodeLine{00535\ \ \ \ \ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_water_box}{WaterBox}}\ tBox;}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ tBox.isActive\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ tBox.center\ =\ center;}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ tBox.scale\ =\ Vector2(scaleX,scaleZ);}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ tBox.isSolid\ =\ isSolid;}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ waterBox.push\_back(tBox);}
+\DoxyCodeLine{00542\ \ \ \ \ \}}
+\DoxyCodeLine{00543\ \ \ \ \ \textcolor{keyword}{const}\ list<WaterBox>::type::iterator\ destroyWaterBox(\textcolor{keyword}{const}\ list<WaterBox>::type::iterator\ \&it)}
+\DoxyCodeLine{00544\ \ \ \ \ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ waterBox.erase(it);}
+\DoxyCodeLine{00546\ \ \ \ \ \}}
+\DoxyCodeLine{00547\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyAllWaterBoxes()}
+\DoxyCodeLine{00548\ \ \ \ \ \{}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ list<WaterBox>::type::iterator\ it\ =\ waterBox.begin();}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=waterBox.end())}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ destroyWaterBox(it);}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00554\ \ \ \ \ \}}
+\DoxyCodeLine{00555\ \ \ \ \ \mbox{\hyperlink{struct_water_box}{WaterBox}}*\ getWaterBoxHit(\textcolor{keyword}{const}\ Vector3\ \&target)}
+\DoxyCodeLine{00556\ \ \ \ \ \{}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ list<WaterBox>::type::iterator\ it\ =\ waterBox.begin();}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=waterBox.end())}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_water_box}{WaterBox}}\ *tBox\ =\ \&*it;}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBox-\/>collides(target))\textcolor{keywordflow}{return}\ tBox;}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00565\ \ \ \ \ \}}
+\DoxyCodeLine{00566\ \ \ \ \ \textcolor{keywordtype}{void}\ createGate(\textcolor{keyword}{const}\ Vector3\ \&center,\ String\ destName,\ \textcolor{keyword}{const}\ Vector3\ \&destVect,\ \textcolor{keyword}{const}\ String\ \&matName,\ \textcolor{keywordtype}{bool}\ hasVectY)}
+\DoxyCodeLine{00567\ \ \ \ \ \{}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSceneMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_gate}{Gate}}\ tGate;}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ tGate.mEnt\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}GateSphere"{}}+StringConverter::toString(gate.size()+1),\textcolor{stringliteral}{"{}CollSphere"{}});}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ tGate.mNode\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ tGate.mNode-\/>attachObject(tGate.mEnt);}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \textcolor{comment}{//tGate.mNode-\/>setInheritScale(false);}}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ tGate.mNode-\/>setScale(40,40,40);}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ tGate.mNode-\/>setPosition(center);}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*Ogre::Node*\ n\ =\ tGate.mEnt-\/>getParentNode();}}
+\DoxyCodeLine{00578\ \textcolor{comment}{\ \ \ \ \ \ \ \ n-\/>setScale(40,40,40);}}
+\DoxyCodeLine{00579\ \textcolor{comment}{\ \ \ \ \ \ \ \ const\ Vector3\&\ scl\ =\ n-\/>\_getDerivedScale();}}
+\DoxyCodeLine{00580\ \textcolor{comment}{\ \ \ \ \ \ \ \ Real\ factor\ =\ std::max(std::max(scl.x,\ scl.y),\ scl.z);}}
+\DoxyCodeLine{00581\ \textcolor{comment}{\ \ \ \ \ \ \ \ Real\ bRadius\ =\ tGate.mEnt-\/>getBoundingRadius();}}
+\DoxyCodeLine{00582\ \textcolor{comment}{\ \ \ \ \ \ \ \ Ogre::Sphere\ t\ =\ tGate.mEnt-\/>getWorldBoundingSphere();*/}}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Sphere\ mSph\ =\ tGate.mEnt-\/>getWorldBoundingSphere();}}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSph.setRadius((Real)0.00025);}}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ tGate.mNode-\/>\_updateBounds();}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ tGate.dest\ =\ destName;}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ tGate.destVect\ =\ destVect;}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ tGate.hasVectY\ =\ hasVectY;}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ tGate.mEnt-\/>setMaterialName(matName);}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ tGate.mEnt-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ gate.push\_back(tGate);}
+\DoxyCodeLine{00592\ \ \ \ \ \}}
+\DoxyCodeLine{00593\ \ \ \ \ \textcolor{keyword}{const}\ list<Gate>::type::iterator\ destroyGate(list<Gate>::type::iterator\ it)}
+\DoxyCodeLine{00594\ \ \ \ \ \{}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSceneMgr)\textcolor{keywordflow}{return}\ ++it;}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_gate}{Gate}}\ *tGate\ =\ \&*it;}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tGate-\/>mEnt\ \&\&\ mSceneMgr-\/>hasEntity(tGate-\/>mEnt-\/>getName()))}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ tGate-\/>mNode-\/>detachObject(tGate-\/>mEnt);}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getRootSceneNode()-\/>removeChild(tGate-\/>mNode);}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyEntity(tGate-\/>mEnt);}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(tGate-\/>mNode-\/>getName());}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ gate.erase(it);}
+\DoxyCodeLine{00605\ \ \ \ \ \}}
+\DoxyCodeLine{00606\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyAllGates()}
+\DoxyCodeLine{00607\ \ \ \ \ \{}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ list<Gate>::type::iterator\ it\ =\ gate.begin();}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=gate.end())}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ it\ =\ destroyGate(it);}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00613\ \ \ \ \ \}}
+\DoxyCodeLine{00614\ \ \ \ \ \mbox{\hyperlink{struct_gate}{Gate}}*\ getGateHit(\textcolor{keyword}{const}\ AxisAlignedBox\ \&target)}
+\DoxyCodeLine{00615\ \ \ \ \ \{}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ list<Gate>::type::iterator\ it\ =\ gate.begin();}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=gate.end())}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_gate}{Gate}}\ *tGate\ =\ \&*it;}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tGate-\/>collides(target))\textcolor{keywordflow}{return}\ tGate;}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00624\ \ \ \ \ \}}
+\DoxyCodeLine{00625\ \ \ \ \ \textcolor{keywordtype}{void}\ getGateMap(vector<std::pair<Vector2,String>>::type\ \&map)}
+\DoxyCodeLine{00626\ \ \ \ \ \{}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ map.clear();}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ list<Gate>::type::iterator\ it\ =\ gate.begin();}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=gate.end())}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_gate}{Gate}}\ *tGate\ =\ \&*it;}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tGate-\/>mNode)}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::pair<Vector2,String>\ tData\ =\ std::pair<Vector2,String>(Vector2(tGate-\/>mNode-\/>getPosition().x,tGate-\/>mNode-\/>getPosition().z),tGate-\/>dest);}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ map.push\_back(tData);}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00639\ \ \ \ \ \}}
+\DoxyCodeLine{00640\ \ \ \ \ \textcolor{keywordtype}{void}\ createCollBox(\textcolor{keyword}{const}\ Vector3\ \&center,\ \textcolor{keyword}{const}\ Vector3\ \&range)}
+\DoxyCodeLine{00641\ \ \ \ \ \{}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_coll_box}{CollBox}}\ tBox;}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ tBox.center\ =\ center;}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ tBox.range\ =\ range;}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ collBox.push\_back(tBox);}
+\DoxyCodeLine{00646\ \ \ \ \ \}}
+\DoxyCodeLine{00647\ \ \ \ \ \textcolor{keyword}{const}\ vector<CollBox*>::type\ getCollBoxHitList(\textcolor{keyword}{const}\ Vector3\ \&target,\ \textcolor{keyword}{const}\ Real\ \&headHeight)}
+\DoxyCodeLine{00648\ \ \ \ \ \{}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ vector<CollBox*>::type\ tList;}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ list<CollBox>::type::iterator\ it\ =\ collBox.begin();}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=collBox.end())}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_coll_box}{CollBox}}\ *tBox\ =\ \&*it;}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBox-\/>collides(target,headHeight))tList.push\_back(tBox);}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{00658\ \ \ \ \ \}}
+\DoxyCodeLine{00659\ \ \ \ \ \textcolor{keywordtype}{void}\ createCollSphere(\textcolor{keyword}{const}\ Vector3\ \&center,\ \textcolor{keyword}{const}\ Real\ \&range)}
+\DoxyCodeLine{00660\ \ \ \ \ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_coll_sphere}{CollSphere}}\ tSphere;}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ tSphere.center\ =\ center;}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ tSphere.range\ =\ range;}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ collSphere.push\_back(tSphere);}
+\DoxyCodeLine{00665\ \ \ \ \ \}}
+\DoxyCodeLine{00666\ \ \ \ \ \textcolor{keyword}{const}\ vector<CollSphere*>::type\ getCollSphereHitList(\textcolor{keyword}{const}\ Vector3\ \&target)}
+\DoxyCodeLine{00667\ \ \ \ \ \{}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ vector<CollSphere*>::type\ tList;}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ list<CollSphere>::type::iterator\ it\ =\ collSphere.begin();}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(it!=collSphere.end())}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_coll_sphere}{CollSphere}}\ *tSphere\ =\ \&*it;}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSphere-\/>collides(target))tList.push\_back(tSphere);}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ it++;}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{00677\ \ \ \ \ \}}
+\DoxyCodeLine{00678\ \ \ \ \ }
+\DoxyCodeLine{00679\ \};}
+\DoxyCodeLine{00680\ }
+\DoxyCodeLine{00681\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

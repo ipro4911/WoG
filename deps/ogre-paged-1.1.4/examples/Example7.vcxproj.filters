@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\Kito_CopyrightFree\IT_source\deps\ogre-paged-1.1.4\examples\Example7.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <CustomBuild Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\Kito_CopyrightFree\IT_source\deps\ogre-paged-1.1.4\examples\CMakeLists.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{DED92860-21F6-3D9B-BBAE-EEEA1B6C4396}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

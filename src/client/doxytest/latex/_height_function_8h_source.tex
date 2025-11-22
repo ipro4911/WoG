@@ -1,0 +1,63 @@
+\doxysection{Height\+Function.\+h}
+\hypertarget{_height_function_8h_source}{}\label{_height_function_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/HeightFunction.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/HeightFunction.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//This\ provides\ functions\ that\ can\ be\ used\ to\ easily\ get\ the\ height\ of\ Ogre's\ terrain\ at\ any\ x/z\ point.}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//Simply\ call\ HeightFunction::initialize(),\ then\ use\ HeightFunction::getTerrainHeight()\ as\ needed.}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//This\ file\ is\ used\ by\ the\ PagedGeometry\ examples\ to\ place\ trees\ on\ the\ terrain.}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{keyword}{namespace\ }HeightFunction}
+\DoxyCodeLine{00010\ \{}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_height_function_1_1_my_ray_scene_query_listener}{MyRaySceneQueryListener}}:\ \textcolor{keyword}{public}\ RaySceneQueryListener}
+\DoxyCodeLine{00012\ \ \ \ \ \{}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ queryResult(SceneQuery::WorldFragment\ *fragment,\ Real\ distance)}
+\DoxyCodeLine{00015\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ \ \ \ \ resultDistance\ =\ distance;}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00018\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ queryResult(MovableObject\ *obj,\ Real\ distance)}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ resultDistance\ =\ distance;}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{float}\ resultDistance;}
+\DoxyCodeLine{00026\ \ \ \ \ \};}
+\DoxyCodeLine{00027\ }
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ initialized\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00029\ \ \ \ \ RaySceneQuery*\ raySceneQuery;}
+\DoxyCodeLine{00030\ \ \ \ \ Ray\ updateRay;}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_height_function_1_1_my_ray_scene_query_listener}{MyRaySceneQueryListener}}\ *raySceneQueryListener;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//Initializes\ the\ height\ function.\ Call\ this\ before\ calling\ getTerrainHeight()}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(SceneManager\ *sceneMgr)\{}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!initialized)\{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \ \ \ \ initialized\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ updateRay.setOrigin(Vector3::ZERO);}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ updateRay.setDirection(Vector3::NEGATIVE\_UNIT\_Y);}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ raySceneQuery\ =\ sceneMgr-\/>createRayQuery(updateRay);}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ raySceneQuery-\/>setQueryTypeMask(Ogre::SceneManager::WORLD\_GEOMETRY\_TYPE\_MASK);\ \ \ }
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ raySceneQuery-\/>setWorldFragmentType(Ogre::SceneQuery::WFT\_SINGLE\_INTERSECTION);\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ raySceneQueryListener\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_height_function_1_1_my_ray_scene_query_listener}{MyRaySceneQueryListener}};}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{comment}{//Gets\ the\ height\ of\ the\ terrain\ at\ the\ specified\ x/z\ coordinate}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{comment}{//The\ userData\ parameter\ isn't\ used\ in\ this\ implementation\ of\ a\ height\ function,\ since}}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{comment}{//there's\ no\ need\ for\ extra\ data\ other\ than\ the\ x/z\ coordinates.}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{float}\ getTerrainHeight(\textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ x,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ z,\ \textcolor{keywordtype}{void}\ *userData\ =\ NULL)\{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ updateRay.setOrigin(Vector3(x,\ 0.0f,\ z));}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ updateRay.setDirection(Vector3::UNIT\_Y);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ raySceneQuery-\/>setRay(updateRay);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ raySceneQuery-\/>execute(raySceneQueryListener);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ raySceneQueryListener-\/>resultDistance;}
+\DoxyCodeLine{00056\ \ \ \ \ \}}
+\DoxyCodeLine{00057\ \}}
+
+\end{DoxyCode}

@@ -1,0 +1,483 @@
+[Initialize]
+World_Load=Forest
+Sky_DayTime=1810
+Sky_FreezeTime=true
+Unit_Create=PLAYER,Aquanite,Body,Head2,Mane3,Tail2,Wingless,AquaMat,Tuftless
+
+[]
+EventCondition=PROGRESS,0
+
+World_DestroyAllPortals
+Sky_WeatherCycle=None
+Unit_Reset=PLAYER
+Unit_SetHP=PLAYER,700
+Unit_ClearAttackList=PLAYER
+Unit_PushAttackList=PLAYER,Dash
+Unit_PushAttackList=PLAYER,Slash
+Unit_PushAttackList=PLAYER,Roundhouse
+Unit_PushAttackList=PLAYER,Somersault
+Player_ResetSkills
+Player_AddSkill=Cure,5
+Unit_ToggleStance=PLAYER
+Unit_SetEmote=PLAYER,Frown
+
+Music_Play=hurry.mp3
+ToggleCinematic
+FadeIn=3
+
+[]
+EventCondition=PROGRESS,NEXT
+
+Camera_ResetCameraTrack=26
+Camera_AddCameraTrack=0,2500 620 2500,0 -90 0
+Camera_AddCameraTrack=8,PLAYER_POSITION+(0 520 20),-10 180 0
+Camera_AddCameraTrack=14,CAMERA_POSITION+(-50 30 50),-40 270 0
+Camera_AddCameraTrack=18,CAMERA_POSITION+(0 10 100),-10 360 0
+Camera_AddCameraTrack=22,CAMERA_POSITION+(20 -10 50),-10 450 0
+Camera_AddCameraTrack=26,CAMERA_POSITION,0 540 0
+Camera_DoCameraTrack=false
+
+Timer=26.1
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+World_CreateBoxWall=2553 200 3140,3798 5000 2824,false
+World_CreateBoxWall=2865 200 2765,3294 5000 2578,true
+Camera_StopCameraTrack
+ToggleCinematic
+RandomSpawn=true
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=UNIT_IN_REGION,PLAYER,4200 4300,1000
+
+World_DestroyWall=0
+World_DestroyWall=0
+KillSpawns
+RandomSpawn=false
+FadeOut=0.5
+
+Timer=1.1
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+SetCheckpoint
+ToggleCinematic
+FadeIn=2.5
+Unit_SetPosition=PLAYER,2939 130 2400
+Unit_SetLookDirection=PLAYER,45 290 0
+Unit_SetTarget=PLAYER,3139 130 2300,TARGET_RUNTO
+Unit_SetIsWalking=PLAYER,true
+Unit_StopStance=PLAYER
+Unit_SetEmote=PLAYER,Sad
+
+Unit_Create=1,Natsume,Body,Head3,Maneless,Tail2,Wings,NatsuMat,Tuftless
+Unit_SetScale=BY_NAME(Natsume),1.4 1.4 1.4
+Unit_SetPosition=BY_NAME(Natsume),1939 200 2326
+Unit_Reset=BY_NAME(Natsume)
+Unit_SetTarget=BY_NAME(Natsume),PLAYER_POSITION,TARGET_LOOKAT
+Unit_SetAutoTrackObject=BY_NAME(Natsume),PLAYER
+Unit_SetAlliance=BY_NAME(Natsume),ALLIANCE_ENEMY
+Unit_SetHP=BY_NAME(Natsume),1000
+Unit_SetAntiGravity=BY_NAME(Natsume),true
+Unit_PushAttackList=BY_NAME(Natsume),Dash
+Unit_PushAttackList=BY_NAME(Natsume),Roundhouse
+Unit_PushAttackList=BY_NAME(Natsume),Wingslash
+
+Camera_ResetCameraTrack=8
+Camera_AddCameraTrack=0,3450 145 2100,-25 120 0
+Camera_AddCameraTrack=8,3250 165 2300,-5 90 0
+Camera_DoCameraTrack=false
+Music_Stop=true
+
+Timer=4
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetLookDirection=PLAYER,30 240 0
+Timer=5
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetPosition=BY_NAME(Natsume),2939 200 2326
+Unit_StopAction=PLAYER
+Unit_SetYaw=PLAYER,180
+Unit_SetAutoTrackObject=PLAYER,BY_NAME(Natsume)
+Unit_ToggleStance=PLAYER
+Unit_SetEmote=PLAYER,Frown
+
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=7
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-20 30 0),-40 270 0
+Camera_AddCameraTrack=2,PLAYER_POSITION+(0 15 -25),-20 200 0
+Camera_AddCameraTrack=4,PLAYER_POSITION+(5 15 -10),-20 180 0
+Camera_AddCameraTrack=7,PLAYER_POSITION+(10 5 -10),15 100 0
+Camera_DoCameraTrack=false
+Music_Play=boss1.mp3
+
+Timer=8
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetYaw=PLAYER,240
+Unit_ToggleStance=PLAYER
+Unit_SetEmote=PLAYER,SubtleFrown
+Cinematic_Caption=3,I'm done running, Natsume.
+Unit_DoLipSync=PLAYER,(1)aim (1.2)dan raning natsumi
+
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=8
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-40 18 0),-20 290 0
+Camera_AddCameraTrack=3,PLAYER_POSITION+(-45 25 -5),-15 250 0
+Camera_AddCameraTrack=8,PLAYER_POSITION+(-220 100 5),-30 265 0
+Camera_DoCameraTrack=false
+
+Timer=3.5
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Cinematic_Caption=3,There's nothing left for me.
+Unit_DoLipSync=PLAYER,(1.2),thars nathing laft for me
+
+Timer=5
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+FadeOut=0.5
+
+Timer=0.6
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+FadeIn=0.5
+Cinematic_Caption=3,Good. Now you understand.
+Unit_DoLipSync=BY_NAME(Natsume),(1.2)good, (1)nao yo (1.2)andirst
+Unit_SetEmote=BY_NAME(Natsume),SubtleFrown
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=8
+Camera_AddCameraTrack=0,POSITION_BY_NAME(Natsume)+(35 15 45),5 30 0
+Camera_AddCameraTrack=8,POSITION_BY_NAME(Natsume)+(65 -5 -30),9 120 0
+Camera_DoCameraTrack=false
+
+Timer=8
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=3
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-20 30 0),-40 270 0
+Camera_AddCameraTrack=1.5,PLAYER_POSITION+(0 15 -10),-20 180 0
+Camera_AddCameraTrack=3,PLAYER_POSITION+(10 5 -10),15 100 0
+Camera_DoCameraTrack=false
+
+Timer=2.5
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetTarget=BY_NAME(Natsume),POSITION_BY_NAME(Natsume)+(0 300 0)
+
+Timer=2
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetPosition=BY_NAME(Natsume),2739 400 2326
+Unit_SetTarget=BY_NAME(Natsume),3039 0 2326
+Unit_SetCustomAnimation=BY_NAME(Natsume),true,Attack1,0.1,true,true
+Unit_SetEmote=BY_NAME(Natsume),Rage
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=3
+Camera_AddCameraTrack=0,POSITION_BY_NAME(Natsume)+(55 -35 -20)
+Camera_AddCameraTrack=3,POSITION_BY_NAME(Natsume)+(85 -50 -30)
+Camera_DoCameraTrack=false,true,BY_NAME(Natsume)
+ToggleMotionBlur
+
+Timer=3
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetForce=BY_NAME(Natsume),0 0 0
+Unit_SetCustomAnimation=BY_NAME(Natsume),false
+Unit_SetAutoTrackObject=PLAYER,0
+Unit_SetLookDirection=PLAYER,0 100 -15
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=5
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-30 15 -25),-10 250 0
+Camera_AddCameraTrack=5,PLAYER_POSITION+(-15 10 -20),-5 210 0
+Camera_DoCameraTrack=false
+ToggleMotionBlur
+
+Timer=2
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Cinematic_Caption=3,Not today.
+Unit_DoLipSync=PLAYER,(1.2)not (1.4)today
+Unit_ToggleStance=PLAYER
+Unit_SetLookDirection=PLAYER,0 90 15
+
+Timer=2.5
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+FadeOut=0.5
+
+Timer=1
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetPosition=BY_NAME(Natsume),2939 200 2326
+Unit_ClampToTerrain=BY_NAME(Natsume),false
+Unit_SetLookDirection=PLAYER,0 90 0
+World_CreateSphereWall=3100 130 2350,1000,false
+FadeIn=0.5
+Camera_StopCameraTrack
+Camera_Reset
+ToggleCinematic=true
+Unit_SetScript=BY_NAME(Natsume),NatsumeScript.campaign
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=HP_RATIO_LESS_THAN_EQUALS,BY_NAME(Natsume),0
+
+Unit_RemoveScript=BY_NAME(Natsume)
+Unit_StopAction=BY_NAME(Natsume)
+ToggleCinematic=true
+FadeOut=1,1 1 1
+Music_Stop=true
+World_DestroyWall=0
+
+Timer=3
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+ToggleCinematic=true
+ToggleCinematic
+FadeIn=1,1 1 1
+Unit_Reset=PLAYER
+Unit_SetPosition=PLAYER,3090 130 2300
+Unit_ClampToTerrain=PLAYER,true
+Unit_SetYaw=PLAYER,90,true
+Unit_SetAutoTrackObject=PLAYER,BY_NAME(Natsume)
+Unit_StopStance=PLAYER
+Unit_ToggleStance=PLAYER
+
+Unit_Reset=BY_NAME(Natsume)
+Unit_SetAntiGravity=BY_NAME(Natsume),false
+Unit_SetForce=BY_NAME(Natsume),0 0 0
+Unit_SetPosition=BY_NAME(Natsume),3110 130 2300
+Unit_ClampToTerrain=BY_NAME(Natsume),true
+Unit_SetYaw=BY_NAME(Natsume),270,true
+Unit_SetAutoTrackObject=BY_NAME(Natsume),PLAYER
+Unit_StopStance=BY_NAME(Natsume)
+Unit_ToggleStance=BY_NAME(Natsume)
+Unit_SetEmote=BY_NAME(Natsume),Rage
+
+Camera_ResetCameraTrack=6
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-50 25 -5),-10 270 0
+Camera_AddCameraTrack=1.5,PLAYER_POSITION+(0 15 -50),-7 180 0
+Camera_AddCameraTrack=3,PLAYER_POSITION+(80 10 0),-5 90 0
+Camera_AddCameraTrack=4.5,PLAYER_POSITION+(20 10 30),-5 0 0
+Camera_AddCameraTrack=6,PLAYER_POSITION+(0 20 35),-10 -45 0
+Camera_DoCameraTrack=false
+ToggleMotionBlur
+Music_Play=finale.mp3,false
+
+Timer=2.5
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetAttack=BY_NAME(Natsume),Dash
+Unit_SetMaterial=PLAYER,AquaMat/ScarredBodyMat,ENT_BODY
+
+Timer=1.5
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetAttack=PLAYER,Roundhouse
+Unit_SetYaw=BY_NAME(Natsume),220
+
+Timer=1
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetTarget=PLAYER,2000 130 2300,TARGET_RUNTO
+Unit_SetFreeLook=PLAYER,false
+
+Timer=1
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+ToggleMotionBlur
+Cinematic_Caption=4,There's no use running, halfblood.
+Unit_DoLipSync=BY_NAME(Natsume),thars no use ranning halfblad
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=2
+Camera_AddCameraTrack=0,POSITION_BY_NAME(Natsume)+(-20 20 -10)
+Camera_AddCameraTrack=2,POSITION_BY_NAME(Natsume)+(-50 25 -15)
+Camera_DoCameraTrack=false,true,BY_NAME(Natsume)
+
+Timer=2
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetPosition=PLAYER,3000 400 700
+Unit_ClampToTerrain=PLAYER,true
+Unit_SetTarget=PLAYER,1000 400 700,TARGET_RUNTO
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=6
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-100 30 -40)
+Camera_AddCameraTrack=6,PLAYER_POSITION+(-700 30 -40)
+Camera_DoCameraTrack=false,true,PLAYER
+
+Timer=3
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Cinematic_Caption=3,The venom will numb your body.
+
+Timer=7
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_Reset=PLAYER
+Unit_SetYaw=PLAYER,270,true
+Unit_SetPosition=PLAYER,1490 400 700
+Unit_SetForce=PLAYER,-1 0 0
+Unit_ClampToTerrain=PLAYER,true
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=6
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-10 10 -20)
+Camera_AddCameraTrack=2,PLAYER_POSITION+(-80 40 -120)
+Camera_AddCameraTrack=6,PLAYER_POSITION+(70 60 10)
+Camera_DoCameraTrack=false,true,PLAYER
+
+Timer=6
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetEmote=PLAYER,Pain
+Unit_SetLookDirection=PLAYER,0 50 -50
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=5
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-6 3 -7),-10 180 0
+Camera_AddCameraTrack=5,PLAYER_POSITION+(-8 12 -35),-5 180 0
+Camera_DoCameraTrack=false
+
+Timer=5
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Cinematic_Caption=4,See you in hell.
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=4
+Camera_AddCameraTrack=0,PLAYER_POSITION+(-5 12 -20),-5 180 0
+Camera_AddCameraTrack=4,PLAYER_POSITION+(-25 8 -5),0 270 -15
+Camera_DoCameraTrack=false
+
+Timer=1
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetEmote=PLAYER,Shock
+Unit_SetLookDirection=PLAYER,0 300 -30
+
+Timer=3
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetEmote=PLAYER,Anger
+Unit_SetLookDirection=PLAYER,0 90 0
+Camera_StopCameraTrack
+Camera_ResetCameraTrack=4
+Camera_AddCameraTrack=0,PLAYER_POSITION+(10 15 18)
+Camera_AddCameraTrack=2,PLAYER_POSITION+(-20 20 -20)
+Camera_AddCameraTrack=4,PLAYER_POSITION+(-400 0 -400)
+Camera_DoCameraTrack=false,true,PLAYER
+
+Timer=1.8
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+ToggleMotionBlur
+
+Timer=1
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+Unit_SetTarget=PLAYER,500 400 700,TARGET_RUNTO
+
+Timer=1.2
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+FadeOut=0
+Camera_StopCameraTrack
+ToggleMotionBlur
+
+Timer=3
+
+[]
+EventCondition=PROGRESS,NEXT
+EventCondition=TIMER,0
+
+CloseCampaign=Halfblood.credits

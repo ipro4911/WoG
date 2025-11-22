@@ -1,0 +1,106 @@
+\doxysection{Sound\+Manager.\+h}
+\hypertarget{_sound_manager_8h_source}{}\label{_sound_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/SoundManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/SoundManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_SOUNDMANAGER\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_SOUNDMANAGER\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <fmod.hpp>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ MAX\_SOUND\_CHANNELS\ \ \ \ \ \ \ 30}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ INVALID\_SOUND\_INDEX\ \ \ \ \ \ 0}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ INVALID\_SOUND\_CHANNEL\ \ \ \ -\/1}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{enum}}
+\DoxyCodeLine{00017\ \ \ \ \{}
+\DoxyCodeLine{00018\ \ \ \ SOUND\_TYPE\_INVALID\ =\ 0,}
+\DoxyCodeLine{00019\ \ \ \ SOUND\_TYPE\_3D\_SOUND,}
+\DoxyCodeLine{00020\ \ \ \ SOUND\_TYPE\_3D\_SOUND\_LOOPED,}
+\DoxyCodeLine{00021\ \ \ \ SOUND\_TYPE\_2D\_SOUND,}
+\DoxyCodeLine{00022\ \ \ \ SOUND\_TYPE\_2D\_SOUND\_LOOPED,}
+\DoxyCodeLine{00023\ \ \ \ \}\ SOUND\_TYPE;}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_sound_instance}{SoundInstance}}}
+\DoxyCodeLine{00027\ \ \ \ \{}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ Clear(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00030\ \ \ \ String\ \ \ \ \ \ \ \ \ fileName;}
+\DoxyCodeLine{00031\ \ \ \ Archive\ *\ \ \ \ \ \ fileArchive;}
+\DoxyCodeLine{00032\ \ \ \ DataStreamPtr\ \ streamPtr;}
+\DoxyCodeLine{00033\ \ \ \ SOUND\_TYPE\ \ \ \ \ soundType;}
+\DoxyCodeLine{00034\ \ \ \ FMOD::Sound\ *\ \ fmodSound;}
+\DoxyCodeLine{00035\ \ \ \ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_channel_instance}{ChannelInstance}}}
+\DoxyCodeLine{00039\ \ \ \ \{}
+\DoxyCodeLine{00040\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00041\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ Clear(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00042\ \ \ \ Ogre::SceneNode\ *\ sceneNode;}
+\DoxyCodeLine{00043\ \ \ \ Ogre::Vector3\ \ \ \ \ prevPosition;}
+\DoxyCodeLine{00044\ \ \ \ \};}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }SoundManager\ :\ \textcolor{keyword}{public}\ Ogre::Singleton<SoundManager>}
+\DoxyCodeLine{00050\ \ \ \ \{}
+\DoxyCodeLine{00051\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SoundManager();}
+\DoxyCodeLine{00053\ \ \ \ \textcolor{keyword}{virtual}\ \ \ \ \ \ \ \ \ \ \ \ \ \string~SoundManager();}
+\DoxyCodeLine{00054\ \ \ \ \textcolor{keywordtype}{bool}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Initialize(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00055\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StopAllSounds(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00056\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameStarted(Ogre::SceneNode\ *listenerNode,\ Ogre::Real\ timeElapsed);}
+\DoxyCodeLine{00057\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FrameStarted(Ogre::Camera\ *listenerNode,\ Ogre::Real\ timeElapsed);}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CreateSound(String\ \&fileName);\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ single-\/shot\ 3D\ sound.\ \ returns\ soundIndex}}
+\DoxyCodeLine{00060\ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CreateStream(String\ \&fileName);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ single-\/shot\ 2D\ stream.\ \ returns\ soundIndex}}
+\DoxyCodeLine{00061\ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CreateLoopedSound(String\ \&fileName);\ \ \ \textcolor{comment}{//\ looping\ 3D\ sound.\ \ returns\ soundIndex}}
+\DoxyCodeLine{00062\ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CreateLoopedStream(String\ \&fileName);\ \ \textcolor{comment}{//\ looping\ 2D\ stream.\ \ returns\ soundIndex}}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CreateSound(String\ \&fileName,\ SOUND\_TYPE\ soundType);}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00066\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PlaySound(\textcolor{keywordtype}{int}\ soundIndex,\ SceneNode\ *soundNode,\ \textcolor{keywordtype}{int}\ *channelIndex);}
+\DoxyCodeLine{00067\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ PlayMusic(\textcolor{keywordtype}{int}\ soundIndex,\ FMOD::Channel\ **channel);}
+\DoxyCodeLine{00068\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StopSound(\textcolor{keywordtype}{int}\ *channelIndex);}
+\DoxyCodeLine{00069\ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FindSound(String\ \&fileName,\ SOUND\_TYPE\ soundType);\ \ \ \ \textcolor{comment}{//\ returns\ soundIndex;}}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Set3DMinMaxDistance(\textcolor{keywordtype}{int}\ channelIndex,\ \textcolor{keywordtype}{float}\ minDistance,\ \textcolor{keywordtype}{float}\ maxDistance);}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \textcolor{keywordtype}{float}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetSoundLength(\textcolor{keywordtype}{int}\ soundIndex);\ \ \ \ \ \ \ \ \textcolor{comment}{//\ returns\ seconds}}
+\DoxyCodeLine{00074\ \ \ \ \mbox{\hyperlink{class_sound_instance}{SoundInstance}}\ \ \ \ \ \ \ *GetSoundInstance(\textcolor{keywordtype}{int}\ soundIndex);}
+\DoxyCodeLine{00075\ \ \ \ FMOD::Channel\ \ \ \ \ \ \ *GetSoundChannel(\textcolor{keywordtype}{int}\ channelIndex);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \textcolor{keyword}{static}\ SoundManager\&\ getSingleton(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00078\ \ \ \ \textcolor{keyword}{static}\ SoundManager*\ getSingletonPtr(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ clearChannelsConnectedToSceneNode(SceneNode\ *node);}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00083\ \ \ \ \textcolor{keyword}{typedef}\ std::vector<SoundInstance\ *>\ \ \ SoundInstanceVector;}
+\DoxyCodeLine{00084\ \ \ \ \textcolor{keyword}{typedef}\ SoundInstanceVector::iterator\ \ SoundInstanceVectorItr;}
+\DoxyCodeLine{00085\ }
+\DoxyCodeLine{00086\ \ \ \ \textcolor{keywordtype}{int}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextSoundInstanceIndex;}
+\DoxyCodeLine{00087\ \ \ \ FMOD::System\ *\ \ \ \ \ \ \ system;}
+\DoxyCodeLine{00088\ \ \ \ Ogre::Vector3\ \ \ \ \ \ \ \ prevListenerPosition;}
+\DoxyCodeLine{00089\ \ \ \ SoundInstanceVector\ *soundInstanceVector;}
+\DoxyCodeLine{00090\ \ \ \ \mbox{\hyperlink{class_channel_instance}{ChannelInstance}}\ \ \ \ \ \ channelArray[MAX\_SOUND\_CHANNELS];}
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \textcolor{keywordtype}{void}\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ IncrementNextSoundInstanceIndex(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \textcolor{keyword}{static}\ FMOD\_RESULT\ F\_CALLBACK\ \ fmodFileOpenCallback(\textcolor{keyword}{const}\ \textcolor{keywordtype}{char}\ *fileName,\ \textcolor{keywordtype}{int}\ unicode,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ *filesize,\ \textcolor{keywordtype}{void}\ **handle,\ \textcolor{keywordtype}{void}\ **userdata);}
+\DoxyCodeLine{00095\ \ \ \ \textcolor{keyword}{static}\ FMOD\_RESULT\ F\_CALLBACK\ \ fmodFileCloseCallback(\textcolor{keywordtype}{void}\ *handle,\ \textcolor{keywordtype}{void}\ *userdata);}
+\DoxyCodeLine{00096\ \ \ \ \textcolor{keyword}{static}\ FMOD\_RESULT\ F\_CALLBACK\ \ fmodFileReadCallback(\textcolor{keywordtype}{void}\ *handle,\ \textcolor{keywordtype}{void}\ *buffer,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ sizebytes,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ *bytesread,\ \textcolor{keywordtype}{void}\ *userdata);}
+\DoxyCodeLine{00097\ \ \ \ \textcolor{keyword}{static}\ FMOD\_RESULT\ F\_CALLBACK\ \ fmodFileSeekCallback(\textcolor{keywordtype}{void}\ *handle,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ pos,\ \textcolor{keywordtype}{void}\ *userdata);}
+\DoxyCodeLine{00098\ \ \ \ \};}
+\DoxyCodeLine{00099\ }
+\DoxyCodeLine{00100\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//\ \_\_SOUNDMANAGER\_H\_\_}}
+
+\end{DoxyCode}

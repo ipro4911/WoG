@@ -1,0 +1,127 @@
+\doxysection{ogremagix\+App Class Reference}
+\hypertarget{classogremagix_app}{}\label{classogremagix_app}\index{ogremagixApp@{ogremagixApp}}
+Inheritance diagram for ogremagix\+App\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classogremagix_app}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+virtual void \mbox{\hyperlink{classogremagix_app_adf02df48dbbea81c833780da1c954406}{create\+Camera}} (void)
+\item 
+virtual bool \mbox{\hyperlink{classogremagix_app_ac094104ec9da776d1431a44748a22d89}{configure}} (void)
+\item 
+virtual void \mbox{\hyperlink{classogremagix_app_ae4402570998eb9d3a5de880dd8d60a35}{create\+Scene}} (void)
+\item 
+virtual void \mbox{\hyperlink{classogremagix_app_a62c89da24de181f3beedf891c5b0282e}{destroy\+Scene}} ()
+\item 
+void \mbox{\hyperlink{classogremagix_app_af719e7a3868bb23bebaf1612bb04169e}{create\+Frame\+Listener}} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_magix_application}{Magix\+Application}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual bool \mbox{\hyperlink{class_magix_application_a3c00f44f1b727c5a35dd35214a90506e}{setup}} (void)
+\item 
+virtual void {\bfseries choose\+Scene\+Manager} (void)
+\item 
+virtual void {\bfseries create\+Viewports} (void)
+\item 
+virtual void {\bfseries setup\+Resources} (void)
+\begin{DoxyCompactList}\small\item\em Method which will define the source of resources (other than current folder) \end{DoxyCompactList}\item 
+virtual void {\bfseries create\+Resource\+Listener} (void)
+\begin{DoxyCompactList}\small\item\em Optional override method where you can create resource listeners (e.\+g. for loading screens) \end{DoxyCompactList}\item 
+virtual void \mbox{\hyperlink{class_magix_application_a998196b3ca9f4e49089c7d568f6cd71f}{load\+Resources}} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_application}{Magix\+Application}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Magix\+Application} (\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*}magix\+Handler)
+\begin{DoxyCompactList}\small\item\em Standard constructor. \end{DoxyCompactList}\item 
+virtual {\bfseries \texorpdfstring{$\sim$}{\string~}\+Magix\+Application} ()
+\begin{DoxyCompactList}\small\item\em Game destructor, to be renamed. \end{DoxyCompactList}\item 
+virtual void {\bfseries go} (void)
+\begin{DoxyCompactList}\small\item\em Start the game. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_application}{Magix\+Application}}}
+\begin{DoxyCompactItemize}
+\item 
+Root \texorpdfstring{$\ast$}{*} {\bfseries m\+Root}
+\item 
+Camera \texorpdfstring{$\ast$}{*} {\bfseries m\+Camera}
+\item 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\mbox{\hyperlink{class_magix_frame_listener}{Magix\+Frame\+Listener}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Frame\+Listener}
+\item 
+Render\+Window \texorpdfstring{$\ast$}{*} {\bfseries m\+Window}
+\item 
+Ogre\+::\+String {\bfseries m\+Resource\+Path}
+\item 
+\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Magix\+Handler}
+\item 
+\mbox{\hyperlink{class_magix_loading_bar}{Magix\+Loading\+Bar}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Loading\+Bar}
+\item 
+\mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory}{Obfuscated\+Zip\+::\+Obfuscated\+Zip\+Factory}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Obfuscated\+Zip\+Factory}
+\begin{DoxyCompactList}\small\item\em we declare our own namespaces now. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{classogremagix_app_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classogremagix_app_ac094104ec9da776d1431a44748a22d89}\index{ogremagixApp@{ogremagixApp}!configure@{configure}}
+\index{configure@{configure}!ogremagixApp@{ogremagixApp}}
+\doxysubsubsection{\texorpdfstring{configure()}{configure()}}
+{\footnotesize\ttfamily \label{classogremagix_app_ac094104ec9da776d1431a44748a22d89} 
+virtual bool ogremagix\+App\+::configure (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+Configures the application -\/ returns false if the user chooses to abandon configuration. 
+
+Reimplemented from \mbox{\hyperlink{class_magix_application_adb1087954e6c39877cbdd863d98324ed}{Magix\+Application}}.
+
+\Hypertarget{classogremagix_app_adf02df48dbbea81c833780da1c954406}\index{ogremagixApp@{ogremagixApp}!createCamera@{createCamera}}
+\index{createCamera@{createCamera}!ogremagixApp@{ogremagixApp}}
+\doxysubsubsection{\texorpdfstring{createCamera()}{createCamera()}}
+{\footnotesize\ttfamily \label{classogremagix_app_adf02df48dbbea81c833780da1c954406} 
+virtual void ogremagix\+App\+::create\+Camera (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_application}{Magix\+Application}}.
+
+\Hypertarget{classogremagix_app_af719e7a3868bb23bebaf1612bb04169e}\index{ogremagixApp@{ogremagixApp}!createFrameListener@{createFrameListener}}
+\index{createFrameListener@{createFrameListener}!ogremagixApp@{ogremagixApp}}
+\doxysubsubsection{\texorpdfstring{createFrameListener()}{createFrameListener()}}
+{\footnotesize\ttfamily \label{classogremagix_app_af719e7a3868bb23bebaf1612bb04169e} 
+void ogremagix\+App\+::create\+Frame\+Listener (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_application}{Magix\+Application}}.
+
+\Hypertarget{classogremagix_app_ae4402570998eb9d3a5de880dd8d60a35}\index{ogremagixApp@{ogremagixApp}!createScene@{createScene}}
+\index{createScene@{createScene}!ogremagixApp@{ogremagixApp}}
+\doxysubsubsection{\texorpdfstring{createScene()}{createScene()}}
+{\footnotesize\ttfamily \label{classogremagix_app_ae4402570998eb9d3a5de880dd8d60a35} 
+virtual void ogremagix\+App\+::create\+Scene (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{class_magix_application}{Magix\+Application}}.
+
+\Hypertarget{classogremagix_app_a62c89da24de181f3beedf891c5b0282e}\index{ogremagixApp@{ogremagixApp}!destroyScene@{destroyScene}}
+\index{destroyScene@{destroyScene}!ogremagixApp@{ogremagixApp}}
+\doxysubsubsection{\texorpdfstring{destroyScene()}{destroyScene()}}
+{\footnotesize\ttfamily \label{classogremagix_app_a62c89da24de181f3beedf891c5b0282e} 
+virtual void ogremagix\+App\+::destroy\+Scene (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [protected]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_application}{Magix\+Application}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/ogremagix.\+h\end{DoxyCompactItemize}

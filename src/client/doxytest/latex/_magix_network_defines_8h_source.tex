@@ -1,0 +1,116 @@
+\doxysection{Magix\+Network\+Defines.\+h}
+\hypertarget{_magix_network_defines_8h_source}{}\label{_magix_network_defines_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixNetworkDefines.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixNetworkDefines.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixNetworkDefines\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixNetworkDefines\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ MAX\_CLIENTS\ 250}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ MAX\_SERVERS\ 10}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ SERVER\_ID\ 255}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ ID\_DEBUGTEXT\ 100}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ ID\_NEWPLAYER\ 101}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\#define\ ID\_NEWPLAYERCOLOURS\ 102}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ ID\_CHAT\ 103}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ ID\_POSITION\ 104}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ ID\_NEWPLAYERUPDATE\ 105}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ ID\_PLAYERDISCONNECTED\ 106}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ ID\_MOVEPOSITION\ 107}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ ID\_LOOKQUATERNION\ 108}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ ID\_FACEDIRECTION\ 109}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ ID\_ACTIONFLAGS\ 110}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ ID\_EMOTE\ 111}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#define\ ID\_WORLDINFO\ 112}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ ID\_REQUESTMAPINFO\ 113}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#define\ ID\_ATTACK\ 114}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#define\ ID\_PLAYERMAPCHANGE\ 115}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#define\ ID\_VALIDATENAME\ 116}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#define\ ID\_PLAYERDATA\ 117}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#define\ ID\_BIO\ 118}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#define\ ID\_KICK\ 119}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#define\ ID\_ITEMDROP\ 120}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#define\ ID\_ITEMPICKUP\ 121}}
+\DoxyCodeLine{00031\ \textcolor{preprocessor}{\#define\ ID\_ITEMEQUIP\ 122}}
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#define\ ID\_ITEMUNEQUIP\ 123}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#define\ ID\_IMREADY\ 124}}
+\DoxyCodeLine{00034\ \textcolor{preprocessor}{\#define\ ID\_EVENT\ 125}}
+\DoxyCodeLine{00035\ \textcolor{preprocessor}{\#define\ ID\_INFO\ 126}}
+\DoxyCodeLine{00036\ \textcolor{preprocessor}{\#define\ ID\_ACKNOWLEDGE\ 127}}
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#define\ ID\_DENIED\ 128}}
+\DoxyCodeLine{00038\ \textcolor{preprocessor}{\#define\ ID\_CRITTEROWNAGE\ 129}}
+\DoxyCodeLine{00039\ \textcolor{preprocessor}{\#define\ ID\_CRITTERINFO\ 130}}
+\DoxyCodeLine{00040\ \textcolor{preprocessor}{\#define\ ID\_CRITTERTARGETEDINFO\ 131}}
+\DoxyCodeLine{00041\ \textcolor{preprocessor}{\#define\ ID\_UNITOWNAGE\ 132}}
+\DoxyCodeLine{00042\ \textcolor{preprocessor}{\#define\ ID\_UNITINFO\ 133}}
+\DoxyCodeLine{00043\ \textcolor{preprocessor}{\#define\ ID\_UNITTARGETEDINFO\ 134}}
+\DoxyCodeLine{00044\ \textcolor{preprocessor}{\#define\ ID\_OBJECTOWNAGE\ 135}}
+\DoxyCodeLine{00045\ \textcolor{preprocessor}{\#define\ ID\_OBJECTINFO\ 136}}
+\DoxyCodeLine{00046\ \textcolor{preprocessor}{\#define\ ID\_OBJECTTARGETEDINFO\ 137}}
+\DoxyCodeLine{00047\ \textcolor{preprocessor}{\#define\ ID\_UPDATESKILLS\ 138}}
+\DoxyCodeLine{00048\ \textcolor{preprocessor}{\#define\ ID\_UPDATEPET\ 139}}
+\DoxyCodeLine{00049\ \textcolor{preprocessor}{\#define\ ID\_UPDATEHP\ 140}}
+\DoxyCodeLine{00050\ \textcolor{preprocessor}{\#define\ ID\_PLAYERINFO\ 141}}
+\DoxyCodeLine{00051\ \textcolor{preprocessor}{\#define\ ID\_PLAYERTARGETEDINFO\ 142}}
+\DoxyCodeLine{00052\ \textcolor{preprocessor}{\#define\ ID\_ITEMSTASH\ 143}}
+\DoxyCodeLine{00053\ \textcolor{preprocessor}{\#define\ ID\_FINDPLAYER\ 144}}
+\DoxyCodeLine{00054\ \textcolor{preprocessor}{\#define\ ID\_CRITTERINFOONEWAY\ 145}}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \textcolor{preprocessor}{\#define\ ID\_LOGON\ 200}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#define\ ID\_CREATEACCOUNT\ 201}}
+\DoxyCodeLine{00058\ \textcolor{preprocessor}{\#define\ ID\_LOADCHAR\ 202}}
+\DoxyCodeLine{00059\ \textcolor{preprocessor}{\#define\ ID\_CREATECHAR\ 203}}
+\DoxyCodeLine{00060\ \textcolor{preprocessor}{\#define\ ID\_DELETECHAR\ 204}}
+\DoxyCodeLine{00061\ \textcolor{preprocessor}{\#define\ ID\_EDITCHAR\ 205}}
+\DoxyCodeLine{00062\ \textcolor{preprocessor}{\#define\ ID\_EDITACCOUNT\ 206}}
+\DoxyCodeLine{00063\ \textcolor{preprocessor}{\#define\ ID\_SAVEITEM\ 207}}
+\DoxyCodeLine{00064\ \textcolor{preprocessor}{\#define\ ID\_GODSPEAK\ 208}}
+\DoxyCodeLine{00065\ \textcolor{preprocessor}{\#define\ ID\_FORCELOGOUT\ 209}}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#define\ ID\_MAINTENANCE\ 210}}
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\#define\ ID\_VIOLATION\ 211}}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \textcolor{preprocessor}{\#define\ ID\_SERVERUPDATE\ 247}}
+\DoxyCodeLine{00070\ \textcolor{preprocessor}{\#define\ ID\_REQUESTPLAYERDATA\ 248}}
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\#define\ ID\_TOKENCONNECTED\ 249}}
+\DoxyCodeLine{00072\ \textcolor{preprocessor}{\#define\ ID\_TOKENDISCONNECTED\ 250}}
+\DoxyCodeLine{00073\ \textcolor{preprocessor}{\#define\ ID\_SERVERLIST\ 251}}
+\DoxyCodeLine{00074\ \textcolor{preprocessor}{\#define\ ID\_SERVERCONNECTED\ 252}}
+\DoxyCodeLine{00075\ \textcolor{preprocessor}{\#define\ ID\_IMASERVER\ 253}}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#define\ TOKEN\_NULL\ 254}}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \textcolor{keyword}{typedef}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ OwnerToken;}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00081\ \textcolor{keyword}{enum}\ ACKNOWLEDGE}
+\DoxyCodeLine{00082\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ ACK\_ITEMDROPPED,}
+\DoxyCodeLine{00084\ \ \ \ \ ACK\_ITEMPICKED,}
+\DoxyCodeLine{00085\ \ \ \ \ ACK\_OBJECTOWNED,}
+\DoxyCodeLine{00086\ \ \ \ \ ACK\_UNITOWNED,}
+\DoxyCodeLine{00087\ \ \ \ \ ACK\_CRITTERCREATED}
+\DoxyCodeLine{00088\ \};}
+\DoxyCodeLine{00089\ \textcolor{keyword}{enum}\ NETWORKINFO}
+\DoxyCodeLine{00090\ \{}
+\DoxyCodeLine{00091\ \ \ \ \ INFO\_MODON,}
+\DoxyCodeLine{00092\ \ \ \ \ INFO\_MODOFF,}
+\DoxyCodeLine{00093\ \ \ \ \ INFO\_YOURBLOCKED,}
+\DoxyCodeLine{00094\ \ \ \ \ INFO\_YOURUNBLOCKED,}
+\DoxyCodeLine{00095\ \ \ \ \ INFO\_PARTYREQUEST,}
+\DoxyCodeLine{00096\ \ \ \ \ INFO\_PARTYINVITE,}
+\DoxyCodeLine{00097\ \ \ \ \ INFO\_PARTYACCEPTED,}
+\DoxyCodeLine{00098\ \ \ \ \ INFO\_PARTYJOINED,}
+\DoxyCodeLine{00099\ \ \ \ \ INFO\_PARTYKICK,}
+\DoxyCodeLine{00100\ \ \ \ \ INFO\_PARTYLEAVE,}
+\DoxyCodeLine{00101\ \ \ \ \ INFO\_PARTYALREADY,}
+\DoxyCodeLine{00102\ \ \ \ \ INFO\_PARTYINVITEACCEPTED}
+\DoxyCodeLine{00103\ \};}
+\DoxyCodeLine{00104\ \textcolor{keyword}{enum}\ NETWORKEVENT}
+\DoxyCodeLine{00105\ \{}
+\DoxyCodeLine{00106\ \ \ \ \ EVENT\_EARTHQUAKE,}
+\DoxyCodeLine{00107\ \ \ \ \ EVENT\_MASSBLOCK}
+\DoxyCodeLine{00108\ \};}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

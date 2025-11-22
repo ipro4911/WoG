@@ -1,0 +1,1906 @@
+\doxysection{Magix\+External\+Definitions.\+h}
+\hypertarget{_magix_external_definitions_8h_source}{}\label{_magix_external_definitions_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixExternalDefinitions.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixExternalDefinitions.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixExternalDefinitions\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixExternalDefinitions\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}MagixNetworkDefines.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}GameConfig.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <OgreStreamSerialiser.h>}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ <OgreException.h>}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}MagixStructs.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}MagixUtils.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ if\ aint\ used\ then\ can\ be\ removed\ ?}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//using\ namespace\ std;}}
+\DoxyCodeLine{00014\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{typedef}\ vector<std::pair<String,\ String>>::type\ CampaignEvent;}
+\DoxyCodeLine{00017\ \textcolor{keyword}{typedef}\ vector<CampaignEvent>::type\ CampaignEventList;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ MAX\_HOTKEYF\ 8}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\ Bruteforced\ all\ structs\ to\ a\ secondary\ file.\ }}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ migration\ to\ the\ .cpp\ \&\ other\ files\ in\ progress.}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{keyword}{class\ }MagixExternalDefinitions}
+\DoxyCodeLine{00024\ \{}
+\DoxyCodeLine{00025\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00026\ \ \ \ \ String\ lastBioName;}
+\DoxyCodeLine{00027\ \ \ \ \ String\ hotkeyF[MAX\_HOTKEYF];}
+\DoxyCodeLine{00028\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00029\ \ \ \ \ \textcolor{comment}{//\ new}}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_k_i_t_f___utils_1_1_magix_utils}{KITF\_Utils::MagixUtils}}\ mMagixUtils;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ isAdmin;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ isMod;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ isModOn;}
+\DoxyCodeLine{00034\ \ \ \ \ ColourValue\ adminAuraColour;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasVertexProgram;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasFragmentProgram;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ pagedGeometryOn;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ pagedGeometryForced;}
+\DoxyCodeLine{00039\ \ \ \ \ Real\ viewDistance;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxHeads;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxManes;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxTails;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxWings;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxTufts;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxBodyMarks;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxHeadMarks;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxTailMarks;}
+\DoxyCodeLine{00048\ \ \ \ \ vector<String>::type\ headMesh;}
+\DoxyCodeLine{00049\ \ \ \ \ vector<String>::type\ maneMesh;}
+\DoxyCodeLine{00050\ \ \ \ \ vector<String>::type\ tailMesh;}
+\DoxyCodeLine{00051\ \ \ \ \ vector<String>::type\ wingMesh;}
+\DoxyCodeLine{00052\ \ \ \ \ vector<String>::type\ tuftMesh;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxEmotes;}
+\DoxyCodeLine{00054\ \ \ \ \ vector<String>::type\ emoteName;}
+\DoxyCodeLine{00055\ \ \ \ \ vector<String>::type\ emoteAnims;}
+\DoxyCodeLine{00056\ \ \ \ \ vector<Real>::type\ emoteEyelidState;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ maxItems;}
+\DoxyCodeLine{00058\ \ \ \ \ vector<String>::type\ itemMesh;}
+\DoxyCodeLine{00059\ \ \ \ \ vector<String>::type\ itemBone;}
+\DoxyCodeLine{00060\ \ \ \ \ vector<String>::type\ itemName;}
+\DoxyCodeLine{00061\ \ \ \ \ vector<bool>::type\ itemIsPrivate;}
+\DoxyCodeLine{00062\ \ \ \ \ vector<bool>::type\ itemHasOffset;}
+\DoxyCodeLine{00063\ \ \ \ \ vector<bool>::type\ itemHasAltAnim;}
+\DoxyCodeLine{00064\ \ \ \ \ vector<String>::type\ itemParticle;}
+\DoxyCodeLine{00065\ \ \ \ \ vector<String>::type\ itemParticleOffset;}
+\DoxyCodeLine{00066\ \ \ \ \ vector<bool>::type\ itemParticleOnNode;}
+\DoxyCodeLine{00067\ \ \ \ \ vector<Attack>::type\ attackList;}
+\DoxyCodeLine{00068\ \ \ \ \ vector<Critter>::type\ critterList;}
+\DoxyCodeLine{00069\ \ \ \ \ }
+\DoxyCodeLine{00070\ \ \ \ \ MagixExternalDefinitions()}
+\DoxyCodeLine{00071\ \ \ \ \ \{}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ lastBioName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ isAdmin\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ isMod\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ isModOn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ adminAuraColour\ =\ ColourValue(1,\ 1,\ 1);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ pagedGeometryOn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ pagedGeometryForced\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ viewDistance\ =\ 1;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ hasVertexProgram\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ hasFragmentProgram\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ maxHeads\ =\ 0;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ maxManes\ =\ 0;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ maxTails\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ maxWings\ =\ 0;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ maxTufts\ =\ 0;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ maxBodyMarks\ =\ 0;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ maxHeadMarks\ =\ 0;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ maxTailMarks\ =\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ maxEmotes\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ maxItems\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \string~MagixExternalDefinitions()}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize();}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeCapabilities(\textcolor{keyword}{const}\ RenderSystemCapabilities*\ capabilities);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{comment}{//\ a\ decision\ has\ to\ be\ taken,\ this\ is\ either\ a\ setting\ /\ configs\ loader\ OR\ a\ mesh\ /\ assets\ loader}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ loadUnitMeshes(\textcolor{keyword}{const}\ String\&\ filename);}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ loadUnitEmotes(\textcolor{keyword}{const}\ String\&\ filename)}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ maxEmotes\ =\ 0;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ emoteName.clear();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ emoteAnims.clear();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ emoteEyelidState.clear();}
+\DoxyCodeLine{00108\ }
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::LogManager::getSingleton().logMessage(\textcolor{stringliteral}{"{}IT\ INITIALIZE\ ERROR:\ Unable\ to\ open\ file\ "{}}\ +\ filename);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ tSize\ =\ (long)inFile.tellg();}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ maxEmotes\ =\ int(tPart.size());}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxEmotes;\ i++)}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tPart[i],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 3);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ ==\ 3)}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tName\ =\ tLine[0];}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tName.erase(tName.find\_first\_of(\textcolor{stringliteral}{"{}]"{}}),\ 1);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emoteName.push\_back(tName);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emoteAnims.push\_back(tLine[1]);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ emoteEyelidState.push\_back(StringConverter::parseReal(tLine[2]));}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00149\ \ \ \ \ }
+\DoxyCodeLine{00150\ \ \ \ \ \textcolor{comment}{//\ this\ is\ char\ manager\ only}}
+\DoxyCodeLine{00151\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_magix_external_definitions_ae7d8ef4025459a7e966ca372804e340e}{isRestricted}}(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\&\ headID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\&\ maneID)}
+\DoxyCodeLine{00152\ \ \ \ \ \{}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(headID\ ==\ 0\ ||\ headID\ ==\ 4)}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maneID\ ==\ 2\ ||\ maneID\ ==\ 4\ ||\ maneID\ ==\ 7\ ||\ maneID\ ==\ 8\ ||\ maneID\ ==\ 9\ ||\ maneID\ ==\ 10\ ||\ maneID\ ==\ 14\ ||\ maneID\ ==\ 15\ ||\ maneID\ ==\ 16\ ||\ maneID\ ==\ 17\ ||\ maneID\ ==\ 18\ ||\ maneID\ ==\ 19\ ||\ maneID\ ==\ 20\ ||\ maneID\ ==\ 21\ ||\ maneID\ ==\ 22\ ||\ maneID\ ==\ 23\ ||\ maneID\ ==\ 24)}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(headID\ ==\ 1\ ||\ headID\ ==\ 2\ ||\ headID\ ==\ 3\ ||\ headID\ ==\ 5)}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maneID\ ==\ 1\ ||\ maneID\ ==\ 3\ ||\ maneID\ ==\ 5\ ||\ maneID\ ==\ 6\ ||\ maneID\ ==\ 11\ ||\ maneID\ ==\ 12\ ||\ maneID\ ==\ 13\ ||\ maneID\ ==\ 21\ ||\ maneID\ ==\ 23)}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00169\ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordtype}{bool}\ isRestrictedTuft(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\&\ tuftID)}
+\DoxyCodeLine{00172\ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tuftID\ ==\ 8)}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00177\ }
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00179\ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \textcolor{comment}{//\ this\ is\ ingame\ logic\ it\ should\ be\ separate}}
+\DoxyCodeLine{00182\ \ \ \ \ \textcolor{keywordtype}{void}\ decrypt(String\&\ input)}
+\DoxyCodeLine{00183\ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)input.length();\ i++)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ input[i]\ =\ input[i]\ -\/\ 10;}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \}}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordtype}{void}\ encrypt(String\&\ input)}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)input.length();\ i++)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ input[i]\ =\ input[i]\ +\ 10;}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00196\ \ \ \ \ \}}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \textcolor{keyword}{const}\ String\ getMapName(\textcolor{keyword}{const}\ String\&\ name)}
+\DoxyCodeLine{00199\ \ \ \ \ \{}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMapName\ =\ StringUtil::split(name,\ \textcolor{stringliteral}{"{};"{}},\ 1);}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (tMapName.size()\ >\ 0\ ?\ tMapName[0]\ :\ name);}
+\DoxyCodeLine{00202\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ \ \ \ \ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_external_definitions_ae6f2edfdc299f528b0e7bceebd468e22}{loadSettings}}(\textcolor{keywordtype}{bool}\&\ isTablet,\ Real\&\ mouseSensitivity,\ Real\&\ musicVol,\ Real\&\ guiVol,\ Real\&\ soundVol,\ \textcolor{keywordtype}{bool}\&\ isShadowsOn,\ \textcolor{keywordtype}{bool}\&\ isBloom,\ String\&\ username,\ \textcolor{keywordtype}{bool}\&\ generalCharname,\ \textcolor{keywordtype}{bool}\&\ localUsername,\ \textcolor{keywordtype}{bool}\&\ channelBlink,\ \textcolor{keywordtype}{bool}\&\ runMode,\ \textcolor{keywordtype}{bool}\&\ doubleJumpOn,\ \textcolor{keywordtype}{bool}\&\ autoLipSync,\ \textcolor{keywordtype}{bool}\&\ useWindowsCursor)}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ inFile.open(\textcolor{stringliteral}{"{}Settings.cfg"{}},\ std::ifstream::in);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inFile.good())}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ tSize\ =\ (long)inFile.tellg();}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}\(\backslash\)n\#"{}},\ 16);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 7)}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ isTablet\ =\ StringConverter::parseBool(tLine[0]);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ mouseSensitivity\ =\ StringConverter::parseReal(tLine[1]);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ musicVol\ =\ StringConverter::parseReal(tLine[2]);}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ guiVol\ =\ StringConverter::parseReal(tLine[3]);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ soundVol\ =\ StringConverter::parseReal(tLine[4]);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ isShadowsOn\ =\ StringConverter::parseBool(tLine[5]);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ isBloom\ =\ StringConverter::parseBool(tLine[6]);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 8)username\ =\ tLine[7];}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 9)generalCharname\ =\ StringConverter::parseBool(tLine[8]);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 10)localUsername\ =\ StringConverter::parseBool(tLine[9]);}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 11)channelBlink\ =\ StringConverter::parseBool(tLine[10]);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 12)runMode\ =\ StringConverter::parseBool(tLine[11]);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 13)pagedGeometryOn\ =\ StringConverter::parseBool(tLine[12]);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 14)viewDistance\ =\ StringConverter::parseReal(tLine[13]);}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 15)doubleJumpOn\ =\ StringConverter::parseBool(tLine[14]);}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 16)autoLipSync\ =\ StringConverter::parseBool(tLine[15]);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ std::ifstream\ inFile2;}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ inFile2.open(\textcolor{stringliteral}{"{}useWindowsCursor.dat"{}},\ std::ifstream::in);}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inFile2.good())useWindowsCursor\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ inFile2.close();}
+\DoxyCodeLine{00253\ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \textcolor{keywordtype}{void}\ saveSettings(\textcolor{keywordtype}{bool}\ isTablet,\ \textcolor{keyword}{const}\ Real\&\ mouseSensitivity,\ \textcolor{keyword}{const}\ Real\&\ musicVol,\ \textcolor{keyword}{const}\ Real\&\ guiVol,\ \textcolor{keyword}{const}\ Real\&\ soundVol,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\&\ isShadowsOn,\ \textcolor{keywordtype}{bool}\ isBloom,\ \textcolor{keyword}{const}\ String\&\ username\ =\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keywordtype}{bool}\ generalCharname\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ localUsername\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ channelBlink\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ runMode\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ doubleJumpOn\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ autoLipSync\ =\ \textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ useWindowsCursor\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00255\ \ \ \ \ \{}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pagedGeometryForced)}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ pagedGeometryForced\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ pagedGeometryOn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ outFile.open(\textcolor{stringliteral}{"{}Settings.cfg"{}},\ std::ofstream::out);}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ String\ tBuffer\ =\ StringConverter::toString(isTablet)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(mouseSensitivity)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(musicVol)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(guiVol)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(soundVol)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(isShadowsOn)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(isBloom)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ tBuffer\ =\ username\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(generalCharname)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(localUsername)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(channelBlink)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(runMode)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(pagedGeometryOn)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(viewDistance)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(doubleJumpOn)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(autoLipSync)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n\#"{}};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00298\ }
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(useWindowsCursor)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ outFile2;}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ outFile2.open(\textcolor{stringliteral}{"{}useWindowsCursor.dat"{}},\ std::ofstream::out);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{stringliteral}{"{}1"{}};}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ outFile2.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ outFile2.close();}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \_unlink(\textcolor{stringliteral}{"{}useWindowsCursor.dat"{}});}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{void}\ savePassword(\textcolor{keywordtype}{bool}\ flag,\ \textcolor{keyword}{const}\ String\&\ password\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00310\ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(flag)}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.open(\textcolor{stringliteral}{"{}Settings2.dat"{}},\ std::ios\_base::binary);}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ mMagixUtils.XOR7(password)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \_unlink(\textcolor{stringliteral}{"{}Settings2.dat"{}});}
+\DoxyCodeLine{00320\ \ \ \ \ \}}
+\DoxyCodeLine{00321\ \ \ \ \ \textcolor{keyword}{const}\ String\ loadPassword()}
+\DoxyCodeLine{00322\ \ \ \ \ \{}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ String\ tPassword\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ inFile.open(\textcolor{stringliteral}{"{}Settings2.dat"{}},\ std::ios\_base::binary);}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inFile.good())}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tBuffer[16]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ 16);}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ tPassword\ =\ tBuffer;}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mMagixUtils.XOR7(tPassword);}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordtype}{void}\ saveBanFile(\textcolor{keywordtype}{bool}\ flag,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\&\ numDays\ =\ 0)}
+\DoxyCodeLine{00336\ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(flag)}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ String\ tDate\ =\ \textcolor{stringliteral}{"{}Infinity"{}};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numDays\ !=\ 0)}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ time\_t\ rawtime;}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tm\ timeinfo;}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ time(\&rawtime);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_s(\&timeinfo,\ \&rawtime);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tYear\ =\ timeinfo.tm\_year;}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tDay\ =\ timeinfo.tm\_yday\ +\ numDays;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (tDay\ >\ 365)}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYear\ +=\ 1;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tDay\ -\/=\ 365;}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tDate\ =\ StringConverter::toString(tYear)\ +\ \textcolor{stringliteral}{"{};"{}};}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tDate\ +=\ StringConverter::toString(tDay);}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00356\ }
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.open(\textcolor{stringliteral}{"{}Settings3.dat"{}},\ std::ios\_base::binary);}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ String\ tBuffer\ =\ mMagixUtils.XOR7(\textcolor{stringliteral}{"{}Bannage"{}})\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ mMagixUtils.XOR7(tDate)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \_unlink(\textcolor{stringliteral}{"{}Settings3.dat"{}});}
+\DoxyCodeLine{00366\ \ \ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ loadBanFile(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\&\ numDays)}
+\DoxyCodeLine{00368\ \ \ \ \ \{}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ String\ tPassword\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ String\ tDate\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ inFile.open(\textcolor{stringliteral}{"{}Settings3.dat"{}},\ std::ios\_base::binary);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inFile.good())}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tBuffer[16]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ 16);}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ tPassword\ =\ tBuffer;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ tPassword\ =\ mMagixUtils.XOR7(tPassword);}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy\_s(tBuffer,\ 16,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ 16);}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ tDate\ =\ tBuffer;}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ tDate\ =\ mMagixUtils.XOR7(tDate);}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPassword\ !=\ \textcolor{stringliteral}{"{}Bannage"{}})\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tDate\ ==\ \textcolor{stringliteral}{"{}Infinity"{}})numDays\ =\ 0;}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tYear\ =\ 0,\ tDay\ =\ 0;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tDate,\ \textcolor{stringliteral}{"{};"{}},\ 1);}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 0)tYear\ =\ StringConverter::parseInt(tPart[0]);}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 1)tDay\ =\ StringConverter::parseInt(tPart[1]);}
+\DoxyCodeLine{00393\ }
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ time\_t\ rawtime;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ tm\ timeinfo;}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ time(\&rawtime);}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ localtime\_s(\&timeinfo,\ \&rawtime);}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ tYear\ -\/=\ timeinfo.tm\_year;}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ tDay\ -\/=\ timeinfo.tm\_yday;}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tYear\ <\ 0\ ||\ tYear\ ==\ 0\ \&\&\ tDay\ <=\ 0)}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_unlink(\textcolor{stringliteral}{"{}Settings3.dat"{}});}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ numDays\ =\ tYear\ *\ 365\ +\ tDay;}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00408\ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ }
+\DoxyCodeLine{00410\ \ \ \ \ }
+\DoxyCodeLine{00411\ }
+\DoxyCodeLine{00412\ \ \ \ \ \textcolor{keyword}{const}\ String\ loadWorldObjects(\textcolor{keyword}{const}\ String\&\ filename)}
+\DoxyCodeLine{00413\ \ \ \ \ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inFile.good())}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ }
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tData;}
+\DoxyCodeLine{00434\ \ \ \ \ \}}
+\DoxyCodeLine{00435\ }
+\DoxyCodeLine{00436\ \ \ \ \ \textcolor{comment}{//\ to\ be\ moved\ to\ campaign\ then\ ?\ is\ really\ called\ in\ MagixGUI\ this\ loads\ an\ array\ ?}}
+\DoxyCodeLine{00437\ \ \ \ \ \textcolor{keywordtype}{void}\ loadCampaignList(vector<String>::type\&\ list,\ \textcolor{keywordtype}{bool}\ customCampaigns\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00438\ \ \ \ \ \{}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00442\ }
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ inFile.open(customCampaigns\ ?\ \textcolor{stringliteral}{"{}CustomCampaigns.cfg"{}}\ :\ \textcolor{stringliteral}{"{}Campaigns.cfg"{}},\ std::ifstream::in);}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!customCampaigns)loadCampaignList(list,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tCampaign\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<int(tCampaign.size());\ i++)}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tCampaign[i],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 2);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >\ 0)}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tName\ =\ tLine[0];}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tName.erase(tName.find\_first\_of(\textcolor{stringliteral}{"{}]"{}}),\ 1);}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.push\_back(tName);}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!customCampaigns)loadCampaignList(list,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00472\ \ \ \ \ \}}
+\DoxyCodeLine{00473\ }
+\DoxyCodeLine{00474\ \ \ \ \ \textcolor{comment}{//\ this\ could\ be\ an\ util\ but\ ...\ do\ we\ want\ it\ here\ anyway\ ?\ if\ the\ top\ one\ can\ be\ magixgui\ called}}
+\DoxyCodeLine{00475\ \ \ \ \ \textcolor{comment}{//\ anyway\ this\ need\ to\ be\ more\ accurate\ :\ LoadCampaignConfig}}
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadCampaign(\textcolor{keyword}{const}\ String\&\ name,\ CampaignEventList\&\ data,\ String\&\ fileName,\ \textcolor{keywordtype}{bool}\ customCampaigns\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00477\ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00481\ }
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ inFile.open(customCampaigns\ ?\ \textcolor{stringliteral}{"{}CustomCampaigns.cfg"{}}\ :\ \textcolor{stringliteral}{"{}Campaigns.cfg"{}},\ std::ifstream::in);}
+\DoxyCodeLine{00484\ }
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (customCampaigns\ ?\ \textcolor{keyword}{false}\ :\ loadCampaign(name,\ data,\ fileName,\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00489\ }
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00499\ }
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tCampaign\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<int(tCampaign.size());\ i++)}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tCampaign[i],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 2);}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >\ 0)}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tName\ =\ tLine[0];}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tName.erase(tName.find\_first\_of(\textcolor{stringliteral}{"{}]"{}}),\ 1);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tName\ ==\ name)}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fileName\ =\ tLine[1];}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tEvent;}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ loadCampaignScript(tLine[1],\ tEvent,\ data,\ 0,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (customCampaigns\ ?\ \textcolor{keyword}{false}\ :\ loadCampaign(name,\ data,\ fileName,\ \textcolor{keyword}{true}));}
+\DoxyCodeLine{00518\ \ \ \ \ \}}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{comment}{//\ clearly\ this\ one\ isnt\ a\ cfg\ reader}}
+\DoxyCodeLine{00521\ \ \ \ \ \textcolor{keywordtype}{void}\ loadCampaignScript(\textcolor{keyword}{const}\ String\&\ filename,\ \textcolor{keyword}{const}\ vector<String>::type\&\ nextEvent,\ CampaignEventList\&\ data,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\&\ eventCount\ =\ 0,\ \textcolor{keywordtype}{bool}\ loadFirstSection\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00522\ \ \ \ \ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{keywordtype}{char}(128));}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tSection\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}["{}});}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(nextEvent.size()\ >\ 0)}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)nextEvent.size();\ i++)}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tCurrentEvent\ =\ nextEvent[i];}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CampaignEvent\ tEvent;}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ (int)tSection.size();\ j++)}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tSection[j],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ <=\ 0)\textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tNextEvent\ =\ tLine[0];}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tNextEvent.erase(tNextEvent.find\_first\_of(\textcolor{stringliteral}{"{}]"{}}),\ 1);}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tNextEvent\ ==\ tCurrentEvent)}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 1;\ k\ <\ (int)tLine.size();\ k++)}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tLine[k],\ \textcolor{stringliteral}{"{}="{}},\ 1);}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 0)}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::pair<String,\ String>\ tEventLine(tPart[0],\ tPart.size()\ >\ 1\ ?\ tPart[1]\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tEvent.push\_back(tEventLine);}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ data.push\_back(tEvent);}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(eventCount\ >\ 0\ ||\ loadFirstSection)}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tCounter\ =\ 0;}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ CampaignEvent\ tEvent;}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ (int)tSection.size();\ j++)}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCounter\ ==\ eventCount\ ||\ loadFirstSection)}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tSection[j],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 1;\ k\ <\ (int)tLine.size();\ k++)}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tLine[k],\ \textcolor{stringliteral}{"{}="{}},\ 1);}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 0)}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::pair<String,\ String>\ tEventLine(tPart[0],\ tPart.size()\ >\ 1\ ?\ tPart[1]\ :\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tEvent.push\_back(tEventLine);}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tCounter++;}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ data.push\_back(tEvent);}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00592\ \ \ \ \ \}}
+\DoxyCodeLine{00593\ }
+\DoxyCodeLine{00594\ \ \ \ \ \textcolor{comment}{//\ to\ campaign}}
+\DoxyCodeLine{00595\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadCredits(\textcolor{keyword}{const}\ String\&\ filename,\ vector<String>::type\&\ credits)}
+\DoxyCodeLine{00596\ \ \ \ \ \{}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00600\ }
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ credits.clear();}
+\DoxyCodeLine{00615\ }
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{};\#"{}});}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<int(tLine.size());\ i++)}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine[i].length()\ >\ 0)}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine[i][0]\ ==\ \textcolor{charliteral}{'\(\backslash\)n'})}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tBuffer\ =\ tLine[i];}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer.erase(0,\ 1);}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ credits.push\_back(tBuffer);}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ credits.push\_back(tLine[i]);}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ }
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00633\ \ \ \ \ \}}
+\DoxyCodeLine{00634\ }
+\DoxyCodeLine{00635\ \ \ \ \ \textcolor{comment}{//\ for\ once\ code\ that\ is\ for\ the\ utilities/logic\ (game\ logic\ here)}}
+\DoxyCodeLine{00636\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadSavePoint(String\&\ mapName,\ Vector2\&\ point,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ dimension)}
+\DoxyCodeLine{00637\ \ \ \ \ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ loadHomePoint(mapName,\ point,\ dimension,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00639\ \ \ \ \ \}}
+\DoxyCodeLine{00640\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadHomePoint(String\&\ mapName,\ Vector2\&\ point,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ dimension,\ \textcolor{keywordtype}{bool}\ isSavePoint\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00641\ \ \ \ \ \{}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ inFile.open((isSavePoint\ ?\ \textcolor{stringliteral}{"{}savepoint.sav"{}}\ :\ \textcolor{stringliteral}{"{}homepoint.sav"{}}),\ std::ifstream::in);}
+\DoxyCodeLine{00644\ }
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tBuffer[32]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ String\ tData;}
+\DoxyCodeLine{00652\ }
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Load\ map\ name}}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ 32);}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ decrypt(tData);}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ mapName\ =\ tData;}
+\DoxyCodeLine{00658\ }
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00665\ }
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Load\ map\ x}}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ 32);}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ decrypt(tData);}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ point.x\ =\ StringConverter::parseReal(tData);}
+\DoxyCodeLine{00671\ }
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00678\ }
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Load\ map\ z}}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ 32);}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ decrypt(tData);}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ point.y\ =\ StringConverter::parseReal(tData);}
+\DoxyCodeLine{00684\ }
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ dimension\ =\ 0;}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00692\ }
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Load\ dimension}}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ 32);}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ decrypt(tData);}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ dimension\ =\ StringConverter::parseInt(tData);}
+\DoxyCodeLine{00698\ }
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00701\ \ \ \ \ \}}
+\DoxyCodeLine{00702\ \ \ \ \ \textcolor{keywordtype}{void}\ saveSavePoint(\textcolor{keyword}{const}\ String\&\ mapName,\ \textcolor{keyword}{const}\ Vector2\&\ point,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ dimension)}
+\DoxyCodeLine{00703\ \ \ \ \ \{}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ saveHomePoint(mapName,\ point,\ dimension,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00705\ \ \ \ \ \}}
+\DoxyCodeLine{00706\ \ \ \ \ \textcolor{keywordtype}{void}\ saveHomePoint(\textcolor{keyword}{const}\ String\&\ mapName,\ \textcolor{keyword}{const}\ Vector2\&\ point,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ dimension,\ \textcolor{keywordtype}{bool}\ isSavePoint\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00707\ \ \ \ \ \{}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ outFile.open((isSavePoint\ ?\ \textcolor{stringliteral}{"{}savepoint.sav"{}}\ :\ \textcolor{stringliteral}{"{}homepoint.sav"{}}),\ std::ofstream::out);}
+\DoxyCodeLine{00710\ }
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Save\ map\ name}}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ String\ tBuffer\ =\ mapName;}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ encrypt(tBuffer);}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ tBuffer\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00716\ }
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Save\ map\ x}}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(point.x);}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ encrypt(tBuffer);}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ tBuffer\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00722\ }
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Save\ map\ z}}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(point.y);}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ encrypt(tBuffer);}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ tBuffer\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00728\ }
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Save\ dimension}}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ tBuffer\ =\ StringConverter::toString(dimension);}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ encrypt(tBuffer);}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ tBuffer\ +=\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00736\ \ \ \ \ \}}
+\DoxyCodeLine{00737\ }
+\DoxyCodeLine{00738\ \ \ \ \ \textcolor{comment}{//\ TO\ GAME\ LOGIC\ !}}
+\DoxyCodeLine{00739\ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ loadFriendList(\textcolor{keywordtype}{bool}\ isBlockList\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00740\ \ \ \ \ \{}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00744\ }
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ inFile.open((isBlockList\ ?\ \textcolor{stringliteral}{"{}block.list"{}}\ :\ \textcolor{stringliteral}{"{}friend.list"{}}),\ std::ifstream::in);}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ vector<String>::type\ tBlank;}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ tBlank.clear();}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tBlank;}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{';'});}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00762\ }
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tData\ ==\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \ vector<String>::type\ tBlank;}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \ tBlank.clear();}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tBlank;}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00769\ }
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}\(\backslash\)n;"{}});}
+\DoxyCodeLine{00771\ \ \ \ \ \}}
+\DoxyCodeLine{00772\ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ loadBlockedList()}
+\DoxyCodeLine{00773\ \ \ \ \ \{}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ loadFriendList(\textcolor{keyword}{true});}
+\DoxyCodeLine{00775\ \ \ \ \ \}}
+\DoxyCodeLine{00776\ }
+\DoxyCodeLine{00777\ \ \ \ \ \textcolor{keywordtype}{void}\ editFriendList(\textcolor{keyword}{const}\ String\&\ name,\ \textcolor{keywordtype}{bool}\ add,\ \textcolor{keywordtype}{bool}\ isBlockList\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00778\ \ \ \ \ \{}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ vector<String>::type\ tFriendList\ =\ loadFriendList(isBlockList);}
+\DoxyCodeLine{00780\ }
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \textcolor{comment}{//File\ doesn't\ exist}}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tFriendList.size()\ ==\ 0)}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(add)}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outFile.open((isBlockList\ ?\ \textcolor{stringliteral}{"{}block.list"{}}\ :\ \textcolor{stringliteral}{"{}friend.list"{}}),\ std::ofstream::out);}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ name\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n;"{}};}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00794\ }
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Find\ existing\ name}}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (vector<String>::type::iterator\ it\ =\ tFriendList.begin();\ it\ !=\ tFriendList.end();\ it++)}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*it\ ==\ name)}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Name\ already\ exists}}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(add)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Delete\ name}}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFriendList.erase(it);}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00807\ }
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Rewrite\ file}}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ outFile.open((isBlockList\ ?\ \textcolor{stringliteral}{"{}block.list"{}}\ :\ \textcolor{stringliteral}{"{}friend.list"{}}),\ std::ofstream::out);}
+\DoxyCodeLine{00811\ }
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (vector<String>::type::iterator\ it\ =\ tFriendList.begin();\ it\ !=\ tFriendList.end();\ it++)}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ *it\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(add)}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ name\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00822\ }
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ \textcolor{stringliteral}{"{};"{}};}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00826\ \ \ \ \ \}}
+\DoxyCodeLine{00827\ \ \ \ \ \textcolor{keywordtype}{void}\ editBlockedList(\textcolor{keyword}{const}\ String\&\ name,\ \textcolor{keywordtype}{bool}\ add)}
+\DoxyCodeLine{00828\ \ \ \ \ \{}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ editFriendList(name,\ add,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00830\ \ \ \ \ \}}
+\DoxyCodeLine{00831\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInFriendList(String\ name,\ \textcolor{keywordtype}{bool}\ isBlockList\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00832\ \ \ \ \ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ StringUtil::toLowerCase(name);}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tFriendList\ =\ loadFriendList(isBlockList);}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)tFriendList.size();\ i++)}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ String\ tName\ =\ tFriendList[i];}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ StringUtil::toLowerCase(tName);}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tName\ ==\ name)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00842\ \ \ \ \ \}}
+\DoxyCodeLine{00843\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInBlockedList(String\ name)}
+\DoxyCodeLine{00844\ \ \ \ \ \{}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isInFriendList(name,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{00846\ \ \ \ \ \}}
+\DoxyCodeLine{00847\ \ \ \ \ \textcolor{keywordtype}{void}\ saveBio(\textcolor{keyword}{const}\ String\&\ name,\ \textcolor{keyword}{const}\ String\&\ bio)}
+\DoxyCodeLine{00848\ \ \ \ \ \{}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tFilename\ =\ name\ +\ \textcolor{stringliteral}{"{}.bio"{}};}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ outFile.open(tFilename.c\_str(),\ std::ofstream::out);}
+\DoxyCodeLine{00852\ }
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ bio\ +\ char(128);}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{00855\ }
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00857\ \ \ \ \ \}}
+\DoxyCodeLine{00858\ \ \ \ \ \textcolor{keyword}{const}\ String\ loadBio(\textcolor{keyword}{const}\ String\&\ name\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00859\ \ \ \ \ \{}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(name\ !=\ \textcolor{stringliteral}{"{}"{}})lastBioName\ =\ name;}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(lastBioName\ ==\ \textcolor{stringliteral}{"{}"{}})\textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00866\ }
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tFilename\ =\ lastBioName\ +\ \textcolor{stringliteral}{"{}.bio"{}};}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ inFile.open(tFilename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())\textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{keywordtype}{char}(128));}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00878\ }
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Replace\ illegal\ characters}}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ tSize;\ i++)}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBuffer[i]\ ==\ \textcolor{charliteral}{'\(\backslash\)0'})\textcolor{keywordflow}{break};}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((tBuffer[i]\ >\ \textcolor{keywordtype}{char}(126)\ ||\ tBuffer[i]<\textcolor{keywordtype}{char}(32))}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ tBuffer[i]\ !=\ \textcolor{charliteral}{'\(\backslash\)t'}\ \&\&\ tBuffer[i]\ !=\ \textcolor{charliteral}{'\(\backslash\)n'})tBuffer[i]\ =\ \textcolor{charliteral}{'\string~'};}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00886\ }
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00889\ }
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tData;}
+\DoxyCodeLine{00891\ \ \ \ \ \}}
+\DoxyCodeLine{00896\ \ \ \ \ }
+\DoxyCodeLine{00897\ \ \ \ \ \textcolor{keyword}{const}\ String\ \mbox{\hyperlink{class_magix_external_definitions_a1b97cea79da1fb528e3d25f70e595b1d}{loadUpdateCaption}}()}
+\DoxyCodeLine{00898\ \ \ \ \ \{}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00902\ }
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ inFile.open(\textcolor{stringliteral}{"{}update.txt"{}},\ std::ifstream::in);}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())\textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{keywordtype}{char}(128));}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00915\ }
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tData;}
+\DoxyCodeLine{00917\ \ \ \ \ \}}
+\DoxyCodeLine{00918\ }
+\DoxyCodeLine{00919\ \ \ \ \ \textcolor{comment}{//\ items\ functions\ should\ be\ magix\ object\ }}
+\DoxyCodeLine{00920\ \ \ \ \ \textcolor{keywordtype}{void}\ loadItems(\textcolor{keyword}{const}\ String\&\ filename,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ decrypt)}
+\DoxyCodeLine{00921\ \ \ \ \ \{}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ maxItems\ =\ 0;}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ itemMesh.clear();}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ itemBone.clear();}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ itemName.clear();}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ itemIsPrivate.clear();}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ itemHasOffset.clear();}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ itemHasAltAnim.clear();}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ itemParticle.clear();}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ itemParticleOffset.clear();}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ itemParticleOnNode.clear();}
+\DoxyCodeLine{00932\ }
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(decrypt)}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \ \ \ \ vector<String>::type\ stream\ =\ mMagixUtils.XORInternal(filename);}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ String\ line;}
+\DoxyCodeLine{00937\ }
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)stream.size();\ i++)}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line\ =\ stream[i];}
+\DoxyCodeLine{00941\ }
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StringUtil::trim(line);}
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(line,\ \textcolor{stringliteral}{"{};"{}},\ 9);}
+\DoxyCodeLine{00944\ }
+\DoxyCodeLine{00945\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ <\ 3)\textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 0)itemMesh.push\_back(tPart[0]);}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 1)itemName.push\_back(tPart[1]);}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 2)itemBone.push\_back(tPart[2]);}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 3)itemIsPrivate.push\_back(tPart[3]\ ==\ \textcolor{stringliteral}{"{}1"{}}\ ?\ \textcolor{keyword}{true}\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 4)itemHasOffset.push\_back(tPart[4]\ ==\ \textcolor{stringliteral}{"{}1"{}}\ ?\ \textcolor{keyword}{true}\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00951\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemHasOffset.push\_back(\textcolor{keyword}{false});}
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 5)itemHasAltAnim.push\_back(tPart[5]\ ==\ \textcolor{stringliteral}{"{}1"{}}\ ?\ \textcolor{keyword}{true}\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemHasAltAnim.push\_back(\textcolor{keyword}{false});}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 6)itemParticle.push\_back(tPart[6]);}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemParticle.push\_back(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 7)itemParticleOffset.push\_back(tPart[7]);}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemParticleOffset.push\_back(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 8)itemParticleOnNode.push\_back(tPart[8]\ ==\ \textcolor{stringliteral}{"{}1"{}}\ ?\ \textcolor{keyword}{true}\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemParticleOnNode.push\_back(\textcolor{keyword}{false});}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \ \ \ \ maxItems\ =\ int(itemMesh.size());}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00968\ }
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::LogManager::getSingleton().logMessage(\textcolor{stringliteral}{"{}IT\ INITIALIZE\ ERROR:\ Unable\ to\ open\ file\ "{}}\ +\ filename);}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00985\ }
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}\(\backslash\)n\#"{}});}
+\DoxyCodeLine{00987\ }
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ maxItems\ =\ int(tLine.size());}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tLine[i],\ \textcolor{stringliteral}{"{};"{}},\ 9);}
+\DoxyCodeLine{00992\ }
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 0)itemMesh.push\_back(tPart[0]);}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 1)itemName.push\_back(tPart[1]);}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 2)itemBone.push\_back(tPart[2]);}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 3)itemIsPrivate.push\_back(tPart[3]\ ==\ \textcolor{stringliteral}{"{}1"{}}\ ?\ \textcolor{keyword}{true}\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 4)itemHasOffset.push\_back(tPart[4]\ ==\ \textcolor{stringliteral}{"{}1"{}}\ ?\ \textcolor{keyword}{true}\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemHasOffset.push\_back(\textcolor{keyword}{false});}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 5)itemHasAltAnim.push\_back(tPart[5]\ ==\ \textcolor{stringliteral}{"{}1"{}}\ ?\ \textcolor{keyword}{true}\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemHasAltAnim.push\_back(\textcolor{keyword}{false});}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 6)itemParticle.push\_back(tPart[6]);}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemParticle.push\_back(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 7)itemParticleOffset.push\_back(tPart[7]);}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemParticleOffset.push\_back(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >\ 8)itemParticleOnNode.push\_back(tPart[8]\ ==\ \textcolor{stringliteral}{"{}1"{}}\ ?\ \textcolor{keyword}{true}\ :\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01006\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ itemParticleOnNode.push\_back(\textcolor{keyword}{false});}
+\DoxyCodeLine{01007\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01008\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01009\ \ \ \ \ \}}
+\DoxyCodeLine{01010\ \ \ \ \ \textcolor{keyword}{const}\ String\ getItemName(\textcolor{keyword}{const}\ String\&\ meshName)}
+\DoxyCodeLine{01011\ \ \ \ \ \{}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemMesh[i]\ ==\ meshName\ \&\&\ (\textcolor{keywordtype}{int})itemName.size()\ >\ i)\textcolor{keywordflow}{return}\ itemName[i];}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01015\ \ \ \ \ \}}
+\DoxyCodeLine{01016\ \ \ \ \ \textcolor{keyword}{const}\ String\ getItemBone(\textcolor{keyword}{const}\ String\&\ meshName)}
+\DoxyCodeLine{01017\ \ \ \ \ \{}
+\DoxyCodeLine{01018\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemMesh[i]\ ==\ meshName\ \&\&\ (\textcolor{keywordtype}{int})itemBone.size()\ >\ i)\textcolor{keywordflow}{return}\ itemBone[i];}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01021\ \ \ \ \ \}}
+\DoxyCodeLine{01022\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ getItemIsPrivate(\textcolor{keyword}{const}\ String\&\ meshName)}
+\DoxyCodeLine{01023\ \ \ \ \ \{}
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemMesh[i]\ ==\ meshName\ \&\&\ (\textcolor{keywordtype}{int})itemIsPrivate.size()\ >\ i)\textcolor{keywordflow}{return}\ itemIsPrivate[i];}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01027\ \ \ \ \ \}}
+\DoxyCodeLine{01028\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ getItemHasOffset(\textcolor{keyword}{const}\ String\&\ meshName)}
+\DoxyCodeLine{01029\ \ \ \ \ \{}
+\DoxyCodeLine{01030\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemMesh[i]\ ==\ meshName\ \&\&\ (\textcolor{keywordtype}{int})itemHasOffset.size()\ >\ i)\textcolor{keywordflow}{return}\ itemHasOffset[i];}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01033\ \ \ \ \ \}}
+\DoxyCodeLine{01034\ }
+\DoxyCodeLine{01035\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ getItemHasAltAnim(\textcolor{keyword}{const}\ String\&\ meshName)}
+\DoxyCodeLine{01036\ \ \ \ \ \{}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (itemMesh[i]\ ==\ meshName\ \&\&\ (\textcolor{keywordtype}{int})itemHasAltAnim.size()\ >\ i)}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ itemHasAltAnim[i];}
+\DoxyCodeLine{01042\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01044\ }
+\DoxyCodeLine{01045\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01046\ \ \ \ \ \}}
+\DoxyCodeLine{01047\ }
+\DoxyCodeLine{01048\ \ \ \ \ \textcolor{keyword}{const}\ String\ getItemParticle(\textcolor{keyword}{const}\ String\&\ meshName)}
+\DoxyCodeLine{01049\ \ \ \ \ \{}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (itemMesh[i]\ ==\ meshName\ \&\&\ (\textcolor{keywordtype}{int})itemParticle.size()\ >\ i)}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ itemParticle[i];}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01057\ }
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01059\ \ \ \ \ \}}
+\DoxyCodeLine{01060\ }
+\DoxyCodeLine{01061\ \ \ \ \ \textcolor{keyword}{const}\ std::pair<Vector3,\ bool>\ getItemParticleOffset(\textcolor{keyword}{const}\ String\&\ meshName)}
+\DoxyCodeLine{01062\ \ \ \ \ \{}
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemMesh[i]\ ==\ meshName\ \&\&\ (\textcolor{keywordtype}{int})itemParticleOffset.size()\ >\ i)}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((\textcolor{keywordtype}{int})itemParticleOnNode.size()\ >\ i)\textcolor{keywordflow}{return}\ std::pair<Vector3,\ bool>(StringConverter::parseVector3(itemParticleOffset[i]),\ itemParticleOnNode[i]);}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}\ std::pair<Vector3,\ bool>(StringConverter::parseVector3(itemParticleOffset[i]),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<Vector3,\ bool>(Vector3::ZERO,\ \textcolor{keyword}{false});}
+\DoxyCodeLine{01070\ \ \ \ \ \}}
+\DoxyCodeLine{01071\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ itemMeshExists(\textcolor{keyword}{const}\ String\&\ meshName)}
+\DoxyCodeLine{01072\ \ \ \ \ \{}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ maxItems;\ i++)}
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(itemMesh[i]\ ==\ meshName)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01076\ \ \ \ \ \}}
+\DoxyCodeLine{01077\ \ \ \ \ }
+\DoxyCodeLine{01078\ \ \ \ \ }
+\DoxyCodeLine{01079\ \ \ \ \ \textcolor{keywordtype}{void}\ loadHotkeys(\textcolor{keyword}{const}\ String\&\ filename)}
+\DoxyCodeLine{01080\ \ \ \ \ \{}
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01084\ }
+\DoxyCodeLine{01085\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inFile.good())}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{01099\ }
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}\(\backslash\)n\#"{}});}
+\DoxyCodeLine{01101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((\textcolor{keywordtype}{int})tLine.size()\ ==\ MAX\_HOTKEYF)}
+\DoxyCodeLine{01102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ MAX\_HOTKEYF;\ i++)hotkeyF[i]\ =\ tLine[i];}
+\DoxyCodeLine{01103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Default\ values}}
+\DoxyCodeLine{01106\ \ \ \ \ \ \ \ \ \ \ \ \ hotkeyF[0]\ =\ \textcolor{stringliteral}{"{}Normal"{}};}
+\DoxyCodeLine{01107\ \ \ \ \ \ \ \ \ \ \ \ \ hotkeyF[1]\ =\ \textcolor{stringliteral}{"{}Grin"{}};}
+\DoxyCodeLine{01108\ \ \ \ \ \ \ \ \ \ \ \ \ hotkeyF[2]\ =\ \textcolor{stringliteral}{"{}EvilGrin"{}};}
+\DoxyCodeLine{01109\ \ \ \ \ \ \ \ \ \ \ \ \ hotkeyF[3]\ =\ \textcolor{stringliteral}{"{}Frown"{}};}
+\DoxyCodeLine{01110\ \ \ \ \ \ \ \ \ \ \ \ \ hotkeyF[4]\ =\ \textcolor{stringliteral}{"{}Shock"{}};}
+\DoxyCodeLine{01111\ \ \ \ \ \ \ \ \ \ \ \ \ hotkeyF[5]\ =\ \textcolor{stringliteral}{"{}Smirk"{}};}
+\DoxyCodeLine{01112\ \ \ \ \ \ \ \ \ \ \ \ \ hotkeyF[6]\ =\ \textcolor{stringliteral}{"{}Rest"{}};}
+\DoxyCodeLine{01113\ \ \ \ \ \ \ \ \ \ \ \ \ hotkeyF[7]\ =\ \textcolor{stringliteral}{"{}Tongue"{}};}
+\DoxyCodeLine{01114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01115\ \ \ \ \ \}}
+\DoxyCodeLine{01116\ }
+\DoxyCodeLine{01117\ \ \ \ \ \textcolor{comment}{//\ so\ this\ is\ more\ and\ more\ like\ a\ MasterSettings\ than\ External\ Definitions}}
+\DoxyCodeLine{01118\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{void}\ saveHotkeys(\textcolor{keyword}{const}\ String\&\ filename)}
+\DoxyCodeLine{01119\ \ \ \ \ \{}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ std::ofstream\ outFile;}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \ \ outFile.open(filename.c\_str(),\ std::ofstream::out);}
+\DoxyCodeLine{01122\ }
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ MAX\_HOTKEYF;\ i++)}
+\DoxyCodeLine{01124\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ hotkeyF[i]\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{01126\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ \textcolor{stringliteral}{"{}\#"{}};}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ outFile.write(tBuffer.c\_str(),\ (\textcolor{keywordtype}{int})tBuffer.length());}
+\DoxyCodeLine{01130\ }
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{01132\ \ \ \ \ \}}
+\DoxyCodeLine{01133\ \ \ \ \ \textcolor{keywordtype}{void}\ setHotkeyF(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ key,\ \textcolor{keyword}{const}\ String\&\ value)}
+\DoxyCodeLine{01134\ \ \ \ \ \{}
+\DoxyCodeLine{01135\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(key\ >=\ 0\ \&\&\ key\ <\ MAX\_HOTKEYF)hotkeyF[key]\ =\ value;}
+\DoxyCodeLine{01136\ \ \ \ \ \}}
+\DoxyCodeLine{01137\ \ \ \ \ \textcolor{keyword}{const}\ String\ getHotkeyF(\textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\&\ key)}
+\DoxyCodeLine{01138\ \ \ \ \ \{}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(key\ >=\ 0\ \&\&\ key\ <\ MAX\_HOTKEYF)\textcolor{keywordflow}{return}\ hotkeyF[key];}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01141\ \ \ \ \ \}}
+\DoxyCodeLine{01142\ }
+\DoxyCodeLine{01143\ \ \ \ \ \textcolor{comment}{//\ to\ game\ logic\ BUT\ an\ "{}utils"{}\ function\ ?\ IF\ used\ outside\ of\ chargen\ ?\ :D}}
+\DoxyCodeLine{01144\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasManeMesh(\textcolor{keyword}{const}\ String\&\ mesh)}
+\DoxyCodeLine{01145\ \ \ \ \ \{}
+\DoxyCodeLine{01146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)maneMesh.size();\ i++)}
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (maneMesh[i]\ ==\ mesh)}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01152\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01154\ \ \ \ \ \}}
+\DoxyCodeLine{01155\ }
+\DoxyCodeLine{01156\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasTailMesh(\textcolor{keyword}{const}\ String\&\ mesh)}
+\DoxyCodeLine{01157\ \ \ \ \ \{}
+\DoxyCodeLine{01158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)tailMesh.size();\ i++)}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tailMesh[i]\ ==\ mesh)}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01165\ }
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01167\ \ \ \ \ \}}
+\DoxyCodeLine{01168\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasWingMesh(\textcolor{keyword}{const}\ String\&\ mesh)}
+\DoxyCodeLine{01169\ \ \ \ \ \{}
+\DoxyCodeLine{01170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)wingMesh.size();\ i++)}
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(wingMesh[i]\ ==\ mesh)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01173\ \ \ \ \ \}}
+\DoxyCodeLine{01174\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasTuftMesh(\textcolor{keyword}{const}\ String\&\ mesh)}
+\DoxyCodeLine{01175\ \ \ \ \ \{}
+\DoxyCodeLine{01176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)tuftMesh.size();\ i++)}
+\DoxyCodeLine{01177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tuftMesh[i]\ ==\ mesh)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01179\ \ \ \ \ \}}
+\DoxyCodeLine{01180\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasBodyMark(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{01181\ \ \ \ \ \{}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{id}\ <\ maxBodyMarks);}
+\DoxyCodeLine{01183\ \ \ \ \ \}}
+\DoxyCodeLine{01184\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasHeadMark(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{01185\ \ \ \ \ \{}
+\DoxyCodeLine{01186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{id}\ <\ maxHeadMarks);}
+\DoxyCodeLine{01187\ \ \ \ \ \}}
+\DoxyCodeLine{01188\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ hasTailMark(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{01189\ \ \ \ \ \{}
+\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (\textcolor{keywordtype}{id}\ <\ maxTailMarks);}
+\DoxyCodeLine{01191\ \ \ \ \ \}}
+\DoxyCodeLine{01192\ }
+\DoxyCodeLine{01196\ }
+\DoxyCodeLine{01197\ \ \ \ \ \textcolor{comment}{//\ this\ is\ a\ ..\ maybe,\ and\ by\ maybe\ i\ mean\ a\ "{}customizable\ central\ folder"{}\ not\ separated\ everywhere}}
+\DoxyCodeLine{01198\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_external_definitions_a4b8be9e536d38a74efbdb7a6b2301241}{loadWeatherCycle}}(\textcolor{keyword}{const}\ String\&\ type,\ vector<WeatherEvent>::type\&\ list,\ \textcolor{keywordtype}{bool}\ isCustom\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{01199\ \ \ \ \ \{}
+\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ String\ tFilename\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01201\ \ \ \ \ \ \ \ \ list.clear();}
+\DoxyCodeLine{01202\ }
+\DoxyCodeLine{01203\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{01204\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{01205\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01206\ }
+\DoxyCodeLine{01207\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ inFile.open(isCustom\ ?\ \textcolor{stringliteral}{"{}media/weather/CustomWeatherCycles.cfg"{}}\ :\ \textcolor{stringliteral}{"{}media/weather/WeatherCycles.cfg"{}},\ std::ifstream::in);}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{01213\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{01214\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01215\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{01216\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{01217\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{01218\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{01219\ }
+\DoxyCodeLine{01220\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{01221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<int(tPart.size());\ i++)}
+\DoxyCodeLine{01222\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tPart[i],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 2);}
+\DoxyCodeLine{01224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >\ 1)}
+\DoxyCodeLine{01225\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tType\ =\ tLine[0];}
+\DoxyCodeLine{01227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tType.erase(tType.find\_first\_of(\textcolor{stringliteral}{"{}]"{}}),\ 1);}
+\DoxyCodeLine{01228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tType\ ==\ type)}
+\DoxyCodeLine{01229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFilename\ =\ tLine[1];}
+\DoxyCodeLine{01231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01233\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01234\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01235\ }
+\DoxyCodeLine{01236\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tFilename\ ==\ \textcolor{stringliteral}{"{}"{}}\ \&\&\ !isCustom)}
+\DoxyCodeLine{01237\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01238\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions_a4b8be9e536d38a74efbdb7a6b2301241}{loadWeatherCycle}}(type,\ list,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{01239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01240\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01241\ }
+\DoxyCodeLine{01242\ \ \ \ \ \ \ \ \ ConfigFile\ cf;}
+\DoxyCodeLine{01243\ \ \ \ \ \ \ \ \ cf.load(\textcolor{stringliteral}{"{}media/weather/"{}}\ +\ tFilename);}
+\DoxyCodeLine{01244\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01245\ \ \ \ \ \ \ \ \ ConfigFile::SectionIterator\ seci\ =\ cf.getSectionIterator();}
+\DoxyCodeLine{01246\ }
+\DoxyCodeLine{01247\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (seci.hasMoreElements())}
+\DoxyCodeLine{01248\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tSectionName\ =\ seci.peekNextKey();}
+\DoxyCodeLine{01250\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01251\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap*\ settings\ =\ seci.getNext();}
+\DoxyCodeLine{01252\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap::iterator\ i;}
+\DoxyCodeLine{01253\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_weather_event}{WeatherEvent}}\ tEvent;}
+\DoxyCodeLine{01254\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ settings-\/>begin();\ i\ !=\ settings-\/>end();\ ++i)}
+\DoxyCodeLine{01256\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}start"{}}))tEvent.start\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}end"{}}))tEvent.end\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}skyshader"{}}))tEvent.skyShader\ =\ StringConverter::parseColourValue(i-\/>second);}
+\DoxyCodeLine{01260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}skyadder"{}}))tEvent.skyAdder\ =\ StringConverter::parseColourValue(i-\/>second);}
+\DoxyCodeLine{01261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}weather"{}}))tEvent.type\ =\ i-\/>second;}
+\DoxyCodeLine{01262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}rate"{}}))tEvent.rate\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}constant"{}}))tEvent.isConstant\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}effectfrequency"{}}))tEvent.effectFrequency\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}effect"{}}))tEvent.effect.push\_back(i-\/>second);}
+\DoxyCodeLine{01266\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01267\ }
+\DoxyCodeLine{01268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSectionName\ !=\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01269\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ list.push\_back(tEvent);}
+\DoxyCodeLine{01271\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01272\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01273\ \ \ \ \ \}}
+\DoxyCodeLine{01274\ }
+\DoxyCodeLine{01275\ \ \ \ \ \textcolor{comment}{//\ by\ design\ weather\ should\ be\ separate\ and\ under\ same\ namespace\ as\ sky..\ and\ the\ code\ simplifiedn\ why\ sometimes\ using\ ConfigFile\ and\ others\ a\ ifstream\ ?}}
+\DoxyCodeLine{01276\ \ \ \ \ \textcolor{comment}{//\ also,\ we\ could\ have\ a\ single\ function\ that\ do\ it\ all\ and\ returns\ a\ buffer}}
+\DoxyCodeLine{01277\ \ \ \ \ \textcolor{keywordtype}{void}\ loadWeather(\textcolor{keyword}{const}\ String\&\ type,\ String\&\ particle,\ Vector3\&\ offset,\ String\&\ sound,\ \textcolor{keywordtype}{bool}\ isCustom\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{01278\ \ \ \ \ \{}
+\DoxyCodeLine{01279\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{01280\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{01281\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01282\ }
+\DoxyCodeLine{01283\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{01284\ \ \ \ \ \ \ \ \ inFile.open(isCustom\ ?\ \textcolor{stringliteral}{"{}media/weather/CustomWeathers.cfg"{}}\ :\ \textcolor{stringliteral}{"{}media/weather/Weathers.cfg"{}},\ std::ifstream::in);}
+\DoxyCodeLine{01285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01286\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{01287\ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{01288\ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{01289\ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{01290\ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01291\ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{01292\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{01293\ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{01294\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{01295\ }
+\DoxyCodeLine{01296\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{01297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<int(tPart.size());\ i++)}
+\DoxyCodeLine{01298\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tPart[i],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 4);}
+\DoxyCodeLine{01300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 2)}
+\DoxyCodeLine{01301\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\ type,\ \textcolor{keyword}{false}))}
+\DoxyCodeLine{01303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ particle\ =\ tLine[1];}
+\DoxyCodeLine{01305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 3)}
+\DoxyCodeLine{01306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ offset\ =\ StringConverter::parseVector3(tLine[2]);}
+\DoxyCodeLine{01308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >=\ 4)}
+\DoxyCodeLine{01310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sound\ =\ tLine[3];}
+\DoxyCodeLine{01312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01313\ }
+\DoxyCodeLine{01314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01316\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01317\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isCustom)loadWeather(type,\ particle,\ offset,\ sound,\ \textcolor{keyword}{true});}
+\DoxyCodeLine{01319\ \ \ \ \ \}}
+\DoxyCodeLine{01320\ }
+\DoxyCodeLine{01321\ \ \ \ \ \textcolor{comment}{//\ again,\ gameplay\ stuff\ but\ this\ one\ is\ settings}}
+\DoxyCodeLine{01322\ \ \ \ \ \textcolor{keywordtype}{void}\ loadAttacks(\textcolor{keyword}{const}\ String\&\ filename,\ \textcolor{keywordtype}{bool}\ isCustom)}
+\DoxyCodeLine{01323\ \ \ \ \ \{}
+\DoxyCodeLine{01324\ \ \ \ \ \ \ \ \ String\ tFilename\ =\ filename;}
+\DoxyCodeLine{01325\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isCustom)}
+\DoxyCodeLine{01326\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01327\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ inFile(filename.c\_str());}
+\DoxyCodeLine{01328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ inFile.close();}
+\DoxyCodeLine{01330\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01331\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Genereate\ temp\ file}}
+\DoxyCodeLine{01332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01333\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01334\ \ \ \ \ \ \ \ \ \ \ \ \ tFilename\ =\ filename\ +\ \textcolor{stringliteral}{"{}.cfg"{}};}
+\DoxyCodeLine{01335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixUtils.XOR7FileGen(filename,\ tFilename,\ \textcolor{keyword}{true},\ \textcolor{keyword}{true}))}
+\DoxyCodeLine{01336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}(Exception(9,\ \textcolor{stringliteral}{"{}Corrupted\ Data\ File"{}},\ filename\ +\ \textcolor{stringliteral}{"{},\ please\ run\ the\ autopatcher."{}}));}
+\DoxyCodeLine{01337\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01338\ \ \ \ \ \ \ \ \ ConfigFile\ cf;}
+\DoxyCodeLine{01339\ \ \ \ \ \ \ \ \ cf.load(tFilename);}
+\DoxyCodeLine{01340\ }
+\DoxyCodeLine{01341\ \ \ \ \ \ \ \ \ ConfigFile::SectionIterator\ seci\ =\ cf.getSectionIterator();}
+\DoxyCodeLine{01342\ }
+\DoxyCodeLine{01343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (seci.hasMoreElements())}
+\DoxyCodeLine{01344\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tSectionName\ =\ seci.peekNextKey();}
+\DoxyCodeLine{01346\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap*\ settings\ =\ seci.getNext();}
+\DoxyCodeLine{01347\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap::iterator\ i;}
+\DoxyCodeLine{01348\ }
+\DoxyCodeLine{01349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ our\ anim\ \&\ fx\ config}}
+\DoxyCodeLine{01350\ \ \ \ \ \ \ \ \ \ \ \ \ Attack\ tAtk;}
+\DoxyCodeLine{01351\ }
+\DoxyCodeLine{01352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ settings-\/>begin();\ i\ !=\ settings-\/>end();\ ++i)}
+\DoxyCodeLine{01353\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ get\ the\ trailFX\_\ }}
+\DoxyCodeLine{01355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}trailfx"{}}))}
+\DoxyCodeLine{01356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ split\ value\ character\ is\ comma\ the\ "{},"{}}}
+\DoxyCodeLine{01358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(i-\/>second,\ \textcolor{stringliteral}{"{},"{}},\ 1);}
+\DoxyCodeLine{01359\ }
+\DoxyCodeLine{01360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ ==\ 2)}
+\DoxyCodeLine{01361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ whats\ the\ tPart\ actually\ ?\ need\ to\ walk\ on\ that,\ breakpoint.}}
+\DoxyCodeLine{01363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ educated\ guess\ :\ everything\ that\ is\ within\ trailfx\ ?}}
+\DoxyCodeLine{01364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tFxID\ =\ StringConverter::parseInt(tPart[0])\ -\/\ 1;}
+\DoxyCodeLine{01365\ }
+\DoxyCodeLine{01366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ ((\textcolor{keywordtype}{int})tAtk.FX.size()\ <\ (tFxID\ +\ 1))}
+\DoxyCodeLine{01367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.FX.push\_back(AttackFX());}
+\DoxyCodeLine{01369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::endsWith(i-\/>first,\ \textcolor{stringliteral}{"{}bone"{}}))}
+\DoxyCodeLine{01372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.FX[tFxID].bone\ =\ tPart[1];}
+\DoxyCodeLine{01374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::endsWith(i-\/>first,\ \textcolor{stringliteral}{"{}trailmat"{}}))}
+\DoxyCodeLine{01376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.FX[tFxID].trailMat\ =\ tPart[1];}
+\DoxyCodeLine{01378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::endsWith(i-\/>first,\ \textcolor{stringliteral}{"{}width"{}}))}
+\DoxyCodeLine{01380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.FX[tFxID].trailWidth\ =\ StringConverter::parseReal(tPart[1]);}
+\DoxyCodeLine{01382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::endsWith(i-\/>first,\ \textcolor{stringliteral}{"{}colour"{}}))}
+\DoxyCodeLine{01384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.FX[tFxID].colour\ =\ StringConverter::parseColourValue(tPart[1]);}
+\DoxyCodeLine{01386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::endsWith(i-\/>first,\ \textcolor{stringliteral}{"{}colourchange"{}}))}
+\DoxyCodeLine{01388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.FX[tFxID].colourChange\ =\ StringConverter::parseColourValue(tPart[1]);}
+\DoxyCodeLine{01390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::endsWith(i-\/>first,\ \textcolor{stringliteral}{"{}trailheadmat"{}}))}
+\DoxyCodeLine{01392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.FX[tFxID].trailHeadMat\ =\ tPart[1];}
+\DoxyCodeLine{01394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ weird\ its\ parsed\ here\ while\ its\ first\ parameter\ after\ name}}
+\DoxyCodeLine{01398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}anim"{}}))}
+\DoxyCodeLine{01399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.anim\ =\ i-\/>second;}
+\DoxyCodeLine{01401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}range"{}}))}
+\DoxyCodeLine{01403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.range\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}hitforce"{}}))}
+\DoxyCodeLine{01407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.hitForce\ =\ StringConverter::parseVector3(i-\/>second);}
+\DoxyCodeLine{01409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}offset"{}}))}
+\DoxyCodeLine{01411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.offset\ =\ StringConverter::parseVector3(i-\/>second);}
+\DoxyCodeLine{01413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}hpmin"{}}))}
+\DoxyCodeLine{01415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.hpMin\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}hpmax"{}}))}
+\DoxyCodeLine{01419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.hpMax\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}hitally"{}}))}
+\DoxyCodeLine{01423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.hitAlly\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}autotarget"{}}))}
+\DoxyCodeLine{01427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.autoTarget\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}singletarget"{}}))}
+\DoxyCodeLine{01431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.singleTarget\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}moveforce"{}}))}
+\DoxyCodeLine{01435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.moveForce\ =\ StringConverter::parseVector3(i-\/>second);}
+\DoxyCodeLine{01437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}speedmultiplier"{}}))}
+\DoxyCodeLine{01439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.speedMultiplier\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}soundroar"{}}))}
+\DoxyCodeLine{01443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.soundRoar\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}attackrange"{}}))}
+\DoxyCodeLine{01447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.attackRange\ =\ StringConverter::parseInt(i-\/>second);}
+\DoxyCodeLine{01449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01450\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01451\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSectionName\ !=\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01452\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tAtk.name\ =\ tSectionName;}
+\DoxyCodeLine{01454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attackList.push\_back(tAtk);}
+\DoxyCodeLine{01455\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01456\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01457\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Delete\ temp\ file}}
+\DoxyCodeLine{01458\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isCustom)}
+\DoxyCodeLine{01459\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01460\ \ \ \ \ \ \ \ \ \ \ \ \ \_unlink(tFilename.c\_str());}
+\DoxyCodeLine{01461\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01462\ \ \ \ \ \}}
+\DoxyCodeLine{01463\ }
+\DoxyCodeLine{01464\ \ \ \ \ \textcolor{comment}{//\ unit\ manager\ \&\ mgui\ use\ this\ (unit\ manager\ is\ player\ manager\ ??)}}
+\DoxyCodeLine{01465\ \ \ \ \ \textcolor{comment}{//\ use\ an\ array\ of\ attack\ that\ was\ built\ in\ loadattacks}}
+\DoxyCodeLine{01466\ }
+\DoxyCodeLine{01467\ \ \ \ \ \textcolor{comment}{//\ unit\ manager\ \&\ mgui\ use\ this\ (unit\ manager\ is\ player\ manager\ ??)}}
+\DoxyCodeLine{01468\ \ \ \ \ \textcolor{keyword}{const}\ Attack\ getAttack(\textcolor{keyword}{const}\ String\&\ name)}
+\DoxyCodeLine{01469\ \ \ \ \ \{}
+\DoxyCodeLine{01470\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)attackList.size();\ i++)}
+\DoxyCodeLine{01471\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(attackList[i].name\ ==\ name)}
+\DoxyCodeLine{01473\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ attackList[i];}
+\DoxyCodeLine{01475\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01476\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Attack();}
+\DoxyCodeLine{01478\ \ \ \ \ \}}
+\DoxyCodeLine{01479\ }
+\DoxyCodeLine{01480\ \ \ \ \ \textcolor{comment}{//\ unit\ \&\ player}}
+\DoxyCodeLine{01481\ \ \ \ \ \textcolor{keyword}{const}\ String\ getAttackAnim(\textcolor{keyword}{const}\ String\&\ name)}
+\DoxyCodeLine{01482\ \ \ \ \ \{}
+\DoxyCodeLine{01483\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)attackList.size();\ i++)}
+\DoxyCodeLine{01484\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(attackList[i].name\ ==\ name)}
+\DoxyCodeLine{01486\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ attackList[i].anim;}
+\DoxyCodeLine{01488\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01489\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01490\ }
+\DoxyCodeLine{01491\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{stringliteral}{"{}Attack1"{}};}
+\DoxyCodeLine{01492\ \ \ \ \ \}}
+\DoxyCodeLine{01493\ }
+\DoxyCodeLine{01494\ \ \ \ \ \textcolor{comment}{//\ is\ really\ for\ unity\ manager\ ?}}
+\DoxyCodeLine{01495\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSkillTargetsAllies(\textcolor{keyword}{const}\ String\&\ name)}
+\DoxyCodeLine{01496\ \ \ \ \ \{}
+\DoxyCodeLine{01497\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)attackList.size();\ i++)}
+\DoxyCodeLine{01498\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(attackList[i].name\ ==\ name)}
+\DoxyCodeLine{01500\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ attackList[i].hitAlly;}
+\DoxyCodeLine{01502\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01503\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01504\ }
+\DoxyCodeLine{01505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01506\ \ \ \ \ \}}
+\DoxyCodeLine{01507\ }
+\DoxyCodeLine{01508\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSkillTargetsSelf(\textcolor{keyword}{const}\ String\&\ name)}
+\DoxyCodeLine{01509\ \ \ \ \ \{}
+\DoxyCodeLine{01510\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)attackList.size();\ i++)}
+\DoxyCodeLine{01511\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(attackList[i].name\ ==\ name)}
+\DoxyCodeLine{01513\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ attackList[i].hitAlly;}
+\DoxyCodeLine{01515\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01516\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01517\ }
+\DoxyCodeLine{01518\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01519\ \ \ \ \ \}}
+\DoxyCodeLine{01520\ }
+\DoxyCodeLine{01521\ \ \ \ \ \textcolor{comment}{//\ wip\ notes\ :\ this\ is\ gameplay,\ BUT\ cd1.dat\ so\ this\ can\ stay\ but\ maybe\ reworked\ name\ etc}}
+\DoxyCodeLine{01522\ \ \ \ \ \textcolor{keywordtype}{void}\ loadCritters(\textcolor{keyword}{const}\ String\ \&filename,\ \textcolor{keywordtype}{bool}\ isCustom)}
+\DoxyCodeLine{01523\ \ \ \ \ \{}
+\DoxyCodeLine{01524\ \ \ \ \ \ \ \ \ String\ tFilename\ =\ filename;}
+\DoxyCodeLine{01525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isCustom)}
+\DoxyCodeLine{01526\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01527\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ inFile(filename.c\_str());}
+\DoxyCodeLine{01528\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01529\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ inFile.close();}
+\DoxyCodeLine{01530\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01531\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ temp\ file..\ ok\ but\ what\ ?\ do\ this\ uncipher\ .dat\ ?}}
+\DoxyCodeLine{01532\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01533\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01534\ \ \ \ \ \ \ \ \ \ \ \ \ tFilename\ =\ filename\ +\ \textcolor{stringliteral}{"{}.cfg"{}};}
+\DoxyCodeLine{01535\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixUtils.XOR7FileGen(filename,\ tFilename,\ \textcolor{keyword}{true},\ \textcolor{keyword}{true}))}
+\DoxyCodeLine{01536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}(Exception(9,\ \textcolor{stringliteral}{"{}XOR7FileGen\ unable\ to\ run.\ Corrupted\ Data\ File\ ?"{}},\ filename\ +\ \textcolor{stringliteral}{"{},\ re-\/run\ the\ IT\ XOR\ tool\ if\ you\ are\ sure\ of\ your\ file."{}}));}
+\DoxyCodeLine{01537\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01538\ \ \ \ \ \ \ \ \ ConfigFile\ cf;}
+\DoxyCodeLine{01539\ \ \ \ \ \ \ \ \ cf.load(tFilename);}
+\DoxyCodeLine{01540\ \ \ \ \ \ \ \ \ ConfigFile::SectionIterator\ seci\ =\ cf.getSectionIterator();}
+\DoxyCodeLine{01541\ }
+\DoxyCodeLine{01542\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (seci.hasMoreElements())}
+\DoxyCodeLine{01543\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01544\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tSectionName\ =\ seci.peekNextKey();}
+\DoxyCodeLine{01545\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap*\ settings\ =\ seci.getNext();}
+\DoxyCodeLine{01546\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap::iterator\ i;}
+\DoxyCodeLine{01547\ \ \ \ \ \ \ \ \ \ \ \ \ Critter\ tC;}
+\DoxyCodeLine{01548\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ settings-\/>begin();\ i\ !=\ settings-\/>end();\ ++i)}
+\DoxyCodeLine{01549\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}mesh"{}}))tC.mesh\ =\ i-\/>second;}
+\DoxyCodeLine{01551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}isuncustomizable"{}}))}
+\DoxyCodeLine{01552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isCustom)tC.isUncustomizable\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}isdrawpoint"{}}))}
+\DoxyCodeLine{01556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isCustom)tC.isDrawPoint\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}material"{}}))tC.material\ =\ i-\/>second;}
+\DoxyCodeLine{01560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}sound"{}}))tC.sound\ =\ i-\/>second;}
+\DoxyCodeLine{01561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}friendly"{}}))tC.friendly\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}invulnerable"{}}))tC.invulnerable\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}scale"{}}))tC.scale\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}hp"{}}))tC.hp\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}flying"{}}))tC.flying\ =\ StringConverter::parseBool(i-\/>second);}
+\DoxyCodeLine{01566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}decisionmin"{}}))tC.decisionMin\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}decisiondeviation"{}}))tC.decisionDeviation\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}maxspeed"{}}))tC.maxSpeed\ =\ StringConverter::parseReal(i-\/>second);}
+\DoxyCodeLine{01569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}droplist"{}}))}
+\DoxyCodeLine{01570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(i-\/>second,\ \textcolor{stringliteral}{"{},"{}},\ 1);}
+\DoxyCodeLine{01572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >=\ 2)tC.dropList.push\_back(std::pair<String,\ Real>(tPart[0],\ StringConverter::parseReal(tPart[1])));}
+\DoxyCodeLine{01573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}skilldrop"{}}))}
+\DoxyCodeLine{01575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(i-\/>second,\ \textcolor{stringliteral}{"{},"{}},\ 1);}
+\DoxyCodeLine{01577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >=\ 2)tC.skillDrop\ =\ std::pair<String,\ unsigned\ char>(tPart[0],\ StringConverter::parseInt(tPart[1]));}
+\DoxyCodeLine{01578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}attacklist"{}}))}
+\DoxyCodeLine{01580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(i-\/>second,\ \textcolor{stringliteral}{"{},"{}},\ 5);}
+\DoxyCodeLine{01582\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >=\ 2)tC.attackList.push\_back(CritterAttack(StringConverter::parseReal(tPart[0]),}
+\DoxyCodeLine{01583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StringConverter::parseReal(tPart[1]),}
+\DoxyCodeLine{01584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (tPart.size()\ >=\ 5\ ?\ Vector3(StringConverter::parseReal(tPart[2]),\ StringConverter::parseReal(tPart[3]),\ StringConverter::parseReal(tPart[4]))\ :\ Vector3(0,\ 0,\ 1)),}
+\DoxyCodeLine{01585\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (tPart.size()\ >=\ 6\ ?\ StringConverter::parseBool(tPart[5])\ :\ \textcolor{keyword}{false})}
+\DoxyCodeLine{01586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{01587\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01588\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01589\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSectionName\ !=\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01590\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tC.type\ =\ tSectionName;}
+\DoxyCodeLine{01592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ critterList.push\_back(tC);}
+\DoxyCodeLine{01593\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01594\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01595\ }
+\DoxyCodeLine{01596\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Delete\ temp\ file}}
+\DoxyCodeLine{01597\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isCustom)}
+\DoxyCodeLine{01598\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01599\ \ \ \ \ \ \ \ \ \ \ \ \ \_unlink(tFilename.c\_str());}
+\DoxyCodeLine{01600\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01601\ \ \ \ \ \}}
+\DoxyCodeLine{01602\ \ \ \ \ \textcolor{keyword}{const}\ Critter\ getCritter(\textcolor{keyword}{const}\ String\&\ type)}
+\DoxyCodeLine{01603\ \ \ \ \ \{}
+\DoxyCodeLine{01604\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)critterList.size();\ i++)}
+\DoxyCodeLine{01605\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01606\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i].type\ ==\ type)\textcolor{keywordflow}{return}\ critterList[i];}
+\DoxyCodeLine{01607\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01608\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Critter();}
+\DoxyCodeLine{01609\ \ \ \ \ \}}
+\DoxyCodeLine{01610\ \ \ \ \ \textcolor{keyword}{const}\ vector<std::pair<String,\ Real>>::type\ getCritterDropList(\textcolor{keyword}{const}\ String\&\ type)}
+\DoxyCodeLine{01611\ \ \ \ \ \{}
+\DoxyCodeLine{01612\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)critterList.size();\ i++)}
+\DoxyCodeLine{01613\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01614\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i].type\ ==\ type)\textcolor{keywordflow}{return}\ critterList[i].dropList;}
+\DoxyCodeLine{01615\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01616\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<std::pair<String,\ Real>>::type\ tList;}
+\DoxyCodeLine{01617\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{01618\ \ \ \ \ \}}
+\DoxyCodeLine{01619\ \ \ \ \ \textcolor{keyword}{const}\ std::pair<String,\ unsigned\ char>\ getCritterSkillDrop(\textcolor{keyword}{const}\ String\&\ type)}
+\DoxyCodeLine{01620\ \ \ \ \ \{}
+\DoxyCodeLine{01621\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)critterList.size();\ i++)}
+\DoxyCodeLine{01622\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01623\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i].type\ ==\ type)\textcolor{keywordflow}{return}\ critterList[i].skillDrop;}
+\DoxyCodeLine{01624\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01625\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}"{}},\ 0);}
+\DoxyCodeLine{01626\ \ \ \ \ \}}
+\DoxyCodeLine{01627\ }
+\DoxyCodeLine{01628\ \ \ \ \ \textcolor{keyword}{const}\ std::pair<String,\ unsigned\ char>\ getRandomSkillDrop()}
+\DoxyCodeLine{01629\ \ \ \ \ \{}
+\DoxyCodeLine{01630\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ MAX\_RANDOMSKILL\ =\ 8;}
+\DoxyCodeLine{01631\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID\ =\ (\textcolor{keywordtype}{unsigned}\ short)Math::RangeRandom(0,\ MAX\_RANDOMSKILL);}
+\DoxyCodeLine{01632\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01633\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID\ >=\ MAX\_RANDOMSKILL)}
+\DoxyCodeLine{01634\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01635\ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ MAX\_RANDOMSKILL\ -\/\ 1;}
+\DoxyCodeLine{01636\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01637\ }
+\DoxyCodeLine{01638\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (tID)}
+\DoxyCodeLine{01639\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01640\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 0:}
+\DoxyCodeLine{01641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}Cure"{}},\ 10);}
+\DoxyCodeLine{01642\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 1:\ }
+\DoxyCodeLine{01643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}Lunge"{}},\ 10);}
+\DoxyCodeLine{01644\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 2:\ }
+\DoxyCodeLine{01645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}Sweep"{}},\ 10);}
+\DoxyCodeLine{01646\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 3:\ }
+\DoxyCodeLine{01647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}Stomp"{}},\ 10);}
+\DoxyCodeLine{01648\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 4:\ }
+\DoxyCodeLine{01649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}Backflip"{}},\ 10);}
+\DoxyCodeLine{01650\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 5:\ }
+\DoxyCodeLine{01651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}Tame"{}},\ 3);}
+\DoxyCodeLine{01652\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 6:\ }
+\DoxyCodeLine{01653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}Roar"{}},\ 6);}
+\DoxyCodeLine{01654\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ 7:\ }
+\DoxyCodeLine{01655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}Zoom"{}},\ 10);}
+\DoxyCodeLine{01656\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01657\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}"{}},\ 0);}
+\DoxyCodeLine{01658\ \ \ \ \ \}}
+\DoxyCodeLine{01659\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getCritterRandomAttack(\textcolor{keyword}{const}\ String\&\ type,\ \textcolor{keywordtype}{bool}*\ hitAlly\ =\ 0)}
+\DoxyCodeLine{01660\ \ \ \ \ \{}
+\DoxyCodeLine{01661\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)critterList.size();\ i++)}
+\DoxyCodeLine{01662\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01663\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i].type\ ==\ type)}
+\DoxyCodeLine{01664\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01665\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i].attackList.size()\ ==\ 0)}
+\DoxyCodeLine{01666\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01667\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01668\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01669\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01670\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Attacks\ 2\ and\ above\ are\ rarer}}
+\DoxyCodeLine{01671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i].attackList.size()\ ==\ 1\ ||\ Math::UnitRandom()\ <\ 0.5)}
+\DoxyCodeLine{01672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hitAlly)*hitAlly\ =\ critterList[i].attackList[0].hitAlly;}
+\DoxyCodeLine{01674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{01675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ tID\ =\ Math::RangeRandom(1,\ (\textcolor{keywordtype}{int})critterList[i].attackList.size());}
+\DoxyCodeLine{01678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01679\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID\ >=\ (\textcolor{keywordtype}{int})critterList[i].attackList.size())}
+\DoxyCodeLine{01680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tID\ -\/=\ 1;}
+\DoxyCodeLine{01682\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01683\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hitAlly)}
+\DoxyCodeLine{01684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *hitAlly\ =\ critterList[i].attackList[tID].hitAlly;}
+\DoxyCodeLine{01686\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01687\ }
+\DoxyCodeLine{01688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tID\ +\ 1;}
+\DoxyCodeLine{01689\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01690\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01691\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01692\ \ \ \ \ \}}
+\DoxyCodeLine{01693\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getCritterRandomSpecificAttack(\textcolor{keyword}{const}\ String\&\ type,\ \textcolor{keywordtype}{bool}\ getNonHeal)}
+\DoxyCodeLine{01694\ \ \ \ \ \{}
+\DoxyCodeLine{01695\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)critterList.size();\ i++)}
+\DoxyCodeLine{01696\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01697\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i].type\ ==\ type)}
+\DoxyCodeLine{01698\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01699\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ vector<unsigned\ char>::type\ tList;}
+\DoxyCodeLine{01700\ }
+\DoxyCodeLine{01701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ (int)critterList[i].attackList.size();\ j++)}
+\DoxyCodeLine{01702\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(getNonHeal\ \string^\ critterList[i].attackList[j].hitAlly)tList.push\_back(j\ +\ 1);}
+\DoxyCodeLine{01704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01705\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01706\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tList.size()\ ==\ 0)}
+\DoxyCodeLine{01707\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01710\ }
+\DoxyCodeLine{01711\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Attacks\ 2\ and\ above\ are\ rarer}}
+\DoxyCodeLine{01712\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tList.size()\ ==\ 1\ ||\ Math::UnitRandom()\ <\ 0.5)}
+\DoxyCodeLine{01713\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01714\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList[0];}
+\DoxyCodeLine{01715\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01716\ }
+\DoxyCodeLine{01717\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ tID\ =\ Math::RangeRandom(1,\ (\textcolor{keywordtype}{int})tList.size());}
+\DoxyCodeLine{01718\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID\ >=\ (\textcolor{keywordtype}{int})tList.size())}
+\DoxyCodeLine{01719\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01720\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tID\ -\/=\ 1;}
+\DoxyCodeLine{01721\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01722\ }
+\DoxyCodeLine{01723\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList[tID];}
+\DoxyCodeLine{01724\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01725\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01726\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01727\ \ \ \ \ \}}
+\DoxyCodeLine{01728\ }
+\DoxyCodeLine{01729\ \ \ \ \ \textcolor{keyword}{const}\ std::pair<CritterAttack,\ String>\ getCritterAttackAndSound(\textcolor{keyword}{const}\ String\&\ type,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ iID)}
+\DoxyCodeLine{01730\ \ \ \ \ \{}
+\DoxyCodeLine{01731\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)critterList.size();\ i++)}
+\DoxyCodeLine{01732\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01733\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i].type\ ==\ type)}
+\DoxyCodeLine{01734\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01735\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(iID\ >=\ 0\ \&\&\ iID\ <\ (\textcolor{keywordtype}{int})critterList[i].attackList.size())}
+\DoxyCodeLine{01736\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01737\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<CritterAttack,\ String>(critterList[i].attackList[iID],\ critterList[i].sound);}
+\DoxyCodeLine{01738\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01739\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<CritterAttack,\ String>(CritterAttack(0,\ 0,\ Vector3::ZERO),\ critterList[i].sound);}
+\DoxyCodeLine{01742\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01743\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01744\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01745\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ std::pair<CritterAttack,\ String>(CritterAttack(0,\ 0,\ Vector3::ZERO),\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01746\ \ \ \ \ \}}
+\DoxyCodeLine{01747\ }
+\DoxyCodeLine{01748\ \ \ \ \ \textcolor{comment}{//\ settings}}
+\DoxyCodeLine{01749\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadCritterSpawnList(\textcolor{keyword}{const}\ String\&\ worldName,}
+\DoxyCodeLine{01750\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\&\ limit,}
+\DoxyCodeLine{01751\ \ \ \ \ \ \ \ \ vector<WorldCritter>::type\&\ list,}
+\DoxyCodeLine{01752\ \ \ \ \ \ \ \ \ vector<std::pair<Vector3,\ Vector3>>::type\&\ roamArea,}
+\DoxyCodeLine{01753\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\&\ customFilename\ =\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01754\ \ \ \ \ \{}
+\DoxyCodeLine{01755\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Hardcoded\ goodness}}
+\DoxyCodeLine{01756\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(worldName\ !=\ \textcolor{stringliteral}{"{}Default"{}})}
+\DoxyCodeLine{01757\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01758\ \ \ \ \ \ \ \ \ \ \ \ \ limit\ =\ 3;}
+\DoxyCodeLine{01759\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Draw\ Points\ for\ crittered\ maps}}
+\DoxyCodeLine{01760\ \ \ \ \ \ \ \ \ \ \ \ \ list.push\_back(WorldCritter(\textcolor{stringliteral}{"{}Draw\ Point"{}},\ 0.05));}
+\DoxyCodeLine{01761\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01762\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01763\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(loadCritterSpawnListFile(\textcolor{stringliteral}{"{}cd2.dat"{}},\ worldName,\ limit,\ list,\ roamArea))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01764\ }
+\DoxyCodeLine{01765\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(loadCustomCritterSpawnList(\textcolor{stringliteral}{"{}media/terrains/"{}}\ +\ worldName\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ customFilename,\ limit,\ list,\ roamArea))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01766\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01767\ \ \ \ \ \}}
+\DoxyCodeLine{01768\ }
+\DoxyCodeLine{01769\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadCritterSpawnListFile(\textcolor{keyword}{const}\ String\&\ filename,\ \textcolor{keyword}{const}\ String\&\ worldName,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\&\ limit,\ vector<WorldCritter>::type\&\ list,\ vector<std::pair<Vector3,\ Vector3>>::type\&\ roamArea)}
+\DoxyCodeLine{01770\ \ \ \ \ \{}
+\DoxyCodeLine{01771\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tFilename\ =\ filename\ +\ \textcolor{stringliteral}{"{}.cfg"{}};}
+\DoxyCodeLine{01772\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixUtils.XOR7FileGen(filename,\ tFilename,\ \textcolor{keyword}{true},\ \textcolor{keyword}{true}))\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01773\ \ \ \ \ \ \ \ \ ConfigFile\ cf;}
+\DoxyCodeLine{01774\ \ \ \ \ \ \ \ \ cf.load(tFilename);}
+\DoxyCodeLine{01775\ \ \ \ \ \ \ \ \ ConfigFile::SectionIterator\ seci\ =\ cf.getSectionIterator();}
+\DoxyCodeLine{01776\ }
+\DoxyCodeLine{01777\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (seci.hasMoreElements())}
+\DoxyCodeLine{01778\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01779\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tSectionName\ =\ seci.peekNextKey();}
+\DoxyCodeLine{01780\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap*\ settings\ =\ seci.getNext();}
+\DoxyCodeLine{01781\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap::iterator\ i;}
+\DoxyCodeLine{01782\ }
+\DoxyCodeLine{01783\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSectionName\ ==\ worldName)}
+\DoxyCodeLine{01784\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01785\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ settings-\/>begin();\ i\ !=\ settings-\/>end();\ ++i)}
+\DoxyCodeLine{01786\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01787\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}limit"{}}))limit\ =\ StringConverter::parseInt(i-\/>second);}
+\DoxyCodeLine{01788\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}clearlist"{}})\ \&\&\ StringConverter::parseBool(i-\/>second))list.clear();}
+\DoxyCodeLine{01789\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}critterlist"{}}))}
+\DoxyCodeLine{01790\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01791\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(i-\/>second,\ \textcolor{stringliteral}{"{},"{}},\ 3);}
+\DoxyCodeLine{01792\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >=\ 2)list.push\_back(WorldCritter(tPart[0],}
+\DoxyCodeLine{01793\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StringConverter::parseReal(tPart[1]),}
+\DoxyCodeLine{01794\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (tPart.size()\ >=\ 4\ ?\ StringConverter::parseBool(tPart[2])\ :\ \textcolor{keyword}{false}),}
+\DoxyCodeLine{01795\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ (tPart.size()\ >=\ 4\ ?\ StringConverter::parseInt(tPart[3])\ :\ 0)}
+\DoxyCodeLine{01796\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{01797\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01798\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(i-\/>first,\ \textcolor{stringliteral}{"{}roamarea"{}}))}
+\DoxyCodeLine{01799\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01800\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(i-\/>second,\ \textcolor{stringliteral}{"{},"{}},\ 5);}
+\DoxyCodeLine{01801\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ >=\ 6)roamArea.push\_back(std::pair<Vector3,\ Vector3>(Vector3(StringConverter::parseReal(tPart[0]),\ StringConverter::parseReal(tPart[1]),\ StringConverter::parseReal(tPart[2])),}
+\DoxyCodeLine{01802\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3(StringConverter::parseReal(tPart[3]),\ StringConverter::parseReal(tPart[4]),\ StringConverter::parseReal(tPart[5]))}
+\DoxyCodeLine{01803\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ));}
+\DoxyCodeLine{01804\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01805\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01806\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Delete\ temp\ file}}
+\DoxyCodeLine{01807\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \_unlink(tFilename.c\_str());}
+\DoxyCodeLine{01808\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01809\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01810\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01811\ }
+\DoxyCodeLine{01812\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Delete\ temp\ file}}
+\DoxyCodeLine{01813\ \ \ \ \ \ \ \ \ \_unlink(tFilename.c\_str());}
+\DoxyCodeLine{01814\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01815\ \ \ \ \ \}}
+\DoxyCodeLine{01816\ }
+\DoxyCodeLine{01817\ \ \ \ \ \textcolor{keywordtype}{bool}\ loadCustomCritterSpawnList(\textcolor{keyword}{const}\ String\&\ filename,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\&\ limit,\ vector<WorldCritter>::type\&\ list,\ vector<std::pair<Vector3,\ Vector3>>::type\&\ roamArea)}
+\DoxyCodeLine{01818\ \ \ \ \ \{}
+\DoxyCodeLine{01819\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{01820\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{01821\ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01822\ }
+\DoxyCodeLine{01823\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{01824\ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{01825\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inFile.good())}
+\DoxyCodeLine{01826\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01827\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{01828\ \ \ \ \ \ \ \ \ \ \ \ \ tSize\ =\ inFile.tellg();}
+\DoxyCodeLine{01829\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{01830\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{01831\ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{01832\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{01833\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{01834\ \ \ \ \ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{01835\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{01836\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01837\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{01838\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01839\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{01840\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01841\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01842\ }
+\DoxyCodeLine{01843\ \ \ \ \ \ \ \ \ limit\ =\ 0;}
+\DoxyCodeLine{01844\ \ \ \ \ \ \ \ \ list.clear();}
+\DoxyCodeLine{01845\ \ \ \ \ \ \ \ \ roamArea.clear();}
+\DoxyCodeLine{01846\ }
+\DoxyCodeLine{01847\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tSection\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{01848\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<int(tSection.size());\ i++)}
+\DoxyCodeLine{01849\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01850\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tSection[i],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{01851\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()\ >\ 0)}
+\DoxyCodeLine{01852\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01853\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\ \textcolor{stringliteral}{"{}Limit"{}},\ \textcolor{keyword}{false})\ \&\&\ tLine.size()\ >=\ 2)}
+\DoxyCodeLine{01854\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01855\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ limit\ =\ StringConverter::parseInt(tLine[1]);}
+\DoxyCodeLine{01856\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(limit\ >\ 200)limit\ =\ 200;}
+\DoxyCodeLine{01857\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01858\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\ \textcolor{stringliteral}{"{}Critter"{}},\ \textcolor{keyword}{false})\ \&\&\ tLine.size()\ >=\ 3)}
+\DoxyCodeLine{01859\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01860\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ WorldCritter\ tC;}
+\DoxyCodeLine{01861\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ (int)tLine.size();\ j++)}
+\DoxyCodeLine{01862\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01863\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tLine[j],\ \textcolor{stringliteral}{"{}="{}});}
+\DoxyCodeLine{01864\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ <\ 2)\textcolor{keywordflow}{continue};}
+\DoxyCodeLine{01865\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(tPart[0],\ \textcolor{stringliteral}{"{}type"{}}))tC.type\ =\ tPart[1];}
+\DoxyCodeLine{01866\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tPart[0],\ \textcolor{stringliteral}{"{}rate"{}}))tC.spawnRate\ =\ StringConverter::parseReal(tPart[1]);}
+\DoxyCodeLine{01867\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tPart[0],\ \textcolor{stringliteral}{"{}roamareaindex"{}}))}
+\DoxyCodeLine{01868\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tC.hasRoamArea\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01870\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tC.roamAreaID\ =\ StringConverter::parseInt(tPart[1]);}
+\DoxyCodeLine{01871\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01872\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01873\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tC.type\ !=\ \textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01874\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01875\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Critter\ tCritter\ =\ getCritter(tC.type);}
+\DoxyCodeLine{01876\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter.type\ !=\ \textcolor{stringliteral}{"{}"{}}\ \&\&\ !tCritter.isUncustomizable)list.push\_back(tC);}
+\DoxyCodeLine{01877\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01878\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01879\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\ \textcolor{stringliteral}{"{}roamarea"{}})\ \&\&\ tLine.size()\ >=\ 3)}
+\DoxyCodeLine{01880\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01881\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::pair<Vector3,\ Vector3>\ tArea(Vector3::ZERO,\ Vector3::ZERO);}
+\DoxyCodeLine{01882\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 1;\ j\ <\ (int)tLine.size();\ j++)}
+\DoxyCodeLine{01883\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01884\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tLine[j],\ \textcolor{stringliteral}{"{}="{}});}
+\DoxyCodeLine{01885\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()\ <\ 2)\textcolor{keywordflow}{continue};}
+\DoxyCodeLine{01886\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(tPart[0],\ \textcolor{stringliteral}{"{}start"{}}))tArea.first\ =\ StringConverter::parseVector3(tPart[1]);}
+\DoxyCodeLine{01887\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tPart[0],\ \textcolor{stringliteral}{"{}range"{}}))tArea.second\ =\ StringConverter::parseVector3(tPart[1]);}
+\DoxyCodeLine{01888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01889\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tArea.first\ !=\ Vector3::ZERO\ ||\ tArea.second\ !=\ Vector3::ZERO)roamArea.push\_back(tArea);}
+\DoxyCodeLine{01890\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01891\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01892\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01893\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01894\ \ \ \ \ \}}
+\DoxyCodeLine{01895\ \ \ \ \ \textcolor{keyword}{const}\ String\ loadLocalIP(\textcolor{keyword}{const}\ String\&\ filename)}
+\DoxyCodeLine{01896\ \ \ \ \ \{}
+\DoxyCodeLine{01897\ \ \ \ \ \ \ \ \ String\ tIP\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01898\ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{01899\ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{01900\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(inFile.good())}
+\DoxyCodeLine{01901\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01902\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tBuffer[32];}
+\DoxyCodeLine{01903\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.read(tBuffer,\ 32);}
+\DoxyCodeLine{01904\ \ \ \ \ \ \ \ \ \ \ \ \ tIP\ =\ tBuffer;}
+\DoxyCodeLine{01905\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01906\ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{01907\ }
+\DoxyCodeLine{01908\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tIP;}
+\DoxyCodeLine{01909\ \ \ \ \ \}}
+\DoxyCodeLine{01910\ }
+\DoxyCodeLine{01911\ \};}
+\DoxyCodeLine{01912\ }
+\DoxyCodeLine{01913\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

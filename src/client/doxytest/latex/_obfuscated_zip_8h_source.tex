@@ -1,0 +1,94 @@
+\doxysection{Obfuscated\+Zip.\+h}
+\hypertarget{_obfuscated_zip_8h_source}{}\label{_obfuscated_zip_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/ObfuscatedZip.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/ObfuscatedZip.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{\ *\ \ ObfuscatedZip.h}}
+\DoxyCodeLine{00003\ \textcolor{comment}{\ */}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ obfuscated\_zip\_h}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ obfuscated\_zip\_h}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}OgreArchive.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}OgreArchiveFactory.h"{}}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ Forward\ declaration\ for\ zziplib\ to\ avoid\ header\ file\ dependency.}}
+\DoxyCodeLine{00013\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }zzip\_dir\ ZZIP\_DIR;}
+\DoxyCodeLine{00014\ \textcolor{keyword}{typedef}\ \textcolor{keyword}{struct\ }zzip\_file\ ZZIP\_FILE;}
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{namespace\ }ObfuscatedZip}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keyword}{class\ }ObfuscatedZip\ :\ \textcolor{keyword}{public}\ Ogre::Archive\ }
+\DoxyCodeLine{00024\ \ \ \ \ \{}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ ZZIP\_DIR*\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_ad8a69a67154800594cd3dcb59b331a79}{mZzipDir}};}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_ab6785275e9b73fdf95cf269329b160e1}{checkZzipError}}(\textcolor{keywordtype}{int}\ zzipError,\ \textcolor{keyword}{const}\ Ogre::String\&\ operation)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ Ogre::FileInfoList\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_a85d3fd1e4b7cae903e8c475eeaeb97a0}{mFileList}};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ ObfuscatedZip(\textcolor{keyword}{const}\ Ogre::String\&\ name,\ \textcolor{keyword}{const}\ Ogre::String\&\ archType\ );}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \string~ObfuscatedZip();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_a0a7982fc2749a92231378ab6f4a8970b}{isCaseSensitive}}(\textcolor{keywordtype}{void})\textcolor{keyword}{\ const\ }\{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00038\ }
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ load();}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ unload();}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ Ogre::DataStreamPtr\ open(\textcolor{keyword}{const}\ Ogre::String\&\ filename,\ \textcolor{keywordtype}{bool}\ readOnly\ =\ \textcolor{keyword}{true})\ \textcolor{comment}{/*const*/};}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ missing\ for\ protected\ zips}}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Ogre::DataStreamPtr\ create(\textcolor{keyword}{const}\ Ogre::String\&\ filename)\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ remove(\textcolor{keyword}{const}\ Ogre::String\&\ filename);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ Ogre::StringVectorPtr\ list(\textcolor{keywordtype}{bool}\ recursive\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ dirs\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ Ogre::FileInfoListPtr\ listFileInfo(\textcolor{keywordtype}{bool}\ recursive\ =\ \textcolor{keyword}{true},\ \textcolor{keywordtype}{bool}\ dirs\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ Ogre::StringVectorPtr\ find(\textcolor{keyword}{const}\ Ogre::String\&\ pattern,\ \textcolor{keywordtype}{bool}\ recursive\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ dirs\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ Ogre::FileInfoListPtr\ findFileInfo(\textcolor{keyword}{const}\ Ogre::String\&\ pattern,\ \textcolor{keywordtype}{bool}\ recursive\ =\ \textcolor{keyword}{true},}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ dirs\ =\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00065\ }
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ exists(\textcolor{keyword}{const}\ Ogre::String\&\ filename);}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ time\_t\ getModifiedTime(\textcolor{keyword}{const}\ Ogre::String\&\ filename);}
+\DoxyCodeLine{00071\ \ \ \ \ \};}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory}{ObfuscatedZipFactory}}\ :\ \textcolor{keyword}{public}\ Ogre::ArchiveFactory}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory}{\string~ObfuscatedZipFactory}}()\ \{\}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Ogre::String\&\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory_acc1905663fc18f45bea5144e91eb6afe}{getType}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ Ogre::Archive\ *\mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory_ab21e1486098b0296aa5cbeca5f0f5879}{createInstance}}(\ \textcolor{keyword}{const}\ Ogre::String\&\ name\ )}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Change\ "{}OBFUSZIP"{}\ to\ match\ the\ file\ extension\ of\ your\ choosing.}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip}{ObfuscatedZip}}(name,\ \textcolor{stringliteral}{"{}OBFUSZIP"{}});}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory_a68223d4ae4402d6a8dc67bfb94e7dc47}{destroyInstance}}(\ Ogre::Archive*\ arch)\ \{\ OGRE\_DELETE\ arch;\ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \};}
+\DoxyCodeLine{00089\ }
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_ae68f7dc7ec49bdefde8eaaad77633c6a}{ObfuscatedZipDataStream}}\ :\ \textcolor{keyword}{public}\ Ogre::DataStream}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ ZZIP\_FILE*\ mZzipFile;}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_ae68f7dc7ec49bdefde8eaaad77633c6a}{ObfuscatedZipDataStream}}(ZZIP\_FILE*\ zzipFile,\ \textcolor{keywordtype}{size\_t}\ uncompressedSize);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_ae68f7dc7ec49bdefde8eaaad77633c6a}{ObfuscatedZipDataStream}}(\textcolor{keyword}{const}\ Ogre::String\&\ name,\ ZZIP\_FILE*\ zzipFile,\ \textcolor{keywordtype}{size\_t}\ uncompressedSize);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_ae68f7dc7ec49bdefde8eaaad77633c6a}{\string~ObfuscatedZipDataStream}}();}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_a154728df1f48f0711c353b369e7a7bf7}{read}}(\textcolor{keywordtype}{void}*\ buf,\ \textcolor{keywordtype}{size\_t}\ count);}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ missing}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ write(\textcolor{keywordtype}{void}*\ buff,\ \textcolor{keywordtype}{size\_t}\ count);}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_a3a19b9eb7b368ae90f6e9f9fb63d51e4}{skip}}(\textcolor{keywordtype}{long}\ count);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_af4c297c0017f1b4d3eb9bb9a4228699e}{seek}}(\ \textcolor{keywordtype}{size\_t}\ pos\ );}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{size\_t}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_a04c3bd69c8071c79d935d8c56311f64d}{tell}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_a223f265736dac2a4108cc6050b523d9a}{eof}}(\textcolor{keywordtype}{void})\ \textcolor{keyword}{const};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_data_stream_a42a042b1da8cb16eb2f6cd1abf83f2ca}{close}}(\textcolor{keywordtype}{void});}
+\DoxyCodeLine{00117\ \ \ \ \ \};}
+\DoxyCodeLine{00118\ \}}
+\DoxyCodeLine{00119\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

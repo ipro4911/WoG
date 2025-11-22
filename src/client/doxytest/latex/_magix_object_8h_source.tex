@@ -1,0 +1,464 @@
+\doxysection{Magix\+Object.\+h}
+\hypertarget{_magix_object_8h_source}{}\label{_magix_object_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixObject.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixObject.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixObject\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixObject\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ FRICTION\ 3}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ GRAVITY\ 4}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ TERMINAL\_VEL\ 200}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ GROUND\_THRESHOLD\ 2}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ ALLIANCE\_PLAYER\ 1}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ ALLIANCE\_FRIEND\ 2}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ ALLIANCE\_ENEMY\ 3}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00016\ \textcolor{keyword}{enum}\ OBJECT\_TYPE}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ OBJECT\_BASIC,}
+\DoxyCodeLine{00019\ \ \ \ \ OBJECT\_ANIMATED,}
+\DoxyCodeLine{00020\ \ \ \ \ OBJECT\_LIVING,}
+\DoxyCodeLine{00021\ \ \ \ \ OBJECT\_UNIT,}
+\DoxyCodeLine{00022\ \ \ \ \ OBJECT\_PLAYER,}
+\DoxyCodeLine{00023\ \ \ \ \ OBJECT\_ITEM,}
+\DoxyCodeLine{00024\ \ \ \ \ OBJECT\_CRITTER}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }HitInfo}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ ID;}
+\DoxyCodeLine{00029\ \ \ \ \ Real\ hp;}
+\DoxyCodeLine{00030\ \ \ \ \ Vector3\ force;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ isMine;}
+\DoxyCodeLine{00032\ \ \ \ \ HitInfo(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&i,\ \textcolor{keyword}{const}\ Real\ \&h,\ \textcolor{keyword}{const}\ Vector3\ \&f,\ \textcolor{keywordtype}{bool}\ iM=\textcolor{keyword}{false})}
+\DoxyCodeLine{00033\ \ \ \ \ \{}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ ID\ =\ i;}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ hp\ =\ h;}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ force\ =\ f;}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ isMine\ =\ iM;}
+\DoxyCodeLine{00038\ \ \ \ \ \}}
+\DoxyCodeLine{00039\ \};}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \textcolor{keyword}{class\ }MagixObject}
+\DoxyCodeLine{00044\ \{}
+\DoxyCodeLine{00045\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00046\ \ \ \ \ SceneNode\ *mObjectNode;}
+\DoxyCodeLine{00047\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00048\ \ \ \ \ MagixObject()}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ mObjectNode\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \string~MagixObject()}
+\DoxyCodeLine{00053\ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OBJECT\_TYPE\ getType()}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OBJECT\_BASIC;}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ Vector3\ getPosition()}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mObjectNode)\textcolor{keywordflow}{return}\ mObjectNode-\/>getPosition();}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Vector3::ZERO;}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{keyword}{virtual}\ SceneNode*\ getObjectNode()}
+\DoxyCodeLine{00065\ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mObjectNode;}
+\DoxyCodeLine{00067\ \ \ \ \ \}}
+\DoxyCodeLine{00068\ \};}
+\DoxyCodeLine{00069\ }
+\DoxyCodeLine{00070\ \textcolor{keyword}{class\ }MagixAnimated\ :\ \textcolor{keyword}{public}\ MagixObject}
+\DoxyCodeLine{00071\ \{}
+\DoxyCodeLine{00072\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ objectID;}
+\DoxyCodeLine{00074\ \ \ \ \ Vector3\ mForce;}
+\DoxyCodeLine{00075\ \ \ \ \ Real\ groundHeight;}
+\DoxyCodeLine{00076\ \ \ \ \ Real\ maxSpeed;}
+\DoxyCodeLine{00077\ \ \ \ \ Real\ speedMultiplier;}
+\DoxyCodeLine{00078\ \ \ \ \ Vector3\ lastPosition;}
+\DoxyCodeLine{00079\ \ \ \ \ Real\ updateTime;}
+\DoxyCodeLine{00080\ \ \ \ \ Degree\ faceDirectionYaw;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ antiGravity;}
+\DoxyCodeLine{00082\ \ \ \ \ Vector3\ penaltyVelocity;}
+\DoxyCodeLine{00083\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{bool}\ isHidden;}
+\DoxyCodeLine{00085\ \ \ \ \ MagixAnimated()}
+\DoxyCodeLine{00086\ \ \ \ \ \{}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ mObjectNode\ =\ 0;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ objectID\ =\ 0;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ mForce\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ groundHeight\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ maxSpeed\ =\ 100;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ speedMultiplier\ =\ 1;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ lastPosition\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ updateTime\ =\ 0;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ faceDirectionYaw\ =\ Degree(0);}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ antiGravity\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ penaltyVelocity\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ isHidden\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \string~MagixAnimated()}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ createObject(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID,\ SceneManager\ *sceneMgr,\ \textcolor{keyword}{const}\ String\ \&objectMesh,\ \textcolor{keyword}{const}\ String\ \&matName)}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(objectID)destroyObject(sceneMgr);}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ objectID\ =\ iID;}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ Entity\ *objectEnt\ =\ sceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Object"{}}+StringConverter::toString(iID),\ objectMesh+\textcolor{stringliteral}{"{}.mesh"{}});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ objectEnt-\/>setQueryFlags(OBJECT\_MASK);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ objectEnt-\/>setMaterialName(matName);}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mObjectNode)mObjectNode\ =\ sceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ mObjectNode-\/>attachObject(objectEnt);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ mObjectNode-\/>setScale(5,5,5);}
+\DoxyCodeLine{00116\ \ \ \ \ \}}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyObject(SceneManager\ *sceneMgr)}
+\DoxyCodeLine{00118\ \ \ \ \ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!objectID)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mObjectNode)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ mObjectNode-\/>detachAllObjects();}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ sceneMgr-\/>destroySceneNode(mObjectNode-\/>getName());}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(sceneMgr-\/>hasEntity(\textcolor{stringliteral}{"{}Object"{}}+StringConverter::toString(objectID)))sceneMgr-\/>destroyEntity(\textcolor{stringliteral}{"{}Object"{}}+StringConverter::toString(objectID));}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ mObjectNode\ =\ 0;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ objectID\ =\ 0;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ isHidden\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ updateAnimation(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!objectID)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{comment}{//object\ animation}}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!objectID)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ updatePhysics(evt);}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ updateAnimation(evt);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ updateFaceDirection(evt);}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ updateFaceDirection(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ Degree\ tCurrentYaw\ =\ Degree(mObjectNode-\/>getOrientation().getYaw());}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCurrentYaw\ <\ Degree(0))tCurrentYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCurrentYaw\ >\ Degree(360))tCurrentYaw\ -\/=\ Degree(360);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ Degree\ tYaw\ =\ faceDirectionYaw\ -\/\ tCurrentYaw;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(tYaw)>Degree(180))tYaw\ -\/=\ Degree(360)\ *\ (tYaw<Degree(0)?-\/1:1);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(tYaw)>Degree(0.1))tYaw\ *=\ (5*evt.timeSinceLastFrame<1?5*evt.timeSinceLastFrame:1);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tYaw!=Degree(0))mObjectNode-\/>yaw(tYaw);}
+\DoxyCodeLine{00154\ \ \ \ \ \}}
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{keywordtype}{void}\ updatePhysics(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Friction}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mForce.x!=0\ ||\ mForce.z!=0)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tVect\ =\ Vector2(0,0);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mForce.x==0)}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.y\ =\ FRICTION;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(mForce.z==0)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.x\ =\ FRICTION;}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Radian\ tAngle\ =\ Math::ATan(Math::Abs(mForce.z)/Math::Abs(mForce.x));}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.x\ =\ FRICTION\ *\ Math::Cos(tAngle);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.y\ =\ FRICTION\ *\ Math::Sin(tAngle);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(mForce.x)<tVect.x*evt.timeSinceLastFrame)mForce.x\ =\ 0;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mForce.x\ -\/=\ tVect.x\ *\ (mForce.x<0?-\/1:1)\ *evt.timeSinceLastFrame;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(mForce.z)<tVect.y*evt.timeSinceLastFrame)mForce.z\ =\ 0;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mForce.z\ -\/=\ tVect.y\ *\ (mForce.z<0?-\/1:1)\ *evt.timeSinceLastFrame;}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Gravity}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!antiGravity\ \&\&\ distanceFromGround()>0)}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ mForce.y\ -\/=\ GRAVITY\ *evt.timeSinceLastFrame;}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Air\ resistance}}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(antiGravity)}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mForce.y\ >\ 0)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mForce.y\ -\/=\ FRICTION\ *evt.timeSinceLastFrame;}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mForce.y<0)mForce.y\ =\ 0;}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(mForce.y\ <\ 0)}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mForce.y\ +=\ FRICTION\ *evt.timeSinceLastFrame;}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mForce.y>0)mForce.y\ =\ 0;}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Speed\ limit}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Vector2(mForce.x,mForce.z).squaredLength()>Math::Sqr(maxSpeed*speedMultiplier*evt.timeSinceLastFrame))}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ Radian\ tAngle\ =\ Math::ATan(Math::Abs(mForce.z)/Math::Abs(mForce.x));}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ mForce.x\ =\ maxSpeed\ *\ speedMultiplier\ *\ (mForce.x<0?-\/1:1)\ *\ Math::Cos(tAngle)\ *evt.timeSinceLastFrame;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ mForce.z\ =\ maxSpeed\ *\ speedMultiplier\ *\ (mForce.z<0?-\/1:1)\ *\ Math::Sin(tAngle)\ *evt.timeSinceLastFrame;}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Terminal\ Velocity}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(mForce.y)\ >\ TERMINAL\_VEL\ *\ evt.timeSinceLastFrame\ *\ (antiGravity\ ?\ 0.5\ :\ 1))}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sample\ fix\ for\ double\ to\ Ogre::real\ issue\ :\ cast,\ if\ using\ (double),\ you\ will\ see\ the\ warning}}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ mForce.y\ =\ (Real)(TERMINAL\_VEL\ *\ (mForce.y\ <\ 0\ ?\ -\/1\ :\ 1)\ *\ evt.timeSinceLastFrame\ *\ (antiGravity\ ?\ 0.5\ :\ 1));}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//apply\ forces\ to\ node}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ lastPosition\ =\ mObjectNode-\/>getPosition();}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ mObjectNode-\/>translate(mForce);}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(penaltyVelocity!=Vector3::ZERO)}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ mObjectNode-\/>translate(penaltyVelocity);}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ penaltyVelocity\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00223\ }
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \textcolor{comment}{//clip\ to\ ground\ level\ if\ below\ ground\ or\ within\ ground\ threshold}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!antiGravity\ \&\&\ (distanceFromGround()<0\ ||\ (distanceFromGround()<=GROUND\_THRESHOLD\ \&\&\ mForce.y<=0)))}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ mForce.y\ =\ 0;}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ mObjectNode-\/>setPosition(mObjectNode-\/>getPosition().x,\ groundHeight,\ mObjectNode-\/>getPosition().z);}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(distanceFromGround()<0)}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ mObjectNode-\/>setPosition(mObjectNode-\/>getPosition().x,\ groundHeight,\ mObjectNode-\/>getPosition().z);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{void}\ addForce(\textcolor{keyword}{const}\ Vector3\ \&value)}
+\DoxyCodeLine{00236\ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ mForce\ +=\ value;}
+\DoxyCodeLine{00238\ \ \ \ \ \}}
+\DoxyCodeLine{00239\ \ \ \ \ \textcolor{keywordtype}{void}\ setForce(\textcolor{keyword}{const}\ Vector3\ \&value)}
+\DoxyCodeLine{00240\ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ mForce\ =\ value;}
+\DoxyCodeLine{00242\ \ \ \ \ \}}
+\DoxyCodeLine{00243\ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ getForce()}
+\DoxyCodeLine{00244\ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mForce;}
+\DoxyCodeLine{00246\ \ \ \ \ \}}
+\DoxyCodeLine{00247\ \ \ \ \ \textcolor{keywordtype}{void}\ setPosition(\textcolor{keyword}{const}\ Real\ \&x,\ \textcolor{keyword}{const}\ Real\ \&y,\ \textcolor{keyword}{const}\ Real\ \&z)}
+\DoxyCodeLine{00248\ \ \ \ \ \{}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mObjectNode)mObjectNode-\/>setPosition(x,y,z);}
+\DoxyCodeLine{00250\ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \textcolor{keywordtype}{void}\ setPosition(\textcolor{keyword}{const}\ Vector3\ \&position)}
+\DoxyCodeLine{00252\ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mObjectNode)mObjectNode-\/>setPosition(position);}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ Vector3\ getPosition()}
+\DoxyCodeLine{00256\ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mObjectNode)\textcolor{keywordflow}{return}\ mObjectNode-\/>getPosition();}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Vector3::ZERO;}
+\DoxyCodeLine{00259\ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ SceneNode*\ getObjectNode()}
+\DoxyCodeLine{00261\ \ \ \ \ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mObjectNode;}
+\DoxyCodeLine{00263\ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \textcolor{keywordtype}{void}\ setGroundHeight(\textcolor{keyword}{const}\ Real\ \&value)}
+\DoxyCodeLine{00265\ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ groundHeight\ =\ value;}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getGroundHeight()}
+\DoxyCodeLine{00269\ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ groundHeight;}
+\DoxyCodeLine{00271\ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keyword}{const}\ Real\ distanceFromGround()}
+\DoxyCodeLine{00273\ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mObjectNode)\textcolor{keywordflow}{return}\ (mObjectNode-\/>getPosition().y\ -\/\ groundHeight);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00276\ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OBJECT\_TYPE\ getType()}
+\DoxyCodeLine{00278\ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OBJECT\_ANIMATED;}
+\DoxyCodeLine{00280\ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \textcolor{keywordtype}{bool}\ isPositionChanged(\textcolor{keywordtype}{bool}\ excludeYAxis=\textcolor{keyword}{false})}
+\DoxyCodeLine{00282\ \ \ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (excludeYAxis?\ (lastPosition.x!=mObjectNode-\/>getPosition().x\ ||\ lastPosition.z!=mObjectNode-\/>getPosition().z)}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ :lastPosition!=mObjectNode-\/>getPosition()\ );}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ getLastPosition()}
+\DoxyCodeLine{00287\ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lastPosition;}
+\DoxyCodeLine{00289\ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordtype}{bool}\ isMovingReverse()}
+\DoxyCodeLine{00291\ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (Degree(Math::ACos(Vector2(mObjectNode-\/>getOrientation().zAxis().x,mObjectNode-\/>getOrientation().zAxis().z).dotProduct(Vector2(mForce.x,mForce.z)*100)))\ >=\ Degree(180));}
+\DoxyCodeLine{00293\ \ \ \ \ \}}
+\DoxyCodeLine{00294\ \ \ \ \ \textcolor{keywordtype}{void}\ yaw(\textcolor{keyword}{const}\ Degree\ \&angle,\ \textcolor{keywordtype}{bool}\ instant=\textcolor{keyword}{false})}
+\DoxyCodeLine{00295\ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ faceDirectionYaw\ +=\ angle;}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(faceDirectionYaw<Degree(0))faceDirectionYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(faceDirectionYaw>=Degree(360))faceDirectionYaw\ -\/=\ Degree(360);}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(instant)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ Degree\ tCurrentYaw\ =\ Degree(mObjectNode-\/>getOrientation().getYaw());}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCurrentYaw\ <\ Degree(0))tCurrentYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCurrentYaw\ >\ Degree(360))tCurrentYaw\ -\/=\ Degree(360);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ Degree\ tYaw\ =\ faceDirectionYaw\ -\/\ tCurrentYaw;}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(tYaw)>Degree(180))tYaw\ -\/=\ Degree(360)\ *\ (tYaw<Degree(0)?-\/1:1);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ mObjectNode-\/>yaw(tYaw);}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \textcolor{keywordtype}{void}\ setYaw(\textcolor{keyword}{const}\ Degree\ \&angle,\ \textcolor{keywordtype}{bool}\ instant=\textcolor{keyword}{false})}
+\DoxyCodeLine{00310\ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ faceDirectionYaw\ =\ angle;}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(faceDirectionYaw<Degree(0))faceDirectionYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(faceDirectionYaw>=Degree(360))faceDirectionYaw\ -\/=\ Degree(360);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(instant)}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ Degree\ tCurrentYaw\ =\ Degree(mObjectNode-\/>getOrientation().getYaw());}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCurrentYaw\ <\ Degree(0))tCurrentYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCurrentYaw\ >\ Degree(360))tCurrentYaw\ -\/=\ Degree(360);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ Degree\ tYaw\ =\ faceDirectionYaw\ -\/\ tCurrentYaw;}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(tYaw)>Degree(180))tYaw\ -\/=\ Degree(360)\ *\ (tYaw<Degree(0)?-\/1:1);}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ mObjectNode-\/>yaw(tYaw);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00323\ \ \ \ \ \}}
+\DoxyCodeLine{00324\ \ \ \ \ \textcolor{keyword}{const}\ Degree\ getYaw()}
+\DoxyCodeLine{00325\ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ faceDirectionYaw;}
+\DoxyCodeLine{00327\ \ \ \ \ \}}
+\DoxyCodeLine{00328\ \ \ \ \ \textcolor{keyword}{const}\ Quaternion\ getFaceDirection()}
+\DoxyCodeLine{00329\ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ Quaternion\ tOrig\ =\ mObjectNode-\/>getOrientation();}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ Degree\ tCurrentYaw\ =\ Degree(mObjectNode-\/>getOrientation().getYaw());}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCurrentYaw\ <\ Degree(0))tCurrentYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCurrentYaw\ >\ Degree(360))tCurrentYaw\ -\/=\ Degree(360);}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ Degree\ tYaw\ =\ faceDirectionYaw\ -\/\ tCurrentYaw;}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(tYaw)>Degree(180))tYaw\ -\/=\ Degree(360)\ *\ (tYaw<Degree(0)?-\/1:1);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ mObjectNode-\/>yaw(tYaw);}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ Quaternion\ tEnd\ =\ mObjectNode-\/>getOrientation();}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ mObjectNode-\/>setOrientation(tOrig);}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tEnd;}
+\DoxyCodeLine{00340\ \ \ \ \ \}}
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordtype}{void}\ setAntiGravity(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00342\ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ antiGravity\ =\ flag;}
+\DoxyCodeLine{00344\ \ \ \ \ \}}
+\DoxyCodeLine{00345\ \ \ \ \ \textcolor{keywordtype}{bool}\ isAntiGravity()}
+\DoxyCodeLine{00346\ \ \ \ \ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ antiGravity;}
+\DoxyCodeLine{00348\ \ \ \ \ \}}
+\DoxyCodeLine{00349\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleAntiGravity()}
+\DoxyCodeLine{00350\ \ \ \ \ \{}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ antiGravity\ =\ !antiGravity;}
+\DoxyCodeLine{00352\ \ \ \ \ \}}
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordtype}{void}\ addPenaltyVelocity(\textcolor{keyword}{const}\ Vector3\ \&value)}
+\DoxyCodeLine{00354\ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ penaltyVelocity\ +=\ value;}
+\DoxyCodeLine{00356\ \ \ \ \ \}}
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keywordtype}{void}\ setSpeedMultiplier(\textcolor{keyword}{const}\ Real\ \&value)}
+\DoxyCodeLine{00358\ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ speedMultiplier\ =\ value;}
+\DoxyCodeLine{00360\ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getSpeedMultiplier()}
+\DoxyCodeLine{00362\ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ speedMultiplier;}
+\DoxyCodeLine{00364\ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordtype}{void}\ setMaxSpeed(\textcolor{keyword}{const}\ Real\ \&value)}
+\DoxyCodeLine{00366\ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ maxSpeed\ =\ value;}
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ \};}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \textcolor{keyword}{class\ }MagixLiving\ :\ \textcolor{keyword}{public}\ MagixAnimated}
+\DoxyCodeLine{00372\ \{}
+\DoxyCodeLine{00373\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00374\ \ \ \ \ \textcolor{keywordtype}{short}\ maxHP;}
+\DoxyCodeLine{00375\ \ \ \ \ \textcolor{keywordtype}{short}\ hp;}
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ alliance;}
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordtype}{bool}\ invulnerable;}
+\DoxyCodeLine{00378\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00379\ \ \ \ \ \textcolor{keywordtype}{bool}\ isHidden;}
+\DoxyCodeLine{00380\ \ \ \ \ MagixLiving()}
+\DoxyCodeLine{00381\ \ \ \ \ \{}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ maxHP\ =\ 0;}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ hp\ =\ 0;}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ alliance\ =\ 0;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ invulnerable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ isHidden\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00387\ \ \ \ \ \}}
+\DoxyCodeLine{00388\ \ \ \ \ \string~MagixLiving()}
+\DoxyCodeLine{00389\ \ \ \ \ \{}
+\DoxyCodeLine{00390\ \ \ \ \ \}}
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setHP(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&iMaxHP,\ \textcolor{keyword}{const}\ Real\ \&ratio=1)}
+\DoxyCodeLine{00392\ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ maxHP\ =\ iMaxHP;}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ hp\ =\ ratio*maxHP;}
+\DoxyCodeLine{00395\ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ setHPRatio(\textcolor{keyword}{const}\ Real\ \&ratio)}
+\DoxyCodeLine{00397\ \ \ \ \ \{}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ hp\ =\ ratio*maxHP;}
+\DoxyCodeLine{00399\ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ addHP(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&value)}
+\DoxyCodeLine{00401\ \ \ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(invulnerable\ \&\&\ value<0)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ hp\ +=\ value;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hp>maxHP)hp\ =\ maxHP;}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hp<0)hp\ =\ 0;}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (hp==0);}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getHPRatio()}
+\DoxyCodeLine{00409\ \ \ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(maxHP<=0)\textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Real(hp)/Real(maxHP);}
+\DoxyCodeLine{00412\ \ \ \ \ \}}
+\DoxyCodeLine{00413\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getHP()}
+\DoxyCodeLine{00414\ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hp;}
+\DoxyCodeLine{00416\ \ \ \ \ \}}
+\DoxyCodeLine{00417\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getMaxHP()}
+\DoxyCodeLine{00418\ \ \ \ \ \{}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ maxHP;}
+\DoxyCodeLine{00420\ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \textcolor{keywordtype}{void}\ setAlliance(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&ally)}
+\DoxyCodeLine{00422\ \ \ \ \ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ alliance\ =\ ally;}
+\DoxyCodeLine{00424\ \ \ \ \ \}}
+\DoxyCodeLine{00425\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getAlliance()}
+\DoxyCodeLine{00426\ \ \ \ \ \{}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ alliance;}
+\DoxyCodeLine{00428\ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordtype}{bool}\ matchAlliance(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&ally)}
+\DoxyCodeLine{00430\ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(alliance==ally)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(alliance==ALLIANCE\_PLAYER)}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ally==ALLIANCE\_FRIEND)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(alliance==ALLIANCE\_FRIEND)}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ally==ALLIANCE\_PLAYER)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00441\ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ OBJECT\_TYPE\ getType()}
+\DoxyCodeLine{00443\ \ \ \ \ \{}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OBJECT\_CRITTER;}
+\DoxyCodeLine{00445\ \ \ \ \ \}}
+\DoxyCodeLine{00446\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInvulnerable()}
+\DoxyCodeLine{00447\ \ \ \ \ \{}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ invulnerable;}
+\DoxyCodeLine{00449\ \ \ \ \ \}}
+\DoxyCodeLine{00450\ \ \ \ \ \textcolor{keywordtype}{void}\ setInvulnerable(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00451\ \ \ \ \ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ invulnerable\ =\ flag;}
+\DoxyCodeLine{00453\ \ \ \ \ \}}
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keyword}{const}\ Real\ getHeight()}
+\DoxyCodeLine{00455\ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00457\ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \};}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ }
+\DoxyCodeLine{00461\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,549 @@
+\doxysection{Magix\+Handler.\+h}
+\hypertarget{_magix_handler_8h_source}{}\label{_magix_handler_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixHandler.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixHandler.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixHandler\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixHandler\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{enum}\ QueryFlags}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \ \ \ \ OBJECT\_MASK\ =\ 1<<0,}
+\DoxyCodeLine{00007\ \ \ \ \ UNIT\_MASK\ =\ 1<<1,}
+\DoxyCodeLine{00008\ \ \ \ \ SKY\_MASK\ =\ 1<<2,}
+\DoxyCodeLine{00009\ \ \ \ \ WORLDOBJECT\_MASK\ =\ 1<<3,}
+\DoxyCodeLine{00010\ \ \ \ \ EFFECT\_MASK\ =\ 1<<4,}
+\DoxyCodeLine{00011\ \ \ \ \ ITEM\_MASK\ =\ 1<<5,}
+\DoxyCodeLine{00012\ \ \ \ \ CRITTER\_MASK\ =\ 1<<6}
+\DoxyCodeLine{00013\ \};}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#include\ "{}MagixNetworkDefines.h"{}}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#include\ "{}MagixExternalDefinitions.h"{}}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#include\ "{}MagixGameStateManager.h"{}}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#include\ "{}MagixEffectsManager.h"{}}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#include\ "{}MagixCollisionManager.h"{}}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#include\ "{}MagixCamera.h"{}}}
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#include\ "{}MagixSoundManager.h"{}}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#include\ "{}MagixSkyManager.h"{}}}
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ "{}MagixWorld.h"{}}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}MagixUnitManager.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}MagixItemManager.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}MagixGUI.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}MagixNetworkManager.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}MagixOwnershipManager.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{preprocessor}{\#include\ "{}MagixCampaignManager.h"{}}}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{class\ }MagixHandler}
+\DoxyCodeLine{00034\ \{}
+\DoxyCodeLine{00035\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00036\ \ \ \ \ SceneManager\ *mSceneMgr;}
+\DoxyCodeLine{00037\ \ \ \ \ RenderWindow\ *mWindow;}
+\DoxyCodeLine{00038\ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *mDef;}
+\DoxyCodeLine{00039\ \ \ \ \ \mbox{\hyperlink{class_magix_game_state_manager}{MagixGameStateManager}}\ *mGameStateManager;}
+\DoxyCodeLine{00040\ \ \ \ \ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *mCamera;}
+\DoxyCodeLine{00041\ \ \ \ \ \mbox{\hyperlink{class_magix_item_manager}{MagixItemManager}}\ *mItemManager;}
+\DoxyCodeLine{00042\ \ \ \ \ \mbox{\hyperlink{class_magix_critter_manager}{MagixCritterManager}}\ *mCritterManager;}
+\DoxyCodeLine{00043\ \ \ \ \ \mbox{\hyperlink{class_magix_unit_manager}{MagixUnitManager}}\ *mUnitManager;}
+\DoxyCodeLine{00044\ \ \ \ \ \mbox{\hyperlink{class_magix_sky_manager}{MagixSkyManager}}\ *mSkyManager;}
+\DoxyCodeLine{00045\ \ \ \ \ \mbox{\hyperlink{class_magix_g_u_i}{MagixGUI}}\ *mGui;}
+\DoxyCodeLine{00046\ \ \ \ \ \mbox{\hyperlink{class_magix_world}{MagixWorld}}\ *mWorld;}
+\DoxyCodeLine{00047\ \ \ \ \ \mbox{\hyperlink{class_magix_sound_manager}{MagixSoundManager}}\ *mSoundManager;}
+\DoxyCodeLine{00048\ \ \ \ \ \mbox{\hyperlink{class_magix_network_manager}{MagixNetworkManager}}\ *mNetworkManager;}
+\DoxyCodeLine{00049\ \ \ \ \ \mbox{\hyperlink{class_magix_effects_manager}{MagixEffectsManager}}\ *mEffectsManager;}
+\DoxyCodeLine{00050\ \ \ \ \ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *mCollisionManager;}
+\DoxyCodeLine{00051\ \ \ \ \ \mbox{\hyperlink{class_magix_ownership_manager}{MagixOwnershipManager}}\ *mOwnershipManager;}
+\DoxyCodeLine{00052\ \ \ \ \ \mbox{\hyperlink{class_magix_campaign_manager}{MagixCampaignManager}}\ *mCampaignManager;}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ String\ mDebugText;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ initialized;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ MagixHandler()}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ mWindow\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ mDebugText\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ initialized\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ mDef\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ mGameStateManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_game_state_manager}{MagixGameStateManager}}();}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ mCamera\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}();}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ mItemManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_item_manager}{MagixItemManager}}();}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ mCritterManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_critter_manager}{MagixCritterManager}}();}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ mUnitManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_unit_manager}{MagixUnitManager}}();}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ mSkyManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_sky_manager}{MagixSkyManager}}();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ mGui\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_g_u_i}{MagixGUI}}();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ mWorld\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_world}{MagixWorld}}();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ mSoundManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_sound_manager}{MagixSoundManager}}();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ mNetworkManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_network_manager}{MagixNetworkManager}}();}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ mEffectsManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_effects_manager}{MagixEffectsManager}}();}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ mOwnershipManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_ownership_manager}{MagixOwnershipManager}}();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ mCampaignManager\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_campaign_manager}{MagixCampaignManager}}();}
+\DoxyCodeLine{00080\ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \string~MagixHandler()}
+\DoxyCodeLine{00082\ \ \ \ \ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mUnitManager;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mCampaignManager;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mOwnershipManager;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mNetworkManager;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mGui;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mCritterManager;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mWorld;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mSkyManager;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mSoundManager;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mCamera;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mItemManager;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mEffectsManager;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mCollisionManager;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mGameStateManager;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mDef;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(SceneManager\ *sceneMgr,\ RenderWindow\ *window)}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ sceneMgr;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ mWindow\ =\ window;}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ mDef-\/>initialize();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ mGameStateManager-\/>initialize();}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ mEffectsManager-\/>initialize(sceneMgr);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ mCollisionManager-\/>initialize(sceneMgr);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ mCamera-\/>initialize(sceneMgr,getPlayer(),mCollisionManager);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ mSoundManager-\/>initialize(mCamera);}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ mSkyManager-\/>initialize(sceneMgr,\ mDef,\ mCamera,\ mSoundManager);}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ mItemManager-\/>initialize(sceneMgr,\ mDef,\ mEffectsManager);}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ mWorld-\/>initialize(sceneMgr,\ window,\ mDef,\ mGameStateManager,\ mSoundManager,\ mCollisionManager,\ mSkyManager);}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ mCritterManager-\/>initialize(sceneMgr,\ mDef,\ mGameStateManager,\ mEffectsManager,\ mCollisionManager,\ mSoundManager,\ mWorld,\ mCamera);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ mUnitManager-\/>initialize(sceneMgr,\ mDef,mGameStateManager,mWorld,mEffectsManager,mCollisionManager,mSoundManager,mItemManager,mCritterManager,mCamera);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ mNetworkManager-\/>initialize(mDef,mGameStateManager,mItemManager,mCritterManager,mUnitManager,mWorld,mSkyManager,mGui-\/>getChatManager(),mGui-\/>getAlertBox(),mGui-\/>getCharScreenManager());}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ mOwnershipManager-\/>initialize(mDef,mGameStateManager,mCritterManager,mUnitManager,mNetworkManager,mWorld,mGui-\/>getChatManager(),mSkyManager);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ mGui-\/>initialize(sceneMgr,\ window,\ mDef,\ mGameStateManager,\ mItemManager,\ mCritterManager,\ mUnitManager,\ mNetworkManager,\ mCamera,\ mSoundManager,\ mEffectsManager,\ mCollisionManager);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ mCampaignManager-\/>initialize(mDef,\ mGameStateManager,\ mGui,\ mUnitManager,\ mWorld,\ mSkyManager,\ mCamera,\ mSoundManager,\ mCollisionManager,\ mEffectsManager);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ initialized\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{void}\ shutdown()}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!initialized)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isCampaign()\ \&\&\ mGameStateManager-\/>getCampaignName()==\textcolor{stringliteral}{"{}"{}}\ \&\&\ mWorld-\/>getWorldName()!=\textcolor{stringliteral}{"{}"{}}\ \&\&\ mGameStateManager-\/>isInGame())}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>saveSavePoint(mWorld-\/>getWorldName(),Vector2(getPlayer()-\/>getPosition().x,getPlayer()-\/>getPosition().z),mGameStateManager-\/>getDimension());}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ mGui-\/>saveSettings();}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ mDef-\/>saveHotkeys(\textcolor{stringliteral}{"{}Hotkeys.cfg"{}});}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ resetScene(\textcolor{keywordtype}{bool}\ startScene=\textcolor{keyword}{false},\ \textcolor{keyword}{const}\ String\ \&mapChange=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!startScene)mSoundManager-\/>reset();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ mSkyManager-\/>resetSky();}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ mCollisionManager-\/>reset();}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!startScene)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mapChange!=\textcolor{stringliteral}{"{}"{}})mWorld-\/>loadWorld(mapChange);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mWorld-\/>reset();}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ mItemManager-\/>reset();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ mCritterManager-\/>reset();}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>reset();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ mCamera-\/>reset(startScene);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ mNetworkManager-\/>reset();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ mGui-\/>reset();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ mEffectsManager-\/>reset();}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{keywordtype}{bool}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00150\ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ contFlag\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(mGameStateManager-\/>getGameState())}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_INITIALIZE:}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>resetLogo();}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playMusic(MUSIC\_TITLE);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setGameState(GAMESTATE\_LOGO);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_LOGO:}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateLogo(evt);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_STARTSCREEN:}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateStartScreen(evt);}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_STARTCAMPAIGN:}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>showSky(\textcolor{keyword}{true});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>reset();}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>reset();}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCampaignManager-\/>loadCampaign();}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>reset();}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setCameraMode(CAMERA\_LOCKED);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>resetSky();}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>reset();}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>setShouldNameTagsBeVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>getMiniMap()-\/>updatePortalMap();}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateEverything(evt);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showBackdropOverlay(\textcolor{keyword}{false});}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showMouse(\textcolor{keyword}{false});}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setGameState(GAMESTATE\_INGAMECAMPAIGN);}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showGUI(\textcolor{keyword}{true});}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showChatOverlay(\textcolor{keyword}{true},\textcolor{keyword}{false});}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>setChatChannel(0);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_STARTCHARSCREEN:}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>getCamera()-\/>isAttached())mCamera-\/>getActiveCamNode()-\/>detachObject(mCamera-\/>getCamera());}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>getCamera()-\/>setPosition(3200,120,2770);}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>getCamera()-\/>setOrientation(Quaternion(Degree(-\/40),Vector3::UNIT\_Y));}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>showSky(\textcolor{keyword}{true});}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>setDayTime(1810);}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>setWeatherTime(0);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>setWeatherCycle(\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>update(evt);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorld-\/>loadWorld(MAP\_DEFAULT);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>destroyAllPortals();}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>destroyAllGates();}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorld-\/>update();}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showCharScreenOverlay(\textcolor{keyword}{true});}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>getCharScreenManager()-\/>reset(\textcolor{keyword}{true});}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>loadChar();}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ CompositorManager::getSingleton().setCompositorEnabled(mWindow-\/>getViewport(0),\ \textcolor{stringliteral}{"{}Bloom"{}},\ mGui-\/>isBloom());}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setGameState(GAMESTATE\_CHARSCREEN);}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_CHARSCREEN:}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCharScreen(evt);}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_RETURNSTARTSCREEN:}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGameStateManager-\/>getGameStarted()\ \&\&\ mGameStateManager-\/>getCampaignName()==\textcolor{stringliteral}{"{}"{}}\ \&\&\ mWorld-\/>getWorldName()!=\textcolor{stringliteral}{"{}"{}}\ \&\&\ getPlayer()-\/>getObjectNode())}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>saveSavePoint(mWorld-\/>getWorldName(),Vector2(getPlayer()-\/>getPosition().x,getPlayer()-\/>getPosition().z),mGameStateManager-\/>getDimension());}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWorld-\/>unloadWorld();}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>showSky(\textcolor{keyword}{false});}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>resetSky();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>reset();}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>reset();}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mItemManager-\/>reset(\textcolor{keyword}{true});}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCritterManager-\/>reset();}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>reset(\textcolor{keyword}{true});}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>reset(\textcolor{keyword}{true});}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>reset();}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showGUI(\textcolor{keyword}{false});}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showStartScreenOverlay(\textcolor{keyword}{true});}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>setBackdrop(\textcolor{stringliteral}{"{}GUIMat/Backdrop1"{}},\textcolor{keyword}{true});}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showBackdropOverlay(\textcolor{keyword}{true},\textcolor{keyword}{false});}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showOptionsOverlay(\textcolor{keyword}{false});}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setGameState(GAMESTATE\_STARTSCREEN);}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setGameStarted(\textcolor{keyword}{false});}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_STARTCONNECTION:}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showCharScreenOverlay(\textcolor{keyword}{false});}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showBackdropOverlay(\textcolor{keyword}{true},\textcolor{keyword}{true});}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>setDayTime(500);}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>setShouldNameTagsBeVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>pushDefaultAttackList(\textcolor{stringliteral}{"{}Dash"{}});}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>pushDefaultAttackList(\textcolor{stringliteral}{"{}Slash"{}});}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>pushDefaultAttackList(\textcolor{stringliteral}{"{}Roundhouse"{}});}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!getPlayer()-\/>getWingEnt())getPlayer()-\/>pushDefaultAttackList(\textcolor{stringliteral}{"{}Somersault"{}});}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ getPlayer()-\/>pushDefaultAttackList(\textcolor{stringliteral}{"{}Wingslash"{}});}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>setAttackListToDefault();}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>setAlliance(ALLIANCE\_FRIEND);}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tMapName;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tPoint;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ tDimension\ =\ 0;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>loadSavePoint(tMapName,tPoint,tDimension))}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resetScene(\textcolor{keyword}{false},tMapName);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>setPosition(tPoint.x,200,tPoint.y);}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>clampUnitToTerrain(getPlayer(),\textcolor{keyword}{true});}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ resetScene(\textcolor{keyword}{false},MAP\_DEFAULT);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setDimension(tDimension);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>setChatChannel(1);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mNetworkManager-\/>connect())mGameStateManager-\/>setGameState(GAMESTATE\_CONNECTING);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_CONNECTING:}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>update(evt);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>update(evt);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNetworkManager-\/>update(evt);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGameStateManager-\/>getGameState()==GAMESTATE\_STARTGAME)updateEverything(evt);}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_STARTGAME:}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showBackdropOverlay(\textcolor{keyword}{false});}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showGUI(\textcolor{keyword}{true});}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>refreshBio();}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>getMiniMap()-\/>updatePortalMap();}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setGameState(GAMESTATE\_INGAME);}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setGameStarted(\textcolor{keyword}{true});}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateEverything(evt);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_INGAME:}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_INGAMECAMPAIGN:}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateEverything(evt);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_CREDITS:}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCredits(evt);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_GAMEOVER:}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateGameOver(evt);}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_CONTINUECAMPAIGN:}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCampaignManager-\/>continueCampaign();}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_QUITCAMPAIGN:}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCampaignManager-\/>closeCampaign(GAMESTATE\_STARTSCREEN);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ GAMESTATE\_QUIT:}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setGameState(mGameStateManager-\/>getTempGameState());}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ contFlag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ }
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contFlag;}
+\DoxyCodeLine{00298\ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ \textcolor{keywordtype}{void}\ updateEverything(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00300\ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ updateCommand();}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGameStateManager-\/>isMapChange())}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ updateMapChange(evt);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isPaused())}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>update(evt);}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnitManager-\/>isMapChanged())}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showBackdropOverlay(\textcolor{keyword}{true},\textcolor{keyword}{true});}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showGUI(\textcolor{keyword}{false});}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>toggleMapChange();}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ mCritterManager-\/>update(evt,getPlayer()-\/>getObjectNode());}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ mItemManager-\/>update(evt,mCamera);}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>update(evt);}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isPaused()\ ||\ !mGameStateManager-\/>isCampaign())mCamera-\/>update(evt);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ mSkyManager-\/>update(evt);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ mWorld-\/>update();}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ mSoundManager-\/>update(evt);}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ mOwnershipManager-\/>update(evt);}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isCampaign())mNetworkManager-\/>update(evt);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isPaused()\ \&\&\ mGameStateManager-\/>isCampaign())mCampaignManager-\/>update(evt);}
+\DoxyCodeLine{00330\ }
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mDebugText\ =\ mGui-\/>getDebugText();}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mDebugText\ =\ mNetworkManager-\/>getDebugText();}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mDebugText\ =\ StringConverter::toString(getPlayer()-\/>getPosition());}}
+\DoxyCodeLine{00334\ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCommand()}
+\DoxyCodeLine{00336\ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tCommand\ =\ mGui-\/>popCommand();}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tParam\ =\ mGui-\/>popCommandParam();}
+\DoxyCodeLine{00339\ }
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCommand==COMMAND\_SETHOME)}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>saveHomePoint(mWorld-\/>getWorldName(),Vector2(getPlayer()-\/>getPosition().x,getPlayer()-\/>getPosition().z),mGameStateManager-\/>getDimension());}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>getChatManager()-\/>message(\textcolor{stringliteral}{"{}Home\ Point\ has\ been\ set\ to\ the\ current\ position."{}});}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tCommand==COMMAND\_GOHOME)}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ String\ tMap\ =\ MAP\_DEFAULT;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tPoint\ =\ Vector2(MAP\_SPAWN);}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ tDimension\ =\ 0;}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>loadHomePoint(tMap,tPoint,tDimension);}
+\DoxyCodeLine{00351\ }
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Same\ map\ \&\ channel}}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMap\ ==\ mWorld-\/>getWorldName()\ \&\&\ tDimension\ ==\ mGameStateManager-\/>getDimension())}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>setPosition(tPoint.x,200,tPoint.y);}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>resetTarget();}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>stopAction();}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>clampUnitToTerrain(getPlayer(),\textcolor{keyword}{true});}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNetworkManager-\/>sendPosition();}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Change\ map\ \&\ dimension}}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>setMapChange(\textcolor{keyword}{true},tMap,\textcolor{keyword}{true},Vector3(tPoint.x,0,tPoint.y));}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>setDimension(tDimension);}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tCommand==COMMAND\_RESETHOME)}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>saveHomePoint(MAP\_DEFAULT,Vector2(MAP\_SPAWN),0);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>getChatManager()-\/>message(\textcolor{stringliteral}{"{}Home\ Point\ has\ been\ reset."{}});}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tCommand==COMMAND\_POSITION)}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>getChatManager()-\/>message(\textcolor{stringliteral}{"{}Position\ is\ "{}}+StringConverter::toString(getPlayer()-\/>getPosition()));}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tCommand==COMMAND\_EARTHQUAKE)}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>isAdmin)mNetworkManager-\/>sendEvent(EVENT\_EARTHQUAKE);}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tCommand==COMMAND\_GOTO)}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mDef-\/>isAdmin\ \&\&\ !mDef-\/>isMod)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tParam,\textcolor{stringliteral}{"{}:"{}},1);}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()<=0)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tMap\ =\ tPart[0];}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Same\ map\ \&\ channel}}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMap\ ==\ mWorld-\/>getWorldName())}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tPart.size()>1)}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPoint\ =\ StringConverter::parseVector3(tPart[1]);}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>setPosition(tPoint);}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>resetTarget();}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>stopAction();}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>clampUnitToTerrain(getPlayer());}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNetworkManager-\/>sendPosition();}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Change\ map\ \&\ dimension}}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>setMapChange(\textcolor{keyword}{true},tMap,(tPart.size()>1),(tPart.size()>1?StringConverter::parseVector3(tPart[1]):Vector3::ZERO));}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \textcolor{keywordtype}{void}\ updateMapChange(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00409\ \ \ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGameStateManager-\/>popMapChangeDone())}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>toggleMapChange();}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>getMiniMap()-\/>updatePortalMap();}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showBackdropOverlay(\textcolor{keyword}{false});}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>showGUI(mGui-\/>getWasGUIVisible());}
+\DoxyCodeLine{00416\ }
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>update(evt);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>update(evt);}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isPaused()\ ||\ !mGameStateManager-\/>isCampaign())mCamera-\/>update(evt);}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>update(evt);}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ mWorld-\/>update();}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>update(evt);}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>getChatManager()-\/>message(\textcolor{stringliteral}{"{}-\/-\/-\/"{}}+mDef-\/>getMapName(mWorld-\/>getWorldName())+\textcolor{stringliteral}{"{}-\/-\/-\/"{}});}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_map_change_data}{MapChangeData}}\ tMapChange\ =\ mUnitManager-\/>getMapChange();}
+\DoxyCodeLine{00429\ }
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ resetScene(\textcolor{keyword}{false},tMapChange.mapName);}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMapChange.changePoint)}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ getPlayer()-\/>setPosition(tMapChange.point.x,(tMapChange.hasVectY?tMapChange.point.y:200),tMapChange.point.z);}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>clampUnitToTerrain(getPlayer(),!tMapChange.hasVectY);}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00437\ }
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isCampaign())}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNetworkManager-\/>sendMapChange(tMapChange.mapName,mGameStateManager-\/>getDimension());}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>saveSavePoint(mWorld-\/>getWorldName(),Vector2(getPlayer()-\/>getPosition().x,getPlayer()-\/>getPosition().z),mGameStateManager-\/>getDimension());}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00443\ }
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>update(evt);}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>update(evt);}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isPaused()\ ||\ !mGameStateManager-\/>isCampaign())mCamera-\/>update(evt);}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>update(evt);}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ mWorld-\/>update();}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>update(evt);}
+\DoxyCodeLine{00451\ }
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ mGameStateManager-\/>pushMapChangeDone();}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00454\ \ \ \ \ \}}
+\DoxyCodeLine{00455\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCredits(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00456\ \ \ \ \ \{}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ mSoundManager-\/>update(evt);}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ mCampaignManager-\/>updateCredits(evt);}
+\DoxyCodeLine{00460\ \ \ \ \ \}}
+\DoxyCodeLine{00461\ \ \ \ \ \textcolor{keywordtype}{void}\ updateGameOver(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00462\ \ \ \ \ \{}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ mSoundManager-\/>update(evt);}
+\DoxyCodeLine{00465\ \ \ \ \ \}}
+\DoxyCodeLine{00466\ \ \ \ \ \textcolor{keywordtype}{void}\ updateLogo(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00467\ \ \ \ \ \{}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00469\ \ \ \ \ \}}
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keywordtype}{void}\ updateStartScreen(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00471\ \ \ \ \ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ mNetworkManager-\/>update(evt);}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSoundManager-\/>update(evt);}}
+\DoxyCodeLine{00475\ \ \ \ \ \}}
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCharScreen(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00477\ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ mNetworkManager-\/>update(evt);}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ mGui-\/>update(evt);}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Re-\/equip\ items\ on\ mesh\ change}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGui-\/>getCharScreenManager()-\/>popDoReequip())}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<=MAX\_EQUIP;i++)}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(getPlayer()-\/>getEquip(i)!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tEquip\ =\ mUnitManager-\/>unequipItem(getPlayer(),i);}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mUnitManager-\/>equipItem(getPlayer(),tEquip,i);}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ mWorld-\/>update();}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ mEffectsManager-\/>update(evt);}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ mSoundManager-\/>update(evt);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ getPlayer()-\/>update(evt,mDef);}
+\DoxyCodeLine{00492\ \ \ \ \ \}}
+\DoxyCodeLine{00493\ \ \ \ \ \mbox{\hyperlink{class_magix_player}{MagixPlayer}}*\ getPlayer()}
+\DoxyCodeLine{00494\ \ \ \ \ \{}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mUnitManager-\/>getPlayer();}
+\DoxyCodeLine{00496\ \ \ \ \ \}}
+\DoxyCodeLine{00497\ \ \ \ \ String\ getDebugText()}
+\DoxyCodeLine{00498\ \ \ \ \ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mDebugText;}
+\DoxyCodeLine{00500\ \ \ \ \ \}}
+\DoxyCodeLine{00501\ \ \ \ \ \mbox{\hyperlink{class_magix_g_u_i}{MagixGUI}}*\ getMagixGUI()}
+\DoxyCodeLine{00502\ \ \ \ \ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mGui;}
+\DoxyCodeLine{00504\ \ \ \ \ \}}
+\DoxyCodeLine{00505\ \ \ \ \ \mbox{\hyperlink{class_magix_input_manager}{MagixInputManager}}*\ getInputManager()}
+\DoxyCodeLine{00506\ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mGui-\/>getInputManager();}
+\DoxyCodeLine{00508\ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ \mbox{\hyperlink{class_magix_unit_manager}{MagixUnitManager}}*\ getUnitManager()}
+\DoxyCodeLine{00510\ \ \ \ \ \{}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mUnitManager;}
+\DoxyCodeLine{00512\ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}*\ getCamera()}
+\DoxyCodeLine{00514\ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamera;}
+\DoxyCodeLine{00516\ \ \ \ \ \}}
+\DoxyCodeLine{00517\ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}*\ getExternalDefinitions()}
+\DoxyCodeLine{00518\ \ \ \ \ \{}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mDef;}
+\DoxyCodeLine{00520\ \ \ \ \ \}}
+\DoxyCodeLine{00521\ \ \ \ \ \mbox{\hyperlink{class_magix_network_manager}{MagixNetworkManager}}*\ getNetworkManager()}
+\DoxyCodeLine{00522\ \ \ \ \ \{}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mNetworkManager;}
+\DoxyCodeLine{00524\ \ \ \ \ \}}
+\DoxyCodeLine{00525\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getCameraMode()}
+\DoxyCodeLine{00526\ \ \ \ \ \{}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamera-\/>getCameraMode();}
+\DoxyCodeLine{00528\ \ \ \ \ \}}
+\DoxyCodeLine{00529\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getInputMode()}
+\DoxyCodeLine{00530\ \ \ \ \ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ getInputManager()-\/>getInputMode();}
+\DoxyCodeLine{00532\ \ \ \ \ \}}
+\DoxyCodeLine{00533\ \ \ \ \ \mbox{\hyperlink{class_magix_game_state_manager}{MagixGameStateManager}}*\ getGameState()}
+\DoxyCodeLine{00534\ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mGameStateManager;}
+\DoxyCodeLine{00536\ \ \ \ \ \}}
+\DoxyCodeLine{00537\ \ \ \ \ \mbox{\hyperlink{class_magix_effects_manager}{MagixEffectsManager}}*\ getEffectsManager()}
+\DoxyCodeLine{00538\ \ \ \ \ \{}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mEffectsManager;}
+\DoxyCodeLine{00540\ \ \ \ \ \}}
+\DoxyCodeLine{00541\ \};}
+\DoxyCodeLine{00542\ }
+\DoxyCodeLine{00543\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

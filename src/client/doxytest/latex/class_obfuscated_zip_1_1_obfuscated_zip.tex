@@ -1,0 +1,176 @@
+\doxysection{Obfuscated\+Zip\+::Obfuscated\+Zip Class Reference}
+\hypertarget{class_obfuscated_zip_1_1_obfuscated_zip}{}\label{class_obfuscated_zip_1_1_obfuscated_zip}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+
+
+{\ttfamily \#include $<$Obfuscated\+Zip.\+h$>$}
+
+Inheritance diagram for Obfuscated\+Zip\+::Obfuscated\+Zip\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_obfuscated_zip_1_1_obfuscated_zip}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a8a12cffc972efdd3a54d2847f1e1d9c1}\label{class_obfuscated_zip_1_1_obfuscated_zip_a8a12cffc972efdd3a54d2847f1e1d9c1} 
+{\bfseries Obfuscated\+Zip} (const Ogre\+::\+String \&name, const Ogre\+::\+String \&arch\+Type)
+\item 
+bool \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_a0a7982fc2749a92231378ab6f4a8970b}{is\+Case\+Sensitive}} (void) const
+\item 
+void \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_ab452a06329beb196bd612e151cb12f9c}{load}} ()
+\item 
+void \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_a0acc751ed483b52030ff36280b9ced31}{unload}} ()
+\item 
+Ogre\+::\+Data\+Stream\+Ptr \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_aadec5d3ff2d900adc34923860981cce1}{open}} (const Ogre\+::\+String \&filename, bool read\+Only=true)
+\item 
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a61580fb54fa311542a917a7ece6ac654}\label{class_obfuscated_zip_1_1_obfuscated_zip_a61580fb54fa311542a917a7ece6ac654} 
+Ogre\+::\+Data\+Stream\+Ptr {\bfseries create} (const Ogre\+::\+String \&filename) const
+\item 
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a32ee55e4be82dfcddd6cdb9806fbf92c}\label{class_obfuscated_zip_1_1_obfuscated_zip_a32ee55e4be82dfcddd6cdb9806fbf92c} 
+void {\bfseries remove} (const Ogre\+::\+String \&filename)
+\item 
+Ogre\+::\+String\+Vector\+Ptr \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_a62b655ce2420ac9c661f3e61ea7dd3c9}{list}} (bool recursive=true, bool dirs=false)
+\item 
+Ogre\+::\+File\+Info\+List\+Ptr \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_aa7ab3a5f63778ce2d559acb66ab320c6}{list\+File\+Info}} (bool recursive=true, bool dirs=false)
+\item 
+Ogre\+::\+String\+Vector\+Ptr \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_af11af9bb4440519ad9cfb6ae4616a083}{find}} (const Ogre\+::\+String \&pattern, bool recursive=true, bool dirs=false)
+\item 
+Ogre\+::\+File\+Info\+List\+Ptr \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_abf9fbf23e0c955cff1f385003a4a5593}{find\+File\+Info}} (const Ogre\+::\+String \&pattern, bool recursive=true, bool dirs=false)
+\item 
+bool \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_a447e6a0df496bce75a82d4c0dba4186f}{exists}} (const Ogre\+::\+String \&filename)
+\item 
+time\+\_\+t \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_a0fc06c7355913ecb5dd8e791a1a0f4d4}{get\+Modified\+Time}} (const Ogre\+::\+String \&filename)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_ab6785275e9b73fdf95cf269329b160e1}\label{class_obfuscated_zip_1_1_obfuscated_zip_ab6785275e9b73fdf95cf269329b160e1} 
+void {\bfseries check\+Zzip\+Error} (int zzip\+Error, const Ogre\+::\+String \&operation) const
+\begin{DoxyCompactList}\small\item\em Handle any errors from zzip. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_ad8a69a67154800594cd3dcb59b331a79}\label{class_obfuscated_zip_1_1_obfuscated_zip_ad8a69a67154800594cd3dcb59b331a79} 
+ZZIP\+\_\+\+DIR \texorpdfstring{$\ast$}{*} {\bfseries m\+Zzip\+Dir}
+\begin{DoxyCompactList}\small\item\em Handle to root zip file. \end{DoxyCompactList}\item 
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a85d3fd1e4b7cae903e8c475eeaeb97a0}\label{class_obfuscated_zip_1_1_obfuscated_zip_a85d3fd1e4b7cae903e8c475eeaeb97a0} 
+Ogre\+::\+File\+Info\+List {\bfseries m\+File\+List}
+\begin{DoxyCompactList}\small\item\em File list (since zziplib seems to only allow scanning of dir tree once) \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Specialisation of the Archive class to allow reading of files from an obfuscated zip format source archive. \begin{DoxyRemark}{Remarks}
+This archive format supports obfuscated zip archives. 
+\end{DoxyRemark}
+
+
+\label{doc-func-members}
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a447e6a0df496bce75a82d4c0dba4186f}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!exists@{exists}}
+\index{exists@{exists}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{exists()}{exists()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_a447e6a0df496bce75a82d4c0dba4186f} 
+bool Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::exists (\begin{DoxyParamCaption}\item[{const Ogre\+::\+String \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_af11af9bb4440519ad9cfb6ae4616a083}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!find@{find}}
+\index{find@{find}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{find()}{find()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_af11af9bb4440519ad9cfb6ae4616a083} 
+Ogre\+::\+String\+Vector\+Ptr Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::find (\begin{DoxyParamCaption}\item[{const Ogre\+::\+String \&}]{pattern}{, }\item[{bool}]{recursive}{ = {\ttfamily true}, }\item[{bool}]{dirs}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_abf9fbf23e0c955cff1f385003a4a5593}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!findFileInfo@{findFileInfo}}
+\index{findFileInfo@{findFileInfo}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{findFileInfo()}{findFileInfo()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_abf9fbf23e0c955cff1f385003a4a5593} 
+Ogre\+::\+File\+Info\+List\+Ptr Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::find\+File\+Info (\begin{DoxyParamCaption}\item[{const Ogre\+::\+String \&}]{pattern}{, }\item[{bool}]{recursive}{ = {\ttfamily true}, }\item[{bool}]{dirs}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a0fc06c7355913ecb5dd8e791a1a0f4d4}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!getModifiedTime@{getModifiedTime}}
+\index{getModifiedTime@{getModifiedTime}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{getModifiedTime()}{getModifiedTime()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_a0fc06c7355913ecb5dd8e791a1a0f4d4} 
+time\+\_\+t Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::get\+Modified\+Time (\begin{DoxyParamCaption}\item[{const Ogre\+::\+String \&}]{filename}{}\end{DoxyParamCaption})}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a0a7982fc2749a92231378ab6f4a8970b}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!isCaseSensitive@{isCaseSensitive}}
+\index{isCaseSensitive@{isCaseSensitive}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{isCaseSensitive()}{isCaseSensitive()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_a0a7982fc2749a92231378ab6f4a8970b} 
+bool Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::is\+Case\+Sensitive (\begin{DoxyParamCaption}\item[{void}]{}{}\end{DoxyParamCaption}) const\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a62b655ce2420ac9c661f3e61ea7dd3c9}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!list@{list}}
+\index{list@{list}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{list()}{list()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_a62b655ce2420ac9c661f3e61ea7dd3c9} 
+Ogre\+::\+String\+Vector\+Ptr Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::list (\begin{DoxyParamCaption}\item[{bool}]{recursive}{ = {\ttfamily true}, }\item[{bool}]{dirs}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_aa7ab3a5f63778ce2d559acb66ab320c6}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!listFileInfo@{listFileInfo}}
+\index{listFileInfo@{listFileInfo}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{listFileInfo()}{listFileInfo()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_aa7ab3a5f63778ce2d559acb66ab320c6} 
+Ogre\+::\+File\+Info\+List\+Ptr Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::list\+File\+Info (\begin{DoxyParamCaption}\item[{bool}]{recursive}{ = {\ttfamily true}, }\item[{bool}]{dirs}{ = {\ttfamily false}}\end{DoxyParamCaption})}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_ab452a06329beb196bd612e151cb12f9c}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!load@{load}}
+\index{load@{load}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{load()}{load()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_ab452a06329beb196bd612e151cb12f9c} 
+void Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::load (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_aadec5d3ff2d900adc34923860981cce1}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!open@{open}}
+\index{open@{open}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{open()}{open()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_aadec5d3ff2d900adc34923860981cce1} 
+Ogre\+::\+Data\+Stream\+Ptr Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::open (\begin{DoxyParamCaption}\item[{const Ogre\+::\+String \&}]{filename}{, }\item[{bool}]{read\+Only}{ = {\ttfamily true}}\end{DoxyParamCaption})}
+
+
+
+
+
+\Hypertarget{class_obfuscated_zip_1_1_obfuscated_zip_a0acc751ed483b52030ff36280b9ced31}\index{ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}!unload@{unload}}
+\index{unload@{unload}!ObfuscatedZip::ObfuscatedZip@{ObfuscatedZip::ObfuscatedZip}}
+\doxysubsubsection{\texorpdfstring{unload()}{unload()}}
+{\footnotesize\ttfamily \label{class_obfuscated_zip_1_1_obfuscated_zip_a0acc751ed483b52030ff36280b9ced31} 
+void Obfuscated\+Zip\+::\+Obfuscated\+Zip\+::unload (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Obfuscated\+Zip.\+h\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/src/Obfuscated\+Zip.\+cpp\end{DoxyCompactItemize}
