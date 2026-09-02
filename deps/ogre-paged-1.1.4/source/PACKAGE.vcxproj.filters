@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="17.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <CustomBuild Include="D:\CurrGamesProjects\ImpressiveTitleRemakePOCData\KITOREPOSBASES\KITOLD\deps\ogre-paged-1.1.4\CMakeFiles\0cc7398b91fae501e244bff5ceda6ab1\PACKAGE_force.rule">
+      <Filter>CMake Rules</Filter>
+    </CustomBuild>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="CMake Rules">
+      <UniqueIdentifier>{54DCBAD5-772F-3EB0-9F18-D7D0DA06F4AF}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

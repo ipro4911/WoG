@@ -1,0 +1,75 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="LobbyClient">
+      <UniqueIdentifier>{98af206b-b38a-4db1-a5d4-063f978143c3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{1055a1ce-da98-463e-92c5-110e081b3a1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="DBSpec">
+      <UniqueIdentifier>{19780c0f-a200-4be1-a222-028172b5dec7}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyClientInterface.cpp">
+      <Filter>LobbyClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyClientPC.cpp">
+      <Filter>LobbyClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyPCCommon.cpp">
+      <Filter>LobbyClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyTypes.cpp">
+      <Filter>LobbyClient</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\STDStringCompressor.cpp">
+      <Filter>LobbyClient</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyClientTest.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyDBSpec.cpp">
+      <Filter>DBSpec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\RankingServerDBSpec.cpp">
+      <Filter>DBSpec</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\TitleValidationDBSpec.cpp">
+      <Filter>DBSpec</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyClientInterface.h">
+      <Filter>LobbyClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyClientPC.h">
+      <Filter>LobbyClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyPCCommon.h">
+      <Filter>LobbyClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyPCTypes.h">
+      <Filter>LobbyClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyTypes.h">
+      <Filter>LobbyClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\STDStringCompressor.h">
+      <Filter>LobbyClient</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyDBSpec.h">
+      <Filter>DBSpec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\RankingServerDBSpec.h">
+      <Filter>DBSpec</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\TitleValidationDBSpec.h">
+      <Filter>DBSpec</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
+</Project>
