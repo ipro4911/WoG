@@ -1,0 +1,182 @@
+\doxysection{font\+Texture\+Helper.\+h}
+\hypertarget{font_texture_helper_8h_source}{}\label{font_texture_helper_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/fontTextureHelper.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/fontTextureHelper.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}OgreFontManager.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ <OgreStringConverter.h>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ <fstream>}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ FONT\_UNICODE}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#\ define\ FONT\_UNICODE\ }\textcolor{comment}{//highly\ recommended\ to\ be\ used,\ otherwise\ you\ run\ into\ problems\ with\ non-\/ASCII\ font\ glyphs}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#endif\ }\textcolor{comment}{//FONT\_UNICODE}}
+\DoxyCodeLine{00011\ }
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ licensed\ under\ the\ do-\/whatever-\/you-\/want\ license\ ;)}}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ created\ by\ Thomas\ Fischer\ thomas\{AT\}thomasfischer\{DOT\}biz}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ Ogre::UTFString\ cache\_name\ =\ \textcolor{stringliteral}{"{}\_cache"{}};}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{comment}{//\ this\ code\ is\ slow,\ use\ it\ sparingly!}}
+\DoxyCodeLine{00018\ \textcolor{keywordtype}{int}\ generateFontTexture(Ogre::String\ fontName,\ \textcolor{keywordtype}{bool}\ load\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \ \ \ \ Ogre::FontPtr\ font\ =\ Ogre::FontManager::getSingleton().getByName(fontName);}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordflow}{if}\ (font.isNull())\ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordflow}{if}\ (font-\/>getType()\ !=\ Ogre::FT\_TRUETYPE)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00025\ }
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordflow}{if}\ (!font-\/>isLoaded())}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ font-\/>load();}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ Ogre::String\ texname\ =\ font-\/>getMaterial()-\/>getTechnique(0)-\/>getPass(0)-\/>getTextureUnitState(0)-\/>getTextureName();}
+\DoxyCodeLine{00030\ }
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \ \ \ \ Ogre::TexturePtr\ fontTexture\ =\ Ogre::TextureManager::getSingleton().getByName(texname);}
+\DoxyCodeLine{00033\ \ \ \ \ Ogre::HardwarePixelBufferSharedPtr\ fontBuffer\ =\ fontTexture-\/>getBuffer();}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordflow}{if}\ (fontBuffer.isNull())}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//\ create\ a\ remporary\ buffer\ that\ holds\ the\ font}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{size\_t}\ nBuffSize\ =\ fontBuffer-\/>getSizeInBytes();}
+\DoxyCodeLine{00040\ \ \ \ \ Ogre::uint8*\ buffer\ =\ (Ogre::uint8*)calloc(nBuffSize,\ \textcolor{keyword}{sizeof}(Ogre::uint8));}
+\DoxyCodeLine{00041\ \ \ \ \ Ogre::PixelBox\ fontPb(fontBuffer-\/>getWidth(),\ fontBuffer-\/>getHeight(),\ fontBuffer-\/>getDepth(),\ fontBuffer-\/>getFormat(),\ buffer);}
+\DoxyCodeLine{00042\ \ \ \ \ fontBuffer-\/>blitToMemory(fontPb);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{comment}{//\ create\ new\ render\ texture}}
+\DoxyCodeLine{00045\ \ \ \ \ Ogre::String\ texNameManual\ =\ \textcolor{stringliteral}{"{}FontTextureRTT\_"{}}\ +\ font-\/>getName();}
+\DoxyCodeLine{00046\ \ \ \ \ Ogre::TexturePtr\ t\ =\ Ogre::TextureManager::getSingleton().createManual(texNameManual,\ \textcolor{stringliteral}{"{}General"{}},\ Ogre::TEX\_TYPE\_2D,\ fontBuffer-\/>getWidth(),\ fontBuffer-\/>getHeight(),\ fontBuffer-\/>getDepth(),\ 1,\ fontBuffer-\/>getFormat(),\ Ogre::TU\_RENDERTARGET);}
+\DoxyCodeLine{00047\ \ \ \ \ Ogre::TexturePtr\ fontTextureRTT\ =\ Ogre::TextureManager::getSingleton().getByName(texNameManual);}
+\DoxyCodeLine{00048\ \ \ \ \ fontTextureRTT-\/>getBuffer()-\/>blitFromMemory(fontPb);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//\ now\ render\ to\ file}}
+\DoxyCodeLine{00051\ \ \ \ \ Ogre::RenderTexture*\ pRenderTexture\ =\ fontTextureRTT-\/>getBuffer()-\/>getRenderTarget();}
+\DoxyCodeLine{00052\ \ \ \ \ pRenderTexture-\/>update();}
+\DoxyCodeLine{00053\ \ \ \ \ Ogre::String\ outImageName\ =\ font-\/>getName()\ +\ cache\_name\ +\ \textcolor{stringliteral}{"{}.png"{}};}
+\DoxyCodeLine{00054\ \ \ \ \ pRenderTexture-\/>writeContentsToFile(outImageName);}
+\DoxyCodeLine{00055\ }
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ free\ stuff}}
+\DoxyCodeLine{00057\ \ \ \ \ free(buffer);}
+\DoxyCodeLine{00058\ \ \ \ \ Ogre::TextureManager::getSingleton().remove(texNameManual);}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{comment}{//\ save\ texture\ font\ infos}}
+\DoxyCodeLine{00061\ \ \ \ \ Ogre::UTFString\ out\_text\ =\ font-\/>getName()\ +\ cache\_name\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n\{\(\backslash\)n\(\backslash\)ttype\(\backslash\)timage\(\backslash\)n\(\backslash\)tsource\(\backslash\)t"{}}\ +\ outImageName\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{comment}{//std::vector<Ogre::Font::CodePointRange>\ ranges\ =\ font-\/>getCodePointRangeList();}}
+\DoxyCodeLine{00064\ \ \ \ \ \textcolor{comment}{/*}}
+\DoxyCodeLine{00065\ \textcolor{comment}{\ \ \ \ for\ (std::vector<Ogre::Font::CodePointRange>::iterator\ it\ =\ ranges.begin();\ it\ !=\ ranges.end();\ it++)}}
+\DoxyCodeLine{00066\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{00067\ \textcolor{comment}{\ \ \ \ \ \ \ \ //\ iterate\ over\ all\ known\ glyphs}}
+\DoxyCodeLine{00068\ \textcolor{comment}{\ \ \ \ \ \ \ \ for\ (Ogre::uint32\ i\ =\ it-\/>first;\ i\ <=\ it-\/>second;\ i++)}}
+\DoxyCodeLine{00069\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00070\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Ogre::Font::GlyphInfo\ gi(0,\ Ogre::Font::UVRect(),\ 0);}}
+\DoxyCodeLine{00071\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ try}}
+\DoxyCodeLine{00072\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00073\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ gi\ =\ font-\/>getGlyphInfo(i);}}
+\DoxyCodeLine{00074\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00075\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ catch\ (...)}}
+\DoxyCodeLine{00076\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00077\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ //\ catch\ code\ point\ not\ found\ error}}
+\DoxyCodeLine{00078\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue;}}
+\DoxyCodeLine{00079\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00080\ \textcolor{comment}{}}
+\DoxyCodeLine{00081\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ //\ create\ character}}
+\DoxyCodeLine{00082\ \textcolor{comment}{\#ifdef\ FONT\_UNICODE}}
+\DoxyCodeLine{00083\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ wchar\_t\ tmp[20];}}
+\DoxyCodeLine{00084\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ swprintf(tmp,\ 20,\ L"{}\%c"{},\ i);}}
+\DoxyCodeLine{00085\ \textcolor{comment}{\#else}}
+\DoxyCodeLine{00086\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ char\ tmp[20]\ =\ "{}"{};}}
+\DoxyCodeLine{00087\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ sprintf(tmp,\ "{}\%c"{},\ i);}}
+\DoxyCodeLine{00088\ \textcolor{comment}{\#endif}}
+\DoxyCodeLine{00089\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ out\_text.append("{}\(\backslash\)tglyph\ "{}\ +\ Ogre::UTFString(tmp)\ +\ "{}\ "{}\ +\ Ogre::StringConverter::toString(gi.uvRect.left)\ +\ "{}\ "{}\ +\ Ogre::StringConverter::toString(gi.uvRect.top)\ +\ "{}\ "{}\ +\ Ogre::StringConverter::toString(gi.uvRect.right)\ +\ "{}\ "{}\ +\ Ogre::StringConverter::toString(gi.uvRect.bottom)\ +\ "{}\(\backslash\)n"{});}}
+\DoxyCodeLine{00090\ \textcolor{comment}{}}
+\DoxyCodeLine{00091\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00092\ \textcolor{comment}{\ \ \ \ \}}}
+\DoxyCodeLine{00093\ \textcolor{comment}{\ \ \ \ */}}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{comment}{//\ new\ ogre\ method}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Font::CodePointRangeList\&\ ranges\ =\ font-\/>getCodePointRangeList();}
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ Ogre::Font::CodePointRange\&\ range\ :\ ranges)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (Ogre::uint32\ i\ =\ range.first;\ i\ <=\ range.second;\ ++i)}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{try}}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Ogre::Font::GlyphInfo\&\ gi\ =\ font-\/>getGlyphInfo(i);}
+\DoxyCodeLine{00104\ }
+\DoxyCodeLine{00105\ \textcolor{preprocessor}{\#ifdef\ FONT\_UNICODE}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{wchar\_t}\ tmp[20];}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ swprintf(tmp,\ 20,\ L\textcolor{stringliteral}{"{}\%lc"{}},\ i);\ \ \textcolor{comment}{//\ \%lc\ for\ wide\ character}}
+\DoxyCodeLine{00108\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tmp[20];}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ snprintf(tmp,\ \textcolor{keyword}{sizeof}(tmp),\ \textcolor{stringliteral}{"{}\%c"{}},\ i);}
+\DoxyCodeLine{00111\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ out\_text.append(\textcolor{stringliteral}{"{}\(\backslash\)tglyph\ "{}}\ +\ Ogre::UTFString(tmp)\ +\ \textcolor{stringliteral}{"{}\ "{}}\ +}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::StringConverter::toString(gi.uvRect.left)\ +\ \textcolor{stringliteral}{"{}\ "{}}\ +}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::StringConverter::toString(gi.uvRect.top)\ +\ \textcolor{stringliteral}{"{}\ "{}}\ +}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::StringConverter::toString(gi.uvRect.right)\ +\ \textcolor{stringliteral}{"{}\ "{}}\ +}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::StringConverter::toString(gi.uvRect.bottom)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{catch}\ (...)}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ glyph\ not\ found,\ skip\ it}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ out\_text.append(\textcolor{stringliteral}{"{}\}\(\backslash\)n"{}});}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ Ogre::String\ defFileName\ =\ font-\/>getName()\ +\ cache\_name\ +\ \textcolor{stringliteral}{"{}.fontdef"{}};}
+\DoxyCodeLine{00129\ \ \ \ \ std::ofstream\ f;}
+\DoxyCodeLine{00130\ \ \ \ \ f.open(defFileName.c\_str());}
+\DoxyCodeLine{00131\ \ \ \ \ f\ <<\ out\_text;}
+\DoxyCodeLine{00132\ \ \ \ \ f.close();}
+\DoxyCodeLine{00133\ \ \ \ \ Ogre::LogManager::getSingleton().logMessage(\textcolor{stringliteral}{"{}generated\ font\ cache\ for\ font\ "{}}\ +\ fontName\ +\ \textcolor{stringliteral}{"{}\ ("{}}\ +\ outImageName\ +\ \textcolor{stringliteral}{"{},\ "{}}\ +\ defFileName\ +\ \textcolor{stringliteral}{"{})"{}});}
+\DoxyCodeLine{00134\ }
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordflow}{if}\ (load)}
+\DoxyCodeLine{00136\ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ reload\ to\ find\ the\ .fontdef\ file}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ Ogre::ResourceGroupManager::getSingleton().initialiseAllResourceGroups();}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ load\ now}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ Ogre::FontPtr\ cached\_font\ =\ Ogre::FontManager::getSingleton().getByName(fontName\ +\ cache\_name);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (cached\_font.isNull())\ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ cached\_font-\/>load();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00146\ \}}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \textcolor{comment}{//\ if\ you\ want\ to\ use\ this,\ use\ instead\ of\ the\ original\ texture\ name,\ the\ texture\ name\ plus\ cache\_name\ (see\ top)}}
+\DoxyCodeLine{00149\ \textcolor{comment}{//\ this\ function\ creates\ the\ font\ cache\ if\ its\ not\ existing}}
+\DoxyCodeLine{00150\ \textcolor{keywordtype}{int}\ fontCacheInit(Ogre::String\ fontName)}
+\DoxyCodeLine{00151\ \{}
+\DoxyCodeLine{00152\ \ \ \ \ Ogre::FontPtr\ font\_org\ =\ Ogre::FontManager::getSingleton().getByName(fontName);}
+\DoxyCodeLine{00153\ \ \ \ \ Ogre::FontPtr\ font\_cache\ =\ Ogre::FontManager::getSingleton().getByName(fontName\ +\ cache\_name);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ base\ font\ not\ even\ existing?}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordflow}{if}\ (font\_org.isNull())\ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00157\ \ \ \ \ \textcolor{comment}{//\ using\ texture\ fonts\ is\ a\ bit\ stupid\ ...}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordflow}{if}\ (font\_org-\/>getType()\ !=\ Ogre::FT\_TRUETYPE)\ \textcolor{keywordflow}{return}\ 1;}
+\DoxyCodeLine{00159\ }
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keywordtype}{int}\ res\ =\ 0;}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordflow}{if}\ (font\_cache.isNull())}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ res\ =\ generateFontTexture(fontName);}
+\DoxyCodeLine{00163\ }
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordflow}{if}\ (font\_org-\/>isLoaded())\ font\_org-\/>unload();}
+\DoxyCodeLine{00165\ \ \ \ \ \textcolor{keywordflow}{return}\ res;}
+\DoxyCodeLine{00166\ \}}
+\DoxyCodeLine{00167\ }
+\DoxyCodeLine{00168\ \textcolor{keywordtype}{int}\ generateAllFontTextures()}
+\DoxyCodeLine{00169\ \{}
+\DoxyCodeLine{00170\ \ \ \ \ Ogre::ResourceManager::ResourceMapIterator\ itf2\ =\ Ogre::FontManager::getSingleton().getResourceIterator();}
+\DoxyCodeLine{00171\ \ \ \ \ \textcolor{keywordflow}{while}\ (itf2.hasMoreElements())}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ generateFontTexture(itf2.getNext()-\/>getName());}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ Ogre::LogManager::getSingleton().logMessage(\textcolor{stringliteral}{"{}all\ font\ textures\ generated"{}});}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00176\ \}}
+
+\end{DoxyCode}

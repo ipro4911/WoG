@@ -1,0 +1,178 @@
+\doxysection{Magix\+Critter\+Manager Class Reference}
+\hypertarget{class_magix_critter_manager}{}\label{class_magix_critter_manager}\index{MagixCritterManager@{MagixCritterManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_critter_manager_aada58ccd6d91be5a97daa9b9f198f7b7}\label{class_magix_critter_manager_aada58ccd6d91be5a97daa9b9f198f7b7} 
+void {\bfseries initialize} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, \mbox{\hyperlink{class_magix_game_state_manager}{Magix\+Game\+State\+Manager}} \texorpdfstring{$\ast$}{*}game\+State\+Mgr, \mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*}effects\+Mgr, \mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*}coll\+Mgr, \mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*}sound\+Mgr, \mbox{\hyperlink{class_magix_world}{Magix\+World}} \texorpdfstring{$\ast$}{*}world, \mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*}camera)
+\item 
+\Hypertarget{class_magix_critter_manager_adf890db8ede40f6b80197e1ee3f52a1e}\label{class_magix_critter_manager_adf890db8ede40f6b80197e1ee3f52a1e} 
+void {\bfseries reset} ()
+\item 
+\Hypertarget{class_magix_critter_manager_a58fb4e6dbefc1a550200338487e25baf}\label{class_magix_critter_manager_a58fb4e6dbefc1a550200338487e25baf} 
+void {\bfseries update} (const Frame\+Event \&evt, Scene\+Node \texorpdfstring{$\ast$}{*}player\+Node=0)
+\item 
+\Hypertarget{class_magix_critter_manager_a681daff8b6c8cb71e7e798c3f2ad8a28}\label{class_magix_critter_manager_a681daff8b6c8cb71e7e798c3f2ad8a28} 
+bool {\bfseries is\+In\+Range} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter)
+\item 
+\Hypertarget{class_magix_critter_manager_a0bb1fec80dadad213713eca148aff82f}\label{class_magix_critter_manager_a0bb1fec80dadad213713eca148aff82f} 
+void {\bfseries bound\+Critter\+To\+Map} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter)
+\item 
+\Hypertarget{class_magix_critter_manager_aca263c46d9d62e685b4ca9d7a19ef2ff}\label{class_magix_critter_manager_aca263c46d9d62e685b4ca9d7a19ef2ff} 
+void {\bfseries update\+Collision} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter, Scene\+Node \texorpdfstring{$\ast$}{*}player\+Node, bool in\+Range=false)
+\item 
+\Hypertarget{class_magix_critter_manager_ad793bf1994674e2117d57a8955145c20}\label{class_magix_critter_manager_ad793bf1994674e2117d57a8955145c20} 
+void {\bfseries hit\+Critter} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter, const Real \&damage, const Vector3 \&force, const Owner\+Token \&token=0, bool in\+Range=false)
+\item 
+\Hypertarget{class_magix_critter_manager_ac8385f94bfd9cdec8ec6110137a598a9}\label{class_magix_critter_manager_ac8385f94bfd9cdec8ec6110137a598a9} 
+void {\bfseries hit\+Critter} (const unsigned short \&i\+ID, const Real \&damage, const Vector3 \&force, const Owner\+Token \&token)
+\item 
+\Hypertarget{class_magix_critter_manager_ae31f09ed99a3f795ac09444c81a376db}\label{class_magix_critter_manager_ae31f09ed99a3f795ac09444c81a376db} 
+void {\bfseries update\+Ground\+Height} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter, bool check\+Water\+Collision=false, bool check\+Coll\+Box\+Collision=false)
+\item 
+\Hypertarget{class_magix_critter_manager_ae9b33ccb43d2b966053390e0cbc8239a}\label{class_magix_critter_manager_ae9b33ccb43d2b966053390e0cbc8239a} 
+\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Critter} (const unsigned short \&i\+ID, const \mbox{\hyperlink{struct_critter}{Critter}} \&critter, const Vector3 \&position, const short \&owner=-\/1)
+\item 
+\Hypertarget{class_magix_critter_manager_aa870823aae18b33e238a9067a2aaec6b}\label{class_magix_critter_manager_aa870823aae18b33e238a9067a2aaec6b} 
+\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Critter} (const unsigned short \&i\+ID, const \mbox{\hyperlink{struct_critter}{Critter}} \&critter, const Vector3 \&position, const unsigned char \&world\+ID, const short \&owner=-\/1)
+\item 
+\Hypertarget{class_magix_critter_manager_a1c3bb73f8eac6f77e1e59f8ff507a1af}\label{class_magix_critter_manager_a1c3bb73f8eac6f77e1e59f8ff507a1af} 
+void {\bfseries delete\+Critter} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}t\+Critter, const vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type\+::iterator \&it)
+\item 
+\Hypertarget{class_magix_critter_manager_a3065904c3bbf43faf37c5d6754d5333e}\label{class_magix_critter_manager_a3065904c3bbf43faf37c5d6754d5333e} 
+void {\bfseries delete\+Critter} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_critter_manager_a65a6b9fe826ac68ccf6d04e4e4965317}\label{class_magix_critter_manager_a65a6b9fe826ac68ccf6d04e4e4965317} 
+void {\bfseries delete\+All\+Critters} ()
+\item 
+\Hypertarget{class_magix_critter_manager_a5b8c7fb0d7ae2332499d34d60a02eddf}\label{class_magix_critter_manager_a5b8c7fb0d7ae2332499d34d60a02eddf} 
+\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} {\bfseries get\+By\+Object\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}node)
+\item 
+\Hypertarget{class_magix_critter_manager_a100caaa755de200d86b2eeea4eb116c0}\label{class_magix_critter_manager_a100caaa755de200d86b2eeea4eb116c0} 
+\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} {\bfseries get\+By\+ID} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_critter_manager_a99b1aef47d16e2ecba4425a07e11a1a1}\label{class_magix_critter_manager_a99b1aef47d16e2ecba4425a07e11a1a1} 
+const unsigned short {\bfseries get\+Num\+Critters} (bool include\+Pets=false)
+\item 
+\Hypertarget{class_magix_critter_manager_abb66db3ae8148dffdfaf7cf198663eb3}\label{class_magix_critter_manager_abb66db3ae8148dffdfaf7cf198663eb3} 
+void {\bfseries decrement\+Critter\+Count} ()
+\item 
+\Hypertarget{class_magix_critter_manager_ac483ed7e66be091854fa15cab4b555b7}\label{class_magix_critter_manager_ac483ed7e66be091854fa15cab4b555b7} 
+const unsigned short {\bfseries get\+Next\+Empty\+ID} (const unsigned short \&start)
+\item 
+\Hypertarget{class_magix_critter_manager_afd0929400e13de6b38d730f38e2c1112}\label{class_magix_critter_manager_afd0929400e13de6b38d730f38e2c1112} 
+const vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+Critter\+List} ()
+\item 
+\Hypertarget{class_magix_critter_manager_a880c4aafa5992f466cd0886f701b70a4}\label{class_magix_critter_manager_a880c4aafa5992f466cd0886f701b70a4} 
+const vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries pop\+Killed\+Queue} ()
+\item 
+\Hypertarget{class_magix_critter_manager_ad284cd98fb9397447f84c9626e6c6bdb}\label{class_magix_critter_manager_ad284cd98fb9397447f84c9626e6c6bdb} 
+const vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries pop\+Dead\+Queue} ()
+\item 
+\Hypertarget{class_magix_critter_manager_abd50d627e57c13679f94151c79da3f35}\label{class_magix_critter_manager_abd50d627e57c13679f94151c79da3f35} 
+const vector$<$ \mbox{\hyperlink{struct_hit_info}{Hit\+Info}} $>$\+::type {\bfseries pop\+Hit\+Queue} ()
+\item 
+\Hypertarget{class_magix_critter_manager_ab423a98bae167ea47b244f81502ee250}\label{class_magix_critter_manager_ab423a98bae167ea47b244f81502ee250} 
+void {\bfseries push\+Hit\+Queue} (const \mbox{\hyperlink{struct_hit_info}{Hit\+Info}} \&info)
+\item 
+\Hypertarget{class_magix_critter_manager_a9aea1e190771f84890a4e6006432143a}\label{class_magix_critter_manager_a9aea1e190771f84890a4e6006432143a} 
+const vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries pop\+Decision\+Queue} ()
+\item 
+\Hypertarget{class_magix_critter_manager_a71c583892682f62aea26423701cb01f6}\label{class_magix_critter_manager_a71c583892682f62aea26423701cb01f6} 
+const vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries pop\+Stationary\+Queue} ()
+\item 
+\Hypertarget{class_magix_critter_manager_a4b8231f2bc6143277a24f3ea8c1828c4}\label{class_magix_critter_manager_a4b8231f2bc6143277a24f3ea8c1828c4} 
+const vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+My\+Critters} ()
+\item 
+\Hypertarget{class_magix_critter_manager_adfb741c4ea3bfe104cacf3bbbaf090b3}\label{class_magix_critter_manager_adfb741c4ea3bfe104cacf3bbbaf090b3} 
+void {\bfseries push\+My\+Critters} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter)
+\item 
+\Hypertarget{class_magix_critter_manager_a57c049af7a9f49f9fa137e951884c0ce}\label{class_magix_critter_manager_a57c049af7a9f49f9fa137e951884c0ce} 
+void {\bfseries remove\+From\+My\+Critters} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter)
+\item 
+\Hypertarget{class_magix_critter_manager_a607e0dafb74873c22e31e26aacf71700}\label{class_magix_critter_manager_a607e0dafb74873c22e31e26aacf71700} 
+\mbox{\hyperlink{class_magix_living}{Magix\+Living}} \texorpdfstring{$\ast$}{*} {\bfseries pop\+Player\+Target} ()
+\item 
+\Hypertarget{class_magix_critter_manager_a85af927036e9769ec2c68c6efd9577ed}\label{class_magix_critter_manager_a85af927036e9769ec2c68c6efd9577ed} 
+void {\bfseries remove\+Chase\+Target} (\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*}target)
+\item 
+\Hypertarget{class_magix_critter_manager_a6197180e9ad21ca6eba4ca72190e3457}\label{class_magix_critter_manager_a6197180e9ad21ca6eba4ca72190e3457} 
+void {\bfseries push\+Sent\+ID} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_critter_manager_a7e915c126eafc520d3eb2cea5bd38f8f}\label{class_magix_critter_manager_a7e915c126eafc520d3eb2cea5bd38f8f} 
+void {\bfseries pop\+Sent\+ID} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_critter_manager_a8bb6d2ef7ecccf94356401944452ccc6}\label{class_magix_critter_manager_a8bb6d2ef7ecccf94356401944452ccc6} 
+void {\bfseries set\+Is\+Pet} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter)
+\item 
+\Hypertarget{class_magix_critter_manager_a2bf7a897256a4f99749cc25eca9d4ee4}\label{class_magix_critter_manager_a2bf7a897256a4f99749cc25eca9d4ee4} 
+const String {\bfseries pop\+Weather\+Effect\+Request} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_critter_manager_afb5557fbbda00b65788590f4e89829e8}\label{class_magix_critter_manager_afb5557fbbda00b65788590f4e89829e8} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_critter_manager_a4eeda5b5647460ab2dfb47e0bb49d896}\label{class_magix_critter_manager_a4eeda5b5647460ab2dfb47e0bb49d896} 
+\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Def}
+\item 
+\Hypertarget{class_magix_critter_manager_a4bd7eccf3bea530af6f39a026c2018a6}\label{class_magix_critter_manager_a4bd7eccf3bea530af6f39a026c2018a6} 
+\mbox{\hyperlink{class_magix_game_state_manager}{Magix\+Game\+State\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Game\+State\+Manager}
+\item 
+\Hypertarget{class_magix_critter_manager_ac1e506e3b9bec76c6e0c306c0f1b3ecc}\label{class_magix_critter_manager_ac1e506e3b9bec76c6e0c306c0f1b3ecc} 
+\mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Effects\+Manager}
+\item 
+\Hypertarget{class_magix_critter_manager_a30340f5444ddb3a0800c1b5aeca97ffc}\label{class_magix_critter_manager_a30340f5444ddb3a0800c1b5aeca97ffc} 
+\mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Collision\+Manager}
+\item 
+\Hypertarget{class_magix_critter_manager_a45db9e7177b0363f4e6186d91277a4fb}\label{class_magix_critter_manager_a45db9e7177b0363f4e6186d91277a4fb} 
+\mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Sound\+Manager}
+\item 
+\Hypertarget{class_magix_critter_manager_a11bb7ec20126d63f6e62e3d8ad05d321}\label{class_magix_critter_manager_a11bb7ec20126d63f6e62e3d8ad05d321} 
+\mbox{\hyperlink{class_magix_world}{Magix\+World}} \texorpdfstring{$\ast$}{*} {\bfseries m\+World}
+\item 
+\Hypertarget{class_magix_critter_manager_ab0f0e98b2b4b712004aa864b23f0d889}\label{class_magix_critter_manager_ab0f0e98b2b4b712004aa864b23f0d889} 
+\mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Camera}
+\item 
+\Hypertarget{class_magix_critter_manager_ac377db6114bf7799df6a7f2c04afc179}\label{class_magix_critter_manager_ac377db6114bf7799df6a7f2c04afc179} 
+Ray\+Scene\+Query \texorpdfstring{$\ast$}{*} {\bfseries m\+Ray\+Query}
+\item 
+\Hypertarget{class_magix_critter_manager_a0542aa615f910e6287bdf59d29ce4c01}\label{class_magix_critter_manager_a0542aa615f910e6287bdf59d29ce4c01} 
+vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries critter\+List}
+\item 
+\Hypertarget{class_magix_critter_manager_a4dcccaf3558c68321fd92924db9bd7cf}\label{class_magix_critter_manager_a4dcccaf3558c68321fd92924db9bd7cf} 
+vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries killed\+Queue}
+\item 
+\Hypertarget{class_magix_critter_manager_a1f5a24d7b3655247971e8e31a0064127}\label{class_magix_critter_manager_a1f5a24d7b3655247971e8e31a0064127} 
+vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries dead\+Queue}
+\item 
+\Hypertarget{class_magix_critter_manager_a83a8335c964a1c17c1e5b20ea7225d62}\label{class_magix_critter_manager_a83a8335c964a1c17c1e5b20ea7225d62} 
+vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries decision\+Queue}
+\item 
+\Hypertarget{class_magix_critter_manager_a578517036ed5c9be154ed4930c192aad}\label{class_magix_critter_manager_a578517036ed5c9be154ed4930c192aad} 
+vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries stationary\+Queue}
+\item 
+\Hypertarget{class_magix_critter_manager_a113d213b271c1955a5461c59dac17151}\label{class_magix_critter_manager_a113d213b271c1955a5461c59dac17151} 
+vector$<$ \mbox{\hyperlink{struct_hit_info}{Hit\+Info}} $>$\+::type {\bfseries hit\+Queue}
+\item 
+\Hypertarget{class_magix_critter_manager_af4f144fbf01d891c332d4cc1c84f4bf3}\label{class_magix_critter_manager_af4f144fbf01d891c332d4cc1c84f4bf3} 
+\mbox{\hyperlink{class_magix_living}{Magix\+Living}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Player\+Target}
+\item 
+\Hypertarget{class_magix_critter_manager_a1f622d63d52697b122e41874df9967c9}\label{class_magix_critter_manager_a1f622d63d52697b122e41874df9967c9} 
+vector$<$ \mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries my\+Critters}
+\item 
+\Hypertarget{class_magix_critter_manager_a56aa63c845fcbb0ff247697cd12016d4}\label{class_magix_critter_manager_a56aa63c845fcbb0ff247697cd12016d4} 
+vector$<$ unsignedshort $>$\+::type {\bfseries sent\+ID}
+\item 
+\Hypertarget{class_magix_critter_manager_a03a6f7b4ea5f955e0e6f1c11d01da56d}\label{class_magix_critter_manager_a03a6f7b4ea5f955e0e6f1c11d01da56d} 
+unsigned short {\bfseries critter\+Count}
+\item 
+\Hypertarget{class_magix_critter_manager_a08acdc6c200fd34807bce6ff8fc53f40}\label{class_magix_critter_manager_a08acdc6c200fd34807bce6ff8fc53f40} 
+String {\bfseries weather\+Effect\+Request}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Critter\+Manager.\+h\end{DoxyCompactItemize}

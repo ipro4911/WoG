@@ -1,0 +1,568 @@
+\doxysection{Magix\+Camera.\+h}
+\hypertarget{_magix_camera_8h_source}{}\label{_magix_camera_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixCamera.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixCamera.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixCamera\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixCamera\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}MagixPlayer.h"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ CAMERA\_LOCKED\ 1}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ CAMERA\_FREECURSOR\ 2}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ CAMERA\_FREE\ 3}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ CAMERA\_FREECURSORNEW\ 4}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ DIR\_FORWARD\ 1}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ DIR\_BACK\ 2}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ DIR\_LEFT\ 3}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ DIR\_RIGHT\ 4}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ DIR\_UP\ 5}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ DIR\_DOWN\ 6}}
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \textcolor{keyword}{class\ }MagixCamera}
+\DoxyCodeLine{00021\ \{}
+\DoxyCodeLine{00022\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00023\ \ \ \ \ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *mCollisionManager;}
+\DoxyCodeLine{00024\ \ \ \ \ SceneManager\ *mSceneMgr;}
+\DoxyCodeLine{00025\ \ \ \ \ Camera\ *mCamera;}
+\DoxyCodeLine{00026\ \ \ \ \ SceneNode\ *mCamNode;}
+\DoxyCodeLine{00027\ \ \ \ \ SceneNode\ *mCamPivotNode;}
+\DoxyCodeLine{00028\ \ \ \ \ SceneNode\ *mCamPivotPitchNode;}
+\DoxyCodeLine{00029\ \ \ \ \ SceneNode\ *mCamTrackNode;}
+\DoxyCodeLine{00030\ \ \ \ \ NodeAnimationTrack\ *mCamNodeTrack;}
+\DoxyCodeLine{00031\ \ \ \ \ \mbox{\hyperlink{class_magix_player}{MagixPlayer}}\ *mPlayer;}
+\DoxyCodeLine{00032\ \ \ \ \ RaySceneQuery\ *mRayQuery;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ camMode;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ moveForward;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ moveBack;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{bool}\ moveLeft;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ moveRight;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ moveUp;}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{keywordtype}{bool}\ moveDown;}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{bool}\ turnUp;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ turnDown;}
+\DoxyCodeLine{00042\ \ \ \ \ \textcolor{keywordtype}{bool}\ turnLeft;}
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ turnRight;}
+\DoxyCodeLine{00044\ \ \ \ \ Degree\ camPitch;}
+\DoxyCodeLine{00045\ \ \ \ \ Real\ camZoom;}
+\DoxyCodeLine{00046\ \ \ \ \ Real\ camSpeed;}
+\DoxyCodeLine{00047\ \ \ \ \ Quaternion\ camTransitionOrientation;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{bool}\ isFirstPerson;}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{bool}\ isUnderwater;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ isQuake;}
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keywordtype}{bool}\ isQuakeFadeOut;}
+\DoxyCodeLine{00052\ \ \ \ \ Vector3\ quakeOffset;}
+\DoxyCodeLine{00053\ \ \ \ \ Real\ quakeCountdown;}
+\DoxyCodeLine{00054\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00055\ \ \ \ \ MagixCamera()}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ 0;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ mPlayer\ =\ 0;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ mRayQuery\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ mCamera\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ mCamNode\ =\ 0;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ mCamPivotNode\ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ mCamPivotPitchNode\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ mCamTrackNode\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ mCamNodeTrack\ =\ 0;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ camMode\ =\ CAMERA\_FREECURSOR;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ moveForward\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ moveBack\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ moveLeft\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ moveRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ moveUp\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ moveDown\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ turnUp\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ turnDown\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ turnLeft\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ turnRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ camPitch\ =\ Degree(0);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ camZoom\ =\ 2.5;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ camSpeed\ =\ 50;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ camTransitionOrientation\ =\ Quaternion::ZERO;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ isFirstPerson\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ isUnderwater\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ isQuake\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ isQuakeFadeOut\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ quakeOffset\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ quakeCountdown\ =\ 0;}
+\DoxyCodeLine{00088\ \ \ \ \ \}}
+\DoxyCodeLine{00089\ \ \ \ \ \string~MagixCamera()}
+\DoxyCodeLine{00090\ \ \ \ \ \{}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRayQuery)\textcolor{keyword}{delete}\ mRayQuery;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(SceneManager\ *sceneMgr,\ \mbox{\hyperlink{class_magix_player}{MagixPlayer}}\ *player,\ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *collMgr)}
+\DoxyCodeLine{00094\ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ collMgr;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ sceneMgr;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ mPlayer\ =\ player;}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ mRayQuery\ =\ sceneMgr-\/>createRayQuery(\ Ray()\ );}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ mCamera\ =\ sceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}});}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ mCamera-\/>setQueryFlags(WORLDOBJECT\_MASK);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ mCamera-\/>setPosition(0,0,0);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ mCamPivotNode\ =\ sceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode(\textcolor{stringliteral}{"{}CamPivotNode"{}});}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ mCamPivotPitchNode\ =\ mCamPivotNode-\/>createChildSceneNode(\textcolor{stringliteral}{"{}CamPivotPitchNode"{}});}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ mCamNode\ =\ mCamPivotPitchNode-\/>createChildSceneNode(\textcolor{stringliteral}{"{}CameraNode"{}});}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ mCamTrackNode\ =\ sceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode(\textcolor{stringliteral}{"{}CamTrackNode"{}});}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ mCamNode-\/>attachObject(mCamera);}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ \ \ \ \ \textcolor{keywordtype}{void}\ reset(\textcolor{keywordtype}{bool}\ resetCamZoom=\textcolor{keyword}{true})}
+\DoxyCodeLine{00110\ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ stopCameraTrack();}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(resetCamZoom)camZoom\ =\ 2.5;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ setCameraMode(camMode,isFirstPerson,\textcolor{keyword}{true});}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode!=CAMERA\_FREE\ \&\&\ mPlayer-\/>getObjectNode())setOrientation(mPlayer-\/>getLookDirection());}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ isUnderwater\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ isQuake\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ isQuakeFadeOut\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ quakeOffset\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00121\ \ \ \ \ \{}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(updateCameraTrack(evt))}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ updateWaterCollision();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ updateCameraEffects(evt.timeSinceLastFrame);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Locked\ camera}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode==CAMERA\_LOCKED\ ||\ camMode==CAMERA\_FREECURSOR\ ||\ camMode==CAMERA\_FREECURSORNEW)}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Camera\ follows\ unit}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ mCamPivotNode-\/>setPosition(mPlayer-\/>getPosition(isFirstPerson)\ +\ (isFirstPerson\ ?\ mPlayer-\/>getObjectNode()-\/>getOrientation()\ *\ Vector3(0,\ 0,\ (Real)3.5\ *\ mPlayer-\/>getObjectNode()-\/>getScale().x)\ :\ Vector3::ZERO));}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Make\ unit\ look\ at\ camera's\ perspective}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mPlayer-\/>getAutoTrackObject()==0)mPlayer-\/>setLookDirection(getCameraOrientation());}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Lock\ on\ target}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(mPlayer-\/>getIsLockedOn()\ \&\&\ camMode!=CAMERA\_FREECURSOR\ \&\&\ camMode!=CAMERA\_FREECURSORNEW)}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//tMat.FromEulerAnglesXYZ(mCamera-\/>getOrientation().getPitch(),mCamPivotNode-\/>getOrientation().getYaw(),Degree(0));}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ tCamOrientationBuffer\ =\ getCameraOrientation();\textcolor{comment}{//Quaternion(tMat);}}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>lookAt(mPlayer-\/>getAutoTrackObject()-\/>getPosition());}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Matrix3\ tMat;}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tMat.FromEulerAnglesXYZ(mCamera-\/>getOrientation().getPitch(),mPlayer-\/>getLookDirection().getYaw(),Degree(0));}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ camTransitionOrientation\ =\ Quaternion(tMat);}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mCamera-\/>setOrientation(Quaternion(Degree(0),Vector3::UNIT\_Y));}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mCamera-\/>pitch(camPitch);}}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//pan\ tCamOrientationBuffer\ to\ camTransitionOrientation}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tCamOrientationBuffer.equals(camTransitionOrientation,Degree(1)))}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(3*evt.timeSinceLastFrame<1)tCamOrientationBuffer\ =\ tCamOrientationBuffer.Slerp(3*evt.timeSinceLastFrame,tCamOrientationBuffer,camTransitionOrientation,\textcolor{keyword}{true});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ tCamOrientationBuffer\ =\ camTransitionOrientation;}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setOrientation(tCamOrientationBuffer);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ clampCameraToTerrain();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateWaterCollision();}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateCameraEffects(evt.timeSinceLastFrame);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Hide\ features\ on\ first\ person}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isFirstPerson)}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mPlayer-\/>getHeadEnt()-\/>isVisible())mPlayer-\/>getHeadEnt()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mPlayer-\/>getManeEnt()\&\&mPlayer-\/>getManeEnt()-\/>isVisible())mPlayer-\/>getManeEnt()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Free\ camera}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(camMode==CAMERA\_FREE)}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ translateVector\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(moveForward)translateVector.z\ =\ -\/camSpeed*evt.timeSinceLastFrame;}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(moveBack)translateVector.z\ =\ camSpeed*evt.timeSinceLastFrame;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(moveLeft)translateVector.x\ =\ -\/camSpeed*evt.timeSinceLastFrame;}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(moveRight)translateVector.x\ =\ camSpeed*evt.timeSinceLastFrame;}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(moveUp)translateVector.y\ =\ camSpeed*evt.timeSinceLastFrame;}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(moveDown)translateVector.y\ =\ -\/camSpeed*evt.timeSinceLastFrame;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(translateVector!=Vector3::ZERO)translate(translateVector);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(turnUp)}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ pitch(Degree(45\ *\ camSpeed\ *\ (Real)0.02\ *\ evt.timeSinceLastFrame));}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(turnDown)}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ pitch(Degree(-\/45\ *\ camSpeed\ *\ (Real)0.02\ *\ evt.timeSinceLastFrame));}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(turnLeft)}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ yaw(Degree(45\ *\ camSpeed\ *\ (Real)0.02\ *\ evt.timeSinceLastFrame));}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(turnRight)}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ yaw(Degree(-\/45\ *\ camSpeed\ *\ (Real)0.02\ *\ evt.timeSinceLastFrame));}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ clampCameraToTerrain();}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ updateWaterCollision();}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ updateCameraEffects(evt.timeSinceLastFrame);}
+\DoxyCodeLine{00205\ \ \ \ \ \}}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getCameraMode()}
+\DoxyCodeLine{00208\ \ \ \ \ \{}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ camMode;}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keywordtype}{void}\ setCameraMode(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&mode,\ \textcolor{keywordtype}{bool}\ firstPerson=\textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ forceUpdate=\textcolor{keyword}{false})}
+\DoxyCodeLine{00213\ \ \ \ \ \{}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mPlayer-\/>getObjectNode())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode==mode\ \&\&\ isFirstPerson==firstPerson\ \&\&\ !forceUpdate)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ camMode\ =\ mode;}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ isFirstPerson\ =\ firstPerson;}
+\DoxyCodeLine{00218\ }
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(camMode)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Locked\ 3rd\ person\ camera}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CAMERA\_LOCKED:}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mCamera-\/>isAttached())}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamNode-\/>attachObject(mCamera);}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setPosition(0,0,0);}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isFirstPerson)}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ doCameraZoom(0);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pitch(Degree(0));}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setOrientation(mPlayer-\/>getLookDirection());}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPlayer-\/>setPlayerTargetOnHit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Locked\ 3rd\ person\ camera\ with\ free\ cursor}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CAMERA\_FREECURSOR:}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CAMERA\_FREECURSORNEW:}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mCamera-\/>isAttached())}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamNode-\/>attachObject(mCamera);}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setPosition(0,0,0);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isFirstPerson)}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ doCameraZoom(0);}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pitch(Degree(0));}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setOrientation(mPlayer-\/>getLookDirection());}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPlayer-\/>setPlayerTargetOnHit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Free\ 3rd\ person\ camera}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CAMERA\_FREE:}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>isAttached())mCamNode-\/>detachObject(mCamera);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setPosition(mPlayer-\/>getPosition()+Vector3(0,mPlayer-\/>getObjectNode()-\/>getScale().y*20,mPlayer-\/>getObjectNode()-\/>getScale().z*24));}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setOrientation(Quaternion(Degree(-\/15),Vector3::UNIT\_X));}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ camPitch\ =\ Degree(-\/15);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPlayer-\/>setPlayerTargetOnHit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isFirstPerson)}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ mCamNode-\/>setPosition(0,0,0);}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ mPlayer-\/>setFreeLook(\textcolor{keyword}{true});}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ mPlayer-\/>setControlMode(CONTROL\_FIRSTPERSON);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ pitch(Degree(0));}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(mPlayer-\/>getControlMode()==CONTROL\_FIRSTPERSON)mPlayer-\/>setControlMode((mPlayer-\/>defaultControlModeIsAbsolute?CONTROL\_ABSOLUTE:CONTROL\_RELATIVE));}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isFirstPerson)}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mPlayer-\/>getHeadEnt()-\/>isVisible())mPlayer-\/>getHeadEnt()-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mPlayer-\/>getManeEnt()\&\&!mPlayer-\/>getManeEnt()-\/>isVisible())mPlayer-\/>getManeEnt()-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ }
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ moveForward\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ moveBack\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ moveLeft\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ moveRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ moveUp\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ moveDown\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ turnUp\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ turnDown\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ turnLeft\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ turnRight\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00285\ \ \ \ \ \}}
+\DoxyCodeLine{00286\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsFirstPerson()}
+\DoxyCodeLine{00287\ \ \ \ \ \{}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isFirstPerson;}
+\DoxyCodeLine{00289\ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordtype}{void}\ yaw(\textcolor{keyword}{const}\ Degree\ \&angle)}
+\DoxyCodeLine{00291\ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode==CAMERA\_FREE)mCamera-\/>yaw(angle);}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mCamPivotNode-\/>yaw(angle);}
+\DoxyCodeLine{00294\ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ \textcolor{keywordtype}{void}\ pitch(\textcolor{keyword}{const}\ Degree\ \&angle)}
+\DoxyCodeLine{00296\ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode==CAMERA\_FREE\ ||\ camMode==CAMERA\_FREECURSOR)mCamera-\/>pitch(angle);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ mCamPivotPitchNode-\/>pitch(angle*0.75);}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>pitch(angle*0.25);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ camPitch\ +=\ angle;}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tMaxUpPitch\ =\ (isFirstPerson\ ?\ (Real)75\ :\ (camMode\ ==\ CAMERA\_FREE\ ?\ 90\ :\ 89));}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tMaxDownPitch\ =\ (isFirstPerson\ ?\ -\/(Real)75\ :\ (camMode\ ==\ CAMERA\_FREE\ ?\ -\/90\ :\ -\/89));}
+\DoxyCodeLine{00308\ }
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camPitch>Degree(tMaxUpPitch))}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode==CAMERA\_FREE\ ||\ camMode==CAMERA\_FREECURSOR)mCamera-\/>pitch(Degree(tMaxUpPitch)-\/camPitch);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamPivotPitchNode-\/>pitch((Degree(tMaxUpPitch)-\/camPitch)*0.75);}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>pitch((Degree(tMaxUpPitch)-\/camPitch)*0.25);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ camPitch\ =\ Degree(tMaxUpPitch);}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camPitch<Degree(tMaxDownPitch))}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode==CAMERA\_FREE\ ||\ camMode==CAMERA\_FREECURSOR)mCamera-\/>pitch(Degree(tMaxDownPitch)-\/camPitch);}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamPivotPitchNode-\/>pitch((Degree(tMaxDownPitch)-\/camPitch)*0.75);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>pitch((Degree(tMaxDownPitch)-\/camPitch)*0.25);}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ camPitch\ =\ Degree(tMaxDownPitch);}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00330\ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \textcolor{keywordtype}{void}\ setOrientation(\textcolor{keyword}{const}\ Quaternion\ \&direction)}
+\DoxyCodeLine{00332\ \ \ \ \ \{}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode==CAMERA\_FREE)}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setOrientation(direction);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ camPitch\ =\ direction.getPitch();}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ pitch(Degree(0));}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ mCamPivotNode-\/>setOrientation(Quaternion(Degree(0),Vector3::UNIT\_Y));}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ mCamPivotNode-\/>yaw(direction.getYaw());}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ mCamPivotPitchNode-\/>setOrientation(Quaternion(Degree(0),Vector3::UNIT\_Y));}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setOrientation(Quaternion(Degree(0),Vector3::UNIT\_Y));}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mCamera-\/>pitch(direction.getPitch());}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ camPitch\ =\ Degree(0);}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ pitch(direction.getPitch());}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00349\ \ \ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keywordtype}{void}\ clampCameraToTerrain()}
+\DoxyCodeLine{00351\ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>isAttached())}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setPosition(0,0,0);}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tHeight\ =\ getGroundHeight(mCamera-\/>getDerivedPosition().x,mCamera-\/>getDerivedPosition().z);}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tDiff\ =\ tHeight+5-\/mCamera-\/>getDerivedPosition().y;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tDiff>0)mCamera-\/>setPosition(0,tDiff,0);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tHeight\ =\ getGroundHeight(mCamera-\/>getPosition().x,mCamera-\/>getPosition().z);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>getPosition().y\ <\ tHeight+5)}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setPosition(mCamera-\/>getPosition().x,tHeight+5,mCamera-\/>getPosition().z);}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00365\ \ \ \ \ \}}
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getGroundHeight(\textcolor{keyword}{const}\ Real\ \&x,\ \textcolor{keyword}{const}\ Real\ \&z)}
+\DoxyCodeLine{00367\ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ Real\ tHeight\ =\ 0;}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ Ray\ updateRay;}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ updateRay.setOrigin(Vector3(x,5000,z));}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ updateRay.setDirection(Vector3::NEGATIVE\_UNIT\_Y);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ mRayQuery-\/>setRay(updateRay);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ RaySceneQueryResult\&\ qryResult\ =\ mRayQuery-\/>execute();}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ RaySceneQueryResult::iterator\ i\ =\ qryResult.begin();}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ !=\ qryResult.end()\ \&\&\ i-\/>worldFragment)}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ tHeight\ =\ i-\/>worldFragment-\/>singleIntersection.y;}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tHeight;}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordtype}{void}\ translate(\textcolor{keyword}{const}\ Vector3\ \&vec)}
+\DoxyCodeLine{00382\ \ \ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ mCamera-\/>moveRelative(vec);}
+\DoxyCodeLine{00384\ \ \ \ \ \}}
+\DoxyCodeLine{00385\ \ \ \ \ \textcolor{keywordtype}{void}\ heldMove(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ dir,\ \textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00386\ \ \ \ \ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(dir)}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_FORWARD:\ moveForward=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_BACK:\ moveBack=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_LEFT:\ moveLeft=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_RIGHT:\ moveRight=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_UP:\ moveUp=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_DOWN:\ moveDown=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \}}
+\DoxyCodeLine{00397\ \ \ \ \ \textcolor{keywordtype}{void}\ heldTurn(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ dir,\ \textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00398\ \ \ \ \ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(dir)}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_LEFT:\ turnLeft=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_RIGHT:\ turnRight=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_UP:\ turnUp=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ DIR\_DOWN:\ turnDown=flag;\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00406\ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ SceneNode*\ getCamPivotNode()}
+\DoxyCodeLine{00408\ \ \ \ \ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamPivotNode;}
+\DoxyCodeLine{00410\ \ \ \ \ \}}
+\DoxyCodeLine{00411\ \ \ \ \ SceneNode*\ getCamNode()}
+\DoxyCodeLine{00412\ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamNode;}
+\DoxyCodeLine{00414\ \ \ \ \ \}}
+\DoxyCodeLine{00415\ \ \ \ \ SceneNode*\ getActiveCamNode()}
+\DoxyCodeLine{00416\ \ \ \ \ \{}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>getParentSceneNode())\textcolor{keywordflow}{return}\ mCamera-\/>getParentSceneNode();}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamNode;}
+\DoxyCodeLine{00419\ \ \ \ \ \}}
+\DoxyCodeLine{00420\ \ \ \ \ Camera*\ getCamera()}
+\DoxyCodeLine{00421\ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamera;}
+\DoxyCodeLine{00423\ \ \ \ \ \}}
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ getPosition()}
+\DoxyCodeLine{00425\ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>isAttached())\textcolor{keywordflow}{return}\ (mCamera-\/>getDerivedPosition()\ +\ mCamera-\/>getPosition());}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamera-\/>getPosition();}
+\DoxyCodeLine{00428\ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keyword}{const}\ Quaternion\ getCameraOrientation()}
+\DoxyCodeLine{00430\ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ Matrix3\ tLookMat;}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ tLookMat.FromEulerAnglesXYZ(camPitch,mCamPivotNode-\/>getOrientation().getYaw(),Degree(0));}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Quaternion(tLookMat);}
+\DoxyCodeLine{00434\ \ \ \ \ \}}
+\DoxyCodeLine{00435\ \ \ \ \ \textcolor{keywordtype}{void}\ doCameraZoom(Real\ dY)}
+\DoxyCodeLine{00436\ \ \ \ \ \{}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ camZoom\ +=\ dY\ *\ -\/(Real)0.1;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camZoom<0.25)camZoom\ =\ 0.25;}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camZoom>5)camZoom\ =\ 5;}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ mCamNode-\/>setPosition(0,0,0);}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ mCamNode-\/>translate(0,mPlayer-\/>getObjectNode()-\/>getScale().y*3*camZoom+mPlayer-\/>getObjectNode()-\/>getScale().y*13,}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPlayer-\/>getObjectNode()-\/>getScale().z*16*camZoom);}
+\DoxyCodeLine{00443\ \ \ \ \ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keywordtype}{void}\ resetCameraTrack(Real\ length)}
+\DoxyCodeLine{00445\ \ \ \ \ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ stopCameraTrack();}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamNodeTrack)mCamNodeTrack-\/>removeAllKeyFrames();}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasAnimation(\textcolor{stringliteral}{"{}CameraTrack"{}}))}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getAnimation(\textcolor{stringliteral}{"{}CameraTrack"{}})-\/>destroyAllNodeTracks();}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyAnimation(\textcolor{stringliteral}{"{}CameraTrack"{}});}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ Animation\ *tAnim\ =\ mSceneMgr-\/>createAnimation(\textcolor{stringliteral}{"{}CameraTrack"{}},length);}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ tAnim-\/>setInterpolationMode(Animation::IM\_SPLINE);\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ mCamNodeTrack\ =\ tAnim-\/>createNodeTrack(0,\ mCamTrackNode);}
+\DoxyCodeLine{00456\ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \textcolor{keywordtype}{void}\ addCameraTrackKeyFrame(\textcolor{keyword}{const}\ Real\ \&timePosition,\ \textcolor{keyword}{const}\ Vector3\ \&translation,\ \textcolor{keyword}{const}\ Quaternion\ \&rotation=Quaternion(Degree(180),Vector3::UNIT\_Y))}
+\DoxyCodeLine{00458\ \ \ \ \ \{}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mCamNodeTrack)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ TransformKeyFrame\ *tKey\ =\ mCamNodeTrack-\/>createNodeKeyFrame(timePosition);}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ tKey-\/>setTranslate(translation);}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ tKey-\/>setRotation(rotation);}
+\DoxyCodeLine{00463\ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \textcolor{keywordtype}{void}\ doCameraTrack(\textcolor{keywordtype}{bool}\ loop,\ \textcolor{keywordtype}{bool}\ autoTrack=\textcolor{keyword}{false},\ SceneNode\ *node=0)}
+\DoxyCodeLine{00465\ \ \ \ \ \{}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mCamNodeTrack)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ AnimationState\ *tAnimState\ =\ mSceneMgr-\/>createAnimationState(\textcolor{stringliteral}{"{}CameraTrack"{}});}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ tAnimState-\/>setEnabled(\textcolor{keyword}{true});}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ tAnimState-\/>setLoop(loop);}
+\DoxyCodeLine{00470\ }
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ mCamera-\/>setPosition(0,0,0);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ mCamera-\/>setOrientation(Quaternion(Degree(0),Vector3::UNIT\_Y));}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode!=CAMERA\_FREE\ \&\&\ mCamera-\/>isAttached())mCamNode-\/>detachObject(mCamera);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ mCamTrackNode-\/>attachObject(mCamera);}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(autoTrack)}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setAutoTracking(\textcolor{keyword}{true},node);}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00479\ \ \ \ \ \}}
+\DoxyCodeLine{00480\ \ \ \ \ \textcolor{keywordtype}{void}\ stopCameraTrack()}
+\DoxyCodeLine{00481\ \ \ \ \ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasAnimationState(\textcolor{stringliteral}{"{}CameraTrack"{}}))}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getAnimationState(\textcolor{stringliteral}{"{}CameraTrack"{}})-\/>setEnabled(\textcolor{keyword}{false});}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyAnimationState(\textcolor{stringliteral}{"{}CameraTrack"{}});}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setAutoTracking(\textcolor{keyword}{false});}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>isAttached()\ \&\&\ mCamera-\/>getParentSceneNode()==mCamTrackNode)}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ mCamTrackNode-\/>detachObject(mCamera);}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camMode!=CAMERA\_FREE)mCamNode-\/>attachObject(mCamera);}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00493\ \ \ \ \ \}}
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{keywordtype}{bool}\ updateCameraTrack(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00495\ \ \ \ \ \{}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasAnimationState(\textcolor{stringliteral}{"{}CameraTrack"{}}))}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getAnimationState(\textcolor{stringliteral}{"{}CameraTrack"{}})-\/>addTime(evt.timeSinceLastFrame);}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00502\ \ \ \ \ \}}
+\DoxyCodeLine{00503\ \ \ \ \ \textcolor{keywordtype}{void}\ updateWaterCollision()}
+\DoxyCodeLine{00504\ \ \ \ \ \{}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ isUnderwater\ =\ (mCollisionManager-\/>getWaterBoxHit(\ (mCamera-\/>isAttached()?mCamera-\/>getDerivedPosition():mCamera-\/>getPosition())\ )\ !=\ 0);}
+\DoxyCodeLine{00506\ \ \ \ \ \}}
+\DoxyCodeLine{00507\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsUnderwater()}
+\DoxyCodeLine{00508\ \ \ \ \ \{}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isUnderwater;}
+\DoxyCodeLine{00510\ \ \ \ \ \}}
+\DoxyCodeLine{00511\ }
+\DoxyCodeLine{00512\ \ \ \ \ \textcolor{comment}{//\ This\ should\ be\ getCameraYaw}}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keyword}{const}\ Degree\ getYaw()}
+\DoxyCodeLine{00514\ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ why\ have\ a\ call\ ?\ check\ attached\ before\ lol}}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>isAttached())}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamPivotNode-\/>getOrientation().getYaw();}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00520\ }
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCamera-\/>getOrientation().getYaw();}
+\DoxyCodeLine{00522\ \ \ \ \ \}}
+\DoxyCodeLine{00523\ }
+\DoxyCodeLine{00524\ \ \ \ \ \textcolor{keywordtype}{void}\ doQuake(\textcolor{keywordtype}{bool}\ flag,\ \textcolor{keywordtype}{bool}\ fade=\textcolor{keyword}{false})}
+\DoxyCodeLine{00525\ \ \ \ \ \{}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ isQuake\ =\ flag;}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ quakeCountdown\ =\ fade\ ?\ (Real)1\ :\ 0;}
+\DoxyCodeLine{00528\ }
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!flag)}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>move(-\/quakeOffset);}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00533\ }
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!flag\ \&\&\ fade)}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ isQuakeFadeOut\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ quakeOffset\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00540\ \ \ \ \ \}}
+\DoxyCodeLine{00541\ }
+\DoxyCodeLine{00542\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCameraEffects(\textcolor{keyword}{const}\ Real\ \&timeElapsed)}
+\DoxyCodeLine{00543\ \ \ \ \ \{}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isQuake\ ||\ isQuakeFadeOut)}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(quakeCountdown>0)quakeCountdown\ -\/=\ timeElapsed;}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(quakeCountdown<0)quakeCountdown\ =\ 0;}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>move(-\/quakeOffset);}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ quakeOffset\ =\ (isQuakeFadeOut?quakeCountdown:1-\/quakeCountdown)*Vector3(Math::RangeRandom(-\/3,3),Math::RangeRandom(-\/3,3),Math::RangeRandom(-\/3,3));}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>move(quakeOffset);}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isQuakeFadeOut\ \&\&\ quakeCountdown==0)isQuakeFadeOut\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00553\ \ \ \ \ \}}
+\DoxyCodeLine{00554\ \ \ \ \ \textcolor{keywordtype}{void}\ changeSpeed(\textcolor{keyword}{const}\ Real\ \&ratio)}
+\DoxyCodeLine{00555\ \ \ \ \ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ camSpeed\ *=\ ratio;}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(camSpeed>200)camSpeed\ =\ 200;}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(camSpeed<12.5)camSpeed\ =\ 12.5;}
+\DoxyCodeLine{00559\ \ \ \ \ \}}
+\DoxyCodeLine{00560\ \};}
+\DoxyCodeLine{00561\ }
+\DoxyCodeLine{00562\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

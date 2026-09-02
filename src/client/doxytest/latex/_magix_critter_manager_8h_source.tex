@@ -1,0 +1,1193 @@
+\doxysection{Magix\+Critter\+Manager.\+h}
+\hypertarget{_magix_critter_manager_8h_source}{}\label{_magix_critter_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixCritterManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixCritterManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ two\ class\ in\ ones...\ WHY\ }}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixCritterManager\_h\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ \_\_MagixCritterManager\_h\_}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ this\ is\ about\ 424\ lines\ and\ need\ to\ be\ out\ this\ file\ ASAP}}
+\DoxyCodeLine{00006\ \textcolor{keyword}{class\ }MagixCritter\ :\ \textcolor{keyword}{public}\ MagixLiving}
+\DoxyCodeLine{00007\ \{}
+\DoxyCodeLine{00008\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00009\ \ \ \ \ Entity\ *mEnt;}
+\DoxyCodeLine{00010\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ ID;}
+\DoxyCodeLine{00011\ \ \ \ \ String\ type;}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keywordtype}{short}\ ownerIndex;}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keywordtype}{short}\ lastHitIndex;}
+\DoxyCodeLine{00014\ \ \ \ \ String\ anim;}
+\DoxyCodeLine{00015\ \ \ \ \ Real\ animSpeed;}
+\DoxyCodeLine{00016\ \ \ \ \ Real\ decisionTimer;}
+\DoxyCodeLine{00017\ \ \ \ \ Vector3\ targetPosition;}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{comment}{//\ this\ will\ be\ needRespawning}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{bool}\ isDead;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ maybe\ "{}has\ won"{}\ ?}}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasSentDeath;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{comment}{//\ we\ need\ a\ PG13\ name\ :\ isDecaying\ it\ will\ be\ on\ reimplement.}}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ isDecomposing;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasRoamArea;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ roamAreaID;}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ worldCritterID;}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{bool}\ isWorldCritter;}
+\DoxyCodeLine{00028\ \ \ \ \ Real\ length;}
+\DoxyCodeLine{00029\ \ \ \ \ Real\ height;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ isPet;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasAttack;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ isReadyToAttack;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{bool}\ attackHasEnded;}
+\DoxyCodeLine{00034\ \ \ \ \ MagixObject\ *mChaseTarget;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ attackID;}
+\DoxyCodeLine{00036\ \ \ \ \ Real\ stopChaseLimit;}
+\DoxyCodeLine{00037\ \ \ \ \ Real\ soundTimer;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{bool}\ isDrawPoint;}
+\DoxyCodeLine{00039\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00040\ \ \ \ \ MagixCritter(SceneNode\ *node,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&\textcolor{keywordtype}{id},\ \textcolor{keyword}{const}\ String\ \&typeName,\ Entity\ *ent)}
+\DoxyCodeLine{00041\ \ \ \ \ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ mObjectNode\ =\ node;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ ID\ =\ id;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ type\ =\ typeName;}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ mEnt\ =\ ent;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ ownerIndex\ =\ -\/1;}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ lastHitIndex\ =\ -\/1;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ decisionTimer\ =\ 0;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ targetPosition\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ isDead\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ hasSentDeath\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ isDecomposing\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ hasRoamArea\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ roamAreaID\ =\ 0;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ worldCritterID\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ isWorldCritter\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ height\ =\ 0;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ length\ =\ 0;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ isPet\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ hasAttack\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ isReadyToAttack\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ attackHasEnded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ mChaseTarget\ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ attackID\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ stopChaseLimit\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ soundTimer\ =\ 0;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ isDrawPoint\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00068\ }
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ setAnimation(\textcolor{stringliteral}{"{}Idle"{}},0.2,\textcolor{keyword}{true});}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \string~MagixCritter()}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \textcolor{keyword}{const}\ OBJECT\_TYPE\ getType()}
+\DoxyCodeLine{00075\ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OBJECT\_CRITTER;}
+\DoxyCodeLine{00077\ \ \ \ \ \}}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getID()}
+\DoxyCodeLine{00079\ \ \ \ \ \{}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ID;}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{const}\ String\ getCritterType()}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ type;}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ setOwnerIndex(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&index)}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ ownerIndex\ =\ index;}
+\DoxyCodeLine{00089\ \ \ \ \ \}}
+\DoxyCodeLine{00090\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getOwnerIndex()}
+\DoxyCodeLine{00091\ \ \ \ \ \{}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ownerIndex;}
+\DoxyCodeLine{00093\ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ setImTheOwner()}
+\DoxyCodeLine{00095\ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ ownerIndex\ =\ 0;}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ imTheOwner()}
+\DoxyCodeLine{00099\ \ \ \ \ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (ownerIndex==0);}
+\DoxyCodeLine{00101\ \ \ \ \ \}}
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{keywordtype}{void}\ setLastHitIndex(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&index)}
+\DoxyCodeLine{00103\ \ \ \ \ \{}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ lastHitIndex\ =\ index;}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getLastHitIndex()}
+\DoxyCodeLine{00107\ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ lastHitIndex;}
+\DoxyCodeLine{00109\ \ \ \ \ \}}
+\DoxyCodeLine{00110\ \ \ \ \ Entity*\ getEnt()}
+\DoxyCodeLine{00111\ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mEnt;}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt,\ \textcolor{keywordtype}{bool}\ \&killedFlag,\ \textcolor{keywordtype}{bool}\ \&decomposedFlag)}
+\DoxyCodeLine{00115\ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isDead\ \&\&\ (hp>0||isPet))}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(imTheOwner())updateDecision(evt);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ updateChase();}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ updateMovement(evt);}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isPet)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hp<=0)updateDeath(evt,killedFlag,decomposedFlag);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(hasSentDeath)hasSentDeath\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ updateDeath(evt,killedFlag,decomposedFlag);}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ updatePhysics(evt);}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ updateAction();}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ updateAnimation(evt);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ updateFaceDirection(evt);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ updateSound(evt);}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(height==0)height\ =\ mEnt-\/>getWorldBoundingBox().getMaximum().y\ -\/\ mEnt-\/>getWorldBoundingBox().getMinimum().y;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(length==0)length\ =\ mEnt-\/>getWorldBoundingBox().getMaximum().z\ -\/\ mEnt-\/>getWorldBoundingBox().getMinimum().z;}
+\DoxyCodeLine{00135\ \ \ \ \ \}}
+\DoxyCodeLine{00136\ \ \ \ \ \textcolor{keywordtype}{void}\ updateSound(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00137\ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(soundTimer>0)soundTimer\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(soundTimer<0)soundTimer\ =\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ updateAnimation(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mEnt-\/>isVisible())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(anim!=\textcolor{stringliteral}{"{}"{}})mEnt-\/>getAnimationState(anim)-\/>addTime(evt.timeSinceLastFrame*animSpeed);}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ updateAction()}
+\DoxyCodeLine{00147\ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isDead)\{setAnimation(\textcolor{stringliteral}{"{}Die"{}},1,\textcolor{keyword}{false});\ \textcolor{keywordflow}{return};\}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasAttack\ \&\&\ isAttacking())}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mEnt-\/>getAnimationState(anim)-\/>hasEnded())attackHasEnded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mForce.x!=0||mForce.z!=0)\{setAnimation(\textcolor{stringliteral}{"{}Run"{}},1,\textcolor{keyword}{true});\ \textcolor{keywordflow}{return};\}}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(anim==\textcolor{stringliteral}{"{}"{}}||anim==\textcolor{stringliteral}{"{}Run"{}}||mEnt-\/>getAnimationState(anim)-\/>hasEnded())}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ setAnimation(\textcolor{stringliteral}{"{}Idle"{}},0.2,\textcolor{keyword}{true});}
+\DoxyCodeLine{00157\ \ \ \ \ \}}
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{keywordtype}{bool}\ isAttacking()}
+\DoxyCodeLine{00159\ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (StringUtil::startsWith(anim,\textcolor{stringliteral}{"{}Attack"{}},\textcolor{keyword}{false}));}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{const}\ String\ getAnim()}
+\DoxyCodeLine{00163\ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ anim;}
+\DoxyCodeLine{00165\ \ \ \ \ \}}
+\DoxyCodeLine{00166\ \ \ \ \ \textcolor{keywordtype}{bool}\ setAnimation(\textcolor{keyword}{const}\ String\ \&type,\ \textcolor{keyword}{const}\ Real\ \&speed=1,\ \textcolor{keywordtype}{bool}\ loop=\textcolor{keyword}{false})}
+\DoxyCodeLine{00167\ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(anim==type)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mEnt-\/>getSkeleton()-\/>hasAnimation(type))\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(anim!=\textcolor{stringliteral}{"{}"{}})mEnt-\/>getAnimationState(anim)-\/>setEnabled(\textcolor{keyword}{false});}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ anim\ =\ type;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ animSpeed\ =\ speed;}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ mEnt-\/>getAnimationState(anim)-\/>setEnabled(\textcolor{keyword}{true});}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ mEnt-\/>getAnimationState(anim)-\/>setLoop(loop);}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ mEnt-\/>getAnimationState(anim)-\/>setTimePosition(0);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{void}\ updateDecision(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00179\ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(decisionTimer>0)decisionTimer\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(decisionTimer<0)decisionTimer\ =\ 0;}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(decisionTimer>0)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00183\ \ \ \ \ \}}
+\DoxyCodeLine{00184\ }
+\DoxyCodeLine{00185\ \ \ \ \ \textcolor{keywordtype}{void}\ updateChase()}
+\DoxyCodeLine{00186\ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mChaseTarget)}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(stopChaseLimit>0\ \&\&\ mChaseTarget-\/>getPosition().y\ >=\ stopChaseLimit)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ setTarget(0);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(imTheOwner())}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decisionTimer\ =\ 0;}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00200\ }
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetPosition\ !=\ mChaseTarget-\/>getPosition())}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ setTarget(mChaseTarget-\/>getPosition()\ +\ (antiGravity\ ?\ Vector3(0,\ 12,\ 0)\ :\ Vector3::ZERO),\ \textcolor{keyword}{false});}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!hasAttack)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tAttackRange\ =\ (Real)(length\ <=\ 55.55\ ?\ 2500\ :\ (length\ *\ length\ *\ 0.81));}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isAttacking()\ \&\&\ mObjectNode-\/>getPosition().squaredDistance(mChaseTarget-\/>getPosition())<tAttackRange)}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ isReadyToAttack\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \}}
+\DoxyCodeLine{00220\ }
+\DoxyCodeLine{00221\ \ \ \ \ \textcolor{keywordtype}{void}\ updateMovement(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00222\ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ mObjectNode-\/>getPosition();}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ Real\ tDistance\ =\ tPosition.squaredDistance(targetPosition);}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tDistance>0)}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Lateral\ movement}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tX\ =\ targetPosition.x\ -\/\ tPosition.x;}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tZ\ =\ targetPosition.z\ -\/\ tPosition.z;}
+\DoxyCodeLine{00230\ }
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ tDistance\ =\ Vector2(tX,tZ).squaredLength();}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tDistance\ >\ (maxSpeed\ /\ 25))}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Radian\ tYaw\ =\ Degree(0);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tZ\ !=\ 0)}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ =\ Math::ATan(tX\ /\ tZ);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ =\ Degree((Real)(tX\ >=\ 0\ ?\ 90\ :\ 270));}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00244\ }
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tX<0)}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tZ<0)}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ +=\ Degree(180);}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tYaw<Degree(0))}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tYaw>=Degree(360))}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ -\/=\ Degree(360);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tVect\ =\ Vector2(0,0);}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tYaw\ ==\ Degree(0)\ ||\ tYaw\ ==\ Degree(180))}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ did\ hit\ after\ 3-\/5\ hot\ recompile...\ I\ TOLD\ YOU\ SO\ !}}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.y\ =\ 10\ *\ (Real)(tYaw\ ==\ Degree(180)\ ?\ -\/1\ :\ 1);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tYaw\ ==\ Degree(90)\ ||\ tYaw\ ==\ Degree(270))}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ case\ required\ a\ cast\ but\ not\ its\ main\ ?}}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.x\ =\ 10\ *\ (Real)(tYaw\ ==\ Degree(270)\ ?\ -\/1\ :\ 1);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.y\ =\ 10\ *\ Math::Cos(tYaw);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.x\ =\ 10\ *\ Math::Sin(tYaw);}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(tVect.x*evt.timeSinceLastFrame,0,tVect.y*evt.timeSinceLastFrame));}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tDistance>0)}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastPosition\ =\ tPosition;}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mObjectNode-\/>setPosition(targetPosition.x,mObjectNode-\/>getPosition().y,targetPosition.z);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mForce.x\ =\ 0;}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mForce.z\ =\ 0;}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Vertical\ movement}}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(antiGravity)}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tYDistance\ =\ targetPosition.y\ -\/\ tPosition.y;}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Math::Abs(tYDistance)>1)}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(0,5*(tYDistance>0?1:-\/1)*evt.timeSinceLastFrame,0));}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(Math::Abs(tYDistance)>0)}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lastPosition\ =\ tPosition;}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mObjectNode-\/>setPosition(mObjectNode-\/>getPosition().x,targetPosition.y,mObjectNode-\/>getPosition().z);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mForce.y\ =\ 0;}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \}}
+\DoxyCodeLine{00310\ }
+\DoxyCodeLine{00311\ \ \ \ \ \textcolor{keywordtype}{void}\ updateDeath(\textcolor{keyword}{const}\ FrameEvent\ \&evt,\ \textcolor{keywordtype}{bool}\ \&killedFlag,\ \textcolor{keywordtype}{bool}\ \&decomposedFlag)}
+\DoxyCodeLine{00312\ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isDead)}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(imTheOwner()\ \&\&\ !hasSentDeath)}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasSentDeath\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ killedFlag\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(decisionTimer\ >\ 0)decisionTimer\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(decisionTimer\ <\ 0)decisionTimer\ =\ 0;}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(decisionTimer\ ==\ 0)}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isDecomposing)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decomposedFlag\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isDecomposing\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decisionTimer\ =\ 1;}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isDecomposing)}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ setFullColour(ColourValue(1,\ 0.95,\ 0.75,\ decisionTimer\ *\ (\textcolor{keywordtype}{float})0.5));}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00340\ \ \ \ \ \}}
+\DoxyCodeLine{00341\ }
+\DoxyCodeLine{00342\ \ \ \ \ \textcolor{keywordtype}{void}\ setFullColour(\textcolor{keyword}{const}\ ColourValue\ \&fullColour)}
+\DoxyCodeLine{00343\ \ \ \ \ \{}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ mEnt-\/>setMaterialName(\textcolor{stringliteral}{"{}FullModColour"{}});}
+\DoxyCodeLine{00345\ }
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ mEnt-\/>getSubEntity(0)-\/>setCustomParameter(1,Vector4(fullColour.r,fullColour.g,fullColour.b,fullColour.a));}
+\DoxyCodeLine{00347\ }
+\DoxyCodeLine{00348\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(push)}}
+\DoxyCodeLine{00349\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(disable\ :\ 4482)}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \textcolor{comment}{//If\ fragment\ programs\ are\ not\ supported}}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mEnt-\/>getSubEntity(0)-\/>getTechnique()-\/>getName()==\textcolor{stringliteral}{"{}2"{}})}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ mEnt-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(0)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_SOURCE1,}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fullColour);}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ mEnt-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(0)-\/>setAlphaOperation(LayerBlendOperationEx::LBX\_SOURCE1,}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fullColour.a);}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00362\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(pop)}}
+\DoxyCodeLine{00363\ \ \ \ \ \}}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \textcolor{keywordtype}{void}\ kill()}
+\DoxyCodeLine{00366\ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ hp\ =\ 0;}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ BLEARG\ this\ is\ morbid,\ set\ this\ to\ "{}needRespawning"{}}}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ isDead\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ i\ would\ not\ need\ to\ cast\ if\ there\ was\ values\ !}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ decisionTimer\ =\ isDrawPoint\ ?\ (Real)1\ :\ 10;}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(antiGravity)antiGravity\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasAttack)attackHasEnded\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00374\ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \ \ \ \ }
+\DoxyCodeLine{00376\ \ \ \ \ \textcolor{keywordtype}{void}\ setTarget(\textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keywordtype}{bool}\ clearChaseTarget=\textcolor{keyword}{true})}
+\DoxyCodeLine{00377\ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(clearChaseTarget)}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ mChaseTarget\ =\ 0;}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ isReadyToAttack\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ targetPosition\ =\ position;}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Yaw\ to\ target}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetPosition.x!=mObjectNode-\/>getPosition().x\ ||\ targetPosition.z!=mObjectNode-\/>getPosition().z)}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tX\ =\ targetPosition.x\ -\/\ mObjectNode-\/>getPosition().x;}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tZ\ =\ targetPosition.z\ -\/\ mObjectNode-\/>getPosition().z;}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ Radian\ tYaw\ =\ Degree(0);}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tZ\ !=\ 0)}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ =\ Math::ATan(tX\ /\ tZ);}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ =\ Degree((Real)(tX\ >=\ 0\ ?\ 90\ :\ 270));}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tX\ <\ 0)}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tZ\ <\ 0)}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ +=\ Degree(180);}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ setYaw(Degree(tYaw));}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00409\ \ \ \ \ \}}
+\DoxyCodeLine{00410\ \ \ \ \ }
+\DoxyCodeLine{00411\ \ \ \ \ \textcolor{keywordtype}{void}\ setTarget(MagixObject\ *target,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&attID=0)}
+\DoxyCodeLine{00412\ \ \ \ \ \{}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ mChaseTarget\ =\ target;}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ isReadyToAttack\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ attackID\ =\ attID;}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ updateChase();}
+\DoxyCodeLine{00417\ \ \ \ \ \}}
+\DoxyCodeLine{00418\ \ \ \ \ }
+\DoxyCodeLine{00419\ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ getTarget()}
+\DoxyCodeLine{00420\ \ \ \ \ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ targetPosition;}
+\DoxyCodeLine{00422\ \ \ \ \ \}}
+\DoxyCodeLine{00423\ \ \ \ \ }
+\DoxyCodeLine{00424\ \ \ \ \ \textcolor{keywordtype}{void}\ setDecisionTimer(\textcolor{keyword}{const}\ Real\ \&value)}
+\DoxyCodeLine{00425\ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ decisionTimer\ =\ value;}
+\DoxyCodeLine{00427\ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ }
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getDecisionTimer()}
+\DoxyCodeLine{00430\ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ decisionTimer;}
+\DoxyCodeLine{00432\ \ \ \ \ \}}
+\DoxyCodeLine{00433\ \ \ \ \ }
+\DoxyCodeLine{00434\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsDead()}
+\DoxyCodeLine{00435\ \ \ \ \ \{}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isDead;}
+\DoxyCodeLine{00437\ \ \ \ \ \}}
+\DoxyCodeLine{00438\ \ \ \ \ }
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{void}\ setRoamArea(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00440\ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ hasRoamArea\ =\ flag;}
+\DoxyCodeLine{00442\ \ \ \ \ \}}
+\DoxyCodeLine{00443\ \ \ \ \ }
+\DoxyCodeLine{00444\ \ \ \ \ \textcolor{keywordtype}{bool}\ getRoamArea()}
+\DoxyCodeLine{00445\ \ \ \ \ \{}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hasRoamArea;}
+\DoxyCodeLine{00447\ \ \ \ \ \}}
+\DoxyCodeLine{00448\ \ \ \ \ }
+\DoxyCodeLine{00449\ \ \ \ \ \textcolor{keywordtype}{void}\ setRoamAreaID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&iID)}
+\DoxyCodeLine{00450\ \ \ \ \ \{}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ roamAreaID\ =\ iID;}
+\DoxyCodeLine{00452\ \ \ \ \ \}}
+\DoxyCodeLine{00453\ \ \ \ \ }
+\DoxyCodeLine{00454\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getRoamAreaID()}
+\DoxyCodeLine{00455\ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ roamAreaID;}
+\DoxyCodeLine{00457\ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \ \ \ \ }
+\DoxyCodeLine{00459\ \ \ \ \ \textcolor{keywordtype}{void}\ setWorldCritterID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&iID)}
+\DoxyCodeLine{00460\ \ \ \ \ \{}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ worldCritterID\ =\ iID;}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ isWorldCritter\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00463\ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ }
+\DoxyCodeLine{00465\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsWorldCritter()}
+\DoxyCodeLine{00466\ \ \ \ \ \{}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isWorldCritter;}
+\DoxyCodeLine{00468\ \ \ \ \ \}}
+\DoxyCodeLine{00469\ \ \ \ \ }
+\DoxyCodeLine{00470\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getWorldCritterID()}
+\DoxyCodeLine{00471\ \ \ \ \ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ worldCritterID;}
+\DoxyCodeLine{00473\ \ \ \ \ \}}
+\DoxyCodeLine{00474\ \ \ \ \ }
+\DoxyCodeLine{00475\ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ getPosition(\textcolor{keywordtype}{bool}\ headPosition=\textcolor{keyword}{false})}
+\DoxyCodeLine{00476\ \ \ \ \ \{}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mObjectNode)}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Vector3::ZERO;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (mObjectNode-\/>getPosition()\ +\ (headPosition\ ?\ Vector3(0,\ height\ *\ (Real)0.5,\ 0)\ :\ Vector3::ZERO));}
+\DoxyCodeLine{00482\ \ \ \ \ \}}
+\DoxyCodeLine{00483\ \ \ \ \ }
+\DoxyCodeLine{00484\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getHeight()}
+\DoxyCodeLine{00485\ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ height;}
+\DoxyCodeLine{00487\ \ \ \ \ \}}
+\DoxyCodeLine{00488\ \ \ \ \ }
+\DoxyCodeLine{00489\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getLength()}
+\DoxyCodeLine{00490\ \ \ \ \ \{}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ length;}
+\DoxyCodeLine{00492\ \ \ \ \ \}}
+\DoxyCodeLine{00493\ }
+\DoxyCodeLine{00494\ \ \ \ \ \textcolor{comment}{//\ sus\ to\ have\ this\ \&\ owner\ ship\ separated\ ?}}
+\DoxyCodeLine{00495\ \ \ \ \ \textcolor{keywordtype}{void}\ resetSize()}
+\DoxyCodeLine{00496\ \ \ \ \ \{}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ height\ =\ 0;}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ length\ =\ 0;}
+\DoxyCodeLine{00499\ \ \ \ \ \}}
+\DoxyCodeLine{00500\ \ \ \ \ }
+\DoxyCodeLine{00501\ \ \ \ \ \textcolor{keywordtype}{void}\ setIsPet(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00502\ \ \ \ \ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ isPet\ =\ flag;}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(flag)}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ alliance\ =\ ALLIANCE\_FRIEND;}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00508\ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ }
+\DoxyCodeLine{00510\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsPet()}
+\DoxyCodeLine{00511\ \ \ \ \ \{}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isPet;}
+\DoxyCodeLine{00513\ \ \ \ \ \}}
+\DoxyCodeLine{00514\ \ \ \ \ }
+\DoxyCodeLine{00515\ \ \ \ \ \textcolor{keywordtype}{void}\ setHasAttack(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00516\ \ \ \ \ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ hasAttack\ =\ flag;}
+\DoxyCodeLine{00518\ \ \ \ \ \}}
+\DoxyCodeLine{00519\ }
+\DoxyCodeLine{00520\ \ \ \ \ \textcolor{keywordtype}{bool}\ getHasAttack()}
+\DoxyCodeLine{00521\ \ \ \ \ \{}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ hasAttack;}
+\DoxyCodeLine{00523\ \ \ \ \ \}}
+\DoxyCodeLine{00524\ }
+\DoxyCodeLine{00525\ \ \ \ \ \textcolor{keywordtype}{bool}\ popAttackHasEnded()}
+\DoxyCodeLine{00526\ \ \ \ \ \{}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tFlag\ =\ attackHasEnded;}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ attackHasEnded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00529\ }
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tFlag;}
+\DoxyCodeLine{00531\ \ \ \ \ \}}
+\DoxyCodeLine{00532\ }
+\DoxyCodeLine{00533\ \ \ \ \ \textcolor{keywordtype}{bool}\ popIsReadyToAttack()}
+\DoxyCodeLine{00534\ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tFlag\ =\ isReadyToAttack;}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ isReadyToAttack\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tFlag;}
+\DoxyCodeLine{00539\ \ \ \ \ \}}
+\DoxyCodeLine{00540\ }
+\DoxyCodeLine{00541\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getAttackID()}
+\DoxyCodeLine{00542\ \ \ \ \ \{}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ attackID;}
+\DoxyCodeLine{00544\ \ \ \ \ \}}
+\DoxyCodeLine{00545\ }
+\DoxyCodeLine{00546\ \ \ \ \ \textcolor{keywordtype}{void}\ setStopChaseLimit(\textcolor{keyword}{const}\ Real\ \&y)}
+\DoxyCodeLine{00547\ \ \ \ \ \{}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ stopChaseLimit\ =\ y;}
+\DoxyCodeLine{00549\ \ \ \ \ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \ \ \ \ \textcolor{comment}{//\ if\ it's\ a\ magix\ object\ why\ not\ make\ it\ in\ MagixObject\ then\ and\ pull\ that\ ?\ OH\ WAIT\ :D}}
+\DoxyCodeLine{00552\ \ \ \ \ \textcolor{comment}{//\ joking\ aside,\ function\ name\ need\ to\ be\ GetObjectChaseTarget\ maybe\ also\ a\ potential\ }}
+\DoxyCodeLine{00553\ \ \ \ \ \textcolor{comment}{//\ check\ of\ caller\ ?}}
+\DoxyCodeLine{00554\ \ \ \ \ MagixObject*\ getChaseTarget()}
+\DoxyCodeLine{00555\ \ \ \ \ \{}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mChaseTarget;}
+\DoxyCodeLine{00557\ \ \ \ \ \}}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \ \ \ \ \textcolor{keywordtype}{void}\ setSoundTimer(\textcolor{keyword}{const}\ Real\ \&timer)}
+\DoxyCodeLine{00560\ \ \ \ \ \{}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ soundTimer\ =\ timer;}
+\DoxyCodeLine{00562\ \ \ \ \ \}}
+\DoxyCodeLine{00563\ }
+\DoxyCodeLine{00564\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getSoundTimer()}
+\DoxyCodeLine{00565\ \ \ \ \ \{}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ soundTimer;}
+\DoxyCodeLine{00567\ \ \ \ \ \}}
+\DoxyCodeLine{00568\ }
+\DoxyCodeLine{00569\ \ \ \ \ \textcolor{keywordtype}{void}\ setIsDrawPoint(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00570\ \ \ \ \ \{}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ isDrawPoint\ =\ flag;}
+\DoxyCodeLine{00572\ \ \ \ \ \}}
+\DoxyCodeLine{00573\ \ \ \ \ }
+\DoxyCodeLine{00574\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsDrawPoint()}
+\DoxyCodeLine{00575\ \ \ \ \ \{}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isDrawPoint;}
+\DoxyCodeLine{00577\ \ \ \ \ \}}
+\DoxyCodeLine{00578\ \};}
+\DoxyCodeLine{00579\ }
+\DoxyCodeLine{00580\ \textcolor{keyword}{class\ }MagixCritterManager}
+\DoxyCodeLine{00581\ \{}
+\DoxyCodeLine{00582\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00583\ \ \ \ \ SceneManager\ *mSceneMgr;}
+\DoxyCodeLine{00584\ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *mDef;}
+\DoxyCodeLine{00585\ \ \ \ \ \mbox{\hyperlink{class_magix_game_state_manager}{MagixGameStateManager}}\ *mGameStateManager;}
+\DoxyCodeLine{00586\ \ \ \ \ \mbox{\hyperlink{class_magix_effects_manager}{MagixEffectsManager}}\ *mEffectsManager;}
+\DoxyCodeLine{00587\ \ \ \ \ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *mCollisionManager;}
+\DoxyCodeLine{00588\ \ \ \ \ \mbox{\hyperlink{class_magix_sound_manager}{MagixSoundManager}}\ *mSoundManager;}
+\DoxyCodeLine{00589\ \ \ \ \ \mbox{\hyperlink{class_magix_world}{MagixWorld}}\ *mWorld;}
+\DoxyCodeLine{00590\ \ \ \ \ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *mCamera;}
+\DoxyCodeLine{00591\ \ \ \ \ RaySceneQuery\ *mRayQuery;}
+\DoxyCodeLine{00592\ \ \ \ \ vector<MagixCritter*>::type\ critterList;}
+\DoxyCodeLine{00593\ \ \ \ \ vector<MagixCritter*>::type\ killedQueue;}
+\DoxyCodeLine{00594\ \ \ \ \ vector<MagixCritter*>::type\ deadQueue;}
+\DoxyCodeLine{00595\ \ \ \ \ vector<MagixCritter*>::type\ decisionQueue;}
+\DoxyCodeLine{00596\ \ \ \ \ vector<MagixCritter*>::type\ stationaryQueue;}
+\DoxyCodeLine{00597\ \ \ \ \ vector<HitInfo>::type\ hitQueue;}
+\DoxyCodeLine{00598\ \ \ \ \ \mbox{\hyperlink{class_magix_living}{MagixLiving}}\ *mPlayerTarget;}
+\DoxyCodeLine{00599\ \ \ \ \ vector<MagixCritter*>::type\ myCritters;}
+\DoxyCodeLine{00600\ \ \ \ \ vector<unsigned\ short>::type\ sentID;}
+\DoxyCodeLine{00601\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ critterCount;}
+\DoxyCodeLine{00602\ \ \ \ \ String\ weatherEffectRequest;}
+\DoxyCodeLine{00603\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00604\ \ \ \ \ MagixCritterManager()}
+\DoxyCodeLine{00605\ \ \ \ \ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ 0;}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ mDef\ =\ 0;}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ mGameStateManager\ =\ 0;}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ mEffectsManager\ =\ 0;}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ 0;}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ mSoundManager\ =\ 0;}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ mWorld\ =\ 0;}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ mCamera\ =\ 0;}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ mRayQuery\ =\ 0;}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ critterList.clear();}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ killedQueue.clear();}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ deadQueue.clear();}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ decisionQueue.clear();}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ stationaryQueue.clear();}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ hitQueue.clear();}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ mPlayerTarget\ =\ 0;}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ myCritters.clear();}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ sentID.clear();}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ critterCount\ =\ 0;}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ weatherEffectRequest\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00626\ \ \ \ \ \}}
+\DoxyCodeLine{00627\ \ \ \ \ \string~MagixCritterManager()}
+\DoxyCodeLine{00628\ \ \ \ \ \{}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ reset();}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRayQuery)\textcolor{keyword}{delete}\ mRayQuery;}
+\DoxyCodeLine{00631\ \ \ \ \ \}}
+\DoxyCodeLine{00632\ }
+\DoxyCodeLine{00633\ \ \ \ \ \textcolor{comment}{//\ how\ and\ when\ are\ we\ called}}
+\DoxyCodeLine{00634\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(SceneManager\ *sceneMgr,\ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def,\ \mbox{\hyperlink{class_magix_game_state_manager}{MagixGameStateManager}}\ *gameStateMgr,\ \mbox{\hyperlink{class_magix_effects_manager}{MagixEffectsManager}}\ *effectsMgr,\ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *collMgr,\ \mbox{\hyperlink{class_magix_sound_manager}{MagixSoundManager}}\ *soundMgr,\ \mbox{\hyperlink{class_magix_world}{MagixWorld}}\ *world,\ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *camera)}
+\DoxyCodeLine{00635\ \ \ \ \ \{}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ sceneMgr;}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ mDef\ =\ def;}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ mGameStateManager\ =\ gameStateMgr;}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ mEffectsManager\ =\ effectsMgr;}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ collMgr;}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ mSoundManager\ =\ soundMgr;}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ mWorld\ =\ world;}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ mCamera\ =\ camera;}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ mRayQuery\ =\ sceneMgr-\/>createRayQuery(\ Ray()\ );}
+\DoxyCodeLine{00645\ \ \ \ \ \}}
+\DoxyCodeLine{00646\ \ \ \ \ \textcolor{keywordtype}{void}\ reset()}
+\DoxyCodeLine{00647\ \ \ \ \ \{}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ sentID.clear();}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ stationaryQueue.clear();}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ decisionQueue.clear();}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ killedQueue.clear();}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ deadQueue.clear();}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ hitQueue.clear();}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ myCritters.clear();}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ deleteAllCritters();}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ critterCount\ =\ 0;}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ weatherEffectRequest\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00658\ \ \ \ \ \}}
+\DoxyCodeLine{00659\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt,\ SceneNode\ *playerNode=0)}
+\DoxyCodeLine{00660\ \ \ \ \ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ it\ =\ critterList.begin();\ it\ !=\ critterList.end();\ it++)}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tCritter\ =\ *it;}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Range\ check}}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ tIsInRange\ =\ isInRange(tCritter);}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ visibilityFlipped\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tIsInRange\ \&\&\ !tCritter-\/>getEnt()-\/>isVisible())}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ visibilityFlipped\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tCritter-\/>getObjectNode()-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getIsDrawPoint())mEffectsManager-\/>createParticle(tCritter-\/>getObjectNode(),\textcolor{stringliteral}{"{}DrawPoint"{}},-\/1);}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(!tIsInRange\ \&\&\ tCritter-\/>getEnt()-\/>isVisible())}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ visibilityFlipped\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tCritter-\/>getObjectNode()-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getIsDrawPoint())mEffectsManager-\/>destroyParticleByObjectNode(tCritter-\/>getObjectNode());}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tIsInRange)}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(visibilityFlipped\ ||\ tCritter-\/>isPositionChanged(!tCritter-\/>isAntiGravity()))updateGroundHeight(tCritter,\textcolor{keyword}{true},\textcolor{keyword}{true});}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tCritter-\/>getIsDead()\ \&\&\ !tCritter-\/>getIsDrawPoint())}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Only\ update\ collisions\ for\ wild\ critters\ or\ my\ pet\ (or\ offline)}}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tCritter-\/>getIsPet()\ ||\ tCritter-\/>imTheOwner()\ ||\ mGameStateManager-\/>isCampaign())updateCollision(tCritter,playerNode,tIsInRange);}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Do\ attack}}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>popIsReadyToAttack())}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tIsInRange)}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ tHasAnim\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ tAttackID\ =\ tCritter-\/>getAttackID();\ (!tHasAnim\ \&\&\ tAttackID\ >\ 0);\ tAttackID-\/-\/)}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tHasAnim\ =\ tCritter-\/>setAnimation(\textcolor{stringliteral}{"{}Attack"{}}\ +\ StringConverter::toString(tAttackID));}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ std::pair<CritterAttack,String>\ tAttackAndSound\ =\ mDef-\/>getCritterAttackAndSound(tCritter-\/>getCritterType(),tCritter-\/>getAttackID()-\/1);}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_critter_attack}{CritterAttack}}\ tAttack\ =\ tAttackAndSound.first;}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tOffset\ =\ Vector3(0,\ tCritter-\/>getHeight()\ *\ (Real)0.25,\ tCritter-\/>getLength()\ *\ (Real)0.5);}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tHP\ =\ tAttack.hp\ +\ (Real)(Math::RangeRandom(-\/0.05,\ 0.05)\ *\ tAttack.hp);}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Only\ create\ collisions\ for\ wild\ critters\ or\ my\ pet\ (or\ offline)}}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tCritter-\/>getIsPet()\ ||\ tCritter-\/>imTheOwner()\ ||\ mGameStateManager-\/>isCampaign())}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>createCollision(tCritter-\/>getObjectNode(),\ tAttack.range,\ tAttack.hitForce,\ tOffset,\ (\textcolor{keywordtype}{short})tHP,\ tCritter-\/>getAlliance(),\ tAttack.hitAlly);}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00711\ }
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tSound\ =\ tAttackAndSound.second;}
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSound!=\textcolor{stringliteral}{"{}"{}}\ \&\&\ tCritter-\/>getSoundTimer()==0)}
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playSound(tSound.c\_str(),tCritter-\/>getObjectNode());}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tCritter-\/>setSoundTimer(10);}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00718\ }
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//LOL}}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getCritterType()==\textcolor{stringliteral}{"{}Earthshaker"{}}\ \&\&\ tCritter-\/>getAttackID()==2)}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weatherEffectRequest\ =\ \textcolor{stringliteral}{"{}Earthquake2"{}};}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>popAttackHasEnded())}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>destroyCollisionByOwnerNode(tCritter-\/>getObjectNode());}
+\DoxyCodeLine{00730\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>imTheOwner()\ \&\&\ !tCritter-\/>getIsDead())tCritter-\/>setDecisionTimer(1+Math::UnitRandom());}
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tCritter-\/>setTarget(0);}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ killedFlag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00734\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ decomposedFlag\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \ \ tCritter-\/>update(evt,killedFlag,decomposedFlag);}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>imTheOwner()\ \&\&\ !tCritter-\/>getIsDrawPoint())}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((tCritter-\/>getHP()>0\ ||\ tCritter-\/>getIsPet())\ \&\&\ !tCritter-\/>getIsDead())}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getDecisionTimer()==0)decisionQueue.push\_back(tCritter);}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tCritter-\/>getHasAttack()\&\&tCritter-\/>getAlliance()==ALLIANCE\_ENEMY\&\&!tCritter-\/>isAntiGravity()\&\&tCritter-\/>getForce()==Vector3::ZERO)stationaryQueue.push\_back(tCritter);}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(killedFlag)killedQueue.push\_back(tCritter);}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(decomposedFlag)deadQueue.push\_back(tCritter);}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ boundCritterToMap(tCritter);}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00748\ \ \ \ \ \}}
+\DoxyCodeLine{00749\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInRange(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *critter)}
+\DoxyCodeLine{00750\ \ \ \ \ \{}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera)}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ FARCLIP\_SQUARED\ =\ Math::Sqr(mDef-\/>viewDistance*2500\ +\ 500);}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>getCamera()-\/>isAttached())\textcolor{keywordflow}{return}(critter-\/>getPosition().squaredDistance(mCamera-\/>getCamera()-\/>getDerivedPosition())\ <\ FARCLIP\_SQUARED);}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{return}(critter-\/>getPosition().squaredDistance(mCamera-\/>getCamera()-\/>getPosition())\ <\ FARCLIP\_SQUARED);}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00758\ \ \ \ \ \}}
+\DoxyCodeLine{00759\ \ \ \ \ \textcolor{keywordtype}{void}\ boundCritterToMap(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *critter)}
+\DoxyCodeLine{00760\ \ \ \ \ \{}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ tSize\ =\ mWorld-\/>getWorldSize();}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ tBounds\ =\ mWorld-\/>getWorldBounds();}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tMinX\ =\ tBounds.x;}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tMinZ\ =\ tBounds.y;}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tMaxX\ =\ tSize.x\ -\/\ tBounds.x;}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tMaxZ\ =\ tSize.y\ -\/\ tBounds.y;}
+\DoxyCodeLine{00767\ }
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter-\/>getPosition().x\ <\ tMinX)}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>addPenaltyVelocity(Vector3(tMinX\ -\/\ critter-\/>getPosition().x,0,0));}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setTarget(critter-\/>getPosition()+Vector3(500,0,0));}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setDecisionTimer(8);}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter-\/>getPosition().x\ >\ tMaxX)}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>addPenaltyVelocity(Vector3(tMaxX\ -\/\ critter-\/>getPosition().x,0,0));}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setTarget(critter-\/>getPosition()+Vector3(-\/500,0,0));}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setDecisionTimer(8);}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter-\/>getPosition().z\ <\ tMinZ)}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>addPenaltyVelocity(Vector3(0,0,tMinZ\ -\/\ critter-\/>getPosition().z));}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setTarget(critter-\/>getPosition()+Vector3(0,0,500));}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setDecisionTimer(8);}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter-\/>getPosition().z\ >\ tMaxZ)}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>addPenaltyVelocity(Vector3(0,0,tMaxZ\ -\/\ critter-\/>getPosition().z));}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setTarget(critter-\/>getPosition()+Vector3(0,0,-\/500));}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setDecisionTimer(8);}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00792\ \ \ \ \ \}}
+\DoxyCodeLine{00793\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCollision(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *critter,\ SceneNode\ *playerNode,\ \textcolor{keywordtype}{bool}\ inRange=\textcolor{keyword}{false})}
+\DoxyCodeLine{00794\ \ \ \ \ \{}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<Collision*>::type\ tHitList\ =\ mCollisionManager-\/>getCollisionHitListForCritter(critter-\/>getID(),critter-\/>getAlliance(),critter-\/>getEnt()-\/>getWorldBoundingBox());}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<Collision*>::type::const\_iterator\ it=tHitList.begin();\ it!=tHitList.end();\ it++)}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_collision}{Collision}}\ *coll\ =\ *it;}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mGameStateManager-\/>isCampaign())}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pushHitQueue(\mbox{\hyperlink{struct_hit_info}{HitInfo}}(critter-\/>getID(),coll-\/>hp,(coll-\/>getForce(\textcolor{keyword}{false})==Vector3::ZERO?Vector3::ZERO:coll-\/>getForce(\textcolor{keyword}{true},critter-\/>getPosition())),(critter-\/>imTheOwner()||critter-\/>getIsPet())));}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \ \ \ \ hitCritter(critter,coll-\/>hp,coll-\/>getForce(\textcolor{keyword}{true},critter-\/>getPosition()),0,inRange);}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(coll-\/>hp<0\ \&\&\ coll-\/>mNode==playerNode)}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mPlayerTarget\ =\ critter;}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter-\/>imTheOwner())critter-\/>setLastHitIndex(0);}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00808\ \ \ \ \ \}}
+\DoxyCodeLine{00809\ \ \ \ \ \textcolor{keywordtype}{void}\ hitCritter(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *critter,\ \textcolor{keyword}{const}\ Real\ \&damage,\ \textcolor{keyword}{const}\ Vector3\ \&force,\ \textcolor{keyword}{const}\ OwnerToken\ \&token=0,\ \textcolor{keywordtype}{bool}\ inRange=\textcolor{keyword}{false})}
+\DoxyCodeLine{00810\ \ \ \ \ \{}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!critter)}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ again,\ grim\ check\ this\ could\ be\ isNeedRespawn\ (it's\ the\ same\ logic,\ you\ are\ unalived,\ you\ need\ a\ respawn)}}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter-\/>getIsDead())}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ critter-\/>addHP((\textcolor{keywordtype}{short})damage);}
+\DoxyCodeLine{00823\ }
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(damage<0)}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!critter-\/>isInvulnerable())}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inRange\ ||\ isInRange(critter))}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>createParticle(critter-\/>getObjectNode(),\ \textcolor{stringliteral}{"{}Hit1"{}},\ 0.25);}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playSound(SOUND\_HIT,\ critter-\/>getObjectNode());}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00833\ }
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>addForce(force);}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (token\ !=\ 0\ \&\&\ critter-\/>imTheOwner())}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setLastHitIndex(token);}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (critter-\/>imTheOwner()\ \&\&\ Math::UnitRandom()\ <\ 0.5)}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>setDecisionTimer(critter-\/>getDecisionTimer()\ *\ (Real)0.5);}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (damage\ >\ 0)}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inRange\ ||\ isInRange(critter))}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>createParticle(critter-\/>getObjectNode(),\ \textcolor{stringliteral}{"{}HealHit1"{}},\ 0.25);}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playSound(SOUND\_HEALHIT,\ critter-\/>getObjectNode());}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00854\ \ \ \ \ \}}
+\DoxyCodeLine{00855\ \ \ \ \ \textcolor{keywordtype}{void}\ hitCritter(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID,\ \textcolor{keyword}{const}\ Real\ \&damage,\ \textcolor{keyword}{const}\ Vector3\ \&force,\ \textcolor{keyword}{const}\ OwnerToken\ \&token)}
+\DoxyCodeLine{00856\ \ \ \ \ \{}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ hitCritter(getByID(iID),damage,force,token);}
+\DoxyCodeLine{00858\ \ \ \ \ \}}
+\DoxyCodeLine{00859\ \ \ \ \ \textcolor{keywordtype}{void}\ updateGroundHeight(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *critter,\ \textcolor{keywordtype}{bool}\ checkWaterCollision=\textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ checkCollBoxCollision=\textcolor{keyword}{false})}
+\DoxyCodeLine{00860\ \ \ \ \ \{}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ Real\ tHeight\ =\ 0;}
+\DoxyCodeLine{00862\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static}\ Ray\ updateRay;}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ updateRay.setOrigin(critter-\/>getPosition()+Vector3(0,5000,0));}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ updateRay.setDirection(Vector3::NEGATIVE\_UNIT\_Y);}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ mRayQuery-\/>setRay(updateRay);}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ RaySceneQueryResult\&\ qryResult\ =\ mRayQuery-\/>execute();}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ RaySceneQueryResult::iterator\ i\ =\ qryResult.begin();}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(i\ !=\ qryResult.end()\ \&\&\ i-\/>worldFragment)}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ tHeight\ =\ i-\/>worldFragment-\/>singleIntersection.y;}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00872\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Check\ water\ collision}}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(checkWaterCollision)}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tVect\ =\ critter-\/>getPosition();}
+\DoxyCodeLine{00876\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_water_box}{WaterBox}}\ *tWaterBox\ =\ mCollisionManager-\/>getWaterBoxHit(tVect);}
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tWaterBox\ \&\&\ tWaterBox-\/>isSolid\ \&\&\ tHeight<tWaterBox-\/>center.y)tHeight\ =\ tWaterBox-\/>center.y;}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Check\ collbox\ collision}}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(checkCollBoxCollision)}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tVect\ =\ critter-\/>getPosition();}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<CollBox*>::type\ tHitList\ =\ mCollisionManager-\/>getCollBoxHitList(tVect,critter-\/>getHeight());}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<CollBox*>::type::const\_iterator\ it=tHitList.begin();\ it!=tHitList.end();\ it++)}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_coll_box}{CollBox}}\ *tBox\ =\ *it;}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tMaxY\ =\ tBox-\/>center.y+tBox-\/>range.y;}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tHeight<tMaxY)tHeight\ =\ tMaxY;}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tVect2\ =\ critter-\/>getPosition();}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<CollSphere*>::type\ tHitList2\ =\ mCollisionManager-\/>getCollSphereHitList(tVect2);}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<CollSphere*>::type::const\_iterator\ it=tHitList2.begin();\ it!=tHitList2.end();\ it++)}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_coll_sphere}{CollSphere}}\ *tSphere\ =\ *it;}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSphere-\/>range==0)\textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tY\ =\ tSphere-\/>center.y;}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tX\ =\ tVect.x\ -\/\ tSphere-\/>center.x;}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tZ\ =\ tVect.z\ -\/\ tSphere-\/>center.z;}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tDist\ =\ Vector2(tX,tZ).length();}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tDist==0)}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tHeight2\ =\ tY\ +\ tSphere-\/>range;}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tHeight<tHeight2)tHeight\ =\ tHeight2;}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Radian\ tAngle\ =\ Math::ACos(tDist/tSphere-\/>range);}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tHeight2\ =\ tY\ +\ Math::Sin(tAngle)\ *\ tSphere-\/>range\ -\/\ GROUND\_THRESHOLD;}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tHeight<tHeight2)tHeight\ =\ tHeight2;}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ critter-\/>setGroundHeight(tHeight);}
+\DoxyCodeLine{00914\ \ \ \ \ \}}
+\DoxyCodeLine{00915\ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}*\ createCritter(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_critter}{Critter}}\ \&critter,\ \textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&owner=-\/1)}
+\DoxyCodeLine{00916\ \ \ \ \ \{}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ deleteCritter(iID);}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ Entity\ *ent\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Critter"{}}+StringConverter::toString(iID),critter.mesh+\textcolor{stringliteral}{"{}.mesh"{}});}
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ SceneNode\ *node\ =\ 0;}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ node\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ node-\/>attachObject(ent);}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ node-\/>setPosition(position);}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ node-\/>setScale(critter.scale,critter.scale,critter.scale);}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ ent-\/>setQueryFlags(CRITTER\_MASK);}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tC\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}(node,iID,critter.type,ent);}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ tC-\/>setAlliance(critter.friendly?ALLIANCE\_FRIEND:ALLIANCE\_ENEMY);}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ C4244}}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ should\ be\ "{}addhealth"{},\ in\ fact\ the\ whole\ health\ system\ needs\ out\ of\ there}}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ tC-\/>setHP((\textcolor{keywordtype}{short})critter.hp);}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ tC-\/>setAntiGravity(critter.flying);}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ tC-\/>setOwnerIndex(owner);}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ tC-\/>setTarget(position);}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ tC-\/>setMaxSpeed(critter.maxSpeed);}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ tC-\/>setInvulnerable(critter.invulnerable);}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ tC-\/>setHasAttack(critter.attackList.size()>0);}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ tC-\/>setIsDrawPoint(critter.isDrawPoint);}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter.isDrawPoint)mEffectsManager-\/>createParticle(tC-\/>getObjectNode(),\textcolor{stringliteral}{"{}DrawPoint"{}},-\/1);}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter.material!=\textcolor{stringliteral}{"{}"{}})tC-\/>getEnt()-\/>setMaterialName(critter.material);}
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ critterList.push\_back(tC);}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tC-\/>imTheOwner())myCritters.push\_back(tC);}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ critterCount++;}
+\DoxyCodeLine{00942\ }
+\DoxyCodeLine{00943\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tC;}
+\DoxyCodeLine{00944\ \ \ \ \ \}}
+\DoxyCodeLine{00945\ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}*\ createCritter(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_critter}{Critter}}\ \&critter,\ \textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&worldID,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&owner=-\/1)}
+\DoxyCodeLine{00946\ \ \ \ \ \{}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tC\ =\ createCritter(iID,critter,position,owner);}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ tC-\/>setWorldCritterID(worldID);}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tC;}
+\DoxyCodeLine{00950\ \ \ \ \ \}}
+\DoxyCodeLine{00951\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteCritter(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tCritter,\ \textcolor{keyword}{const}\ vector<MagixCritter*>::type::iterator\ \&it)}
+\DoxyCodeLine{00952\ \ \ \ \ \{}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tCritter)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tCritter-\/>getIsPet())critterCount-\/-\/;}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ removeChaseTarget(tCritter);}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ removeFromMyCritters(tCritter);}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ i=stationaryQueue.begin();i!=stationaryQueue.end();i++)}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*i==tCritter)}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ stationaryQueue.erase(i);}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ i=decisionQueue.begin();i!=decisionQueue.end();i++)}
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*i==tCritter)}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decisionQueue.erase(i);}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ i=killedQueue.begin();i!=killedQueue.end();i++)}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*i==tCritter)}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ killedQueue.erase(i);}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ i=deadQueue.begin();i!=deadQueue.end();i++)}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*i==tCritter)}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deadQueue.erase(i);}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ SceneNode\ *tObjectNode\ =\ tCritter-\/>getObjectNode();}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tObjectNode)}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(tCritter-\/>getEnt())mEffectsManager-\/>destroyRibbonTrailByEntity(tCritter-\/>getEnt());}}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ mEffectsManager-\/>destroyParticleByObjectNode(tObjectNode);}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>destroyCollisionByOwnerNode(tObjectNode);}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>clearChannelsConnectedToSceneNode(tObjectNode);}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ tObjectNode-\/>detachAllObjects();}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(tObjectNode-\/>getName());}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getEnt())mSceneMgr-\/>destroyEntity(tCritter-\/>getEnt());}
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ critterList.erase(it);}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ tCritter;}
+\DoxyCodeLine{00994\ \ \ \ \ \}}
+\DoxyCodeLine{00995\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteCritter(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{00996\ \ \ \ \ \{}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ it\ =\ critterList.begin();\ it\ !=\ critterList.end();\ it++)}
+\DoxyCodeLine{00998\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00999\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tCritter\ =\ *it;}
+\DoxyCodeLine{01000\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getID()==iID)}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01002\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ deleteCritter(tCritter,it);}
+\DoxyCodeLine{01003\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01004\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01006\ \ \ \ \ \}}
+\DoxyCodeLine{01007\ \ \ \ \ \textcolor{keywordtype}{void}\ deleteAllCritters()}
+\DoxyCodeLine{01008\ \ \ \ \ \{}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(critterList.size()>0)}
+\DoxyCodeLine{01010\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01011\ \ \ \ \ \ \ \ \ \ \ \ \ vector<MagixCritter*>::type::iterator\ it\ =\ critterList.end();}
+\DoxyCodeLine{01012\ \ \ \ \ \ \ \ \ \ \ \ \ it-\/-\/;}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tCritter\ =\ *it;}
+\DoxyCodeLine{01014\ \ \ \ \ \ \ \ \ \ \ \ \ deleteCritter(tCritter,it);}
+\DoxyCodeLine{01015\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01016\ \ \ \ \ \}}
+\DoxyCodeLine{01017\ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}*\ getByObjectNode(SceneNode\ *node)}
+\DoxyCodeLine{01018\ \ \ \ \ \{}
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ it\ =\ critterList.begin();\ it\ !=\ critterList.end();\ it++)}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tCritter\ =\ *it;}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getObjectNode()==node)}
+\DoxyCodeLine{01023\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tCritter;}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01028\ \ \ \ \ \}}
+\DoxyCodeLine{01029\ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}*\ getByID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{01030\ \ \ \ \ \{}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ it\ =\ critterList.begin();\ it\ !=\ critterList.end();\ it++)}
+\DoxyCodeLine{01032\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tCritter\ =\ *it;}
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getID()==iID)}
+\DoxyCodeLine{01035\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tCritter;}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{01040\ \ \ \ \ \}}
+\DoxyCodeLine{01041\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getNumCritters(\textcolor{keywordtype}{bool}\ includePets=\textcolor{keyword}{false})}
+\DoxyCodeLine{01042\ \ \ \ \ \{}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (includePets?(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short})critterList.size():critterCount);}
+\DoxyCodeLine{01044\ \ \ \ \ \}}
+\DoxyCodeLine{01045\ \ \ \ \ \textcolor{keywordtype}{void}\ decrementCritterCount()}
+\DoxyCodeLine{01046\ \ \ \ \ \{}
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ critterCount-\/-\/;}
+\DoxyCodeLine{01048\ \ \ \ \ \}}
+\DoxyCodeLine{01049\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getNextEmptyID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&start)}
+\DoxyCodeLine{01050\ \ \ \ \ \{}
+\DoxyCodeLine{01051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID\ =\ start;}
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ tFound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(!tFound)}
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01055\ \ \ \ \ \ \ \ \ \ \ \ \ tFound\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{01056\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<unsigned\ short>::type::iterator\ it\ =\ sentID.begin();\ it\ !=\ sentID.end();\ it++)}
+\DoxyCodeLine{01057\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*it==tID)}
+\DoxyCodeLine{01059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01063\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tFound)}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ it\ =\ critterList.begin();\ it\ !=\ critterList.end();\ it++)}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *tCritter\ =\ *it;}
+\DoxyCodeLine{01069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCritter-\/>getID()==tID)}
+\DoxyCodeLine{01070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tFound)\textcolor{keywordflow}{break};}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ tID++;}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tID;}
+\DoxyCodeLine{01080\ \ \ \ \ \}}
+\DoxyCodeLine{01081\ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ getCritterList()}
+\DoxyCodeLine{01082\ \ \ \ \ \{}
+\DoxyCodeLine{01083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ critterList;}
+\DoxyCodeLine{01084\ \ \ \ \ \}}
+\DoxyCodeLine{01085\ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ popKilledQueue()}
+\DoxyCodeLine{01086\ \ \ \ \ \{}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ tList\ =\ killedQueue;}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ killedQueue.clear();}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{01090\ \ \ \ \ \}}
+\DoxyCodeLine{01091\ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ popDeadQueue()}
+\DoxyCodeLine{01092\ \ \ \ \ \{}
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ tList\ =\ deadQueue;}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ deadQueue.clear();}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{01096\ \ \ \ \ \}}
+\DoxyCodeLine{01097\ \ \ \ \ \textcolor{keyword}{const}\ vector<HitInfo>::type\ popHitQueue()}
+\DoxyCodeLine{01098\ \ \ \ \ \{}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<HitInfo>::type\ tList\ =\ hitQueue;}
+\DoxyCodeLine{01100\ \ \ \ \ \ \ \ \ hitQueue.clear();}
+\DoxyCodeLine{01101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{01102\ \ \ \ \ \}}
+\DoxyCodeLine{01103\ \ \ \ \ \textcolor{keywordtype}{void}\ pushHitQueue(\textcolor{keyword}{const}\ \mbox{\hyperlink{struct_hit_info}{HitInfo}}\ \&info)}
+\DoxyCodeLine{01104\ \ \ \ \ \{}
+\DoxyCodeLine{01105\ \ \ \ \ \ \ \ \ hitQueue.push\_back(info);}
+\DoxyCodeLine{01106\ \ \ \ \ \}}
+\DoxyCodeLine{01107\ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ popDecisionQueue()}
+\DoxyCodeLine{01108\ \ \ \ \ \{}
+\DoxyCodeLine{01109\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ tList\ =\ decisionQueue;}
+\DoxyCodeLine{01110\ \ \ \ \ \ \ \ \ decisionQueue.clear();}
+\DoxyCodeLine{01111\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{01112\ \ \ \ \ \}}
+\DoxyCodeLine{01113\ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ popStationaryQueue()}
+\DoxyCodeLine{01114\ \ \ \ \ \{}
+\DoxyCodeLine{01115\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ tList\ =\ stationaryQueue;}
+\DoxyCodeLine{01116\ \ \ \ \ \ \ \ \ stationaryQueue.clear();}
+\DoxyCodeLine{01117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{01118\ \ \ \ \ \}}
+\DoxyCodeLine{01119\ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixCritter*>::type\ getMyCritters()}
+\DoxyCodeLine{01120\ \ \ \ \ \{}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ myCritters;}
+\DoxyCodeLine{01122\ \ \ \ \ \}}
+\DoxyCodeLine{01123\ \ \ \ \ \textcolor{keywordtype}{void}\ pushMyCritters(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *critter)}
+\DoxyCodeLine{01124\ \ \ \ \ \{}
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ myCritters.push\_back(critter);}
+\DoxyCodeLine{01126\ \ \ \ \ \}}
+\DoxyCodeLine{01127\ \ \ \ \ \textcolor{keywordtype}{void}\ removeFromMyCritters(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *critter)}
+\DoxyCodeLine{01128\ \ \ \ \ \{}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<MagixCritter*>::type::iterator\ i=myCritters.begin();i!=myCritters.end();i++)}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*i==critter)}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ myCritters.erase(i);}
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{01134\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01135\ \ \ \ \ \}}
+\DoxyCodeLine{01136\ \ \ \ \ \mbox{\hyperlink{class_magix_living}{MagixLiving}}*\ popPlayerTarget()}
+\DoxyCodeLine{01137\ \ \ \ \ \{}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_living}{MagixLiving}}\ *tTarget\ =\ mPlayerTarget;}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ mPlayerTarget\ =\ 0;}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tTarget;}
+\DoxyCodeLine{01141\ \ \ \ \ \}}
+\DoxyCodeLine{01142\ \ \ \ \ \textcolor{keywordtype}{void}\ removeChaseTarget(\mbox{\hyperlink{class_magix_object}{MagixObject}}\ *target)}
+\DoxyCodeLine{01143\ \ \ \ \ \{}
+\DoxyCodeLine{01144\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)critterList.size();i++)}
+\DoxyCodeLine{01145\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01146\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i]-\/>getChaseTarget()==target)}
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ critterList[i]-\/>setTarget(0);}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critterList[i]-\/>imTheOwner())critterList[i]-\/>setDecisionTimer(0);}
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01152\ \ \ \ \ \}}
+\DoxyCodeLine{01153\ \ \ \ \ \textcolor{keywordtype}{void}\ pushSentID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{01154\ \ \ \ \ \{}
+\DoxyCodeLine{01155\ \ \ \ \ \ \ \ \ sentID.push\_back(iID);}
+\DoxyCodeLine{01156\ \ \ \ \ \}}
+\DoxyCodeLine{01157\ \ \ \ \ \textcolor{keywordtype}{void}\ popSentID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{01158\ \ \ \ \ \{}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<unsigned\ short>::type::iterator\ it=sentID.begin();it!=sentID.end();it++)}
+\DoxyCodeLine{01160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01161\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(*it==iID)}
+\DoxyCodeLine{01162\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sentID.erase(it);}
+\DoxyCodeLine{01164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{01165\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01166\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01167\ \ \ \ \ \}}
+\DoxyCodeLine{01168\ \ \ \ \ \textcolor{keywordtype}{void}\ setIsPet(\mbox{\hyperlink{class_magix_critter}{MagixCritter}}\ *critter)}
+\DoxyCodeLine{01169\ \ \ \ \ \{}
+\DoxyCodeLine{01170\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!critter)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \ \ critter-\/>setIsPet(\textcolor{keyword}{true});}
+\DoxyCodeLine{01172\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(critter-\/>getObjectNode()-\/>getScale().y>1.5)}
+\DoxyCodeLine{01173\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01174\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>getObjectNode()-\/>setScale(1.5,1.5,1.5);}
+\DoxyCodeLine{01175\ \ \ \ \ \ \ \ \ \ \ \ \ critter-\/>resetSize();}
+\DoxyCodeLine{01176\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01177\ \ \ \ \ \ \ \ \ critterCount-\/-\/;}
+\DoxyCodeLine{01178\ \ \ \ \ \}}
+\DoxyCodeLine{01179\ \ \ \ \ \textcolor{keyword}{const}\ String\ popWeatherEffectRequest()}
+\DoxyCodeLine{01180\ \ \ \ \ \{}
+\DoxyCodeLine{01181\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tEffect\ =\ weatherEffectRequest;}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ weatherEffectRequest\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{01183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tEffect;}
+\DoxyCodeLine{01184\ \ \ \ \ \}}
+\DoxyCodeLine{01185\ \};}
+\DoxyCodeLine{01186\ }
+\DoxyCodeLine{01187\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

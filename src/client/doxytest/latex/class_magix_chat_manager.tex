@@ -1,0 +1,88 @@
+\doxysection{Magix\+Chat\+Manager Class Reference}
+\hypertarget{class_magix_chat_manager}{}\label{class_magix_chat_manager}\index{MagixChatManager@{MagixChatManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_chat_manager_a69fb73d774516d58eb7d1eae8d6e8da4}\label{class_magix_chat_manager_a69fb73d774516d58eb7d1eae8d6e8da4} 
+void {\bfseries reset} (bool clear\+History=false)
+\item 
+\Hypertarget{class_magix_chat_manager_a574dd94bd5422dfea43b708bdda2d833}\label{class_magix_chat_manager_a574dd94bd5422dfea43b708bdda2d833} 
+void {\bfseries push} (const String \&caption, const String \&sayer="{}"{}, const unsigned char \&type=CHAT\+\_\+\+GENERAL)
+\item 
+\Hypertarget{class_magix_chat_manager_aa02dd8b91cce2ade5c23356e15933843}\label{class_magix_chat_manager_aa02dd8b91cce2ade5c23356e15933843} 
+const String {\bfseries get\+Chat\+Block} (const unsigned short \&lines, const Real \&box\+Width, const Real \&char\+Height, const Real \&last\+Offset)
+\item 
+\Hypertarget{class_magix_chat_manager_affbcfb0254ed0b425bd28c511be63b9d}\label{class_magix_chat_manager_affbcfb0254ed0b425bd28c511be63b9d} 
+void {\bfseries process\+Input} (String \&caption, unsigned char \&type, String \&param)
+\item 
+\Hypertarget{class_magix_chat_manager_a988bde82dfe81a573c5b36b7955d366b}\label{class_magix_chat_manager_a988bde82dfe81a573c5b36b7955d366b} 
+void {\bfseries say} (\mbox{\hyperlink{class_magix_unit_manager}{Magix\+Unit\+Manager}} \texorpdfstring{$\ast$}{*}unit\+Mgr, \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}target, const String \&caption, const unsigned char \&type=CHAT\+\_\+\+GENERAL)
+\item 
+\Hypertarget{class_magix_chat_manager_abaa2fc8d48ddff05357b2ba63bf9e856}\label{class_magix_chat_manager_abaa2fc8d48ddff05357b2ba63bf9e856} 
+void {\bfseries message} (const String \&caption, const unsigned char \&type=0)
+\item 
+\Hypertarget{class_magix_chat_manager_a616494cc19cca6d62c0a0f18d7e3232b}\label{class_magix_chat_manager_a616494cc19cca6d62c0a0f18d7e3232b} 
+bool {\bfseries pop\+Has\+New\+Line} (const unsigned char \&chan)
+\item 
+\Hypertarget{class_magix_chat_manager_a512673dc6ebf0926be8d862612221dd9}\label{class_magix_chat_manager_a512673dc6ebf0926be8d862612221dd9} 
+bool {\bfseries get\+Has\+New\+Line} (const unsigned char \&chan)
+\item 
+\Hypertarget{class_magix_chat_manager_a45dbc4ed907d57ace19c167973b819bc}\label{class_magix_chat_manager_a45dbc4ed907d57ace19c167973b819bc} 
+const String {\bfseries prefix\+Chat\+Line} (const String \&caption, const String \&sayer, const unsigned char \&type, bool is\+Postfix\+Length=false)
+\item 
+\Hypertarget{class_magix_chat_manager_a14d804242835ae8143c1f91420b9bd21}\label{class_magix_chat_manager_a14d804242835ae8143c1f91420b9bd21} 
+const unsigned short {\bfseries get\+Prefix\+Length} (const String \&sayer, const unsigned char \&type)
+\item 
+\Hypertarget{class_magix_chat_manager_a771030efef28f471e56dbea5a77036e2}\label{class_magix_chat_manager_a771030efef28f471e56dbea5a77036e2} 
+const unsigned short {\bfseries get\+Postfix\+Length} (const String \&sayer, const unsigned char \&type)
+\item 
+\Hypertarget{class_magix_chat_manager_add7ff42b62a7407646ccbbbb571c607f}\label{class_magix_chat_manager_add7ff42b62a7407646ccbbbb571c607f} 
+const String {\bfseries process\+Chat\+String} (const String \&caption, const String \&sayer, const unsigned char \&type, const Real \&box\+Width, const Real \&char\+Height)
+\item 
+\Hypertarget{class_magix_chat_manager_ae74b6314334d1d927d986e8c648ad5da}\label{class_magix_chat_manager_ae74b6314334d1d927d986e8c648ad5da} 
+void {\bfseries toggle\+Channel} ()
+\item 
+\Hypertarget{class_magix_chat_manager_ad236c18473fa9d07bec8183f05ed719d}\label{class_magix_chat_manager_ad236c18473fa9d07bec8183f05ed719d} 
+void {\bfseries set\+Channel} (const unsigned char \&value)
+\item 
+\Hypertarget{class_magix_chat_manager_a6ee50ab3f64d671e409ca99a4c79dd2a}\label{class_magix_chat_manager_a6ee50ab3f64d671e409ca99a4c79dd2a} 
+const unsigned char {\bfseries get\+Channel} ()
+\item 
+\Hypertarget{class_magix_chat_manager_a2f0a7ee84e675e7d2f4a9e2312be3c24}\label{class_magix_chat_manager_a2f0a7ee84e675e7d2f4a9e2312be3c24} 
+const vector$<$ unsignedchar $>$\+::type {\bfseries get\+Other\+Channels} ()
+\item 
+\Hypertarget{class_magix_chat_manager_a4baa50d99c6458db4406ed123943cdaf}\label{class_magix_chat_manager_a4baa50d99c6458db4406ed123943cdaf} 
+void {\bfseries save\+Chat\+Log} (const String \&directory, const String \&filename)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_chat_manager_a9e652555041430cd6eb8897de9351ad9}\label{class_magix_chat_manager_a9e652555041430cd6eb8897de9351ad9} 
+bool {\bfseries do\+Local\+Username}
+\item 
+\Hypertarget{class_magix_chat_manager_ae19c6a79a9002263864f38a04f472e2b}\label{class_magix_chat_manager_ae19c6a79a9002263864f38a04f472e2b} 
+bool {\bfseries do\+General\+Charname}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_chat_manager_a2e880c50d9aa53b6e928422d69641dbd}\label{class_magix_chat_manager_a2e880c50d9aa53b6e928422d69641dbd} 
+vector$<$ String $>$\+::type {\bfseries chat\+String} \mbox{[}MAX\+\_\+\+CHANNELS\mbox{]}
+\item 
+\Hypertarget{class_magix_chat_manager_ac8af9ff2608f30dae6e8fe49eed48986}\label{class_magix_chat_manager_ac8af9ff2608f30dae6e8fe49eed48986} 
+vector$<$ String $>$\+::type {\bfseries chat\+Sayer} \mbox{[}MAX\+\_\+\+CHANNELS\mbox{]}
+\item 
+\Hypertarget{class_magix_chat_manager_affd66cfcf9f2e38c22c0b13b945fcd26}\label{class_magix_chat_manager_affd66cfcf9f2e38c22c0b13b945fcd26} 
+vector$<$ unsignedchar $>$\+::type {\bfseries chat\+Type} \mbox{[}MAX\+\_\+\+CHANNELS\mbox{]}
+\item 
+\Hypertarget{class_magix_chat_manager_adb5b6455f46293853093d93952c59ffa}\label{class_magix_chat_manager_adb5b6455f46293853093d93952c59ffa} 
+bool {\bfseries has\+New\+Line} \mbox{[}MAX\+\_\+\+CHANNELS\mbox{]}
+\item 
+\Hypertarget{class_magix_chat_manager_a4a04ac0b1dae84dfbb0d7b7a007eab29}\label{class_magix_chat_manager_a4a04ac0b1dae84dfbb0d7b7a007eab29} 
+unsigned char {\bfseries channel}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Chat\+Manager.\+h\end{DoxyCompactItemize}

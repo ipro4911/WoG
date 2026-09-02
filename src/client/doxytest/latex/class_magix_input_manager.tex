@@ -1,0 +1,121 @@
+\doxysection{Magix\+Input\+Manager Class Reference}
+\hypertarget{class_magix_input_manager}{}\label{class_magix_input_manager}\index{MagixInputManager@{MagixInputManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_input_manager_a28e861eebaff18fa0f838c7606fdfd58}\label{class_magix_input_manager_a28e861eebaff18fa0f838c7606fdfd58} 
+void {\bfseries update} (const Frame\+Event evt)
+\item 
+\Hypertarget{class_magix_input_manager_af2e4339c1f92b8732b7f1886f1a295d2}\label{class_magix_input_manager_af2e4339c1f92b8732b7f1886f1a295d2} 
+bool {\bfseries toggle\+Input\+Mode} ()
+\item 
+\Hypertarget{class_magix_input_manager_a4f922214877b4e37bb925d990438bc14}\label{class_magix_input_manager_a4f922214877b4e37bb925d990438bc14} 
+unsigned short {\bfseries get\+Input\+Mode} ()
+\item 
+\Hypertarget{class_magix_input_manager_a20cd8325df35681c6d94e13b6a14312d}\label{class_magix_input_manager_a20cd8325df35681c6d94e13b6a14312d} 
+void {\bfseries set\+String} (const String \&caption)
+\item 
+\Hypertarget{class_magix_input_manager_ab3b81fb8b840bcb8cef600da7338a1d1}\label{class_magix_input_manager_ab3b81fb8b840bcb8cef600da7338a1d1} 
+void {\bfseries push\+Char} (const unsigned int \&a)
+\item 
+\Hypertarget{class_magix_input_manager_af247548ab85c432e785c8f9e47b1a626}\label{class_magix_input_manager_af247548ab85c432e785c8f9e47b1a626} 
+void {\bfseries pop\+Char} (bool del=false)
+\item 
+\Hypertarget{class_magix_input_manager_abe4cf27e493572ef2c843f00704bc41a}\label{class_magix_input_manager_abe4cf27e493572ef2c843f00704bc41a} 
+void {\bfseries set\+Input\+Cursor\+Pos} (const unsigned short \&pos)
+\item 
+\Hypertarget{class_magix_input_manager_a00dea5fa87ac723dcf23d2e598dd55b2}\label{class_magix_input_manager_a00dea5fa87ac723dcf23d2e598dd55b2} 
+void {\bfseries set\+Input\+Text} (const String \&text, bool enable)
+\item 
+\Hypertarget{class_magix_input_manager_a280bdfd79a3e8701f52fa6481b7eea99}\label{class_magix_input_manager_a280bdfd79a3e8701f52fa6481b7eea99} 
+void {\bfseries normalize\+Text} (String \&caption, Overlay\+Element \texorpdfstring{$\ast$}{*}box)
+\item 
+\Hypertarget{class_magix_input_manager_a2de7f120ef547079521961c40eee86b5}\label{class_magix_input_manager_a2de7f120ef547079521961c40eee86b5} 
+const String {\bfseries get\+Input\+Text} ()
+\item 
+\Hypertarget{class_magix_input_manager_adec3d395f0bbd0242a61b32203d8b10d}\label{class_magix_input_manager_adec3d395f0bbd0242a61b32203d8b10d} 
+void {\bfseries key\+Held} (OIS\+::\+Keyboard \texorpdfstring{$\ast$}{*}keyboard, const OIS\+::\+Key\+Code \&key, const unsigned int \&text, bool held)
+\item 
+\Hypertarget{class_magix_input_manager_a8e8789c8417df0ef890acde40213ed91}\label{class_magix_input_manager_a8e8789c8417df0ef890acde40213ed91} 
+void {\bfseries input\+Held\+Key} ()
+\item 
+\Hypertarget{class_magix_input_manager_a1058d9b403e6183140c06ffb6bdf643e}\label{class_magix_input_manager_a1058d9b403e6183140c06ffb6bdf643e} 
+void {\bfseries set\+Input\+Box} (Overlay\+Element \texorpdfstring{$\ast$}{*}input\+Box, const String \&caption, unsigned short limit, bool clear, const String \&start\+Text, bool b\+Temp\+Storage, bool b\+New\+Line, bool b\+Hide\+Text)
+\item 
+\Hypertarget{class_magix_input_manager_abb9de91fbd2ae4d99ff4a598ab401ff7}\label{class_magix_input_manager_abb9de91fbd2ae4d99ff4a598ab401ff7} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries get\+Input\+Box} ()
+\item 
+\Hypertarget{class_magix_input_manager_a1f5d48b41d40a3f0d9f3445793b6d39f}\label{class_magix_input_manager_a1f5d48b41d40a3f0d9f3445793b6d39f} 
+void {\bfseries set\+Clear\+At\+Return} (bool clear)
+\item 
+\Hypertarget{class_magix_input_manager_ae7fee27eef3a4cf1ce0711d9b58e44c6}\label{class_magix_input_manager_ae7fee27eef3a4cf1ce0711d9b58e44c6} 
+void {\bfseries push\+Temp\+Storage} (const String \&input)
+\item 
+\Hypertarget{class_magix_input_manager_abf601f7ad727066e2955809df1c3ecea}\label{class_magix_input_manager_abf601f7ad727066e2955809df1c3ecea} 
+const String {\bfseries get\+Temp\+Storage} (bool increment=false, bool decrement=false)
+\item 
+\Hypertarget{class_magix_input_manager_a70a78cf22f8ce78872068e9697716745}\label{class_magix_input_manager_a70a78cf22f8ce78872068e9697716745} 
+void {\bfseries hotkey\+Held} (const int \&key)
+\item 
+\Hypertarget{class_magix_input_manager_ad2b0feb6a6d7f82cd07c55f0f624cfa5}\label{class_magix_input_manager_ad2b0feb6a6d7f82cd07c55f0f624cfa5} 
+const int {\bfseries get\+Held\+Hotkey} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_input_manager_a3f7dd82a4aea025c560a90cf91e22e9e}\label{class_magix_input_manager_a3f7dd82a4aea025c560a90cf91e22e9e} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Input\+Box\+Text}
+\item 
+\Hypertarget{class_magix_input_manager_a0a16fb38dda31b8447c3a1025f55a07f}\label{class_magix_input_manager_a0a16fb38dda31b8447c3a1025f55a07f} 
+unsigned short {\bfseries input\+Mode}
+\item 
+\Hypertarget{class_magix_input_manager_a6ea5d34fc378aaa7c39f429fde4efad5}\label{class_magix_input_manager_a6ea5d34fc378aaa7c39f429fde4efad5} 
+String {\bfseries input\+Text}
+\item 
+\Hypertarget{class_magix_input_manager_ab0f0682d82939234477caae8833af6de}\label{class_magix_input_manager_ab0f0682d82939234477caae8833af6de} 
+OIS\+::\+Key\+Code {\bfseries held\+Key}
+\item 
+\Hypertarget{class_magix_input_manager_a507d2b372487f808cef9a3ebc6865864}\label{class_magix_input_manager_a507d2b372487f808cef9a3ebc6865864} 
+unsigned int {\bfseries held\+Key\+Text}
+\item 
+\Hypertarget{class_magix_input_manager_a145051cbefca5f4580b8deefd9bf7698}\label{class_magix_input_manager_a145051cbefca5f4580b8deefd9bf7698} 
+Real {\bfseries held\+Delay}
+\item 
+\Hypertarget{class_magix_input_manager_a22c98f9cefafc1002bf8d4b6272a28d9}\label{class_magix_input_manager_a22c98f9cefafc1002bf8d4b6272a28d9} 
+unsigned short {\bfseries input\+Cursor\+Pos}
+\item 
+\Hypertarget{class_magix_input_manager_a1f58cd2f2b25a36abd0d9354e7eaed5c}\label{class_magix_input_manager_a1f58cd2f2b25a36abd0d9354e7eaed5c} 
+String {\bfseries default\+Caption}
+\item 
+\Hypertarget{class_magix_input_manager_ae29198970ecd8548934269213c68b6bd}\label{class_magix_input_manager_ae29198970ecd8548934269213c68b6bd} 
+bool {\bfseries clear\+At\+Return}
+\item 
+\Hypertarget{class_magix_input_manager_ad911c316156928d1f30ce0940f310a29}\label{class_magix_input_manager_ad911c316156928d1f30ce0940f310a29} 
+bool {\bfseries allow\+Temp\+Storage}
+\item 
+\Hypertarget{class_magix_input_manager_a3d901e1f00efc22fd483eee6e408760c}\label{class_magix_input_manager_a3d901e1f00efc22fd483eee6e408760c} 
+bool {\bfseries allow\+New\+Line}
+\item 
+\Hypertarget{class_magix_input_manager_a70d6ddcc41ed3f447cd0372dce5d2a25}\label{class_magix_input_manager_a70d6ddcc41ed3f447cd0372dce5d2a25} 
+bool {\bfseries hide\+Text}
+\item 
+\Hypertarget{class_magix_input_manager_aaf2058c758424d6d681947381ef4227c}\label{class_magix_input_manager_aaf2058c758424d6d681947381ef4227c} 
+unsigned short {\bfseries char\+Limit}
+\item 
+\Hypertarget{class_magix_input_manager_abf0d0a097ebd433b4850a44f9e8696f4}\label{class_magix_input_manager_abf0d0a097ebd433b4850a44f9e8696f4} 
+bool {\bfseries is\+Shift\+Down}
+\item 
+\Hypertarget{class_magix_input_manager_a8addd27516817ec2a5af9c346cf95e01}\label{class_magix_input_manager_a8addd27516817ec2a5af9c346cf95e01} 
+String {\bfseries temp\+Storage} \mbox{[}MAX\+\_\+\+TEMPSTORAGE\mbox{]}
+\item 
+\Hypertarget{class_magix_input_manager_acd140a68127b7444317716b893bf18f7}\label{class_magix_input_manager_acd140a68127b7444317716b893bf18f7} 
+short {\bfseries temp\+Storage\+Pos}
+\item 
+\Hypertarget{class_magix_input_manager_ab2633dd6a5aef3b30ecc225ec798301b}\label{class_magix_input_manager_ab2633dd6a5aef3b30ecc225ec798301b} 
+int {\bfseries held\+Hotkey}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Input\+Manager.\+h\end{DoxyCompactItemize}

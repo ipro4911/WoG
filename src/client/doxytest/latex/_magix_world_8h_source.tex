@@ -1,0 +1,1245 @@
+\doxysection{Magix\+World.\+h}
+\hypertarget{_magix_world_8h_source}{}\label{_magix_world_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixWorld.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixWorld.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixWorld\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixWorld\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}GameConfig.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#include\ "{}PagedGeometry.h"{}}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#include\ "{}GrassLoader.h"{}}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}BatchPage.h"{}}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#include\ "{}ImpostorPage.h"{}}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}TreeLoader2D.h"{}}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#include\ "{}TreeLoader3D.h"{}}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#include\ "{}HeightFunction.h"{}}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ }
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \textcolor{keyword}{using\ namespace\ }Forests;}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ MAX\_LIGHTS\ 3}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{keyword}{class\ }MagixWorld}
+\DoxyCodeLine{00022\ \{}
+\DoxyCodeLine{00023\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ no\ include\ but\ its\ almost\ the\ same,\ criminal\ use\ of\ classes\ like\ that}}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *mDef;}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_k_i_t_f___utils_1_1_magix_utils}{KITF\_Utils::MagixUtils}}\ *mUtils;}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_magix_game_state_manager}{MagixGameStateManager}}\ *mGameStateManager;}
+\DoxyCodeLine{00028\ \ \ \ \ \mbox{\hyperlink{class_magix_sound_manager}{MagixSoundManager}}\ *mSoundManager;}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *mCollisionManager;}
+\DoxyCodeLine{00030\ \ \ \ \ \mbox{\hyperlink{class_magix_sky_manager}{MagixSkyManager}}\ *mSkyManager;}
+\DoxyCodeLine{00031\ \ \ \ \ SceneManager\ *mSceneMgr;}
+\DoxyCodeLine{00032\ \ \ \ \ RenderWindow\ *mWindow;}
+\DoxyCodeLine{00033\ \ \ \ \ PagedGeometry\ *mGrass,*mTrees,*mBushes,*mLargeTrees,*mFloatingBushes;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ all\ non\ class\ variables\ should\ be\ away}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numTreeMeshes;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numBushMeshes;}
+\DoxyCodeLine{00037\ \ \ \ \ Entity\ *mCeiling;}
+\DoxyCodeLine{00038\ \ \ \ \ SceneNode\ *mCeilingNode;}
+\DoxyCodeLine{00039\ \ \ \ \ Light\ *mLight[MAX\_LIGHTS];}
+\DoxyCodeLine{00040\ \ \ \ \ String\ worldName;}
+\DoxyCodeLine{00041\ \ \ \ \ Vector2\ worldSize;}
+\DoxyCodeLine{00042\ \ \ \ \ Vector2\ worldBounds;}
+\DoxyCodeLine{00043\ \ \ \ \ Vector3\ spawnSquare;}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numWaterPlanes;}
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numObjects;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numParticles;}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numLights;}
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numBillboards;}
+\DoxyCodeLine{00049\ \ \ \ \ Real\ ceilingHeight;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInterior;}
+\DoxyCodeLine{00051\ \ \ \ \ String\ mapEffect;}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{int}\ staticGeometryX;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{int}\ staticGeometryY;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{comment}{//\ with\ a\ reference\ to\ the\ world\ this\ could\ be\ managed\ somewhere\ else}}
+\DoxyCodeLine{00055\ \ \ \ \ vector<WorldCritter>::type\ critterSpawnList;}
+\DoxyCodeLine{00056\ \ \ \ \ vector<std::pair<Vector3,Vector3>>::type\ critterRoamAreaList;}
+\DoxyCodeLine{00057\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ critterSpawnLimit;}
+\DoxyCodeLine{00058\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00059\ \ \ \ \ MagixWorld()}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ mDef\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ mUtils\ =\ 0;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ mGameStateManager\ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ mSoundManager\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ mSkyManager\ =\ 0;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ 0;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ mWindow\ =\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ mTrees\ =\ 0;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ mGrass\ =\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ mBushes\ =\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ mLargeTrees\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ mFloatingBushes\ =\ 0;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ numTreeMeshes\ =\ 0;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ numBushMeshes\ =\ 0;}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ mCeiling\ =\ 0;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ mCeilingNode\ =\ 0;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_LIGHTS;i++)mLight[i]\ =\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ worldName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ worldSize\ =\ Vector2::ZERO;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ worldBounds\ =\ Vector2::ZERO;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ spawnSquare\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ numWaterPlanes\ =\ 0;}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ numObjects\ =\ 0;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ numParticles\ =\ 0;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ numLights\ =\ 0;}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ numBillboards\ =\ 0;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ ceilingHeight\ =\ 0;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ isInterior\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ mapEffect\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ staticGeometryX\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ staticGeometryY\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ critterSpawnList.clear();}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ critterRoamAreaList.clear();}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ critterSpawnLimit\ =\ 0;}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \string~MagixWorld()}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ unloadWorld();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ critterSpawnList.clear();}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ critterRoamAreaList.clear();}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ mignt\ need\ mUtils\ here\ :D}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(SceneManager\ *sceneMgr,\ RenderWindow\ *window,\ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def,\ \mbox{\hyperlink{class_magix_game_state_manager}{MagixGameStateManager}}\ *gameStateMgr,\ \mbox{\hyperlink{class_magix_sound_manager}{MagixSoundManager}}\ *soundMgr,\ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *collisionMgr,\ \mbox{\hyperlink{class_magix_sky_manager}{MagixSkyManager}}\ *skyMgr)}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ sceneMgr;}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ mWindow\ =\ window;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ mDef\ =\ def;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ mGameStateManager\ =\ gameStateMgr;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ mSoundManager\ =\ soundMgr;}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ collisionMgr;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ mSkyManager\ =\ skyMgr;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ initializeCustomMeshes();}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ mCeiling\ =\ sceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Ceiling"{}},\textcolor{stringliteral}{"{}Ceiling.mesh"{}});}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ mCeiling-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ mCeilingNode\ =\ sceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ mCeilingNode-\/>attachObject(mCeiling);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ mCeilingNode-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeCustomMeshes()}
+\DoxyCodeLine{00122\ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ Plane\ waterPlane;}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ waterPlane.d\ =\ 0;}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ waterPlane.normal\ =\ Vector3::UNIT\_Y;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ MeshManager::getSingleton().createPlane(\textcolor{stringliteral}{"{}WaterPlaneMesh"{}},}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResourceGroupManager::DEFAULT\_RESOURCE\_GROUP\_NAME,\ }
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ waterPlane,500,500,1,1,\textcolor{keyword}{true},1,5,5,Vector3::UNIT\_Z);}
+\DoxyCodeLine{00130\ \ \ \ \ \}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{keywordtype}{void}\ reset()}
+\DoxyCodeLine{00132\ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tWorldName\ =\ worldName;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ unloadWorld();}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ loadWorld(tWorldName);}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{void}\ update()}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGrass)mGrass-\/>update();}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mTrees)mTrees-\/>update();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBushes)mBushes-\/>update();}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mLargeTrees)mLargeTrees-\/>update();}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mFloatingBushes)mFloatingBushes-\/>update();}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ camPos\ =\ (mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>isAttached()?}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector2(mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>getDerivedPosition().x,mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>getDerivedPosition().z):}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector2(mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>getPosition().x,mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>getPosition().z));}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ FARCLIP\_SQUARED\ =\ Math::Sqr(mDef-\/>viewDistance*2500\ +\ 500);}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<=numObjects;i++)}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ Entity*\ ent\ =\ mSceneMgr-\/>getEntity(\textcolor{stringliteral}{"{}WorldObject"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Vector2(camPos.x-\/ent-\/>getParentSceneNode()-\/>getPosition().x,camPos.y-\/ent-\/>getParentSceneNode()-\/>getPosition().z).squaredLength()>FARCLIP\_SQUARED)}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ent-\/>isVisible())ent-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!ent-\/>isVisible())ent-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<=numParticles;i++)}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ ParticleSystem*\ pSys\ =\ mSceneMgr-\/>getParticleSystem(\textcolor{stringliteral}{"{}WorldParticle"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Vector2(camPos.x-\/pSys-\/>getParentSceneNode()-\/>getPosition().x,camPos.y-\/pSys-\/>getParentSceneNode()-\/>getPosition().z).squaredLength()>FARCLIP\_SQUARED)}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pSys-\/>isVisible())pSys-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!pSys-\/>isVisible())pSys-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<=numBillboards;i++)}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ BillboardSet*\ set\ =\ mSceneMgr-\/>getBillboardSet(\textcolor{stringliteral}{"{}WorldBillboard"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Vector2(camPos.x-\/set-\/>getParentSceneNode()-\/>getPosition().x,camPos.y-\/set-\/>getParentSceneNode()-\/>getPosition().z).squaredLength()>FARCLIP\_SQUARED)}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(set-\/>isVisible())set-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!set-\/>isVisible())set-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_LIGHTS;i++)}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mLight[i])}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(Vector2(camPos.x-\/mLight[i]-\/>getPosition().x,camPos.y-\/mLight[i]-\/>getPosition().z).squaredLength()>810000)}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mLight[i]-\/>isVisible())mLight[i]-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mLight[i]-\/>isVisible())mLight[i]-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00199\ }
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{void}\ loadWorld(\textcolor{keyword}{const}\ String\ \&name)}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ String\ tTerrain\ =\ \textcolor{stringliteral}{"{}"{}},\ tGrassMat\ =\ \textcolor{stringliteral}{"{}"{}},\ tGrassMap\ =\ \textcolor{stringliteral}{"{}"{}},\ tGrassColourMap\ =\ \textcolor{stringliteral}{"{}"{}},\ tTree1\ =\ \textcolor{stringliteral}{"{}"{}},\ tTree2\ =\ \textcolor{stringliteral}{"{}"{}},\ tTree3\ =\ \textcolor{stringliteral}{"{}"{}},\ tBush1\ =\ \textcolor{stringliteral}{"{}"{}},\ tBush2\ =\ \textcolor{stringliteral}{"{}"{}},\ tBush3\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tTreeCount;}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ vector<std::pair<String,\ bool>>::type\ tTreesFilename,tBushesFilename,tFloatingBushesFilename;}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ String\ tCritterSpawnFilename\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ tTreesFilename.clear();}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ tBushesFilename.clear();}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ tFloatingBushesFilename.clear();}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ worldBounds\ =\ Vector2(50,50);}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ now\ in\ an\ util\ file}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!mUtils-\/>loadWorldFile(\textcolor{stringliteral}{"{}media/terrains/"{}}\ +\ name\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ name\ +\ \textcolor{stringliteral}{"{}.world"{}},\ tTerrain,\ worldSize.x,\ worldSize.y,\ spawnSquare,\ worldBounds))}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(worldName!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ unloadWorld();}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ }
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ worldName\ =\ name;}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ Camera\ *camera\ =\ mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}});}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryForced)}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>pagedGeometryForced\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>pagedGeometryOn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ terrain\ to\ be\ soon\ replaced}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ mSceneMgr-\/>setWorldGeometry(tTerrain);}
+\DoxyCodeLine{00238\ }
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ sky}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ mSkyManager-\/>setWeatherCycle(\textcolor{stringliteral}{"{}Rain"{}});}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ mSkyManager-\/>setInteriorSky(\textcolor{keyword}{false});}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ mSkyManager-\/>freezeDayTime(\textcolor{keyword}{false});}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ critters}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ critterSpawnList.clear();}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ critterRoamAreaList.clear();}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ critterSpawnLimit\ =\ 0;}
+\DoxyCodeLine{00248\ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGameStateManager-\/>getGameState()>GAMESTATE\_CHARSCREEN\&\&!mSoundManager-\/>getRandomPlaylist())}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>stopMusic();}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>setRandomPlaylist(\textcolor{keyword}{true});}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00254\ }
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00256\ }
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \textcolor{comment}{//load\ misc\ objects}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ can\ be\ given\ to\ a\ function\ that\ DoMapObjects(String\ worldName)}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ mean\ a\ MagixWorld::Utils\ is\ needed\ (and\ therefore\ remove\ the\ function\ from\ magix\ utils)}}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ MovableObject::setDefaultQueryFlags(WORLDOBJECT\_MASK);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tBuffer\ =\ mDef-\/>loadWorldObjects(\textcolor{stringliteral}{"{}media/terrains/"{}}+worldName+\textcolor{stringliteral}{"{}/"{}}+worldName+\textcolor{stringliteral}{"{}.world"{}})\ +}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>loadWorldObjects(\textcolor{stringliteral}{"{}media/terrains/"{}}+worldName+\textcolor{stringliteral}{"{}/CustomPortals.txt"{}});}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBuffer.length()>0)}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tBuffer,\textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<int(tPart.size());i++)}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tPart[i],\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>0)}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Portal"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==4)}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[1]);}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tRange\ =\ StringConverter::parseReal(tLine[2]);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tDestName\ =\ tLine[3];}
+\DoxyCodeLine{00276\ }
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>createPortal(tPosition,tRange,tDestName);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Gate"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=5)}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tMatName\ =\ tLine[1];}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[2]);}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tDestName\ =\ tLine[3];}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tCoords\ =\ StringUtil::split(tLine[4],\textcolor{stringliteral}{"{}\ "{}},3);}
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ tDestVect;}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ tHasVectY\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00288\ }
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tCoords.size()==2)}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tDestVect.x\ =\ StringConverter::parseReal(tCoords[0]);}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tDestVect.z\ =\ StringConverter::parseReal(tCoords[1]);}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tHasVectY\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tDestVect\ =\ StringConverter::parseVector3(tLine[4]);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>createGate(tPosition,tDestName,tDestVect,tMatName,tHasVectY);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}WaterPlane"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=4)}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[1]);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tScaleX\ =\ StringConverter::parseReal(tLine[2]);}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tScaleZ\ =\ StringConverter::parseReal(tLine[3]);}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tMat\ =\ \textcolor{stringliteral}{"{}Terrain/CalmWater"{}};}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tSound\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ tIsSolid\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>4)tMat\ =\ tLine[4];}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>5)tSound\ =\ tLine[5];}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>6)tIsSolid\ =\ StringConverter::parseBool(tLine[6]);}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addWaterPlane(tPosition,tScaleX,tScaleZ,tMat,tSound);}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>createWaterBox(tPosition,tScaleX*500,tScaleZ*500,tIsSolid);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Object"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=5)}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[2]);}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tScale\ =\ StringConverter::parseVector3(tLine[3]);}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tRotation\ =\ StringConverter::parseVector3(tLine[4]);}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tSound\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>5)tSound\ =\ tLine[5];}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tMatName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>6)tMatName\ =\ tLine[6];}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addObject(tLine[1],tPosition,tScale,tRotation.x,tRotation.y,tRotation.z,tSound,tMatName);}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Particle"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=3)}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[2]);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tSound\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>3)tSound\ =\ tLine[3];}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addParticle(tLine[1],tPosition,tSound);}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}WeatherCycle"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==2)}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>setWeatherCycle(tLine[1]);}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Interior"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=3)}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isInterior\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>3)mSkyManager-\/>setInteriorSky(\textcolor{keyword}{true},StringConverter::parseColourValue(tLine[3]));}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mSkyManager-\/>setInteriorSky(\textcolor{keyword}{true});}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ceilingHeight\ =\ StringConverter::parseReal(tLine[1]);}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCeiling-\/>setMaterialName(tLine[2]);}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCeilingNode-\/>setPosition(worldSize.x/2,ceilingHeight+20,worldSize.y/2);}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCeilingNode-\/>setScale(worldSize.x/2,200,worldSize.y/2);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCeilingNode-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Light"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==3)}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[1]);}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ColourValue\ tColour\ =\ StringConverter::parseColourValue(tLine[2]);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addLight(tPosition,tColour);}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Billboard"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==4)}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[1]);}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ tScale\ =\ StringConverter::parseVector2(tLine[2]);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tMat\ =\ tLine[3];}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addBillboard(tPosition,tScale,tMat);}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}SphereWall"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==4)}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[1]);}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tRange\ =\ StringConverter::parseReal(tLine[2]);}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tIsInside\ =\ StringConverter::parseBool(tLine[3]);}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>createSphereWall(tPosition,tRange,tIsInside);}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}BoxWall"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==4)}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[1]);}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ tRange\ =\ StringConverter::parseVector2(tLine[2]);}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tIsInside\ =\ StringConverter::parseBool(tLine[3]);}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>createBoxWall(tPosition,Vector3(tRange.x,0,tRange.y),tIsInside);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}MapEffect"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==2)}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mapEffect\ =\ tLine[1];}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Grass"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==4)}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tGrassMat\ =\ tLine[1];}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tGrassMap\ =\ tLine[2];}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tGrassColourMap\ =\ tLine[3];}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}RandomTrees"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==5)}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTree1\ =\ tLine[1];}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTree2\ =\ tLine[2];}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTree3\ =\ tLine[3];}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTreeCount\ =\ StringConverter::parseInt(tLine[4]);}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTreeCount>500\ \&\&\ !mDef-\/>pagedGeometryOn)}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>pagedGeometryOn\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>pagedGeometryForced\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}RandomBushes"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==4)}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBush1\ =\ tLine[1];}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBush2\ =\ tLine[2];}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBush3\ =\ tLine[3];}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(worldSize.x>10000\ \&\&\ !mDef-\/>pagedGeometryOn)}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>pagedGeometryOn\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mDef-\/>pagedGeometryForced\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Trees"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=2)}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)tTreesFilename.push\_back(std::pair<String,bool>(tLine[j],\textcolor{keyword}{false}));}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Bushes"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=2)}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)tBushesFilename.push\_back(std::pair<String,bool>(tLine[j],\textcolor{keyword}{false}));}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}FloatingBushes"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=2)}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)tFloatingBushesFilename.push\_back(std::pair<String,bool>(tLine[j],\textcolor{keyword}{false}));}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}NewTrees"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=2)}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)tTreesFilename.push\_back(std::pair<String,bool>(tLine[j],\textcolor{keyword}{true}));}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}NewBushes"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=2)}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)tBushesFilename.push\_back(std::pair<String,bool>(tLine[j],\textcolor{keyword}{true}));}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}NewFloatingBushes"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()>=2)}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)tFloatingBushesFilename.push\_back(std::pair<String,bool>(tLine[j],\textcolor{keyword}{true}));}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}CollBox"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==3)}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[1]);}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tRange\ =\ StringConverter::parseVector3(tLine[2]);}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>createCollBox(tPosition,tRange);}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}CollSphere"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==3)}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ tPosition\ =\ StringConverter::parseVector3(tLine[1]);}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tRange\ =\ StringConverter::parseReal(tLine[2]);}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>createCollSphere(tPosition,tRange);}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}SpawnCritters"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==2)}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00446\ \textcolor{preprocessor}{\#if\ CUSTOMCRITTERS==1}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tCritterSpawnFilename\ =\ tLine[1];}
+\DoxyCodeLine{00448\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}FreezeTime"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==2)}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyManager-\/>freezeDayTime(\textcolor{keyword}{true},StringConverter::parseReal(tLine[1]));}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(StringUtil::startsWith(tLine[0],\textcolor{stringliteral}{"{}Music"{}},\textcolor{keyword}{false})\ \&\&\ tLine.size()==2)}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>setRandomPlaylist(\textcolor{keyword}{false});}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playMusic(tLine[1].c\_str());}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00462\ }
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Load\ critter\ spawn\ list}}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mDef-\/>loadCritterSpawnList(worldName,critterSpawnLimit,critterSpawnList,critterRoamAreaList,tCritterSpawnFilename))}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Non-\/crittered\ map\ Draw\ Points}}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ critterSpawnList.clear();}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tSize\ =\ (worldSize.x+worldSize.y)*0.5;}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ critterSpawnList.push\_back(\mbox{\hyperlink{struct_world_critter}{WorldCritter}}(\textcolor{stringliteral}{"{}Draw\ Point"{}},0.0001*tSize*0.0001));}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSize<=5000)critterSpawnLimit\ =\ 1;}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tSize<=8000)critterSpawnLimit\ =\ 2;}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vegetation\ 1}}
+\DoxyCodeLine{00474\ }
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ HeightFunction::initialize(mSceneMgr);}
+\DoxyCodeLine{00476\ }
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tGrassMat!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ LOAD\ GRASS\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ and\ configure\ a\ new\ PagedGeometry\ instance\ for\ grass}}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ mGrass\ =\ \textcolor{keyword}{new}\ PagedGeometry(camera,\ 250);}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ mGrass-\/>addDetailLevel<GrassPage>(1500);}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ a\ GrassLoader\ object}}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ GrassLoader\ *grassLoader\ =\ \textcolor{keyword}{new}\ GrassLoader(mGrass);}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ mGrass-\/>setPageLoader(grassLoader);\ \textcolor{comment}{//Assign\ the\ "{}treeLoader"{}\ to\ be\ used\ to\ load\ geometry\ for\ the\ PagedGeometry\ instance}}
+\DoxyCodeLine{00487\ }
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Supply\ a\ height\ function\ to\ GrassLoader\ so\ it\ can\ calculate\ grass\ Y\ values}}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//HeightFunction::initialize(mSceneMgr);}}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ grassLoader-\/>setHeightFunction(\&HeightFunction::getTerrainHeight);}
+\DoxyCodeLine{00491\ }
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Add\ some\ grass\ to\ the\ scene\ with\ GrassLoader::addLayer()}}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ GrassLayer\ *l\ =\ grassLoader-\/>addLayer(tGrassMat);}
+\DoxyCodeLine{00494\ }
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Configure\ the\ grass\ layer\ properties\ (size,\ density,\ animation\ properties,\ fade\ settings,\ etc.)}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setMinimumSize(5,\ 5);}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setMaximumSize(8,\ 8);}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>hasVertexProgram)}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setAnimationEnabled(\textcolor{keyword}{true});\ \ \ \ \ \ \ \textcolor{comment}{//Enable\ animations}}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setSwayDistribution(0.05f);\ \ \ \ \ \ \textcolor{comment}{//Sway\ fairly\ unsynchronized}}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setSwayLength(0.7f);\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Sway\ back\ and\ forth\ 0.5\ units\ in\ length}}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setSwaySpeed(0.5f);\ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Sway\ 1/2\ a\ cycle\ every\ second}}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setDensity(0.0005f);\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Relatively\ dense\ grass}}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setRenderTechnique(GRASSTECH\_CROSSQUADS);}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setFadeTechnique(FADETECH\_GROW);\ \textcolor{comment}{//Distant\ grass\ should\ slowly\ raise\ out\ of\ the\ ground\ when\ coming\ in\ range}}
+\DoxyCodeLine{00508\ }
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//[NOTE]\ This\ sets\ the\ color\ map,\ or\ lightmap\ to\ be\ used\ for\ grass.\ All\ grass\ will\ be\ colored\ according}}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//to\ this\ texture.\ In\ this\ case,\ the\ colors\ of\ the\ terrain\ is\ used\ so\ grass\ will\ be\ shadowed/colored}}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//just\ as\ the\ terrain\ is\ (this\ usually\ makes\ the\ grass\ fit\ in\ very\ well).}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>hasFragmentProgram)l-\/>setColorMap(tGrassColourMap);}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//This\ sets\ the\ density\ map\ that\ will\ be\ used\ to\ determine\ the\ density\ levels\ of\ grass\ all\ over\ the}}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//terrain.\ This\ can\ be\ used\ to\ make\ grass\ grow\ anywhere\ you\ want\ to;\ in\ this\ case\ it's\ used\ to\ make}}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//grass\ grow\ only\ on\ fairly\ level\ ground\ (see\ densitymap.png\ to\ see\ how\ this\ works).}}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setDensityMap(tGrassMap);}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//setMapBounds()\ must\ be\ called\ for\ the\ density\ and\ color\ maps\ to\ work\ (otherwise\ GrassLoader\ wouldn't}}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//have\ any\ knowledge\ of\ where\ you\ want\ the\ maps\ to\ be\ applied).\ In\ this\ case,\ the\ maps\ are\ applied}}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//to\ the\ same\ boundaries\ as\ the\ terrain.}}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ l-\/>setMapBounds(TBounds(0,\ 0,\ worldSize.x,\ worldSize.y));}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ vegetation\ 2\ }}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mDef-\/>pagedGeometryOn)initializeStaticGeometry();}
+\DoxyCodeLine{00526\ }
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTreesFilename.size()>0||tTree1!=\textcolor{stringliteral}{"{}"{}}||tTree2!=\textcolor{stringliteral}{"{}"{}}||tTree3!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ LOAD\ TREES\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ TreeLoader2D\ *treeLoader\ =\ 0;}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ TreeLoader2D\ *largeTreeLoader\ =\ 0;}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *tree1\ =\ 0;}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *tree2\ =\ 0;}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *tree3\ =\ 0;}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ hasLargeTrees\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTrees\ =\ \textcolor{keyword}{new}\ PagedGeometry();}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTrees-\/>setCamera(camera);\ \ \textcolor{comment}{//Set\ the\ camera\ so\ PagedGeometry\ knows\ how\ to\ calculate\ LODs}}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTrees-\/>setPageSize(250);\ \ \ \textcolor{comment}{//Set\ the\ size\ of\ each\ page\ of\ geometry}}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mTrees-\/>setInfinite();\ \ \ \ \ \ \ \ //Use\ infinite\ paging\ mode}}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTrees-\/>addDetailLevel<BatchPage>(1500,\ (mDef-\/>hasVertexProgram?300:0));\ \ \ \ \ \ \ \ \textcolor{comment}{//Use\ batches\ up\ to\ 150\ units\ away,\ and\ fade\ for\ 30\ more\ units}}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mTrees-\/>addDetailLevel<ImpostorPage>(1000,\ 150);\ \ //Use\ impostors\ up\ to\ 400\ units,\ and\ for\ for\ 50\ more\ units}}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ a\ new\ TreeLoader2D\ object}}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ treeLoader\ =\ \textcolor{keyword}{new}\ TreeLoader2D(mTrees,\ TBounds(0,\ 0,\ worldSize.x,\ worldSize.y));}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mTrees-\/>setPageLoader(treeLoader);\ \ \textcolor{comment}{//Assign\ the\ "{}treeLoader"{}\ to\ be\ used\ to\ load\ geometry\ for\ the\ PagedGeometry\ instance}}
+\DoxyCodeLine{00548\ }
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Supply\ a\ height\ function\ to\ TreeLoader2D\ so\ it\ can\ calculate\ tree\ Y\ values}}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//HeightFunction::initialize(mSceneMgr);}}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ treeLoader-\/>setHeightFunction(\&HeightFunction::getTerrainHeight);}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLargeTrees\ =\ \textcolor{keyword}{new}\ PagedGeometry(camera,250);}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLargeTrees-\/>addDetailLevel<BatchPage>(1500,\ (mDef-\/>hasVertexProgram?300:0));}
+\DoxyCodeLine{00555\ }
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ largeTreeLoader\ =\ \textcolor{keyword}{new}\ TreeLoader2D(mLargeTrees,\ TBounds(0,\ 0,\ worldSize.x,\ worldSize.y));}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLargeTrees-\/>setPageLoader(largeTreeLoader);}
+\DoxyCodeLine{00558\ }
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//HeightFunction::initialize(mSceneMgr);}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ largeTreeLoader-\/>setHeightFunction(\&HeightFunction::getTerrainHeight);}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//[NOTE]\ This\ sets\ the\ color\ map,\ or\ lightmap\ to\ be\ used\ for\ trees.\ All\ trees\ will\ be\ colored\ according}}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//to\ this\ texture.\ In\ this\ case,\ the\ shading\ of\ the\ terrain\ is\ used\ so\ trees\ will\ be\ shadowed}}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//just\ as\ the\ terrain\ is\ (this\ should\ appear\ like\ the\ terrain\ is\ casting\ shadows\ on\ the\ trees).}}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//You\ may\ notice\ that\ TreeLoader2D\ /\ TreeLoader3D\ doesn't\ have\ a\ setMapBounds()\ function\ as\ GrassLoader}}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//does.\ This\ is\ because\ the\ bounds\ you\ specify\ in\ the\ TreeLoader2D\ constructor\ are\ used\ to\ apply}}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//the\ color\ map.}}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//treeLoader-\/>setColorMap("{}terrain\_lightmap.jpg"{});}}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Random\ Trees}}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTree1!=\textcolor{stringliteral}{"{}"{}})\{tree1\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Tree1"{}},\ tTree1);\ numTreeMeshes++;\}}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTree2!=\textcolor{stringliteral}{"{}"{}})\{tree2\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Tree2"{}},\ tTree2);\ numTreeMeshes++;\}}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTree3!=\textcolor{stringliteral}{"{}"{}})\{tree3\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Tree3"{}},\ tTree3);\ numTreeMeshes++;\}}
+\DoxyCodeLine{00574\ }
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTree1!=\textcolor{stringliteral}{"{}"{}}||tTree2!=\textcolor{stringliteral}{"{}"{}}||tTree3!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::Vector3\ position\ =\ Ogre::Vector3::ZERO;}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Radian\ yaw;}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Real\ scale;}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ tTreeCount;\ i++)\{}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yaw\ =\ Degree(Math::RangeRandom(0,\ 360));}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.x\ =\ Math::RangeRandom(0,\ worldSize.x);}
+\DoxyCodeLine{00584\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.z\ =\ Math::RangeRandom(0,\ worldSize.y);}
+\DoxyCodeLine{00585\ }
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scale\ =\ Math::RangeRandom(0.8f,\ 1.0f);}
+\DoxyCodeLine{00587\ }
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//[NOTE]\ Unlike\ TreeLoader3D,\ TreeLoader2D's\ addTree()\ function\ accepts\ a\ Vector2D\ position\ (x/z)}}
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//The\ Y\ value\ is\ calculated\ during\ runtime\ (to\ save\ memory)\ from\ the\ height\ function\ supplied\ (above)}}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ rnd\ =\ Math::UnitRandom();}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rnd<0.33\ \&\&\ tTree1!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)treeLoader-\/>addTree(tree1,\ position,\ yaw,\ scale);}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.y\ =\ HeightFunction::getTerrainHeight(position.x,position.z);}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromAngleAxis(yaw,Vector3::UNIT\_Y);}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(tree1,position,orientation,Vector3(scale,scale,scale));}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(rnd<0.66\ \&\&\ tTree2!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)treeLoader-\/>addTree(tree2,\ position,\ yaw,\ scale);}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.y\ =\ HeightFunction::getTerrainHeight(position.x,position.z);}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromAngleAxis(yaw,Vector3::UNIT\_Y);}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(tree2,position,orientation,Vector3(scale,scale,scale));}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tTree3!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)treeLoader-\/>addTree(tree3,\ position,\ yaw,\ scale);}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.y\ =\ HeightFunction::getTerrainHeight(position.x,position.z);}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromAngleAxis(yaw,Vector3::UNIT\_Y);}
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(tree3,position,orientation,Vector3(scale,scale,scale));}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Positioned\ Trees}}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ h=0;h<(int)tTreesFilename.size();h++)}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tObjects\ =\ mDef-\/>loadWorldObjects(\textcolor{stringliteral}{"{}media/terrains/"{}}+worldName+\textcolor{stringliteral}{"{}/"{}}+tTreesFilename[h].first);}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tObjects.length()>0)}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tObjects,\textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)tPart.size();i++)}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tPart[i],\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>1)}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numTreeMeshes++;}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tMesh\ =\ tLine[0];}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMeshMat\ =\ StringUtil::split(tMesh,\textcolor{stringliteral}{"{};]"{}});}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMeshMat.size()>0)tMesh\ =\ tMeshMat[0];}
+\DoxyCodeLine{00642\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *tree\ =\ 0;}
+\DoxyCodeLine{00643\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tree\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Tree"{}}+StringConverter::toString(numTreeMeshes),\ tMesh);}
+\DoxyCodeLine{00644\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMeshMat.size()>1)}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tMeshMat.size();j++)}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::endsWith(tMeshMat[j],\textcolor{stringliteral}{"{})"{}}))}
+\DoxyCodeLine{00649\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMat\ =\ StringUtil::split(tMeshMat[j],\textcolor{stringliteral}{"{}()"{}});}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMat.size()>=2)}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SubEntity\ *tSub\ =\ tree-\/>getSubEntity(StringConverter::parseInt(tMat[1]));}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSub)tSub-\/>setMaterialName(tMat[0]);}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tree-\/>setMaterialName(tMeshMat[j]);}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tSegment\ =\ StringUtil::split(tLine[j],\textcolor{stringliteral}{"{};"{}});}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSegment.size()==3)}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ position;}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTreesFilename[h].second)position\ =\ StringConverter::parseVector3(tSegment[0]);}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ p\ =\ StringConverter::parseVector2(tSegment[0]);}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position\ =\ Vector3(p.x,0,p.y);}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ scale;}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTreesFilename[h].second)scale\ =\ StringConverter::parseVector3(tSegment[1]);}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ scale\ =\ Vector3(1,1,1)*StringConverter::parseReal(tSegment[1]);}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ pyr;}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTreesFilename[h].second)pyr\ =\ StringConverter::parseVector3(tSegment[2]);}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ pyr\ =\ Vector3(0,StringConverter::parseReal(tSegment[2]),0);}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(scale.y>=2)}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasLargeTrees\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(scale.y>largeTreeLoader-\/>getMaximumScale())largeTreeLoader-\/>setMaximumScale(scale.y);}
+\DoxyCodeLine{00688\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ largeTreeLoader-\/>addTree(tree,\ position,\ Degree(pyr.y),\ scale.y);}
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ treeLoader-\/>addTree(tree,\ position,\ Degree(pyr.y),\ scale.y);}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tTreesFilename[h].second)position.y\ =\ HeightFunction::getTerrainHeight(position.x,position.z);}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Matrix3\ m;\ m.FromEulerAnglesXYZ(Degree(pyr.x),Degree(pyr.y),Degree(pyr.z));}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromRotationMatrix(m);}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(tree,position,orientation,scale);}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!hasLargeTrees\ \&\&\ mLargeTrees)}
+\DoxyCodeLine{00707\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mLargeTrees-\/>getPageLoader();}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mLargeTrees;}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLargeTrees\ =\ 0;}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00712\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00713\ }
+\DoxyCodeLine{00714\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBushesFilename.size()>0||tBush1!=\textcolor{stringliteral}{"{}"{}}||tBush2!=\textcolor{stringliteral}{"{}"{}}||tBush3!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00716\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ LOAD\ BUSHES\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00717\ \ \ \ \ \ \ \ \ \ \ \ \ TreeLoader2D\ *bushLoader=0;}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *bush1\ =\ 0;}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *bush2\ =\ 0;}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *bush3\ =\ 0;}
+\DoxyCodeLine{00721\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ and\ configure\ a\ new\ PagedGeometry\ instance\ for\ bushes}}
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBushes\ =\ \textcolor{keyword}{new}\ PagedGeometry(camera,\ 100);}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBushes-\/>addDetailLevel<BatchPage>(1000,\ (mDef-\/>hasVertexProgram?200:0));}
+\DoxyCodeLine{00726\ }
+\DoxyCodeLine{00727\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ a\ new\ TreeLoader2D\ object\ for\ the\ bushes}}
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bushLoader\ =\ \textcolor{keyword}{new}\ TreeLoader2D(mBushes,\ TBounds(0,\ 0,\ worldSize.x,\ worldSize.y));}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBushes-\/>setPageLoader(bushLoader);}
+\DoxyCodeLine{00730\ }
+\DoxyCodeLine{00731\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Supply\ the\ height\ function\ to\ TreeLoader2D\ so\ it\ can\ calculate\ tree\ Y\ values}}
+\DoxyCodeLine{00732\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//HeightFunction::initialize(mSceneMgr);}}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bushLoader-\/>setHeightFunction(\&HeightFunction::getTerrainHeight);}
+\DoxyCodeLine{00734\ }
+\DoxyCodeLine{00735\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//bushLoader-\/>setColorMap("{}terrain\_lightmap.jpg"{});}}
+\DoxyCodeLine{00736\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Random\ Bushes}}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBush1!=\textcolor{stringliteral}{"{}"{}})\{bush1\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Bush1"{}},\ tBush1);\ numBushMeshes++;\}}
+\DoxyCodeLine{00739\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBush2!=\textcolor{stringliteral}{"{}"{}})\{bush2\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Bush2"{}},\ tBush2);\ numBushMeshes++;\}}
+\DoxyCodeLine{00740\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBush3!=\textcolor{stringliteral}{"{}"{}})\{bush3\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Bush3"{}},\ tBush3);\ numBushMeshes++;\}}
+\DoxyCodeLine{00741\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00742\ }
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBush1!=\textcolor{stringliteral}{"{}"{}}||tBush2!=\textcolor{stringliteral}{"{}"{}}||tBush3!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00745\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::Vector3\ position\ =\ Ogre::Vector3::ZERO;}
+\DoxyCodeLine{00746\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Radian\ yaw;}
+\DoxyCodeLine{00747\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Real\ scale;}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ worldSize.x;\ i++)\{}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yaw\ =\ Degree(Math::RangeRandom(0,\ 360));}
+\DoxyCodeLine{00750\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.x\ =\ Math::RangeRandom(0,\ worldSize.x);}
+\DoxyCodeLine{00751\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.z\ =\ Math::RangeRandom(0,\ worldSize.y);}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ scale\ =\ Math::RangeRandom(0.6f,\ 1.0f);}
+\DoxyCodeLine{00753\ }
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{float}\ rnd\ =\ Math::UnitRandom();}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(rnd<0.33\ \&\&\ tBush1!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00757\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)bushLoader-\/>addTree(bush1,\ position,\ yaw,\ scale);}
+\DoxyCodeLine{00758\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00759\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.y\ =\ HeightFunction::getTerrainHeight(position.x,position.z);}
+\DoxyCodeLine{00761\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00762\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromAngleAxis(yaw,Vector3::UNIT\_Y);}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(bush1,position,orientation,Vector3(scale,scale,scale));}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(rnd<0.66\ \&\&\ tBush2!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)bushLoader-\/>addTree(bush2,\ position,\ yaw,\ scale);}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.y\ =\ HeightFunction::getTerrainHeight(position.x,position.z);}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00773\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromAngleAxis(yaw,Vector3::UNIT\_Y);}
+\DoxyCodeLine{00774\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(bush2,position,orientation,Vector3(scale,scale,scale));}
+\DoxyCodeLine{00775\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tBush3!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)bushLoader-\/>addTree(bush3,\ position,\ yaw,\ scale);}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position.y\ =\ HeightFunction::getTerrainHeight(position.x,position.z);}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromAngleAxis(yaw,Vector3::UNIT\_Y);}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(bush3,position,orientation,Vector3(scale,scale,scale));}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00788\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00789\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Positioned\ Bushes}}
+\DoxyCodeLine{00791\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ h=0;h<(int)tBushesFilename.size();h++)}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00793\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tObjects\ =\ mDef-\/>loadWorldObjects(\textcolor{stringliteral}{"{}media/terrains/"{}}+worldName+\textcolor{stringliteral}{"{}/"{}}+tBushesFilename[h].first);}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tObjects.length()>0)}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tObjects,\textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)tPart.size();i++)}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tPart[i],\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>1)}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numBushMeshes++;}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tMesh\ =\ tLine[0];}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMeshMat\ =\ StringUtil::split(tMesh,\textcolor{stringliteral}{"{};]"{}});}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMeshMat.size()>0)tMesh\ =\ tMeshMat[0];}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *bush\ =\ 0;}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bush\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Bush"{}}+StringConverter::toString(numBushMeshes),\ tMesh);}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMeshMat.size()>1)}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tMeshMat.size();j++)}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::endsWith(tMeshMat[j],\textcolor{stringliteral}{"{})"{}}))}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMat\ =\ StringUtil::split(tMeshMat[j],\textcolor{stringliteral}{"{}()"{}});}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMat.size()>=2)}
+\DoxyCodeLine{00816\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00817\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SubEntity\ *tSub\ =\ bush-\/>getSubEntity(StringConverter::parseInt(tMat[1]));}
+\DoxyCodeLine{00818\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSub)tSub-\/>setMaterialName(tMat[0]);}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bush-\/>setMaterialName(tMeshMat[j]);}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)}
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tSegment\ =\ StringUtil::split(tLine[j],\textcolor{stringliteral}{"{};"{}});}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSegment.size()==3)}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ position;}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBushesFilename[h].second)position\ =\ StringConverter::parseVector3(tSegment[0]);}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00837\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ p\ =\ StringConverter::parseVector2(tSegment[0]);}
+\DoxyCodeLine{00838\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ position\ =\ Vector3(p.x,0,p.y);}
+\DoxyCodeLine{00839\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ scale;}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBushesFilename[h].second)scale\ =\ StringConverter::parseVector3(tSegment[1]);}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ scale\ =\ Vector3(1,1,1)*StringConverter::parseReal(tSegment[1]);}
+\DoxyCodeLine{00843\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ pyr;}
+\DoxyCodeLine{00844\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tBushesFilename[h].second)pyr\ =\ StringConverter::parseVector3(tSegment[2]);}
+\DoxyCodeLine{00845\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ pyr\ =\ Vector3(0,StringConverter::parseReal(tSegment[2]),0);}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)bushLoader-\/>addTree(bush,\ position,\ Degree(pyr.y),\ scale.y);}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00849\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tBushesFilename[h].second)position.y\ =\ HeightFunction::getTerrainHeight(position.x,position.z);}
+\DoxyCodeLine{00850\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Matrix3\ m;\ m.FromEulerAnglesXYZ(Degree(pyr.x),Degree(pyr.y),Degree(pyr.z));}
+\DoxyCodeLine{00851\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00852\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromRotationMatrix(m);}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(bush,position,orientation,scale);}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00859\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00860\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00861\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00862\ }
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ h=0;h<(int)tFloatingBushesFilename.size();h++)}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/\ LOAD\ FLOATING\ BUSHES\ -\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \ \ \ \ TreeLoader3D\ *bushLoader=0;}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00869\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Create\ and\ configure\ a\ new\ PagedGeometry\ instance\ for\ bushes}}
+\DoxyCodeLine{00870\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mFloatingBushes\ =\ \textcolor{keyword}{new}\ PagedGeometry(camera,\ 100);}
+\DoxyCodeLine{00871\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mFloatingBushes-\/>addDetailLevel<BatchPage>(1000,\ (mDef-\/>hasVertexProgram?200:0));}
+\DoxyCodeLine{00872\ }
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bushLoader\ =\ \textcolor{keyword}{new}\ TreeLoader3D(mFloatingBushes,\ TBounds(0,\ 0,\ worldSize.x,\ worldSize.y));}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mFloatingBushes-\/>setPageLoader(bushLoader);}
+\DoxyCodeLine{00875\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00876\ }
+\DoxyCodeLine{00877\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tObjects\ =\ mDef-\/>loadWorldObjects(\textcolor{stringliteral}{"{}media/terrains/"{}}+worldName+\textcolor{stringliteral}{"{}/"{}}+tFloatingBushesFilename[h].first);}
+\DoxyCodeLine{00878\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tObjects.length()>0)}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00880\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tObjects,\textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{00881\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)tPart.size();i++)}
+\DoxyCodeLine{00882\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00883\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tPart[i],\textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tLine.size()>1)}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ numBushMeshes++;}
+\DoxyCodeLine{00887\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tMesh\ =\ tLine[0];}
+\DoxyCodeLine{00888\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMeshMat\ =\ StringUtil::split(tMesh,\textcolor{stringliteral}{"{};]"{}});}
+\DoxyCodeLine{00889\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMeshMat.size()>0)tMesh\ =\ tMeshMat[0];}
+\DoxyCodeLine{00890\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *bush\ =\ 0;}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bush\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Bush"{}}+StringConverter::toString(numBushMeshes),\ tMesh);}
+\DoxyCodeLine{00892\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMeshMat.size()>1)}
+\DoxyCodeLine{00893\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00894\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tMeshMat.size();j++)}
+\DoxyCodeLine{00895\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(StringUtil::endsWith(tMeshMat[j],\textcolor{stringliteral}{"{})"{}}))}
+\DoxyCodeLine{00897\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00898\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tMat\ =\ StringUtil::split(tMeshMat[j],\textcolor{stringliteral}{"{}()"{}});}
+\DoxyCodeLine{00899\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tMat.size()>=2)}
+\DoxyCodeLine{00900\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00901\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SubEntity\ *tSub\ =\ bush-\/>getSubEntity(StringConverter::parseInt(tMat[1]));}
+\DoxyCodeLine{00902\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSub)tSub-\/>setMaterialName(tMat[0]);}
+\DoxyCodeLine{00903\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00904\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00905\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00906\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00907\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ bush-\/>setMaterialName(tMeshMat[j]);}
+\DoxyCodeLine{00908\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00909\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00910\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00911\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00912\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<(int)tLine.size();j++)}
+\DoxyCodeLine{00913\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00914\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tSegment\ =\ StringUtil::split(tLine[j],\textcolor{stringliteral}{"{};"{}});}
+\DoxyCodeLine{00915\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSegment.size()==3)}
+\DoxyCodeLine{00916\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00917\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ position\ =\ StringConverter::parseVector3(tSegment[0]);}
+\DoxyCodeLine{00918\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ scale;}
+\DoxyCodeLine{00919\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tFloatingBushesFilename[h].second)scale\ =\ StringConverter::parseVector3(tSegment[1]);}
+\DoxyCodeLine{00920\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ scale\ =\ Vector3(1,1,1)*StringConverter::parseReal(tSegment[1]);}
+\DoxyCodeLine{00921\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector3\ pyr;}
+\DoxyCodeLine{00922\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tFloatingBushesFilename[h].second)pyr\ =\ StringConverter::parseVector3(tSegment[2]);}
+\DoxyCodeLine{00923\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ pyr\ =\ Vector3(0,StringConverter::parseReal(tSegment[2]),0);}
+\DoxyCodeLine{00924\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDef-\/>pagedGeometryOn)bushLoader-\/>addTree(bush,\ position,\ Degree(pyr.y),\ scale.y);}
+\DoxyCodeLine{00925\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00926\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00927\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Matrix3\ m;\ m.FromEulerAnglesXYZ(Degree(pyr.x),Degree(pyr.y),Degree(pyr.z));}
+\DoxyCodeLine{00928\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Quaternion\ orientation;}
+\DoxyCodeLine{00929\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ orientation.FromRotationMatrix(m);}
+\DoxyCodeLine{00930\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addStaticGeometry(bush,position,orientation,scale);}
+\DoxyCodeLine{00931\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00932\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00933\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00934\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00935\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00936\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00937\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00938\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00939\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mDef-\/>pagedGeometryOn)}
+\DoxyCodeLine{00940\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00941\ \ \ \ \ \ \ \ \ \ \ \ \ buildStaticGeometry();}
+\DoxyCodeLine{00942\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00943\ \ \ \ \ \}}
+\DoxyCodeLine{00944\ \ \ \ \ \textcolor{keywordtype}{void}\ unloadWorld()}
+\DoxyCodeLine{00945\ \ \ \ \ \{}
+\DoxyCodeLine{00946\ \ \ \ \ \ \ \ \ worldName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00947\ \ \ \ \ \ \ \ \ isInterior\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00948\ \ \ \ \ \ \ \ \ mapEffect\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00949\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mGrass)}
+\DoxyCodeLine{00950\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00951\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mGrass-\/>getPageLoader();}
+\DoxyCodeLine{00952\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mGrass;}
+\DoxyCodeLine{00953\ \ \ \ \ \ \ \ \ \ \ \ \ mGrass\ =\ 0;}
+\DoxyCodeLine{00954\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00955\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mTrees)}
+\DoxyCodeLine{00956\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00957\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mTrees-\/>getPageLoader();}
+\DoxyCodeLine{00958\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mTrees;}
+\DoxyCodeLine{00959\ \ \ \ \ \ \ \ \ \ \ \ \ mTrees\ =\ 0;}
+\DoxyCodeLine{00960\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00961\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBushes)}
+\DoxyCodeLine{00962\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00963\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mBushes-\/>getPageLoader();}
+\DoxyCodeLine{00964\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mBushes;}
+\DoxyCodeLine{00965\ \ \ \ \ \ \ \ \ \ \ \ \ mBushes\ =\ 0;}
+\DoxyCodeLine{00966\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00967\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mLargeTrees)}
+\DoxyCodeLine{00968\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00969\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mLargeTrees-\/>getPageLoader();}
+\DoxyCodeLine{00970\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mLargeTrees;}
+\DoxyCodeLine{00971\ \ \ \ \ \ \ \ \ \ \ \ \ mLargeTrees\ =\ 0;}
+\DoxyCodeLine{00972\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00973\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mFloatingBushes)}
+\DoxyCodeLine{00974\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00975\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mFloatingBushes-\/>getPageLoader();}
+\DoxyCodeLine{00976\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mFloatingBushes;}
+\DoxyCodeLine{00977\ \ \ \ \ \ \ \ \ \ \ \ \ mFloatingBushes\ =\ 0;}
+\DoxyCodeLine{00978\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00979\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr)}
+\DoxyCodeLine{00980\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00981\ \ \ \ \ \ \ \ \ \ \ \ \ destroyStaticGeometry();}
+\DoxyCodeLine{00982\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<=numTreeMeshes;i++)}
+\DoxyCodeLine{00983\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasEntity(\textcolor{stringliteral}{"{}Tree"{}}+StringConverter::toString(i)))mSceneMgr-\/>destroyEntity(\textcolor{stringliteral}{"{}Tree"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00984\ \ \ \ \ \ \ \ \ \ \ \ \ numTreeMeshes\ =\ 0;}
+\DoxyCodeLine{00985\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<=numBushMeshes;i++)}
+\DoxyCodeLine{00986\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasEntity(\textcolor{stringliteral}{"{}Bush"{}}+StringConverter::toString(i)))mSceneMgr-\/>destroyEntity(\textcolor{stringliteral}{"{}Bush"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00987\ \ \ \ \ \ \ \ \ \ \ \ \ numBushMeshes\ =\ 0;}
+\DoxyCodeLine{00988\ \ \ \ \ \ \ \ \ \ \ \ \ destroyAllWaterPlanes();}
+\DoxyCodeLine{00989\ \ \ \ \ \ \ \ \ \ \ \ \ destroyAllObjects();}
+\DoxyCodeLine{00990\ \ \ \ \ \ \ \ \ \ \ \ \ destroyAllParticles();}
+\DoxyCodeLine{00991\ \ \ \ \ \ \ \ \ \ \ \ \ destroyAllLights();}
+\DoxyCodeLine{00992\ \ \ \ \ \ \ \ \ \ \ \ \ destroyAllBillboards();}
+\DoxyCodeLine{00993\ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>destroyAllPortals();}
+\DoxyCodeLine{00994\ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>destroyAllGates();}
+\DoxyCodeLine{00995\ \ \ \ \ \ \ \ \ \ \ \ \ mCollisionManager-\/>destroyAllWaterBoxes();}
+\DoxyCodeLine{00996\ \ \ \ \ \ \ \ \ \ \ \ \ mCeilingNode-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00997\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00998\ \ \ \ \ \}}
+\DoxyCodeLine{00999\ \ \ \ \ \textcolor{keyword}{const}\ Vector3\ getSpawnSquare()}
+\DoxyCodeLine{01000\ \ \ \ \ \{}
+\DoxyCodeLine{01001\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ spawnSquare;}
+\DoxyCodeLine{01002\ \ \ \ \ \}}
+\DoxyCodeLine{01003\ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ getWorldSize()}
+\DoxyCodeLine{01004\ \ \ \ \ \{}
+\DoxyCodeLine{01005\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ worldSize;}
+\DoxyCodeLine{01006\ \ \ \ \ \}}
+\DoxyCodeLine{01007\ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ getWorldBounds()}
+\DoxyCodeLine{01008\ \ \ \ \ \{}
+\DoxyCodeLine{01009\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ worldBounds;}
+\DoxyCodeLine{01010\ \ \ \ \ \}}
+\DoxyCodeLine{01011\ \ \ \ \ \textcolor{keyword}{const}\ String\ getWorldName()}
+\DoxyCodeLine{01012\ \ \ \ \ \{}
+\DoxyCodeLine{01013\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ worldName;}
+\DoxyCodeLine{01014\ \ \ \ \ \}}
+\DoxyCodeLine{01015\ \ \ \ \ \textcolor{keywordtype}{void}\ addWaterPlane(\textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keyword}{const}\ Real\ \&scaleX,\ \textcolor{keyword}{const}\ Real\ \&scaleZ,\ \textcolor{keyword}{const}\ String\ \&matName=\textcolor{stringliteral}{"{}Terrain/CalmWater"{}},\ \textcolor{keyword}{const}\ String\ \&playSound=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01016\ \ \ \ \ \{}
+\DoxyCodeLine{01017\ \ \ \ \ \ \ \ \ numWaterPlanes\ +=\ 1;}
+\DoxyCodeLine{01018\ }
+\DoxyCodeLine{01019\ \ \ \ \ \ \ \ \ Entity*\ waterPlaneEnt\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}WorldWaterPlane"{}}+StringConverter::toString(numWaterPlanes),\ \textcolor{stringliteral}{"{}WaterPlaneMesh"{}});}
+\DoxyCodeLine{01020\ \ \ \ \ \ \ \ \ waterPlaneEnt-\/>setMaterialName(matName);}
+\DoxyCodeLine{01021\ \ \ \ \ \ \ \ \ waterPlaneEnt-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{01022\ \ \ \ \ \ \ \ \ SceneNode*\ waterNode\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{01023\ }
+\DoxyCodeLine{01024\ \ \ \ \ \ \ \ \ waterNode-\/>attachObject(waterPlaneEnt);}
+\DoxyCodeLine{01025\ \ \ \ \ \ \ \ \ waterNode-\/>setPosition(position);}
+\DoxyCodeLine{01026\ \ \ \ \ \ \ \ \ waterNode-\/>scale(scaleX,1,scaleZ);}
+\DoxyCodeLine{01027\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(playSound!=\textcolor{stringliteral}{"{}"{}}\&\&playSound!=\textcolor{stringliteral}{"{}no\ sound"{}})mSoundManager-\/>playLoopedSound(playSound.c\_str(),waterNode);}
+\DoxyCodeLine{01028\ \ \ \ \ \}}
+\DoxyCodeLine{01029\ \ \ \ \ \textcolor{keywordtype}{void}\ addObject(\textcolor{keyword}{const}\ String\ \&meshName,\ \textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keyword}{const}\ Vector3\ \&scale,\ \textcolor{keyword}{const}\ Real\ \&pitch,\ \textcolor{keyword}{const}\ Real\ \&yaw,\ \textcolor{keyword}{const}\ Real\ \&roll,\ \textcolor{keyword}{const}\ String\ \&playSound=\textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ String\ \&matName=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01030\ \ \ \ \ \{}
+\DoxyCodeLine{01031\ \ \ \ \ \ \ \ \ numObjects\ +=\ 1;}
+\DoxyCodeLine{01032\ }
+\DoxyCodeLine{01033\ \ \ \ \ \ \ \ \ Entity*\ ent\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}WorldObject"{}}+StringConverter::toString(numObjects),\ meshName);}
+\DoxyCodeLine{01034\ \ \ \ \ \ \ \ \ SceneNode*\ node\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{01035\ }
+\DoxyCodeLine{01036\ \ \ \ \ \ \ \ \ node-\/>attachObject(ent);}
+\DoxyCodeLine{01037\ \ \ \ \ \ \ \ \ node-\/>setPosition(position);}
+\DoxyCodeLine{01038\ \ \ \ \ \ \ \ \ node-\/>scale(scale);}
+\DoxyCodeLine{01039\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pitch!=0)node-\/>pitch(Degree(pitch));}
+\DoxyCodeLine{01040\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(yaw!=0)node-\/>yaw(Degree(yaw));}
+\DoxyCodeLine{01041\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(roll!=0)node-\/>roll(Degree(roll));}
+\DoxyCodeLine{01042\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(playSound!=\textcolor{stringliteral}{"{}"{}}\&\&playSound!=\textcolor{stringliteral}{"{}no\ sound"{}})mSoundManager-\/>playLoopedSound(playSound.c\_str(),node);}
+\DoxyCodeLine{01043\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(matName!=\textcolor{stringliteral}{"{}"{}})ent-\/>setMaterialName(matName);}
+\DoxyCodeLine{01044\ \ \ \ \ \}}
+\DoxyCodeLine{01045\ \ \ \ \ \textcolor{keywordtype}{void}\ addParticle(\textcolor{keyword}{const}\ String\ \&sysName,\ \textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keyword}{const}\ String\ \&playSound=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{01046\ \ \ \ \ \{}
+\DoxyCodeLine{01047\ \ \ \ \ \ \ \ \ numParticles\ +=\ 1;}
+\DoxyCodeLine{01048\ }
+\DoxyCodeLine{01049\ \ \ \ \ \ \ \ \ ParticleSystem\ *pSys\ =\ mSceneMgr-\/>createParticleSystem(\textcolor{stringliteral}{"{}WorldParticle"{}}+StringConverter::toString(numParticles),sysName);}
+\DoxyCodeLine{01050\ \ \ \ \ \ \ \ \ SceneNode*\ pSysNode\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{01051\ }
+\DoxyCodeLine{01052\ \ \ \ \ \ \ \ \ pSysNode-\/>attachObject(pSys);}
+\DoxyCodeLine{01053\ \ \ \ \ \ \ \ \ pSysNode-\/>setPosition(position);}
+\DoxyCodeLine{01054\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(playSound!=\textcolor{stringliteral}{"{}"{}}\&\&playSound!=\textcolor{stringliteral}{"{}no\ sound"{}})mSoundManager-\/>playLoopedSound(playSound.c\_str(),pSysNode);}
+\DoxyCodeLine{01055\ \ \ \ \ \}}
+\DoxyCodeLine{01056\ \ \ \ \ \textcolor{keywordtype}{void}\ addLight(\textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keyword}{const}\ ColourValue\ \&colour)}
+\DoxyCodeLine{01057\ \ \ \ \ \{}
+\DoxyCodeLine{01058\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(numLights>=MAX\_LIGHTS)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01059\ \ \ \ \ \ \ \ \ mLight[numLights]\ =\ mSceneMgr-\/>createLight(\textcolor{stringliteral}{"{}WorldLight"{}}+StringConverter::toString(numLights));}
+\DoxyCodeLine{01060\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(push)}}
+\DoxyCodeLine{01061\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(disable\ :\ 4482)}}
+\DoxyCodeLine{01062\ \ \ \ \ \ \ \ \ mLight[numLights]-\/>setType(Light::LightTypes::LT\_POINT);}
+\DoxyCodeLine{01063\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(pop)}}
+\DoxyCodeLine{01064\ \ \ \ \ \ \ \ \ mLight[numLights]-\/>setPosition(position);}
+\DoxyCodeLine{01065\ \ \ \ \ \ \ \ \ mLight[numLights]-\/>setDiffuseColour(colour);}
+\DoxyCodeLine{01066\ \ \ \ \ \ \ \ \ mLight[numLights]-\/>setSpecularColour(colour);}
+\DoxyCodeLine{01067\ \ \ \ \ \ \ \ \ mLight[numLights]-\/>setAttenuation(700,1,0.007,0);}
+\DoxyCodeLine{01068\ \ \ \ \ \ \ \ \ numLights++;}
+\DoxyCodeLine{01069\ \ \ \ \ \}}
+\DoxyCodeLine{01070\ \ \ \ \ \textcolor{keywordtype}{void}\ addBillboard(\textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keyword}{const}\ Vector2\ \&scale,\ \textcolor{keyword}{const}\ String\ \&matName)}
+\DoxyCodeLine{01071\ \ \ \ \ \{}
+\DoxyCodeLine{01072\ \ \ \ \ \ \ \ \ numBillboards\ +=\ 1;}
+\DoxyCodeLine{01073\ }
+\DoxyCodeLine{01074\ \ \ \ \ \ \ \ \ BillboardSet\ *set\ =\ mSceneMgr-\/>createBillboardSet(\textcolor{stringliteral}{"{}WorldBillboard"{}}+StringConverter::toString(numBillboards),1);}
+\DoxyCodeLine{01075\ \ \ \ \ \ \ \ \ set-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{01076\ \ \ \ \ \ \ \ \ set-\/>setMaterialName(matName);}
+\DoxyCodeLine{01077\ \ \ \ \ \ \ \ \ set-\/>setDefaultDimensions(scale.x,scale.y);}
+\DoxyCodeLine{01078\ \ \ \ \ \ \ \ \ set-\/>createBillboard(Vector3::ZERO);}
+\DoxyCodeLine{01079\ \ \ \ \ \ \ \ \ SceneNode*\ node\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{01080\ }
+\DoxyCodeLine{01081\ \ \ \ \ \ \ \ \ node-\/>attachObject(set);}
+\DoxyCodeLine{01082\ \ \ \ \ \ \ \ \ node-\/>setPosition(position);}
+\DoxyCodeLine{01083\ \ \ \ \ \}}
+\DoxyCodeLine{01084\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyAllWaterPlanes()}
+\DoxyCodeLine{01085\ \ \ \ \ \{}
+\DoxyCodeLine{01086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(numWaterPlanes)}
+\DoxyCodeLine{01087\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasEntity(\textcolor{stringliteral}{"{}WorldWaterPlane"{}}+StringConverter::toString(numWaterPlanes)))}
+\DoxyCodeLine{01089\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *ent\ =\ mSceneMgr-\/>getEntity(\textcolor{stringliteral}{"{}WorldWaterPlane"{}}+StringConverter::toString(numWaterPlanes));}
+\DoxyCodeLine{01091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode*\ node\ =\ ent-\/>getParentSceneNode();}
+\DoxyCodeLine{01092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>stopLoopedSoundByNode(node);}
+\DoxyCodeLine{01094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>detachAllObjects();}
+\DoxyCodeLine{01095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(node-\/>getName());}
+\DoxyCodeLine{01096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyEntity(ent);}
+\DoxyCodeLine{01097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01098\ \ \ \ \ \ \ \ \ \ \ \ \ numWaterPlanes\ -\/=\ 1;}
+\DoxyCodeLine{01099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01100\ \ \ \ \ \}}
+\DoxyCodeLine{01101\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyAllObjects()}
+\DoxyCodeLine{01102\ \ \ \ \ \{}
+\DoxyCodeLine{01103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(numObjects)}
+\DoxyCodeLine{01104\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasEntity(\textcolor{stringliteral}{"{}WorldObject"{}}+StringConverter::toString(numObjects)))}
+\DoxyCodeLine{01106\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01107\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Entity\ *ent\ =\ mSceneMgr-\/>getEntity(\textcolor{stringliteral}{"{}WorldObject"{}}+StringConverter::toString(numObjects));}
+\DoxyCodeLine{01108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode*\ node\ =\ ent-\/>getParentSceneNode();}
+\DoxyCodeLine{01109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>stopLoopedSoundByNode(node);}
+\DoxyCodeLine{01111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>detachAllObjects();}
+\DoxyCodeLine{01112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(node-\/>getName());}
+\DoxyCodeLine{01113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyEntity(ent);}
+\DoxyCodeLine{01114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01115\ \ \ \ \ \ \ \ \ \ \ \ \ numObjects\ -\/=\ 1;}
+\DoxyCodeLine{01116\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01117\ \ \ \ \ \}}
+\DoxyCodeLine{01118\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyAllParticles()}
+\DoxyCodeLine{01119\ \ \ \ \ \{}
+\DoxyCodeLine{01120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(numParticles)}
+\DoxyCodeLine{01121\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01122\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasParticleSystem(\textcolor{stringliteral}{"{}WorldParticle"{}}+StringConverter::toString(numParticles)))}
+\DoxyCodeLine{01123\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ParticleSystem\ *pSys\ =\ mSceneMgr-\/>getParticleSystem(\textcolor{stringliteral}{"{}WorldParticle"{}}+StringConverter::toString(numParticles));}
+\DoxyCodeLine{01125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode*\ node\ =\ pSys-\/>getParentSceneNode();}
+\DoxyCodeLine{01126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01127\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>stopLoopedSoundByNode(node);}
+\DoxyCodeLine{01128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>detachAllObjects();}
+\DoxyCodeLine{01129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(node-\/>getName());}
+\DoxyCodeLine{01130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyParticleSystem(pSys);}
+\DoxyCodeLine{01131\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01132\ \ \ \ \ \ \ \ \ \ \ \ \ numParticles\ -\/=\ 1;}
+\DoxyCodeLine{01133\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01134\ \ \ \ \ \}}
+\DoxyCodeLine{01135\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyAllLights()}
+\DoxyCodeLine{01136\ \ \ \ \ \{}
+\DoxyCodeLine{01137\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_LIGHTS;i++)}
+\DoxyCodeLine{01138\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mLight[i])}
+\DoxyCodeLine{01139\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyLight(mLight[i]);}
+\DoxyCodeLine{01141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mLight[i]\ =\ 0;}
+\DoxyCodeLine{01142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01143\ \ \ \ \ \ \ \ \ numLights\ =\ 0;}
+\DoxyCodeLine{01144\ \ \ \ \ \}}
+\DoxyCodeLine{01145\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyAllBillboards()}
+\DoxyCodeLine{01146\ \ \ \ \ \{}
+\DoxyCodeLine{01147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}(numBillboards)}
+\DoxyCodeLine{01148\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>hasBillboardSet(\textcolor{stringliteral}{"{}WorldBillboard"{}}+StringConverter::toString(numBillboards)))}
+\DoxyCodeLine{01150\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ BillboardSet\ *set\ =\ mSceneMgr-\/>getBillboardSet(\textcolor{stringliteral}{"{}WorldBillboard"{}}+StringConverter::toString(numBillboards));}
+\DoxyCodeLine{01152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode*\ node\ =\ set-\/>getParentSceneNode();}
+\DoxyCodeLine{01153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{01154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ node-\/>detachAllObjects();}
+\DoxyCodeLine{01155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(node-\/>getName());}
+\DoxyCodeLine{01156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyBillboardSet(set);}
+\DoxyCodeLine{01157\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01158\ \ \ \ \ \ \ \ \ \ \ \ \ numBillboards\ -\/=\ 1;}
+\DoxyCodeLine{01159\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01160\ \ \ \ \ \}}
+\DoxyCodeLine{01161\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsInterior()}
+\DoxyCodeLine{01162\ \ \ \ \ \{}
+\DoxyCodeLine{01163\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isInterior;}
+\DoxyCodeLine{01164\ \ \ \ \ \}}
+\DoxyCodeLine{01165\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getCeilingHeight()}
+\DoxyCodeLine{01166\ \ \ \ \ \{}
+\DoxyCodeLine{01167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ ceilingHeight;}
+\DoxyCodeLine{01168\ \ \ \ \ \}}
+\DoxyCodeLine{01169\ \ \ \ \ \textcolor{keyword}{const}\ String\ getMapEffect()}
+\DoxyCodeLine{01170\ \ \ \ \ \{}
+\DoxyCodeLine{01171\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mapEffect;}
+\DoxyCodeLine{01172\ \ \ \ \ \}}
+\DoxyCodeLine{01173\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeStaticGeometry()}
+\DoxyCodeLine{01174\ \ \ \ \ \{}
+\DoxyCodeLine{01175\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSceneMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01176\ \ \ \ \ \ \ \ \ staticGeometryX\ =\ int(worldSize.x/1000);}
+\DoxyCodeLine{01177\ \ \ \ \ \ \ \ \ staticGeometryY\ =\ int(worldSize.y/1000);}
+\DoxyCodeLine{01178\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<staticGeometryX;i++)}
+\DoxyCodeLine{01179\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<staticGeometryY;j++)}
+\DoxyCodeLine{01180\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01181\ \ \ \ \ \ \ \ \ \ \ \ \ StaticGeometry\ *sg\ =\ mSceneMgr-\/>createStaticGeometry(\textcolor{stringliteral}{"{}WorldSG\_"{}}+StringConverter::toString(i)+\textcolor{stringliteral}{"{}\_"{}}+StringConverter::toString(j));}
+\DoxyCodeLine{01182\ \ \ \ \ \ \ \ \ \ \ \ \ sg-\/>setOrigin(Vector3(i*1000,0,j*1000));}
+\DoxyCodeLine{01183\ \ \ \ \ \ \ \ \ \ \ \ \ sg-\/>setRegionDimensions(Vector3(1000,1000,1000));}
+\DoxyCodeLine{01184\ \ \ \ \ \ \ \ \ \ \ \ \ sg-\/>setRenderingDistance(mDef-\/>viewDistance*2000\ +\ 500);}
+\DoxyCodeLine{01185\ \ \ \ \ \ \ \ \ \ \ \ \ sg-\/>setCastShadows(\textcolor{keyword}{true});}
+\DoxyCodeLine{01186\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01187\ \ \ \ \ \}}
+\DoxyCodeLine{01188\ \ \ \ \ \textcolor{keywordtype}{void}\ addStaticGeometry(Entity\ *ent,\ \textcolor{keyword}{const}\ Vector3\ \&position,\ \textcolor{keyword}{const}\ Quaternion\ \&orientation,\ \textcolor{keyword}{const}\ Vector3\ \&scale)}
+\DoxyCodeLine{01189\ \ \ \ \ \{}
+\DoxyCodeLine{01190\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSceneMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01191\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ int(position.x/1000);\ \textcolor{keywordflow}{if}(i>=staticGeometryX)i=staticGeometryX-\/1;}
+\DoxyCodeLine{01192\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ j\ =\ int(position.z/1000);\ \textcolor{keywordflow}{if}(j>=staticGeometryY)j=staticGeometryY-\/1;}
+\DoxyCodeLine{01193\ \ \ \ \ \ \ \ \ StaticGeometry\ *sg\ =\ mSceneMgr-\/>getStaticGeometry(\textcolor{stringliteral}{"{}WorldSG\_"{}}+StringConverter::toString(i)+\textcolor{stringliteral}{"{}\_"{}}+StringConverter::toString(j));}
+\DoxyCodeLine{01194\ \ \ \ \ \ \ \ \ sg-\/>addEntity(ent,position,orientation,scale);}
+\DoxyCodeLine{01195\ \ \ \ \ \}}
+\DoxyCodeLine{01196\ \ \ \ \ \textcolor{keywordtype}{void}\ buildStaticGeometry()}
+\DoxyCodeLine{01197\ \ \ \ \ \{}
+\DoxyCodeLine{01198\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSceneMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<staticGeometryX;i++)}
+\DoxyCodeLine{01200\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<staticGeometryY;j++)}
+\DoxyCodeLine{01201\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01202\ \ \ \ \ \ \ \ \ \ \ \ \ StaticGeometry\ *sg\ =\ mSceneMgr-\/>getStaticGeometry(\textcolor{stringliteral}{"{}WorldSG\_"{}}+StringConverter::toString(i)+\textcolor{stringliteral}{"{}\_"{}}+StringConverter::toString(j));}
+\DoxyCodeLine{01203\ \ \ \ \ \ \ \ \ \ \ \ \ sg-\/>build();}
+\DoxyCodeLine{01204\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01205\ \ \ \ \ \}}
+\DoxyCodeLine{01206\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyStaticGeometry()}
+\DoxyCodeLine{01207\ \ \ \ \ \{}
+\DoxyCodeLine{01208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSceneMgr)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{01209\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<staticGeometryX;i++)}
+\DoxyCodeLine{01210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<staticGeometryY;j++)}
+\DoxyCodeLine{01211\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{01212\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyStaticGeometry(\textcolor{stringliteral}{"{}WorldSG\_"{}}+StringConverter::toString(i)+\textcolor{stringliteral}{"{}\_"{}}+StringConverter::toString(j));}
+\DoxyCodeLine{01213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{01214\ \ \ \ \ \}}
+\DoxyCodeLine{01215\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getCritterSpawnLimit()}
+\DoxyCodeLine{01216\ \ \ \ \ \{}
+\DoxyCodeLine{01217\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ critterSpawnLimit;}
+\DoxyCodeLine{01218\ \ \ \ \ \}}
+\DoxyCodeLine{01219\ \ \ \ \ \textcolor{keyword}{const}\ vector<WorldCritter>::type\ getCritterSpawnList()}
+\DoxyCodeLine{01220\ \ \ \ \ \{}
+\DoxyCodeLine{01221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ critterSpawnList;}
+\DoxyCodeLine{01222\ \ \ \ \ \}}
+\DoxyCodeLine{01223\ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_world_critter}{WorldCritter}}\ getCritterSpawnList(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{01224\ \ \ \ \ \{}
+\DoxyCodeLine{01225\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(iID<0\ ||\ iID>=critterSpawnList.size())\textcolor{keywordflow}{return}\ \mbox{\hyperlink{struct_world_critter}{WorldCritter}}(\textcolor{stringliteral}{"{}"{}},0);}
+\DoxyCodeLine{01226\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ critterSpawnList[iID];}
+\DoxyCodeLine{01227\ \ \ \ \ \}}
+\DoxyCodeLine{01228\ \ \ \ \ \textcolor{keyword}{const}\ std::pair<Vector3,Vector3>\ getCritterRoamArea(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{01229\ \ \ \ \ \{}
+\DoxyCodeLine{01230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(iID<0\ ||\ iID>=critterRoamAreaList.size())\textcolor{keywordflow}{return}\ std::pair<Vector3,Vector3>(Vector3::ZERO,Vector3::ZERO);}
+\DoxyCodeLine{01231\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ critterRoamAreaList[iID];}
+\DoxyCodeLine{01232\ \ \ \ \ \}}
+\DoxyCodeLine{01233\ \ \ \ \ \textcolor{keywordtype}{void}\ clearCritterSpawnList()}
+\DoxyCodeLine{01234\ \ \ \ \ \{}
+\DoxyCodeLine{01235\ \ \ \ \ \ \ \ \ critterSpawnList.clear();}
+\DoxyCodeLine{01236\ \ \ \ \ \}}
+\DoxyCodeLine{01237\ \};}
+\DoxyCodeLine{01238\ }
+\DoxyCodeLine{01239\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

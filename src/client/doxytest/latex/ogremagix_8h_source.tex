@@ -1,0 +1,657 @@
+\doxysection{ogremagix.\+h}
+\hypertarget{ogremagix_8h_source}{}\label{ogremagix_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/ogremagix.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/ogremagix.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00003\ \textcolor{comment}{Filename:\ \ \ \ ogremagix.h}}
+\DoxyCodeLine{00004\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00005\ \textcolor{comment}{This\ is\ the\ heart\ of\ the\ base\ game}}
+\DoxyCodeLine{00006\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00007\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#ifndef\ \_\_ogremagix\_h\_}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ \_\_ogremagix\_h\_}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}MagixApplication.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#if\ OGRE\_PLATFORM\ ==\ OGRE\_PLATFORM\_WIN32}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#include\ "{}../res/resource.h"{}}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ }
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }ogremagixFrameListener\ :\ \textcolor{keyword}{public}\ MagixFrameListener,\ \textcolor{keyword}{public}\ OIS::MouseListener,\ \textcolor{keyword}{public}\ OIS::KeyListener}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00021\ \ \ \ \ SceneManager*\ mSceneMgr;}
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{class_magix_handler}{MagixHandler}}\ *mMagixHandler;}
+\DoxyCodeLine{00023\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00024\ \ \ \ \ ogremagixFrameListener(\mbox{\hyperlink{class_magix_handler}{MagixHandler}}\ *magixHandler,\ SceneManager\ *sceneMgr,\ RenderWindow*\ win,\ Camera*\ cam)\ }
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ :\ MagixFrameListener(magixHandler,\ win,\ cam,\ \textcolor{keyword}{true},\ \textcolor{keyword}{true}),}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ mSceneMgr(sceneMgr),}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ mMagixHandler(magixHandler)}
+\DoxyCodeLine{00028\ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ mMouse-\/>setEventCallback(\textcolor{keyword}{this});}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ mKeyboard-\/>setEventCallback(\textcolor{keyword}{this});}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ mKeyboard-\/>setTextTranslation(OIS::Keyboard::Unicode);}
+\DoxyCodeLine{00032\ \ \ \ \ \}}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ frameStarted(\textcolor{keyword}{const}\ FrameEvent\&\ evt)}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ contFlag\ =\ MagixFrameListener::frameStarted(evt);}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(contFlag)}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ contFlag\ =\ mMagixHandler-\/>update(evt);}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWindow-\/>getViewport(0)-\/>getBackgroundColour()!=mSceneMgr-\/>getFogColour())}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>getViewport(0)-\/>setBackgroundColour(mSceneMgr-\/>getFogColour());}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ to\ inspect\ if\ contFlag\ is\ ever\ true}}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(!contFlag)mMagixHandler-\/>shutdown();}}
+\DoxyCodeLine{00048\ }
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ contFlag;}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \}}
+\DoxyCodeLine{00052\ }
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{comment}{//\ MouseListener}}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ mouseMoved(\textcolor{keyword}{const}\ OIS::MouseEvent\ \&e)}
+\DoxyCodeLine{00055\ \ \ \ \ \{}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }OIS;}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ MouseState\ \&ms\ =\ e.state;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ mouseSense\ =\ 0.5\ +\ mMagixHandler-\/>getMagixGUI()-\/>getMouseSensitivity();}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Camera\ view\ mode}}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCinematic()\ \&\&\ mMagixHandler-\/>getGameState()-\/>isInGame()\ \&\&\ mMagixHandler-\/>getCameraMode()==CAMERA\_LOCKED)}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>getUseWindowsCursor())}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ tW,tH,tCD;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tL,tT;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>getMetrics(tW,tH,tCD,tL,tT);}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetCursorPos(tL+tW*0.5,tT+tH*0.5);}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(ShowCursor(false)<-\/1)ShowCursor(true);\ }}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{false});}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Right\ button\ held,\ Zoom\ camera}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ ms.buttonDown(\ MB\_Right\ )\ \&\&\ !mMagixHandler-\/>getCamera()-\/>getIsFirstPerson())}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isTablet())}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>doCameraZoom((Math::Abs(ms.X.rel)>8000?0:-\/ms.Y.rel)\ *\ 0.0013\ *\ mouseSense);}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>doCameraZoom(-\/ms.Y.rel\ *\ 0.13\ *\ mouseSense);}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Rotate\ camera}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getPlayer()-\/>getIsLockedOn())}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isTablet())}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>yaw(Degree((Math::Abs(ms.X.rel)>8000?0:-\/ms.X.rel)\ *\ 0.0013\ *\ mouseSense));}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>pitch(Degree((Math::Abs(ms.Y.rel)>8000?0:-\/ms.Y.rel)\ *\ 0.0013\ *\ mouseSense));}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>yaw(Degree(-\/ms.X.rel\ *\ 0.13\ *\ mouseSense));}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>pitch(Degree(-\/ms.Y.rel\ *\ 0.13\ *\ mouseSense));}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\textcolor{comment}{//Mouse\ cursor\ mode}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tDoZoom\ =\ (\ (mMagixHandler-\/>getCameraMode()==CAMERA\_FREECURSORNEW\ \&\&\ ms.buttonDown(\ MB\_Left\ )\ \&\&\ ms.buttonDown(\ MB\_Right\ ))}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (mMagixHandler-\/>getCameraMode()==CAMERA\_FREECURSOR\ \&\&\ ms.buttonDown(\ MB\_Middle\ ))\ );}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tDoRotate\ =\ (\ (mMagixHandler-\/>getCameraMode()==CAMERA\_FREECURSORNEW\ \&\&\ ms.buttonDown(\ MB\_Middle\ ))}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (mMagixHandler-\/>getCameraMode()==CAMERA\_FREECURSOR\ \&\&\ ms.buttonDown(\ MB\_Right\ ))}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ||\ (mMagixHandler-\/>getCameraMode()==CAMERA\_FREE\ \&\&\ ms.buttonDown(\ MB\_Right\ )));}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//zoom\ camera}}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tDoZoom\ \&\&\ !mMagixHandler-\/>getGameState()-\/>isCinematic()\ \&\&\ mMagixHandler-\/>getGameState()-\/>isInGame())}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>getUseWindowsCursor())}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ tW,tH,tCD;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tL,tT;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>getMetrics(tW,tH,tCD,tL,tT);}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetCursorPos(tL+tW*0.5,tT+tH*0.5);}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(ShowCursor(false)<-\/1)ShowCursor(true);\ }}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{false});}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isTablet())}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>doCameraZoom((Math::Abs(ms.X.rel)>8000?0:-\/ms.Y.rel)\ *\ 0.0013\ *\ mouseSense);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>doCameraZoom(-\/ms.Y.rel\ *\ 0.13\ *\ mouseSense);}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//rotate\ view}}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tDoRotate\ \&\&\ !mMagixHandler-\/>getGameState()-\/>isCinematic()\ \&\&\ mMagixHandler-\/>getGameState()-\/>isInGame())}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>getUseWindowsCursor())}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ tW,tH,tCD;}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tL,tT;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>getMetrics(tW,tH,tCD,tL,tT);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SetCursorPos(tL+tW*mMagixHandler-\/>getMagixGUI()-\/>getMouseX(),tT+tH*mMagixHandler-\/>getMagixGUI()-\/>getMouseY());}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(ShowCursor(false)<-\/1)ShowCursor(true);\ }}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{false});}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isTablet())}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>yaw(Degree((Math::Abs(ms.X.rel)>8000?0:-\/ms.X.rel)\ *\ 0.0013\ *\ mouseSense));}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>pitch(Degree((Math::Abs(ms.Y.rel)>8000?0:-\/ms.Y.rel)\ *\ 0.0013\ *\ mouseSense));}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>yaw(Degree(-\/ms.X.rel\ *\ 0.13\ *\ mouseSense));}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>pitch(Degree(-\/ms.Y.rel\ *\ 0.13\ *\ mouseSense));}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//move\ the\ dayum\ cursor}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{true});}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>getUseWindowsCursor())}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(ShowCursor(true)>0)ShowCursor(false);}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{int}\ tW,tH,tCD;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ tL,tT;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tagPOINT\ lpPoint;}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>getMetrics(tW,tH,tCD,tL,tT);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ GetCursorPos(\&lpPoint);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ tX\ =\ lpPoint.x-\/tL-\/4;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ tY\ =\ lpPoint.y-\/tT-\/30;}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>scrollMouse(tX,tY,tW,tH,\textcolor{keyword}{true});}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tX<0\ ||\ tY<0\ ||\ tX>0\&\&(\textcolor{keywordtype}{unsigned})tX>tW\ ||\ tY>0\&\&(\textcolor{keywordtype}{unsigned})tY>tH)\{\textcolor{keywordflow}{if}(ShowCursor(\textcolor{keyword}{true})>0)ShowCursor(\textcolor{keyword}{false});\}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(ShowCursor(\textcolor{keyword}{false})<-\/1)ShowCursor(\textcolor{keyword}{true});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isTablet())}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//tablet\ cursor\ always\ moves,\ see\ HERE}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>scrollMouse(\ ms.X.rel\ *\ 1\ *\ mouseSense,\ ms.Y.rel\ *\ 1\ *\ mouseSense,\ mWindow-\/>getWidth(),\ mWindow-\/>getHeight());}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{comment}{//HERE}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isTablet()\ \&\&\ !mMagixHandler-\/>getMagixGUI()-\/>getUseWindowsCursor())}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tXYRatio\ =\ Real(mWindow-\/>getWidth())/Real(mWindow-\/>getHeight());}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>scrollMouse(\ ms.X.rel\ *\ 0.015\ *\ tXYRatio\ *\ mouseSense,\ ms.Y.rel\ *\ 0.015\ *\ mouseSense,\ mWindow-\/>getWidth(),\ mWindow-\/>getHeight());}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00190\ \ \ \ \ \}}
+\DoxyCodeLine{00191\ \ \ \ \ \textcolor{keywordtype}{bool}\ mousePressed(\textcolor{keyword}{const}\ OIS::MouseEvent\ \&e,\ OIS::MouseButtonID\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00192\ \ \ \ \ \{}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }OIS;}
+\DoxyCodeLine{00194\ }
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>skipLogo())\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00196\ }
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>setLeftClick(e.state.buttonDown(\ MB\_Left\ ));}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>setRightClick(e.state.buttonDown(\ MB\_Right\ ));}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00200\ \ \ \ \ \}}
+\DoxyCodeLine{00201\ \ \ \ \ \textcolor{keywordtype}{bool}\ mouseReleased(\textcolor{keyword}{const}\ OIS::MouseEvent\ \&e,\ OIS::MouseButtonID\ \textcolor{keywordtype}{id})}
+\DoxyCodeLine{00202\ \ \ \ \ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }OIS;}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>setLeftClick(e.state.buttonDown(\ MB\_Left\ ));}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>setRightClick(e.state.buttonDown(\ MB\_Right\ ));}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00208\ \ \ \ \ \}}
+\DoxyCodeLine{00209\ }
+\DoxyCodeLine{00210\ \ \ \ \ \textcolor{comment}{//\ KeyListener}}
+\DoxyCodeLine{00211\ \ \ \ \ \textcolor{keywordtype}{bool}\ keyPressed(\textcolor{keyword}{const}\ OIS::KeyEvent\ \&e)}
+\DoxyCodeLine{00212\ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }OIS;}
+\DoxyCodeLine{00214\ }
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Skip\ logo}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>skipLogo())\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00217\ }
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ingame\ controls}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\ !mMagixHandler-\/>getGameState()-\/>isCinematic()\ \&\&\ mMagixHandler-\/>getGameState()-\/>isInGame()\ \&\&\ mMagixHandler-\/>getInputMode()==INPUT\_CONTROL)}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (e.key)}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Player\ controls}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_W:}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()!=CAMERA\_FREE)}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>up\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getPlayer()-\/>getAutoRun())mMagixHandler-\/>getPlayer()-\/>toggleAutoRun();}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_FORWARD,\textcolor{keyword}{true});}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_S:}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()!=CAMERA\_FREE)}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>down\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getPlayer()-\/>getAutoRun())mMagixHandler-\/>getPlayer()-\/>toggleAutoRun();}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_BACK,\textcolor{keyword}{true});}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_A:}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()!=CAMERA\_FREE)mMagixHandler-\/>getPlayer()-\/>left\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_LEFT,\textcolor{keyword}{true});}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_D:}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()!=CAMERA\_FREE)mMagixHandler-\/>getPlayer()-\/>right\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_RIGHT,\textcolor{keyword}{true});}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_SPACE:\ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isDoubleJumpOn()\ \&\&\ mMagixHandler-\/>getPlayer()-\/>isReadyToDoubleJump)mMagixHandler-\/>getPlayer()-\/>doDoubleJump();}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>setJump(\textcolor{keyword}{true});}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_LSHIFT:\ mMagixHandler-\/>getPlayer()-\/>setIsWalking(!mMagixHandler-\/>getPlayer()-\/>getAutoWalk());\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_UP:}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>heldTurn(DIR\_UP,\textcolor{keyword}{true});}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_DOWN:}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>heldTurn(DIR\_DOWN,\textcolor{keyword}{true});}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_LEFT:}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>heldTurn(DIR\_LEFT,\textcolor{keyword}{true});}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_RIGHT:}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>heldTurn(DIR\_RIGHT,\textcolor{keyword}{true});}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_PGUP:}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_FREE)mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_UP,\textcolor{keyword}{true});}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getPlayer()-\/>ascend\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_PGDOWN:}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_FREE)mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_DOWN,\textcolor{keyword}{true});}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getPlayer()-\/>descend\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_Z:\ mMagixHandler-\/>getPlayer()-\/>doSit();\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_X:\ mMagixHandler-\/>getPlayer()-\/>doSideLay();\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_C:}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getPlayer()-\/>getWingEnt())mMagixHandler-\/>getPlayer()-\/>toggleAntiGravity();}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD8:}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>up\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD2:}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>down\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD4:}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>left\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD6:}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>right\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD9:}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>ascend\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD3:}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>descend\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_MINUS:}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_SUBTRACT:}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>changeSpeed(0.5);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_EQUALS:}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_ADD:}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>changeSpeed(2);}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00303\ }
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//case\ KC\_F5:}}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F6:}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F7:}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F8:}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F9:}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F10:}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F11:}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F12:}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def\ =\ mMagixHandler-\/>getExternalDefinitions();}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>setEmote(def-\/>getHotkeyF(e.key-\/(e.key>=KC\_F11?KC\_F11-\/6:KC\_F5)),def);}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getNetworkManager()-\/>sendEmote(def-\/>getHotkeyF(e.key-\/(e.key>=KC\_F11?KC\_F11-\/6:KC\_F5)));}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getInputManager()-\/>hotkeyHeld(e.key);}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F:\ mMagixHandler-\/>getPlayer()-\/>toggleStance(mMagixHandler-\/>getExternalDefinitions());\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_E:}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_LOCKED)mMagixHandler-\/>getUnitManager()-\/>doLockOn();}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_1:}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>setCurrentSkill(0);}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>updateSkillText(0);}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_2:}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*case\ KC\_3:}}
+\DoxyCodeLine{00330\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ case\ KC\_4:}}
+\DoxyCodeLine{00331\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ case\ KC\_5:}}
+\DoxyCodeLine{00332\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ case\ KC\_6:}}
+\DoxyCodeLine{00333\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ case\ KC\_7:}}
+\DoxyCodeLine{00334\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ case\ KC\_8:}}
+\DoxyCodeLine{00335\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ case\ KC\_9:}}
+\DoxyCodeLine{00336\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ case\ KC\_0:*/}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>setCurrentSkill(mMagixHandler-\/>getPlayer()-\/>getNextSkill());}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>updateSkillText(mMagixHandler-\/>getPlayer()-\/>getCurrentSkill());}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Toggle\ controls}}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F1:}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>setCameraMode(CAMERA\_LOCKED);}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{false});}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showSelectPanel(\textcolor{keyword}{false});}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isOptionsVisible())mMagixHandler-\/>getMagixGUI()-\/>toggleShowOptions();}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mMagixHandler-\/>getMagixGUI()-\/>getChatManager()-\/>message("{}Locked\ Chase\ Camera:\ Left\ Click\ =\ Attack,\ Right\ Click\ (hold)\ =\ Zoom."{});}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F2:}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>setCameraMode(CAMERA\_FREECURSOR);}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{true});}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mMagixHandler-\/>getMagixGUI()-\/>getChatManager()-\/>message("{}Free\ Chase\ Camera:\ Left\ Click\ =\ Select,\ Right\ Click\ (hold)\ =\ Rotate,\ Middle\ Click\ (hold)\ =\ Zoom."{});}}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F3:}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>setCameraMode(CAMERA\_FREE);}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{true});}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>up\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>down\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>left\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>right\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>ascend\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>descend\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mMagixHandler-\/>getMagixGUI()-\/>getChatManager()-\/>message("{}Free\ Camera:\ Left\ Click\ =\ Select,\ Right\ Click\ (hold)\ =\ Rotate."{});}}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F4:}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>setCameraMode(CAMERA\_LOCKED,\textcolor{keyword}{true});}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{false});}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showSelectPanel(\textcolor{keyword}{false});}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getMagixGUI()-\/>isOptionsVisible())mMagixHandler-\/>getMagixGUI()-\/>toggleShowOptions();}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getPlayer()-\/>getIsLockedOn())mMagixHandler-\/>getPlayer()-\/>setAutoTrackObject(0);}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mMagixHandler-\/>getMagixGUI()-\/>getChatManager()-\/>message("{}First-\/person\ Camera:\ Left\ Click\ =\ Attack."{});}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F5:}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>setCameraMode(CAMERA\_FREECURSORNEW);}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{true});}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mMagixHandler-\/>getMagixGUI()-\/>getChatManager()-\/>message("{}Free\ Chase\ Camera\ 2:\ Left\ Click\ =\ Select,\ Right\ Click\ =\ Target,\ Middle\ Click\ (hold)\ =\ Rotate,\ Left+Right\ Click\ (hold)\ =\ Zoom."{});}}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_ESCAPE:}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>toggleShowOptions();}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_LOCKED)}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>setCameraMode(CAMERA\_FREECURSOR);}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{true});}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//case\ KC\_R:\ if(mKeyboard-\/>isKeyDown(KC\_LCONTROL))mMagixHandler-\/>resetScene();\ break;}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//case\ KC\_P:\ mMagixHandler-\/>getGameState()-\/>togglePause();\ break;}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//case\ KC\_L:\ showDebugOverlay(!isStatsOn);\ break;}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_INSERT:\ mMagixHandler-\/>getMagixGUI()-\/>toggleIsTablet(\textcolor{keyword}{true});\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_RETURN:}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPADENTER:}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())mMagixHandler-\/>getMagixGUI()-\/>toggleInputMode(\textcolor{keyword}{true});}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_LCONTROL:\ mMagixHandler-\/>getPlayer()-\/>doCrouch(\textcolor{keyword}{true});\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_RCONTROL:\ mMagixHandler-\/>getMagixGUI()-\/>toggleRunMode();\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_LMENU:}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_RMENU:}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getPlayer()-\/>getIsLockedOn())}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>setFreeLook(!mMagixHandler-\/>getPlayer()-\/>getFreeLook());}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_GRAVE:\ \ mMagixHandler-\/>getMagixGUI()-\/>toggleChatChannel();\ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_TAB:\ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>toggleShowGUI();\ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_H:\ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())mMagixHandler-\/>getMagixGUI()-\/>toggleShowHomeBox();\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_B:\ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())mMagixHandler-\/>getMagixGUI()-\/>toggleShowBioBox();\ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_N:\ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())mMagixHandler-\/>getMagixGUI()-\/>toggleShowFriendBox();\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_M:\ mMagixHandler-\/>getMagixGUI()-\/>toggleShowMiniMap();\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_J:\ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())mMagixHandler-\/>getMagixGUI()-\/>toggleShowEmoteBox();\ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_I:\ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())mMagixHandler-\/>getMagixGUI()-\/>toggleShowItemBox();\ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_P:\ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())mMagixHandler-\/>getMagixGUI()-\/>toggleShowPartyBox();\ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_R:\ mMagixHandler-\/>getPlayer()-\/>toggleAutoRun();\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_CAPITAL:\ mMagixHandler-\/>getPlayer()-\/>toggleAutoWalk();\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_SYSRQ:}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>writeContentsToTimestampedFile(\textcolor{stringliteral}{"{}screenshot"{}},\textcolor{stringliteral}{"{}.PNG"{}});}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>getAlertBox()-\/>showAlert(\textcolor{stringliteral}{"{}Screenshot\ saved"{}},0.5,0.5);}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Text\ input}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(mMagixHandler-\/>getInputMode()==INPUT\_TEXT)}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (e.key)}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_ESCAPE:}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>toggleShowOptions();}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getGameState()-\/>isInGame()\ \&\&\ mMagixHandler-\/>getCameraMode()==CAMERA\_LOCKED\ )}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getCamera()-\/>setCameraMode(CAMERA\_FREECURSOR);}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>showMouse(\textcolor{keyword}{true});}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_RETURN:}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPADENTER:}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>toggleInputMode(\textcolor{keyword}{true});}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getInputManager()-\/>keyHeld(mKeyboard,e.key,e.text,\textcolor{keyword}{true});}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Outgame\ controls}}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (e.key)}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_ESCAPE:\ mMagixHandler-\/>getMagixGUI()-\/>toggleShowOptions();\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//case\ KC\_L:\ showDebugOverlay(!isStatsOn);\ break;}}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_INSERT:\ mMagixHandler-\/>getMagixGUI()-\/>toggleIsTablet(\textcolor{keyword}{true});\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_SYSRQ:}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>writeContentsToTimestampedFile(\textcolor{stringliteral}{"{}screenshot"{}},\textcolor{stringliteral}{"{}.PNG"{}});}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getMagixGUI()-\/>getAlertBox()-\/>showAlert(\textcolor{stringliteral}{"{}Screenshot\ saved"{}},0.5,0.5);}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00454\ }
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00459\ }
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mMagixHandler-\/>getMagixGUI()-\/>getAlertBox()-\/>showAlert(StringConverter::toString(e.key),0.5,0.5);}}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mContinue;}
+\DoxyCodeLine{00463\ \ \ \ \ \}}
+\DoxyCodeLine{00464\ \ \ \ \ \textcolor{keywordtype}{bool}\ keyReleased(\textcolor{keyword}{const}\ OIS::KeyEvent\ \&e)}
+\DoxyCodeLine{00465\ \ \ \ \ \{}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \textcolor{keyword}{using\ namespace\ }OIS;}
+\DoxyCodeLine{00467\ }
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ingame\ controls}}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getGameState()-\/>isInGame()\ \&\&\ !mMagixHandler-\/>getGameState()-\/>isCinematic())}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (e.key)}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Player\ controls}}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_W:}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_FREE)mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_FORWARD,\textcolor{keyword}{false});}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getPlayer()-\/>up\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_S:}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_FREE)mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_BACK,\textcolor{keyword}{false});}
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getPlayer()-\/>down\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_A:}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_FREE)mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_LEFT,\textcolor{keyword}{false});}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getPlayer()-\/>left\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_D:}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_FREE)mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_RIGHT,\textcolor{keyword}{false});}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getPlayer()-\/>right\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_SPACE:}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getPlayer()-\/>getJump())mMagixHandler-\/>getPlayer()-\/>isReadyToDoubleJump\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>setJump(\textcolor{keyword}{false});}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_LSHIFT:\ mMagixHandler-\/>getPlayer()-\/>setIsWalking(mMagixHandler-\/>getPlayer()-\/>getAutoWalk());\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_LCONTROL:\ mMagixHandler-\/>getPlayer()-\/>doCrouch(\textcolor{keyword}{false});\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_UP:\ mMagixHandler-\/>getCamera()-\/>heldTurn(DIR\_UP,\textcolor{keyword}{false});\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_DOWN:\ mMagixHandler-\/>getCamera()-\/>heldTurn(DIR\_DOWN,\textcolor{keyword}{false});\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_LEFT:\ mMagixHandler-\/>getCamera()-\/>heldTurn(DIR\_LEFT,\textcolor{keyword}{false});\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_RIGHT:\ mMagixHandler-\/>getCamera()-\/>heldTurn(DIR\_RIGHT,\textcolor{keyword}{false});\ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_PGUP:}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_FREE)mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_UP,\textcolor{keyword}{false});}
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getPlayer()-\/>ascend\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_PGDOWN:}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getCameraMode()==CAMERA\_FREE)mMagixHandler-\/>getCamera()-\/>heldMove(DIR\_DOWN,\textcolor{keyword}{false});}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMagixHandler-\/>getPlayer()-\/>descend\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD8:}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>up\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD2:}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>down\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD4:}
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>left\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD6:}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>right\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD9:}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>ascend\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_NUMPAD3:}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getPlayer()-\/>descend\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F5:}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F6:}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F7:}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F8:}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F9:}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F10:}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F11:}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ KC\_F12:}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMagixHandler-\/>getGameState()-\/>isCampaign())}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getInputManager()-\/>hotkeyHeld(0);}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00538\ }
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Text\ input}}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getInputMode()==INPUT\_TEXT)}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ mMagixHandler-\/>getInputManager()-\/>keyHeld(mKeyboard,e.key,e.text,\textcolor{keyword}{false});}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00547\ }
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00549\ \ \ \ \ \}}
+\DoxyCodeLine{00550\ }
+\DoxyCodeLine{00551\ \};}
+\DoxyCodeLine{00552\ }
+\DoxyCodeLine{00553\ }
+\DoxyCodeLine{00554\ }
+\DoxyCodeLine{00555\ \textcolor{keyword}{class\ }ogremagixApp\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{class_magix_application_a4aea0f09a61394dc7510aa90d77088ee}{MagixApplication}}}
+\DoxyCodeLine{00556\ \{}
+\DoxyCodeLine{00557\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00558\ \ \ \ \ \mbox{\hyperlink{class_magix_handler}{MagixHandler}}\ *mMagixHandler;}
+\DoxyCodeLine{00559\ }
+\DoxyCodeLine{00560\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ ogremagixApp():}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_application_a4aea0f09a61394dc7510aa90d77088ee}{MagixApplication}}(mMagixHandler)}
+\DoxyCodeLine{00563\ \ \ \ \ \{}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ mMagixHandler\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_handler}{MagixHandler}}();}
+\DoxyCodeLine{00565\ \ \ \ \ \}}
+\DoxyCodeLine{00566\ }
+\DoxyCodeLine{00567\ \ \ \ \ \string~ogremagixApp()}
+\DoxyCodeLine{00568\ \ \ \ \ \{}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Ogre::OverlayManager\ *overlayManager\ =\ Ogre::OverlayManager::getSingletonPtr();}}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \textcolor{comment}{//overlayManager-\/>destroyAll();}}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mMagixHandler;}
+\DoxyCodeLine{00572\ \ \ \ \ \}}
+\DoxyCodeLine{00573\ }
+\DoxyCodeLine{00574\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00575\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ createCamera(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00576\ \ \ \ \ \{}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ camera}}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ mCamera\ =\ mSceneMgr-\/>createCamera(\textcolor{stringliteral}{"{}PlayerCam"{}});}
+\DoxyCodeLine{00579\ \ \ \ \ \ \ \ \ mCamera-\/>setNearClipDistance(\ 0.1\ );}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ mCamera-\/>setFarClipDistance(\ 20000\ );}
+\DoxyCodeLine{00581\ \ \ \ \ \}}
+\DoxyCodeLine{00582\ }
+\DoxyCodeLine{00583\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classogremagix_app_ac094104ec9da776d1431a44748a22d89}{configure}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00584\ \ \ \ \ \{}
+\DoxyCodeLine{00585\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Show\ the\ configuration\ dialog\ and\ initialise\ the\ system}}
+\DoxyCodeLine{00586\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ You\ can\ skip\ this\ and\ use\ root.restoreConfig()\ to\ load\ configuration}}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ settings\ if\ you\ were\ sure\ there\ are\ valid\ ones\ saved\ in\ ogre.cfg}}
+\DoxyCodeLine{00588\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00589\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRoot-\/>showConfigDialog())}
+\DoxyCodeLine{00590\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00591\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ returned\ true,\ user\ clicked\ OK\ so\ initialise}}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Here\ we\ choose\ to\ let\ the\ system\ create\ a\ default\ rendering\ window\ by\ passing\ 'true'}}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ mWindow\ =\ mRoot-\/>initialise(\textcolor{keyword}{true},\ \textcolor{stringliteral}{"{}KITF\ -\/\ Keeping\ IT\ Free"{}});}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>setDeactivateOnFocusChange(\textcolor{keyword}{false});}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Let's\ add\ a\ nice\ window\ icon}}
+\DoxyCodeLine{00597\ \textcolor{preprocessor}{\#if\ OGRE\_PLATFORM\ ==\ OGRE\_PLATFORM\_WIN32}}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ HWND\ hwnd;}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>getCustomAttribute(\textcolor{stringliteral}{"{}WINDOW"{}},\ (\textcolor{keywordtype}{void}*)\&hwnd);}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ LONG\ iconID\ =\ (LONG)LoadIcon(\ GetModuleHandle(0),\ MAKEINTRESOURCE(IDI\_APPICON)\ );}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ for\ 32\ bit\ its\ GCL\_HICON}}
+\DoxyCodeLine{00603\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ SetClassLongPtr(hwnd,\ GCLP\_HICON,\ iconID);}
+\DoxyCodeLine{00605\ }
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00612\ \ \ \ \ \}}
+\DoxyCodeLine{00613\ }
+\DoxyCodeLine{00614\ \ \ \ \ \textcolor{comment}{//\ if\ its\ an\ override,\ whats\ special\ then\ in\ the\ setup\ ?\ bloom\ ?\ blur\ ?}}
+\DoxyCodeLine{00615\ \ \ \ \ \textcolor{comment}{//\ Just\ override\ the\ mandatory\ create\ scene\ method}}
+\DoxyCodeLine{00616\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ createScene(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00617\ \ \ \ \ \{}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ ColourValue\ fadeColour\ =\ DEFAULT\_FOG\_COLOUR;}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ mSceneMgr-\/>setFog(\ FOG\_LINEAR,\ fadeColour,\ .0001,\ 500,\ 1500);}
+\DoxyCodeLine{00620\ \ \ \ \ \ \ \ \ mWindow-\/>getViewport(0)-\/>setBackgroundColour(fadeColour);}
+\DoxyCodeLine{00621\ }
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ mMagixHandler-\/>initialize(mSceneMgr,mWindow);}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ mMagixHandler-\/>getExternalDefinitions()-\/>initializeCapabilities(mRoot-\/>getRenderSystem()-\/>getCapabilities());}
+\DoxyCodeLine{00624\ }
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Infinite\ far\ plane?}}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRoot-\/>getRenderSystem()-\/>getCapabilities()-\/>hasCapability(RSC\_INFINITE\_FAR\_PLANE))}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>setFarClipDistance(0);}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMagixHandler-\/>getExternalDefinitions()-\/>hasVertexProgram\ \&\&\ mMagixHandler-\/>getExternalDefinitions()-\/>hasFragmentProgram)}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ CompositorManager::getSingleton().addCompositor(mWindow-\/>getViewport(0),\ \textcolor{stringliteral}{"{}Bloom"{}});\ }
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ CompositorManager::getSingleton().addCompositor(mWindow-\/>getViewport(0),\ \textcolor{stringliteral}{"{}MotionBlur"{}});}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00636\ \ \ \ \ \}}
+\DoxyCodeLine{00637\ }
+\DoxyCodeLine{00638\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ destroyScene()}
+\DoxyCodeLine{00639\ \ \ \ \ \{}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ mMagixHandler-\/>shutdown();}
+\DoxyCodeLine{00641\ \ \ \ \ \}}
+\DoxyCodeLine{00642\ \ \ \ \ }
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{comment}{//\ not\ inherently\ bad\ but\ we\ need\ to\ get\ the\ framelistener\ out}}
+\DoxyCodeLine{00644\ \ \ \ \ \textcolor{comment}{//\ Create\ new\ frame\ listener}}
+\DoxyCodeLine{00645\ \ \ \ \ \textcolor{keywordtype}{void}\ createFrameListener(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00646\ \ \ \ \ \{}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ mFrameListener=\ \textcolor{keyword}{new}\ ogremagixFrameListener(mMagixHandler,\ mSceneMgr,\ mWindow,\ mCamera);}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ mRoot-\/>addFrameListener(mFrameListener);}
+\DoxyCodeLine{00649\ \ \ \ \ \}}
+\DoxyCodeLine{00650\ \};}
+\DoxyCodeLine{00651\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

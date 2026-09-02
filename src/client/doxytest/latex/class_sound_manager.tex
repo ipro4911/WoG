@@ -1,0 +1,80 @@
+\doxysection{Sound\+Manager Class Reference}
+\hypertarget{class_sound_manager}{}\label{class_sound_manager}\index{SoundManager@{SoundManager}}
+Inheritance diagram for Sound\+Manager\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{class_sound_manager}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_sound_manager_a424895f9ef02ae94fd074c5faee2ee17}\label{class_sound_manager_a424895f9ef02ae94fd074c5faee2ee17} 
+bool {\bfseries Initialize} (void)
+\item 
+\Hypertarget{class_sound_manager_a839aabeb1d7f1ee11afe3a1c8391bf8e}\label{class_sound_manager_a839aabeb1d7f1ee11afe3a1c8391bf8e} 
+void {\bfseries Stop\+All\+Sounds} (void)
+\item 
+\Hypertarget{class_sound_manager_af47796d637747113f05fdabfbc3a2246}\label{class_sound_manager_af47796d637747113f05fdabfbc3a2246} 
+void {\bfseries Frame\+Started} (Ogre\+::\+Scene\+Node \texorpdfstring{$\ast$}{*}listener\+Node, Ogre\+::\+Real time\+Elapsed)
+\item 
+\Hypertarget{class_sound_manager_a0a2df7e5c03dcd45ed87d22991041bba}\label{class_sound_manager_a0a2df7e5c03dcd45ed87d22991041bba} 
+void {\bfseries Frame\+Started} (Ogre\+::\+Camera \texorpdfstring{$\ast$}{*}listener\+Node, Ogre\+::\+Real time\+Elapsed)
+\item 
+\Hypertarget{class_sound_manager_abefbd31d9165aae4333d0f1137c3dcaf}\label{class_sound_manager_abefbd31d9165aae4333d0f1137c3dcaf} 
+int {\bfseries Create\+Sound} (String \&file\+Name)
+\item 
+\Hypertarget{class_sound_manager_aae2e68f985dc27fe42eea0cde1a26077}\label{class_sound_manager_aae2e68f985dc27fe42eea0cde1a26077} 
+int {\bfseries Create\+Stream} (String \&file\+Name)
+\item 
+\Hypertarget{class_sound_manager_a87f0425b6ee1f286837c29e5e90a9077}\label{class_sound_manager_a87f0425b6ee1f286837c29e5e90a9077} 
+int {\bfseries Create\+Looped\+Sound} (String \&file\+Name)
+\item 
+\Hypertarget{class_sound_manager_a066f4130411b647006e32782883dbf6f}\label{class_sound_manager_a066f4130411b647006e32782883dbf6f} 
+int {\bfseries Create\+Looped\+Stream} (String \&file\+Name)
+\item 
+\Hypertarget{class_sound_manager_a5ffedcdd97e675014d09719388d0b389}\label{class_sound_manager_a5ffedcdd97e675014d09719388d0b389} 
+int {\bfseries Create\+Sound} (String \&file\+Name, SOUND\+\_\+\+TYPE sound\+Type)
+\item 
+\Hypertarget{class_sound_manager_a92dc62c26ce25c54b821d7928c019e17}\label{class_sound_manager_a92dc62c26ce25c54b821d7928c019e17} 
+void {\bfseries Play\+Sound} (int sound\+Index, Scene\+Node \texorpdfstring{$\ast$}{*}sound\+Node, int \texorpdfstring{$\ast$}{*}channel\+Index)
+\item 
+\Hypertarget{class_sound_manager_ac17e5a2691f784397f2a15ac17b99172}\label{class_sound_manager_ac17e5a2691f784397f2a15ac17b99172} 
+void {\bfseries Play\+Music} (int sound\+Index, FMOD\+::\+Channel \texorpdfstring{$\ast$}{*}\texorpdfstring{$\ast$}{*}channel)
+\item 
+\Hypertarget{class_sound_manager_a704debf24e9e98896b59c8826c3eddf9}\label{class_sound_manager_a704debf24e9e98896b59c8826c3eddf9} 
+void {\bfseries Stop\+Sound} (int \texorpdfstring{$\ast$}{*}channel\+Index)
+\item 
+\Hypertarget{class_sound_manager_ace602922351c6959fbf0f897bd3142b4}\label{class_sound_manager_ace602922351c6959fbf0f897bd3142b4} 
+int {\bfseries Find\+Sound} (String \&file\+Name, SOUND\+\_\+\+TYPE sound\+Type)
+\item 
+\Hypertarget{class_sound_manager_addc8667b2fc7e01ef1c013917042b362}\label{class_sound_manager_addc8667b2fc7e01ef1c013917042b362} 
+void {\bfseries Set3\+DMin\+Max\+Distance} (int channel\+Index, float min\+Distance, float max\+Distance)
+\item 
+\Hypertarget{class_sound_manager_a9d367b0db3c414a9524f6034d573fcd2}\label{class_sound_manager_a9d367b0db3c414a9524f6034d573fcd2} 
+float {\bfseries Get\+Sound\+Length} (int sound\+Index)
+\item 
+\Hypertarget{class_sound_manager_a93c0957353a53547d30f74886a01b47e}\label{class_sound_manager_a93c0957353a53547d30f74886a01b47e} 
+\mbox{\hyperlink{class_sound_instance}{Sound\+Instance}} \texorpdfstring{$\ast$}{*} {\bfseries Get\+Sound\+Instance} (int sound\+Index)
+\item 
+\Hypertarget{class_sound_manager_a5b881c47bbb76be3999fd4873f43c7d9}\label{class_sound_manager_a5b881c47bbb76be3999fd4873f43c7d9} 
+FMOD\+::\+Channel \texorpdfstring{$\ast$}{*} {\bfseries Get\+Sound\+Channel} (int channel\+Index)
+\item 
+\Hypertarget{class_sound_manager_aba46f89370c11a3139df8b350e95487d}\label{class_sound_manager_aba46f89370c11a3139df8b350e95487d} 
+void {\bfseries clear\+Channels\+Connected\+To\+Scene\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}node)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_sound_manager_ae3617a622cd7f017d5635c161934a68b}\label{class_sound_manager_ae3617a622cd7f017d5635c161934a68b} 
+static \mbox{\hyperlink{class_sound_manager}{Sound\+Manager}} \& {\bfseries get\+Singleton} (void)
+\item 
+\Hypertarget{class_sound_manager_ab683342ab36bc5f8392d62e362f51018}\label{class_sound_manager_ab683342ab36bc5f8392d62e362f51018} 
+static \mbox{\hyperlink{class_sound_manager}{Sound\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Singleton\+Ptr} (void)
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Sound\+Manager.\+h\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Sound\+Manager.\+cpp\end{DoxyCompactItemize}

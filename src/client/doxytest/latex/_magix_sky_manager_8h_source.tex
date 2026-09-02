@@ -1,0 +1,858 @@
+\doxysection{Magix\+Sky\+Manager.\+h}
+\hypertarget{_magix_sky_manager_8h_source}{}\label{_magix_sky_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixSkyManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixSkyManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixSkyManager\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixSkyManager\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\#include\ <OgreTerrainGroup.h>}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}GameConfig.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#define\ MAX\_CLOUDS\ 10}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MAX\_STARS\ 77}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ NORTH\ Vector3::UNIT\_Z}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ EAST\ Vector3::NEGATIVE\_UNIT\_X}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ SOUTH\ Vector3::NEGATIVE\_UNIT\_Z}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ WEST\ Vector3::UNIT\_X}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ DAYSPEED\ 1}\textcolor{comment}{//0.5}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ DEFAULT\_FOG\_COLOUR\ ColourValue(192.0f/255,\ 229.0f/255,\ 253.0f/255)}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ DEFAULT\_SUNLIGHT\_COLOUR\ ColourValue(1.0,\ 1.0,\ 0.8)}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ DEFAULT\_MOONLIGHT\_COLOUR\ ColourValue(0.25,\ 0.25,\ 0.25)}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ FOG\_DENSITY\ .0001}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\#define\ FOG\_START\ 1000\ //500}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//\#define\ FOG\_END\ 2500\ //1500}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{class\ }MagixSkyManager}
+\DoxyCodeLine{00023\ \{}
+\DoxyCodeLine{00024\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *mDef;}
+\DoxyCodeLine{00026\ \ \ \ \ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *mCamera;}
+\DoxyCodeLine{00027\ \ \ \ \ \mbox{\hyperlink{class_magix_sound_manager}{MagixSoundManager}}\ *mSoundManager;}
+\DoxyCodeLine{00028\ \ \ \ \ SceneManager\ *mSceneMgr;}
+\DoxyCodeLine{00029\ \ \ \ \ SceneNode\ *mSkyNode;}
+\DoxyCodeLine{00030\ \ \ \ \ Entity\ *mSkyDome;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{comment}{//BillboardSet\ *mCloudSet;}}
+\DoxyCodeLine{00032\ \ \ \ \ BillboardSet\ *mSun;}
+\DoxyCodeLine{00033\ \ \ \ \ BillboardSet\ *mSunRadiance;}
+\DoxyCodeLine{00034\ \ \ \ \ BillboardSet\ *mMoon;}
+\DoxyCodeLine{00035\ \ \ \ \ BillboardSet\ *mStars;}
+\DoxyCodeLine{00036\ \ \ \ \ Light\ *mSunLight;}
+\DoxyCodeLine{00037\ \ \ \ \ Light\ *mMoonLight;}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{comment}{//Ogre::TerrainGlobalOptions*\ mTerrainGlobals;}}
+\DoxyCodeLine{00039\ \ \ \ \ \textcolor{comment}{//Real\ cloudSpeed[MAX\_CLOUDS];}}
+\DoxyCodeLine{00040\ \ \ \ \ Real\ skyDayTime;}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{bool}\ dayTimeFrozen;}
+\DoxyCodeLine{00042\ \ \ \ \ Real\ frozenDayTime;}
+\DoxyCodeLine{00043\ \ \ \ \ SceneNode\ *mWeatherNode;}
+\DoxyCodeLine{00044\ \ \ \ \ ParticleSystem\ *mWeatherSystem;}
+\DoxyCodeLine{00045\ \ \ \ \ Real\ weatherTime;}
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{bool}\ weatherLocked;}
+\DoxyCodeLine{00047\ \ \ \ \ String\ weatherType;}
+\DoxyCodeLine{00048\ \ \ \ \ String\ weatherCycle;}
+\DoxyCodeLine{00049\ \ \ \ \ ColourValue\ weatherSkyShader;}
+\DoxyCodeLine{00050\ \ \ \ \ \textcolor{comment}{//ColourValue\ weatherSkyAdder;}}
+\DoxyCodeLine{00051\ \ \ \ \ String\ weatherEffect;}
+\DoxyCodeLine{00052\ \ \ \ \ Real\ weatherEffectCountdown;}
+\DoxyCodeLine{00053\ \ \ \ \ vector<WeatherEvent>::type\ weatherCycleEventList;}
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasWeatherSound;}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{bool}\ interiorSky;}
+\DoxyCodeLine{00056\ \ \ \ \ Real\ FOG\_START,\ FOG\_END;}
+\DoxyCodeLine{00057\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00058\ \ \ \ \ MagixSkyManager()}
+\DoxyCodeLine{00059\ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ mDef\ =\ 0;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ mCamera\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ mSoundManager\ =\ 0;}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ mSkyNode\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ mSkyDome\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mCloudSet\ =\ 0;}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ mSun\ =\ 0;}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ mSunRadiance\ =\ 0;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ mMoon\ =\ 0;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ mStars\ =\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ mSunLight\ =\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ mMoonLight\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{comment}{//for(int\ i=0;i<MAX\_CLOUDS;i++)cloudSpeed[i]\ =\ 0;}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ skyDayTime\ =\ 500;}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ dayTimeFrozen\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ frozenDayTime\ =\ 0;}
+\DoxyCodeLine{00077\ }
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ mWeatherNode\ =\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ mWeatherSystem\ =\ 0;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ weatherTime\ =\ 0;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ weatherLocked\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ weatherType\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ weatherCycle\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ weatherSkyShader\ =\ ColourValue::White;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//weatherSkyAdder\ =\ ColourValue::Black;}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ weatherEffect\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ weatherEffectCountdown\ =\ 0;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ weatherCycleEventList.clear();}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ hasWeatherSound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ interiorSky\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ FOG\_START\ =\ 1000;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ FOG\_END\ =\ 2500;}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \string~MagixSkyManager()}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ weatherCycleEventList.clear();}
+\DoxyCodeLine{00099\ \ \ \ \ \}}
+\DoxyCodeLine{00100\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(SceneManager\ *sceneMgr,\ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def,\ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *camera,\ \mbox{\hyperlink{class_magix_sound_manager}{MagixSoundManager}}\ *soundMgr)}
+\DoxyCodeLine{00101\ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ sceneMgr;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ mDef\ =\ def;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ mCamera\ =\ camera;}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ mSoundManager\ =\ soundMgr;}
+\DoxyCodeLine{00106\ }
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ mSkyDome\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}Sky"{}},\ \textcolor{stringliteral}{"{}Semidome.mesh"{}});}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ mSkyDome-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ mSkyDome-\/>setQueryFlags(SKY\_MASK);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ Entity\ *cloudDome\ =\ mSceneMgr-\/>createEntity(\textcolor{stringliteral}{"{}CloudDome"{}},\ \textcolor{stringliteral}{"{}Semidome.mesh"{}});}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ cloudDome-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ cloudDome-\/>setMaterialName(\textcolor{stringliteral}{"{}Sky/CloudDome"{}});}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ cloudDome-\/>setQueryFlags(SKY\_MASK);}
+\DoxyCodeLine{00115\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*mCloudSet\ =\ mSceneMgr-\/>createBillboardSet("{}Clouds"{});}}
+\DoxyCodeLine{00117\ \textcolor{comment}{\ \ \ \ \ \ \ \ for(int\ i=0;i<MAX\_CLOUDS;i++)}}
+\DoxyCodeLine{00118\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00119\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Real\ tYZ\ =\ Math::RangeRandom(0,100);}}
+\DoxyCodeLine{00120\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ Billboard\ *cloud\ =\ mCloudSet-\/>createBillboard(Vector3(Math::RangeRandom(-\/500,500),100-\/tYZ,tYZ*(Math::RangeRandom(0,10)>5?1:-\/1)\ ));}}
+\DoxyCodeLine{00121\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ cloudSpeed[i]\ =\ Math::RangeRandom(10,50);}}
+\DoxyCodeLine{00122\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00123\ \textcolor{comment}{\ \ \ \ \ \ \ \ mCloudSet-\/>setCastShadows(false);}}
+\DoxyCodeLine{00124\ \textcolor{comment}{\ \ \ \ \ \ \ \ mCloudSet-\/>setDefaultDimensions(20,8);}}
+\DoxyCodeLine{00125\ \textcolor{comment}{\ \ \ \ \ \ \ \ mCloudSet-\/>setBillboardType(BBT\_ORIENTED\_COMMON);}}
+\DoxyCodeLine{00126\ \textcolor{comment}{\ \ \ \ \ \ \ \ mCloudSet-\/>setCommonDirection(Vector3::UNIT\_Y);}}
+\DoxyCodeLine{00127\ \textcolor{comment}{\ \ \ \ \ \ \ \ mCloudSet-\/>setMaterialName("{}cloudMat"{});}}
+\DoxyCodeLine{00128\ \textcolor{comment}{\ \ \ \ \ \ \ \ mCloudSet-\/>setVisible(true);*/}}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ mSun\ =\ mSceneMgr-\/>createBillboardSet(\textcolor{stringliteral}{"{}Sun"{}},1);}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ mSun-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ mSun-\/>setMaterialName(\textcolor{stringliteral}{"{}Sky/SunMat"{}});}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ mSun-\/>setDefaultDimensions(40,40);}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ mSun-\/>createBillboard(Vector3(-\/100,100,0),ColourValue(1,1,1,0.95));}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ mSun-\/>setQueryFlags(SKY\_MASK);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ mSunRadiance\ =\ mSceneMgr-\/>createBillboardSet(\textcolor{stringliteral}{"{}SunRadiance"{}},1);}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ mSunRadiance-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ mSunRadiance-\/>setMaterialName(\textcolor{stringliteral}{"{}Sky/SunRadiance"{}});}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ mSunRadiance-\/>setDefaultDimensions(100,100);}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ mSunRadiance-\/>createBillboard(Vector3(-\/100,100,0),ColourValue(1,1,1,0.95));}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ mSunRadiance-\/>setQueryFlags(SKY\_MASK);}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ mMoon\ =\ mSceneMgr-\/>createBillboardSet(\textcolor{stringliteral}{"{}Moon"{}},1);}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ mMoon-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ mMoon-\/>setDefaultDimensions(40,40);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ mMoon-\/>setMaterialName(\textcolor{stringliteral}{"{}Sky/MoonMat"{}});}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ mMoon-\/>createBillboard(Vector3(100,100,0),ColourValue(1,1,1,0.90));}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ mMoon-\/>setQueryFlags(SKY\_MASK);}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ mStars\ =\ mSceneMgr-\/>createBillboardSet(\textcolor{stringliteral}{"{}Stars"{}},MAX\_STARS);}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ mStars-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ mStars-\/>setDefaultDimensions(1,1);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ mStars-\/>setMaterialName(\textcolor{stringliteral}{"{}Sky/StarMat"{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ mStars-\/>setQueryFlags(SKY\_MASK);}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_STARS;i++)mStars-\/>createBillboard(Vector3(Math::RangeRandom(-\/200,200),Math::RangeRandom(50,100),Math::RangeRandom(-\/200,200)));}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ mSkyNode\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ mSkyNode-\/>attachObject(mSkyDome);}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ mSkyNode-\/>attachObject(cloudDome);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ mSkyNode-\/>attachObject(mSun);}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ mSkyNode-\/>attachObject(mSunRadiance);}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ mSkyNode-\/>attachObject(mMoon);}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ mSkyNode-\/>attachObject(mStars);}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSkyNode-\/>attachObject(mCloudSet);}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ mSkyNode-\/>setScale(150,150,150);}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ mSunLight\ =\ mSceneMgr-\/>createLight(\textcolor{stringliteral}{"{}SunLight"{}});}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ mSunLight-\/>setType(Light::LT\_DIRECTIONAL);}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ mSunLight-\/>setDiffuseColour(ColourValue(DEFAULT\_SUNLIGHT\_COLOUR));}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ mSunLight-\/>setSpecularColour(ColourValue(DEFAULT\_SUNLIGHT\_COLOUR));}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ mSunLight-\/>setDirection(Vector3(\ 0.25,\ -\/0.75,\ 0\ ));}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ mSunLight-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ mMoonLight\ =\ mSceneMgr-\/>createLight(\textcolor{stringliteral}{"{}MoonLight"{}});}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ mMoonLight-\/>setType(Light::LT\_DIRECTIONAL);}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ mMoonLight-\/>setDiffuseColour(ColourValue(DEFAULT\_MOONLIGHT\_COLOUR));}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ mMoonLight-\/>setSpecularColour(ColourValue(DEFAULT\_MOONLIGHT\_COLOUR));}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ mMoonLight-\/>setDirection(Vector3(\ -\/0.25,\ -\/0.75,\ 0\ ));}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ mMoonLight-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00180\ }
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ ambient\ light}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ mSceneMgr-\/>setAmbientLight(ColourValue(AMBIENT\_LIGHT\_OUTDOOR));}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSceneMgr-\/>setShadowTechnique(SHADOWTYPE\_NONE);}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSceneMgr-\/>setShadowFarDistance(300);}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSceneMgr-\/>setShadowTextureSize(1024);}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ mWeatherNode\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode();}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ mWeatherNode-\/>createChildSceneNode(\textcolor{stringliteral}{"{}WeatherOffsetNode"{}});}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ mWeatherNode-\/>createChildSceneNode(\textcolor{stringliteral}{"{}WeatherEffectNode"{}});}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ showSky(\textcolor{keyword}{false});}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mTerrainGlobals\ =\ OGRE\_NEW\ TerrainGlobalOptions();}}
+\DoxyCodeLine{00193\ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \textcolor{comment}{/*void\ updateClouds(const\ FrameEvent\ \&evt)}}
+\DoxyCodeLine{00195\ \textcolor{comment}{\ \ \ \ \{}}
+\DoxyCodeLine{00196\ \textcolor{comment}{\ \ \ \ \ \ \ \ for(int\ i=0;i<MAX\_CLOUDS;i++)}}
+\DoxyCodeLine{00197\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00198\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ mCloudSet-\/>getBillboard(i)-\/>setPosition(mCloudSet-\/>getBillboard(i)-\/>getPosition()+Vector3(cloudSpeed[i],0,0)*evt.timeSinceLastFrame);}}
+\DoxyCodeLine{00199\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ if(mCloudSet-\/>getBillboard(i)-\/>getPosition().x\ >\ 100)}}
+\DoxyCodeLine{00200\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00201\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Real\ tYZ\ =\ Math::RangeRandom(0,500);}}
+\DoxyCodeLine{00202\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCloudSet-\/>getBillboard(i)-\/>setPosition(Vector3(-\/500,100-\/tYZ,tYZ*(Math::RangeRandom(0,10)>5?1:-\/1)\ ));}}
+\DoxyCodeLine{00203\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00204\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00205\ \textcolor{comment}{\ \ \ \ \}*/}}
+\DoxyCodeLine{00206\ \ \ \ \ \textcolor{keywordtype}{void}\ updateSky()}
+\DoxyCodeLine{00207\ \ \ \ \ \{}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>isAttached())}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ mSkyNode-\/>setPosition(mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>getDerivedPosition());}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ mWeatherNode-\/>setPosition(mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>getDerivedPosition());}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ mSkyNode-\/>setPosition(mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>getPosition());}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ mWeatherNode-\/>setPosition(mSceneMgr-\/>getCamera(\textcolor{stringliteral}{"{}PlayerCam"{}})-\/>getPosition());}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ \}}
+\DoxyCodeLine{00219\ \ \ \ \ \textcolor{keywordtype}{void}\ resetSky()}
+\DoxyCodeLine{00220\ \ \ \ \ \{}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ ColourValue\ tFogColour\ =\ mSceneMgr-\/>getFogColour();}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ weatherSkyShader\ =\ ColourValue::White;}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \textcolor{comment}{//weatherSkyAdder\ =\ ColourValue::Black;}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ destroyWeather();}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(1,Vector4(1,1,1,1));}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(2,Vector4(0,0,0,0));}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ mSceneMgr-\/>setFog(\ FOG\_LINEAR,\ ColourValue(),\ FOG\_DENSITY,\ FOG\_START,\ FOG\_END);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ mSunLight-\/>setDiffuseColour(ColourValue(DEFAULT\_SUNLIGHT\_COLOUR));}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ mSunLight-\/>setSpecularColour(ColourValue(DEFAULT\_SUNLIGHT\_COLOUR));}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ mMoonLight-\/>setDiffuseColour(ColourValue(DEFAULT\_SUNLIGHT\_COLOUR));}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ mMoonLight-\/>setSpecularColour(ColourValue(DEFAULT\_SUNLIGHT\_COLOUR));}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ updateCelestials(dayTimeFrozen?frozenDayTime:skyDayTime);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(interiorSky)setInteriorSky(\textcolor{keyword}{true},tFogColour);}
+\DoxyCodeLine{00234\ \ \ \ \ \}}
+\DoxyCodeLine{00235\ \ \ \ \ \textcolor{keywordtype}{void}\ updateCelestials(\textcolor{keyword}{const}\ Real\ \&dayTime)}
+\DoxyCodeLine{00236\ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(interiorSky)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ FOG\_END\ =\ mDef-\/>viewDistance*2083\ +\ 417;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ FOG\_START\ =\ mDef-\/>viewDistance*833\ +\ 167;}
+\DoxyCodeLine{00240\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(push)}}
+\DoxyCodeLine{00241\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(disable\ :\ 4482)}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Day}}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dayTime>=600\ \&\&\ dayTime<1800)}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSun-\/>isVisible())mSun-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSunRadiance-\/>isVisible())mSunRadiance-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMoon-\/>isVisible())mMoon-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mStars-\/>isVisible())mStars-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSunLight-\/>isVisible())mSunLight-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMoonLight-\/>isVisible())mMoonLight-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00251\ }
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Sun\ movement}}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dayTime<=1200)}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSun-\/>getBillboard(0)-\/>setPosition(Vector3(-\/(1200-\/dayTime)*100/600,(dayTime-\/600)*100/600,0));}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSunRadiance-\/>getBillboard(0)-\/>setPosition(Vector3(-\/(1200-\/dayTime)*100/600,(dayTime-\/600)*100/600,0));}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSun-\/>getBillboard(0)-\/>setPosition(Vector3((dayTime-\/1200)*100/600,(1800-\/dayTime)*100/600,0));}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSunRadiance-\/>getBillboard(0)-\/>setPosition(Vector3((dayTime-\/1200)*100/600,(1800-\/dayTime)*100/600,0));}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setDirection((dayTime-\/1200)*-\/0.75/600,\ -\/0.75,\ 0);}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ skyColour\ =\ ColourValue(1,1,1,1)\ *weatherSkyShader;}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ fadeColour\ =\ DEFAULT\_FOG\_COLOUR\ *weatherSkyShader;}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ sunLightColour\ =\ DEFAULT\_SUNLIGHT\_COLOUR;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ cloudColour\ =\ ColourValue(1,1,1,1);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ sunRadianceColour\ =\ ColourValue(0,0,0,1);}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//post\ dawn}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dayTime<=700)}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tFade\ =\ (dayTime-\/600)*1.0/100;}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skyColour\ =\ skyColour\ *\ ColourValue(1,0.9+tFade*0.1,0.75+tFade*0.25,1);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ ColourValue(1,0.9+tFade*0.1,0.75+tFade*0.25,1);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sunLightColour\ =\ sunLightColour\ *\ ColourValue(1,0.9+tFade*0.1,-\/0.25+tFade*1.25,1);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cloudColour\ =\ ColourValue(1,0.8+tFade*0.2,0.1+tFade*0.9,1);}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sunRadianceColour\ =\ ColourValue((1-\/tFade)*1.0,(1-\/tFade)*0.8,0,1);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//pre\ dusk}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dayTime>=1700)}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tFade\ =\ (1800-\/dayTime)*1.0/100;}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skyColour\ =\ skyColour\ *\ ColourValue(1,0.8+tFade*0.2,0.7+tFade*0.3,1);}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ ColourValue(1,0.8+tFade*0.2,0.7+tFade*0.3,1);}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sunLightColour\ =\ sunLightColour\ *\ ColourValue(1,0.8+tFade*0.2,-\/0.3+tFade*1.2,1);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cloudColour\ =\ ColourValue(1,0.75+tFade*0.25,0.1+tFade*0.9,1);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ sunRadianceColour\ =\ ColourValue((1-\/tFade)*1.0,(1-\/tFade)*0.7,0,1);}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//fadeColour\ +=\ weatherSkyAdder;}}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//fadeColour.saturate();}}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>getFogColour()\ !=\ fadeColour\ ||\ mSceneMgr-\/>getFogEnd()!=FOG\_END)}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(1,Vec4(skyColour));}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(2,Vec4(weatherSkyAdder));}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getName()==\textcolor{stringliteral}{"{}2"{}})}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(1)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_MODULATE,}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(1).x,}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(1).y,}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(1).z));}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(2)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_ADD,}}
+\DoxyCodeLine{00306\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}}
+\DoxyCodeLine{00307\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}}
+\DoxyCodeLine{00308\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).x,}}
+\DoxyCodeLine{00309\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).y,}}
+\DoxyCodeLine{00310\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).z));*/}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>setFog(\ FOG\_LINEAR,\ fadeColour,\ FOG\_DENSITY,\ FOG\_START,\ FOG\_END);}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setDiffuseColour(sunLightColour);}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setSpecularColour(sunLightColour);}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSun-\/>getBillboard(0)-\/>setColour(ColourValue(1,1,1,0.95));}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cloudColour\ =\ cloudColour\ *\ weatherSkyShader;}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cloudColour\ +=\ weatherSkyAdder;}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cloudColour.saturate();}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MaterialPtr\textcolor{keyword}{>}(MaterialManager::getSingleton().getByName(\textcolor{stringliteral}{"{}Sky/CloudDome"{}})).get()-\/>setSelfIllumination(cloudColour);}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MaterialPtr\textcolor{keyword}{>}(MaterialManager::getSingleton().getByName(\textcolor{stringliteral}{"{}Sky/SunRadiance"{}})).get()-\/>setSelfIllumination(sunRadianceColour);}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mTerrainGlobals-\/>setLightMapDirection(mSunLight-\/>getDerivedDirection());}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mTerrainGlobals-\/>setCompositeMapAmbient(mSceneMgr-\/>getAmbientLight());}}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mTerrainGlobals-\/>setCompositeMapDiffuse(mSunLight-\/>getDiffuseColour());}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Dusk}}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dayTime>=1800\ \&\&\ dayTime<1900)}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSun-\/>isVisible())mSun-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSunRadiance-\/>isVisible())mSunRadiance-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMoon-\/>isVisible())mMoon-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mStars-\/>isVisible())mStars-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSunLight-\/>isVisible())mSunLight-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMoonLight-\/>isVisible())mMoonLight-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMoonLight-\/>getCastShadows())mMoonLight-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00337\ }
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ mSun-\/>getBillboard(0)-\/>setPosition(Vector3((dayTime-\/1200)*100/600,(1800-\/dayTime)*100/600,0));}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ mSunRadiance-\/>getBillboard(0)-\/>setPosition(Vector3((dayTime-\/1200)*100/600,(1800-\/dayTime)*100/600,0));}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ mSun-\/>getBillboard(0)-\/>setColour(ColourValue((1900-\/dayTime)*1.0/100,(1900-\/dayTime)*1.0/100,(1900-\/dayTime)*1.0/100,(1900-\/dayTime)*0.95/100));}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ mMoon-\/>getBillboard(0)-\/>setColour(ColourValue((dayTime-\/1800)*1.0/100,(dayTime-\/1800)*1.0/100,(dayTime-\/1800)*1.0/100,(dayTime-\/1800)*0.90/100));}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_STARS;i++)}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tBlink\ =\ Math::RangeRandom(0,(dayTime-\/1800)*1.0/100);}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStars-\/>getBillboard(i)-\/>setColour(ColourValue(tBlink,tBlink,tBlink,tBlink));}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ sunLightColour\ =\ DEFAULT\_SUNLIGHT\_COLOUR\ *\ ColourValue(1,0.8,-\/0.3,1);}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ sunLightColour\ *=\ (1900-\/dayTime)/100;}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setDiffuseColour(sunLightColour);}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setSpecularColour(sunLightColour);}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setDirection(-\/0.75,\ -\/0.75,\ 0);}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ moonLightColour\ =\ DEFAULT\_MOONLIGHT\_COLOUR;}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ moonLightColour\ *=\ (dayTime-\/1800)/100;}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ mMoonLight-\/>setDiffuseColour(moonLightColour);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ mMoonLight-\/>setSpecularColour(moonLightColour);}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tFade\ =\ (1900-\/dayTime)*1.0/100;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ Vector4\ skyFade(0.4+tFade*0.6,0.4+tFade*0.6,0.5+tFade*0.5,1);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ skyFade\ *=\ Vector4(1,1-\/tFade*0.2,1-\/tFade*0.3,1);}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ skyFade\ *=\ Vec4(weatherSkyShader);}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(1,skyFade);}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(2,Vec4(weatherSkyAdder));}}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getName()==\textcolor{stringliteral}{"{}2"{}})}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(1)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_MODULATE,}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(skyFade.x,}
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skyFade.y,}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skyFade.z));}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(2)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_ADD,}}
+\DoxyCodeLine{00375\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}}
+\DoxyCodeLine{00376\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}}
+\DoxyCodeLine{00377\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).x,}}
+\DoxyCodeLine{00378\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).y,}}
+\DoxyCodeLine{00379\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).z));*/}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00381\ }
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ fadeColour\ =\ DEFAULT\_FOG\_COLOUR;}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ ColourValue(0.4+tFade*0.6,0.4+tFade*0.6,0.5+tFade*0.5,1);}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ ColourValue(1,1-\/tFade*0.2,1-\/tFade*0.3,1);}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ weatherSkyShader;}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//fadeColour\ +=\ weatherSkyAdder;}}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//fadeColour.saturate();}}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>setFog(\ FOG\_LINEAR,\ fadeColour,\ FOG\_DENSITY,\ FOG\_START,\ FOG\_END);}
+\DoxyCodeLine{00389\ }
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ cloudColour\ =\ ColourValue(0.1+tFade*0.9,0.1+tFade*0.65,0.1);}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \ \ \ \ cloudColour\ =\ cloudColour\ *\ weatherSkyShader;}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cloudColour\ +=\ weatherSkyAdder;}}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cloudColour.saturate();}}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MaterialPtr\textcolor{keyword}{>}(MaterialManager::getSingleton().getByName(\textcolor{stringliteral}{"{}Sky/CloudDome"{}})).get()-\/>setSelfIllumination(cloudColour);}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MaterialPtr\textcolor{keyword}{>}(MaterialManager::getSingleton().getByName(\textcolor{stringliteral}{"{}Sky/SunRadiance"{}})).get()-\/>setSelfIllumination(tFade*1.0,tFade*0.7,0);}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Night}}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dayTime>=1900\ ||\ dayTime<500)}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSun-\/>isVisible())mSun-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSunRadiance-\/>isVisible())mSunRadiance-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMoon-\/>isVisible())mMoon-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mStars-\/>isVisible())mStars-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00406\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSunLight-\/>isVisible())mSunLight-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00407\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMoonLight-\/>isVisible())mMoonLight-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMoonLight-\/>getCastShadows())mMoonLight-\/>setCastShadows(\textcolor{keyword}{true});}
+\DoxyCodeLine{00409\ }
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_STARS;i++)}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tBlink\ =\ Math::RangeRandom(0,1.0);}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStars-\/>getBillboard(i)-\/>setColour(ColourValue(tBlink,tBlink,tBlink,tBlink));}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00415\ }
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ fadeColour\ =\ DEFAULT\_FOG\_COLOUR;}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ ColourValue(0.4,0.4,0.5,1);}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ weatherSkyShader;}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//fadeColour\ +=\ weatherSkyAdder;}}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//fadeColour.saturate();}}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSceneMgr-\/>getFogColour()!=\ fadeColour\ ||\ mSceneMgr-\/>getFogEnd()!=FOG\_END)}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(1,Vector4(0.4,0.4,0.5,1)\ *Vec4(weatherSkyShader));}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(2,Vec4(weatherSkyAdder));}}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getName()==\textcolor{stringliteral}{"{}2"{}})}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(1)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_MODULATE,}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(1).x,}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(1).y,}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(1).z));}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(2)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_ADD,}}
+\DoxyCodeLine{00434\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}}
+\DoxyCodeLine{00435\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}}
+\DoxyCodeLine{00436\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).x,}}
+\DoxyCodeLine{00437\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).y,}}
+\DoxyCodeLine{00438\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).z));*/}}
+\DoxyCodeLine{00439\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>setFog(\ FOG\_LINEAR,\ fadeColour,\ FOG\_DENSITY,\ FOG\_START,\ FOG\_END);}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMoon-\/>getBillboard(0)-\/>setColour(ColourValue(1,1,1,0.9));}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ cloudColour\ =\ ColourValue(0.1,0.1,0.1);}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ cloudColour\ =\ cloudColour\ *\ weatherSkyShader;}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cloudColour\ +=\ weatherSkyAdder;}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cloudColour.saturate();}}
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MaterialPtr\textcolor{keyword}{>}(MaterialManager::getSingleton().getByName(\textcolor{stringliteral}{"{}Sky/CloudDome"{}})).get()-\/>setSelfIllumination(cloudColour);}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00448\ }
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Dawn}}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(dayTime>=500\ \&\&\ dayTime<600)}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSun-\/>isVisible())mSun-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSunRadiance-\/>isVisible())mSunRadiance-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMoon-\/>isVisible())mMoon-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mStars-\/>isVisible())mStars-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mSunLight-\/>isVisible())mSunLight-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMoonLight-\/>isVisible())mMoonLight-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMoonLight-\/>getCastShadows())mMoonLight-\/>setCastShadows(\textcolor{keyword}{false});}
+\DoxyCodeLine{00461\ }
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \ \ \ \ mSun-\/>getBillboard(0)-\/>setPosition(Vector3(-\/(1200-\/dayTime)*100/600,(dayTime-\/600)*100/600,0));}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ \ \ \ \ mSunRadiance-\/>getBillboard(0)-\/>setPosition(Vector3(-\/(1200-\/dayTime)*100/600,(dayTime-\/600)*100/600,0));}
+\DoxyCodeLine{00464\ }
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ \ \ \ \ mSun-\/>getBillboard(0)-\/>setColour(ColourValue((dayTime-\/500)*1.0/100,(dayTime-\/500)*1.0/100,(dayTime-\/500)*1.0/100,(dayTime-\/500)*0.95/100));}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ \ \ \ \ mMoon-\/>getBillboard(0)-\/>setColour(ColourValue((600-\/dayTime)*1.0/100,(600-\/dayTime)*1.0/100,(600-\/dayTime)*1.0/100,(600-\/dayTime)*0.90/100));}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_STARS;i++)}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tBlink\ =\ Math::RangeRandom(0,(600-\/dayTime)*1.0/100);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mStars-\/>getBillboard(i)-\/>setColour(ColourValue(tBlink,tBlink,tBlink,tBlink));}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00472\ }
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ sunLightColour\ =\ DEFAULT\_SUNLIGHT\_COLOUR\ *\ ColourValue(1,0.9,-\/0.25,1);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ sunLightColour\ *=\ (dayTime-\/500)/100;}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setDiffuseColour(sunLightColour);}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setSpecularColour(sunLightColour);}
+\DoxyCodeLine{00477\ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setDirection(0.75,\ -\/0.75,\ 0);}
+\DoxyCodeLine{00478\ }
+\DoxyCodeLine{00479\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ moonLightColour\ =\ DEFAULT\_MOONLIGHT\_COLOUR;}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \ \ \ \ moonLightColour\ *=\ (600-\/dayTime)/100;}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \ \ \ \ mMoonLight-\/>setDiffuseColour(moonLightColour);}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ mMoonLight-\/>setSpecularColour(moonLightColour);}
+\DoxyCodeLine{00483\ }
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tFade\ =\ (dayTime-\/500)*1.0/100;}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \ \ \ \ Vector4\ skyFade(0.4+tFade*0.6,0.4+tFade*0.6,0.5+tFade*0.5,1);}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ skyFade\ *=\ Vector4(1,1-\/tFade*0.1,1-\/tFade*0.25,1);}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ skyFade\ *=\ Vec4(weatherSkyShader);}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(1,skyFade);}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mSkyDome-\/>getSubEntity(0)-\/>setCustomParameter(2,Vec4(weatherSkyAdder));}}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getName()==\textcolor{stringliteral}{"{}2"{}})}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(1)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_MODULATE,}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(skyFade.x,}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skyFade.y,}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skyFade.z));}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*mSkyDome-\/>getSubEntity(0)-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(2)-\/>setColourOperationEx(LayerBlendOperationEx::LBX\_ADD,}}
+\DoxyCodeLine{00499\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_MANUAL,}}
+\DoxyCodeLine{00500\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ LayerBlendSource::LBS\_CURRENT,}}
+\DoxyCodeLine{00501\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue(mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).x,}}
+\DoxyCodeLine{00502\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).y,}}
+\DoxyCodeLine{00503\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSkyDome-\/>getSubEntity(0)-\/>getCustomParameter(2).z));*/}}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ }
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ fadeColour\ =\ DEFAULT\_FOG\_COLOUR;}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ ColourValue(0.4+tFade*0.6,0.4+tFade*0.6,0.5+tFade*0.5,1);}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ ColourValue(1,1-\/tFade*0.1,1-\/tFade*0.25,1);}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ \ \ \ \ fadeColour\ =\ fadeColour\ *\ weatherSkyShader;}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//fadeColour\ +=\ weatherSkyAdder;}}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//fadeColour.saturate();}}
+\DoxyCodeLine{00512\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>setFog(\ FOG\_LINEAR,\ fadeColour,\ FOG\_DENSITY,\ FOG\_START,\ FOG\_END);}
+\DoxyCodeLine{00513\ }
+\DoxyCodeLine{00514\ \ \ \ \ \ \ \ \ \ \ \ \ ColourValue\ cloudColour\ =\ ColourValue(0.1+tFade*0.9,0.1+tFade*0.7,0.1);}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \ \ \ \ cloudColour\ =\ cloudColour\ *\ weatherSkyShader;}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cloudColour\ +=\ weatherSkyAdder;}}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cloudColour.saturate();}}
+\DoxyCodeLine{00518\ }
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MaterialPtr\textcolor{keyword}{>}(MaterialManager::getSingleton().getByName(\textcolor{stringliteral}{"{}Sky/CloudDome"{}})).get()-\/>setSelfIllumination(cloudColour);}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MaterialPtr\textcolor{keyword}{>}(MaterialManager::getSingleton().getByName(\textcolor{stringliteral}{"{}Sky/SunRadiance"{}})).get()-\/>setSelfIllumination(tFade*1.0,tFade*0.8,0);}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00524\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ warning(pop)}}
+\DoxyCodeLine{00525\ \ \ \ \ \}}
+\DoxyCodeLine{00526\ \ \ \ \ \textcolor{keywordtype}{void}\ updateWeather()}
+\DoxyCodeLine{00527\ \ \ \ \ \{}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ weatherSkyShader\ =\ ColourValue::White;}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ \textcolor{comment}{//weatherSkyAdder\ =\ ColourValue::Black;}}
+\DoxyCodeLine{00530\ }
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)weatherCycleEventList.size();i++)}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \mbox{\hyperlink{struct_weather_event}{WeatherEvent}}\ weatherEvent\ =\ weatherCycleEventList[i];}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherTime>=weatherEvent.start\ \&\&\ weatherTime<weatherEvent.end)}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Constant\ Effect}}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEvent.isConstant)}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weatherSkyShader\ =\ weatherEvent.skyShader;}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//weatherSkyAdder\ =\ weatherEvent.skyAdder;}}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEvent.type==\textcolor{stringliteral}{"{}"{}}\&\&mWeatherSystem)destroyWeather();}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherType!=weatherEvent.type)}
+\DoxyCodeLine{00543\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00544\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setWeather(weatherEvent.type);}
+\DoxyCodeLine{00545\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWeatherSystem)mWeatherSystem-\/>getEmitter(0)-\/>setEmissionRate(weatherEvent.rate);}
+\DoxyCodeLine{00546\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasWeatherSound)mSoundManager-\/>setAmbientSoundVolume(0.8);}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEvent.effect.size()!=0)}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffect==\textcolor{stringliteral}{"{}"{}}\ \&\&\ Math::UnitRandom()<weatherEvent.effectFrequency)}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tRandom\ =\ Math::UnitRandom();}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<=(int)weatherEvent.effect.size();j++)}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(j==(\textcolor{keywordtype}{int})weatherEvent.effect.size())setWeatherEffect(weatherEvent.effect[j-\/1]);}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tRandom>1-\/(j/(\textcolor{keywordtype}{int})weatherEvent.effect.size()))setWeatherEffect(weatherEvent.effect[j-\/1]);}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00560\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Transitioning\ Effect}}
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00563\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00564\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Sky\ Colour}}
+\DoxyCodeLine{00565\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEvent.skyShader!=ColourValue::White)}
+\DoxyCodeLine{00566\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Real\ tFade\ =\ 0;}
+\DoxyCodeLine{00568\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherTime<=(weatherEvent.start+100))}
+\DoxyCodeLine{00569\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00570\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFade\ =\ ((weatherEvent.start+100)\ -\/\ weatherTime)/100;}
+\DoxyCodeLine{00571\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00572\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherTime>=(weatherEvent.end-\/100))}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFade\ =\ (weatherTime\ -\/\ (weatherEvent.end-\/100))/100;}
+\DoxyCodeLine{00575\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00576\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weatherSkyShader\ =\ ColourValue(weatherEvent.skyShader.r\ +\ tFade*(1-\/weatherEvent.skyShader.r),\ weatherEvent.skyShader.g\ +\ tFade*(1-\/weatherEvent.skyShader.g),\ weatherEvent.skyShader.b\ +\ tFade*(1-\/weatherEvent.skyShader.b));}
+\DoxyCodeLine{00577\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00578\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if(weatherEvent.skyAdder!=ColourValue::Black)}}
+\DoxyCodeLine{00579\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00580\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Real\ tFade\ =\ 0;}}
+\DoxyCodeLine{00581\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(weatherTime<=(weatherEvent.start+100))}}
+\DoxyCodeLine{00582\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00583\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFade\ =\ ((weatherEvent.start+100)\ -\/\ weatherTime)/100;}}
+\DoxyCodeLine{00584\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00585\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ else\ if(weatherTime>=(weatherEvent.end-\/100))}}
+\DoxyCodeLine{00586\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00587\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFade\ =\ (weatherTime\ -\/\ (weatherEvent.end-\/100))/100;}}
+\DoxyCodeLine{00588\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00589\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ weatherSkyAdder\ =\ ColourValue((1-\/tFade)*weatherEvent.skyAdder.r,\ (1-\/tFade)*weatherEvent.skyAdder.g,\ (1-\/tFade)*weatherEvent.skyAdder.b);}}
+\DoxyCodeLine{00590\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00591\ }
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Weather\ Particles}}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEvent.type==\textcolor{stringliteral}{"{}"{}}\&\&mWeatherSystem)destroyWeather();}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherTime>=(weatherEvent.start+100)\ \&\&\ weatherType!=weatherEvent.type)setWeather(weatherEvent.type);}
+\DoxyCodeLine{00597\ }
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mWeatherSystem)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherTime<=(weatherEvent.start+200))}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWeatherSystem-\/>getEmitter(0)-\/>setEmissionRate((weatherEvent.rate/100)\ *\ (weatherTime-\/(weatherEvent.start+100)));}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasWeatherSound)mSoundManager-\/>setAmbientSoundVolume((weatherTime-\/(weatherEvent.start+100))*0.008);}
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherTime>=(weatherEvent.end-\/200)\ \&\&\ weatherTime<(weatherEvent.end-\/100))}
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWeatherSystem-\/>getEmitter(0)-\/>setEmissionRate((weatherEvent.rate/100)\ *\ ((weatherEvent.end-\/100)-\/weatherTime));}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasWeatherSound)mSoundManager-\/>setAmbientSoundVolume(((weatherEvent.end-\/100)-\/weatherTime)*0.008);}
+\DoxyCodeLine{00608\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherTime>=(weatherEvent.end-\/100))}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00611\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWeatherSystem-\/>getEmitter(0)-\/>setEmissionRate(0);}
+\DoxyCodeLine{00612\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasWeatherSound)mSoundManager-\/>setAmbientSoundVolume(0);}
+\DoxyCodeLine{00613\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00614\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWeatherSystem-\/>getEmitter(0)-\/>setEmissionRate(weatherEvent.rate);}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasWeatherSound)mSoundManager-\/>setAmbientSoundVolume(0.8);}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00620\ }
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Weather\ Effect}}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEvent.effect.size()!=0)}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherTime>=(weatherEvent.start+100)\ \&\&\ weatherTime<=(weatherEvent.end-\/100))}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffect==\textcolor{stringliteral}{"{}"{}}\ \&\&\ Math::UnitRandom()<weatherEvent.effectFrequency)}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tRandom\ =\ Math::UnitRandom();}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=1;j<=(int)weatherEvent.effect.size();j++)}
+\DoxyCodeLine{00630\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(j==(\textcolor{keywordtype}{int})weatherEvent.effect.size())setWeatherEffect(weatherEvent.effect[j-\/1]);}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tRandom>1-\/(j/(\textcolor{keywordtype}{int})weatherEvent.effect.size()))setWeatherEffect(weatherEvent.effect[j-\/1]);}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00641\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWeatherSystem)destroyWeather();}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00643\ \ \ \ \ \}}
+\DoxyCodeLine{00644\ \ \ \ \ \textcolor{keywordtype}{void}\ updateWeatherEffect(\textcolor{keyword}{const}\ Real\ \&timeElapsed,\ \textcolor{keywordtype}{bool}\ clearEffect=\textcolor{keyword}{false})}
+\DoxyCodeLine{00645\ \ \ \ \ \{}
+\DoxyCodeLine{00646\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffectCountdown==0\&\&!clearEffect)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00647\ \ \ \ \ \ \ \ \ weatherEffectCountdown\ -\/=\ timeElapsed;}
+\DoxyCodeLine{00648\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffectCountdown<0\ ||\ clearEffect)weatherEffectCountdown\ =\ 0;}
+\DoxyCodeLine{00649\ }
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffect==\textcolor{stringliteral}{"{}Lightning"{}})}
+\DoxyCodeLine{00651\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00652\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffectCountdown>0.2)weatherSkyShader\ =\ ColourValue(0.9,0.9,0.9);}
+\DoxyCodeLine{00653\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherEffectCountdown<0.15\ \&\&\ weatherEffectCountdown>0.1)weatherSkyShader\ =\ ColourValue(0.9,0.9,0.9);}
+\DoxyCodeLine{00654\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherEffectCountdown<0.03)weatherSkyShader\ =\ ColourValue(0.9,0.9,0.9);}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherEffect==\textcolor{stringliteral}{"{}Thunder"{}})}
+\DoxyCodeLine{00657\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00658\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffectCountdown==0)}
+\DoxyCodeLine{00659\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00660\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode\ *tWeatherEffectNode\ =\ mSceneMgr-\/>getSceneNode(\textcolor{stringliteral}{"{}WeatherEffectNode"{}});}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tWeatherEffectNode-\/>setPosition((5+Math::UnitRandom()*45)*(Math::UnitRandom()>0.5?1:-\/1),0,(5+Math::UnitRandom()*45)*(Math::UnitRandom()>0.5?1:-\/1));}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playSound((Math::UnitRandom()>0.2?SOUND\_THUNDER1:SOUND\_THUNDER2),tWeatherEffectNode);}
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherEffect==\textcolor{stringliteral}{"{}LightningThunder"{}})}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffectCountdown>2.3)weatherSkyShader\ =\ ColourValue(0.9,0.9,0.9);}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherEffectCountdown<2.25\ \&\&\ weatherEffectCountdown>2.2)weatherSkyShader\ =\ ColourValue(0.9,0.9,0.9);}
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherEffectCountdown<2.15\ \&\&\ weatherEffectCountdown>2.12)weatherSkyShader\ =\ ColourValue(0.9,0.9,0.9);}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherEffectCountdown==0)}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00672\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode\ *tWeatherEffectNode\ =\ mSceneMgr-\/>getSceneNode(\textcolor{stringliteral}{"{}WeatherEffectNode"{}});}
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tWeatherEffectNode-\/>setPosition((5+Math::UnitRandom()*45)*(Math::UnitRandom()>0.5?1:-\/1),0,(5+Math::UnitRandom()*45)*(Math::UnitRandom()>0.5?1:-\/1));}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playSound((Math::UnitRandom()>0.2?SOUND\_THUNDER1:SOUND\_THUNDER2),tWeatherEffectNode);}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(weatherEffect==\textcolor{stringliteral}{"{}Earthquake"{}}\ ||\ weatherEffect==\textcolor{stringliteral}{"{}Earthquake2"{}})}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffectCountdown==0)}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00681\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>stopLoopedSoundByNode(mWeatherNode,SOUND\_EARTHQUAKE);}
+\DoxyCodeLine{00682\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>doQuake(\textcolor{keyword}{false},\textcolor{keyword}{true});}
+\DoxyCodeLine{00683\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00684\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00685\ }
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffectCountdown==0)weatherEffect\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00687\ \ \ \ \ \}}
+\DoxyCodeLine{00688\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00689\ \ \ \ \ \{}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ skyDayTime\ +=\ DAYSPEED*evt.timeSinceLastFrame;}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(skyDayTime>=2400)skyDayTime\ =\ 0;}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ updateSky();}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ updateCelestials(dayTimeFrozen?frozenDayTime:skyDayTime);}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!weatherLocked)}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ weatherTime\ +=\ DAYSPEED*evt.timeSinceLastFrame;}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherTime>=7000)weatherTime\ =\ 0;}
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ updateWeather();}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ updateWeatherEffect(evt.timeSinceLastFrame);}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWeatherSystem)}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCamera-\/>getIsUnderwater()\ \&\&\ isWeatherVisible())showWeather(\textcolor{keyword}{false});}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(!mCamera-\/>getIsUnderwater()\ \&\&\ !isWeatherVisible())showWeather(\textcolor{keyword}{true});}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \textcolor{comment}{//updateClouds(evt);}}
+\DoxyCodeLine{00707\ \ \ \ \ \}}
+\DoxyCodeLine{00708\ \ \ \ \ \textcolor{keywordtype}{void}\ showSky(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00709\ \ \ \ \ \{}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ mSkyNode-\/>setVisible(flag);}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ mWeatherNode-\/>setVisible(flag);}
+\DoxyCodeLine{00712\ \ \ \ \ \}}
+\DoxyCodeLine{00713\ \ \ \ \ \textcolor{keywordtype}{void}\ showWeather(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00714\ \ \ \ \ \{}
+\DoxyCodeLine{00715\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!flag\ ||\ mSkyDome-\/>isVisible())mWeatherNode-\/>setVisible(flag);}
+\DoxyCodeLine{00716\ \ \ \ \ \}}
+\DoxyCodeLine{00717\ \ \ \ \ \textcolor{keywordtype}{bool}\ isWeatherVisible()}
+\DoxyCodeLine{00718\ \ \ \ \ \{}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mWeatherSystem)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (mWeatherSystem-\/>isVisible());}
+\DoxyCodeLine{00721\ \ \ \ \ \}}
+\DoxyCodeLine{00722\ \ \ \ \ \textcolor{keywordtype}{void}\ setDayTime(\textcolor{keyword}{const}\ Real\ \&time)}
+\DoxyCodeLine{00723\ \ \ \ \ \{}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ skyDayTime\ =\ time;}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ resetSky();}
+\DoxyCodeLine{00726\ \ \ \ \ \}}
+\DoxyCodeLine{00727\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getDayTime()}
+\DoxyCodeLine{00728\ \ \ \ \ \{}
+\DoxyCodeLine{00729\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ skyDayTime;}
+\DoxyCodeLine{00730\ \ \ \ \ \}}
+\DoxyCodeLine{00731\ \ \ \ \ \textcolor{keyword}{const}\ Real\ getWeatherTime()}
+\DoxyCodeLine{00732\ \ \ \ \ \{}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ weatherTime;}
+\DoxyCodeLine{00734\ \ \ \ \ \}}
+\DoxyCodeLine{00735\ \ \ \ \ \textcolor{keywordtype}{void}\ freezeDayTime(\textcolor{keywordtype}{bool}\ flag,\ \textcolor{keyword}{const}\ Real\ \&time=0)}
+\DoxyCodeLine{00736\ \ \ \ \ \{}
+\DoxyCodeLine{00737\ \ \ \ \ \ \ \ \ dayTimeFrozen\ =\ flag;}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(flag)frozenDayTime\ =\ time;}
+\DoxyCodeLine{00739\ \ \ \ \ \}}
+\DoxyCodeLine{00740\ \ \ \ \ \textcolor{keywordtype}{void}\ setWeatherTime(\textcolor{keyword}{const}\ Real\ \&time)}
+\DoxyCodeLine{00741\ \ \ \ \ \{}
+\DoxyCodeLine{00742\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherLocked)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ weatherTime\ =\ time;}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ updateWeather();}
+\DoxyCodeLine{00745\ \ \ \ \ \}}
+\DoxyCodeLine{00746\ \ \ \ \ \textcolor{keywordtype}{void}\ lockWeather(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00747\ \ \ \ \ \{}
+\DoxyCodeLine{00748\ \ \ \ \ \ \ \ \ weatherLocked\ =\ flag;}
+\DoxyCodeLine{00749\ \ \ \ \ \}}
+\DoxyCodeLine{00750\ \ \ \ \ \textcolor{keywordtype}{void}\ setWeather(\textcolor{keyword}{const}\ String\ \&type)}
+\DoxyCodeLine{00751\ \ \ \ \ \{}
+\DoxyCodeLine{00752\ \ \ \ \ \ \ \ \ weatherType\ =\ type;}
+\DoxyCodeLine{00753\ \ \ \ \ \ \ \ \ String\ tTypeName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ Vector3\ tOffset\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ String\ tSoundName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00756\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*switch(type)}}
+\DoxyCodeLine{00757\ \textcolor{comment}{\ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00758\ \textcolor{comment}{\ \ \ \ \ \ \ \ case\ WEATHER\_RAIN:\ tTypeName="{}Weather/Rain"{};\ tOffset=Vector3(0,400,0);\ tSoundName=SOUND\_RAIN1;\ break;}}
+\DoxyCodeLine{00759\ \textcolor{comment}{\ \ \ \ \ \ \ \ case\ WEATHER\_SNOW:\ tTypeName="{}Weather/Snow"{};\ tOffset=Vector3(-\/400,700,-\/600);\ break;}}
+\DoxyCodeLine{00760\ \textcolor{comment}{\ \ \ \ \ \ \ \ case\ WEATHER\_STARFALL:\ tTypeName="{}Weather/Starfall"{};\ tOffset=Vector3(800,1200,1200);\ break;}}
+\DoxyCodeLine{00761\ \textcolor{comment}{\ \ \ \ \ \ \ \ case\ WEATHER\_FIREWORKS:\ tTypeName="{}Weather/Fireworks"{};\ tOffset=Vector3(-\/1000,500,-\/1000);\ break;}}
+\DoxyCodeLine{00762\ \textcolor{comment}{\ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00763\ \ \ \ \ \ \ \ \ mDef-\/>loadWeather(type,tTypeName,tOffset,tSoundName);}
+\DoxyCodeLine{00764\ \ \ \ \ \ \ \ \ destroyWeather();}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ hasWeatherSound\ =\ (tSoundName!=\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSoundName!=\textcolor{stringliteral}{"{}"{}})mSoundManager-\/>playAmbientSound(tSoundName.c\_str(),0);}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tTypeName==\textcolor{stringliteral}{"{}"{}})\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00768\ \ \ \ \ \ \ \ \ mWeatherSystem\ =\ mSceneMgr-\/>createParticleSystem(\textcolor{stringliteral}{"{}WeatherSystem"{}},tTypeName);}
+\DoxyCodeLine{00769\ \ \ \ \ \ \ \ \ mWeatherSystem-\/>setQueryFlags(SKY\_MASK);}
+\DoxyCodeLine{00770\ \ \ \ \ \ \ \ \ SceneNode\ *tWeatherOffsetNode\ =\ mSceneMgr-\/>getSceneNode(\textcolor{stringliteral}{"{}WeatherOffsetNode"{}});}
+\DoxyCodeLine{00771\ \ \ \ \ \ \ \ \ tWeatherOffsetNode-\/>attachObject(mWeatherSystem);}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ tWeatherOffsetNode-\/>setPosition(tOffset);}
+\DoxyCodeLine{00773\ \ \ \ \ \}}
+\DoxyCodeLine{00774\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyWeather()}
+\DoxyCodeLine{00775\ \ \ \ \ \{}
+\DoxyCodeLine{00776\ \ \ \ \ \ \ \ \ weatherEffect\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ weatherEffectCountdown\ =\ 0;}
+\DoxyCodeLine{00778\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasWeatherSound)mSoundManager-\/>stopLoopedSoundByNode(mWeatherNode);}
+\DoxyCodeLine{00779\ \ \ \ \ \ \ \ \ hasWeatherSound\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00780\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mWeatherSystem)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00781\ \ \ \ \ \ \ \ \ SceneNode\ *tWeatherOffsetNode\ =\ mSceneMgr-\/>getSceneNode(\textcolor{stringliteral}{"{}WeatherOffsetNode"{}});}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ tWeatherOffsetNode-\/>detachObject(mWeatherSystem);}
+\DoxyCodeLine{00783\ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyParticleSystem(mWeatherSystem);}
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ mWeatherSystem\ =\ 0;}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ weatherType\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ mSoundManager-\/>stopAmbientSound();}
+\DoxyCodeLine{00787\ \ \ \ \ \}}
+\DoxyCodeLine{00788\ \ \ \ \ \textcolor{keyword}{const}\ Vector4\ Vec4(\textcolor{keyword}{const}\ ColourValue\ \&colour)}
+\DoxyCodeLine{00789\ \ \ \ \ \{}
+\DoxyCodeLine{00790\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Vector4(colour.r,colour.g,colour.b,colour.a);}
+\DoxyCodeLine{00791\ \ \ \ \ \}}
+\DoxyCodeLine{00792\ \ \ \ \ \textcolor{keywordtype}{void}\ setWeatherEffect(\textcolor{keyword}{const}\ String\ \&type)}
+\DoxyCodeLine{00793\ \ \ \ \ \{}
+\DoxyCodeLine{00794\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(weatherEffect!=\textcolor{stringliteral}{"{}"{}})updateWeatherEffect(0,\textcolor{keyword}{true});}
+\DoxyCodeLine{00795\ \ \ \ \ \ \ \ \ weatherEffect\ =\ type;}
+\DoxyCodeLine{00796\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Lightning"{}})weatherEffectCountdown\ =\ 0.25;}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Thunder"{}})weatherEffectCountdown\ =\ 1;}
+\DoxyCodeLine{00798\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}LightningThunder"{}})weatherEffectCountdown\ =\ 2.35;}
+\DoxyCodeLine{00799\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Earthquake"{}})}
+\DoxyCodeLine{00800\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00801\ \ \ \ \ \ \ \ \ \ \ \ \ weatherEffectCountdown\ =\ 5;}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playLoopedSound(SOUND\_EARTHQUAKE,mWeatherNode,1,0.5);}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>doQuake(\textcolor{keyword}{true},\textcolor{keyword}{true});}
+\DoxyCodeLine{00804\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00805\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(type==\textcolor{stringliteral}{"{}Earthquake2"{}})}
+\DoxyCodeLine{00806\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00807\ \ \ \ \ \ \ \ \ \ \ \ \ weatherEffectCountdown\ =\ 0.5;}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \ \ \ \ mSoundManager-\/>playLoopedSound(SOUND\_EARTHQUAKE,mWeatherNode,1,0.5);}
+\DoxyCodeLine{00809\ \ \ \ \ \ \ \ \ \ \ \ \ mCamera-\/>doQuake(\textcolor{keyword}{true},\textcolor{keyword}{true});}
+\DoxyCodeLine{00810\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00811\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00812\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00813\ \ \ \ \ \ \ \ \ \ \ \ \ weatherEffect\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \ \ \ \ weatherEffectCountdown\ =\ 0;}
+\DoxyCodeLine{00815\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00816\ \ \ \ \ \}}
+\DoxyCodeLine{00817\ \ \ \ \ \textcolor{keywordtype}{void}\ setInteriorSky(\textcolor{keywordtype}{bool}\ flag,\ \textcolor{keyword}{const}\ ColourValue\ \&fogColour=ColourValue(0.06,0.05,0.07))}
+\DoxyCodeLine{00818\ \ \ \ \ \{}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ interiorSky\ =\ flag;}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ mSkyNode-\/>setVisible(!flag);}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(flag)}
+\DoxyCodeLine{00822\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00823\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>setFog(\ FOG\_LINEAR,\ fogColour,\ .01,\ 100,\ 1200);}
+\DoxyCodeLine{00824\ \ \ \ \ \ \ \ \ \ \ \ \ mSunLight-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00825\ \ \ \ \ \ \ \ \ \ \ \ \ mMoonLight-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>setAmbientLight(ColourValue(AMBIENT\_LIGHT\_INDOOR));}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00829\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00830\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>setAmbientLight(ColourValue(AMBIENT\_LIGHT\_OUTDOOR));}
+\DoxyCodeLine{00831\ \ \ \ \ \ \ \ \ \ \ \ \ updateCelestials(dayTimeFrozen?frozenDayTime:skyDayTime);}
+\DoxyCodeLine{00832\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00833\ \ \ \ \ \}}
+\DoxyCodeLine{00834\ \ \ \ \ \textcolor{keywordtype}{void}\ setWeatherCycle(\textcolor{keyword}{const}\ String\ \&type)}
+\DoxyCodeLine{00835\ \ \ \ \ \{}
+\DoxyCodeLine{00836\ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if(type=="{}None"{})setWeatherCycle(WEATHERCYCLE\_NONE);}}
+\DoxyCodeLine{00837\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}Rain"{})setWeatherCycle(WEATHERCYCLE\_RAIN);}}
+\DoxyCodeLine{00838\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}Snow"{})setWeatherCycle(WEATHERCYCLE\_SNOW);}}
+\DoxyCodeLine{00839\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}Redsky"{})setWeatherCycle(WEATHERCYCLE\_RED);}}
+\DoxyCodeLine{00840\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}HeavyRain"{})setWeatherCycle(WEATHERCYCLE\_HEAVYRAIN);}}
+\DoxyCodeLine{00841\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}Starfall"{})setWeatherCycle(WEATHERCYCLE\_STARFALL);}}
+\DoxyCodeLine{00842\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}RainStarfall"{})setWeatherCycle(WEATHERCYCLE\_RAINSTARFALL);}}
+\DoxyCodeLine{00843\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}Thunderstorm"{})setWeatherCycle(WEATHERCYCLE\_THUNDERSTORM);}}
+\DoxyCodeLine{00844\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}ThunderstormRain"{})setWeatherCycle(WEATHERCYCLE\_THUNDERSTORMRAIN);}}
+\DoxyCodeLine{00845\ \textcolor{comment}{\ \ \ \ \ \ \ \ else\ if(type=="{}Fireworks"{})setWeatherCycle(WEATHERCYCLE\_FIREWORKS);*/}}
+\DoxyCodeLine{00846\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(type!=\textcolor{stringliteral}{"{}"{}}\ \&\&\ type!=\textcolor{stringliteral}{"{}None"{}})mDef-\/>loadWeatherCycle(type,weatherCycleEventList);}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ weatherCycleEventList.clear();}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ weatherCycle\ =\ type==\textcolor{stringliteral}{"{}None"{}}?\textcolor{stringliteral}{"{}"{}}:type;}
+\DoxyCodeLine{00849\ \ \ \ \ \}}
+\DoxyCodeLine{00850\ \};}
+\DoxyCodeLine{00851\ }
+\DoxyCodeLine{00852\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

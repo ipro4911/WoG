@@ -1,0 +1,958 @@
+\doxysection{Magix\+Player Class Reference}
+\hypertarget{class_magix_player}{}\label{class_magix_player}\index{MagixPlayer@{MagixPlayer}}
+Inheritance diagram for Magix\+Player\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_magix_player}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_player_a120092fc37f2558d9a4e0aa6fb49724e}\label{class_magix_player_a120092fc37f2558d9a4e0aa6fb49724e} 
+void {\bfseries reset} ()
+\item 
+\Hypertarget{class_magix_player_a2f920e5bea6a91e73a53310fce0cdc62}\label{class_magix_player_a2f920e5bea6a91e73a53310fce0cdc62} 
+void {\bfseries reset\+Changes} ()
+\item 
+\Hypertarget{class_magix_player_a56880495f7e70d483bcdb01b3c1bf1b6}\label{class_magix_player_a56880495f7e70d483bcdb01b3c1bf1b6} 
+void {\bfseries update\+Movement} (const Frame\+Event \&evt, const Quaternion \&cam\+Orientation=Quaternion\+::\+ZERO)
+\item 
+\Hypertarget{class_magix_player_a8a2c67a07358f80d9b0423b87f735908}\label{class_magix_player_a8a2c67a07358f80d9b0423b87f735908} 
+void {\bfseries update\+Auto\+Attack} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+bool \mbox{\hyperlink{class_magix_player_ab9109212154614936e5da9260249bd14}{update\+Attack}} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_player_a71e205fe0bfd22ee43ac0de124abecce}\label{class_magix_player_a71e205fe0bfd22ee43ac0de124abecce} 
+void {\bfseries do\+Skill} (\mbox{\hyperlink{struct_skill}{Skill}} \texorpdfstring{$\ast$}{*}skill, bool wait\+Till\+In\+Range=false)
+\item 
+\Hypertarget{class_magix_player_a5343017fe3e91ac206b68d9e33de4d8f}\label{class_magix_player_a5343017fe3e91ac206b68d9e33de4d8f} 
+void {\bfseries set\+Attack\+Range} (const unsigned short \&range)
+\item 
+\Hypertarget{class_magix_player_ae282b3a2c8bd24973f677927a2a77e3f}\label{class_magix_player_ae282b3a2c8bd24973f677927a2a77e3f} 
+void {\bfseries update\+Wound} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_player_a10aa4c58a759b4b2fe90fd0d627a3a6b}\label{class_magix_player_a10aa4c58a759b4b2fe90fd0d627a3a6b} 
+void {\bfseries update} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, const Quaternion \&cam\+Orientation=Quaternion\+::\+ZERO)
+\item 
+const OBJECT\+\_\+\+TYPE \mbox{\hyperlink{class_magix_player_ad48f1625a5af0815f34e6dbb6ddbe5a2}{get\+Type}} ()
+\item 
+\Hypertarget{class_magix_player_a22fbb7f1358f917171c33cf99e52427a}\label{class_magix_player_a22fbb7f1358f917171c33cf99e52427a} 
+void {\bfseries toggle\+Control\+Mode} ()
+\item 
+\Hypertarget{class_magix_player_ab72f67d78806de1262a01486e6c6a372}\label{class_magix_player_ab72f67d78806de1262a01486e6c6a372} 
+void {\bfseries set\+Control\+Mode} (const unsigned short \&mode)
+\item 
+unsigned short \mbox{\hyperlink{class_magix_player_af9169b44f015df2599e11a813c2f0818}{get\+Control\+Mode}} ()
+\item 
+\Hypertarget{class_magix_player_ad6aba55522b70d4d7c911bf8e194ab05}\label{class_magix_player_ad6aba55522b70d4d7c911bf8e194ab05} 
+void {\bfseries set\+Target} (const Vector3 \&dest, const unsigned char \&action=TARGET\+\_\+\+RUNTO, bool pickup\+Plus=false)
+\item 
+void \mbox{\hyperlink{class_magix_player_ac2c305ca7a22ffa560cf4e9dc67732f5}{stop\+Action}} ()
+\item 
+\Hypertarget{class_magix_player_ac5c998277936342c3188c9b56985d621}\label{class_magix_player_ac5c998277936342c3188c9b56985d621} 
+void {\bfseries lock\+On} (\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*}target)
+\item 
+\Hypertarget{class_magix_player_ac3928db76d909b2d5e6f169ab791cced}\label{class_magix_player_ac3928db76d909b2d5e6f169ab791cced} 
+bool {\bfseries get\+Is\+Locked\+On} ()
+\item 
+\Hypertarget{class_magix_player_ab08372c841337b2c9f5928d63c2113e3}\label{class_magix_player_ab08372c841337b2c9f5928d63c2113e3} 
+void {\bfseries reset\+Skills} ()
+\item 
+\Hypertarget{class_magix_player_a1c6325b8782d86f90a88bc5413694d0a}\label{class_magix_player_a1c6325b8782d86f90a88bc5413694d0a} 
+void {\bfseries set\+Skills} (const vector$<$ \mbox{\hyperlink{struct_skill}{Skill}} $>$\+::type \&skills)
+\item 
+\Hypertarget{class_magix_player_a406cc649aa94e7b2ae41fdaf47aa5997}\label{class_magix_player_a406cc649aa94e7b2ae41fdaf47aa5997} 
+const vector$<$ \mbox{\hyperlink{struct_skill}{Skill}} $>$\+::type \& {\bfseries get\+Skills} ()
+\item 
+\Hypertarget{class_magix_player_af2b07c64460b79dca70def4d2226e21f}\label{class_magix_player_af2b07c64460b79dca70def4d2226e21f} 
+void {\bfseries add\+Skill} (const String \&name, const unsigned short \&stock)
+\item 
+\Hypertarget{class_magix_player_ac41e912891e6083f2e06f62296c04225}\label{class_magix_player_ac41e912891e6083f2e06f62296c04225} 
+void {\bfseries decrement\+Skill} (\mbox{\hyperlink{struct_skill}{Skill}} \texorpdfstring{$\ast$}{*}skill)
+\item 
+\Hypertarget{class_magix_player_aec16eb5b3175e39a7bbbe5f9e82e9774}\label{class_magix_player_aec16eb5b3175e39a7bbbe5f9e82e9774} 
+void {\bfseries clear\+Default\+Attack\+List} ()
+\item 
+\Hypertarget{class_magix_player_afb27871f351cbef3dc9086d12510ccd8}\label{class_magix_player_afb27871f351cbef3dc9086d12510ccd8} 
+void {\bfseries push\+Default\+Attack\+List} (const String \&attack\+Name)
+\item 
+\Hypertarget{class_magix_player_aec42c99ba5ce93f50ea27c7953ce39e4}\label{class_magix_player_aec42c99ba5ce93f50ea27c7953ce39e4} 
+void {\bfseries set\+Attack\+List\+To\+Default} ()
+\item 
+\Hypertarget{class_magix_player_a0380d4a73782f1ddcbb7be65eab0946d}\label{class_magix_player_a0380d4a73782f1ddcbb7be65eab0946d} 
+void {\bfseries set\+Current\+Skill} (\mbox{\hyperlink{struct_skill}{Skill}} \texorpdfstring{$\ast$}{*}skill)
+\item 
+\Hypertarget{class_magix_player_a58d786090575c1dd6c6ca0b5920f6335}\label{class_magix_player_a58d786090575c1dd6c6ca0b5920f6335} 
+\mbox{\hyperlink{struct_skill}{Skill}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Next\+Skill} ()
+\item 
+\Hypertarget{class_magix_player_ac23854a98eb2a29236becb26ab7443b2}\label{class_magix_player_ac23854a98eb2a29236becb26ab7443b2} 
+\mbox{\hyperlink{struct_skill}{Skill}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Skill} (const String \&name)
+\item 
+\Hypertarget{class_magix_player_a74dece0f36dc099b2a89298876261aa8}\label{class_magix_player_a74dece0f36dc099b2a89298876261aa8} 
+\mbox{\hyperlink{struct_skill}{Skill}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Current\+Skill} ()
+\item 
+\Hypertarget{class_magix_player_a58d389172d0e8aea6730656a04a27578}\label{class_magix_player_a58d389172d0e8aea6730656a04a27578} 
+bool {\bfseries is\+Skill\+Mode} ()
+\item 
+\Hypertarget{class_magix_player_aa281033d2ba6bd08d634a1ad5b7aa554}\label{class_magix_player_aa281033d2ba6bd08d634a1ad5b7aa554} 
+void {\bfseries toggle\+Auto\+Walk} ()
+\item 
+\Hypertarget{class_magix_player_a98ec581f06ceb718bf62a12e8dafd891}\label{class_magix_player_a98ec581f06ceb718bf62a12e8dafd891} 
+bool {\bfseries get\+Auto\+Walk} ()
+\item 
+\Hypertarget{class_magix_player_a3ec850e1ae088b5ed7a81de6207a6da6}\label{class_magix_player_a3ec850e1ae088b5ed7a81de6207a6da6} 
+void {\bfseries toggle\+Auto\+Run} ()
+\item 
+\Hypertarget{class_magix_player_a194b987c813a10b3f1feac4008b23a19}\label{class_magix_player_a194b987c813a10b3f1feac4008b23a19} 
+bool {\bfseries get\+Auto\+Run} ()
+\item 
+\Hypertarget{class_magix_player_a721915676be32b72171bcf4863810e42}\label{class_magix_player_a721915676be32b72171bcf4863810e42} 
+bool {\bfseries pop\+Is\+Ready\+To\+Pickup} ()
+\item 
+\Hypertarget{class_magix_player_ad77f9d6c942118d1603be0b7febf4fba}\label{class_magix_player_ad77f9d6c942118d1603be0b7febf4fba} 
+void {\bfseries set\+Index} (const unsigned short \&value)
+\item 
+\Hypertarget{class_magix_player_a389e6f320e3b715f92852a9385cf9546}\label{class_magix_player_a389e6f320e3b715f92852a9385cf9546} 
+const unsigned short {\bfseries get\+Index} ()
+\item 
+\Hypertarget{class_magix_player_a21019e7ec6c13738af62c1d0f72866d7}\label{class_magix_player_a21019e7ec6c13738af62c1d0f72866d7} 
+void {\bfseries set\+Pet} (const String \&type, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def=0)
+\item 
+\Hypertarget{class_magix_player_a88de311c7a1268de96b0cb43df6596cb}\label{class_magix_player_a88de311c7a1268de96b0cb43df6596cb} 
+bool {\bfseries has\+Pet} ()
+\item 
+\Hypertarget{class_magix_player_aeacfa5fa1bc6040193ad5bc1d946226d}\label{class_magix_player_aeacfa5fa1bc6040193ad5bc1d946226d} 
+const String {\bfseries get\+Pet} ()
+\item 
+\Hypertarget{class_magix_player_a6e8f4edea4d758ef0fdb2e1d99e9743f}\label{class_magix_player_a6e8f4edea4d758ef0fdb2e1d99e9743f} 
+void {\bfseries set\+Auto\+Attack} (\mbox{\hyperlink{class_magix_living}{Magix\+Living}} \texorpdfstring{$\ast$}{*}target, bool attack\+Once=false)
+\item 
+\Hypertarget{class_magix_player_a7ab15ee65a51c693646558dca5526e9a}\label{class_magix_player_a7ab15ee65a51c693646558dca5526e9a} 
+\mbox{\hyperlink{class_magix_living}{Magix\+Living}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Auto\+Attack\+Target} ()
+\item 
+\Hypertarget{class_magix_player_a8c2c95b39671bee03c412dfe1684b7d1}\label{class_magix_player_a8c2c95b39671bee03c412dfe1684b7d1} 
+bool {\bfseries get\+Auto\+Attack\+Once} ()
+\item 
+\Hypertarget{class_magix_player_a44f36466be7dd6246fb46c98348ca6fc}\label{class_magix_player_a44f36466be7dd6246fb46c98348ca6fc} 
+const vector$<$ \mbox{\hyperlink{struct_skill}{Skill}} $>$\+::type {\bfseries pop\+Skill\+Changed\+List} ()
+\item 
+\Hypertarget{class_magix_player_a0d9aa1c99850d563a63f2ddf4509a5f5}\label{class_magix_player_a0d9aa1c99850d563a63f2ddf4509a5f5} 
+bool {\bfseries pop\+HPChanged} ()
+\item 
+\Hypertarget{class_magix_player_a8f36f29f9effdebc2b8df28467939818}\label{class_magix_player_a8f36f29f9effdebc2b8df28467939818} 
+bool {\bfseries pop\+Max\+HPChanged} ()
+\item 
+void \mbox{\hyperlink{class_magix_player_aa2dd9ee837423c58c87aa8d5c3a1c363}{set\+HP}} (const short \&i\+Max\+HP, const Real \&ratio=1)
+\item 
+void \mbox{\hyperlink{class_magix_player_a6bd5684d2c41a8011476015107a40a3f}{set\+HPRatio}} (const Real \&ratio)
+\item 
+\Hypertarget{class_magix_player_ab6bc2780fd0eab309bc714bd7862eac5}\label{class_magix_player_ab6bc2780fd0eab309bc714bd7862eac5} 
+bool {\bfseries add\+HPRatio} (const Real \&ratio)
+\item 
+bool \mbox{\hyperlink{class_magix_player_a0093c650c8c254748d91e18674afafa0}{add\+HP}} (const short \&value)
+\item 
+\Hypertarget{class_magix_player_ac9a89a2ca6528ccde4216eff08120975}\label{class_magix_player_ac9a89a2ca6528ccde4216eff08120975} 
+void {\bfseries set\+Wounded} (bool flag, bool instant=false)
+\item 
+\Hypertarget{class_magix_player_a1691162aaab99db84b45f656d1827995}\label{class_magix_player_a1691162aaab99db84b45f656d1827995} 
+bool {\bfseries get\+Is\+Wounded} ()
+\item 
+\Hypertarget{class_magix_player_aec27d0ad5f865aa96982ab028026025e}\label{class_magix_player_aec27d0ad5f865aa96982ab028026025e} 
+bool {\bfseries pop\+Wounded\+Changed} ()
+\item 
+\Hypertarget{class_magix_player_a8cbf48c68f38e9c8a7311d76a4f6bbcc}\label{class_magix_player_a8cbf48c68f38e9c8a7311d76a4f6bbcc} 
+bool {\bfseries set\+Pickup\+Range\+Plus} (bool flag)
+\item 
+\Hypertarget{class_magix_player_a1093b296aa2745276fa804eb546682a2}\label{class_magix_player_a1093b296aa2745276fa804eb546682a2} 
+\mbox{\hyperlink{struct_pet_flags}{Pet\+Flags}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Pet\+Flags} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries create\+Unit} (const unsigned short i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&body\+Mesh, const String \&head\+Mesh, const String \&mane\+Mesh, const String \&tail\+Mesh, const String \&wing\+Mesh, const String \&mat\+Name, const String \&tuft\+Mesh)
+\item 
+void {\bfseries destroy\+Unit} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+void {\bfseries set\+Material} (const String \&mat\+Name)
+\item 
+void {\bfseries set\+Colours} (const Colour\+Value \&pelt, const Colour\+Value \&underfur, const Colour\+Value \&mane, const Colour\+Value \&nose, const Colour\+Value \&eye\+Top, const Colour\+Value \&eye\+Bot, const Colour\+Value \&ears, const Colour\+Value \&tailtip, const Colour\+Value \&eyes, const Colour\+Value \&wing, const Colour\+Value \&marking)
+\item 
+void {\bfseries set\+Full\+Colour} (const Colour\+Value \&full\+Colour)
+\item 
+void {\bfseries update\+Animation} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries update\+Anim\+Base} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Anim\+Second} (const Frame\+Event \&evt)
+\item 
+virtual void {\bfseries update\+Movement} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Action} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries do\+Sit} (bool skip\+Transition=false)
+\item 
+bool {\bfseries is\+Sitting} (bool exclude\+Transition=false)
+\item 
+void {\bfseries do\+Side\+Lay} (bool skip\+Transition=false)
+\item 
+void {\bfseries do\+Curl} (bool skip\+Transition=false)
+\item 
+bool {\bfseries is\+Laying} (bool exclude\+Transition=false)
+\item 
+bool {\bfseries is\+Side\+Laying} (bool exclude\+Transition=false)
+\item 
+bool {\bfseries is\+Leaning} (bool exclude\+Transition=false)
+\item 
+bool {\bfseries is\+Rolled\+Over} ()
+\item 
+bool {\bfseries is\+Plopped} ()
+\item 
+bool {\bfseries is\+Curled} ()
+\item 
+virtual void {\bfseries update} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries update\+Auto\+Track} ()
+\item 
+void {\bfseries set\+Free\+Look} (bool flag, bool timeout=true)
+\item 
+bool {\bfseries get\+Free\+Look} ()
+\item 
+void {\bfseries set\+Target} (const Real \&x, const Real \&y, const Real \&z, const unsigned char \&action=TARGET\+\_\+\+RUNTO)
+\item 
+virtual void {\bfseries set\+Target} (const Vector3 \&dest, const unsigned char \&action=TARGET\+\_\+\+RUNTO)
+\item 
+const Vector3 {\bfseries get\+Target} ()
+\item 
+unsigned short {\bfseries get\+Target\+Action} ()
+\item 
+void {\bfseries reset\+Target} ()
+\item 
+void {\bfseries set\+Look\+Direction} (const Quaternion \&dir, bool set\+Buffer=false)
+\item 
+void {\bfseries set\+Look\+Target} (const Vector3 \&target, bool from\+Head=true)
+\item 
+void {\bfseries set\+Auto\+Track\+Object} (\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*}target)
+\item 
+\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Auto\+Track\+Object} ()
+\item 
+const Quaternion {\bfseries get\+Look\+Direction} ()
+\item 
+const Vector3 {\bfseries get\+Position} (bool head\+Position=false)
+\item 
+void {\bfseries change\+Anim\+Base} (const String \&type, const Real \&speed, bool reset\+Time\+Position=false, bool reverse\+Animation=false, bool loop=true)
+\item 
+void {\bfseries change\+Anim\+Second} (const String \&type, const Real \&speed, bool reset\+Time\+Position=false, bool reverse\+Animation=false, bool loop=true)
+\item 
+const unsigned short {\bfseries get\+Unit\+ID} ()
+\item 
+void {\bfseries create\+Name\+Tag} (const String \&name, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs)
+\item 
+void {\bfseries create\+User\+Tag} (const String \&name, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs)
+\item 
+void {\bfseries create\+Chat\+Bubble} (String caption, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs, const Real \&t\+Left=0.\+0, const Real \&t\+Top=0.\+0)
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Name\+Tag} ()
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+User\+Tag} ()
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Chat\+Bubble} ()
+\item 
+void {\bfseries show\+Name\+Tag} (bool flag)
+\item 
+void {\bfseries show\+User\+Tag} (bool flag)
+\item 
+void {\bfseries show\+Chat\+Bubble} (bool flag)
+\item 
+bool {\bfseries is\+Name\+Tag\+Visible} ()
+\item 
+bool {\bfseries is\+User\+Tag\+Visible} ()
+\item 
+bool {\bfseries is\+Chat\+Bubble\+Visible} ()
+\item 
+void {\bfseries update\+Name\+Tag} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+User\+Tag} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Chat\+Bubble} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Emote} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries set\+Emote} (const String \&mode, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries set\+Emote\+State} (const String \&mode, const Real \&weight, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries set\+Face\+Anim\+State} (const String \&anim, const Real \&weight, bool is\+Current)
+\item 
+void {\bfseries replace\+Head\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+void {\bfseries replace\+Mane\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+void {\bfseries replace\+Tail\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+void {\bfseries replace\+Wing\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+void {\bfseries replace\+Tuft\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+const String {\bfseries get\+Mat\+Group\+Name} ()
+\item 
+const String {\bfseries get\+Mesh\+String} ()
+\item 
+const String {\bfseries get\+Mesh\+String2} ()
+\item 
+const String {\bfseries get\+Colour\+String} ()
+\item 
+const String {\bfseries vect4\+To\+String} (Vector4 vect, const unsigned short \&t\+Deci)
+\item 
+void {\bfseries set\+Colours} (const String \&colour\+String)
+\item 
+const String {\bfseries get\+Name} ()
+\item 
+const String {\bfseries get\+User} ()
+\item 
+void {\bfseries set\+Jump} (bool flag)
+\item 
+bool {\bfseries get\+Jump} ()
+\item 
+void {\bfseries set\+Is\+Walking} (bool flag)
+\item 
+bool {\bfseries get\+Is\+Walking} ()
+\item 
+const String {\bfseries do\+Attack} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, bool do\+Emote=true)
+\item 
+void {\bfseries force\+Attack} (const String \&name)
+\item 
+bool {\bfseries is\+Ready\+To\+Attack} ()
+\item 
+bool {\bfseries is\+Attacking} ()
+\item 
+void {\bfseries stop\+Stance} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+bool {\bfseries get\+Is\+Stance} ()
+\item 
+void {\bfseries toggle\+Stance} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, bool do\+Emote=true)
+\item 
+void {\bfseries stop\+Attack} ()
+\item 
+void {\bfseries set\+Attack} (const String \&name)
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Body\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Head\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Tail\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Mane\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Wing\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Tuft\+Ent} ()
+\item 
+bool {\bfseries pop\+Has\+New\+Attack} ()
+\item 
+bool {\bfseries pop\+Has\+Stopped\+Attack} ()
+\item 
+const String {\bfseries get\+Attack\+Name} ()
+\item 
+void {\bfseries cancel\+Action} (bool hit\+Anim, const Real \&duration=0, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def=0)
+\item 
+void {\bfseries cancel\+Action} (const Real \&duration, const String \&anim, bool reverse\+Anim=false)
+\item 
+const Real {\bfseries get\+Hit\+Timeout} ()
+\item 
+bool {\bfseries is\+Disabled} ()
+\item 
+void {\bfseries set\+Death\+Timeout} (const Real \&duration)
+\item 
+const Real {\bfseries get\+Death\+Timeout} ()
+\item 
+bool {\bfseries is\+Dying} ()
+\item 
+void {\bfseries kill} ()
+\item 
+bool {\bfseries is\+Dead} ()
+\item 
+void {\bfseries clear\+Attack\+List} ()
+\item 
+void {\bfseries push\+Attack\+List} (const String \&attack\+Name)
+\item 
+void {\bfseries set\+Custom\+Animation} (bool flag, const String \&anim\+Name="{}"{}, Real anim\+Speed=1, bool loop=false, bool reverse=false)
+\item 
+void {\bfseries set\+Is\+Swimming} (bool flag)
+\item 
+bool {\bfseries get\+Is\+Swimming} ()
+\item 
+void {\bfseries equip} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}m\+Def, const String \&mesh\+Name, const Vector3 \&offset=Vector3\+::\+ZERO, const short \&slot=-\/1, bool alt\+Anim=false)
+\item 
+const String {\bfseries unequip} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}m\+Def, const unsigned short \&i\+ID)
+\item 
+const String {\bfseries get\+Equip} (const unsigned short \&i\+ID)
+\item 
+void {\bfseries do\+Crouch} (bool flag)
+\item 
+bool {\bfseries get\+Is\+Crouching} ()
+\item 
+void {\bfseries do\+Headswing} ()
+\item 
+bool {\bfseries is\+Headswinging} ()
+\item 
+void {\bfseries do\+Headbang} ()
+\item 
+bool {\bfseries is\+Headbanging} ()
+\item 
+void {\bfseries do\+Buttswing} ()
+\item 
+bool {\bfseries is\+Buttswinging} ()
+\item 
+void {\bfseries do\+Wingwave} ()
+\item 
+bool {\bfseries is\+Wingwaving} ()
+\item 
+void {\bfseries do\+Moonwalk} ()
+\item 
+bool {\bfseries is\+Moonwalking} ()
+\item 
+void {\bfseries do\+Thriller} ()
+\item 
+bool {\bfseries is\+Thrillering} ()
+\item 
+void {\bfseries do\+Roar} ()
+\item 
+bool {\bfseries is\+Roaring} ()
+\item 
+void {\bfseries do\+Rofl} ()
+\item 
+bool {\bfseries is\+Rofling} ()
+\item 
+void {\bfseries do\+Faint} ()
+\item 
+bool {\bfseries is\+Fainting} ()
+\item 
+bool {\bfseries is\+Dancing} ()
+\item 
+void {\bfseries do\+Nod\+Head} ()
+\item 
+bool {\bfseries is\+Nod\+Head} ()
+\item 
+void {\bfseries do\+Shake\+Head} ()
+\item 
+bool {\bfseries is\+Shake\+Head} ()
+\item 
+void {\bfseries do\+Nod\+Head\+Slow} ()
+\item 
+bool {\bfseries is\+Nod\+Head\+Slow} ()
+\item 
+void {\bfseries do\+Shake\+Head\+Slow} ()
+\item 
+bool {\bfseries is\+Shake\+Head\+Slow} ()
+\item 
+void {\bfseries do\+Head\+Tilt} ()
+\item 
+bool {\bfseries is\+Head\+Tilt} ()
+\item 
+void {\bfseries toggle\+Lick} ()
+\item 
+bool {\bfseries is\+Lick} ()
+\item 
+void {\bfseries toggle\+Nuzzle} ()
+\item 
+bool {\bfseries is\+Nuzzle} ()
+\item 
+void {\bfseries do\+Sniff} ()
+\item 
+bool {\bfseries is\+Sniff} ()
+\item 
+void {\bfseries do\+Laugh} ()
+\item 
+bool {\bfseries is\+Laugh} ()
+\item 
+void {\bfseries do\+Chuckle} ()
+\item 
+bool {\bfseries is\+Chuckle} ()
+\item 
+void {\bfseries do\+Tail\+Flick} ()
+\item 
+bool {\bfseries is\+Tail\+Flick} ()
+\item 
+void {\bfseries do\+Point} ()
+\item 
+bool {\bfseries is\+Point} ()
+\item 
+void {\bfseries do\+Stretch} ()
+\item 
+bool {\bfseries is\+Stretch} ()
+\item 
+bool {\bfseries is\+One\+Time\+Action} ()
+\item 
+bool {\bfseries is\+One\+Time\+Head\+Action} ()
+\item 
+bool {\bfseries is\+One\+Time\+Tail\+Action} ()
+\item 
+void {\bfseries set\+Markings} (const unsigned char \&body\+ID, const unsigned char \&head\+ID, const unsigned char \&tail\+ID)
+\item 
+void {\bfseries get\+Markings} (short \&body\+ID, short \&head\+ID, short \&tail\+ID)
+\item 
+void {\bfseries set\+Is\+In\+Water} (bool flag)
+\item 
+bool {\bfseries get\+Is\+In\+Water} ()
+\item 
+void {\bfseries do\+Double\+Jump} ()
+\item 
+bool {\bfseries get\+Has\+Double\+Jumped} ()
+\item 
+void {\bfseries update\+Lip\+Sync} (const Frame\+Event \&evt)
+\item 
+void {\bfseries do\+Lip\+Sync} (const String \&data)
+\item 
+void {\bfseries stop\+Lip\+Sync} ()
+\item 
+void {\bfseries resume\+Emote} (const Frame\+Event \&evt)
+\item 
+virtual bool {\bfseries is\+Indexed\+Unit} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+const Real {\bfseries get\+HPRatio} ()
+\item 
+const short {\bfseries get\+HP} ()
+\item 
+const short {\bfseries get\+Max\+HP} ()
+\item 
+void {\bfseries set\+Alliance} (const unsigned char \&ally)
+\item 
+const unsigned char {\bfseries get\+Alliance} ()
+\item 
+bool {\bfseries match\+Alliance} (const unsigned char \&ally)
+\item 
+bool {\bfseries is\+Invulnerable} ()
+\item 
+void {\bfseries set\+Invulnerable} (bool flag)
+\item 
+virtual const Real {\bfseries get\+Height} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries create\+Object} (const unsigned short \&i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&object\+Mesh, const String \&mat\+Name)
+\item 
+void {\bfseries destroy\+Object} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+virtual void {\bfseries update\+Animation} (const Frame\+Event \&evt)
+\item 
+virtual void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Face\+Direction} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Physics} (const Frame\+Event \&evt)
+\item 
+void {\bfseries add\+Force} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Force} (const Vector3 \&value)
+\item 
+const Vector3 {\bfseries get\+Force} ()
+\item 
+void {\bfseries set\+Position} (const Real \&x, const Real \&y, const Real \&z)
+\item 
+void {\bfseries set\+Position} (const Vector3 \&position)
+\item 
+virtual const Vector3 \mbox{\hyperlink{class_magix_animated_a793515d34f0aea1719683ed834e9f013}{get\+Position}} ()
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_magix_animated_ac51fdd53bb77c9e8ba6191318e8de9b7}{get\+Object\+Node}} ()
+\item 
+void {\bfseries set\+Ground\+Height} (const Real \&value)
+\item 
+const Real {\bfseries get\+Ground\+Height} ()
+\item 
+const Real {\bfseries distance\+From\+Ground} ()
+\item 
+bool {\bfseries is\+Position\+Changed} (bool exclude\+YAxis=false)
+\item 
+const Vector3 {\bfseries get\+Last\+Position} ()
+\item 
+bool {\bfseries is\+Moving\+Reverse} ()
+\item 
+void {\bfseries yaw} (const Degree \&angle, bool instant=false)
+\item 
+void {\bfseries set\+Yaw} (const Degree \&angle, bool instant=false)
+\item 
+const Degree {\bfseries get\+Yaw} ()
+\item 
+const Quaternion {\bfseries get\+Face\+Direction} ()
+\item 
+void {\bfseries set\+Anti\+Gravity} (bool flag)
+\item 
+bool {\bfseries is\+Anti\+Gravity} ()
+\item 
+void {\bfseries toggle\+Anti\+Gravity} ()
+\item 
+void {\bfseries add\+Penalty\+Velocity} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Speed\+Multiplier} (const Real \&value)
+\item 
+const Real {\bfseries get\+Speed\+Multiplier} ()
+\item 
+void {\bfseries set\+Max\+Speed} (const Real \&value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_player_a75d77f07c19843902ef83d2c56c43330}\label{class_magix_player_a75d77f07c19843902ef83d2c56c43330} 
+bool {\bfseries up}
+\item 
+\Hypertarget{class_magix_player_a60c99a207ae116c3300f2c6f965e2951}\label{class_magix_player_a60c99a207ae116c3300f2c6f965e2951} 
+bool {\bfseries down}
+\item 
+\Hypertarget{class_magix_player_a9032f2301f5de81c5b6b5c1344a1ebec}\label{class_magix_player_a9032f2301f5de81c5b6b5c1344a1ebec} 
+bool {\bfseries left}
+\item 
+\Hypertarget{class_magix_player_a96776f33885dd919cf78773a12e156e3}\label{class_magix_player_a96776f33885dd919cf78773a12e156e3} 
+bool {\bfseries right}
+\item 
+\Hypertarget{class_magix_player_ae362a3d74c8553b0d9e1219302981433}\label{class_magix_player_ae362a3d74c8553b0d9e1219302981433} 
+bool {\bfseries ascend}
+\item 
+\Hypertarget{class_magix_player_a812f725d8e018da56cde5d0cf6c593d9}\label{class_magix_player_a812f725d8e018da56cde5d0cf6c593d9} 
+bool {\bfseries descend}
+\item 
+\Hypertarget{class_magix_player_ac7e0fddaa80ffab7ec2801cf80523659}\label{class_magix_player_ac7e0fddaa80ffab7ec2801cf80523659} 
+bool {\bfseries default\+Control\+Mode\+Is\+Absolute}
+\item 
+\Hypertarget{class_magix_player_a47848283b89d0ecc07928882d5d03dc7}\label{class_magix_player_a47848283b89d0ecc07928882d5d03dc7} 
+bool {\bfseries is\+Ready\+To\+Double\+Jump}
+\item 
+\Hypertarget{class_magix_player_a504a64105b030dac05fc3790f607abcc}\label{class_magix_player_a504a64105b030dac05fc3790f607abcc} 
+bool {\bfseries set\+Player\+Target\+On\+Hit}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_alloc_flags}{Alloc\+Flags}} {\bfseries alloc\+Flags}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_player_a8e6786e71f2dc377fcd547c4afa37f1c}\label{class_magix_player_a8e6786e71f2dc377fcd547c4afa37f1c} 
+unsigned short {\bfseries control\+Mode}
+\item 
+\Hypertarget{class_magix_player_a3abc098e37c0be7849f8b4bc9f7f134e}\label{class_magix_player_a3abc098e37c0be7849f8b4bc9f7f134e} 
+bool {\bfseries is\+Locked\+On}
+\item 
+\Hypertarget{class_magix_player_a547144f33413bb143db603a54fe8f844}\label{class_magix_player_a547144f33413bb143db603a54fe8f844} 
+vector$<$ \mbox{\hyperlink{struct_skill}{Skill}} $>$\+::type {\bfseries skill\+Slot}
+\item 
+\Hypertarget{class_magix_player_a32da10c7d39ee4c6c74772aa5bb83d97}\label{class_magix_player_a32da10c7d39ee4c6c74772aa5bb83d97} 
+vector$<$ \mbox{\hyperlink{struct_skill}{Skill}} $>$\+::type {\bfseries skill\+Changed\+List}
+\item 
+\Hypertarget{class_magix_player_ac82d5c47ad2a7b02128d018db4841b09}\label{class_magix_player_ac82d5c47ad2a7b02128d018db4841b09} 
+vector$<$ String $>$\+::type {\bfseries default\+Attack\+List}
+\item 
+\Hypertarget{class_magix_player_a5ee6d2a3d94f8a53fc17553560069047}\label{class_magix_player_a5ee6d2a3d94f8a53fc17553560069047} 
+\mbox{\hyperlink{struct_skill}{Skill}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Current\+Skill}
+\item 
+\Hypertarget{class_magix_player_a1e48aedcca5f3d10b678c1676fb992fb}\label{class_magix_player_a1e48aedcca5f3d10b678c1676fb992fb} 
+\mbox{\hyperlink{struct_skill}{Skill}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Next\+Skill}
+\item 
+\Hypertarget{class_magix_player_a5661f99f9222b36c6ff1a978b292c669}\label{class_magix_player_a5661f99f9222b36c6ff1a978b292c669} 
+bool {\bfseries auto\+Walk}
+\item 
+\Hypertarget{class_magix_player_a2939c89cfd96f3533148583b1a4b872e}\label{class_magix_player_a2939c89cfd96f3533148583b1a4b872e} 
+bool {\bfseries auto\+Run}
+\item 
+\Hypertarget{class_magix_player_af29a41fc9085c8f3110f4dc1d0ac0b25}\label{class_magix_player_af29a41fc9085c8f3110f4dc1d0ac0b25} 
+bool {\bfseries is\+Ready\+To\+Pickup}
+\item 
+\Hypertarget{class_magix_player_a6423464717d085f244f738dc6a882f2f}\label{class_magix_player_a6423464717d085f244f738dc6a882f2f} 
+bool {\bfseries pickup\+Range\+Plus}
+\item 
+\Hypertarget{class_magix_player_a1c86c39f81c23872376958d4fbb8d54c}\label{class_magix_player_a1c86c39f81c23872376958d4fbb8d54c} 
+unsigned short {\bfseries index}
+\item 
+\Hypertarget{class_magix_player_a7c35062fdd46c7287445d3e07d678ab4}\label{class_magix_player_a7c35062fdd46c7287445d3e07d678ab4} 
+String {\bfseries pet\+Name}
+\item 
+\Hypertarget{class_magix_player_a68e95afffb054695677df6062ba4c782}\label{class_magix_player_a68e95afffb054695677df6062ba4c782} 
+\mbox{\hyperlink{class_magix_living}{Magix\+Living}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Auto\+Attack\+Target}
+\item 
+\Hypertarget{class_magix_player_a8203517a25ce100621acc018a7968f61}\label{class_magix_player_a8203517a25ce100621acc018a7968f61} 
+bool {\bfseries auto\+Attack\+Once}
+\item 
+\Hypertarget{class_magix_player_aa44a89b3a42c2b8f87408cb4f3aabbb1}\label{class_magix_player_aa44a89b3a42c2b8f87408cb4f3aabbb1} 
+bool {\bfseries hp\+Changed}
+\item 
+\Hypertarget{class_magix_player_a8f9a79807e252c511c97c3fd15310427}\label{class_magix_player_a8f9a79807e252c511c97c3fd15310427} 
+bool {\bfseries max\+HPChanged}
+\item 
+\Hypertarget{class_magix_player_ae45fee5558110486f5d02e7e9311fd63}\label{class_magix_player_ae45fee5558110486f5d02e7e9311fd63} 
+bool {\bfseries is\+Wounded}
+\item 
+\Hypertarget{class_magix_player_ac9b73bb83791bb4598dd2ed1f8db263f}\label{class_magix_player_ac9b73bb83791bb4598dd2ed1f8db263f} 
+bool {\bfseries wound\+Changed}
+\item 
+\Hypertarget{class_magix_player_aa6d38f44b224f5ecd3f02abcf5eac118}\label{class_magix_player_aa6d38f44b224f5ecd3f02abcf5eac118} 
+Real {\bfseries wound\+Recovery\+Timer}
+\item 
+\Hypertarget{class_magix_player_ad290198f21ee08977e51cccbe390321e}\label{class_magix_player_ad290198f21ee08977e51cccbe390321e} 
+\mbox{\hyperlink{struct_pet_flags}{Pet\+Flags}} {\bfseries pet\+Flags}
+\item 
+\Hypertarget{class_magix_player_abda8c52c2459097a8e214de174a1725a}\label{class_magix_player_abda8c52c2459097a8e214de174a1725a} 
+unsigned short {\bfseries next\+Attack\+Range}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}}
+\begin{DoxyCompactItemize}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Body\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Head\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Mane\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Tail\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Wing\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Tuft\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Equip\+Ent} \mbox{[}MAX\+\_\+\+EQUIP\mbox{]}
+\item 
+String {\bfseries mat\+Group\+Name}
+\item 
+unsigned char {\bfseries body\+Mark\+ID}
+\item 
+unsigned char {\bfseries head\+Mark\+ID}
+\item 
+unsigned char {\bfseries tail\+Mark\+ID}
+\item 
+String {\bfseries anim\+Base}
+\item 
+String {\bfseries prev\+Anim\+Base}
+\item 
+Real {\bfseries anim\+Speed}
+\item 
+Real {\bfseries anim\+Count}
+\item 
+String {\bfseries anim\+Second}
+\item 
+String {\bfseries prev\+Anim\+Second}
+\item 
+Real {\bfseries anim\+Second\+Count}
+\item 
+Real {\bfseries anim\+Second\+Speed}
+\item 
+short {\bfseries blink\+Flag}
+\item 
+short {\bfseries idle\+Turn\+Flag}
+\item 
+bool {\bfseries free\+Look}
+\item 
+bool {\bfseries free\+Look\+Timeout}
+\item 
+unsigned short {\bfseries unit\+ID}
+\item 
+Vector3 {\bfseries target\+Vector}
+\item 
+Vector3 {\bfseries look\+Target\+Vector}
+\item 
+Quaternion {\bfseries look\+Direction}
+\item 
+Quaternion {\bfseries look\+Direction\+Buffer}
+\item 
+unsigned char {\bfseries target\+Action}
+\item 
+\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Auto\+Track\+Target}
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Name\+Text}
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+User\+Text}
+\item 
+bool {\bfseries name\+Tag\+Visible}
+\item 
+bool {\bfseries user\+Tag\+Visible}
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Chat\+Text}
+\item 
+bool {\bfseries chat\+Bubble\+Visible}
+\item 
+Real {\bfseries chat\+Bubble\+Count}
+\item 
+String {\bfseries emote\+Mode}
+\item 
+String {\bfseries prev\+Emote\+Mode}
+\item 
+Real {\bfseries emote\+Count}
+\item 
+Real {\bfseries eyelid\+State}
+\item 
+bool {\bfseries jump}
+\item 
+bool {\bfseries is\+Walking}
+\item 
+bool {\bfseries is\+Stance}
+\item 
+bool {\bfseries is\+Custom\+Animation}
+\item 
+bool {\bfseries is\+Swimming}
+\item 
+bool {\bfseries is\+Crouching}
+\item 
+String {\bfseries attack\+Name}
+\item 
+String {\bfseries next\+Attack\+Name}
+\item 
+Real {\bfseries attack\+Timeout}
+\item 
+bool {\bfseries has\+New\+Attack}
+\item 
+bool {\bfseries has\+Stopped\+Attack}
+\item 
+Real {\bfseries hit\+Timeout}
+\item 
+vector$<$ String $>$\+::type {\bfseries attack\+List}
+\item 
+unsigned short {\bfseries attack\+Counter}
+\item 
+Real {\bfseries head\+Turn\+Count}
+\item 
+bool {\bfseries is\+In\+Water}
+\item 
+bool {\bfseries has\+Double\+Jumped}
+\item 
+String {\bfseries lip\+Sync}
+\item 
+String {\bfseries lip\+Sync\+Anim}
+\item 
+String {\bfseries prev\+Lip\+Sync\+Anim}
+\item 
+Real {\bfseries lip\+Sync\+Speed}
+\item 
+Real {\bfseries lip\+Sync\+Counter}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+short {\bfseries max\+HP}
+\item 
+short {\bfseries hp}
+\item 
+unsigned char {\bfseries alliance}
+\item 
+bool {\bfseries invulnerable}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short {\bfseries object\+ID}
+\item 
+Vector3 {\bfseries m\+Force}
+\item 
+Real {\bfseries ground\+Height}
+\item 
+Real {\bfseries max\+Speed}
+\item 
+Real {\bfseries speed\+Multiplier}
+\item 
+Vector3 {\bfseries last\+Position}
+\item 
+Real {\bfseries update\+Time}
+\item 
+Degree {\bfseries face\+Direction\+Yaw}
+\item 
+bool {\bfseries anti\+Gravity}
+\item 
+Vector3 {\bfseries penalty\+Velocity}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Object\+Node}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_player_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_player_a0093c650c8c254748d91e18674afafa0}\index{MagixPlayer@{MagixPlayer}!addHP@{addHP}}
+\index{addHP@{addHP}!MagixPlayer@{MagixPlayer}}
+\doxysubsubsection{\texorpdfstring{addHP()}{addHP()}}
+{\footnotesize\ttfamily \label{class_magix_player_a0093c650c8c254748d91e18674afafa0} 
+bool Magix\+Player\+::add\+HP (\begin{DoxyParamCaption}\item[{const short \&}]{value}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}.
+
+\Hypertarget{class_magix_player_af9169b44f015df2599e11a813c2f0818}\index{MagixPlayer@{MagixPlayer}!getControlMode@{getControlMode}}
+\index{getControlMode@{getControlMode}!MagixPlayer@{MagixPlayer}}
+\doxysubsubsection{\texorpdfstring{getControlMode()}{getControlMode()}}
+{\footnotesize\ttfamily \label{class_magix_player_af9169b44f015df2599e11a813c2f0818} 
+unsigned short Magix\+Player\+::get\+Control\+Mode (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}.
+
+\Hypertarget{class_magix_player_ad48f1625a5af0815f34e6dbb6ddbe5a2}\index{MagixPlayer@{MagixPlayer}!getType@{getType}}
+\index{getType@{getType}!MagixPlayer@{MagixPlayer}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_magix_player_ad48f1625a5af0815f34e6dbb6ddbe5a2} 
+const OBJECT\+\_\+\+TYPE Magix\+Player\+::get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}.
+
+\Hypertarget{class_magix_player_aa2dd9ee837423c58c87aa8d5c3a1c363}\index{MagixPlayer@{MagixPlayer}!setHP@{setHP}}
+\index{setHP@{setHP}!MagixPlayer@{MagixPlayer}}
+\doxysubsubsection{\texorpdfstring{setHP()}{setHP()}}
+{\footnotesize\ttfamily \label{class_magix_player_aa2dd9ee837423c58c87aa8d5c3a1c363} 
+void Magix\+Player\+::set\+HP (\begin{DoxyParamCaption}\item[{const short \&}]{i\+Max\+HP}{, }\item[{const Real \&}]{ratio}{ = {\ttfamily 1}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}.
+
+\Hypertarget{class_magix_player_a6bd5684d2c41a8011476015107a40a3f}\index{MagixPlayer@{MagixPlayer}!setHPRatio@{setHPRatio}}
+\index{setHPRatio@{setHPRatio}!MagixPlayer@{MagixPlayer}}
+\doxysubsubsection{\texorpdfstring{setHPRatio()}{setHPRatio()}}
+{\footnotesize\ttfamily \label{class_magix_player_a6bd5684d2c41a8011476015107a40a3f} 
+void Magix\+Player\+::set\+HPRatio (\begin{DoxyParamCaption}\item[{const Real \&}]{ratio}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}.
+
+\Hypertarget{class_magix_player_ac2c305ca7a22ffa560cf4e9dc67732f5}\index{MagixPlayer@{MagixPlayer}!stopAction@{stopAction}}
+\index{stopAction@{stopAction}!MagixPlayer@{MagixPlayer}}
+\doxysubsubsection{\texorpdfstring{stopAction()}{stopAction()}}
+{\footnotesize\ttfamily \label{class_magix_player_ac2c305ca7a22ffa560cf4e9dc67732f5} 
+void Magix\+Player\+::stop\+Action (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}.
+
+\Hypertarget{class_magix_player_ab9109212154614936e5da9260249bd14}\index{MagixPlayer@{MagixPlayer}!updateAttack@{updateAttack}}
+\index{updateAttack@{updateAttack}!MagixPlayer@{MagixPlayer}}
+\doxysubsubsection{\texorpdfstring{updateAttack()}{updateAttack()}}
+{\footnotesize\ttfamily \label{class_magix_player_ab9109212154614936e5da9260249bd14} 
+bool Magix\+Player\+::update\+Attack (\begin{DoxyParamCaption}\item[{const Frame\+Event \&}]{evt}{, }\item[{\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}}]{def}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Player.\+h\end{DoxyCompactItemize}

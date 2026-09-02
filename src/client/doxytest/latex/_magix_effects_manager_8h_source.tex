@@ -1,0 +1,544 @@
+\doxysection{Magix\+Effects\+Manager.\+h}
+\hypertarget{_magix_effects_manager_8h_source}{}\label{_magix_effects_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixEffectsManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixEffectsManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixEffectsManager\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixEffectsManager\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ MAX\_RIBBONTRAILS\ 20}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ MAX\_PARTICLES\ 32}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ MAX\_WATERRIPPLES\ 20}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ MAX\_BREATHERS\ 20}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MAX\_ITEMSPARKLE\ 10}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ MAX\_ITEMEFFECTS\ 20}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{class\ }MagixEffectsManager}
+\DoxyCodeLine{00012\ \{}
+\DoxyCodeLine{00013\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00014\ \ \ \ \ SceneManager\ *mSceneMgr;}
+\DoxyCodeLine{00015\ \ \ \ \ RibbonTrail\ *mTrail[MAX\_RIBBONTRAILS];}
+\DoxyCodeLine{00016\ \ \ \ \ BillboardSet\ *mTrailHead[MAX\_RIBBONTRAILS];}
+\DoxyCodeLine{00017\ \ \ \ \ Entity\ *mTrailHeadEnt[MAX\_RIBBONTRAILS];}
+\DoxyCodeLine{00018\ \ \ \ \ ParticleSystem\ *mParticle[MAX\_PARTICLES];}
+\DoxyCodeLine{00019\ \ \ \ \ SceneNode\ *mParticleNode[MAX\_PARTICLES];}
+\DoxyCodeLine{00020\ \ \ \ \ Real\ particleDuration[MAX\_PARTICLES];}
+\DoxyCodeLine{00021\ \ \ \ \ \textcolor{keywordtype}{bool}\ particleUnresettable[MAX\_PARTICLES];}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{bool}\ particleHasOwnNode[MAX\_PARTICLES];}
+\DoxyCodeLine{00023\ \ \ \ \ String\ particleType[MAX\_PARTICLES];}
+\DoxyCodeLine{00024\ }
+\DoxyCodeLine{00025\ \ \ \ \ ParticleSystem\ *mWaterRipple[MAX\_WATERRIPPLES];}
+\DoxyCodeLine{00026\ \ \ \ \ SceneNode\ *mWaterRippleNode[MAX\_WATERRIPPLES];}
+\DoxyCodeLine{00027\ \ \ \ \ SceneNode\ *mWaterRippleOwner[MAX\_WATERRIPPLES];}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \ \ \ \ ParticleSystem\ *mBreather[MAX\_BREATHERS];}
+\DoxyCodeLine{00030\ \ \ \ \ Entity\ *mBreatherOwner[MAX\_BREATHERS];}
+\DoxyCodeLine{00031\ \ \ \ \ String\ breatherType[MAX\_BREATHERS];}
+\DoxyCodeLine{00032\ \ \ \ \ Vector3\ breatherOffset[MAX\_BREATHERS];}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ ParticleSystem\ *mItemParticle[MAX\_ITEMSPARKLE];}
+\DoxyCodeLine{00035\ \ \ \ \ SceneNode\ *mItemParticleNode[MAX\_ITEMSPARKLE];}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ ParticleSystem\ *mItemEffect[MAX\_ITEMEFFECTS];}
+\DoxyCodeLine{00038\ \ \ \ \ Entity\ *mItemEffectOwner[MAX\_ITEMEFFECTS];}
+\DoxyCodeLine{00039\ \ \ \ \ String\ itemEffectType[MAX\_ITEMEFFECTS];}
+\DoxyCodeLine{00040\ \ \ \ \ Vector3\ itemEffectOffset[MAX\_ITEMEFFECTS];}
+\DoxyCodeLine{00041\ \ \ \ \ String\ itemEffectBone[MAX\_ITEMEFFECTS];}
+\DoxyCodeLine{00042\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00043\ \ \ \ \ MagixEffectsManager()}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_RIBBONTRAILS;i++)}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ mTrail[i]\ =\ 0;}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ mTrailHead[i]\ =\ 0;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ mTrailHeadEnt[i]\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \ \ \ \ mParticle[i]\ =\ 0;}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \ \ \ \ mParticleNode[i]\ =\ 0;}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \ \ \ \ particleDuration[i]\ =\ 0;}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \ \ \ \ particleUnresettable[i]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ particleHasOwnNode[i]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ particleType[i]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_WATERRIPPLES;i++)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRipple[i]\ =\ 0;}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRippleNode[i]\ =\ 0;}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRippleOwner[i]\ =\ 0;}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_BREATHERS;i++)}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ mBreather[i]\ =\ 0;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ mBreatherOwner[i]\ =\ 0;}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ breatherType[i]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ breatherOffset[i]\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMSPARKLE;i++)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ mItemParticle[i]\ =\ 0;}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ mItemParticleNode[i]\ =\ 0;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMEFFECTS;i++)}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ mItemEffect[i]\ =\ 0;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ mItemEffectOwner[i]\ =\ 0;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ itemEffectType[i]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ itemEffectOffset[i]\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ itemEffectBone[i]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \}}
+\DoxyCodeLine{00088\ \ \ \ \ \string~MagixEffectsManager()}
+\DoxyCodeLine{00089\ \ \ \ \ \{}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ reset(\textcolor{keyword}{true});}
+\DoxyCodeLine{00091\ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(SceneManager\ *sceneMgr)}
+\DoxyCodeLine{00093\ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ sceneMgr;}
+\DoxyCodeLine{00095\ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \textcolor{keywordtype}{void}\ reset(\textcolor{keywordtype}{bool}\ ignoreUnresettable=\textcolor{keyword}{false})}
+\DoxyCodeLine{00097\ \ \ \ \ \{}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_RIBBONTRAILS;i++)destroyRibbonTrail(i);}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)\textcolor{keywordflow}{if}(ignoreUnresettable||!particleUnresettable[i])destroyParticle(i);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_WATERRIPPLES;i++)destroyWaterRipple(i);}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_BREATHERS;i++)destroyBreather(i);}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMSPARKLE;i++)destroyItemParticle(i);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ignoreUnresettable)\textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMEFFECTS;i++)destroyItemEffect(i);}
+\DoxyCodeLine{00104\ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mParticle[i])}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//cease\ emissions\ when\ duration\ is\ up}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(particleDuration[i]>0)}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ particleDuration[i]\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(particleDuration[i]<=0)}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ particleDuration[i]\ =\ 0;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mParticle[i]-\/>getEmitter(0)-\/>setEmissionRate(0);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//destroy\ particle\ system\ after\ all\ particles\ are\ gone}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(particleDuration[i]==0\ \&\&\ mParticle[i]-\/>getNumParticles()==0)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ destroyParticle(i);}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_WATERRIPPLES;i++)}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRipple[i])}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Update\ position}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRippleOwner[i])}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRippleNode[i]-\/>setPosition(mWaterRippleOwner[i]-\/>getPosition().x,mWaterRippleNode[i]-\/>getPosition().y,mWaterRippleOwner[i]-\/>getPosition().z);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Destroy\ afterall\ all\ particles\ are\ gone}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRipple[i]-\/>getEmitter(0)-\/>getEmissionRate()==0\ \&\&\ mWaterRipple[i]-\/>getNumParticles()==0)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ destroyWaterRipple(i);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_BREATHERS;i++)}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBreather[i]\ \&\&\ mBreatherOwner[i])}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode*\ tBreatherNode\ =\ mSceneMgr-\/>getSceneNode(\textcolor{stringliteral}{"{}BreatherNode"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Bone\ *tBone\ =\ mBreatherOwner[i]-\/>getSkeleton()-\/>getBone(\textcolor{stringliteral}{"{}Mouth"{}});}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBreatherNode-\/>setOrientation(tBone-\/>\_getDerivedOrientation());}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBreatherNode-\/>setPosition(tBone-\/>\_getDerivedPosition()\ +\ tBone-\/>\_getDerivedOrientation()*breatherOffset[i]);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMEFFECTS;i++)}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mItemEffect[i]\ \&\&\ mItemEffectOwner[i]\ \&\&\ itemEffectBone[i]!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode*\ tItemEffectNode\ =\ mSceneMgr-\/>getSceneNode(\textcolor{stringliteral}{"{}ItemFXNode"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Bone\ *tBone\ =\ mItemEffectOwner[i]-\/>getSkeleton()-\/>getBone(itemEffectBone[i]);}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tItemEffectNode-\/>setOrientation(tBone-\/>\_getDerivedOrientation());}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tItemEffectNode-\/>setPosition(tBone-\/>\_getDerivedPosition()\ +\ tBone-\/>\_getDerivedOrientation()*itemEffectOffset[i]);}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \ \ \ \ \}}
+\DoxyCodeLine{00163\ \ \ \ \ \textcolor{keywordtype}{void}\ createRibbonTrail(Entity\ *ent,\ \textcolor{keyword}{const}\ String\ \&boneName,\ \textcolor{keyword}{const}\ String\ \&trailMat,\ \textcolor{keyword}{const}\ Real\ \&trailWidth=2,\ \textcolor{keyword}{const}\ ColourValue\ \&trailColour=ColourValue(1,0.9,0.75,1),\ \textcolor{keyword}{const}\ ColourValue\ \&colourChange=ColourValue(7,7,7,7),\ \textcolor{keyword}{const}\ String\ \&headMat=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00164\ \ \ \ \ \{}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ tID\ =\ -\/1;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_RIBBONTRAILS;i++)}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mTrail[i]==0)}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ i;}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID==-\/1)}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ 0;}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ destroyRibbonTrail(tID);}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ mTrailHead[tID]\ =\ mSceneMgr-\/>createBillboardSet(\textcolor{stringliteral}{"{}FXTrailHead"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ mTrailHead[tID]-\/>setMaterialName(headMat==\textcolor{stringliteral}{"{}"{}}?\textcolor{stringliteral}{"{}Sky/StarMat"{}}:headMat);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ mTrailHead[tID]-\/>setDefaultDimensions(trailWidth,trailWidth);}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ mTrailHead[tID]-\/>createBillboard(0,0,0);}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ mTrailHead[tID]-\/>setQueryFlags(EFFECT\_MASK);}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ mTrailHeadEnt[tID]\ =\ ent;}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ TagPoint\ *tTP\ =\ mTrailHeadEnt[tID]-\/>attachObjectToBone(boneName,mTrailHead[tID]);}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(headMat==\textcolor{stringliteral}{"{}"{}})mTrailHead[tID]-\/>setVisible(\textcolor{keyword}{false});}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ mTrail[tID]\ =\ mSceneMgr-\/>createRibbonTrail(\textcolor{stringliteral}{"{}FXTrail"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setVisible(\textcolor{keyword}{true});}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setMaterialName(trailMat);}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setTrailLength(50);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setMaxChainElements(50);}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setInitialColour(0,trailColour);}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setColourChange(0,\ colourChange);}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setInitialWidth(0,trailWidth);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setWidthChange(0,7);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>addNode((Node*)tTP);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ mTrail[tID]-\/>setQueryFlags(EFFECT\_MASK);}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ mSceneMgr-\/>getRootSceneNode()-\/>attachObject(mTrail[tID]);}
+\DoxyCodeLine{00201\ \ \ \ \ \}}
+\DoxyCodeLine{00202\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyRibbonTrail(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID)}
+\DoxyCodeLine{00203\ \ \ \ \ \{}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mTrailHead[tID]\ \&\&\ mSceneMgr-\/>hasBillboardSet(\textcolor{stringliteral}{"{}FXTrailHead"{}}+StringConverter::toString(tID)))}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ mTrailHeadEnt[tID]-\/>detachObjectFromBone(mTrailHead[tID]);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyBillboardSet(mTrailHead[tID]);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ mTrailHead[tID]\ =\ 0;}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ mTrailHeadEnt[tID]\ =\ 0;}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mTrail[tID]\ \&\&\ mSceneMgr-\/>hasRibbonTrail(\textcolor{stringliteral}{"{}FXTrail"{}}+StringConverter::toString(tID)))}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>getRootSceneNode()-\/>detachObject(mTrail[tID]);}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyRibbonTrail(mTrail[tID]);}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ mTrail[tID]\ =\ 0;}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00217\ \ \ \ \ \}}
+\DoxyCodeLine{00218\ \ \ \ \ ParticleSystem*\ createParticle(SceneNode\ *node,\ \textcolor{keyword}{const}\ String\ \&name,\ \textcolor{keyword}{const}\ Real\ \&duration,\ \textcolor{keywordtype}{bool}\ unresettable=\textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ attachToBone=\textcolor{keyword}{false},\ \textcolor{keywordtype}{bool}\ hasOwnNode=\textcolor{keyword}{false},\ \textcolor{keyword}{const}\ Vector3\ \&position=Vector3::ZERO,\ \textcolor{keyword}{const}\ String\ \&ownName=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00219\ \ \ \ \ \{}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ tID\ =\ -\/1;}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mParticle[i]==0)}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ i;}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID==-\/1)}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ 0;}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ destroyParticle(tID);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ mParticle[tID]\ =\ mSceneMgr-\/>createParticleSystem(ownName==\textcolor{stringliteral}{"{}"{}}?\textcolor{stringliteral}{"{}FXParticle"{}}+StringConverter::toString(tID):ownName,name);}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ mParticleNode[tID]\ =\ (hasOwnNode?mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode(\textcolor{stringliteral}{"{}FXParticleNode"{}}+StringConverter::toString(tID)):node);}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasOwnNode)mParticleNode[tID]-\/>setPosition(position);}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!attachToBone)node-\/>attachObject(mParticle[tID]);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ particleDuration[tID]\ =\ duration;}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ particleUnresettable[tID]\ =\ unresettable;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ particleHasOwnNode[tID]\ =\ hasOwnNode;}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ particleType[tID]\ =\ name;}
+\DoxyCodeLine{00243\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mParticle[tID];}
+\DoxyCodeLine{00245\ \ \ \ \ \}}
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyParticle(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID)}
+\DoxyCodeLine{00247\ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mParticle[tID]\textcolor{comment}{/*\ \&\&\ mSceneMgr-\/>hasParticleSystem("{}FXParticle"{}+StringConverter::toString(tID))*/})}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ mParticle[tID]-\/>detachFromParent();}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyParticleSystem(mParticle[tID]);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ mParticle[tID]\ =\ 0;}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(particleHasOwnNode[tID])mSceneMgr-\/>destroySceneNode(mParticleNode[tID]);}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ mParticleNode[tID]\ =\ 0;}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ particleDuration[tID]\ =\ 0;}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ particleUnresettable[tID]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ particleHasOwnNode[tID]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ particleType[tID]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00260\ \ \ \ \ \}}
+\DoxyCodeLine{00261\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyParticle(ParticleSystem\ *pSys)}
+\DoxyCodeLine{00262\ \ \ \ \ \{}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mParticle[i]==pSys)\{destroyParticle(i);\ \textcolor{keywordflow}{return};\}}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00267\ \ \ \ \ \}}
+\DoxyCodeLine{00268\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyParticle(\textcolor{keyword}{const}\ String\ \&name)}
+\DoxyCodeLine{00269\ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mParticle[i]\&\&mParticle[i]-\/>getName()==name)\{destroyParticle(i);\ \textcolor{keywordflow}{return};\}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00274\ \ \ \ \ \}}
+\DoxyCodeLine{00275\ \ \ \ \ ParticleSystem*\ getParticle(\textcolor{keyword}{const}\ String\ \&name)}
+\DoxyCodeLine{00276\ \ \ \ \ \{}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mParticle[i]\&\&mParticle[i]-\/>getName()==name)\{\textcolor{keywordflow}{return}\ mParticle[i];\}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00282\ \ \ \ \ \}}
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyRibbonTrailByEntity(Entity\ *ent)}
+\DoxyCodeLine{00284\ \ \ \ \ \{}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_RIBBONTRAILS;i++)}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mTrailHeadEnt[i]==ent)destroyRibbonTrail(i);}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyParticleByObjectNode(SceneNode\ *node,\ \textcolor{keyword}{const}\ String\ \&type=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00291\ \ \ \ \ \{}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mParticleNode[i]==node\&\&(type==\textcolor{stringliteral}{"{}"{}}||particleType[i]==type))destroyParticle(i);}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00296\ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordtype}{void}\ stopParticleByObjectNode(SceneNode\ *node,\ \textcolor{keyword}{const}\ String\ \&type=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00298\ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_PARTICLES;i++)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mParticleNode[i]==node\&\&(type==\textcolor{stringliteral}{"{}"{}}||particleType[i]==type))}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mParticle[i]-\/>getEmitter(0)-\/>setEmissionRate(0);}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ particleDuration[i]\ =\ 0;}
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \}}
+\DoxyCodeLine{00308\ \ \ \ \ \textcolor{keywordtype}{void}\ createWaterRipple(SceneNode\ *owner,\ \textcolor{keyword}{const}\ Real\ \&waterHeight,\ \textcolor{keyword}{const}\ Real\ \&scale)}
+\DoxyCodeLine{00309\ \ \ \ \ \{}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ tID\ =\ -\/1;}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_WATERRIPPLES;i++)}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRipple[i]==0)}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ i;}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID==-\/1)}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ 0;}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \ \ \ \ destroyWaterRipple(tID);}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00324\ }
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ mWaterRipple[tID]\ =\ mSceneMgr-\/>createParticleSystem(\textcolor{stringliteral}{"{}FXWaterRipple"{}}+StringConverter::toString(tID),\textcolor{stringliteral}{"{}WaterRipple"{}});}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ mWaterRipple[tID]-\/>setDefaultDimensions(scale,scale);}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ mWaterRippleNode[tID]\ =\ mSceneMgr-\/>getRootSceneNode()-\/>createChildSceneNode(\textcolor{stringliteral}{"{}WaterRippleNode"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ mWaterRippleNode[tID]-\/>attachObject(mWaterRipple[tID]);}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ mWaterRippleOwner[tID]\ =\ owner;}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ mWaterRippleNode[tID]-\/>setPosition(owner-\/>getPosition().x,waterHeight,owner-\/>getPosition().z);}
+\DoxyCodeLine{00331\ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyWaterRipple(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID)}
+\DoxyCodeLine{00333\ \ \ \ \ \{}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRipple[tID]\ \&\&\ mSceneMgr-\/>hasParticleSystem(\textcolor{stringliteral}{"{}FXWaterRipple"{}}+StringConverter::toString(tID)))}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRippleNode[tID]-\/>detachObject(mWaterRipple[tID]);}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyParticleSystem(mWaterRipple[tID]);}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(\textcolor{stringliteral}{"{}WaterRippleNode"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRipple[tID]\ =\ 0;}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRippleNode[tID]\ =\ 0;}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRippleOwner[tID]\ =\ 0;}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00343\ \ \ \ \ \}}
+\DoxyCodeLine{00344\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyWaterRippleByOwner(SceneNode\ *node)}
+\DoxyCodeLine{00345\ \ \ \ \ \{}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_WATERRIPPLES;i++)}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRippleOwner[i]==node)destroyWaterRipple(i);}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \ \ \}}
+\DoxyCodeLine{00351\ \ \ \ \ \textcolor{keywordtype}{void}\ setWaterRippleEmissionByOwner(SceneNode\ *node,\ \textcolor{keyword}{const}\ Real\ \&rate)}
+\DoxyCodeLine{00352\ \ \ \ \ \{}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_WATERRIPPLES;i++)}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRipple[i]\ \&\&\ mWaterRippleOwner[i]==node)}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRipple[i]-\/>getEmitter(0)-\/>setEmissionRate(rate);}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00361\ \ \ \ \ \}}
+\DoxyCodeLine{00362\ \ \ \ \ \textcolor{keywordtype}{void}\ setWaterRippleHeightByOwner(SceneNode\ *node,\ \textcolor{keyword}{const}\ Real\ \&height)}
+\DoxyCodeLine{00363\ \ \ \ \ \{}
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_WATERRIPPLES;i++)}
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRipple[i]\ \&\&\ mWaterRippleOwner[i]==node)}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mWaterRippleNode[i]-\/>setPosition(node-\/>getPosition().x,height,node-\/>getPosition().z);}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00372\ \ \ \ \ \}}
+\DoxyCodeLine{00373\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasWaterRippleOwner(SceneNode\ *node)}
+\DoxyCodeLine{00374\ \ \ \ \ \{}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_WATERRIPPLES;i++)}
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mWaterRippleOwner[i]==node)\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00380\ \ \ \ \ \}}
+\DoxyCodeLine{00381\ \ \ \ \ \textcolor{keywordtype}{void}\ createBreather(Entity\ *owner,\ \textcolor{keyword}{const}\ String\ \&type,\ \textcolor{keyword}{const}\ Vector3\ \&offset,\ \textcolor{keyword}{const}\ Real\ \&scale)}
+\DoxyCodeLine{00382\ \ \ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ tID\ =\ -\/1;}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_BREATHERS;i++)}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBreather[i]==0)}
+\DoxyCodeLine{00387\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ i;}
+\DoxyCodeLine{00389\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00390\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00391\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00392\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID==-\/1)}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ 0;}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ destroyBreather(tID);}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00397\ }
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ mBreather[tID]\ =\ mSceneMgr-\/>createParticleSystem(\textcolor{stringliteral}{"{}FXBreather"{}}+StringConverter::toString(tID),type);}
+\DoxyCodeLine{00399\ \ \ \ \ \ \ \ \ mBreather[tID]-\/>setDefaultDimensions(scale,scale);}
+\DoxyCodeLine{00400\ \ \ \ \ \ \ \ \ \textcolor{comment}{//TagPoint\ *tTP\ =\ owner-\/>attachObjectToBone("{}Mouth"{},mBreather[tID],Quaternion::IDENTITY,offset);}}
+\DoxyCodeLine{00401\ \ \ \ \ \ \ \ \ SceneNode*\ tBreatherNode\ =\ owner-\/>getParentSceneNode()-\/>createChildSceneNode(\textcolor{stringliteral}{"{}BreatherNode"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00402\ \ \ \ \ \ \ \ \ tBreatherNode-\/>attachObject(mBreather[tID]);}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ mBreatherOwner[tID]\ =\ owner;}
+\DoxyCodeLine{00404\ \ \ \ \ \ \ \ \ breatherType[tID]\ =\ type;}
+\DoxyCodeLine{00405\ \ \ \ \ \ \ \ \ breatherOffset[tID]\ =\ offset;}
+\DoxyCodeLine{00406\ \ \ \ \ \}}
+\DoxyCodeLine{00407\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyBreather(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID)}
+\DoxyCodeLine{00408\ \ \ \ \ \{}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBreather[tID]\ \&\&\ mSceneMgr-\/>hasParticleSystem(\textcolor{stringliteral}{"{}FXBreather"{}}+StringConverter::toString(tID)))}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode*\ tBreatherNode\ =\ mSceneMgr-\/>getSceneNode(\textcolor{stringliteral}{"{}BreatherNode"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tBreatherNode)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//mBreatherOwner[tID]-\/>detachObjectFromBone(mBreather[tID]);}}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyParticleSystem(mBreather[tID]);}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(\textcolor{stringliteral}{"{}BreatherNode"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \ \ \ \ mBreather[tID]\ =\ 0;}
+\DoxyCodeLine{00417\ \ \ \ \ \ \ \ \ \ \ \ \ mBreatherOwner[tID]\ =\ 0;}
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \ \ \ \ breatherType[tID]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \ \ \ \ breatherOffset[tID]\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00421\ \ \ \ \ \}}
+\DoxyCodeLine{00422\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyBreatherByOwner(Entity\ *ent,\ \textcolor{keyword}{const}\ String\ \&type=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00423\ \ \ \ \ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_BREATHERS;i++)}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBreatherOwner[i]==ent\ \&\&\ (type==\textcolor{stringliteral}{"{}"{}}\ ||\ breatherType[i]==type))destroyBreather(i);}
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00428\ \ \ \ \ \}}
+\DoxyCodeLine{00429\ \ \ \ \ \textcolor{keywordtype}{void}\ setBreatherEmissionByOwner(Entity\ *ent,\ \textcolor{keyword}{const}\ Real\ \&rate,\ \textcolor{keyword}{const}\ String\ \&type=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00430\ \ \ \ \ \{}
+\DoxyCodeLine{00431\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_BREATHERS;i++)}
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBreather[i]\ \&\&\ mBreatherOwner[i]==ent\ \&\&\ (type==\textcolor{stringliteral}{"{}"{}}\ ||\ breatherType[i]==type))}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mBreather[i]-\/>getEmitter(0)-\/>setEmissionRate(rate);}
+\DoxyCodeLine{00436\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00438\ \ \ \ \ \}}
+\DoxyCodeLine{00439\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasBreatherOwner(Entity\ *ent,\ \textcolor{keyword}{const}\ String\ \&type=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00440\ \ \ \ \ \{}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_BREATHERS;i++)}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBreatherOwner[i]==ent\ \&\&\ (type==\textcolor{stringliteral}{"{}"{}}\ ||\ breatherType[i]==type))\textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00445\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00446\ \ \ \ \ \}}
+\DoxyCodeLine{00447\ \ \ \ \ \textcolor{keywordtype}{void}\ createItemParticle(SceneNode\ *node)}
+\DoxyCodeLine{00448\ \ \ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ tID\ =\ -\/1;}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMSPARKLE;i++)}
+\DoxyCodeLine{00451\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00452\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mItemParticle[i]==0)}
+\DoxyCodeLine{00453\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00454\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ i;}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00456\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID==-\/1)}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ 0;}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \ \ \ \ destroyItemParticle(tID);}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00463\ }
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ mItemParticle[tID]\ =\ mSceneMgr-\/>createParticleSystem(\textcolor{stringliteral}{"{}ItemParticle"{}}+StringConverter::toString(tID),\textcolor{stringliteral}{"{}item"{}});}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ mItemParticleNode[tID]\ =\ node;}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ node-\/>attachObject(mItemParticle[tID]);}
+\DoxyCodeLine{00467\ \ \ \ \ \}}
+\DoxyCodeLine{00468\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyItemParticle(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID)}
+\DoxyCodeLine{00469\ \ \ \ \ \{}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mItemParticle[tID]\ \&\&\ mSceneMgr-\/>hasParticleSystem(\textcolor{stringliteral}{"{}ItemParticle"{}}+StringConverter::toString(tID)))}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \ \ \ \ mItemParticleNode[tID]-\/>detachObject(mItemParticle[tID]);}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyParticleSystem(mItemParticle[tID]);}
+\DoxyCodeLine{00474\ \ \ \ \ \ \ \ \ \ \ \ \ mItemParticle[tID]\ =\ 0;}
+\DoxyCodeLine{00475\ \ \ \ \ \ \ \ \ \ \ \ \ mItemParticleNode[tID]\ =\ 0;}
+\DoxyCodeLine{00476\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00477\ \ \ \ \ \}}
+\DoxyCodeLine{00478\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyItemParticleByObjectNode(SceneNode\ *node)}
+\DoxyCodeLine{00479\ \ \ \ \ \{}
+\DoxyCodeLine{00480\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMSPARKLE;i++)}
+\DoxyCodeLine{00481\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00482\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mItemParticleNode[i]==node)destroyItemParticle(i);}
+\DoxyCodeLine{00483\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00484\ \ \ \ \ \}}
+\DoxyCodeLine{00485\ \ \ \ \ \textcolor{keywordtype}{void}\ createItemEffect(Entity\ *owner,\ \textcolor{keyword}{const}\ String\ \&type,\ \textcolor{keyword}{const}\ String\ \&bone,\ \textcolor{keyword}{const}\ Vector3\ \&offset,\ \textcolor{keyword}{const}\ Real\ \&scale)}
+\DoxyCodeLine{00486\ \ \ \ \ \{}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ tID\ =\ -\/1;}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMEFFECTS;i++)}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mItemEffect[i]==0)}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ i;}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00495\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00496\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tID==-\/1)}
+\DoxyCodeLine{00497\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00498\ \ \ \ \ \ \ \ \ \ \ \ \ tID\ =\ 0;}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ \ \ \ \ destroyItemEffect(tID);}
+\DoxyCodeLine{00500\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00501\ }
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ mItemEffect[tID]\ =\ mSceneMgr-\/>createParticleSystem(\textcolor{stringliteral}{"{}ItemFX"{}}+StringConverter::toString(tID),type);}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ mItemEffect[tID]-\/>setDefaultDimensions(mItemEffect[tID]-\/>getDefaultWidth()*scale,mItemEffect[tID]-\/>getDefaultHeight()*scale);}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ SceneNode*\ tItemEffectNode\ =\ owner-\/>getParentSceneNode()-\/>createChildSceneNode(\textcolor{stringliteral}{"{}ItemFXNode"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ tItemEffectNode-\/>attachObject(mItemEffect[tID]);}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ mItemEffectOwner[tID]\ =\ owner;}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ itemEffectBone[tID]\ =\ bone;}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ itemEffectType[tID]\ =\ type;}
+\DoxyCodeLine{00509\ \ \ \ \ \ \ \ \ itemEffectOffset[tID]\ =\ offset;}
+\DoxyCodeLine{00510\ \ \ \ \ \ \ \ \ \textcolor{comment}{//No\ bone\ to\ attach\ to,\ apply\ offset\ directly}}
+\DoxyCodeLine{00511\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(bone==\textcolor{stringliteral}{"{}"{}})tItemEffectNode-\/>setPosition(offset);}
+\DoxyCodeLine{00512\ \ \ \ \ \}}
+\DoxyCodeLine{00513\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyItemEffect(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tID)}
+\DoxyCodeLine{00514\ \ \ \ \ \{}
+\DoxyCodeLine{00515\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mItemEffect[tID]\ \&\&\ mSceneMgr-\/>hasParticleSystem(\textcolor{stringliteral}{"{}ItemFX"{}}+StringConverter::toString(tID)))}
+\DoxyCodeLine{00516\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00517\ \ \ \ \ \ \ \ \ \ \ \ \ SceneNode*\ tItemEffectNode\ =\ mSceneMgr-\/>getSceneNode(\textcolor{stringliteral}{"{}ItemFXNode"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tItemEffectNode)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroyParticleSystem(mItemEffect[tID]);}
+\DoxyCodeLine{00520\ \ \ \ \ \ \ \ \ \ \ \ \ mSceneMgr-\/>destroySceneNode(\textcolor{stringliteral}{"{}ItemFXNode"{}}+StringConverter::toString(tID));}
+\DoxyCodeLine{00521\ \ \ \ \ \ \ \ \ \ \ \ \ mItemEffect[tID]\ =\ 0;}
+\DoxyCodeLine{00522\ \ \ \ \ \ \ \ \ \ \ \ \ mItemEffectOwner[tID]\ =\ 0;}
+\DoxyCodeLine{00523\ \ \ \ \ \ \ \ \ \ \ \ \ itemEffectBone[tID]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ \ \ \ \ itemEffectType[tID]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ \ \ \ \ itemEffectOffset[tID]\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00527\ \ \ \ \ \}}
+\DoxyCodeLine{00528\ \ \ \ \ \textcolor{keywordtype}{void}\ destroyItemEffectByOwnerNode(SceneNode\ *node,\ \textcolor{keyword}{const}\ String\ \&type=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00529\ \ \ \ \ \{}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<MAX\_ITEMEFFECTS;i++)}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mItemEffectOwner[i])}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mItemEffectOwner[i]-\/>getParentSceneNode()==node\ \&\&\ (type==\textcolor{stringliteral}{"{}"{}}\ ||\ itemEffectType[i]==type))destroyItemEffect(i);}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00535\ \ \ \ \ \}}
+\DoxyCodeLine{00536\ \};}
+\DoxyCodeLine{00537\ }
+\DoxyCodeLine{00538\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

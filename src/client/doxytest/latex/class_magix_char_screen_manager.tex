@@ -1,0 +1,275 @@
+\doxysection{Magix\+Char\+Screen\+Manager Class Reference}
+\hypertarget{class_magix_char_screen_manager}{}\label{class_magix_char_screen_manager}\index{MagixCharScreenManager@{MagixCharScreenManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_char_screen_manager_afa0199f1d2a9b6621d4eb5d4a71a750c}\label{class_magix_char_screen_manager_afa0199f1d2a9b6621d4eb5d4a71a750c} 
+void {\bfseries initialize} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, \mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*}effects\+Mgr, \mbox{\hyperlink{class_magix_alert_box}{Magix\+Alert\+Box}} \texorpdfstring{$\ast$}{*}alert\+Box, \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, Overlay\+Element \texorpdfstring{$\ast$}{*}name, Overlay\+Element \texorpdfstring{$\ast$}{*}backdrop)
+\item 
+\Hypertarget{class_magix_char_screen_manager_acc993ebb7c056a2d2899e89359f720bb}\label{class_magix_char_screen_manager_acc993ebb7c056a2d2899e89359f720bb} 
+void {\bfseries initialize\+Text} (const unsigned short \&i, Overlay\+Element \texorpdfstring{$\ast$}{*}text)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a07c20b3ec25ca32c7f46e05b09eab93f}\label{class_magix_char_screen_manager_a07c20b3ec25ca32c7f46e05b09eab93f} 
+void {\bfseries initialize\+Back\+Next\+Buttons} (Overlay\+Element \texorpdfstring{$\ast$}{*}back, Overlay\+Element \texorpdfstring{$\ast$}{*}next, Overlay\+Element \texorpdfstring{$\ast$}{*}del, Overlay\+Element \texorpdfstring{$\ast$}{*}back\+Text, Overlay\+Element \texorpdfstring{$\ast$}{*}next\+Text, Overlay\+Element \texorpdfstring{$\ast$}{*}del\+Text)
+\item 
+\Hypertarget{class_magix_char_screen_manager_ad2136f7703d1b7eb856645cac599b924}\label{class_magix_char_screen_manager_ad2136f7703d1b7eb856645cac599b924} 
+void {\bfseries initialize\+LRButtons} (const unsigned short \&i, Overlay\+Element \texorpdfstring{$\ast$}{*}l\+Button, Overlay\+Element \texorpdfstring{$\ast$}{*}r\+Button)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a2afce58e65ac2f8888881ec66834be4e}\label{class_magix_char_screen_manager_a2afce58e65ac2f8888881ec66834be4e} 
+void {\bfseries initialize\+Sliders} (const unsigned short \&i, Overlay\+Element \texorpdfstring{$\ast$}{*}slider, Overlay\+Element \texorpdfstring{$\ast$}{*}slider\+Marker)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a817351d88180562a6eff0fa696fd0eb7}\label{class_magix_char_screen_manager_a817351d88180562a6eff0fa696fd0eb7} 
+void {\bfseries reset} (bool load=false)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a4108c3bb03267a442115bae195ce62cb}\label{class_magix_char_screen_manager_a4108c3bb03267a442115bae195ce62cb} 
+const unsigned short {\bfseries button\+Clicked} (Overlay\+Element \texorpdfstring{$\ast$}{*}button)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a0a6421de233ccecafcd78b2e7ac0ca64}\label{class_magix_char_screen_manager_a0a6421de233ccecafcd78b2e7ac0ca64} 
+void {\bfseries change\+Trait} (const unsigned short \&i\+ID, bool increment)
+\item 
+\Hypertarget{class_magix_char_screen_manager_ab84aa8291e677cea1e530248e5dd9b48}\label{class_magix_char_screen_manager_ab84aa8291e677cea1e530248e5dd9b48} 
+const String {\bfseries mesh\+Name} (const String \&type, const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a3c8d3a86889e9372152859e5a2a9266e}\label{class_magix_char_screen_manager_a3c8d3a86889e9372152859e5a2a9266e} 
+const String {\bfseries part\+Name} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a80795b1d22e99e23b3e3e4125d76b50b}\label{class_magix_char_screen_manager_a80795b1d22e99e23b3e3e4125d76b50b} 
+void {\bfseries apply\+Restrictions} (const String \&part\+Changed, bool increment)
+\item 
+\Hypertarget{class_magix_char_screen_manager_ab020f5305a22d044fd56d4a7119fa274}\label{class_magix_char_screen_manager_ab020f5305a22d044fd56d4a7119fa274} 
+void {\bfseries refresh\+Page} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_af5f7f05797ce7db70990297288f408ab}\label{class_magix_char_screen_manager_af5f7f05797ce7db70990297288f408ab} 
+bool {\bfseries previous\+Page} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a36c64c93d9d8532942a8e5e6c6a56add}\label{class_magix_char_screen_manager_a36c64c93d9d8532942a8e5e6c6a56add} 
+const unsigned short {\bfseries next\+Page} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a184e2c9309210bd7c10cbfd1f8dab28f}\label{class_magix_char_screen_manager_a184e2c9309210bd7c10cbfd1f8dab28f} 
+void {\bfseries update\+Sliders} (const Real \&one, const Real \&two, const Real \&three)
+\item 
+\Hypertarget{class_magix_char_screen_manager_abe59069f7956995118dded45b0ba0134}\label{class_magix_char_screen_manager_abe59069f7956995118dded45b0ba0134} 
+void {\bfseries get\+Slider\+Value} (Real \&one, Real \&two, Real \&three)
+\item 
+\Hypertarget{class_magix_char_screen_manager_ad7ef1fff0e4690ecbb31a47ee2d38576}\label{class_magix_char_screen_manager_ad7ef1fff0e4690ecbb31a47ee2d38576} 
+const String {\bfseries get\+Name} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_aa52da082a24a9ce773734d5685754083}\label{class_magix_char_screen_manager_aa52da082a24a9ce773734d5685754083} 
+void {\bfseries set\+Name} (const String \&name)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a7899dddec35c5951862fd2e46beaae80}\label{class_magix_char_screen_manager_a7899dddec35c5951862fd2e46beaae80} 
+bool {\bfseries validate\+Name} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a50955aaa43849393343b3d097d2b2de2}\label{class_magix_char_screen_manager_a50955aaa43849393343b3d097d2b2de2} 
+void {\bfseries do\+Rotate\+Unit} (Real x, Real y)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a9c6156cf45fe2b7c3394d71658bd8ca8}\label{class_magix_char_screen_manager_a9c6156cf45fe2b7c3394d71658bd8ca8} 
+void {\bfseries end\+Rotate\+Unit} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a67149264cd1e0aada3861e32ee0f0423}\label{class_magix_char_screen_manager_a67149264cd1e0aada3861e32ee0f0423} 
+void {\bfseries stop\+Rotate\+Unit} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_aaf72a13eda3cbc1fc38dbd299789df13}\label{class_magix_char_screen_manager_aaf72a13eda3cbc1fc38dbd299789df13} 
+bool {\bfseries is\+Rotating\+Unit} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a7cf9f12ec2f3b0899dc296d1dac2227b}\label{class_magix_char_screen_manager_a7cf9f12ec2f3b0899dc296d1dac2227b} 
+void {\bfseries start\+Game} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a32b4d13c0b15edf17f67740e47d76b8a}\label{class_magix_char_screen_manager_a32b4d13c0b15edf17f67740e47d76b8a} 
+bool {\bfseries update} (const Frame\+Event \&evt, const Real \&x, const Real \&y)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a4b72f4b0c0c3ef9e3375b41d421b5cca}\label{class_magix_char_screen_manager_a4b72f4b0c0c3ef9e3375b41d421b5cca} 
+void {\bfseries delete\+Char} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a214ae56bc685f166d2b1084fe6b6fb0f}\label{class_magix_char_screen_manager_a214ae56bc685f166d2b1084fe6b6fb0f} 
+const String {\bfseries get\+Char\+Data} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a28b5be58750ba3151605732259fe0f96}\label{class_magix_char_screen_manager_a28b5be58750ba3151605732259fe0f96} 
+void {\bfseries update\+Char\+Data} (bool is\+Preset=false)
+\item 
+\Hypertarget{class_magix_char_screen_manager_acfd9563682e2910fb9be5a63dd35804d}\label{class_magix_char_screen_manager_acfd9563682e2910fb9be5a63dd35804d} 
+void {\bfseries update\+Char} (const String \&data)
+\item 
+\Hypertarget{class_magix_char_screen_manager_a8384ffe5ffd2b0b6d96765b02894d235}\label{class_magix_char_screen_manager_a8384ffe5ffd2b0b6d96765b02894d235} 
+void {\bfseries create\+Char\+Success} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_ab5dcd30a6200ec4b51d6a4a5c0273359}\label{class_magix_char_screen_manager_ab5dcd30a6200ec4b51d6a4a5c0273359} 
+void {\bfseries edit\+Char\+Success} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_ae9bbe64f93eb5de47cb44baf8416fb5e}\label{class_magix_char_screen_manager_ae9bbe64f93eb5de47cb44baf8416fb5e} 
+void {\bfseries create\+Default\+Unit} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a6a9a05180dcfab33782a59b7ca6842ba}\label{class_magix_char_screen_manager_a6a9a05180dcfab33782a59b7ca6842ba} 
+void {\bfseries position\+Unit\+For\+Edit} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a6c1f12afa0fc3b5fd82827dd373d1e69}\label{class_magix_char_screen_manager_a6c1f12afa0fc3b5fd82827dd373d1e69} 
+void {\bfseries position\+Unit\+For\+Select} ()
+\item 
+void \mbox{\hyperlink{class_magix_char_screen_manager_a98a1931cb262d8c949f7a86908a412b4}{set\+Num\+Chars}} (const short \&t\+Num)
+\begin{DoxyCompactList}\small\item\em Utils block. \end{DoxyCompactList}\item 
+\Hypertarget{class_magix_char_screen_manager_ac102f4860e35d989d18dd5c554c943c2}\label{class_magix_char_screen_manager_ac102f4860e35d989d18dd5c554c943c2} 
+const short {\bfseries get\+Num\+Chars} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a69db6b16fdb303aafaac8572cf2537c7}\label{class_magix_char_screen_manager_a69db6b16fdb303aafaac8572cf2537c7} 
+bool {\bfseries pop\+Is\+Char\+IDChanged} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a952bc8d83d91958d744f05e17fb02e55}\label{class_magix_char_screen_manager_a952bc8d83d91958d744f05e17fb02e55} 
+bool {\bfseries pop\+Do\+Reequip} ()
+\item 
+\Hypertarget{class_magix_char_screen_manager_a9b819fef27caa87752d120116ee13f56}\label{class_magix_char_screen_manager_a9b819fef27caa87752d120116ee13f56} 
+const short {\bfseries get\+Char\+ID} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_char_screen_manager_aa69c0941a801d6122e6a9941a252fcc1}\label{class_magix_char_screen_manager_aa69c0941a801d6122e6a9941a252fcc1} 
+\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Def}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a087c1a101a28a3606f22f335f67a25f2}\label{class_magix_char_screen_manager_a087c1a101a28a3606f22f335f67a25f2} 
+\mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Effects\+Manager}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a16adfd070add35e6c089d24828128477}\label{class_magix_char_screen_manager_a16adfd070add35e6c089d24828128477} 
+\mbox{\hyperlink{class_magix_alert_box}{Magix\+Alert\+Box}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Alert\+Box}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a720e12d565d2da45ae1702c1a097f09e}\label{class_magix_char_screen_manager_a720e12d565d2da45ae1702c1a097f09e} 
+\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Unit}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a320a7075a94e6e82ff8268a15ffe3a57}\label{class_magix_char_screen_manager_a320a7075a94e6e82ff8268a15ffe3a57} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a8706d61ffd5297e462fa281617858156}\label{class_magix_char_screen_manager_a8706d61ffd5297e462fa281617858156} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Name}
+\item 
+\Hypertarget{class_magix_char_screen_manager_af393adddbebe8339393ca1298850cb7f}\label{class_magix_char_screen_manager_af393adddbebe8339393ca1298850cb7f} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Text} \mbox{[}MAX\+\_\+\+CHARSCREENTEXT\mbox{]}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a9cd9e3a1b58cf00227a409213b274de5}\label{class_magix_char_screen_manager_a9cd9e3a1b58cf00227a409213b274de5} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+LButton} \mbox{[}MAX\+\_\+\+CHARSCREENTEXT\mbox{]}
+\item 
+\Hypertarget{class_magix_char_screen_manager_aaa99e964090a27b60b16ad90c45d6a28}\label{class_magix_char_screen_manager_aaa99e964090a27b60b16ad90c45d6a28} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+RButton} \mbox{[}MAX\+\_\+\+CHARSCREENTEXT\mbox{]}
+\item 
+\Hypertarget{class_magix_char_screen_manager_afec7de07a6ffe70fbf927a52f7a13a1d}\label{class_magix_char_screen_manager_afec7de07a6ffe70fbf927a52f7a13a1d} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Slider} \mbox{[}3\mbox{]}
+\item 
+\Hypertarget{class_magix_char_screen_manager_aa5146ee43c8ceba7eff89cabb1e8cbb1}\label{class_magix_char_screen_manager_aa5146ee43c8ceba7eff89cabb1e8cbb1} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Slider\+Marker} \mbox{[}3\mbox{]}
+\item 
+\Hypertarget{class_magix_char_screen_manager_ad170b0030b46e03e3f757cc2d4a1f3d4}\label{class_magix_char_screen_manager_ad170b0030b46e03e3f757cc2d4a1f3d4} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Colour\+Box}
+\item 
+\Hypertarget{class_magix_char_screen_manager_ae292ce3667b730f4285165e065e59733}\label{class_magix_char_screen_manager_ae292ce3667b730f4285165e065e59733} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Backdrop}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a393569b860884e034560d14036ff7b52}\label{class_magix_char_screen_manager_a393569b860884e034560d14036ff7b52} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Back\+Button}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a7fa2a8082be53beb616f7f10b03e9a0c}\label{class_magix_char_screen_manager_a7fa2a8082be53beb616f7f10b03e9a0c} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Next\+Button}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a7eb2668cb04b8e90eaf848fbb7e77793}\label{class_magix_char_screen_manager_a7eb2668cb04b8e90eaf848fbb7e77793} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Delete\+Button}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a1b43ed7a18cc1d94f60a3b89e9087809}\label{class_magix_char_screen_manager_a1b43ed7a18cc1d94f60a3b89e9087809} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Back\+Button\+Text}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a89aa1f04b9a14570e6d96c4330e0a718}\label{class_magix_char_screen_manager_a89aa1f04b9a14570e6d96c4330e0a718} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Next\+Button\+Text}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a3a112baf5d00e7b08b289b083f9dd49e}\label{class_magix_char_screen_manager_a3a112baf5d00e7b08b289b083f9dd49e} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Delete\+Button\+Text}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a31b954f9e954883ba024bfa04193b533}\label{class_magix_char_screen_manager_a31b954f9e954883ba024bfa04193b533} 
+short {\bfseries page}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a6ab8444349b9f55a21945cfdc5c664e5}\label{class_magix_char_screen_manager_a6ab8444349b9f55a21945cfdc5c664e5} 
+short {\bfseries char\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_aa153d4625f369bd69840035f4a952fd4}\label{class_magix_char_screen_manager_aa153d4625f369bd69840035f4a952fd4} 
+short {\bfseries num\+Chars}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a4dd4c663688486a176cd65461dab8165}\label{class_magix_char_screen_manager_a4dd4c663688486a176cd65461dab8165} 
+short {\bfseries mane\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a4d8a8d7c0d7ee658443f71e1d200b9b3}\label{class_magix_char_screen_manager_a4d8a8d7c0d7ee658443f71e1d200b9b3} 
+short {\bfseries head\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a585be384bbcd924bafc89b5f23be7be4}\label{class_magix_char_screen_manager_a585be384bbcd924bafc89b5f23be7be4} 
+short {\bfseries tail\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a44cce7f9ee21ea9fd6cf4606dcb322a8}\label{class_magix_char_screen_manager_a44cce7f9ee21ea9fd6cf4606dcb322a8} 
+short {\bfseries wing\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a697ca86518dcb4886799deade879dd98}\label{class_magix_char_screen_manager_a697ca86518dcb4886799deade879dd98} 
+short {\bfseries tuft\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a8b7b3fd289fb0faf2dd7e9bf6b15e000}\label{class_magix_char_screen_manager_a8b7b3fd289fb0faf2dd7e9bf6b15e000} 
+short {\bfseries body\+Mark\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a88d200fe2bd675e6e27b2ca6e95ee564}\label{class_magix_char_screen_manager_a88d200fe2bd675e6e27b2ca6e95ee564} 
+short {\bfseries head\+Mark\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a0683be0feb706624944ed742c9c21aea}\label{class_magix_char_screen_manager_a0683be0feb706624944ed742c9c21aea} 
+short {\bfseries tail\+Mark\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a5140d38e1da6341bc82994d72a7e827a}\label{class_magix_char_screen_manager_a5140d38e1da6341bc82994d72a7e827a} 
+short {\bfseries colour\+Part\+ID}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a470de69c5f69427d86161ccb4888bb1e}\label{class_magix_char_screen_manager_a470de69c5f69427d86161ccb4888bb1e} 
+Colour\+Value {\bfseries colour\+Val} \mbox{[}MAX\+\_\+\+COLOURS\mbox{]}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a1764eb7bc2f98dfb756c6f84f8c17505}\label{class_magix_char_screen_manager_a1764eb7bc2f98dfb756c6f84f8c17505} 
+bool {\bfseries is\+Rotate\+Unit}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a288e0213802c97b40f20352ce9619f22}\label{class_magix_char_screen_manager_a288e0213802c97b40f20352ce9619f22} 
+Real {\bfseries rotate\+StartX}
+\item 
+\Hypertarget{class_magix_char_screen_manager_ac0ae4bf6e014674006ddf3d987394ceb}\label{class_magix_char_screen_manager_ac0ae4bf6e014674006ddf3d987394ceb} 
+Real {\bfseries rotate\+StartY}
+\item 
+\Hypertarget{class_magix_char_screen_manager_abedee314db493363b81e7200567b1b17}\label{class_magix_char_screen_manager_abedee314db493363b81e7200567b1b17} 
+Degree {\bfseries d\+Yaw}
+\item 
+\Hypertarget{class_magix_char_screen_manager_aacb797c5d5bcbc34f095b091d6d9e55b}\label{class_magix_char_screen_manager_aacb797c5d5bcbc34f095b091d6d9e55b} 
+Real {\bfseries cam\+Zoom}
+\item 
+\Hypertarget{class_magix_char_screen_manager_aac5ea7c4a71ade214aee31ea6496b1e6}\label{class_magix_char_screen_manager_aac5ea7c4a71ade214aee31ea6496b1e6} 
+Real {\bfseries start\+Game\+Count}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a4ac7706aff52cb3f2d07ff613c906cbb}\label{class_magix_char_screen_manager_a4ac7706aff52cb3f2d07ff613c906cbb} 
+bool {\bfseries is\+Char\+IDChanged}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a494473e2de662a6e242817d815abe494}\label{class_magix_char_screen_manager_a494473e2de662a6e242817d815abe494} 
+bool {\bfseries is\+Edit\+Mode}
+\item 
+\Hypertarget{class_magix_char_screen_manager_a5e55cb28e0e76e0264b5f12ea052b0a3}\label{class_magix_char_screen_manager_a5e55cb28e0e76e0264b5f12ea052b0a3} 
+bool {\bfseries do\+Reequip}
+\item 
+\Hypertarget{class_magix_char_screen_manager_aadde6a907a8dcb5e5a908034c5856a4e}\label{class_magix_char_screen_manager_aadde6a907a8dcb5e5a908034c5856a4e} 
+String {\bfseries delete\+Confirmation}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_char_screen_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_char_screen_manager_a98a1931cb262d8c949f7a86908a412b4}\index{MagixCharScreenManager@{MagixCharScreenManager}!setNumChars@{setNumChars}}
+\index{setNumChars@{setNumChars}!MagixCharScreenManager@{MagixCharScreenManager}}
+\doxysubsubsection{\texorpdfstring{setNumChars()}{setNumChars()}}
+{\footnotesize\ttfamily \label{class_magix_char_screen_manager_a98a1931cb262d8c949f7a86908a412b4} 
+void Magix\+Char\+Screen\+Manager\+::set\+Num\+Chars (\begin{DoxyParamCaption}\item[{const short \&}]{t\+Num}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+Utils block. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em t\+Num} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Char\+Screen\+Manager.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,340 @@
+\doxysection{Magix\+Unit\+Manager Class Reference}
+\hypertarget{class_magix_unit_manager}{}\label{class_magix_unit_manager}\index{MagixUnitManager@{MagixUnitManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_unit_manager_ab95684af46e7ce68546ad4e61524c317}\label{class_magix_unit_manager_ab95684af46e7ce68546ad4e61524c317} 
+void {\bfseries initialize} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, \mbox{\hyperlink{class_magix_game_state_manager}{Magix\+Game\+State\+Manager}} \texorpdfstring{$\ast$}{*}game\+State\+Mgr, \mbox{\hyperlink{class_magix_world}{Magix\+World}} \texorpdfstring{$\ast$}{*}world, \mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*}effects\+Mgr, \mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*}collision\+Mgr, \mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*}sound\+Mgr, \mbox{\hyperlink{class_magix_item_manager}{Magix\+Item\+Manager}} \texorpdfstring{$\ast$}{*}item\+Mgr, \mbox{\hyperlink{class_magix_critter_manager}{Magix\+Critter\+Manager}} \texorpdfstring{$\ast$}{*}critter\+Mgr, \mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*}camera)
+\item 
+\Hypertarget{class_magix_unit_manager_aeb832b4960eddba93fca3e2c451e1df4}\label{class_magix_unit_manager_aeb832b4960eddba93fca3e2c451e1df4} 
+void {\bfseries reset} (bool destroy\+Player=false, bool reset\+Position=true)
+\item 
+\Hypertarget{class_magix_unit_manager_aa8e76d549efa86367f9b2b1e5f49a0ae}\label{class_magix_unit_manager_aa8e76d549efa86367f9b2b1e5f49a0ae} 
+void {\bfseries reset\+Player\+Position} ()
+\item 
+\Hypertarget{class_magix_unit_manager_ae888078718408f839f4a0ed2e27fd4e5}\label{class_magix_unit_manager_ae888078718408f839f4a0ed2e27fd4e5} 
+void {\bfseries reclamp\+All\+Units\+To\+Terrain} (bool clamp\+To\+Terrain=false)
+\item 
+\Hypertarget{class_magix_unit_manager_a5aba8fc22f2e5271111c194fd903c38d}\label{class_magix_unit_manager_a5aba8fc22f2e5271111c194fd903c38d} 
+void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_manager_a6e2adc0793dbb17c72a3bcc7c7b488ff}\label{class_magix_unit_manager_a6e2adc0793dbb17c72a3bcc7c7b488ff} 
+void {\bfseries update\+Unit} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const Frame\+Event \&evt, bool is\+Player)
+\item 
+\Hypertarget{class_magix_unit_manager_a0506926d4a1bbf4c02e5dd36c428786c}\label{class_magix_unit_manager_a0506926d4a1bbf4c02e5dd36c428786c} 
+bool {\bfseries is\+In\+Range} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a22ee317012ddb8160db1b3dab16204d6}\label{class_magix_unit_manager_a22ee317012ddb8160db1b3dab16204d6} 
+void {\bfseries hit\+Unit} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const Real \&damage, const Vector3 \&force, bool in\+Range=false)
+\item 
+\Hypertarget{class_magix_unit_manager_a1ee7c1339b3a434fc1fd7539e6bbb86a}\label{class_magix_unit_manager_a1ee7c1339b3a434fc1fd7539e6bbb86a} 
+void {\bfseries hit\+Unit} (const Owner\+Token \&i\+ID, const Real \&damage, const Vector3 \&force)
+\item 
+\Hypertarget{class_magix_unit_manager_a73c9479ada7843158eaba01be8a50ba5}\label{class_magix_unit_manager_a73c9479ada7843158eaba01be8a50ba5} 
+void {\bfseries update\+Wall\+Collisions} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_abdd3bc24084fc4686a683c6b9a6ff883}\label{class_magix_unit_manager_abdd3bc24084fc4686a683c6b9a6ff883} 
+void {\bfseries bound\+Unit\+To\+Map} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a16951888c40a0763d374511e533717c8}\label{class_magix_unit_manager_a16951888c40a0763d374511e533717c8} 
+void {\bfseries update\+Portal\+Collisions} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_afca268c2afeb0acbf1a4dff02c98f5c6}\label{class_magix_unit_manager_afca268c2afeb0acbf1a4dff02c98f5c6} 
+void {\bfseries update\+Gate\+Collisions} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a5a3ba6476e84d7a13e5e84ae93900fea}\label{class_magix_unit_manager_a5a3ba6476e84d7a13e5e84ae93900fea} 
+void {\bfseries update\+Coll\+Box\+Collisions} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_manager_a93c488d95eb6927c530e34eeef00962c}\label{class_magix_unit_manager_a93c488d95eb6927c530e34eeef00962c} 
+void {\bfseries update\+Water\+Collisions} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_acb06222225747d5f80167996c7269f24}\label{class_magix_unit_manager_acb06222225747d5f80167996c7269f24} 
+void {\bfseries update\+Map\+Effects} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a77368a45f84de0ae0b038da782a8b971}\label{class_magix_unit_manager_a77368a45f84de0ae0b038da782a8b971} 
+void {\bfseries update\+Sounds} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a9cfa266ca3cf9ef0ae27259ac71c2607}\label{class_magix_unit_manager_a9cfa266ca3cf9ef0ae27259ac71c2607} 
+bool {\bfseries is\+Map\+Changed} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a06e9febe0236ff3b7be89195169a42ea}\label{class_magix_unit_manager_a06e9febe0236ff3b7be89195169a42ea} 
+const \mbox{\hyperlink{struct_map_change_data}{Map\+Change\+Data}} {\bfseries get\+Map\+Change} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a0d8a1e05adf6e6522e21ee2123cc9d5b}\label{class_magix_unit_manager_a0d8a1e05adf6e6522e21ee2123cc9d5b} 
+void {\bfseries set\+Map\+Change} (bool change\+Map, const String \&map\+Name, bool change\+Point=false, const Vector3 \&point=Vector3\+::\+ZERO, bool has\+VectY=false)
+\item 
+\Hypertarget{class_magix_unit_manager_a48151d8fb339c0e63a2704aa65ad3dd0}\label{class_magix_unit_manager_a48151d8fb339c0e63a2704aa65ad3dd0} 
+const Quaternion {\bfseries do\+Auto\+Target} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, bool target\+Closest=false)
+\item 
+\Hypertarget{class_magix_unit_manager_a7e8f68664d5a8f0de4f22191a8bc659e}\label{class_magix_unit_manager_a7e8f68664d5a8f0de4f22191a8bc659e} 
+bool {\bfseries do\+Lock\+On} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a7a66be192a434bae640aa5caad4299f9}\label{class_magix_unit_manager_a7a66be192a434bae640aa5caad4299f9} 
+void {\bfseries clamp\+Unit\+To\+Terrain} (\mbox{\hyperlink{class_magix_animated}{Magix\+Animated}} \texorpdfstring{$\ast$}{*}unit, bool clamp\+To\+Ground=false)
+\item 
+\Hypertarget{class_magix_unit_manager_abb82e7f9a3e2b67e03b3818d4e166df5}\label{class_magix_unit_manager_abb82e7f9a3e2b67e03b3818d4e166df5} 
+void {\bfseries clamp\+Unit\+To\+Ceiling} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a900c8f227dc18a347344d331689dec3c}\label{class_magix_unit_manager_a900c8f227dc18a347344d331689dec3c} 
+const Real {\bfseries get\+Ground\+Height} (const Real \&x, const Real \&z, bool check\+Water\+Collision=false, bool check\+Coll\+Box\+Collision=false)
+\item 
+\Hypertarget{class_magix_unit_manager_a567f95131a9b05f0fc3871e34a82a203}\label{class_magix_unit_manager_a567f95131a9b05f0fc3871e34a82a203} 
+\mbox{\hyperlink{class_magix_player}{Magix\+Player}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Player} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a8d7b60cd4f24292c25ea55483e680549}\label{class_magix_unit_manager_a8d7b60cd4f24292c25ea55483e680549} 
+\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Unit} (const unsigned short i\+Index, const String \&body\+Mesh, const String \&head\+Mesh, const String \&mane\+Mesh, const String \&tail\+Mesh, const String \&wing\+Mesh, const String \&mat\+Name, const String \&tuft\+Mesh)
+\item 
+\Hypertarget{class_magix_unit_manager_a509958b3b32effe41caed83dc48984b5}\label{class_magix_unit_manager_a509958b3b32effe41caed83dc48984b5} 
+\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Unit\+By\+Index} (const unsigned short \&i\+Index)
+\item 
+\Hypertarget{class_magix_unit_manager_a0d51f240538012659121985340eb2f76}\label{class_magix_unit_manager_a0d51f240538012659121985340eb2f76} 
+void {\bfseries delete\+Unit} (\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*}target)
+\item 
+\Hypertarget{class_magix_unit_manager_a43465afe2e7ebce0f81f92fcb8c800c9}\label{class_magix_unit_manager_a43465afe2e7ebce0f81f92fcb8c800c9} 
+void {\bfseries delete\+All\+Units} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a2987edb1f512998e64652edd5ab139bc}\label{class_magix_unit_manager_a2987edb1f512998e64652edd5ab139bc} 
+void {\bfseries create\+Name\+Tag} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}target, const String \&name)
+\item 
+\Hypertarget{class_magix_unit_manager_a1e8ebdda9a749bc0d7ab84fa8a5cd522}\label{class_magix_unit_manager_a1e8ebdda9a749bc0d7ab84fa8a5cd522} 
+void {\bfseries create\+User\+Tag} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}target, const String \&name)
+\item 
+\Hypertarget{class_magix_unit_manager_a5021103b3cc238fa94fccfcd0f9f2056}\label{class_magix_unit_manager_a5021103b3cc238fa94fccfcd0f9f2056} 
+void {\bfseries create\+Chat\+Bubble} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}target, const String \&caption)
+\item 
+\Hypertarget{class_magix_unit_manager_abcf830e3ab60aaaf2b7f73af012bae6e}\label{class_magix_unit_manager_abcf830e3ab60aaaf2b7f73af012bae6e} 
+void {\bfseries update\+Name\+Tag} (\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*}p)
+\item 
+\Hypertarget{class_magix_unit_manager_a38df99f7f47312c3528d66bec57a0c63}\label{class_magix_unit_manager_a38df99f7f47312c3528d66bec57a0c63} 
+void {\bfseries update\+Chat\+Bubble} (\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*}p)
+\item 
+\Hypertarget{class_magix_unit_manager_ac2ab714bf740e0c5853d108f1b53b90b}\label{class_magix_unit_manager_ac2ab714bf740e0c5853d108f1b53b90b} 
+\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries get\+By\+Object\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}object\+Node)
+\item 
+\Hypertarget{class_magix_unit_manager_afa2930ec3adf7d57f31d0a7b9f9a0b57}\label{class_magix_unit_manager_afa2930ec3adf7d57f31d0a7b9f9a0b57} 
+\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries get\+By\+Name} (const String \&name)
+\item 
+\Hypertarget{class_magix_unit_manager_a98979a910f5dd8e2c98570466de43246}\label{class_magix_unit_manager_a98979a910f5dd8e2c98570466de43246} 
+\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries get\+By\+User} (String name)
+\item 
+\Hypertarget{class_magix_unit_manager_a82ec64ec00c4af03d3f6d82206e59829}\label{class_magix_unit_manager_a82ec64ec00c4af03d3f6d82206e59829} 
+bool {\bfseries pop\+Player\+Target\+Changed} ()
+\item 
+\Hypertarget{class_magix_unit_manager_ab1a643f169bae2b7f452bbf86ba4639e}\label{class_magix_unit_manager_ab1a643f169bae2b7f452bbf86ba4639e} 
+\mbox{\hyperlink{class_magix_living}{Magix\+Living}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Player\+Target} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a479f4803fc8600b9c10be2727afcc008}\label{class_magix_unit_manager_a479f4803fc8600b9c10be2727afcc008} 
+void {\bfseries set\+Player\+Target} (\mbox{\hyperlink{class_magix_living}{Magix\+Living}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_aaf530acff7ed4410ef2c4eda655d918e}\label{class_magix_unit_manager_aaf530acff7ed4410ef2c4eda655d918e} 
+void {\bfseries show\+Name\+Tags} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_manager_a7977de36c4b7f2d963ad5f9c7c87811c}\label{class_magix_unit_manager_a7977de36c4b7f2d963ad5f9c7c87811c} 
+void {\bfseries set\+Should\+Name\+Tags\+Be\+Visible} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_manager_a0ea699bf5c5998edc534fe9269c49ebd}\label{class_magix_unit_manager_a0ea699bf5c5998edc534fe9269c49ebd} 
+bool {\bfseries get\+Should\+Name\+Tags\+Be\+Visible} ()
+\item 
+\Hypertarget{class_magix_unit_manager_ab7e47d8fc92e1ce9edfd6e72a78a63df}\label{class_magix_unit_manager_ab7e47d8fc92e1ce9edfd6e72a78a63df} 
+void {\bfseries destroy\+Unit} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a5533f7abf70d10d57f4bc9ee304770d4}\label{class_magix_unit_manager_a5533f7abf70d10d57f4bc9ee304770d4} 
+void {\bfseries create\+Player\+Unit} (const String \&body\+Mesh, const String \&head\+Mesh, const String \&mane\+Mesh, const String \&tail\+Mesh, const String \&wing\+Mesh, const String \&mat\+Name, const String \&tuft\+Mesh)
+\item 
+\Hypertarget{class_magix_unit_manager_a6688d41755a78e32b4f36d62ddddfd7c}\label{class_magix_unit_manager_a6688d41755a78e32b4f36d62ddddfd7c} 
+const vector$<$ \mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+Unit\+List} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a3db8824ce22d4a537df329debe3593dd}\label{class_magix_unit_manager_a3db8824ce22d4a537df329debe3593dd} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries create\+Particle\+On\+Unit} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const String \&particle\+Name, const Real \&duration, bool unresettable=false)
+\item 
+\Hypertarget{class_magix_unit_manager_a0b827572d73364d706ebbd20c7b13ac6}\label{class_magix_unit_manager_a0b827572d73364d706ebbd20c7b13ac6} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries create\+Particle\+On\+Unit\+Bone} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const String \&t\+Bone, const String \&particle\+Name, const Real \&duration, bool unresettable=false)
+\item 
+\Hypertarget{class_magix_unit_manager_abe7359d06d987de1df085f8c9bc255d9}\label{class_magix_unit_manager_abe7359d06d987de1df085f8c9bc255d9} 
+void {\bfseries create\+Admin\+Aura} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const Colour\+Value \&colour)
+\item 
+\Hypertarget{class_magix_unit_manager_a3a1881f0de9afcdaadc34cb45b060669}\label{class_magix_unit_manager_a3a1881f0de9afcdaadc34cb45b060669} 
+void {\bfseries destroy\+Particle\+On\+Unit} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const String \&particle\+Name)
+\item 
+\Hypertarget{class_magix_unit_manager_ad4ad1910c51b8d6e4532e18aab6f9d8b}\label{class_magix_unit_manager_ad4ad1910c51b8d6e4532e18aab6f9d8b} 
+bool {\bfseries equip\+Item} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const String \&mesh\+Name, const short \&slot)
+\item 
+\Hypertarget{class_magix_unit_manager_a04b33ccff5205ef82e38db099205b758}\label{class_magix_unit_manager_a04b33ccff5205ef82e38db099205b758} 
+const short {\bfseries get\+Next\+Empty\+Item\+Slot} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a1da5ab8d9908832325e2ffc81fbb982d}\label{class_magix_unit_manager_a1da5ab8d9908832325e2ffc81fbb982d} 
+const short {\bfseries get\+Next\+Filled\+Item\+Slot} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a1fb8939ec4e19d5db307e09341674556}\label{class_magix_unit_manager_a1fb8939ec4e19d5db307e09341674556} 
+const String {\bfseries unequip\+Item} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_unit_manager_a72fc36eae9a55acefbb44bdeb3c8da30}\label{class_magix_unit_manager_a72fc36eae9a55acefbb44bdeb3c8da30} 
+void {\bfseries create\+Item} (const unsigned short \&i\+ID, const String \&mesh\+Name, const Vector2 \&position)
+\item 
+\Hypertarget{class_magix_unit_manager_acbfeb6f15bafa850b0e50dc7100a3e18}\label{class_magix_unit_manager_acbfeb6f15bafa850b0e50dc7100a3e18} 
+void {\bfseries create\+Item} (const unsigned short \&i\+ID, const String \&mesh\+Name, const Real \&tX, const Real \&tZ)
+\item 
+\Hypertarget{class_magix_unit_manager_adc477456e9cb7f16ace38dd80521747e}\label{class_magix_unit_manager_adc477456e9cb7f16ace38dd80521747e} 
+void {\bfseries delete\+Item} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_unit_manager_a6730f734ce730733d6e4175cb491c3ec}\label{class_magix_unit_manager_a6730f734ce730733d6e4175cb491c3ec} 
+void {\bfseries delete\+Item} (\mbox{\hyperlink{class_magix_item}{Magix\+Item}} \texorpdfstring{$\ast$}{*}item)
+\item 
+\Hypertarget{class_magix_unit_manager_a27d93f31485430a85f36760539fd5bf9}\label{class_magix_unit_manager_a27d93f31485430a85f36760539fd5bf9} 
+\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Critter} (const unsigned short \&i\+ID, const unsigned char \&world\+ID, const Vector3 \&position, const short \&owner=-\/1)
+\item 
+\Hypertarget{class_magix_unit_manager_aa94cac9c63c08fb0dd2082f4ad8bc9fb}\label{class_magix_unit_manager_aa94cac9c63c08fb0dd2082f4ad8bc9fb} 
+\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*} {\bfseries create\+Critter} (const unsigned short \&i\+ID, const String \&type, const Vector3 \&position, const short \&owner=-\/1)
+\item 
+\Hypertarget{class_magix_unit_manager_a22e38838e74efcdf72bc80c26c4363fe}\label{class_magix_unit_manager_a22e38838e74efcdf72bc80c26c4363fe} 
+void {\bfseries delete\+Critter} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_unit_manager_a5b87bbe4bd52b0f0bb66c66fd8408d10}\label{class_magix_unit_manager_a5b87bbe4bd52b0f0bb66c66fd8408d10} 
+const vector$<$ std\+::pair$<$ String, Vector2 $>$ $>$\+::type {\bfseries pop\+Item\+Drop\+Queue} ()
+\item 
+\Hypertarget{class_magix_unit_manager_afa8e7b2da9f1c3a86f22b1d7d2212bd3}\label{class_magix_unit_manager_afa8e7b2da9f1c3a86f22b1d7d2212bd3} 
+const String {\bfseries pop\+Pickup\+Text} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a0a49c03c4a998ca9084a7cb526686265}\label{class_magix_unit_manager_a0a49c03c4a998ca9084a7cb526686265} 
+void {\bfseries kill\+And\+Reward\+Critter} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter, bool im\+The\+Killer=true)
+\item 
+\Hypertarget{class_magix_unit_manager_aca158768c6a3a9f3face5c54d270e900}\label{class_magix_unit_manager_aca158768c6a3a9f3face5c54d270e900} 
+void {\bfseries reward\+Critter} (\mbox{\hyperlink{class_magix_critter}{Magix\+Critter}} \texorpdfstring{$\ast$}{*}critter)
+\item 
+\Hypertarget{class_magix_unit_manager_a0c45243beda8de6371cb0e08a1b2b019}\label{class_magix_unit_manager_a0c45243beda8de6371cb0e08a1b2b019} 
+bool {\bfseries pop\+Player\+Has\+New\+Attack} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a34ee55957abdfd4904f797dc27554409}\label{class_magix_unit_manager_a34ee55957abdfd4904f797dc27554409} 
+void {\bfseries add\+Party\+Member} (const Owner\+Token \&token, const String \&name)
+\item 
+\Hypertarget{class_magix_unit_manager_a8559f6a58ca5237309e3fc441ba656c8}\label{class_magix_unit_manager_a8559f6a58ca5237309e3fc441ba656c8} 
+bool {\bfseries remove\+Party\+Member} (const String \&name)
+\item 
+\Hypertarget{class_magix_unit_manager_a91f8d8b15c096a04dab569e3aa13dfda}\label{class_magix_unit_manager_a91f8d8b15c096a04dab569e3aa13dfda} 
+void {\bfseries clear\+Party\+Members} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a4bfb87b7ead8df696a6d37b23bb14c92}\label{class_magix_unit_manager_a4bfb87b7ead8df696a6d37b23bb14c92} 
+bool {\bfseries is\+Party\+Full} ()
+\item 
+\Hypertarget{class_magix_unit_manager_aa09ad8a8617b0f2a482cd064b7c3da85}\label{class_magix_unit_manager_aa09ad8a8617b0f2a482cd064b7c3da85} 
+const vector$<$ std\+::pair$<$ Owner\+Token, String $>$ $>$\+::type {\bfseries get\+Party\+Members} ()
+\item 
+\Hypertarget{class_magix_unit_manager_ae1d98749c9aff7d7be7562bf2ea8f210}\label{class_magix_unit_manager_ae1d98749c9aff7d7be7562bf2ea8f210} 
+bool {\bfseries is\+Party\+Member} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_unit_manager_a0e3c1393c5e6dc9a2e31ea4c7d87c57f}\label{class_magix_unit_manager_a0e3c1393c5e6dc9a2e31ea4c7d87c57f} 
+bool {\bfseries pop\+Party\+Changed} ()
+\item 
+\Hypertarget{class_magix_unit_manager_ac20f6354065d916f0d716f97f1a8959e}\label{class_magix_unit_manager_ac20f6354065d916f0d716f97f1a8959e} 
+bool {\bfseries has\+Party} ()
+\item 
+\Hypertarget{class_magix_unit_manager_a2855082400894a89c6bc3a98c7279d57}\label{class_magix_unit_manager_a2855082400894a89c6bc3a98c7279d57} 
+void {\bfseries set\+Party\+Inviter} (const Owner\+Token \&token)
+\item 
+\Hypertarget{class_magix_unit_manager_a7df7aa61f74768da7dee0ee1dd15800c}\label{class_magix_unit_manager_a7df7aa61f74768da7dee0ee1dd15800c} 
+const Owner\+Token {\bfseries get\+Party\+Inviter} ()
+\item 
+\Hypertarget{class_magix_unit_manager_afd0d4fc326aaaecfa1321f59552f1aaf}\label{class_magix_unit_manager_afd0d4fc326aaaecfa1321f59552f1aaf} 
+const std\+::pair$<$ Owner\+Token, String $>$ {\bfseries get\+Party\+Member} (const Owner\+Token \&token)
+\item 
+\Hypertarget{class_magix_unit_manager_ac77f3a03761840a67719bf5dd262382d}\label{class_magix_unit_manager_ac77f3a03761840a67719bf5dd262382d} 
+const vector$<$ \mbox{\hyperlink{struct_hit_info}{Hit\+Info}} $>$\+::type {\bfseries pop\+Hit\+Queue} ()
+\item 
+\Hypertarget{class_magix_unit_manager_af15207fedf9c2746701435299fb9150d}\label{class_magix_unit_manager_af15207fedf9c2746701435299fb9150d} 
+void {\bfseries push\+Hit\+Queue} (const \mbox{\hyperlink{struct_hit_info}{Hit\+Info}} \&info)
+\item 
+\Hypertarget{class_magix_unit_manager_a1ab7671d3323756e0b598316d82d3140}\label{class_magix_unit_manager_a1ab7671d3323756e0b598316d82d3140} 
+const \mbox{\hyperlink{struct_tame_data}{Tame\+Data}} {\bfseries pop\+Tame\+Flag} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_unit_manager_afdae4a5c88c941f2a004ba5c651ba50c}\label{class_magix_unit_manager_afdae4a5c88c941f2a004ba5c651ba50c} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_unit_manager_afc146d041a54f27cb4035c1d9ae08040}\label{class_magix_unit_manager_afc146d041a54f27cb4035c1d9ae08040} 
+\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Def}
+\item 
+\Hypertarget{class_magix_unit_manager_a5b3e8240eb49fa79da1753bb3a11f963}\label{class_magix_unit_manager_a5b3e8240eb49fa79da1753bb3a11f963} 
+\mbox{\hyperlink{class_magix_game_state_manager}{Magix\+Game\+State\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Game\+State\+Manager}
+\item 
+\Hypertarget{class_magix_unit_manager_aaa89834b2040c18eb0d290d83a4390de}\label{class_magix_unit_manager_aaa89834b2040c18eb0d290d83a4390de} 
+\mbox{\hyperlink{class_magix_player}{Magix\+Player}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Player}
+\item 
+\Hypertarget{class_magix_unit_manager_ac825b069c10c33c7c2594dcafa55d85d}\label{class_magix_unit_manager_ac825b069c10c33c7c2594dcafa55d85d} 
+\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Last\+Unit}
+\item 
+\Hypertarget{class_magix_unit_manager_a0f53a7cab7c288876019f19e730bcc25}\label{class_magix_unit_manager_a0f53a7cab7c288876019f19e730bcc25} 
+\mbox{\hyperlink{class_magix_world}{Magix\+World}} \texorpdfstring{$\ast$}{*} {\bfseries m\+World}
+\item 
+\Hypertarget{class_magix_unit_manager_a4a30476560a30d0f0ae5ad5241be1435}\label{class_magix_unit_manager_a4a30476560a30d0f0ae5ad5241be1435} 
+\mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Effects\+Manager}
+\item 
+\Hypertarget{class_magix_unit_manager_a387c857e747ec7f7ba28b481a56570fb}\label{class_magix_unit_manager_a387c857e747ec7f7ba28b481a56570fb} 
+\mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Collision\+Manager}
+\item 
+\Hypertarget{class_magix_unit_manager_a58c802559b7f0a4e37f614ea170f67ef}\label{class_magix_unit_manager_a58c802559b7f0a4e37f614ea170f67ef} 
+\mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Sound\+Manager}
+\item 
+\Hypertarget{class_magix_unit_manager_a0c0d9f427ae2e73bc8ab400db33d419c}\label{class_magix_unit_manager_a0c0d9f427ae2e73bc8ab400db33d419c} 
+\mbox{\hyperlink{class_magix_item_manager}{Magix\+Item\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Item\+Manager}
+\item 
+\Hypertarget{class_magix_unit_manager_a00b891b176e461bfaeca55cc5118be8e}\label{class_magix_unit_manager_a00b891b176e461bfaeca55cc5118be8e} 
+\mbox{\hyperlink{class_magix_critter_manager}{Magix\+Critter\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Critter\+Manager}
+\item 
+\Hypertarget{class_magix_unit_manager_a448ec3515f61ab5b8e4993af7738ee4c}\label{class_magix_unit_manager_a448ec3515f61ab5b8e4993af7738ee4c} 
+\mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Camera}
+\item 
+\Hypertarget{class_magix_unit_manager_a24dc9b9282508e92275bc3bdfe586bcf}\label{class_magix_unit_manager_a24dc9b9282508e92275bc3bdfe586bcf} 
+Ray\+Scene\+Query \texorpdfstring{$\ast$}{*} {\bfseries m\+Ray\+Query}
+\item 
+\Hypertarget{class_magix_unit_manager_a944d006bbde564210a2b3102a5ffc3d9}\label{class_magix_unit_manager_a944d006bbde564210a2b3102a5ffc3d9} 
+\mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Name\+Tag\+Attr}
+\item 
+\Hypertarget{class_magix_unit_manager_af93a57c21dca0dd5826c793fbbd5fa20}\label{class_magix_unit_manager_af93a57c21dca0dd5826c793fbbd5fa20} 
+\mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*} {\bfseries m\+User\+Tag\+Attr}
+\item 
+\Hypertarget{class_magix_unit_manager_af052fef79d6a4dec1e9f38a6ea9389d5}\label{class_magix_unit_manager_af052fef79d6a4dec1e9f38a6ea9389d5} 
+\mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Chat\+Bubble\+Attr}
+\item 
+\Hypertarget{class_magix_unit_manager_a6c4b2fd02bb49ecf1c51cf5d2c8165a9}\label{class_magix_unit_manager_a6c4b2fd02bb49ecf1c51cf5d2c8165a9} 
+\mbox{\hyperlink{class_magix_living}{Magix\+Living}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Player\+Target}
+\item 
+\Hypertarget{class_magix_unit_manager_a6a74ced6b220282c283858683dc76daa}\label{class_magix_unit_manager_a6a74ced6b220282c283858683dc76daa} 
+bool {\bfseries player\+Target\+Changed}
+\item 
+\Hypertarget{class_magix_unit_manager_af43a17b0b341202b1cdff9e1bea42641}\label{class_magix_unit_manager_af43a17b0b341202b1cdff9e1bea42641} 
+bool {\bfseries should\+Name\+Tags\+Be\+Visible}
+\item 
+\Hypertarget{class_magix_unit_manager_a1a1043ba481e6c407985ee5ea9e90551}\label{class_magix_unit_manager_a1a1043ba481e6c407985ee5ea9e90551} 
+\mbox{\hyperlink{struct_map_change_data}{Map\+Change\+Data}} {\bfseries map\+Change}
+\item 
+\Hypertarget{class_magix_unit_manager_a1a0681f2b0dd7d24398929bde51976a2}\label{class_magix_unit_manager_a1a0681f2b0dd7d24398929bde51976a2} 
+vector$<$ std\+::pair$<$ String, Vector2 $>$ $>$\+::type {\bfseries item\+Drop\+Queue}
+\item 
+\Hypertarget{class_magix_unit_manager_abb08aeaef08e944702e2026ec36a68da}\label{class_magix_unit_manager_abb08aeaef08e944702e2026ec36a68da} 
+String {\bfseries pickup\+Text}
+\item 
+\Hypertarget{class_magix_unit_manager_a8be636fe3694746f3216eb5550a6964b}\label{class_magix_unit_manager_a8be636fe3694746f3216eb5550a6964b} 
+bool {\bfseries player\+Has\+New\+Attack}
+\item 
+\Hypertarget{class_magix_unit_manager_a039aaf60acd9bd081c5b535622cb1eab}\label{class_magix_unit_manager_a039aaf60acd9bd081c5b535622cb1eab} 
+vector$<$ std\+::pair$<$ Owner\+Token, String $>$ $>$\+::type {\bfseries party\+Members}
+\item 
+\Hypertarget{class_magix_unit_manager_a8e2498b60fc53a258a1111c0255bf3b6}\label{class_magix_unit_manager_a8e2498b60fc53a258a1111c0255bf3b6} 
+bool {\bfseries party\+Changed}
+\item 
+\Hypertarget{class_magix_unit_manager_a2882b6a3cb39463b4173ea2ebc364b2a}\label{class_magix_unit_manager_a2882b6a3cb39463b4173ea2ebc364b2a} 
+Owner\+Token {\bfseries party\+Inviter}
+\item 
+\Hypertarget{class_magix_unit_manager_ad06b366bdbbb05875b19bbcab685c8a2}\label{class_magix_unit_manager_ad06b366bdbbb05875b19bbcab685c8a2} 
+vector$<$ \mbox{\hyperlink{struct_hit_info}{Hit\+Info}} $>$\+::type {\bfseries hit\+Queue}
+\item 
+\Hypertarget{class_magix_unit_manager_a7cb030c1264270ab5a0656afb411c0b7}\label{class_magix_unit_manager_a7cb030c1264270ab5a0656afb411c0b7} 
+\mbox{\hyperlink{struct_tame_data}{Tame\+Data}} {\bfseries tame\+Flag}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Unit\+Manager.\+h\end{DoxyCompactItemize}

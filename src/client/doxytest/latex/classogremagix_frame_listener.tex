@@ -1,0 +1,79 @@
+\doxysection{ogremagix\+Frame\+Listener Class Reference}
+\hypertarget{classogremagix_frame_listener}{}\label{classogremagix_frame_listener}\index{ogremagixFrameListener@{ogremagixFrameListener}}
+Inheritance diagram for ogremagix\+Frame\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.641510cm]{classogremagix_frame_listener}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classogremagix_frame_listener_a01efb4ac4b4584ce3202276085b93501}\label{classogremagix_frame_listener_a01efb4ac4b4584ce3202276085b93501} 
+{\bfseries ogremagix\+Frame\+Listener} (\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*}magix\+Handler, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, Render\+Window \texorpdfstring{$\ast$}{*}win, Camera \texorpdfstring{$\ast$}{*}cam)
+\item 
+\Hypertarget{classogremagix_frame_listener_ad6dc0824ba57a3dc2bed24d818411c7d}\label{classogremagix_frame_listener_ad6dc0824ba57a3dc2bed24d818411c7d} 
+bool {\bfseries frame\+Started} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{classogremagix_frame_listener_a17cbbfe9ead5f96b5e39b75cd80a0832}\label{classogremagix_frame_listener_a17cbbfe9ead5f96b5e39b75cd80a0832} 
+bool {\bfseries mouse\+Moved} (const OIS\+::\+Mouse\+Event \&e)
+\item 
+\Hypertarget{classogremagix_frame_listener_a90c44d5c35c88edf481b05c47e3fcb75}\label{classogremagix_frame_listener_a90c44d5c35c88edf481b05c47e3fcb75} 
+bool {\bfseries mouse\+Pressed} (const OIS\+::\+Mouse\+Event \&e, OIS\+::\+Mouse\+Button\+ID id)
+\item 
+\Hypertarget{classogremagix_frame_listener_a5689380ff4ef3f845e61039acfcfb8d2}\label{classogremagix_frame_listener_a5689380ff4ef3f845e61039acfcfb8d2} 
+bool {\bfseries mouse\+Released} (const OIS\+::\+Mouse\+Event \&e, OIS\+::\+Mouse\+Button\+ID id)
+\item 
+\Hypertarget{classogremagix_frame_listener_a6a10681812bbad2f11f2c4cdfcc34274}\label{classogremagix_frame_listener_a6a10681812bbad2f11f2c4cdfcc34274} 
+bool {\bfseries key\+Pressed} (const OIS\+::\+Key\+Event \&e)
+\item 
+\Hypertarget{classogremagix_frame_listener_afd5378584b2435b0668284a2a7718dc5}\label{classogremagix_frame_listener_afd5378584b2435b0668284a2a7718dc5} 
+bool {\bfseries key\+Released} (const OIS\+::\+Key\+Event \&e)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_frame_listener}{Magix\+Frame\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries Magix\+Frame\+Listener} (\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*}magix\+Handler, Render\+Window \texorpdfstring{$\ast$}{*}win, Camera \texorpdfstring{$\ast$}{*}cam, bool buffered\+Keys=true, bool buffered\+Mouse=true)
+\item 
+virtual void {\bfseries window\+Resized} (Render\+Window \texorpdfstring{$\ast$}{*}rw)
+\item 
+virtual void {\bfseries window\+Closed} (Render\+Window \texorpdfstring{$\ast$}{*}rw)
+\item 
+void {\bfseries show\+Debug\+Overlay} (bool show)
+\item 
+bool {\bfseries frame\+Started} (const Frame\+Event \&evt)
+\item 
+bool {\bfseries frame\+Ended} (const Frame\+Event \&evt)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{class_magix_frame_listener}{Magix\+Frame\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries update\+Stats} (void)
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_frame_listener}{Magix\+Frame\+Listener}}}
+\begin{DoxyCompactItemize}
+\item 
+Render\+Window \texorpdfstring{$\ast$}{*} {\bfseries m\+Window}
+\item 
+bool {\bfseries is\+Stats\+On}
+\item 
+std\+::string {\bfseries m\+Debug\+Text}
+\item 
+Overlay \texorpdfstring{$\ast$}{*} {\bfseries m\+Debug\+Overlay}
+\item 
+OIS\+::\+Input\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Input\+Manager}
+\item 
+OIS\+::\+Mouse \texorpdfstring{$\ast$}{*} {\bfseries m\+Mouse}
+\item 
+OIS\+::\+Keyboard \texorpdfstring{$\ast$}{*} {\bfseries m\+Keyboard}
+\item 
+\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Magix\+Handler}
+\item 
+bool {\bfseries m\+Continue}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/ogremagix.\+h\end{DoxyCompactItemize}
