@@ -1,0 +1,905 @@
+\doxysection{Magix\+Player.\+h}
+\hypertarget{_magix_player_8h_source}{}\label{_magix_player_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixPlayer.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixPlayer.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixPlayer\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixPlayer\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ CONTROL\_RELATIVE\ 1}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ CONTROL\_ABSOLUTE\ 2}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ CONTROL\_FIRSTPERSON\ 3}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ MAX\_SKILLSTOCK\ 200}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ AUTOTARGET\_RANGE\_SQUARED\ 6400}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#include\ "{}MagixUnit.h"{}}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ STRUCTS\ SHOULD\ BE\ IN\ A\ MAGIX\ STRUCTS\ CLASS\ !!!!}}
+\DoxyCodeLine{00016\ \textcolor{keyword}{struct\ }Skill}
+\DoxyCodeLine{00017\ \{}
+\DoxyCodeLine{00018\ \ \ \ \ String\ name;}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ stock;}
+\DoxyCodeLine{00020\ \ \ \ \ Skill(\textcolor{keyword}{const}\ String\ \&skillName,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&skillStock)}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ name\ =\ skillName;}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ stock\ =\ skillStock;}
+\DoxyCodeLine{00024\ \ \ \ \ \}}
+\DoxyCodeLine{00025\ \};}
+\DoxyCodeLine{00026\ \textcolor{keyword}{struct\ }PetFlags}
+\DoxyCodeLine{00027\ \{}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ stay;}
+\DoxyCodeLine{00029\ \ \ \ \ \mbox{\hyperlink{class_magix_living}{MagixLiving}}\ *attackTarget;}
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{keywordtype}{bool}\ shrink;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ evolve;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasHeal;}
+\DoxyCodeLine{00033\ }
+\DoxyCodeLine{00034\ \ \ \ \ PetFlags()}
+\DoxyCodeLine{00035\ \ \ \ \ \{}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ stay\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ attackTarget\ =\ 0;}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ shrink\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ evolve\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ hasHeal\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00041\ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{void}\ reset()}
+\DoxyCodeLine{00044\ \ \ \ \ \{}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ attackTarget\ =\ 0;}
+\DoxyCodeLine{00046\ \ \ \ \ \}}
+\DoxyCodeLine{00047\ \};}
+\DoxyCodeLine{00048\ \textcolor{comment}{//\ so\ a\ derivative\ control\ more\ than\ a\ controller\ ?}}
+\DoxyCodeLine{00049\ \textcolor{keyword}{class\ }MagixPlayer\ :\ \textcolor{keyword}{public}\ MagixUnit}
+\DoxyCodeLine{00050\ \{}
+\DoxyCodeLine{00051\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ controlMode;}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{bool}\ isLockedOn;}
+\DoxyCodeLine{00054\ \ \ \ \ vector<Skill>::type\ skillSlot;}
+\DoxyCodeLine{00055\ \ \ \ \ vector<Skill>::type\ skillChangedList;}
+\DoxyCodeLine{00056\ \ \ \ \ vector<String>::type\ defaultAttackList;}
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}\ *mCurrentSkill;}
+\DoxyCodeLine{00058\ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}\ *mNextSkill;}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{bool}\ autoWalk;}
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keywordtype}{bool}\ autoRun;}
+\DoxyCodeLine{00061\ \ \ \ \ \textcolor{keywordtype}{bool}\ isReadyToPickup;}
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{keywordtype}{bool}\ pickupRangePlus;}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ index;}
+\DoxyCodeLine{00064\ \ \ \ \ String\ petName;}
+\DoxyCodeLine{00065\ \ \ \ \ MagixLiving\ *mAutoAttackTarget;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ autoAttackOnce;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ hpChanged;}
+\DoxyCodeLine{00068\ \ \ \ \ \textcolor{keywordtype}{bool}\ maxHPChanged;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ isWounded;}
+\DoxyCodeLine{00070\ \ \ \ \ \textcolor{keywordtype}{bool}\ woundChanged;}
+\DoxyCodeLine{00071\ \ \ \ \ Real\ woundRecoveryTimer;}
+\DoxyCodeLine{00072\ \ \ \ \ \mbox{\hyperlink{struct_pet_flags}{PetFlags}}\ petFlags;}
+\DoxyCodeLine{00073\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ nextAttackRange;}
+\DoxyCodeLine{00074\ \ \ \ \ }
+\DoxyCodeLine{00075\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00076\ \ \ \ \ \textcolor{comment}{//\ this\ exist\ basically\ so\ input\ manager\ can\ set\ it,\ hilarious.}}
+\DoxyCodeLine{00077\ \ \ \ \ \textcolor{keywordtype}{bool}\ up;}
+\DoxyCodeLine{00078\ \ \ \ \ \textcolor{keywordtype}{bool}\ down;}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keywordtype}{bool}\ left;}
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keywordtype}{bool}\ right;}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keywordtype}{bool}\ ascend;}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{bool}\ descend;}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ defaultControlModeIsAbsolute;}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keywordtype}{bool}\ isReadyToDoubleJump;}
+\DoxyCodeLine{00085\ \ \ \ \ \textcolor{keywordtype}{bool}\ setPlayerTargetOnHit;}
+\DoxyCodeLine{00086\ }
+\DoxyCodeLine{00087\ \ \ \ \ MagixPlayer()}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ controlMode\ =\ CONTROL\_ABSOLUTE;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ up\ =\ 0;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ down\ =\ 0;}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ left\ =\ 0;}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ right\ =\ 0;}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ ascend\ =\ 0;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ descend\ =\ 0;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ isLockedOn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ skillSlot.clear();}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ skillChangedList.clear();}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ defaultAttackList.clear();}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ mCurrentSkill\ =\ 0;}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ mNextSkill\ =\ 0;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ autoWalk\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ autoRun\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ isReadyToPickup\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ pickupRangePlus\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ defaultControlModeIsAbsolute\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ isReadyToDoubleJump\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ index\ =\ 0;}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ petName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ mAutoAttackTarget\ =\ 0;}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ autoAttackOnce\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ setPlayerTargetOnHit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ hpChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ maxHPChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ isWounded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ woundChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ woundRecoveryTimer\ =\ 0;}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ petFlags\ =\ \mbox{\hyperlink{struct_pet_flags}{PetFlags}}();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ nextAttackRange\ =\ 0;}
+\DoxyCodeLine{00120\ \ \ \ \ \}}
+\DoxyCodeLine{00121\ }
+\DoxyCodeLine{00122\ \ \ \ \ \string~MagixPlayer()}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ skillSlot.clear();}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ defaultAttackList.clear();}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ skillChangedList.clear();}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ reset()}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ controlMode\ =\ (defaultControlModeIsAbsolute?CONTROL\_ABSOLUTE:CONTROL\_RELATIVE);}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ skillSlot.clear();}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ defaultAttackList.clear();}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ mCurrentSkill\ =\ 0;}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ stopAction();}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ petName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ mAutoAttackTarget\ =\ 0;}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ isWounded\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ woundRecoveryTimer\ =\ 0;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ resetChanges();}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ petFlags.reset();}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ nextAttackRange\ =\ 0;}
+\DoxyCodeLine{00143\ \ \ \ \ \}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{void}\ resetChanges()}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ skillChangedList.clear();}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ hpChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ maxHPChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ woundChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00151\ \ \ \ \ \}}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{void}\ updateMovement(\textcolor{keyword}{const}\ FrameEvent\ \&evt,\ \textcolor{keyword}{const}\ Quaternion\ \&camOrientation=Quaternion::ZERO)}
+\DoxyCodeLine{00154\ \ \ \ \ \{}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isDisabled())}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isAttacking())}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ targetAction\ =\ 0;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(up||down||left||right||ascend||descend)targetAction\ =\ 0;}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetAction==TARGET\_RUNTO\ ||\ targetAction==TARGET\_RUNTOPICKUP)}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MagixUnit*\textcolor{keyword}{>}(\textcolor{keyword}{this})-\/>updateMovement(evt);}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Runto\ pickup\ item}}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(targetAction==TARGET\_RUNTOPICKUP\ \&\&\ mAutoTrackTarget)}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tDistance\ =\ mObjectNode-\/>getPosition().squaredDistance(targetVector);}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tDistance<=(pickupRangePlus?400:10))}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isReadyToPickup\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pickupRangePlus\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ targetAction\ =\ 0;}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Doublejump\ recharge}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(distanceFromGround()<=GROUND\_THRESHOLD)}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isReadyToDoubleJump\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasDoubleJumped\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00191\ }
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(controlMode\ ==\ CONTROL\_RELATIVE)}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(up)}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(mObjectNode-\/>getOrientation().zAxis()\ *\ 10\ *\ evt.timeSinceLastFrame);}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(down)}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(mObjectNode-\/>getOrientation().zAxis()\ *\ -\/5\ *\ evt.timeSinceLastFrame);}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(left)}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yaw(Degree(180\ *\ evt.timeSinceLastFrame));}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(right)}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ yaw(Degree(-\/180\ *\ evt.timeSinceLastFrame));}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(controlMode\ ==\ CONTROL\_ABSOLUTE\ ||\ controlMode\ ==\ CONTROL\_FIRSTPERSON)}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(up||down||left||right||ascend||descend)}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Degree\ tYaw\ =\ Degree(camOrientation.getYaw())\ +\ Degree(180);}
+\DoxyCodeLine{00219\ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tYaw<Degree(0))}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ +=\ Degree(360);}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ }
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tYaw>=Degree(360))}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tYaw\ -\/=\ Degree(360);}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tVect\ =\ Vector2(0,0);}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tYaw==Degree(0)||tYaw==Degree(180))}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.y\ =\ 1\ *\ (tYaw==Degree(180)?-\/1:1);}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tYaw==Degree(90)||tYaw==Degree(270))}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.x\ =\ 1\ *\ (tYaw==Degree(270)?-\/1:1);}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.y\ =\ 1\ *\ Math::Cos(tYaw);}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tVect.x\ =\ 1\ *\ Math::Sin(tYaw);}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(up)}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(tVect.x,0,tVect.y)*10*evt.timeSinceLastFrame);}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setYaw(Degree(0)+tYaw);}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(down)}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(controlMode==CONTROL\_FIRSTPERSON)}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(tVect.x,0,tVect.y)*-\/5*evt.timeSinceLastFrame);}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setYaw(Degree(0)+tYaw);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(tVect.x,0,tVect.y)*-\/10*evt.timeSinceLastFrame);}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setYaw(Degree(180)+tYaw);}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(left)}
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(tVect.perpendicular().x,0,tVect.perpendicular().y)*-\/10*evt.timeSinceLastFrame);}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(controlMode==CONTROL\_FIRSTPERSON)}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setYaw(Degree(90)\ +\ tYaw\ +\ (up\ ?\ Degree(-\/45)\ :\ Degree(0))\ +\ (down\ ?\ Degree(225)\ :\ Degree(0)));}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setYaw(Degree(90)\ +\ tYaw\ +\ (up\ ?\ Degree(-\/45)\ :\ Degree(0))\ +\ (down\ ?\ Degree(45)\ :\ Degree(0)));}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(right)}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(tVect.perpendicular().x,0,tVect.perpendicular().y)*10*evt.timeSinceLastFrame);}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(controlMode==CONTROL\_FIRSTPERSON)}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setYaw(Degree(270)\ +\ tYaw\ +\ (up\ ?\ Degree(45)\ :\ Degree(0))\ +\ (down\ ?\ Degree(-\/225)\ :\ Degree(0)));}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setYaw(Degree(270)\ +\ tYaw\ +\ (up\ ?\ Degree(45)\ :\ Degree(0))\ +\ (down\ ?\ Degree(-\/45)\ :\ Degree(0)));}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00292\ }
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(jump\ \&\&\ distanceFromGround()\ <\ (MAX\_JUMPHEIGHT\ *\ hasDoubleJumped\ ?\ 2\ :\ 1)\ \&\&\ mForce.y\ >=\ 0)}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(0,\ GRAVITY\ *\ evt.timeSinceLastFrame\ +\ (distanceFromGround()\ <=\ GROUND\_THRESHOLD\ ?\ 2\ :\ 0),\ 0));}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Doublejump\ recharge}}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(distanceFromGround()<=GROUND\_THRESHOLD)}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ isReadyToDoubleJump\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \ \ \ \ hasDoubleJumped\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00304\ }
+\DoxyCodeLine{00305\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(ascend\ \&\&\ antiGravity)}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(0,\ 5\ *\ evt.timeSinceLastFrame,\ 0));}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(descend\ \&\&\ antiGravity)}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ addForce(Vector3(0,\ -\/5\ *\ evt.timeSinceLastFrame,\ 0));}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00313\ \ \ \ \ \}}
+\DoxyCodeLine{00314\ }
+\DoxyCodeLine{00315\ \ \ \ \ \textcolor{keywordtype}{void}\ updateAutoAttack(\mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def)}
+\DoxyCodeLine{00316\ \ \ \ \ \{}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mAutoAttackTarget\ ||\ (up||down||left||right||ascend||descend))}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00321\ }
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(getPosition().squaredDistance(mAutoAttackTarget-\/>getPosition())<(AUTOTARGET\_RANGE\_SQUARED*0.25+nextAttackRange*nextAttackRange))}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mNextSkill)}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ doAttack(def);}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ doSkill(mNextSkill);}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ nextAttackRange\ =\ 0;}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(targetAction\ ==\ 0\ ||\ mAutoAttackTarget-\/>getPosition()\ !=\ targetVector)}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ setTarget(mAutoAttackTarget-\/>getPosition());}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00339\ \ \ \ \ \}}
+\DoxyCodeLine{00340\ }
+\DoxyCodeLine{00341\ \ \ \ \ \textcolor{keywordtype}{bool}\ updateAttack(\textcolor{keyword}{const}\ FrameEvent\ \&evt,\ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def)}
+\DoxyCodeLine{00342\ \ \ \ \ \{}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isAttacking())}
+\DoxyCodeLine{00344\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBodyEnt-\/>getAnimationState(animBase)-\/>hasEnded())}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attackTimeout\ =\ 0.25;}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasStoppedAttack\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00349\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(getControlMode()!=CONTROL\_FIRSTPERSON)}
+\DoxyCodeLine{00351\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ lookDirection\ =\ mObjectNode-\/>getOrientation()\ *\ Quaternion(0,\ 0,\ 1,\ 0);}
+\DoxyCodeLine{00353\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00354\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00355\ }
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isAttacking()\ \&\&\ nextAttackName!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ attackName\ =\ nextAttackName;}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ \ \ \ \ nextAttackName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \ \ \ \ attackTimeout\ =\ 0;}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tAnim\ =\ def-\/>getAttackAnim(attackName);}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ \ \ \ \ changeAnimBase(tAnim,1.5,\textcolor{keyword}{true},\textcolor{keyword}{false},\textcolor{keyword}{false});}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \ \ \ \ hasNewAttack\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00364\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mNextSkill\ \&\&\ mNextSkill-\/>name\ ==\ attackName)}
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ decrementSkill(mNextSkill);}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mNextSkill\ =\ 0;}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00370\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(attackTimeout>0)}
+\DoxyCodeLine{00373\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \ \ \ \ attackTimeout\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00375\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00376\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(attackTimeout<0)}
+\DoxyCodeLine{00377\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00378\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attackTimeout\ =\ 0;}
+\DoxyCodeLine{00379\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00380\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00381\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(attackTimeout==0)}
+\DoxyCodeLine{00382\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00383\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attackName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00384\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ attackCounter\ =\ 0;}
+\DoxyCodeLine{00385\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00386\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00387\ }
+\DoxyCodeLine{00388\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isAttacking();}
+\DoxyCodeLine{00389\ \ \ \ \ \}}
+\DoxyCodeLine{00390\ }
+\DoxyCodeLine{00391\ \ \ \ \ \textcolor{keywordtype}{void}\ doSkill(\mbox{\hyperlink{struct_skill}{Skill}}\ *skill,\ \textcolor{keywordtype}{bool}\ waitTillInRange=\textcolor{keyword}{false})}
+\DoxyCodeLine{00392\ \ \ \ \ \{}
+\DoxyCodeLine{00393\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!waitTillInRange)}
+\DoxyCodeLine{00394\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00395\ \ \ \ \ \ \ \ \ \ \ \ \ nextAttackName\ =\ skill-\/>name;}
+\DoxyCodeLine{00396\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00397\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00398\ \ \ \ \ \ \ \ \ mNextSkill\ =\ skill;}
+\DoxyCodeLine{00399\ \ \ \ \ \}}
+\DoxyCodeLine{00400\ }
+\DoxyCodeLine{00401\ \ \ \ \ \textcolor{keywordtype}{void}\ setAttackRange(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&range)}
+\DoxyCodeLine{00402\ \ \ \ \ \{}
+\DoxyCodeLine{00403\ \ \ \ \ \ \ \ \ nextAttackRange\ =\ range;}
+\DoxyCodeLine{00404\ \ \ \ \ \}}
+\DoxyCodeLine{00405\ }
+\DoxyCodeLine{00406\ \ \ \ \ \textcolor{keywordtype}{void}\ updateWound(\textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00407\ \ \ \ \ \{}
+\DoxyCodeLine{00408\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!isWounded)}
+\DoxyCodeLine{00409\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00410\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00411\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00412\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00413\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hp<=0)}
+\DoxyCodeLine{00414\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00415\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00416\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00417\ }
+\DoxyCodeLine{00418\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Recover\ from\ wound}}
+\DoxyCodeLine{00419\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(woundRecoveryTimer>0)}
+\DoxyCodeLine{00420\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00421\ \ \ \ \ \ \ \ \ \ \ \ \ Real\ rate\ =\ 1;}
+\DoxyCodeLine{00422\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isSitting()||isLaying()||isSideLaying())}
+\DoxyCodeLine{00423\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00424\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rate\ =\ 25;}
+\DoxyCodeLine{00425\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00426\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00427\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isRolledOver()||isPlopped()||isLeaning()||isCurled())}
+\DoxyCodeLine{00428\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00429\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rate\ =\ 50;}
+\DoxyCodeLine{00430\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00431\ }
+\DoxyCodeLine{00432\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isInWater)}
+\DoxyCodeLine{00433\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00434\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ rate\ *=\ 2;}
+\DoxyCodeLine{00435\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00436\ }
+\DoxyCodeLine{00437\ \ \ \ \ \ \ \ \ \ \ \ \ woundRecoveryTimer\ -\/=\ rate\ *\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00438\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00439\ }
+\DoxyCodeLine{00440\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(woundRecoveryTimer\ >\ 0)}
+\DoxyCodeLine{00441\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00442\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00443\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00444\ \ \ \ \ \ \ \ \ woundRecoveryTimer\ +=\ 10;}
+\DoxyCodeLine{00445\ }
+\DoxyCodeLine{00446\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Recovered}}
+\DoxyCodeLine{00447\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(addHPRatio(-\/0.001))}
+\DoxyCodeLine{00448\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00449\ \ \ \ \ \ \ \ \ \ \ \ \ setWounded(\textcolor{keyword}{false});}
+\DoxyCodeLine{00450\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00451\ \ \ \ \ \}}
+\DoxyCodeLine{00452\ }
+\DoxyCodeLine{00453\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ \&evt,\ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def,\ \textcolor{keyword}{const}\ Quaternion\ \&camOrientation=Quaternion::ZERO)}
+\DoxyCodeLine{00454\ \ \ \ \ \{}
+\DoxyCodeLine{00455\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!unitID)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00456\ }
+\DoxyCodeLine{00457\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ magix\ object,\ is\ magix\ object\ the\ physics\ ?}}
+\DoxyCodeLine{00458\ \ \ \ \ \ \ \ \ updatePhysics(evt);}
+\DoxyCodeLine{00459\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ is\ this\ input\ or\ render\ ?}}
+\DoxyCodeLine{00460\ \ \ \ \ \ \ \ \ updateMovement(evt,camOrientation);}
+\DoxyCodeLine{00461\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00462\ \ \ \ \ \ \ \ \ updateAutoAttack(def);}
+\DoxyCodeLine{00463\ \ \ \ \ \ \ \ \ updateAction(evt,def);}
+\DoxyCodeLine{00464\ \ \ \ \ \ \ \ \ updateAutoTrack();}
+\DoxyCodeLine{00465\ \ \ \ \ \ \ \ \ updateAnimation(evt,def);}
+\DoxyCodeLine{00466\ \ \ \ \ \ \ \ \ updateFaceDirection(evt);}
+\DoxyCodeLine{00467\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ ui\ ?\ yet\ again\ not\ where\ it\ should\ be\ then}}
+\DoxyCodeLine{00468\ \ \ \ \ \ \ \ \ updateNameTag(evt);}
+\DoxyCodeLine{00469\ \ \ \ \ \ \ \ \ updateUserTag(evt);}
+\DoxyCodeLine{00470\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ yes\ and\ no\ ?\ why\ not\ updating\ that\ ..\ FROM\ CHAT\ LOL\ this\ is\ already\ an\ "{}unit"{}\ function\ so\ what\ ?}}
+\DoxyCodeLine{00471\ \ \ \ \ \ \ \ \ updateChatBubble(evt);}
+\DoxyCodeLine{00472\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ maybe\ in\ a\ heal/life\ system\ ?\ we\ could\ build\ player\ from\ those\ components\ }}
+\DoxyCodeLine{00473\ \ \ \ \ \ \ \ \ updateWound(evt);}
+\DoxyCodeLine{00474\ \ \ \ \ \}}
+\DoxyCodeLine{00475\ }
+\DoxyCodeLine{00476\ \ \ \ \ \textcolor{keyword}{const}\ OBJECT\_TYPE\ getType()}
+\DoxyCodeLine{00477\ \ \ \ \ \{}
+\DoxyCodeLine{00478\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ OBJECT\_PLAYER;}
+\DoxyCodeLine{00479\ \ \ \ \ \}}
+\DoxyCodeLine{00480\ }
+\DoxyCodeLine{00481\ \ \ \ \ \textcolor{comment}{//\ its\ maybe\ actually\ "{}camera"{}\ modes\ ?}}
+\DoxyCodeLine{00482\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleControlMode()}
+\DoxyCodeLine{00483\ \ \ \ \ \{}
+\DoxyCodeLine{00484\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}(controlMode)}
+\DoxyCodeLine{00485\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00486\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CONTROL\_RELATIVE:}
+\DoxyCodeLine{00487\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlMode\ =\ CONTROL\_ABSOLUTE;}
+\DoxyCodeLine{00488\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ defaultControlModeIsAbsolute\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00489\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00490\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ CONTROL\_ABSOLUTE:}
+\DoxyCodeLine{00491\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ controlMode\ =\ CONTROL\_RELATIVE;}
+\DoxyCodeLine{00492\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ defaultControlModeIsAbsolute\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00493\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00494\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00495\ \ \ \ \ \}}
+\DoxyCodeLine{00496\ }
+\DoxyCodeLine{00497\ \ \ \ \ \textcolor{keywordtype}{void}\ setControlMode(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&mode)}
+\DoxyCodeLine{00498\ \ \ \ \ \{}
+\DoxyCodeLine{00499\ \ \ \ \ \ \ \ \ controlMode\ =\ mode;}
+\DoxyCodeLine{00500\ }
+\DoxyCodeLine{00501\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(controlMode==CONTROL\_ABSOLUTE)}
+\DoxyCodeLine{00502\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00503\ \ \ \ \ \ \ \ \ \ \ \ \ defaultControlModeIsAbsolute\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00504\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00505\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(controlMode\ ==\ CONTROL\_RELATIVE)}
+\DoxyCodeLine{00506\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00507\ \ \ \ \ \ \ \ \ \ \ \ \ defaultControlModeIsAbsolute\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00508\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00509\ \ \ \ \ \}}
+\DoxyCodeLine{00510\ }
+\DoxyCodeLine{00511\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getControlMode()}
+\DoxyCodeLine{00512\ \ \ \ \ \{}
+\DoxyCodeLine{00513\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ controlMode;}
+\DoxyCodeLine{00514\ \ \ \ \ \}}
+\DoxyCodeLine{00515\ }
+\DoxyCodeLine{00516\ \ \ \ \ \textcolor{keywordtype}{void}\ setTarget(\textcolor{keyword}{const}\ Vector3\&\ dest,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\&\ action\ =\ TARGET\_RUNTO,\ \textcolor{keywordtype}{bool}\ pickupPlus\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00517\ \ \ \ \ \{}
+\DoxyCodeLine{00518\ \ \ \ \ \ \ \ \ \textcolor{keyword}{static\_cast<}MagixUnit*\textcolor{keyword}{>}(\textcolor{keyword}{this})-\/>setTarget(dest.x,\ dest.y,\ dest.z,\ action);}
+\DoxyCodeLine{00519\ \ \ \ \ \ \ \ \ pickupRangePlus\ =\ pickupPlus;}
+\DoxyCodeLine{00520\ \ \ \ \ \}}
+\DoxyCodeLine{00521\ }
+\DoxyCodeLine{00522\ \ \ \ \ \textcolor{keywordtype}{void}\ stopAction()}
+\DoxyCodeLine{00523\ \ \ \ \ \{}
+\DoxyCodeLine{00524\ \ \ \ \ \ \ \ \ up\ =\ 0;}
+\DoxyCodeLine{00525\ \ \ \ \ \ \ \ \ down\ =\ 0;}
+\DoxyCodeLine{00526\ \ \ \ \ \ \ \ \ left\ =\ 0;}
+\DoxyCodeLine{00527\ \ \ \ \ \ \ \ \ right\ =\ 0;}
+\DoxyCodeLine{00528\ \ \ \ \ \ \ \ \ ascend\ =\ 0;}
+\DoxyCodeLine{00529\ \ \ \ \ \ \ \ \ descend\ =\ 0;}
+\DoxyCodeLine{00530\ \ \ \ \ \ \ \ \ isLockedOn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00531\ \ \ \ \ \ \ \ \ isWalking\ =\ autoWalk;}
+\DoxyCodeLine{00532\ \ \ \ \ \ \ \ \ isCrouching\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00533\ \ \ \ \ \ \ \ \ jump\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00534\ \ \ \ \ \ \ \ \ antiGravity\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00535\ \ \ \ \ \ \ \ \ isSwimming\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00536\ \ \ \ \ \ \ \ \ targetAction\ =\ 0;}
+\DoxyCodeLine{00537\ \ \ \ \ \ \ \ \ stopAttack();}
+\DoxyCodeLine{00538\ \ \ \ \ \ \ \ \ autoRun\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00539\ \ \ \ \ \ \ \ \ isReadyToPickup\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00540\ \ \ \ \ \ \ \ \ pickupRangePlus\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00541\ \ \ \ \ \ \ \ \ isReadyToDoubleJump\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00542\ \ \ \ \ \ \ \ \ mAutoAttackTarget\ =\ 0;}
+\DoxyCodeLine{00543\ \ \ \ \ \}}
+\DoxyCodeLine{00544\ }
+\DoxyCodeLine{00545\ \ \ \ \ \textcolor{keywordtype}{void}\ lockOn(\mbox{\hyperlink{class_magix_object}{MagixObject}}\ *target)}
+\DoxyCodeLine{00546\ \ \ \ \ \{}
+\DoxyCodeLine{00547\ \ \ \ \ \ \ \ \ setAutoTrackObject(target);}
+\DoxyCodeLine{00548\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(target)}
+\DoxyCodeLine{00549\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00550\ \ \ \ \ \ \ \ \ \ \ \ \ isLockedOn\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00551\ \ \ \ \ \ \ \ \ \ \ \ \ setPlayerTargetOnHit\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00552\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00553\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00554\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00555\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isLockedOn)}
+\DoxyCodeLine{00556\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00557\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ isLockedOn\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00558\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setPlayerTargetOnHit\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00559\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00560\ }
+\DoxyCodeLine{00561\ \ \ \ \ \ \ \ \ \ \ \ \ targetAction\ =\ 0;\ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00562\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00563\ \ \ \ \ \}}
+\DoxyCodeLine{00564\ }
+\DoxyCodeLine{00565\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsLockedOn()}
+\DoxyCodeLine{00566\ \ \ \ \ \{}
+\DoxyCodeLine{00567\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isLockedOn;}
+\DoxyCodeLine{00568\ \ \ \ \ \}}
+\DoxyCodeLine{00569\ }
+\DoxyCodeLine{00570\ \ \ \ \ \textcolor{comment}{//\ skillslot\ ?\ so\ slots/skills\ are\ objects\ ?\ interactable\ ?}}
+\DoxyCodeLine{00571\ \ \ \ \ \textcolor{keywordtype}{void}\ resetSkills()}
+\DoxyCodeLine{00572\ \ \ \ \ \{}
+\DoxyCodeLine{00573\ \ \ \ \ \ \ \ \ skillSlot.clear();}
+\DoxyCodeLine{00574\ \ \ \ \ \ \ \ \ mCurrentSkill\ =\ 0;}
+\DoxyCodeLine{00575\ \ \ \ \ \}}
+\DoxyCodeLine{00576\ }
+\DoxyCodeLine{00577\ \ \ \ \ \textcolor{comment}{//\ used\ only\ by\ campaign\ or\ what\ ?}}
+\DoxyCodeLine{00578\ \ \ \ \ \textcolor{keywordtype}{void}\ setSkills(\textcolor{keyword}{const}\ vector<Skill>::type\ \&skills)}
+\DoxyCodeLine{00579\ \ \ \ \ \{}
+\DoxyCodeLine{00580\ \ \ \ \ \ \ \ \ skillSlot.clear();}
+\DoxyCodeLine{00581\ \ \ \ \ \ \ \ \ skillSlot\ =\ skills;}
+\DoxyCodeLine{00582\ \ \ \ \ \ \ \ \ mCurrentSkill\ =\ 0;}
+\DoxyCodeLine{00583\ \ \ \ \ \}}
+\DoxyCodeLine{00584\ }
+\DoxyCodeLine{00585\ \ \ \ \ \textcolor{keyword}{const}\ vector<Skill>::type\&\ getSkills()}
+\DoxyCodeLine{00586\ \ \ \ \ \{}
+\DoxyCodeLine{00587\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ skillSlot;}
+\DoxyCodeLine{00588\ \ \ \ \ \}}
+\DoxyCodeLine{00589\ }
+\DoxyCodeLine{00590\ \ \ \ \ \textcolor{keywordtype}{void}\ addSkill(\textcolor{keyword}{const}\ String\ \&name,\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&stock)}
+\DoxyCodeLine{00591\ \ \ \ \ \{}
+\DoxyCodeLine{00592\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<Skill>::type::iterator\ it\ =\ skillSlot.begin();\ it\ !=\ skillSlot.end();\ it++)}
+\DoxyCodeLine{00593\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00594\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}\ *skill\ =\ \&*it;}
+\DoxyCodeLine{00595\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(skill-\/>name\ ==\ name)}
+\DoxyCodeLine{00596\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00597\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skill-\/>stock\ +=\ stock;}
+\DoxyCodeLine{00598\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(skill-\/>stock>MAX\_SKILLSTOCK)}
+\DoxyCodeLine{00599\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00600\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skill-\/>stock\ =\ MAX\_SKILLSTOCK;}
+\DoxyCodeLine{00601\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00602\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00603\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skillChangedList.push\_back(\mbox{\hyperlink{struct_skill}{Skill}}(name,skill-\/>stock));}
+\DoxyCodeLine{00604\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00605\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00606\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00607\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00608\ }
+\DoxyCodeLine{00609\ \ \ \ \ \ \ \ \ skillSlot.push\_back(\mbox{\hyperlink{struct_skill}{Skill}}(name,(stock>MAX\_SKILLSTOCK?MAX\_SKILLSTOCK:stock)));}
+\DoxyCodeLine{00610\ \ \ \ \ \ \ \ \ skillChangedList.push\_back(\mbox{\hyperlink{struct_skill}{Skill}}(name,(stock>MAX\_SKILLSTOCK?MAX\_SKILLSTOCK:stock)));}
+\DoxyCodeLine{00611\ \ \ \ \ \}}
+\DoxyCodeLine{00612\ }
+\DoxyCodeLine{00613\ \ \ \ \ \textcolor{keywordtype}{void}\ decrementSkill(\mbox{\hyperlink{struct_skill}{Skill}}\ *skill)}
+\DoxyCodeLine{00614\ \ \ \ \ \{}
+\DoxyCodeLine{00615\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ why\ in\ the\ why\ ?\ inspect\ calls,\ if\ it\ happen\ we\ should\ have\ an\ exception\ actually\ !!}}
+\DoxyCodeLine{00616\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!skill)}
+\DoxyCodeLine{00617\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00618\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00619\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00620\ }
+\DoxyCodeLine{00621\ \ \ \ \ \ \ \ \ skill-\/>stock\ -\/=\ 1;}
+\DoxyCodeLine{00622\ \ \ \ \ \ \ \ \ skillChangedList.push\_back(\mbox{\hyperlink{struct_skill}{Skill}}(skill-\/>name,skill-\/>stock));}
+\DoxyCodeLine{00623\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00624\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(skill-\/>stock==0)}
+\DoxyCodeLine{00625\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00626\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mCurrentSkill==skill)}
+\DoxyCodeLine{00627\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00628\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ setCurrentSkill(0);}
+\DoxyCodeLine{00629\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00630\ }
+\DoxyCodeLine{00631\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<Skill>::type::iterator\ it\ =\ skillSlot.begin();\ it\ !=\ skillSlot.end();\ it++)}
+\DoxyCodeLine{00632\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00633\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}\ *tSkill\ =\ \&*it;}
+\DoxyCodeLine{00634\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSkill\ ==\ skill)}
+\DoxyCodeLine{00635\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00636\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ skillSlot.erase(it);}
+\DoxyCodeLine{00637\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00638\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00639\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00640\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00641\ \ \ \ \ \}}
+\DoxyCodeLine{00642\ }
+\DoxyCodeLine{00643\ \ \ \ \ \textcolor{keywordtype}{void}\ clearDefaultAttackList()}
+\DoxyCodeLine{00644\ \ \ \ \ \{}
+\DoxyCodeLine{00645\ \ \ \ \ \ \ \ \ defaultAttackList.clear();}
+\DoxyCodeLine{00646\ \ \ \ \ \}}
+\DoxyCodeLine{00647\ \ \ \ \ }
+\DoxyCodeLine{00648\ \ \ \ \ \textcolor{keywordtype}{void}\ pushDefaultAttackList(\textcolor{keyword}{const}\ String\ \&attackName)}
+\DoxyCodeLine{00649\ \ \ \ \ \{}
+\DoxyCodeLine{00650\ \ \ \ \ \ \ \ \ defaultAttackList.push\_back(attackName);}
+\DoxyCodeLine{00651\ \ \ \ \ \}}
+\DoxyCodeLine{00652\ \ \ \ \ }
+\DoxyCodeLine{00653\ \ \ \ \ \textcolor{keywordtype}{void}\ setAttackListToDefault()}
+\DoxyCodeLine{00654\ \ \ \ \ \{}
+\DoxyCodeLine{00655\ \ \ \ \ \ \ \ \ attackList.clear();}
+\DoxyCodeLine{00656\ \ \ \ \ \ \ \ \ attackList\ =\ defaultAttackList;}
+\DoxyCodeLine{00657\ \ \ \ \ \}}
+\DoxyCodeLine{00658\ \ \ \ \ }
+\DoxyCodeLine{00659\ \ \ \ \ \textcolor{keywordtype}{void}\ setCurrentSkill(\mbox{\hyperlink{struct_skill}{Skill}}\ *skill)}
+\DoxyCodeLine{00660\ \ \ \ \ \{}
+\DoxyCodeLine{00661\ \ \ \ \ \ \ \ \ mCurrentSkill\ =\ 0;}
+\DoxyCodeLine{00662\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00663\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!skill)}
+\DoxyCodeLine{00664\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00665\ \ \ \ \ \ \ \ \ \ \ \ \ setAttackListToDefault();}
+\DoxyCodeLine{00666\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00667\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00668\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00669\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<Skill>::type::iterator\ it\ =\ skillSlot.begin();\ it\ !=\ skillSlot.end();\ it++)}
+\DoxyCodeLine{00670\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00671\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}\ *tSkill\ =\ \&*it;}
+\DoxyCodeLine{00672\ }
+\DoxyCodeLine{00673\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tSkill\ ==\ skill)}
+\DoxyCodeLine{00674\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00675\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mCurrentSkill\ =\ skill;}
+\DoxyCodeLine{00676\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//clearAttackList();}}
+\DoxyCodeLine{00677\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//pushAttackList(skill-\/>name);}}
+\DoxyCodeLine{00678\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00679\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00680\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00681\ \ \ \ \ \}}
+\DoxyCodeLine{00682\ }
+\DoxyCodeLine{00683\ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}*\ getNextSkill()}
+\DoxyCodeLine{00684\ \ \ \ \ \{}
+\DoxyCodeLine{00685\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ nextOneIsIt\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00686\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00687\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}\ *tSkill\ =\ 0;}
+\DoxyCodeLine{00688\ }
+\DoxyCodeLine{00689\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<Skill>::type::iterator\ it\ =\ skillSlot.begin();\ it\ !=\ skillSlot.end();\ it++)}
+\DoxyCodeLine{00690\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00691\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}\ *skill\ =\ \&*it;}
+\DoxyCodeLine{00692\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(nextOneIsIt)}
+\DoxyCodeLine{00693\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00694\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tSkill\ =\ skill;}
+\DoxyCodeLine{00695\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00696\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00697\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00698\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mCurrentSkill)}
+\DoxyCodeLine{00699\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00700\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ skill;}
+\DoxyCodeLine{00701\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00702\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(mCurrentSkill==skill)}
+\DoxyCodeLine{00703\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00704\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ nextOneIsIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00705\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00706\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00707\ }
+\DoxyCodeLine{00708\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tSkill\ \&\&\ skillSlot.size()>0)}
+\DoxyCodeLine{00709\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00710\ \ \ \ \ \ \ \ \ \ \ \ \ tSkill\ =\ \&skillSlot[0];}
+\DoxyCodeLine{00711\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00712\ }
+\DoxyCodeLine{00713\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tSkill;}
+\DoxyCodeLine{00714\ \ \ \ \ \}}
+\DoxyCodeLine{00715\ }
+\DoxyCodeLine{00716\ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}*\ getSkill(\textcolor{keyword}{const}\ String\ \&name)}
+\DoxyCodeLine{00717\ \ \ \ \ \{}
+\DoxyCodeLine{00718\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(vector<Skill>::type::iterator\ it\ =\ skillSlot.begin();\ it\ !=\ skillSlot.end();\ it++)}
+\DoxyCodeLine{00719\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00720\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}\ *skill\ =\ \&*it;}
+\DoxyCodeLine{00721\ }
+\DoxyCodeLine{00722\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(skill-\/>name\ ==\ name)}
+\DoxyCodeLine{00723\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00724\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ skill;}
+\DoxyCodeLine{00725\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00726\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00727\ }
+\DoxyCodeLine{00728\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{00729\ \ \ \ \ \}}
+\DoxyCodeLine{00730\ }
+\DoxyCodeLine{00731\ \ \ \ \ \mbox{\hyperlink{struct_skill}{Skill}}*\ getCurrentSkill()}
+\DoxyCodeLine{00732\ \ \ \ \ \{}
+\DoxyCodeLine{00733\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mCurrentSkill;}
+\DoxyCodeLine{00734\ \ \ \ \ \}}
+\DoxyCodeLine{00735\ \ \ \ \ }
+\DoxyCodeLine{00736\ \ \ \ \ \textcolor{keywordtype}{bool}\ isSkillMode()}
+\DoxyCodeLine{00737\ \ \ \ \ \{}
+\DoxyCodeLine{00738\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (mCurrentSkill!=0);}
+\DoxyCodeLine{00739\ \ \ \ \ \}}
+\DoxyCodeLine{00740\ \ \ \ \ }
+\DoxyCodeLine{00741\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleAutoWalk()}
+\DoxyCodeLine{00742\ \ \ \ \ \{}
+\DoxyCodeLine{00743\ \ \ \ \ \ \ \ \ autoWalk\ =\ !autoWalk;}
+\DoxyCodeLine{00744\ \ \ \ \ \ \ \ \ isWalking\ =\ !isWalking;}
+\DoxyCodeLine{00745\ \ \ \ \ \}}
+\DoxyCodeLine{00746\ \ \ \ \ }
+\DoxyCodeLine{00747\ \ \ \ \ \textcolor{keywordtype}{bool}\ getAutoWalk()}
+\DoxyCodeLine{00748\ \ \ \ \ \{}
+\DoxyCodeLine{00749\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ autoWalk;}
+\DoxyCodeLine{00750\ \ \ \ \ \}}
+\DoxyCodeLine{00751\ \ \ \ \ }
+\DoxyCodeLine{00752\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleAutoRun()}
+\DoxyCodeLine{00753\ \ \ \ \ \{}
+\DoxyCodeLine{00754\ \ \ \ \ \ \ \ \ autoRun\ =\ !autoRun;}
+\DoxyCodeLine{00755\ \ \ \ \ \ \ \ \ up\ =\ autoRun;}
+\DoxyCodeLine{00756\ \ \ \ \ \}}
+\DoxyCodeLine{00757\ \ \ \ \ }
+\DoxyCodeLine{00758\ \ \ \ \ \textcolor{keywordtype}{bool}\ getAutoRun()}
+\DoxyCodeLine{00759\ \ \ \ \ \{}
+\DoxyCodeLine{00760\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ autoRun;}
+\DoxyCodeLine{00761\ \ \ \ \ \}}
+\DoxyCodeLine{00762\ \ \ \ \ }
+\DoxyCodeLine{00763\ \ \ \ \ \textcolor{keywordtype}{bool}\ popIsReadyToPickup()}
+\DoxyCodeLine{00764\ \ \ \ \ \{}
+\DoxyCodeLine{00765\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tFlag\ =\ isReadyToPickup;}
+\DoxyCodeLine{00766\ \ \ \ \ \ \ \ \ isReadyToPickup\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00767\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tFlag;}
+\DoxyCodeLine{00768\ \ \ \ \ \}}
+\DoxyCodeLine{00769\ \ \ \ \ }
+\DoxyCodeLine{00770\ \ \ \ \ \textcolor{keywordtype}{void}\ setIndex(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&value)}
+\DoxyCodeLine{00771\ \ \ \ \ \{}
+\DoxyCodeLine{00772\ \ \ \ \ \ \ \ \ index\ =\ value;}
+\DoxyCodeLine{00773\ \ \ \ \ \}}
+\DoxyCodeLine{00774\ \ \ \ \ }
+\DoxyCodeLine{00775\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getIndex()}
+\DoxyCodeLine{00776\ \ \ \ \ \{}
+\DoxyCodeLine{00777\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ index;}
+\DoxyCodeLine{00778\ \ \ \ \ \}}
+\DoxyCodeLine{00779\ \ \ \ \ }
+\DoxyCodeLine{00780\ \ \ \ \ \textcolor{keywordtype}{void}\ setPet(\textcolor{keyword}{const}\ String\ \&type,\ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def=0)}
+\DoxyCodeLine{00781\ \ \ \ \ \{}
+\DoxyCodeLine{00782\ \ \ \ \ \ \ \ \ petName\ =\ type;}
+\DoxyCodeLine{00783\ }
+\DoxyCodeLine{00784\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(def\ \&\&\ type!=\textcolor{stringliteral}{"{}"{}})}
+\DoxyCodeLine{00785\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00786\ \ \ \ \ \ \ \ \ \ \ \ \ petFlags.hasHeal\ =\ (def-\/>getCritterRandomSpecificAttack(type,\textcolor{keyword}{false})!=0);}
+\DoxyCodeLine{00787\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00788\ \ \ \ \ \}}
+\DoxyCodeLine{00789\ \ \ \ \ }
+\DoxyCodeLine{00790\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasPet()}
+\DoxyCodeLine{00791\ \ \ \ \ \{}
+\DoxyCodeLine{00792\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (petName!=\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00793\ \ \ \ \ \}}
+\DoxyCodeLine{00794\ \ \ \ \ }
+\DoxyCodeLine{00795\ \ \ \ \ \textcolor{keyword}{const}\ String\ getPet()}
+\DoxyCodeLine{00796\ \ \ \ \ \{}
+\DoxyCodeLine{00797\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ petName;}
+\DoxyCodeLine{00798\ \ \ \ \ \}}
+\DoxyCodeLine{00799\ \ \ \ \ }
+\DoxyCodeLine{00800\ \ \ \ \ \textcolor{keywordtype}{void}\ setAutoAttack(MagixLiving\ *target,\ \textcolor{keywordtype}{bool}\ attackOnce=\textcolor{keyword}{false})}
+\DoxyCodeLine{00801\ \ \ \ \ \{}
+\DoxyCodeLine{00802\ \ \ \ \ \ \ \ \ mAutoAttackTarget\ =\ target;}
+\DoxyCodeLine{00803\ \ \ \ \ \ \ \ \ autoAttackOnce\ =\ attackOnce;}
+\DoxyCodeLine{00804\ \ \ \ \ \}}
+\DoxyCodeLine{00805\ \ \ \ \ }
+\DoxyCodeLine{00806\ \ \ \ \ MagixLiving*\ getAutoAttackTarget()}
+\DoxyCodeLine{00807\ \ \ \ \ \{}
+\DoxyCodeLine{00808\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mAutoAttackTarget;}
+\DoxyCodeLine{00809\ \ \ \ \ \}}
+\DoxyCodeLine{00810\ }
+\DoxyCodeLine{00811\ \ \ \ \ \textcolor{comment}{//\ this\ might\ be\ better\ in\ public\ since\ this\ is\ FOR\ OUTSIDE\ ACCESS\ !!!!!\ (and\ so\ are\ other\ booleans)}}
+\DoxyCodeLine{00812\ \ \ \ \ \textcolor{keywordtype}{bool}\ getAutoAttackOnce()}
+\DoxyCodeLine{00813\ \ \ \ \ \{}
+\DoxyCodeLine{00814\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ autoAttackOnce;}
+\DoxyCodeLine{00815\ \ \ \ \ \}}
+\DoxyCodeLine{00816\ \ \ \ \ }
+\DoxyCodeLine{00817\ \ \ \ \ \textcolor{keyword}{const}\ vector<Skill>::type\ popSkillChangedList()}
+\DoxyCodeLine{00818\ \ \ \ \ \{}
+\DoxyCodeLine{00819\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<Skill>::type\ tList\ =\ skillChangedList;}
+\DoxyCodeLine{00820\ \ \ \ \ \ \ \ \ skillChangedList.clear();}
+\DoxyCodeLine{00821\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tList;}
+\DoxyCodeLine{00822\ \ \ \ \ \}}
+\DoxyCodeLine{00823\ }
+\DoxyCodeLine{00824\ \ \ \ \ \textcolor{keywordtype}{bool}\ popHPChanged()}
+\DoxyCodeLine{00825\ \ \ \ \ \{}
+\DoxyCodeLine{00826\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tFlag\ =\ hpChanged;}
+\DoxyCodeLine{00827\ \ \ \ \ \ \ \ \ hpChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00828\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tFlag;}
+\DoxyCodeLine{00829\ \ \ \ \ \}}
+\DoxyCodeLine{00830\ }
+\DoxyCodeLine{00831\ \ \ \ \ \textcolor{keywordtype}{bool}\ popMaxHPChanged()}
+\DoxyCodeLine{00832\ \ \ \ \ \{}
+\DoxyCodeLine{00833\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tFlag\ =\ maxHPChanged;}
+\DoxyCodeLine{00834\ \ \ \ \ \ \ \ \ maxHPChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00835\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tFlag;}
+\DoxyCodeLine{00836\ \ \ \ \ \}}
+\DoxyCodeLine{00837\ \ \ \ \ }
+\DoxyCodeLine{00838\ \ \ \ \ \textcolor{keywordtype}{void}\ setHP(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&iMaxHP,\ \textcolor{keyword}{const}\ Real\ \&ratio=1)}
+\DoxyCodeLine{00839\ \ \ \ \ \{}
+\DoxyCodeLine{00840\ \ \ \ \ \ \ \ \ maxHP\ =\ iMaxHP;}
+\DoxyCodeLine{00841\ \ \ \ \ \ \ \ \ hp\ =\ ratio*maxHP;}
+\DoxyCodeLine{00842\ \ \ \ \ \ \ \ \ maxHPChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00843\ \ \ \ \ \}}
+\DoxyCodeLine{00844\ \ \ \ \ }
+\DoxyCodeLine{00845\ \ \ \ \ \textcolor{keywordtype}{void}\ setHPRatio(\textcolor{keyword}{const}\ Real\ \&ratio)}
+\DoxyCodeLine{00846\ \ \ \ \ \{}
+\DoxyCodeLine{00847\ \ \ \ \ \ \ \ \ hp\ =\ ratio*maxHP;}
+\DoxyCodeLine{00848\ \ \ \ \ \ \ \ \ hpChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00849\ \ \ \ \ \}}
+\DoxyCodeLine{00850\ \ \ \ \ }
+\DoxyCodeLine{00851\ \ \ \ \ \textcolor{keywordtype}{bool}\ addHPRatio(\textcolor{keyword}{const}\ Real\ \&ratio)}
+\DoxyCodeLine{00852\ \ \ \ \ \{}
+\DoxyCodeLine{00853\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(invulnerable\ \&\&\ ratio<0)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00854\ \ \ \ \ \ \ \ \ hpChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00855\ \ \ \ \ \ \ \ \ hp\ +=\ (short)ratio\ *\ maxHP;}
+\DoxyCodeLine{00856\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hp>maxHP)hp\ =\ maxHP;}
+\DoxyCodeLine{00857\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hp<0)hp\ =\ 0;}
+\DoxyCodeLine{00858\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (hp==0);}
+\DoxyCodeLine{00859\ \ \ \ \ \}}
+\DoxyCodeLine{00860\ \ \ \ \ }
+\DoxyCodeLine{00861\ \ \ \ \ \textcolor{keywordtype}{bool}\ addHP(\textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ \&value)}
+\DoxyCodeLine{00862\ \ \ \ \ \{}
+\DoxyCodeLine{00863\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(invulnerable\ \&\&\ value<0)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00864\ \ \ \ \ \ \ \ \ hpChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00865\ \ \ \ \ \ \ \ \ hp\ +=\ value;}
+\DoxyCodeLine{00866\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hp>maxHP)hp\ =\ maxHP;}
+\DoxyCodeLine{00867\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hp<0)hp\ =\ 0;}
+\DoxyCodeLine{00868\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (hp==0);}
+\DoxyCodeLine{00869\ \ \ \ \ \}}
+\DoxyCodeLine{00870\ \ \ \ \ }
+\DoxyCodeLine{00871\ \ \ \ \ \textcolor{keywordtype}{void}\ setWounded(\textcolor{keywordtype}{bool}\ flag,\ \textcolor{keywordtype}{bool}\ instant=\textcolor{keyword}{false})}
+\DoxyCodeLine{00872\ \ \ \ \ \{}
+\DoxyCodeLine{00873\ \ \ \ \ \ \ \ \ isWounded\ =\ flag;}
+\DoxyCodeLine{00874\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!instant)woundChanged\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00875\ \ \ \ \ \}}
+\DoxyCodeLine{00876\ \ \ \ \ }
+\DoxyCodeLine{00877\ \ \ \ \ \textcolor{keywordtype}{bool}\ getIsWounded()}
+\DoxyCodeLine{00878\ \ \ \ \ \{}
+\DoxyCodeLine{00879\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ isWounded;}
+\DoxyCodeLine{00880\ \ \ \ \ \}}
+\DoxyCodeLine{00881\ \ \ \ \ }
+\DoxyCodeLine{00882\ \ \ \ \ \textcolor{keywordtype}{bool}\ popWoundedChanged()}
+\DoxyCodeLine{00883\ \ \ \ \ \{}
+\DoxyCodeLine{00884\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tFlag\ =\ woundChanged;}
+\DoxyCodeLine{00885\ \ \ \ \ \ \ \ \ woundChanged\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00886\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tFlag;}
+\DoxyCodeLine{00887\ \ \ \ \ \}}
+\DoxyCodeLine{00888\ \ \ \ \ }
+\DoxyCodeLine{00889\ \ \ \ \ \textcolor{keywordtype}{bool}\ setPickupRangePlus(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00890\ \ \ \ \ \{}
+\DoxyCodeLine{00891\ \ \ \ \ \ \ \ \ pickupRangePlus\ =\ flag;}
+\DoxyCodeLine{00892\ \ \ \ \ \}}
+\DoxyCodeLine{00893\ }
+\DoxyCodeLine{00894\ \ \ \ \ \mbox{\hyperlink{struct_pet_flags}{PetFlags}}*\ getPetFlags()}
+\DoxyCodeLine{00895\ \ \ \ \ \{}
+\DoxyCodeLine{00896\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \&petFlags;}
+\DoxyCodeLine{00897\ \ \ \ \ \}}
+\DoxyCodeLine{00898\ \};}
+\DoxyCodeLine{00899\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

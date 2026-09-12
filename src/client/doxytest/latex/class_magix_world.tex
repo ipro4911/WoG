@@ -1,0 +1,214 @@
+\doxysection{Magix\+World Class Reference}
+\hypertarget{class_magix_world}{}\label{class_magix_world}\index{MagixWorld@{MagixWorld}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_world_a0ab02095bd5bef4300ba7288f4a5ca2e}\label{class_magix_world_a0ab02095bd5bef4300ba7288f4a5ca2e} 
+void {\bfseries initialize} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, Render\+Window \texorpdfstring{$\ast$}{*}window, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, \mbox{\hyperlink{class_magix_game_state_manager}{Magix\+Game\+State\+Manager}} \texorpdfstring{$\ast$}{*}game\+State\+Mgr, \mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*}sound\+Mgr, \mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*}collision\+Mgr, \mbox{\hyperlink{class_magix_sky_manager}{Magix\+Sky\+Manager}} \texorpdfstring{$\ast$}{*}sky\+Mgr)
+\item 
+\Hypertarget{class_magix_world_a4c6e3fac538900f35f30d13a735e3b10}\label{class_magix_world_a4c6e3fac538900f35f30d13a735e3b10} 
+void {\bfseries initialize\+Custom\+Meshes} ()
+\item 
+\Hypertarget{class_magix_world_a68d7004649cdafa0ae084dafe7ce97e6}\label{class_magix_world_a68d7004649cdafa0ae084dafe7ce97e6} 
+void {\bfseries reset} ()
+\item 
+\Hypertarget{class_magix_world_a0b3e5d20465b78a540b828aecd90be67}\label{class_magix_world_a0b3e5d20465b78a540b828aecd90be67} 
+void {\bfseries update} ()
+\item 
+\Hypertarget{class_magix_world_aeb3f1bbf3a7dcfad9d17fb3121e87ef0}\label{class_magix_world_aeb3f1bbf3a7dcfad9d17fb3121e87ef0} 
+void {\bfseries load\+World} (const String \&name)
+\item 
+\Hypertarget{class_magix_world_a8a49bc8350a498def11480411ffbe75a}\label{class_magix_world_a8a49bc8350a498def11480411ffbe75a} 
+void {\bfseries unload\+World} ()
+\item 
+\Hypertarget{class_magix_world_ac1233ccd5972797315e2b8ad9e4f5c55}\label{class_magix_world_ac1233ccd5972797315e2b8ad9e4f5c55} 
+const Vector3 {\bfseries get\+Spawn\+Square} ()
+\item 
+\Hypertarget{class_magix_world_abb861191267c3abe36cb141371f1e334}\label{class_magix_world_abb861191267c3abe36cb141371f1e334} 
+const Vector2 {\bfseries get\+World\+Size} ()
+\item 
+\Hypertarget{class_magix_world_af66074b7d26a17b738639bbf6ee0a1b1}\label{class_magix_world_af66074b7d26a17b738639bbf6ee0a1b1} 
+const Vector2 {\bfseries get\+World\+Bounds} ()
+\item 
+\Hypertarget{class_magix_world_a3bbf470c77b7779ca5f7195a4ae67590}\label{class_magix_world_a3bbf470c77b7779ca5f7195a4ae67590} 
+const String {\bfseries get\+World\+Name} ()
+\item 
+\Hypertarget{class_magix_world_aa847c4620004f2aa9db36d4b8f802d02}\label{class_magix_world_aa847c4620004f2aa9db36d4b8f802d02} 
+void {\bfseries add\+Water\+Plane} (const Vector3 \&position, const Real \&scaleX, const Real \&scaleZ, const String \&mat\+Name="{}Terrain/Calm\+Water"{}, const String \&play\+Sound="{}"{})
+\item 
+\Hypertarget{class_magix_world_a34837c416a925f0ceb71e364d10a9ec5}\label{class_magix_world_a34837c416a925f0ceb71e364d10a9ec5} 
+void {\bfseries add\+Object} (const String \&mesh\+Name, const Vector3 \&position, const Vector3 \&scale, const Real \&pitch, const Real \&yaw, const Real \&roll, const String \&play\+Sound="{}"{}, const String \&mat\+Name="{}"{})
+\item 
+\Hypertarget{class_magix_world_a43dafd3712f90327b322400f29b5a6a7}\label{class_magix_world_a43dafd3712f90327b322400f29b5a6a7} 
+void {\bfseries add\+Particle} (const String \&sys\+Name, const Vector3 \&position, const String \&play\+Sound="{}"{})
+\item 
+\Hypertarget{class_magix_world_acbc3c2781f38c2e7b31a67beb5b3110e}\label{class_magix_world_acbc3c2781f38c2e7b31a67beb5b3110e} 
+void {\bfseries add\+Light} (const Vector3 \&position, const Colour\+Value \&colour)
+\item 
+\Hypertarget{class_magix_world_ad1f713601cda1522e0cb19445f993a4a}\label{class_magix_world_ad1f713601cda1522e0cb19445f993a4a} 
+void {\bfseries add\+Billboard} (const Vector3 \&position, const Vector2 \&scale, const String \&mat\+Name)
+\item 
+\Hypertarget{class_magix_world_ac32c90a027f8208c31145d5abbbe2957}\label{class_magix_world_ac32c90a027f8208c31145d5abbbe2957} 
+void {\bfseries destroy\+All\+Water\+Planes} ()
+\item 
+\Hypertarget{class_magix_world_ab1300f6c564f452a52978c66cf30ed4d}\label{class_magix_world_ab1300f6c564f452a52978c66cf30ed4d} 
+void {\bfseries destroy\+All\+Objects} ()
+\item 
+\Hypertarget{class_magix_world_ac2d9741794611e9fd4d02035ce957662}\label{class_magix_world_ac2d9741794611e9fd4d02035ce957662} 
+void {\bfseries destroy\+All\+Particles} ()
+\item 
+\Hypertarget{class_magix_world_a695eabfc85e4e344fea4fecb7f440ba3}\label{class_magix_world_a695eabfc85e4e344fea4fecb7f440ba3} 
+void {\bfseries destroy\+All\+Lights} ()
+\item 
+\Hypertarget{class_magix_world_ab93227c4b4632fe68c3a27c57f342c4f}\label{class_magix_world_ab93227c4b4632fe68c3a27c57f342c4f} 
+void {\bfseries destroy\+All\+Billboards} ()
+\item 
+\Hypertarget{class_magix_world_a94a92b78783c330da37ac7ff33be8b65}\label{class_magix_world_a94a92b78783c330da37ac7ff33be8b65} 
+bool {\bfseries get\+Is\+Interior} ()
+\item 
+\Hypertarget{class_magix_world_a0e96a13917f75d9cac36bbe85996f68f}\label{class_magix_world_a0e96a13917f75d9cac36bbe85996f68f} 
+const Real {\bfseries get\+Ceiling\+Height} ()
+\item 
+\Hypertarget{class_magix_world_a2252576e37b22d06798e31c9cc20db1c}\label{class_magix_world_a2252576e37b22d06798e31c9cc20db1c} 
+const String {\bfseries get\+Map\+Effect} ()
+\item 
+\Hypertarget{class_magix_world_a82324a8b4807af2d2385a4fa70c2a0c2}\label{class_magix_world_a82324a8b4807af2d2385a4fa70c2a0c2} 
+void {\bfseries initialize\+Static\+Geometry} ()
+\item 
+\Hypertarget{class_magix_world_a379201530c6b85956312c745e5617348}\label{class_magix_world_a379201530c6b85956312c745e5617348} 
+void {\bfseries add\+Static\+Geometry} (Entity \texorpdfstring{$\ast$}{*}ent, const Vector3 \&position, const Quaternion \&orientation, const Vector3 \&scale)
+\item 
+\Hypertarget{class_magix_world_a83f6b8d7f1981cc158b3be7f04582348}\label{class_magix_world_a83f6b8d7f1981cc158b3be7f04582348} 
+void {\bfseries build\+Static\+Geometry} ()
+\item 
+\Hypertarget{class_magix_world_a0fa47dd0602ee24190e10df769ef212e}\label{class_magix_world_a0fa47dd0602ee24190e10df769ef212e} 
+void {\bfseries destroy\+Static\+Geometry} ()
+\item 
+\Hypertarget{class_magix_world_a7a211a2b1b52d0a00f39a1b3d3e68523}\label{class_magix_world_a7a211a2b1b52d0a00f39a1b3d3e68523} 
+const unsigned short {\bfseries get\+Critter\+Spawn\+Limit} ()
+\item 
+\Hypertarget{class_magix_world_a0c7250ab0e7093217554fa49b02690a0}\label{class_magix_world_a0c7250ab0e7093217554fa49b02690a0} 
+const vector$<$ \mbox{\hyperlink{struct_world_critter}{World\+Critter}} $>$\+::type {\bfseries get\+Critter\+Spawn\+List} ()
+\item 
+\Hypertarget{class_magix_world_a6aaa7d041dfe8323b69b805c8b7114ef}\label{class_magix_world_a6aaa7d041dfe8323b69b805c8b7114ef} 
+const \mbox{\hyperlink{struct_world_critter}{World\+Critter}} {\bfseries get\+Critter\+Spawn\+List} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_world_ac348d414a7a41024ee4c85768fed3e34}\label{class_magix_world_ac348d414a7a41024ee4c85768fed3e34} 
+const std\+::pair$<$ Vector3, Vector3 $>$ {\bfseries get\+Critter\+Roam\+Area} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_world_a1767c1740dca8494bbb690ab96d52cfd}\label{class_magix_world_a1767c1740dca8494bbb690ab96d52cfd} 
+void {\bfseries clear\+Critter\+Spawn\+List} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_world_ae3b83bff1893807647a05bf8b4f5ec86}\label{class_magix_world_ae3b83bff1893807647a05bf8b4f5ec86} 
+\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Def}
+\item 
+\Hypertarget{class_magix_world_a929c815f69726b1fe6ec078a6fafd6ac}\label{class_magix_world_a929c815f69726b1fe6ec078a6fafd6ac} 
+\mbox{\hyperlink{class_k_i_t_f___utils_1_1_magix_utils}{KITF\+\_\+\+Utils\+::\+Magix\+Utils}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Utils}
+\item 
+\Hypertarget{class_magix_world_ac81e75f6385903a58f506379c9cbfd52}\label{class_magix_world_ac81e75f6385903a58f506379c9cbfd52} 
+\mbox{\hyperlink{class_magix_game_state_manager}{Magix\+Game\+State\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Game\+State\+Manager}
+\item 
+\Hypertarget{class_magix_world_ad68c6c434edbb81016c69e8fe8bf57af}\label{class_magix_world_ad68c6c434edbb81016c69e8fe8bf57af} 
+\mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Sound\+Manager}
+\item 
+\Hypertarget{class_magix_world_a47a4eed3da29ef0cb3cf90c57f7fc5df}\label{class_magix_world_a47a4eed3da29ef0cb3cf90c57f7fc5df} 
+\mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Collision\+Manager}
+\item 
+\Hypertarget{class_magix_world_a4e8e196ebd541e200376c9c35ddee900}\label{class_magix_world_a4e8e196ebd541e200376c9c35ddee900} 
+\mbox{\hyperlink{class_magix_sky_manager}{Magix\+Sky\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Sky\+Manager}
+\item 
+\Hypertarget{class_magix_world_af002028dc2c96bfe40135f9eb5843cc5}\label{class_magix_world_af002028dc2c96bfe40135f9eb5843cc5} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_world_a926cacdfca88339ea0dfee7f479f9042}\label{class_magix_world_a926cacdfca88339ea0dfee7f479f9042} 
+Render\+Window \texorpdfstring{$\ast$}{*} {\bfseries m\+Window}
+\item 
+\Hypertarget{class_magix_world_ac74c1297b755367b8ff40858629adb2c}\label{class_magix_world_ac74c1297b755367b8ff40858629adb2c} 
+Paged\+Geometry \texorpdfstring{$\ast$}{*} {\bfseries m\+Grass}
+\item 
+\Hypertarget{class_magix_world_ad65534378958d479c1465c742e9672d3}\label{class_magix_world_ad65534378958d479c1465c742e9672d3} 
+Paged\+Geometry \texorpdfstring{$\ast$}{*} {\bfseries m\+Trees}
+\item 
+\Hypertarget{class_magix_world_a45e12059ba6b9f931cc22c5b7c00fa93}\label{class_magix_world_a45e12059ba6b9f931cc22c5b7c00fa93} 
+Paged\+Geometry \texorpdfstring{$\ast$}{*} {\bfseries m\+Bushes}
+\item 
+\Hypertarget{class_magix_world_a95b04d703560fb1b651a2e2c0c4f3a81}\label{class_magix_world_a95b04d703560fb1b651a2e2c0c4f3a81} 
+Paged\+Geometry \texorpdfstring{$\ast$}{*} {\bfseries m\+Large\+Trees}
+\item 
+\Hypertarget{class_magix_world_a84a0e77bfb9ea6dc0227e8fd1150ba2e}\label{class_magix_world_a84a0e77bfb9ea6dc0227e8fd1150ba2e} 
+Paged\+Geometry \texorpdfstring{$\ast$}{*} {\bfseries m\+Floating\+Bushes}
+\item 
+\Hypertarget{class_magix_world_ab19f1d35d47f9d80ab3f5897a80c26be}\label{class_magix_world_ab19f1d35d47f9d80ab3f5897a80c26be} 
+unsigned short {\bfseries num\+Tree\+Meshes}
+\item 
+\Hypertarget{class_magix_world_aa5182f4d58069b14399b0609173f1816}\label{class_magix_world_aa5182f4d58069b14399b0609173f1816} 
+unsigned short {\bfseries num\+Bush\+Meshes}
+\item 
+\Hypertarget{class_magix_world_ae6b905eabc94161c62bf30f04ad43122}\label{class_magix_world_ae6b905eabc94161c62bf30f04ad43122} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Ceiling}
+\item 
+\Hypertarget{class_magix_world_ac6c0ab731253bdcd67d5410c858f55fd}\label{class_magix_world_ac6c0ab731253bdcd67d5410c858f55fd} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Ceiling\+Node}
+\item 
+\Hypertarget{class_magix_world_a77cb9d725a77eb99d9ffbd32a33940db}\label{class_magix_world_a77cb9d725a77eb99d9ffbd32a33940db} 
+Light \texorpdfstring{$\ast$}{*} {\bfseries m\+Light} \mbox{[}MAX\+\_\+\+LIGHTS\mbox{]}
+\item 
+\Hypertarget{class_magix_world_a2f8f09033a9da3a2f69f5d20702ccfc6}\label{class_magix_world_a2f8f09033a9da3a2f69f5d20702ccfc6} 
+String {\bfseries world\+Name}
+\item 
+\Hypertarget{class_magix_world_a909b012542437766592ca20a3848114d}\label{class_magix_world_a909b012542437766592ca20a3848114d} 
+Vector2 {\bfseries world\+Size}
+\item 
+\Hypertarget{class_magix_world_a1cc6ff5072b1b4176b8a448c21d0b261}\label{class_magix_world_a1cc6ff5072b1b4176b8a448c21d0b261} 
+Vector2 {\bfseries world\+Bounds}
+\item 
+\Hypertarget{class_magix_world_a52e6053e60911225324231eba57fb65c}\label{class_magix_world_a52e6053e60911225324231eba57fb65c} 
+Vector3 {\bfseries spawn\+Square}
+\item 
+\Hypertarget{class_magix_world_ac12d6ae91de79c062af741d2cd44f0b0}\label{class_magix_world_ac12d6ae91de79c062af741d2cd44f0b0} 
+unsigned short {\bfseries num\+Water\+Planes}
+\item 
+\Hypertarget{class_magix_world_ac4e565796647007e5016a253e47d2018}\label{class_magix_world_ac4e565796647007e5016a253e47d2018} 
+unsigned short {\bfseries num\+Objects}
+\item 
+\Hypertarget{class_magix_world_a901e8f060779cde1cf46ac77e42dc7fa}\label{class_magix_world_a901e8f060779cde1cf46ac77e42dc7fa} 
+unsigned short {\bfseries num\+Particles}
+\item 
+\Hypertarget{class_magix_world_af7462625f3812175f40ed6f4c5752514}\label{class_magix_world_af7462625f3812175f40ed6f4c5752514} 
+unsigned short {\bfseries num\+Lights}
+\item 
+\Hypertarget{class_magix_world_a4d86fe63128f50e7ab816ed7d2aadf73}\label{class_magix_world_a4d86fe63128f50e7ab816ed7d2aadf73} 
+unsigned short {\bfseries num\+Billboards}
+\item 
+\Hypertarget{class_magix_world_ad43b467e6b4f35df966060239d09e428}\label{class_magix_world_ad43b467e6b4f35df966060239d09e428} 
+Real {\bfseries ceiling\+Height}
+\item 
+\Hypertarget{class_magix_world_aac542a7aa8224ea91097a8c24a9233ab}\label{class_magix_world_aac542a7aa8224ea91097a8c24a9233ab} 
+bool {\bfseries is\+Interior}
+\item 
+\Hypertarget{class_magix_world_af9fe690748979d718b1b8c5bcfbf0ad2}\label{class_magix_world_af9fe690748979d718b1b8c5bcfbf0ad2} 
+String {\bfseries map\+Effect}
+\item 
+\Hypertarget{class_magix_world_a1bb491e2785241f209ca84aafc34ce16}\label{class_magix_world_a1bb491e2785241f209ca84aafc34ce16} 
+int {\bfseries static\+GeometryX}
+\item 
+\Hypertarget{class_magix_world_a92744b872f9077c138fa606756093f1f}\label{class_magix_world_a92744b872f9077c138fa606756093f1f} 
+int {\bfseries static\+GeometryY}
+\item 
+\Hypertarget{class_magix_world_ab044bd280e2750259f945f208179c0d9}\label{class_magix_world_ab044bd280e2750259f945f208179c0d9} 
+vector$<$ \mbox{\hyperlink{struct_world_critter}{World\+Critter}} $>$\+::type {\bfseries critter\+Spawn\+List}
+\item 
+\Hypertarget{class_magix_world_a0317615a863eb014f48377baf27fe99c}\label{class_magix_world_a0317615a863eb014f48377baf27fe99c} 
+vector$<$ std\+::pair$<$ Vector3, Vector3 $>$ $>$\+::type {\bfseries critter\+Roam\+Area\+List}
+\item 
+\Hypertarget{class_magix_world_ac3bad90515322f1528462e1a7713baea}\label{class_magix_world_ac3bad90515322f1528462e1a7713baea} 
+unsigned short {\bfseries critter\+Spawn\+Limit}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+World.\+h\end{DoxyCompactItemize}

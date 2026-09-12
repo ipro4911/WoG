@@ -1,0 +1,179 @@
+\doxysection{Magix\+Alert\+Box.\+h}
+\hypertarget{_magix_alert_box_8h_source}{}\label{_magix_alert_box_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixAlertBox.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixAlertBox.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixAlertBox\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixAlertBox\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ self\ ?}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ TRANSITION\_TIME\ 0.1}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ ALERT\_FONT\ "{}TempusSans"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }MagixAlertBox}
+\DoxyCodeLine{00009\ \{}
+\DoxyCodeLine{00010\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00011\ \ \ \ \ OverlayElement*\ mAlertBox;}
+\DoxyCodeLine{00012\ \ \ \ \ OverlayElement*\ mAlertBoxText;}
+\DoxyCodeLine{00013\ \ \ \ \ Real\ alertCount;}
+\DoxyCodeLine{00014\ \ \ \ \ Real\ alertTimeout;}
+\DoxyCodeLine{00015\ \ \ \ \ Real\ startWidth;}
+\DoxyCodeLine{00016\ \ \ \ \ Real\ startHeight;}
+\DoxyCodeLine{00017\ \ \ \ \ Real\ startLeft;}
+\DoxyCodeLine{00018\ \ \ \ \ Real\ startTop;}
+\DoxyCodeLine{00019\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{comment}{//\ C26455\ \&\&\ C26495\ }}
+\DoxyCodeLine{00021\ \ \ \ \ MagixAlertBox()}
+\DoxyCodeLine{00022\ \ \ \ \ \{}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ mAlertBox\ =\ 0;}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ mAlertBoxText\ =\ 0;}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ alertCount\ =\ 0;}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ alertTimeout\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ startWidth\ =\ 0;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ startHeight\ =\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ startLeft\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ startTop\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ When\ ?\ (under\ a\ breakpoint)}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{comment}{//\ got\ a\ C26432\ that\ cant\ be\ fixed\ ?}}
+\DoxyCodeLine{00035\ \ \ \ \ \string~MagixAlertBox()\ \textcolor{keyword}{noexcept}}
+\DoxyCodeLine{00036\ \ \ \ \ \{}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ do\ the\ mass\ null\ work\ ?}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ mAlertBox\ =\ NULL;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ mAlertBoxText\ =\ NULL;}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ alertCount\ =\ NULL;}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ startWidth\ =\ NULL;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ startHeight\ =\ NULL;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ startLeft\ =\ NULL;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ startTop\ =\ NULL;}
+\DoxyCodeLine{00045\ \ \ \ \ \}}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize()}
+\DoxyCodeLine{00048\ \ \ \ \ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().getByName(\textcolor{stringliteral}{"{}GUIOverlay/AlertBox"{}})-\/>hide();}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ mAlertBox\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}GUI/AlertBox"{}});}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ mAlertBoxText\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}GUI/AlertBoxText"{}});}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keyword}{const}\ FrameEvent\ evt)}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Transition\ in}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alertTimeout\ >\ 0)}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!mAlertBox-\/>isVisible())}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>show();}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00062\ }
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mAlertBoxText-\/>isVisible())}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBoxText-\/>hide();}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ alertTimeout\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alertTimeout\ <=\ 0)}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alertTimeout\ =\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBoxText-\/>show();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ cast\ \&\ wrap\ (\&\ const\ ?)}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tRatio\ =\ (\textcolor{keyword}{const}\ Real)((TRANSITION\_TIME\ -\/\ alertTimeout)\ /\ TRANSITION\_TIME);}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>setDimensions(tRatio\ *\ startWidth,\ tRatio\ *\ startHeight);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>setPosition(startLeft\ +\ (1\ -\/\ tRatio)\ *\ startWidth\ /\ 2,\ startTop\ +\ (1\ -\/\ tRatio)\ *\ startHeight\ /\ 2);}
+\DoxyCodeLine{00078\ }
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ }
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Show\ alert}}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alertCount\ >\ 0)}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ alertCount\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alertCount\ <=\ 0)hide();}
+\DoxyCodeLine{00087\ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Transition\ out}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alertTimeout\ <\ 0)}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (mAlertBoxText-\/>isVisible())}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBoxText-\/>hide();}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ alertTimeout\ +=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (alertTimeout\ >=\ 0)}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ alertTimeout\ =\ 0;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>hide();}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().getByName(\textcolor{stringliteral}{"{}GUIOverlay/AlertBox"{}})-\/>hide();}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ here\ const\ only\ on\ result\ ?\ seems\ to\ make\ it\ happy\ ?}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ Real\ tRatio\ =\ (\textcolor{keyword}{const}\ Real)((-\/1\ *\ alertTimeout)\ /\ TRANSITION\_TIME);}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>setDimensions(tRatio\ *\ startWidth,\ tRatio\ *\ startHeight);}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>setPosition(startLeft\ +\ (1\ -\/\ tRatio)\ *\ startWidth\ /\ 2,\ startTop\ +\ (1\ -\/\ tRatio)\ *\ startHeight\ /\ 2);}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00113\ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{comment}{//\ reference\ caption\ was\ messed}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{void}\ showAlert(\textcolor{keyword}{const}\ String\&\ caption,\ Real\ left,\ Real\ top,\ Real\ count\ =\ 2.5)}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().getByName(\textcolor{stringliteral}{"{}GUIOverlay/AlertBox"{}})-\/>show();}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ mAlertBoxText-\/>setCaption(caption);}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ mAlertBox-\/>setPosition(left,\ top);}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//compute\ text\ width/height}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Font*\ pFont\ =\ \textcolor{keyword}{dynamic\_cast<}Ogre::Font*\textcolor{keyword}{>}(Ogre::FontManager::getSingleton().getByName(ALERT\_FONT).getPointer());}
+\DoxyCodeLine{00123\ }
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ vector<String>::type\ tText\ =\ StringUtil::split(caption,\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}});}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ Real\ tLongestWidth\ =\ 0;}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)(tText.size());\ i++)}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ casting\ is\ magical}}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ String\ tLine\ =\ (String)tText[i];}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ Real\ tTextWidth\ =\ 0;}
+\DoxyCodeLine{00132\ }
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ apparently\ despite\ the\ chaos,\ ogre\ iterator\ can\ hook\ on\ i...\ my\ bad}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (Ogre::String::iterator\ i\ =\ tLine.begin();\ i\ <\ tLine.end();\ i++)}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (*i\ ==\ 0x0020)}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTextWidth\ +=\ 0.055;\textcolor{comment}{//pFont-\/>getGlyphAspectRatio(0x0030);}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tTextWidth\ +=\ pFont-\/>getGlyphAspectRatio(*i);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tTextWidth\ >\ tLongestWidth)tLongestWidth\ =\ tTextWidth;}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00145\ }
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ startHeight\ =\ StringConverter::parseReal(mAlertBoxText-\/>getParameter(\textcolor{stringliteral}{"{}char\_height"{}}));}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ startWidth\ =\ tLongestWidth\ *\ startHeight;}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ startHeight\ *=\ (int)(tText.size());}
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ startLeft\ =\ left\ -\/\ startWidth\ /\ 2;}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ startTop\ =\ top\ -\/\ startHeight\ /\ 2;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ mAlertBox-\/>setDimensions(0,\ 0);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ alertCount\ =\ count;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ alertTimeout\ =\ TRANSITION\_TIME;}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ hide(\textcolor{keywordtype}{bool}\ immediate\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00157\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ alertCount\ =\ 0;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (immediate)}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().getByName(\textcolor{stringliteral}{"{}GUIOverlay/AlertBox"{}})-\/>hide();}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ mAlertBox-\/>hide();}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ alertTimeout\ =\ 0;}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ alertTimeout\ =\ -\/TRANSITION\_TIME;}
+\DoxyCodeLine{00166\ \ \ \ \ \}}
+\DoxyCodeLine{00167\ \ \ \ \ OverlayElement*\ getAlertBox()}
+\DoxyCodeLine{00168\ \ \ \ \ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mAlertBox;}
+\DoxyCodeLine{00170\ \ \ \ \ \}}
+\DoxyCodeLine{00171\ \};}
+\DoxyCodeLine{00172\ }
+\DoxyCodeLine{00173\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

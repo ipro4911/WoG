@@ -1,0 +1,697 @@
+\doxysection{Magix\+Indexed\+Unit Class Reference}
+\hypertarget{class_magix_indexed_unit}{}\label{class_magix_indexed_unit}\index{MagixIndexedUnit@{MagixIndexedUnit}}
+Inheritance diagram for Magix\+Indexed\+Unit\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_magix_indexed_unit}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_indexed_unit_a599e80f5085f2eeafce2de392370f115}\label{class_magix_indexed_unit_a599e80f5085f2eeafce2de392370f115} 
+{\bfseries Magix\+Indexed\+Unit} (const unsigned short \&i, \mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*}prev)
+\item 
+\Hypertarget{class_magix_indexed_unit_ac59b9c695adf6c414d3aee825f3f8eeb}\label{class_magix_indexed_unit_ac59b9c695adf6c414d3aee825f3f8eeb} 
+const unsigned short {\bfseries get\+Index} ()
+\item 
+\Hypertarget{class_magix_indexed_unit_aabf036c3948a28b8666516c9914c5360}\label{class_magix_indexed_unit_aabf036c3948a28b8666516c9914c5360} 
+\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Previous} ()
+\item 
+\Hypertarget{class_magix_indexed_unit_a5aeb9700d4ca82a49de0a53960f6ddc9}\label{class_magix_indexed_unit_a5aeb9700d4ca82a49de0a53960f6ddc9} 
+void {\bfseries set\+Previous} (\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*}prev)
+\item 
+bool \mbox{\hyperlink{class_magix_indexed_unit_adaeaea56b7c771f35aa8ef9feda835ce}{is\+Indexed\+Unit}} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries create\+Unit} (const unsigned short i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&body\+Mesh, const String \&head\+Mesh, const String \&mane\+Mesh, const String \&tail\+Mesh, const String \&wing\+Mesh, const String \&mat\+Name, const String \&tuft\+Mesh)
+\item 
+void {\bfseries destroy\+Unit} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+void {\bfseries set\+Material} (const String \&mat\+Name)
+\item 
+void {\bfseries set\+Colours} (const Colour\+Value \&pelt, const Colour\+Value \&underfur, const Colour\+Value \&mane, const Colour\+Value \&nose, const Colour\+Value \&eye\+Top, const Colour\+Value \&eye\+Bot, const Colour\+Value \&ears, const Colour\+Value \&tailtip, const Colour\+Value \&eyes, const Colour\+Value \&wing, const Colour\+Value \&marking)
+\item 
+void {\bfseries set\+Full\+Colour} (const Colour\+Value \&full\+Colour)
+\item 
+void {\bfseries update\+Animation} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries update\+Anim\+Base} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Anim\+Second} (const Frame\+Event \&evt)
+\item 
+virtual void {\bfseries update\+Movement} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Action} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries do\+Sit} (bool skip\+Transition=false)
+\item 
+bool {\bfseries is\+Sitting} (bool exclude\+Transition=false)
+\item 
+void {\bfseries do\+Side\+Lay} (bool skip\+Transition=false)
+\item 
+void {\bfseries do\+Curl} (bool skip\+Transition=false)
+\item 
+bool {\bfseries is\+Laying} (bool exclude\+Transition=false)
+\item 
+bool {\bfseries is\+Side\+Laying} (bool exclude\+Transition=false)
+\item 
+bool {\bfseries is\+Leaning} (bool exclude\+Transition=false)
+\item 
+bool {\bfseries is\+Rolled\+Over} ()
+\item 
+bool {\bfseries is\+Plopped} ()
+\item 
+bool {\bfseries is\+Curled} ()
+\item 
+virtual void {\bfseries update} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries update\+Auto\+Track} ()
+\item 
+void {\bfseries set\+Free\+Look} (bool flag, bool timeout=true)
+\item 
+bool {\bfseries get\+Free\+Look} ()
+\item 
+void {\bfseries set\+Target} (const Real \&x, const Real \&y, const Real \&z, const unsigned char \&action=TARGET\+\_\+\+RUNTO)
+\item 
+virtual void {\bfseries set\+Target} (const Vector3 \&dest, const unsigned char \&action=TARGET\+\_\+\+RUNTO)
+\item 
+const Vector3 {\bfseries get\+Target} ()
+\item 
+unsigned short {\bfseries get\+Target\+Action} ()
+\item 
+void {\bfseries reset\+Target} ()
+\item 
+virtual void {\bfseries stop\+Action} ()
+\item 
+void {\bfseries set\+Look\+Direction} (const Quaternion \&dir, bool set\+Buffer=false)
+\item 
+void {\bfseries set\+Look\+Target} (const Vector3 \&target, bool from\+Head=true)
+\item 
+void {\bfseries set\+Auto\+Track\+Object} (\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*}target)
+\item 
+\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Auto\+Track\+Object} ()
+\item 
+const Quaternion {\bfseries get\+Look\+Direction} ()
+\item 
+const Vector3 {\bfseries get\+Position} (bool head\+Position=false)
+\item 
+void {\bfseries change\+Anim\+Base} (const String \&type, const Real \&speed, bool reset\+Time\+Position=false, bool reverse\+Animation=false, bool loop=true)
+\item 
+void {\bfseries change\+Anim\+Second} (const String \&type, const Real \&speed, bool reset\+Time\+Position=false, bool reverse\+Animation=false, bool loop=true)
+\item 
+virtual const OBJECT\+\_\+\+TYPE \mbox{\hyperlink{class_magix_unit_a7179343e5d6206772a123dddda9c30a0}{get\+Type}} ()
+\item 
+const unsigned short {\bfseries get\+Unit\+ID} ()
+\item 
+void {\bfseries create\+Name\+Tag} (const String \&name, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs)
+\item 
+void {\bfseries create\+User\+Tag} (const String \&name, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs)
+\item 
+void {\bfseries create\+Chat\+Bubble} (String caption, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs, const Real \&t\+Left=0.\+0, const Real \&t\+Top=0.\+0)
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Name\+Tag} ()
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+User\+Tag} ()
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Chat\+Bubble} ()
+\item 
+void {\bfseries show\+Name\+Tag} (bool flag)
+\item 
+void {\bfseries show\+User\+Tag} (bool flag)
+\item 
+void {\bfseries show\+Chat\+Bubble} (bool flag)
+\item 
+bool {\bfseries is\+Name\+Tag\+Visible} ()
+\item 
+bool {\bfseries is\+User\+Tag\+Visible} ()
+\item 
+bool {\bfseries is\+Chat\+Bubble\+Visible} ()
+\item 
+void {\bfseries update\+Name\+Tag} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+User\+Tag} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Chat\+Bubble} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Emote} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries set\+Emote} (const String \&mode, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries set\+Emote\+State} (const String \&mode, const Real \&weight, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+void {\bfseries set\+Face\+Anim\+State} (const String \&anim, const Real \&weight, bool is\+Current)
+\item 
+void {\bfseries replace\+Head\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+void {\bfseries replace\+Mane\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+void {\bfseries replace\+Tail\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+void {\bfseries replace\+Wing\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+void {\bfseries replace\+Tuft\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+const String {\bfseries get\+Mat\+Group\+Name} ()
+\item 
+const String {\bfseries get\+Mesh\+String} ()
+\item 
+const String {\bfseries get\+Mesh\+String2} ()
+\item 
+const String {\bfseries get\+Colour\+String} ()
+\item 
+const String {\bfseries vect4\+To\+String} (Vector4 vect, const unsigned short \&t\+Deci)
+\item 
+void {\bfseries set\+Colours} (const String \&colour\+String)
+\item 
+const String {\bfseries get\+Name} ()
+\item 
+const String {\bfseries get\+User} ()
+\item 
+void {\bfseries set\+Jump} (bool flag)
+\item 
+bool {\bfseries get\+Jump} ()
+\item 
+void {\bfseries set\+Is\+Walking} (bool flag)
+\item 
+bool {\bfseries get\+Is\+Walking} ()
+\item 
+const String {\bfseries do\+Attack} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, bool do\+Emote=true)
+\item 
+void {\bfseries force\+Attack} (const String \&name)
+\item 
+bool {\bfseries is\+Ready\+To\+Attack} ()
+\item 
+virtual bool {\bfseries update\+Attack} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+bool {\bfseries is\+Attacking} ()
+\item 
+void {\bfseries stop\+Stance} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+bool {\bfseries get\+Is\+Stance} ()
+\item 
+void {\bfseries toggle\+Stance} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, bool do\+Emote=true)
+\item 
+void {\bfseries stop\+Attack} ()
+\item 
+void {\bfseries set\+Attack} (const String \&name)
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Body\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Head\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Tail\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Mane\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Wing\+Ent} ()
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Tuft\+Ent} ()
+\item 
+bool {\bfseries pop\+Has\+New\+Attack} ()
+\item 
+bool {\bfseries pop\+Has\+Stopped\+Attack} ()
+\item 
+const String {\bfseries get\+Attack\+Name} ()
+\item 
+void {\bfseries cancel\+Action} (bool hit\+Anim, const Real \&duration=0, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def=0)
+\item 
+void {\bfseries cancel\+Action} (const Real \&duration, const String \&anim, bool reverse\+Anim=false)
+\item 
+const Real {\bfseries get\+Hit\+Timeout} ()
+\item 
+bool {\bfseries is\+Disabled} ()
+\item 
+void {\bfseries set\+Death\+Timeout} (const Real \&duration)
+\item 
+const Real {\bfseries get\+Death\+Timeout} ()
+\item 
+bool {\bfseries is\+Dying} ()
+\item 
+void {\bfseries kill} ()
+\item 
+bool {\bfseries is\+Dead} ()
+\item 
+void {\bfseries clear\+Attack\+List} ()
+\item 
+void {\bfseries push\+Attack\+List} (const String \&attack\+Name)
+\item 
+void {\bfseries set\+Custom\+Animation} (bool flag, const String \&anim\+Name="{}"{}, Real anim\+Speed=1, bool loop=false, bool reverse=false)
+\item 
+virtual unsigned short {\bfseries get\+Control\+Mode} ()
+\item 
+void {\bfseries set\+Is\+Swimming} (bool flag)
+\item 
+bool {\bfseries get\+Is\+Swimming} ()
+\item 
+void {\bfseries equip} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}m\+Def, const String \&mesh\+Name, const Vector3 \&offset=Vector3\+::\+ZERO, const short \&slot=-\/1, bool alt\+Anim=false)
+\item 
+const String {\bfseries unequip} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}m\+Def, const unsigned short \&i\+ID)
+\item 
+const String {\bfseries get\+Equip} (const unsigned short \&i\+ID)
+\item 
+void {\bfseries do\+Crouch} (bool flag)
+\item 
+bool {\bfseries get\+Is\+Crouching} ()
+\item 
+void {\bfseries do\+Headswing} ()
+\item 
+bool {\bfseries is\+Headswinging} ()
+\item 
+void {\bfseries do\+Headbang} ()
+\item 
+bool {\bfseries is\+Headbanging} ()
+\item 
+void {\bfseries do\+Buttswing} ()
+\item 
+bool {\bfseries is\+Buttswinging} ()
+\item 
+void {\bfseries do\+Wingwave} ()
+\item 
+bool {\bfseries is\+Wingwaving} ()
+\item 
+void {\bfseries do\+Moonwalk} ()
+\item 
+bool {\bfseries is\+Moonwalking} ()
+\item 
+void {\bfseries do\+Thriller} ()
+\item 
+bool {\bfseries is\+Thrillering} ()
+\item 
+void {\bfseries do\+Roar} ()
+\item 
+bool {\bfseries is\+Roaring} ()
+\item 
+void {\bfseries do\+Rofl} ()
+\item 
+bool {\bfseries is\+Rofling} ()
+\item 
+void {\bfseries do\+Faint} ()
+\item 
+bool {\bfseries is\+Fainting} ()
+\item 
+bool {\bfseries is\+Dancing} ()
+\item 
+void {\bfseries do\+Nod\+Head} ()
+\item 
+bool {\bfseries is\+Nod\+Head} ()
+\item 
+void {\bfseries do\+Shake\+Head} ()
+\item 
+bool {\bfseries is\+Shake\+Head} ()
+\item 
+void {\bfseries do\+Nod\+Head\+Slow} ()
+\item 
+bool {\bfseries is\+Nod\+Head\+Slow} ()
+\item 
+void {\bfseries do\+Shake\+Head\+Slow} ()
+\item 
+bool {\bfseries is\+Shake\+Head\+Slow} ()
+\item 
+void {\bfseries do\+Head\+Tilt} ()
+\item 
+bool {\bfseries is\+Head\+Tilt} ()
+\item 
+void {\bfseries toggle\+Lick} ()
+\item 
+bool {\bfseries is\+Lick} ()
+\item 
+void {\bfseries toggle\+Nuzzle} ()
+\item 
+bool {\bfseries is\+Nuzzle} ()
+\item 
+void {\bfseries do\+Sniff} ()
+\item 
+bool {\bfseries is\+Sniff} ()
+\item 
+void {\bfseries do\+Laugh} ()
+\item 
+bool {\bfseries is\+Laugh} ()
+\item 
+void {\bfseries do\+Chuckle} ()
+\item 
+bool {\bfseries is\+Chuckle} ()
+\item 
+void {\bfseries do\+Tail\+Flick} ()
+\item 
+bool {\bfseries is\+Tail\+Flick} ()
+\item 
+void {\bfseries do\+Point} ()
+\item 
+bool {\bfseries is\+Point} ()
+\item 
+void {\bfseries do\+Stretch} ()
+\item 
+bool {\bfseries is\+Stretch} ()
+\item 
+bool {\bfseries is\+One\+Time\+Action} ()
+\item 
+bool {\bfseries is\+One\+Time\+Head\+Action} ()
+\item 
+bool {\bfseries is\+One\+Time\+Tail\+Action} ()
+\item 
+void {\bfseries set\+Markings} (const unsigned char \&body\+ID, const unsigned char \&head\+ID, const unsigned char \&tail\+ID)
+\item 
+void {\bfseries get\+Markings} (short \&body\+ID, short \&head\+ID, short \&tail\+ID)
+\item 
+void {\bfseries set\+Is\+In\+Water} (bool flag)
+\item 
+bool {\bfseries get\+Is\+In\+Water} ()
+\item 
+void {\bfseries do\+Double\+Jump} ()
+\item 
+bool {\bfseries get\+Has\+Double\+Jumped} ()
+\item 
+void {\bfseries update\+Lip\+Sync} (const Frame\+Event \&evt)
+\item 
+void {\bfseries do\+Lip\+Sync} (const String \&data)
+\item 
+void {\bfseries stop\+Lip\+Sync} ()
+\item 
+void {\bfseries resume\+Emote} (const Frame\+Event \&evt)
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries set\+HP} (const short \&i\+Max\+HP, const Real \&ratio=1)
+\item 
+virtual void {\bfseries set\+HPRatio} (const Real \&ratio)
+\item 
+virtual bool {\bfseries add\+HP} (const short \&value)
+\item 
+const Real {\bfseries get\+HPRatio} ()
+\item 
+const short {\bfseries get\+HP} ()
+\item 
+const short {\bfseries get\+Max\+HP} ()
+\item 
+void {\bfseries set\+Alliance} (const unsigned char \&ally)
+\item 
+const unsigned char {\bfseries get\+Alliance} ()
+\item 
+bool {\bfseries match\+Alliance} (const unsigned char \&ally)
+\item 
+bool {\bfseries is\+Invulnerable} ()
+\item 
+void {\bfseries set\+Invulnerable} (bool flag)
+\item 
+virtual const Real {\bfseries get\+Height} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries create\+Object} (const unsigned short \&i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&object\+Mesh, const String \&mat\+Name)
+\item 
+void {\bfseries destroy\+Object} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+virtual void {\bfseries update\+Animation} (const Frame\+Event \&evt)
+\item 
+virtual void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Face\+Direction} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Physics} (const Frame\+Event \&evt)
+\item 
+void {\bfseries add\+Force} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Force} (const Vector3 \&value)
+\item 
+const Vector3 {\bfseries get\+Force} ()
+\item 
+void {\bfseries set\+Position} (const Real \&x, const Real \&y, const Real \&z)
+\item 
+void {\bfseries set\+Position} (const Vector3 \&position)
+\item 
+virtual const Vector3 \mbox{\hyperlink{class_magix_animated_a793515d34f0aea1719683ed834e9f013}{get\+Position}} ()
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_magix_animated_ac51fdd53bb77c9e8ba6191318e8de9b7}{get\+Object\+Node}} ()
+\item 
+void {\bfseries set\+Ground\+Height} (const Real \&value)
+\item 
+const Real {\bfseries get\+Ground\+Height} ()
+\item 
+const Real {\bfseries distance\+From\+Ground} ()
+\item 
+bool {\bfseries is\+Position\+Changed} (bool exclude\+YAxis=false)
+\item 
+const Vector3 {\bfseries get\+Last\+Position} ()
+\item 
+bool {\bfseries is\+Moving\+Reverse} ()
+\item 
+void {\bfseries yaw} (const Degree \&angle, bool instant=false)
+\item 
+void {\bfseries set\+Yaw} (const Degree \&angle, bool instant=false)
+\item 
+const Degree {\bfseries get\+Yaw} ()
+\item 
+const Quaternion {\bfseries get\+Face\+Direction} ()
+\item 
+void {\bfseries set\+Anti\+Gravity} (bool flag)
+\item 
+bool {\bfseries is\+Anti\+Gravity} ()
+\item 
+void {\bfseries toggle\+Anti\+Gravity} ()
+\item 
+void {\bfseries add\+Penalty\+Velocity} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Speed\+Multiplier} (const Real \&value)
+\item 
+const Real {\bfseries get\+Speed\+Multiplier} ()
+\item 
+void {\bfseries set\+Max\+Speed} (const Real \&value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_indexed_unit_a8e61cf1c9b8fb09784ec3b4c8115056b}\label{class_magix_indexed_unit_a8e61cf1c9b8fb09784ec3b4c8115056b} 
+bool {\bfseries has\+Marker}
+\item 
+\Hypertarget{class_magix_indexed_unit_a7652e8fab55afeba81ae7a551bda0114}\label{class_magix_indexed_unit_a7652e8fab55afeba81ae7a551bda0114} 
+bool {\bfseries is\+Friend}
+\item 
+\Hypertarget{class_magix_indexed_unit_abfd39f9dac5112adb157b1a08b866d7d}\label{class_magix_indexed_unit_abfd39f9dac5112adb157b1a08b866d7d} 
+bool {\bfseries is\+Blocked}
+\item 
+\Hypertarget{class_magix_indexed_unit_abe1572979e943c96aee0b977eec0a976}\label{class_magix_indexed_unit_abe1572979e943c96aee0b977eec0a976} 
+bool {\bfseries is\+Admin}
+\item 
+\Hypertarget{class_magix_indexed_unit_a43301cbab2e1d4b21dec5623b38393d5}\label{class_magix_indexed_unit_a43301cbab2e1d4b21dec5623b38393d5} 
+bool {\bfseries is\+Mod}
+\item 
+\Hypertarget{class_magix_indexed_unit_a7c8f7c5687e9bf5c8d136258b12b9321}\label{class_magix_indexed_unit_a7c8f7c5687e9bf5c8d136258b12b9321} 
+bool {\bfseries is\+Wounded}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{struct_alloc_flags}{Alloc\+Flags}} {\bfseries alloc\+Flags}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_indexed_unit_aae8f6cb8f14cba1d61ee985cc67dd5d3}\label{class_magix_indexed_unit_aae8f6cb8f14cba1d61ee985cc67dd5d3} 
+\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Prev\+Unit}
+\item 
+\Hypertarget{class_magix_indexed_unit_aeb81cb58a1cc555b7d6c1c9cd52edee8}\label{class_magix_indexed_unit_aeb81cb58a1cc555b7d6c1c9cd52edee8} 
+unsigned short {\bfseries index}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}}
+\begin{DoxyCompactItemize}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Body\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Head\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Mane\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Tail\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Wing\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Tuft\+Ent}
+\item 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Equip\+Ent} \mbox{[}MAX\+\_\+\+EQUIP\mbox{]}
+\item 
+String {\bfseries mat\+Group\+Name}
+\item 
+unsigned char {\bfseries body\+Mark\+ID}
+\item 
+unsigned char {\bfseries head\+Mark\+ID}
+\item 
+unsigned char {\bfseries tail\+Mark\+ID}
+\item 
+String {\bfseries anim\+Base}
+\item 
+String {\bfseries prev\+Anim\+Base}
+\item 
+Real {\bfseries anim\+Speed}
+\item 
+Real {\bfseries anim\+Count}
+\item 
+String {\bfseries anim\+Second}
+\item 
+String {\bfseries prev\+Anim\+Second}
+\item 
+Real {\bfseries anim\+Second\+Count}
+\item 
+Real {\bfseries anim\+Second\+Speed}
+\item 
+short {\bfseries blink\+Flag}
+\item 
+short {\bfseries idle\+Turn\+Flag}
+\item 
+bool {\bfseries free\+Look}
+\item 
+bool {\bfseries free\+Look\+Timeout}
+\item 
+unsigned short {\bfseries unit\+ID}
+\item 
+Vector3 {\bfseries target\+Vector}
+\item 
+Vector3 {\bfseries look\+Target\+Vector}
+\item 
+Quaternion {\bfseries look\+Direction}
+\item 
+Quaternion {\bfseries look\+Direction\+Buffer}
+\item 
+unsigned char {\bfseries target\+Action}
+\item 
+\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Auto\+Track\+Target}
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Name\+Text}
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+User\+Text}
+\item 
+bool {\bfseries name\+Tag\+Visible}
+\item 
+bool {\bfseries user\+Tag\+Visible}
+\item 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Chat\+Text}
+\item 
+bool {\bfseries chat\+Bubble\+Visible}
+\item 
+Real {\bfseries chat\+Bubble\+Count}
+\item 
+String {\bfseries emote\+Mode}
+\item 
+String {\bfseries prev\+Emote\+Mode}
+\item 
+Real {\bfseries emote\+Count}
+\item 
+Real {\bfseries eyelid\+State}
+\item 
+bool {\bfseries jump}
+\item 
+bool {\bfseries is\+Walking}
+\item 
+bool {\bfseries is\+Stance}
+\item 
+bool {\bfseries is\+Custom\+Animation}
+\item 
+bool {\bfseries is\+Swimming}
+\item 
+bool {\bfseries is\+Crouching}
+\item 
+String {\bfseries attack\+Name}
+\item 
+String {\bfseries next\+Attack\+Name}
+\item 
+Real {\bfseries attack\+Timeout}
+\item 
+bool {\bfseries has\+New\+Attack}
+\item 
+bool {\bfseries has\+Stopped\+Attack}
+\item 
+Real {\bfseries hit\+Timeout}
+\item 
+vector$<$ String $>$\+::type {\bfseries attack\+List}
+\item 
+unsigned short {\bfseries attack\+Counter}
+\item 
+Real {\bfseries head\+Turn\+Count}
+\item 
+bool {\bfseries is\+In\+Water}
+\item 
+bool {\bfseries has\+Double\+Jumped}
+\item 
+String {\bfseries lip\+Sync}
+\item 
+String {\bfseries lip\+Sync\+Anim}
+\item 
+String {\bfseries prev\+Lip\+Sync\+Anim}
+\item 
+Real {\bfseries lip\+Sync\+Speed}
+\item 
+Real {\bfseries lip\+Sync\+Counter}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+short {\bfseries max\+HP}
+\item 
+short {\bfseries hp}
+\item 
+unsigned char {\bfseries alliance}
+\item 
+bool {\bfseries invulnerable}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short {\bfseries object\+ID}
+\item 
+Vector3 {\bfseries m\+Force}
+\item 
+Real {\bfseries ground\+Height}
+\item 
+Real {\bfseries max\+Speed}
+\item 
+Real {\bfseries speed\+Multiplier}
+\item 
+Vector3 {\bfseries last\+Position}
+\item 
+Real {\bfseries update\+Time}
+\item 
+Degree {\bfseries face\+Direction\+Yaw}
+\item 
+bool {\bfseries anti\+Gravity}
+\item 
+Vector3 {\bfseries penalty\+Velocity}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Object\+Node}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_indexed_unit_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_indexed_unit_adaeaea56b7c771f35aa8ef9feda835ce}\index{MagixIndexedUnit@{MagixIndexedUnit}!isIndexedUnit@{isIndexedUnit}}
+\index{isIndexedUnit@{isIndexedUnit}!MagixIndexedUnit@{MagixIndexedUnit}}
+\doxysubsubsection{\texorpdfstring{isIndexedUnit()}{isIndexedUnit()}}
+{\footnotesize\ttfamily \label{class_magix_indexed_unit_adaeaea56b7c771f35aa8ef9feda835ce} 
+bool Magix\+Indexed\+Unit\+::is\+Indexed\+Unit (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Unit\+Manager.\+h\end{DoxyCompactItemize}

@@ -1,0 +1,82 @@
+\doxysection{Magix\+Item\+Manager Class Reference}
+\hypertarget{class_magix_item_manager}{}\label{class_magix_item_manager}\index{MagixItemManager@{MagixItemManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_item_manager_adbc1b8410a50758ba81cf0855ff29b87}\label{class_magix_item_manager_adbc1b8410a50758ba81cf0855ff29b87} 
+void {\bfseries initialize} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, \mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*}effects\+Mgr)
+\item 
+\Hypertarget{class_magix_item_manager_af114f8d8718ff68fc70b22f0d7749c08}\label{class_magix_item_manager_af114f8d8718ff68fc70b22f0d7749c08} 
+void {\bfseries reset} (bool clear\+Stash=false)
+\item 
+\Hypertarget{class_magix_item_manager_a830724fa4d3ebd7b5bbdfc185526df14}\label{class_magix_item_manager_a830724fa4d3ebd7b5bbdfc185526df14} 
+void {\bfseries update} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*}camera=0)
+\item 
+\Hypertarget{class_magix_item_manager_a408a261e0690d4a95080ce0feac542cf}\label{class_magix_item_manager_a408a261e0690d4a95080ce0feac542cf} 
+void {\bfseries create\+Item} (const unsigned short \&i\+ID, const String \&mesh\+Name, const Vector3 \&position)
+\item 
+\Hypertarget{class_magix_item_manager_a2d518a246bd2468bd11670077c09c4a0}\label{class_magix_item_manager_a2d518a246bd2468bd11670077c09c4a0} 
+void {\bfseries delete\+Item} (\mbox{\hyperlink{class_magix_item}{Magix\+Item}} \texorpdfstring{$\ast$}{*}t\+Item, const vector$<$ \mbox{\hyperlink{class_magix_item}{Magix\+Item}} \texorpdfstring{$\ast$}{*} $>$\+::type\+::iterator \&it)
+\item 
+\Hypertarget{class_magix_item_manager_a0b5cbcc96fdf084e81be1a715e27c7f1}\label{class_magix_item_manager_a0b5cbcc96fdf084e81be1a715e27c7f1} 
+void {\bfseries delete\+Item} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_item_manager_aab3a05f0854eba871e6a6e700bbe862e}\label{class_magix_item_manager_aab3a05f0854eba871e6a6e700bbe862e} 
+void {\bfseries delete\+All\+Items} ()
+\item 
+\Hypertarget{class_magix_item_manager_a24ea2f3d1aa8ed182ccb6553b7767790}\label{class_magix_item_manager_a24ea2f3d1aa8ed182ccb6553b7767790} 
+\mbox{\hyperlink{class_magix_item}{Magix\+Item}} \texorpdfstring{$\ast$}{*} {\bfseries get\+By\+Object\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}node)
+\item 
+\Hypertarget{class_magix_item_manager_a8c4804c8b58dc02644957629482c7d5c}\label{class_magix_item_manager_a8c4804c8b58dc02644957629482c7d5c} 
+\mbox{\hyperlink{class_magix_item}{Magix\+Item}} \texorpdfstring{$\ast$}{*} {\bfseries get\+By\+ID} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_item_manager_a77d5aae79bbfa0b26cf914803561c95e}\label{class_magix_item_manager_a77d5aae79bbfa0b26cf914803561c95e} 
+const unsigned short {\bfseries get\+Num\+Items} ()
+\item 
+\Hypertarget{class_magix_item_manager_a64322836c0f310c430133d00458834e4}\label{class_magix_item_manager_a64322836c0f310c430133d00458834e4} 
+const unsigned short {\bfseries get\+Next\+Empty\+ID} (const unsigned short \&start)
+\item 
+\Hypertarget{class_magix_item_manager_a2e3806453e85040eaea348110992eba2}\label{class_magix_item_manager_a2e3806453e85040eaea348110992eba2} 
+const vector$<$ \mbox{\hyperlink{class_magix_item}{Magix\+Item}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+Item\+List} ()
+\item 
+\Hypertarget{class_magix_item_manager_a0ffa761e0445d7ca7be6a3f0dd235c8a}\label{class_magix_item_manager_a0ffa761e0445d7ca7be6a3f0dd235c8a} 
+bool {\bfseries is\+Stash\+Full} ()
+\item 
+\Hypertarget{class_magix_item_manager_ae2f21bb10fde80ad1ea8e406e126e107}\label{class_magix_item_manager_ae2f21bb10fde80ad1ea8e406e126e107} 
+bool {\bfseries push\+Stash} (const String \&name)
+\item 
+\Hypertarget{class_magix_item_manager_a7978f312366f41442ca24ac85cf3be97}\label{class_magix_item_manager_a7978f312366f41442ca24ac85cf3be97} 
+const String {\bfseries get\+Stash\+At} (const unsigned short \&line)
+\item 
+\Hypertarget{class_magix_item_manager_a1510abd70e0c074997cb3deb13349003}\label{class_magix_item_manager_a1510abd70e0c074997cb3deb13349003} 
+const String {\bfseries pop\+Stash} (const unsigned short \&line)
+\item 
+\Hypertarget{class_magix_item_manager_a8ccef077ef5811c42901618b9484dadf}\label{class_magix_item_manager_a8ccef077ef5811c42901618b9484dadf} 
+const vector$<$ String $>$\+::type {\bfseries get\+Stash} ()
+\item 
+\Hypertarget{class_magix_item_manager_aadbfb99c3121c8d9054b0ec101fcf56f}\label{class_magix_item_manager_aadbfb99c3121c8d9054b0ec101fcf56f} 
+void {\bfseries clear\+Stash} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_item_manager_a9f7451ec3d8c710f284947cb0f79540e}\label{class_magix_item_manager_a9f7451ec3d8c710f284947cb0f79540e} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_item_manager_a5058cb51961f9c489c846da5ed2da92d}\label{class_magix_item_manager_a5058cb51961f9c489c846da5ed2da92d} 
+\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Def}
+\item 
+\Hypertarget{class_magix_item_manager_ac75aeabad3dc953808096f2b0e40e602}\label{class_magix_item_manager_ac75aeabad3dc953808096f2b0e40e602} 
+\mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Effects\+Manager}
+\item 
+\Hypertarget{class_magix_item_manager_a65f40965b29ef5946dc2faec51ba0ca7}\label{class_magix_item_manager_a65f40965b29ef5946dc2faec51ba0ca7} 
+vector$<$ \mbox{\hyperlink{class_magix_item}{Magix\+Item}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries item\+List}
+\item 
+\Hypertarget{class_magix_item_manager_af58df1b6918ad73565a84b4382c1e77e}\label{class_magix_item_manager_af58df1b6918ad73565a84b4382c1e77e} 
+vector$<$ String $>$\+::type {\bfseries item\+Stash}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Item\+Manager.\+h\end{DoxyCompactItemize}

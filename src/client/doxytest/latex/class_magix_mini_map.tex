@@ -1,0 +1,103 @@
+\doxysection{Magix\+Mini\+Map Class Reference}
+\hypertarget{class_magix_mini_map}{}\label{class_magix_mini_map}\index{MagixMiniMap@{MagixMiniMap}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_mini_map_a85896339a1c364a82b001b763ace5d83}\label{class_magix_mini_map_a85896339a1c364a82b001b763ace5d83} 
+void {\bfseries reset} ()
+\item 
+\Hypertarget{class_magix_mini_map_ace522f9bb9966f3e3ebd59e4c37d3814}\label{class_magix_mini_map_ace522f9bb9966f3e3ebd59e4c37d3814} 
+void {\bfseries initialize} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, \mbox{\hyperlink{class_magix_unit_manager}{Magix\+Unit\+Manager}} \texorpdfstring{$\ast$}{*}unit\+Mgr, \mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*}collision\+Mgr, \mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*}camera)
+\item 
+\Hypertarget{class_magix_mini_map_a22879d5387c551062538bff537cb956e}\label{class_magix_mini_map_a22879d5387c551062538bff537cb956e} 
+void {\bfseries show} (bool flag)
+\item 
+\Hypertarget{class_magix_mini_map_a17cd7264662813128fd773d4d65f9b2c}\label{class_magix_mini_map_a17cd7264662813128fd773d4d65f9b2c} 
+void {\bfseries flip\+Visibility} ()
+\item 
+\Hypertarget{class_magix_mini_map_ae806ef5cea8b8f79589f3822388c8ce8}\label{class_magix_mini_map_ae806ef5cea8b8f79589f3822388c8ce8} 
+void {\bfseries update} (bool cursor\+Visible, const Real \&cursorX, const Real \&cursorY, const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_mini_map_af4386047084f80106f29388c2e6654e2}\label{class_magix_mini_map_af4386047084f80106f29388c2e6654e2} 
+bool {\bfseries map\+Position} (const Vector2 \&center, const Vector2 \&input, Vector2 \&output)
+\item 
+\Hypertarget{class_magix_mini_map_ab0e23a3d02461668576b42aaac1b5a23}\label{class_magix_mini_map_ab0e23a3d02461668576b42aaac1b5a23} 
+void {\bfseries zoom\+In} ()
+\item 
+\Hypertarget{class_magix_mini_map_a018569033b7fbe0764d3de8692c440b5}\label{class_magix_mini_map_a018569033b7fbe0764d3de8692c440b5} 
+void {\bfseries zoom\+Out} ()
+\item 
+\Hypertarget{class_magix_mini_map_a81f5e724823c70436e0d1aa301a3660b}\label{class_magix_mini_map_a81f5e724823c70436e0d1aa301a3660b} 
+bool {\bfseries is\+In\+Marker} (Overlay\+Element \texorpdfstring{$\ast$}{*}marker, const Real \&x, const Real \&y)
+\item 
+\Hypertarget{class_magix_mini_map_a457fd6da4d024a0aa8534b9705117c20}\label{class_magix_mini_map_a457fd6da4d024a0aa8534b9705117c20} 
+void {\bfseries set\+Map\+Tag\+Use\+Char\+Name} (bool flag)
+\item 
+\Hypertarget{class_magix_mini_map_a8a21d5952d4a616023dc237f6cbd7c6e}\label{class_magix_mini_map_a8a21d5952d4a616023dc237f6cbd7c6e} 
+void {\bfseries update\+Portal\+Map} ()
+\item 
+\Hypertarget{class_magix_mini_map_a74dabf3123e0067770c086a3d048e94c}\label{class_magix_mini_map_a74dabf3123e0067770c086a3d048e94c} 
+void {\bfseries update\+Unit\+Marker} (\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\item 
+\Hypertarget{class_magix_mini_map_a1bfbe28029707c6f5ce36aaeaa0a2e71}\label{class_magix_mini_map_a1bfbe28029707c6f5ce36aaeaa0a2e71} 
+void {\bfseries ping\+Unit\+Marker} (\mbox{\hyperlink{class_magix_indexed_unit}{Magix\+Indexed\+Unit}} \texorpdfstring{$\ast$}{*}unit)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_mini_map_a61e97b0cc72ed5de3f0d8da8a275d1d0}\label{class_magix_mini_map_a61e97b0cc72ed5de3f0d8da8a275d1d0} 
+\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Def}
+\item 
+\Hypertarget{class_magix_mini_map_ac291f4103381031fd4832f0238c0870b}\label{class_magix_mini_map_ac291f4103381031fd4832f0238c0870b} 
+\mbox{\hyperlink{class_magix_unit_manager}{Magix\+Unit\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Unit\+Manager}
+\item 
+\Hypertarget{class_magix_mini_map_a917c13ac1ca00d884e6109ca1c9c93f2}\label{class_magix_mini_map_a917c13ac1ca00d884e6109ca1c9c93f2} 
+\mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Collision\+Manager}
+\item 
+\Hypertarget{class_magix_mini_map_af462aac4c4af9dfda96ff7f22206d262}\label{class_magix_mini_map_af462aac4c4af9dfda96ff7f22206d262} 
+\mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Camera}
+\item 
+\Hypertarget{class_magix_mini_map_a315050d1f22cd12f0973a7024aeab0cf}\label{class_magix_mini_map_a315050d1f22cd12f0973a7024aeab0cf} 
+Overlay\+Container \texorpdfstring{$\ast$}{*} {\bfseries m\+Map}
+\item 
+\Hypertarget{class_magix_mini_map_a8a58853bea8cb38d2e5b3665504b156d}\label{class_magix_mini_map_a8a58853bea8cb38d2e5b3665504b156d} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Map\+Cone}
+\item 
+\Hypertarget{class_magix_mini_map_af21dca68b2f521ec29d26a0e6736b145}\label{class_magix_mini_map_af21dca68b2f521ec29d26a0e6736b145} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Map\+Arrow}
+\item 
+\Hypertarget{class_magix_mini_map_a12a44facd368a955621397970999446d}\label{class_magix_mini_map_a12a44facd368a955621397970999446d} 
+Overlay\+Element \texorpdfstring{$\ast$}{*} {\bfseries m\+Map\+Tag}
+\item 
+\Hypertarget{class_magix_mini_map_a7598c16d54b62136a5b7b055c50e542e}\label{class_magix_mini_map_a7598c16d54b62136a5b7b055c50e542e} 
+vector$<$ bool $>$\+::type {\bfseries has\+Portal\+Marker}
+\item 
+\Hypertarget{class_magix_mini_map_a96a5272ecf53b2cdc236daadbb8db479}\label{class_magix_mini_map_a96a5272ecf53b2cdc236daadbb8db479} 
+vector$<$ bool $>$\+::type {\bfseries has\+Gate\+Marker}
+\item 
+\Hypertarget{class_magix_mini_map_a7b917db1fbb972e6c3ba16bfa004f701}\label{class_magix_mini_map_a7b917db1fbb972e6c3ba16bfa004f701} 
+vector$<$ std\+::pair$<$ Vector2, String $>$ $>$\+::type {\bfseries portal\+Map}
+\item 
+\Hypertarget{class_magix_mini_map_a1e7dc2b7bf2f934be0e210f35374cbb4}\label{class_magix_mini_map_a1e7dc2b7bf2f934be0e210f35374cbb4} 
+vector$<$ std\+::pair$<$ Vector2, String $>$ $>$\+::type {\bfseries gate\+Map}
+\item 
+\Hypertarget{class_magix_mini_map_adfb3b23bde0b974731d8f25f04b317c8}\label{class_magix_mini_map_adfb3b23bde0b974731d8f25f04b317c8} 
+Real {\bfseries zoom\+Ratio}
+\item 
+\Hypertarget{class_magix_mini_map_a48ad8f45e5c047f7b35371f190378fdb}\label{class_magix_mini_map_a48ad8f45e5c047f7b35371f190378fdb} 
+bool {\bfseries map\+Tag\+Use\+Char\+Name}
+\item 
+\Hypertarget{class_magix_mini_map_a91e41d5b887a583317dba0960a7ff74f}\label{class_magix_mini_map_a91e41d5b887a583317dba0960a7ff74f} 
+vector$<$ unsignedchar $>$\+::type {\bfseries ping\+Unit\+Markers}
+\item 
+\Hypertarget{class_magix_mini_map_ae54cca530e962cb09441009f4274295a}\label{class_magix_mini_map_ae54cca530e962cb09441009f4274295a} 
+unsigned char {\bfseries ping\+Counter}
+\item 
+\Hypertarget{class_magix_mini_map_a3fef73785f9987f0c3823a0f28100bcc}\label{class_magix_mini_map_a3fef73785f9987f0c3823a0f28100bcc} 
+Real {\bfseries ping\+Timer}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Mini\+Map.\+h\end{DoxyCompactItemize}

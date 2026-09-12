@@ -1,0 +1,285 @@
+\doxysection{Magix\+Utils.\+h}
+\hypertarget{_magix_utils_8h_source}{}\label{_magix_utils_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixUtils.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixUtils.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ ©\ Purring\ Bytes\ for\ KITF\ project}}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ this\ is\ public\ domain,\ this\ mention\ must\ stay.}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ Note\ :\ XOR\ function\ are\ here\ for\ now\ but\ are\ gona\ be\ migrated\ in\ a\ subclass\ of\ KITF\_UTILS}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixUtils\_h\_}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ \_\_MagixUtils\_h\_}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{namespace\ }KITF\_Utils\ }
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keyword}{class\ }MagixUtils\ }
+\DoxyCodeLine{00016\ \ \ \ \ \{}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00019\ \ \ \ \ \ \ \ \ MagixUtils()}
+\DoxyCodeLine{00020\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ XOR7(\textcolor{keyword}{const}\ String\&\ input,\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}*\ checksum\ =\ 0,\ \textcolor{keywordtype}{bool}\ preChecksum\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ String\ output\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ input.length();\ i++)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tC\ =\ input[i];}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (checksum\ \&\&\ preChecksum)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *checksum\ +=\ (\textcolor{keywordtype}{unsigned}\ long)tC;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tC\ \string^=\ XORKEY;\textcolor{comment}{//3*(i\%7)+24;\ //\ 7*(i\%7+1)}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Replace\ illegal\ characters\ with\ original\ character}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tC\ >\ \textcolor{keywordtype}{char}(126)\ ||\ tC<\textcolor{keywordtype}{char}(32))}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tC\ =\ input[i];}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ +=\ tC;}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (checksum\ \&\&\ !preChecksum)}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ *checksum\ +=\ (\textcolor{keywordtype}{unsigned}\ long)tC;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ let\ temporary\ but\ gona\ be\ replaced\ with\ a\ rot13\ soon.}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{comment}{//\ this\ probably\ derivate\ from\ some\ askme\ or\ stackoverflow\ and\ must\ therefore\ be}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{comment}{//\ rewritten.}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ vector<String>::type\ XORInternal(\textcolor{keyword}{const}\ String\ inFile,\ \textcolor{keywordtype}{bool}\ preChecksum\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ String\ line\ =\ \textcolor{stringliteral}{"{}"{}},\ prevline;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ vector<String>::type\ tBuffer;}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tChecksum\ =\ 0;}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \ \ \ \ DataStreamPtr\ stream\ =\ Root::getSingleton().openFileStream(inFile);}
+\DoxyCodeLine{00063\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!stream.isNull())}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ i\ =\ 0;}
+\DoxyCodeLine{00067\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!stream-\/>eof())}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prevline\ =\ line;}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ line\ =\ stream-\/>getLine(\textcolor{keyword}{false});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (stream-\/>eof())}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ prevline\ =\ XOR7(prevline,\ \&tChecksum,\ preChecksum);}
+\DoxyCodeLine{00074\ }
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (i\ >\ 1)}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer.push\_back(prevline);}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ i++;}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer.pop\_back();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tChecksumRight\ =\ (tChecksum\ ==\ StringConverter::parseLong(XOR7(prevline)));}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!tChecksumRight)}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}(Exception(9,\ \textcolor{stringliteral}{"{}Corrupted\ Data\ File"{}},\ inFile\ +\ \textcolor{stringliteral}{"{},\ Please\ reencode\ or\ ."{}}));}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer.pop\_back();}
+\DoxyCodeLine{00084\ }
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tBuffer;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ OGRE\_EXCEPT(Exception::ERR\_FILE\_NOT\_FOUND,\ \textcolor{stringliteral}{"{}Cannot\ locate\ file\ "{}}\ +}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile\ +\ \textcolor{stringliteral}{"{}\ required\ for\ game."{}},\ \textcolor{stringliteral}{"{}MagixExternalDefinitions.h"{}});}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ }
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ XOR7FileGen(\textcolor{keyword}{const}\ String\&\ infile,\ \textcolor{keyword}{const}\ String\&\ outfile,\ \textcolor{keywordtype}{bool}\ decrypt,\ \textcolor{keywordtype}{bool}\ checksum\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ vector<String>::type\ tBuffer;}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{long}\ tChecksum\ =\ 0;}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.open(infile.c\_str(),\ (decrypt\ ?\ std::ios\_base::binary\ :\ std::ifstream::in));}
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inFile.good())\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (inFile.good()\ \&\&\ !inFile.eof())}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tLine[512]\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tLine,\ 512);}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer.push\_back(tLine);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer.pop\_back();}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ outFile(outfile.c\_str(),\ (decrypt\ ?\ std::ofstream::out\ :\ std::ios\_base::binary));}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ (int)tBuffer.size()\ -\/\ (decrypt\ \&\&\ checksum\ ?\ 1\ :\ 0);\ i++)}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tLine\ =\ XOR7(tBuffer[i].c\_str(),\ (checksum\ ?\ \&tChecksum\ :\ 0),\ !decrypt)\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tLine.c\_str(),\ (\textcolor{keywordtype}{int})tLine.length());}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!decrypt\ \&\&\ checksum\ \&\&\ tBuffer.size()\ >\ 0)}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tLine\ =\ XOR7(StringConverter::toString(tChecksum))\ +\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outFile.write(tLine.c\_str(),\ (\textcolor{keywordtype}{int})tLine.length());}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (decrypt\ \&\&\ checksum)}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tChecksumRight\ =\ tBuffer.size()\ >\ 0\ ?\ (tChecksum\ ==\ StringConverter::parseLong(XOR7(tBuffer[tBuffer.size()\ -\/\ 1]).c\_str()))\ :\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!tChecksumRight)\_unlink(outfile.c\_str());}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tChecksumRight;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ }
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00130\ }
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ take\ input\ and\ throws\ out\ a\ rot13\ key,\ only\ chars\ in\ A-\/Z\ and\ a-\/z\ are\ parsed\ the\ rest\ stays\ normal}}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ \mbox{\hyperlink{class_k_i_t_f___utils_1_1_magix_utils_aef19bf24763678f35543497b79c4c26c}{ROT13}}(\textcolor{keyword}{const}\ std::string\&\ input)}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ String\ output\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00138\ }
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ String\ key\ =\ ROTKEY;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ keysize\ =\ (int)key.size();}
+\DoxyCodeLine{00141\ }
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ should\ happen\ like\ never.\ \ \ \ \ \ \ }}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//if(keyLen\ ==\ 0)\ return\ input;\ //\ no\ key\ means\ no\ change}}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{size\_t}\ i\ =\ 0;\ i\ <\ input.size();\ ++i)}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ tC\ =\ input[i];}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Get\ key\ char\ at\ position\ modulo\ key\ length}}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ keyChar\ =\ ROTKEY[i\ \%\ keysize];}
+\DoxyCodeLine{00151\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Compute\ shift\ amount\ as\ 0-\/based\ letter\ index\ if\ letter,\ else\ zero}}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ shift\ =\ 0;}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ ((keyChar\ >=\ \textcolor{charliteral}{'a'}\ \&\&\ keyChar\ <=\ \textcolor{charliteral}{'z'}))\ shift\ =\ keyChar\ -\/\ \textcolor{charliteral}{'a'};}
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ ((keyChar\ >=\ \textcolor{charliteral}{'A'}\ \&\&\ keyChar\ <=\ \textcolor{charliteral}{'Z'}))\ shift\ =\ keyChar\ -\/\ \textcolor{charliteral}{'A'};}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ shift\ only\ to\ letters}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tC\ >=\ \textcolor{charliteral}{'a'}\ \&\&\ tC\ <=\ \textcolor{charliteral}{'z'})\ \{}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tC\ =\ \textcolor{charliteral}{'a'}\ +\ (tC\ -\/\ \textcolor{charliteral}{'a'}\ +\ shift)\ \%\ 26;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (tC\ >=\ \textcolor{charliteral}{'A'}\ \&\&\ tC\ <=\ \textcolor{charliteral}{'Z'})\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tC\ =\ \textcolor{charliteral}{'A'}\ +\ (tC\ -\/\ \textcolor{charliteral}{'A'}\ +\ shift)\ \%\ 26;}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ else\ keep\ tC\ unchanged\ for\ non-\/letters}}
+\DoxyCodeLine{00165\ }
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Keep\ printable\ range\ only\ (32..126),\ else\ revert\ to\ original\ input\ char}}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tC\ <\ 32\ ||\ tC\ >\ 126)\ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tC\ =\ input[i];}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00170\ }
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ output\ +=\ tC;}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00173\ }
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ output;}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ generate\ but\ do\ not\ decipher,\ for\ deciphering,\ have\ a\ tool\ external\ to\ game}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ warning\ :\ you\ are\ responsible\ for\ your\ cfg\ backups,\ do\ not\ distribute\ them.}}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ ROT13CipherGen(\textcolor{keyword}{const}\ String\&\ inputIO,\ \textcolor{keyword}{const}\ std::string\&\ outputIO)\ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ inFile(inputIO.c\_str());}
+\DoxyCodeLine{00181\ }
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ input\ file\ not\ found\ or\ can't\ be\ opened,\ this\ need\ logging}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!inFile.is\_open())\ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ }
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<String>\ buffer;}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ std::string\ line;}
+\DoxyCodeLine{00189\ }
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Read\ input\ file\ line\ by\ line}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (std::getline(inFile,\ line))\ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer.push\_back(\mbox{\hyperlink{class_k_i_t_f___utils_1_1_magix_utils_aef19bf24763678f35543497b79c4c26c}{ROT13}}(line));}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Write\ ciphered\ lines\ to\ output\ file}}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \ \ \ \ std::ofstream\ outFile(outputIO);}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (!outFile.is\_open())\ \{}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \textcolor{comment}{//\ output\ file\ can't\ be\ opened\ for\ writing}}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00201\ }
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{const}\ \textcolor{keyword}{auto}\&\ cipheredLine\ :\ buffer)\ \{}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ outFile\ <<\ cipheredLine\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ outFile.close();}
+\DoxyCodeLine{00206\ }
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};\ \textcolor{comment}{//\ success}}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ this\ is\ similar\ to\ how\ XORInternal\ works}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ vector<String>::type\ ROT13Decipher(\textcolor{keyword}{const}\ String\&\ inFile)}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ vector<String>::type\ buffer;}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ DataStreamPtr\ stream\ =\ Root::getSingleton().openFileStream(inFile);}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (stream.isNull())}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OGRE\_EXCEPT(Exception::ERR\_FILE\_NOT\_FOUND,}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ locate\ file\ "{}}\ +\ inFile\ +\ \textcolor{stringliteral}{"{}\ for\ ROT13\ decipher."{}},}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}ROT13Decipher"{}});}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ }
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (!stream-\/>eof())}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ line\ =\ stream-\/>getLine(\textcolor{keyword}{false});\ \textcolor{comment}{//\ false\ =\ do\ not\ trim}}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (line.empty()\ \&\&\ stream-\/>eof())\ \textcolor{comment}{//\ to\ avoid\ processing\ last\ empty\ line\ after\ EOF}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Apply\ ROT13\ to\ decipher\ line}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ decipheredLine\ =\ \mbox{\hyperlink{class_k_i_t_f___utils_1_1_magix_utils_aef19bf24763678f35543497b79c4c26c}{ROT13}}(line);}
+\DoxyCodeLine{00231\ }
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ buffer.push\_back(decipheredLine);}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00234\ }
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ buffer;}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ }
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_k_i_t_f___utils_1_1_magix_utils_ac4b506d4fe61ee463148e52bfcb0c7e6}{loadWorldFile}}(\textcolor{keyword}{const}\ String\&\ filename,\ String\&\ terrain,\ Real\&\ x,\ Real\&\ z,\ Vector3\&\ spawnSquare,\ Vector2\&\ worldBounds)}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}*\ tBuffer;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ String\ tData\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00249\ }
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ inFile.open(filename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (inFile.good())}
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::end);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tSize\ =\ (long)inFile.tellg();}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,\ std::ios::beg);}
+\DoxyCodeLine{00257\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00258\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(tBuffer,\ \textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00259\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,\ tSize,\ \textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00264\ }
+\DoxyCodeLine{00265\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tPart\ =\ StringUtil::split(tData,\ \textcolor{stringliteral}{"{}[\#"{}});}
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i<int(tPart.size());\ i++)}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tPart[i],\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}},\ 6);}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tLine.size()\ >\ 0)}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00271\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (StringUtil::startsWith(tLine[0],\ \textcolor{stringliteral}{"{}Initialize"{}},\ \textcolor{keyword}{false})\ \&\&\ tLine.size()\ >=\ 5)}
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ terrain\ =\ tLine[1];}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ x\ =\ StringConverter::parseReal(tLine[2]);}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ z\ =\ StringConverter::parseReal(tLine[3]);}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ spawnSquare\ =\ StringConverter::parseVector3(tLine[4]);}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (tLine.size()\ >\ 5)worldBounds\ =\ StringConverter::parseVector2(tLine[5]);}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00284\ }
+\DoxyCodeLine{00285\ }
+\DoxyCodeLine{00286\ \ \ \ \ \};}
+\DoxyCodeLine{00287\ \}}
+\DoxyCodeLine{00288\ \textcolor{preprocessor}{\#endif;}}
+
+\end{DoxyCode}

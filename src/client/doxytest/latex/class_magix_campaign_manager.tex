@@ -1,0 +1,201 @@
+\doxysection{Magix\+Campaign\+Manager Class Reference}
+\hypertarget{class_magix_campaign_manager}{}\label{class_magix_campaign_manager}\index{MagixCampaignManager@{MagixCampaignManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_campaign_manager_af2d0bd436854ecc4cf8e7d72882128ac}\label{class_magix_campaign_manager_af2d0bd436854ecc4cf8e7d72882128ac} 
+void {\bfseries initialize} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, \mbox{\hyperlink{class_magix_game_state_manager}{Magix\+Game\+State\+Manager}} \texorpdfstring{$\ast$}{*}game\+State\+Mgr, \mbox{\hyperlink{class_magix_g_u_i}{Magix\+GUI}} \texorpdfstring{$\ast$}{*}gui, \mbox{\hyperlink{class_magix_unit_manager}{Magix\+Unit\+Manager}} \texorpdfstring{$\ast$}{*}unit\+Mgr, \mbox{\hyperlink{class_magix_world}{Magix\+World}} \texorpdfstring{$\ast$}{*}world, \mbox{\hyperlink{class_magix_sky_manager}{Magix\+Sky\+Manager}} \texorpdfstring{$\ast$}{*}sky\+Mgr, \mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*}camera, \mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*}sound\+Mgr, \mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*}collision\+Mgr, \mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*}fx\+Mgr)
+\item 
+\Hypertarget{class_magix_campaign_manager_a23adbef5ec5c81b7b3b43eab13755e01}\label{class_magix_campaign_manager_a23adbef5ec5c81b7b3b43eab13755e01} 
+void {\bfseries load\+Campaign} ()
+\item 
+\Hypertarget{class_magix_campaign_manager_a1fc47ff337cd33653f90f0c4c001d9d8}\label{class_magix_campaign_manager_a1fc47ff337cd33653f90f0c4c001d9d8} 
+void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_campaign_manager_a0f9945561bd4a38b984aef49627e108b}\label{class_magix_campaign_manager_a0f9945561bd4a38b984aef49627e108b} 
+void {\bfseries update\+Scripted\+Units} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_campaign_manager_aee71d4add94625ef36067d3916a963ab}\label{class_magix_campaign_manager_aee71d4add94625ef36067d3916a963ab} 
+void {\bfseries continue\+Campaign} ()
+\item 
+\Hypertarget{class_magix_campaign_manager_a5cdfe41d85744e54f6ef5c0b92923563}\label{class_magix_campaign_manager_a5cdfe41d85744e54f6ef5c0b92923563} 
+bool {\bfseries check\+Game\+Over} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_campaign_manager_a2c3d0f5a3b0aa01dcc4680db5549161d}\label{class_magix_campaign_manager_a2c3d0f5a3b0aa01dcc4680db5549161d} 
+void {\bfseries do\+Random\+Spawn} ()
+\item 
+\Hypertarget{class_magix_campaign_manager_a629d8035a0d2a8baea0d2a5d3d1adf1e}\label{class_magix_campaign_manager_a629d8035a0d2a8baea0d2a5d3d1adf1e} 
+void {\bfseries create\+Spawns} (unsigned short number)
+\item 
+\Hypertarget{class_magix_campaign_manager_aa89adad61a1d21ae2e5bb0f9dfdf428b}\label{class_magix_campaign_manager_aa89adad61a1d21ae2e5bb0f9dfdf428b} 
+void {\bfseries update\+Spawns} ()
+\item 
+\Hypertarget{class_magix_campaign_manager_a7600abe1f06c70d9e4e7c3d1d9a5b86a}\label{class_magix_campaign_manager_a7600abe1f06c70d9e4e7c3d1d9a5b86a} 
+void {\bfseries kill\+Spawns} ()
+\item 
+\Hypertarget{class_magix_campaign_manager_a3cd57eb39e53312b035eae482f45936e}\label{class_magix_campaign_manager_a3cd57eb39e53312b035eae482f45936e} 
+bool {\bfseries unit\+Is\+In\+Region} (\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit, const Vector2 \&center, const Real \&range)
+\item 
+\Hypertarget{class_magix_campaign_manager_ab4d80573e14e365a660e21566d42c2ec}\label{class_magix_campaign_manager_ab4d80573e14e365a660e21566d42c2ec} 
+void {\bfseries set\+Checkpoint} ()
+\item 
+\Hypertarget{class_magix_campaign_manager_ade6b7347462d66925478058b15ce8408}\label{class_magix_campaign_manager_ade6b7347462d66925478058b15ce8408} 
+void {\bfseries toggle\+Cinematic} (bool skip\+Transition=false)
+\item 
+\Hypertarget{class_magix_campaign_manager_aadd12bc9c366aa86774b70ac61b40153}\label{class_magix_campaign_manager_aadd12bc9c366aa86774b70ac61b40153} 
+void {\bfseries close\+Campaign} (unsigned short restart\+State=GAMESTATE\+\_\+\+INITIALIZE, const String \&credits\+Name="{}"{})
+\item 
+\Hypertarget{class_magix_campaign_manager_a7acfeb50610c0803b21135958e4de411}\label{class_magix_campaign_manager_a7acfeb50610c0803b21135958e4de411} 
+void {\bfseries update\+Credits} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_campaign_manager_a8edc5cd86613a908bd899ae6296a88a7}\label{class_magix_campaign_manager_a8edc5cd86613a908bd899ae6296a88a7} 
+bool {\bfseries compare} (String first, String second)
+\item 
+void \mbox{\hyperlink{class_magix_campaign_manager_ac2e25d2608adaffa47255024100d3743}{process\+Event}} (const Campaign\+Event \&c\+Event, bool is\+Initialize=false, \mbox{\hyperlink{struct_scripted_unit}{Scripted\+Unit}} \texorpdfstring{$\ast$}{*}s\+Unit=0)
+\begin{DoxyCompactList}\small\item\em this is campaign events and should be moved. this is also a HUGE part of the code this would be solo only for sure as we wont rewrite this \end{DoxyCompactList}\item 
+\Hypertarget{class_magix_campaign_manager_acd1e136cd2250ccd63b3d762d7124808}\label{class_magix_campaign_manager_acd1e136cd2250ccd63b3d762d7124808} 
+void {\bfseries register\+Event\+Conditions} (const Campaign\+Event \&c\+Event, \mbox{\hyperlink{struct_scripted_unit}{Scripted\+Unit}} \texorpdfstring{$\ast$}{*}s\+Unit=0)
+\item 
+\Hypertarget{class_magix_campaign_manager_a88d98e58842e20b86321185f051eeb52}\label{class_magix_campaign_manager_a88d98e58842e20b86321185f051eeb52} 
+void {\bfseries check\+Event\+Condition} (\mbox{\hyperlink{struct_scripted_unit}{Scripted\+Unit}} \texorpdfstring{$\ast$}{*}s\+Unit=0)
+\item 
+\Hypertarget{class_magix_campaign_manager_a42985add313329016ca23a4fba213e5e}\label{class_magix_campaign_manager_a42985add313329016ca23a4fba213e5e} 
+const Real {\bfseries parse\+Real} (const String \&data)
+\item 
+\Hypertarget{class_magix_campaign_manager_a934e9f396ab73c4600ee193d6cf4a1cf}\label{class_magix_campaign_manager_a934e9f396ab73c4600ee193d6cf4a1cf} 
+const unsigned short {\bfseries parse\+Progress} (const String \&data)
+\item 
+\Hypertarget{class_magix_campaign_manager_a9f716b22c30d13cf2fc4e5be6c063fdf}\label{class_magix_campaign_manager_a9f716b22c30d13cf2fc4e5be6c063fdf} 
+\mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*} {\bfseries parse\+Unit} (const String \&data, \mbox{\hyperlink{struct_scripted_unit}{Scripted\+Unit}} \texorpdfstring{$\ast$}{*}s\+Unit=0)
+\item 
+\Hypertarget{class_magix_campaign_manager_ae1ad0015c6eba0bda4c94f7ea6bf4773}\label{class_magix_campaign_manager_ae1ad0015c6eba0bda4c94f7ea6bf4773} 
+const Vector2 {\bfseries parse\+Vector2} (const String \&data, \mbox{\hyperlink{struct_scripted_unit}{Scripted\+Unit}} \texorpdfstring{$\ast$}{*}s\+Unit=0)
+\item 
+\Hypertarget{class_magix_campaign_manager_a38591f1291a893583c7f618dd69d5081}\label{class_magix_campaign_manager_a38591f1291a893583c7f618dd69d5081} 
+const Vector3 {\bfseries parse\+Vector3} (const String \&data, \mbox{\hyperlink{struct_scripted_unit}{Scripted\+Unit}} \texorpdfstring{$\ast$}{*}s\+Unit=0, bool is\+Vector2=false)
+\item 
+\Hypertarget{class_magix_campaign_manager_acb4c66b051f5041a71819fb731bb4065}\label{class_magix_campaign_manager_acb4c66b051f5041a71819fb731bb4065} 
+const Quaternion {\bfseries parse\+Quaternion} (const String \&data)
+\item 
+\Hypertarget{class_magix_campaign_manager_adc5b9a266042b819fd32f2c7b612befe}\label{class_magix_campaign_manager_adc5b9a266042b819fd32f2c7b612befe} 
+const unsigned short {\bfseries parse\+Action} (const String \&data)
+\item 
+\Hypertarget{class_magix_campaign_manager_a9536410072958d34cab7600b11196618}\label{class_magix_campaign_manager_a9536410072958d34cab7600b11196618} 
+const unsigned short {\bfseries parse\+Alliance} (const String \&data)
+\item 
+\Hypertarget{class_magix_campaign_manager_a9280c70ec8bd4fa3f79a7698c1a0e766}\label{class_magix_campaign_manager_a9280c70ec8bd4fa3f79a7698c1a0e766} 
+const short {\bfseries parse\+Item\+Slot} (const String \&data, \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*}unit=0)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_campaign_manager_a32ed2f3bf8349e032dc38cc5596a1baa}\label{class_magix_campaign_manager_a32ed2f3bf8349e032dc38cc5596a1baa} 
+\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Def}
+\item 
+\Hypertarget{class_magix_campaign_manager_ac47c5fd1bb0c8a4e895ae36669e05040}\label{class_magix_campaign_manager_ac47c5fd1bb0c8a4e895ae36669e05040} 
+\mbox{\hyperlink{class_magix_game_state_manager}{Magix\+Game\+State\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Game\+State\+Manager}
+\item 
+\Hypertarget{class_magix_campaign_manager_a3ec0ae1f4504ac6c7caaac9c4cce3bbd}\label{class_magix_campaign_manager_a3ec0ae1f4504ac6c7caaac9c4cce3bbd} 
+\mbox{\hyperlink{class_magix_g_u_i}{Magix\+GUI}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Gui}
+\item 
+\Hypertarget{class_magix_campaign_manager_ab2e8944043387b389a02fd34227f5032}\label{class_magix_campaign_manager_ab2e8944043387b389a02fd34227f5032} 
+\mbox{\hyperlink{class_magix_unit_manager}{Magix\+Unit\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Unit\+Manager}
+\item 
+\Hypertarget{class_magix_campaign_manager_a4c09844e0c183077c09bb5cd786a73f4}\label{class_magix_campaign_manager_a4c09844e0c183077c09bb5cd786a73f4} 
+\mbox{\hyperlink{class_magix_world}{Magix\+World}} \texorpdfstring{$\ast$}{*} {\bfseries m\+World}
+\item 
+\Hypertarget{class_magix_campaign_manager_a46bbfd3bd411e2e41ee95a8f390a4d7f}\label{class_magix_campaign_manager_a46bbfd3bd411e2e41ee95a8f390a4d7f} 
+\mbox{\hyperlink{class_magix_sky_manager}{Magix\+Sky\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Sky\+Manager}
+\item 
+\Hypertarget{class_magix_campaign_manager_a71abc052535adb1f752b2bba6a6dd97b}\label{class_magix_campaign_manager_a71abc052535adb1f752b2bba6a6dd97b} 
+\mbox{\hyperlink{class_magix_camera}{Magix\+Camera}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Camera}
+\item 
+\Hypertarget{class_magix_campaign_manager_abcf520aa16165cc36fa8100d4bc7fa56}\label{class_magix_campaign_manager_abcf520aa16165cc36fa8100d4bc7fa56} 
+\mbox{\hyperlink{class_magix_sound_manager}{Magix\+Sound\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Sound\+Manager}
+\item 
+\Hypertarget{class_magix_campaign_manager_a2ab859721df42a34d98741321af1ff9d}\label{class_magix_campaign_manager_a2ab859721df42a34d98741321af1ff9d} 
+\mbox{\hyperlink{class_magix_collision_manager}{Magix\+Collision\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Collision\+Manager}
+\item 
+\Hypertarget{class_magix_campaign_manager_a8c6a825bb4f98648de9cf4174c16a442}\label{class_magix_campaign_manager_a8c6a825bb4f98648de9cf4174c16a442} 
+\mbox{\hyperlink{class_magix_effects_manager}{Magix\+Effects\+Manager}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Effects\+Manager}
+\item 
+\Hypertarget{class_magix_campaign_manager_a9d817874074853e9098cd40c9308d8c8}\label{class_magix_campaign_manager_a9d817874074853e9098cd40c9308d8c8} 
+unsigned short {\bfseries progress}
+\item 
+\Hypertarget{class_magix_campaign_manager_a292b4e649bd9ee167ff5c299ae01b45c}\label{class_magix_campaign_manager_a292b4e649bd9ee167ff5c299ae01b45c} 
+unsigned short {\bfseries progress\+Checkpoint}
+\item 
+\Hypertarget{class_magix_campaign_manager_a6487c6bc026f4a50a6eaf7914e431315}\label{class_magix_campaign_manager_a6487c6bc026f4a50a6eaf7914e431315} 
+Real {\bfseries cinematic\+Timer}
+\item 
+\Hypertarget{class_magix_campaign_manager_a4b7712c1ee0811c4f117d1b105619983}\label{class_magix_campaign_manager_a4b7712c1ee0811c4f117d1b105619983} 
+bool {\bfseries random\+Spawn}
+\item 
+\Hypertarget{class_magix_campaign_manager_a3146f898b9827661c2324dc3184198cd}\label{class_magix_campaign_manager_a3146f898b9827661c2324dc3184198cd} 
+Real {\bfseries random\+Spawn\+Timer}
+\item 
+\Hypertarget{class_magix_campaign_manager_ab9cdb837df89dc02423c99ca400d4512}\label{class_magix_campaign_manager_ab9cdb837df89dc02423c99ca400d4512} 
+vector$<$ \mbox{\hyperlink{class_magix_unit}{Magix\+Unit}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries m\+Spawn}
+\item 
+\Hypertarget{class_magix_campaign_manager_a7606638cb878c3d3f545405dfe543ed3}\label{class_magix_campaign_manager_a7606638cb878c3d3f545405dfe543ed3} 
+vector$<$ \mbox{\hyperlink{struct_scripted_unit}{Scripted\+Unit}} $>$\+::type {\bfseries m\+Scripted\+Units}
+\item 
+\Hypertarget{class_magix_campaign_manager_a23847cb7f03be615c085ed599ab2245a}\label{class_magix_campaign_manager_a23847cb7f03be615c085ed599ab2245a} 
+vector$<$ String $>$\+::type {\bfseries credits}
+\item 
+\Hypertarget{class_magix_campaign_manager_aaa0cf8e7bf95810967b13ae02f6a45df}\label{class_magix_campaign_manager_aaa0cf8e7bf95810967b13ae02f6a45df} 
+Real {\bfseries credits\+Timeout}
+\item 
+\Hypertarget{class_magix_campaign_manager_a33df5472dec61f85de441e9de1ba3219}\label{class_magix_campaign_manager_a33df5472dec61f85de441e9de1ba3219} 
+unsigned short {\bfseries credits\+Counter}
+\item 
+\Hypertarget{class_magix_campaign_manager_aecd4dd4d903ec42a3b80782f058f9123}\label{class_magix_campaign_manager_aecd4dd4d903ec42a3b80782f058f9123} 
+Real {\bfseries game\+Over\+Timeout}
+\item 
+\Hypertarget{class_magix_campaign_manager_a964edce633ffc4b8872fd711fbfb7d2f}\label{class_magix_campaign_manager_a964edce633ffc4b8872fd711fbfb7d2f} 
+vector$<$ \mbox{\hyperlink{struct_skill}{Skill}} $>$\+::type {\bfseries skills\+Checkpoint}
+\item 
+\Hypertarget{class_magix_campaign_manager_a3cd2b9181f313c82313e9019892bf028}\label{class_magix_campaign_manager_a3cd2b9181f313c82313e9019892bf028} 
+String {\bfseries campaign\+Filename}
+\item 
+\Hypertarget{class_magix_campaign_manager_a583831f2e3ef59b746000e02b63689ba}\label{class_magix_campaign_manager_a583831f2e3ef59b746000e02b63689ba} 
+Campaign\+Event\+List {\bfseries event\+List}
+\item 
+\Hypertarget{class_magix_campaign_manager_a21e212b3f153ac84604d28968b38f290}\label{class_magix_campaign_manager_a21e212b3f153ac84604d28968b38f290} 
+vector$<$ String $>$\+::type {\bfseries next\+Event}
+\item 
+\Hypertarget{class_magix_campaign_manager_a115f2356d121abd7281cd8252600a3af}\label{class_magix_campaign_manager_a115f2356d121abd7281cd8252600a3af} 
+vector$<$ vector$<$ String $>$\+::type $>$\+::type {\bfseries event\+Condition\+List}
+\item 
+\Hypertarget{class_magix_campaign_manager_ab6e7846683cb214163f89b4ad6690853}\label{class_magix_campaign_manager_ab6e7846683cb214163f89b4ad6690853} 
+bool {\bfseries ignore\+Game\+Over}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_campaign_manager_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_campaign_manager_ac2e25d2608adaffa47255024100d3743}\index{MagixCampaignManager@{MagixCampaignManager}!processEvent@{processEvent}}
+\index{processEvent@{processEvent}!MagixCampaignManager@{MagixCampaignManager}}
+\doxysubsubsection{\texorpdfstring{processEvent()}{processEvent()}}
+{\footnotesize\ttfamily \label{class_magix_campaign_manager_ac2e25d2608adaffa47255024100d3743} 
+void Magix\+Campaign\+Manager\+::process\+Event (\begin{DoxyParamCaption}\item[{const Campaign\+Event \&}]{c\+Event}{, }\item[{bool}]{is\+Initialize}{ = {\ttfamily false}, }\item[{\mbox{\hyperlink{struct_scripted_unit}{Scripted\+Unit}} \texorpdfstring{$\ast$}{*}}]{s\+Unit}{ = {\ttfamily 0}}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}}
+
+
+
+this is campaign events and should be moved. this is also a HUGE part of the code this would be solo only for sure as we wont rewrite this 
+
+
+\begin{DoxyParams}{Parameters}
+{\em c\+Event} & \\
+\hline
+{\em is\+Initialize} & \\
+\hline
+{\em s\+Unit} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Campaign\+Manager.\+h\end{DoxyCompactItemize}

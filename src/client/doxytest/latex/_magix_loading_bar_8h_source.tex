@@ -1,0 +1,185 @@
+\doxysection{Magix\+Loading\+Bar.\+h}
+\hypertarget{_magix_loading_bar_8h_source}{}\label{_magix_loading_bar_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixLoadingBar.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixLoadingBar.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ "{}OgreResourceGroupManager.h"{}}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ "{}OgreException.h"{}}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ "{}OgreOverlay.h"{}}}
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}OgreOverlayManager.h"{}}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ "{}OgreRenderWindow.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#include\ "{}fontTextureHelper.h"{}}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00011\ \textcolor{comment}{Based\ heavily\ off\ of\ Ogre's\ ExampleLoadingBar.h}}
+\DoxyCodeLine{00012\ \textcolor{comment}{Description:\ Defines\ an\ example\ loading\ progress\ bar\ which\ you\ can\ use\ during\ }}
+\DoxyCodeLine{00013\ \textcolor{comment}{startup,\ level\ changes\ etc\ to\ display\ loading\ progress.\ }}
+\DoxyCodeLine{00014\ \textcolor{comment}{IMPORTANT:\ Note\ that\ this\ progress\ bar\ relies\ on\ you\ having\ the\ OgreCore.zip\ }}
+\DoxyCodeLine{00015\ \textcolor{comment}{package\ already\ added\ to\ a\ resource\ group\ called\ 'Bootstrap'\ -\/\ this\ provides}}
+\DoxyCodeLine{00016\ \textcolor{comment}{the\ basic\ resources\ required\ for\ the\ progress\ bar\ and\ will\ be\ loaded\ automatically.}}
+\DoxyCodeLine{00017\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00018\ \textcolor{keyword}{class\ }MagixLoadingBar\ :\ \textcolor{keyword}{public}\ ResourceGroupListener}
+\DoxyCodeLine{00019\ \{}
+\DoxyCodeLine{00020\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00021\ \ \ \ \ RenderWindow*\ mWindow;}
+\DoxyCodeLine{00022\ \ \ \ \ Overlay*\ mLoadOverlay;}
+\DoxyCodeLine{00023\ \ \ \ \ Real\ mInitProportion;}
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mNumGroupsInit;}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mNumGroupsLoad;}
+\DoxyCodeLine{00026\ \ \ \ \ Real\ mProgressBarMaxSize;}
+\DoxyCodeLine{00027\ \ \ \ \ Real\ mProgressBarScriptSize;}
+\DoxyCodeLine{00028\ \ \ \ \ Real\ mProgressBarInc;}
+\DoxyCodeLine{00029\ \ \ \ \ OverlayElement*\ mLoadingBarElement;}
+\DoxyCodeLine{00030\ \ \ \ \ OverlayElement*\ mLoadingDescriptionElement;}
+\DoxyCodeLine{00031\ \ \ \ \ OverlayElement*\ mLoadingCommentElement;}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00034\ \ \ \ \ MagixLoadingBar()\ \{\}}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keyword}{virtual}\ \string~MagixLoadingBar()\{\}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00045\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_loading_bar_a0bb8d294ea3d574a61019bcb978df632}{start}}(RenderWindow*\ window,\ }
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numGroupsInit\ =\ 1,\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ numGroupsLoad\ =\ 1,\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ Real\ initProportion\ =\ 0.70f)}
+\DoxyCodeLine{00049\ \ \ \ \ \{}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ mWindow\ =\ window;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ mNumGroupsInit\ =\ numGroupsInit;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ mNumGroupsLoad\ =\ numGroupsLoad;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ mInitProportion\ =\ initProportion;}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ We\ need\ to\ pre-\/initialise\ the\ 'Bootstrap'\ group\ so\ we\ can\ use}}
+\DoxyCodeLine{00056\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ basic\ contents\ in\ the\ loading\ screen}}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().initialiseResourceGroup(\textcolor{stringliteral}{"{}Bootstrap"{}});}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ OverlayManager\&\ omgr\ =\ OverlayManager::getSingleton();}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ mLoadOverlay\ =\ (Overlay*)omgr.getByName(\textcolor{stringliteral}{"{}Core/LoadOverlay"{}});}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mLoadOverlay)}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ \ \ \ \ OGRE\_EXCEPT(Exception::ERR\_ITEM\_NOT\_FOUND,\ }
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}Cannot\ find\ loading\ overlay"{}},\ \textcolor{stringliteral}{"{}MagixLoadingBar::start"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ mLoadOverlay-\/>show();}
+\DoxyCodeLine{00067\ }
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Save\ links\ to\ the\ bar\ and\ to\ the\ loading\ text,\ for\ updates\ as\ we\ go}}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ mLoadingBarElement\ =\ omgr.getOverlayElement(\textcolor{stringliteral}{"{}Core/LoadPanel/Bar/Progress"{}});}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ mLoadingCommentElement\ =\ omgr.getOverlayElement(\textcolor{stringliteral}{"{}Core/LoadPanel/Comment"{}});}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ mLoadingDescriptionElement\ =\ omgr.getOverlayElement(\textcolor{stringliteral}{"{}Core/LoadPanel/Description"{}});}
+\DoxyCodeLine{00072\ }
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ OverlayElement*\ barContainer\ =\ omgr.getOverlayElement(\textcolor{stringliteral}{"{}Core/LoadPanel/Bar"{}});}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ mProgressBarMaxSize\ =\ barContainer-\/>getWidth();}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ mLoadingBarElement-\/>setWidth(0);}
+\DoxyCodeLine{00076\ }
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ self\ is\ listener}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().addResourceGroupListener(\textcolor{keyword}{this});}
+\DoxyCodeLine{00079\ \ \ \ \ \}}
+\DoxyCodeLine{00080\ }
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_loading_bar_a381af7ed737af67e16f48aecbeb7464c}{finish}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ hide\ loading\ screen}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ mLoadOverlay-\/>hide();}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Note\ :\ the\ new\ font\ texture\ \&\ def\ are\ generated\ next\ to\ the\ game\ app\ for\ now}}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ eventually\ turn\ into\ an\ independant\ tool\ with\ only\ minimal\ media.}}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ after\ ressource\ load}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ todo\ :\ replace\ by\ other\ fonts}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ defaultVal\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ example\ converted\ font\ was\ "{}dead\ walking\ font"{}\ but\ it's\ basically\ a\ font\ you\ have\ in\ gui.fontdef\ originally}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ FontGen((String)\textcolor{stringliteral}{"{}DeadWalking"{}},\ defaultVal);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00098\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Unregister\ listener}}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().removeResourceGroupListener(\textcolor{keyword}{this});}
+\DoxyCodeLine{00100\ \ \ \ \ \}}
+\DoxyCodeLine{00101\ }
+\DoxyCodeLine{00102\ \ \ \ \ \textcolor{comment}{//\ FontGen\ changes\ :\ we\ need\ to\ call\ only\ in\ tools\ or\ user\ context,\ or\ we\ switch\ boolean\ for\ a\ manual\ generation.}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{comment}{//\ Remember\ :\ a\ font\ need\ to\ be\ defined\ to\ be\ baked\ !Generated\ files\ will\ be\ next\ to\ game\ binary,\ you\ will\ need\ to\ add\ }}
+\DoxyCodeLine{00104\ \ \ \ \ \textcolor{comment}{//\ the\ new\ font\ def\ and\ update\ your\ overlay\ /\ UI\ /\ Whatever}}
+\DoxyCodeLine{00105\ \ \ \ \ \textcolor{keywordtype}{void}\ FontGen(String\ \&fontName,\ \textcolor{keywordtype}{bool}\ \&askedByUser)}
+\DoxyCodeLine{00106\ \ \ \ \ \{}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!askedByUser)}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ we\ are\ in\ a\ tool\ or\ button\ clicked\ context}}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ use\ only\ for\ debugging:}}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ generateAllFontTextures()}}
+\DoxyCodeLine{00114\ }
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ example:\ i\ want\ to\ use\ the\ TTF\ font\ Cyberbit\ in\ my\ application:}}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ fontCacheInit(fontName);}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ from\ now\ you\ can\ use\ font\ Cyberbit\_cache\ in\ your\ application\ :)}}
+\DoxyCodeLine{00119\ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{comment}{//\ ResourceGroupListener\ callbacks}}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{void}\ resourceGroupScriptingStarted(\textcolor{keyword}{const}\ String\&\ groupName,\ \textcolor{keywordtype}{size\_t}\ scriptCount)}
+\DoxyCodeLine{00123\ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ assert(mNumGroupsInit\ >\ 0\ \&\&\ \textcolor{stringliteral}{"{}You\ stated\ you\ were\ not\ going\ to\ init\ "{}}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}any\ groups,\ but\ you\ did!\ Divide\ by\ zero\ would\ follow..."{}});}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Lets\ assume\ script\ loading\ is\ 70\%}}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ mProgressBarInc\ =\ mProgressBarMaxSize\ *\ mInitProportion\ /\ (Real)scriptCount;}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ mProgressBarInc\ /=\ mNumGroupsInit;}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ mLoadingDescriptionElement-\/>setCaption(\textcolor{stringliteral}{"{}Parsing\ scripts..."{}});}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ mWindow-\/>update();}
+\DoxyCodeLine{00131\ \ \ \ \ \}}
+\DoxyCodeLine{00132\ \ \ \ \ \textcolor{keywordtype}{void}\ scriptParseStarted(\textcolor{keyword}{const}\ String\&\ scriptName,\ \textcolor{keywordtype}{bool}\ \&skipThisScript)}
+\DoxyCodeLine{00133\ \ \ \ \ \{}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ mLoadingCommentElement-\/>setCaption(scriptName);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ mWindow-\/>update();}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keywordtype}{void}\ scriptParseEnded(\textcolor{keyword}{const}\ String\&\ scriptName,\ \textcolor{keywordtype}{bool}\ skipped)}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ mLoadingBarElement-\/>setWidth(}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \ \ \ \ mLoadingBarElement-\/>getWidth()\ +\ mProgressBarInc);}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ mWindow-\/>update();}
+\DoxyCodeLine{00142\ \ \ \ \ \}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{keywordtype}{void}\ resourceGroupScriptingEnded(\textcolor{keyword}{const}\ String\&\ groupName)}
+\DoxyCodeLine{00144\ \ \ \ \ \{}
+\DoxyCodeLine{00145\ \ \ \ \ \}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{keywordtype}{void}\ resourceGroupLoadStarted(\textcolor{keyword}{const}\ String\&\ groupName,\ \textcolor{keywordtype}{size\_t}\ resourceCount)}
+\DoxyCodeLine{00147\ \ \ \ \ \{}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ assert(mNumGroupsLoad\ >\ 0\ \&\&\ \textcolor{stringliteral}{"{}You\ stated\ you\ were\ not\ going\ to\ load\ "{}}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{stringliteral}{"{}any\ groups,\ but\ you\ did!\ Divide\ by\ zero\ would\ follow..."{}});}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ mProgressBarInc\ =\ mProgressBarMaxSize\ *\ (1-\/mInitProportion)\ /\ }
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ (Real)resourceCount;}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ mProgressBarInc\ /=\ mNumGroupsLoad;}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ mLoadingDescriptionElement-\/>setCaption(\textcolor{stringliteral}{"{}Loading\ resources..."{}});}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ mWindow-\/>update();}
+\DoxyCodeLine{00155\ \ \ \ \ \}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keywordtype}{void}\ resourceLoadStarted(\textcolor{keyword}{const}\ ResourcePtr\&\ resource)}
+\DoxyCodeLine{00157\ \ \ \ \ \{}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ mLoadingCommentElement-\/>setCaption(resource-\/>getName());}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ mWindow-\/>update();}
+\DoxyCodeLine{00160\ \ \ \ \ \}}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{void}\ resourceLoadEnded(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00162\ \ \ \ \ \{}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ \ \ \ \ \textcolor{keywordtype}{void}\ worldGeometryStageStarted(\textcolor{keyword}{const}\ String\&\ description)}
+\DoxyCodeLine{00165\ \ \ \ \ \{}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ mLoadingCommentElement-\/>setCaption(description);}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ mWindow-\/>update();}
+\DoxyCodeLine{00168\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{void}\ worldGeometryStageEnded(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ mLoadingBarElement-\/>setWidth(}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ mLoadingBarElement-\/>getWidth()\ +\ mProgressBarInc);}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ mWindow-\/>update();}
+\DoxyCodeLine{00174\ \ \ \ \ \}}
+\DoxyCodeLine{00175\ \ \ \ \ \textcolor{keywordtype}{void}\ resourceGroupLoadEnded(\textcolor{keyword}{const}\ String\&\ groupName)}
+\DoxyCodeLine{00176\ \ \ \ \ \{}
+\DoxyCodeLine{00177\ \ \ \ \ \}}
+\DoxyCodeLine{00178\ }
+\DoxyCodeLine{00179\ \ \ \ \ Ogre::DataStreamPtr\ resourceLoading(\textcolor{keyword}{const}\ String\ \&name,\ \textcolor{keyword}{const}\ String\ \&group,\ Resource\ *resource)}
+\DoxyCodeLine{00180\ \ \ \ \ \{}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ Ogre::DataStreamPtr();}
+\DoxyCodeLine{00182\ \ \ \ \ \}}
+\DoxyCodeLine{00183\ }
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{keywordtype}{bool}\ resourceCollision(ResourcePtr\ \&resource,\ ResourceManager\ *resourceManager)}
+\DoxyCodeLine{00185\ \ \ \ \ \{}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00187\ \ \ \ \ \}}
+\DoxyCodeLine{00188\ \};}
+\DoxyCodeLine{00189\ }
+
+\end{DoxyCode}

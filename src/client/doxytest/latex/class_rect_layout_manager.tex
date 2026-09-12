@@ -1,0 +1,101 @@
+\doxysection{Rect\+Layout\+Manager Class Reference}
+\hypertarget{class_rect_layout_manager}{}\label{class_rect_layout_manager}\index{RectLayoutManager@{RectLayoutManager}}
+\doxysubsubsection*{Classes}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect}}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Types}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rect_layout_manager_a65fe949d380e9691b6d1fc90c83f81d3}\label{class_rect_layout_manager_a65fe949d380e9691b6d1fc90c83f81d3} 
+enum {\bfseries Method\+Type} \{ {\bfseries PLACE\+\_\+\+ABOVE} = 0
+, {\bfseries PLACE\+\_\+\+BELOW}
+ \}
+\item 
+\Hypertarget{class_rect_layout_manager_acb74d82600915cb4b1e3ff6b80d36e69}\label{class_rect_layout_manager_acb74d82600915cb4b1e3ff6b80d36e69} 
+typedef list$<$ \mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect\+Layout\+Manager\+::\+Rect}} $>$\+::type {\bfseries Rect\+List}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rect_layout_manager_a23938093e892de3814a4efb2fac596a6}\label{class_rect_layout_manager_a23938093e892de3814a4efb2fac596a6} 
+{\bfseries Rect\+Layout\+Manager} (unsigned short left\+Bound, unsigned short top\+Bound, unsigned short right\+Bound, unsigned short bottom\+Bound, Method\+Type method=PLACE\+\_\+\+ABOVE)
+\item 
+\Hypertarget{class_rect_layout_manager_ac6e97db8656772176664493b1a0484f9}\label{class_rect_layout_manager_ac6e97db8656772176664493b1a0484f9} 
+const unsigned short {\bfseries get\+Min\+Distance} () const
+\item 
+\Hypertarget{class_rect_layout_manager_abc087df861880ff91e58e9f00343ed54}\label{class_rect_layout_manager_abc087df861880ff91e58e9f00343ed54} 
+const unsigned short {\bfseries get\+Max\+Rect\+Height} () const
+\item 
+\Hypertarget{class_rect_layout_manager_abc28eaf044cad85dc3ff30e717ecdfce}\label{class_rect_layout_manager_abc28eaf044cad85dc3ff30e717ecdfce} 
+const unsigned short {\bfseries get\+Depth} () const
+\item 
+\Hypertarget{class_rect_layout_manager_a9f1ba3e7759d6ab6d7a24b7d13c3b8f4}\label{class_rect_layout_manager_a9f1ba3e7759d6ab6d7a24b7d13c3b8f4} 
+void {\bfseries get\+Bounds} (unsigned short \&left, unsigned short \&top, unsigned short \&right, unsigned short \&bottom)
+\item 
+\Hypertarget{class_rect_layout_manager_ace42db10cf51abbda57cd697d2cc75c6}\label{class_rect_layout_manager_ace42db10cf51abbda57cd697d2cc75c6} 
+void {\bfseries set\+Min\+Distance} (unsigned short min\+Distance)
+\item 
+\Hypertarget{class_rect_layout_manager_ab3fdfc1867657a3ed5af552931e5afeb}\label{class_rect_layout_manager_ab3fdfc1867657a3ed5af552931e5afeb} 
+void {\bfseries set\+Depth} (unsigned short depth)
+\item 
+\Hypertarget{class_rect_layout_manager_a88822339de03afe0ad0dd47afd560623}\label{class_rect_layout_manager_a88822339de03afe0ad0dd47afd560623} 
+bool {\bfseries is\+Out\+Of\+Bounds} (\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect\+Layout\+Manager\+::\+Rect}} \&r)
+\item 
+\Hypertarget{class_rect_layout_manager_a53da35103f531821095a2e7d778905eb}\label{class_rect_layout_manager_a53da35103f531821095a2e7d778905eb} 
+Rect\+List\+::iterator {\bfseries get\+List\+Begin} ()
+\item 
+\Hypertarget{class_rect_layout_manager_aa64d4bebba64de4d12cc3cfb0e1f5b09}\label{class_rect_layout_manager_aa64d4bebba64de4d12cc3cfb0e1f5b09} 
+Rect\+List\+::iterator {\bfseries get\+List\+End} ()
+\item 
+\Hypertarget{class_rect_layout_manager_a636732c9708bc3733897aae94aa9ddb9}\label{class_rect_layout_manager_a636732c9708bc3733897aae94aa9ddb9} 
+void {\bfseries clear} ()
+\item 
+\Hypertarget{class_rect_layout_manager_a0aa60d5c24ae5abc1894c4d9e09918be}\label{class_rect_layout_manager_a0aa60d5c24ae5abc1894c4d9e09918be} 
+Rect\+List\+::iterator {\bfseries add\+Data} (\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect}} \&Data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rect_layout_manager_a8bdef825b134e3ce6f664608a2916e37}\label{class_rect_layout_manager_a8bdef825b134e3ce6f664608a2916e37} 
+Rect\+List\+::iterator {\bfseries add\+Data\+Above} (\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect}} \&Data)
+\item 
+\Hypertarget{class_rect_layout_manager_ac7bf1fe8a1e8ebdd2366c22b1bffce9e}\label{class_rect_layout_manager_ac7bf1fe8a1e8ebdd2366c22b1bffce9e} 
+Rect\+List\+::iterator {\bfseries add\+Data\+Below} (\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect}} \&Data)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_rect_layout_manager_a3349131a562a1969bdf90ce3b6f0a315}\label{class_rect_layout_manager_a3349131a562a1969bdf90ce3b6f0a315} 
+Rect\+List {\bfseries m\+List}
+\item 
+\Hypertarget{class_rect_layout_manager_a30ae38875435eefa3340a38b09ac8f2d}\label{class_rect_layout_manager_a30ae38875435eefa3340a38b09ac8f2d} 
+unsigned short {\bfseries m\+Min\+Distance}
+\item 
+\Hypertarget{class_rect_layout_manager_aeb06c7670d045ba45057d46453e753e4}\label{class_rect_layout_manager_aeb06c7670d045ba45057d46453e753e4} 
+unsigned short {\bfseries m\+Max\+Rect\+Height}
+\item 
+\Hypertarget{class_rect_layout_manager_acc4313ea9c74ad12c43071a3cb98940b}\label{class_rect_layout_manager_acc4313ea9c74ad12c43071a3cb98940b} 
+unsigned short {\bfseries m\+Depth}
+\item 
+\Hypertarget{class_rect_layout_manager_a88eabf9d84092512fbbcb2ee3feca16b}\label{class_rect_layout_manager_a88eabf9d84092512fbbcb2ee3feca16b} 
+const Method\+Type {\bfseries m\+Method}
+\item 
+\Hypertarget{class_rect_layout_manager_aab3fef27bb35d37040fd20cbf9fd4121}\label{class_rect_layout_manager_aab3fef27bb35d37040fd20cbf9fd4121} 
+const unsigned short {\bfseries m\+Bound\+Top}
+\item 
+\Hypertarget{class_rect_layout_manager_aa27f7e1981a9a7c826bd1cecc6f435b7}\label{class_rect_layout_manager_aa27f7e1981a9a7c826bd1cecc6f435b7} 
+const unsigned short {\bfseries m\+Bound\+Left}
+\item 
+\Hypertarget{class_rect_layout_manager_a7bae7857ae21ff22be6acf13fa83aaea}\label{class_rect_layout_manager_a7bae7857ae21ff22be6acf13fa83aaea} 
+const unsigned short {\bfseries m\+Bound\+Bottom}
+\item 
+\Hypertarget{class_rect_layout_manager_ab5a08e18a8796e83079f5ce7630539ae}\label{class_rect_layout_manager_ab5a08e18a8796e83079f5ce7630539ae} 
+const unsigned short {\bfseries m\+Bound\+Right}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Rect\+Layout\+Manager.\+h\end{DoxyCompactItemize}

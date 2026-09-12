@@ -1,0 +1,133 @@
+\doxysection{Magix\+Collision\+Manager Class Reference}
+\hypertarget{class_magix_collision_manager}{}\label{class_magix_collision_manager}\index{MagixCollisionManager@{MagixCollisionManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_collision_manager_a54f9f089218d463997a0d053355c07e4}\label{class_magix_collision_manager_a54f9f089218d463997a0d053355c07e4} 
+void {\bfseries initialize} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+\Hypertarget{class_magix_collision_manager_aaadda16b9b43a6b1eb7d5a267bf904c7}\label{class_magix_collision_manager_aaadda16b9b43a6b1eb7d5a267bf904c7} 
+void {\bfseries reset} ()
+\item 
+\Hypertarget{class_magix_collision_manager_a2f39311f91706ab73512a2321c9beb6a}\label{class_magix_collision_manager_a2f39311f91706ab73512a2321c9beb6a} 
+void {\bfseries create\+Sphere\+Mesh} (const std\+::string \&str\+Name, const float r, const int n\+Rings=16, const int n\+Segments=16)
+\item 
+\Hypertarget{class_magix_collision_manager_ae4e59bada7c68cddaf5ac8cca93bebb2}\label{class_magix_collision_manager_ae4e59bada7c68cddaf5ac8cca93bebb2} 
+void {\bfseries create\+Collision} (Scene\+Node \texorpdfstring{$\ast$}{*}node, const Real \&range, const Vector3 \&force, const Vector3 \&offset=Vector3\+::\+ZERO, const short \&hp=0, const unsigned char \&alliance=0, bool hit\+Ally=false)
+\item 
+\Hypertarget{class_magix_collision_manager_af65c63928048a9e261ce5771c5b7ecc1}\label{class_magix_collision_manager_af65c63928048a9e261ce5771c5b7ecc1} 
+const list$<$ \mbox{\hyperlink{struct_collision}{Collision}} $>$\+::type\+::iterator {\bfseries destroy\+Collision} (const list$<$ \mbox{\hyperlink{struct_collision}{Collision}} $>$\+::type\+::iterator \&it)
+\item 
+\Hypertarget{class_magix_collision_manager_ad1d170ca6cfaa97754585e57fe285764}\label{class_magix_collision_manager_ad1d170ca6cfaa97754585e57fe285764} 
+void {\bfseries destroy\+Collision\+By\+Owner\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}node)
+\item 
+\Hypertarget{class_magix_collision_manager_a4706db4cb404a4097be54fe486edb156}\label{class_magix_collision_manager_a4706db4cb404a4097be54fe486edb156} 
+const vector$<$ \mbox{\hyperlink{struct_collision}{Collision}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+Collision\+Hit\+List} (const unsigned short \&unit\+ID, const unsigned short \&alliance, const Axis\+Aligned\+Box \&target)
+\item 
+\Hypertarget{class_magix_collision_manager_af5ea16889ea05353865bdfcb1390cc8d}\label{class_magix_collision_manager_af5ea16889ea05353865bdfcb1390cc8d} 
+const vector$<$ \mbox{\hyperlink{struct_collision}{Collision}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+Collision\+Hit\+List\+For\+Critter} (const unsigned short \&i\+ID, const unsigned short \&alliance, const Axis\+Aligned\+Box \&target)
+\item 
+\Hypertarget{class_magix_collision_manager_a3ef5bee3ab01934a6f39ab8f1b201cf8}\label{class_magix_collision_manager_a3ef5bee3ab01934a6f39ab8f1b201cf8} 
+void {\bfseries create\+Box\+Wall} (const Vector3 \&center, const Vector3 \&range, bool is\+Inside)
+\item 
+\Hypertarget{class_magix_collision_manager_a0a6a11f924e1af65ae8bdd7b57ccaed5}\label{class_magix_collision_manager_a0a6a11f924e1af65ae8bdd7b57ccaed5} 
+void {\bfseries create\+Sphere\+Wall} (const Vector3 \&center, const Real \&range, bool is\+Inside)
+\item 
+\Hypertarget{class_magix_collision_manager_af173ed2e32fc77e2d2e208d583198d09}\label{class_magix_collision_manager_af173ed2e32fc77e2d2e208d583198d09} 
+const list$<$ \mbox{\hyperlink{struct_wall}{Wall}} $>$\+::type\+::iterator {\bfseries destroy\+Wall} (const list$<$ \mbox{\hyperlink{struct_wall}{Wall}} $>$\+::type\+::iterator \&it)
+\item 
+\Hypertarget{class_magix_collision_manager_ac718a30bef67de4d41b69df6a83af20b}\label{class_magix_collision_manager_ac718a30bef67de4d41b69df6a83af20b} 
+void {\bfseries destroy\+Wall} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_collision_manager_a7f65a686843d89ca8f6f4044a093b468}\label{class_magix_collision_manager_a7f65a686843d89ca8f6f4044a093b468} 
+const vector$<$ \mbox{\hyperlink{struct_wall}{Wall}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+Wall\+Hit\+List} (const Vector3 \&target)
+\item 
+\Hypertarget{class_magix_collision_manager_ac7213c9694e277e8aeda0dd6ce5f1b24}\label{class_magix_collision_manager_ac7213c9694e277e8aeda0dd6ce5f1b24} 
+void {\bfseries create\+Portal} (const Vector3 \&center, const Real \&range, String dest\+Name)
+\item 
+\Hypertarget{class_magix_collision_manager_a43397e27a8dd13fb593db3f8c997f05e}\label{class_magix_collision_manager_a43397e27a8dd13fb593db3f8c997f05e} 
+const list$<$ \mbox{\hyperlink{struct_portal}{Portal}} $>$\+::type\+::iterator {\bfseries destroy\+Portal} (list$<$ \mbox{\hyperlink{struct_portal}{Portal}} $>$\+::type\+::iterator it)
+\item 
+\Hypertarget{class_magix_collision_manager_a8005d82b547da31338f5ea086d722f52}\label{class_magix_collision_manager_a8005d82b547da31338f5ea086d722f52} 
+void {\bfseries destroy\+All\+Portals} ()
+\item 
+\Hypertarget{class_magix_collision_manager_adca5e0efd48079bc8cadb04a0c059aff}\label{class_magix_collision_manager_adca5e0efd48079bc8cadb04a0c059aff} 
+\mbox{\hyperlink{struct_portal}{Portal}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Portal\+Hit} (const Axis\+Aligned\+Box \&target)
+\item 
+\Hypertarget{class_magix_collision_manager_a6a175943cae2b9e1869daa1c9bbdc925}\label{class_magix_collision_manager_a6a175943cae2b9e1869daa1c9bbdc925} 
+void {\bfseries get\+Portal\+Map} (vector$<$ std\+::pair$<$ Vector2, String $>$ $>$\+::type \&map)
+\item 
+\Hypertarget{class_magix_collision_manager_abb8f6b267a9315cb45de7c481a0d6000}\label{class_magix_collision_manager_abb8f6b267a9315cb45de7c481a0d6000} 
+void {\bfseries create\+Water\+Box} (const Vector3 \&center, const Real \&scaleX, const Real \&scaleZ, bool is\+Solid=false)
+\item 
+\Hypertarget{class_magix_collision_manager_ac421ef63fd3f409ff0ef475cdf0dd175}\label{class_magix_collision_manager_ac421ef63fd3f409ff0ef475cdf0dd175} 
+const list$<$ \mbox{\hyperlink{struct_water_box}{Water\+Box}} $>$\+::type\+::iterator {\bfseries destroy\+Water\+Box} (const list$<$ \mbox{\hyperlink{struct_water_box}{Water\+Box}} $>$\+::type\+::iterator \&it)
+\item 
+\Hypertarget{class_magix_collision_manager_af00a47308775dba9f3f23114252d4fc4}\label{class_magix_collision_manager_af00a47308775dba9f3f23114252d4fc4} 
+void {\bfseries destroy\+All\+Water\+Boxes} ()
+\item 
+\Hypertarget{class_magix_collision_manager_ac1ceb1bad52339660964f58f6ff013ee}\label{class_magix_collision_manager_ac1ceb1bad52339660964f58f6ff013ee} 
+\mbox{\hyperlink{struct_water_box}{Water\+Box}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Water\+Box\+Hit} (const Vector3 \&target)
+\item 
+\Hypertarget{class_magix_collision_manager_a55408fc768bdbd9eb174b97609c9f77c}\label{class_magix_collision_manager_a55408fc768bdbd9eb174b97609c9f77c} 
+void {\bfseries create\+Gate} (const Vector3 \&center, String dest\+Name, const Vector3 \&dest\+Vect, const String \&mat\+Name, bool has\+VectY)
+\item 
+\Hypertarget{class_magix_collision_manager_a8e4eb90c8c8f3e5545787969c95fe007}\label{class_magix_collision_manager_a8e4eb90c8c8f3e5545787969c95fe007} 
+const list$<$ \mbox{\hyperlink{struct_gate}{Gate}} $>$\+::type\+::iterator {\bfseries destroy\+Gate} (list$<$ \mbox{\hyperlink{struct_gate}{Gate}} $>$\+::type\+::iterator it)
+\item 
+\Hypertarget{class_magix_collision_manager_a0dfd3a4b68d7f03e3a9b901ab930e864}\label{class_magix_collision_manager_a0dfd3a4b68d7f03e3a9b901ab930e864} 
+void {\bfseries destroy\+All\+Gates} ()
+\item 
+\Hypertarget{class_magix_collision_manager_adf7358868476f6b68f2bd179596e3367}\label{class_magix_collision_manager_adf7358868476f6b68f2bd179596e3367} 
+\mbox{\hyperlink{struct_gate}{Gate}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Gate\+Hit} (const Axis\+Aligned\+Box \&target)
+\item 
+\Hypertarget{class_magix_collision_manager_a4fd70cf3259bc96afa3cc02e9d08d022}\label{class_magix_collision_manager_a4fd70cf3259bc96afa3cc02e9d08d022} 
+void {\bfseries get\+Gate\+Map} (vector$<$ std\+::pair$<$ Vector2, String $>$ $>$\+::type \&map)
+\item 
+\Hypertarget{class_magix_collision_manager_a5afb50f4d2e343f2cf8c1920cb27e82f}\label{class_magix_collision_manager_a5afb50f4d2e343f2cf8c1920cb27e82f} 
+void {\bfseries create\+Coll\+Box} (const Vector3 \&center, const Vector3 \&range)
+\item 
+\Hypertarget{class_magix_collision_manager_af415cbf6339f30ee1c84b0ef31aad85d}\label{class_magix_collision_manager_af415cbf6339f30ee1c84b0ef31aad85d} 
+const vector$<$ \mbox{\hyperlink{struct_coll_box}{Coll\+Box}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+Coll\+Box\+Hit\+List} (const Vector3 \&target, const Real \&head\+Height)
+\item 
+\Hypertarget{class_magix_collision_manager_a12c5230e2b1c576ac2f87faed7803cf8}\label{class_magix_collision_manager_a12c5230e2b1c576ac2f87faed7803cf8} 
+void {\bfseries create\+Coll\+Sphere} (const Vector3 \&center, const Real \&range)
+\item 
+\Hypertarget{class_magix_collision_manager_a0a3ef507117289bb4224f890e7412826}\label{class_magix_collision_manager_a0a3ef507117289bb4224f890e7412826} 
+const vector$<$ \mbox{\hyperlink{struct_coll_sphere}{Coll\+Sphere}} \texorpdfstring{$\ast$}{*} $>$\+::type {\bfseries get\+Coll\+Sphere\+Hit\+List} (const Vector3 \&target)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_collision_manager_a1a737936e9c58b3c3961858fa16b0c6f}\label{class_magix_collision_manager_a1a737936e9c58b3c3961858fa16b0c6f} 
+list$<$ \mbox{\hyperlink{struct_collision}{Collision}} $>$\+::type {\bfseries coll}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_collision_manager_a3aaaa402c2e9afd48c96eb74733996d6}\label{class_magix_collision_manager_a3aaaa402c2e9afd48c96eb74733996d6} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_collision_manager_abd993976c98196257aad006ea98dacb1}\label{class_magix_collision_manager_abd993976c98196257aad006ea98dacb1} 
+list$<$ \mbox{\hyperlink{struct_wall}{Wall}} $>$\+::type {\bfseries wall}
+\item 
+\Hypertarget{class_magix_collision_manager_a996ee30495ff43885934c2c3f5723165}\label{class_magix_collision_manager_a996ee30495ff43885934c2c3f5723165} 
+list$<$ \mbox{\hyperlink{struct_portal}{Portal}} $>$\+::type {\bfseries portal}
+\item 
+\Hypertarget{class_magix_collision_manager_a912bd3beec1a423ed583a258786fa30c}\label{class_magix_collision_manager_a912bd3beec1a423ed583a258786fa30c} 
+list$<$ \mbox{\hyperlink{struct_gate}{Gate}} $>$\+::type {\bfseries gate}
+\item 
+\Hypertarget{class_magix_collision_manager_a5aaaa28b9b58f40e6d0d7a7b30045dcf}\label{class_magix_collision_manager_a5aaaa28b9b58f40e6d0d7a7b30045dcf} 
+list$<$ \mbox{\hyperlink{struct_water_box}{Water\+Box}} $>$\+::type {\bfseries water\+Box}
+\item 
+\Hypertarget{class_magix_collision_manager_ab761b65ea59d6cad318f225172a62f22}\label{class_magix_collision_manager_ab761b65ea59d6cad318f225172a62f22} 
+list$<$ \mbox{\hyperlink{struct_coll_box}{Coll\+Box}} $>$\+::type {\bfseries coll\+Box}
+\item 
+\Hypertarget{class_magix_collision_manager_aabd07ad5e3507138f04dc5c31656d58e}\label{class_magix_collision_manager_aabd07ad5e3507138f04dc5c31656d58e} 
+list$<$ \mbox{\hyperlink{struct_coll_sphere}{Coll\+Sphere}} $>$\+::type {\bfseries coll\+Sphere}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Collision\+Manager.\+h\end{DoxyCompactItemize}

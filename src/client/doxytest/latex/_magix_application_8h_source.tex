@@ -1,0 +1,366 @@
+\doxysection{Magix\+Application.\+h}
+\hypertarget{_magix_application_8h_source}{}\label{_magix_application_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixApplication.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixApplication.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00002\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00003\ \textcolor{comment}{This\ source\ file\ is\ part\ of\ OGRE}}
+\DoxyCodeLine{00004\ \textcolor{comment}{(Object-\/oriented\ Graphics\ Rendering\ Engine)}}
+\DoxyCodeLine{00005\ \textcolor{comment}{For\ the\ latest\ info,\ see\ http://www.ogre3d.org/}}
+\DoxyCodeLine{00006\ \textcolor{comment}{}}
+\DoxyCodeLine{00007\ \textcolor{comment}{Copyright\ (c)\ 2000-\/2006\ Torus\ Knot\ Software\ Ltd}}
+\DoxyCodeLine{00008\ \textcolor{comment}{Also\ see\ acknowledgements\ in\ Readme.html}}
+\DoxyCodeLine{00009\ \textcolor{comment}{}}
+\DoxyCodeLine{00010\ \textcolor{comment}{You\ may\ use\ this\ sample\ code\ for\ anything\ you\ like,\ it\ is\ not\ covered\ by\ the}}
+\DoxyCodeLine{00011\ \textcolor{comment}{LGPL\ like\ the\ rest\ of\ the\ engine.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00013\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00014\ \textcolor{comment}{/*}}
+\DoxyCodeLine{00015\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00016\ \textcolor{comment}{Filename:\ \ \ \ ExampleApplication.h}}
+\DoxyCodeLine{00017\ \textcolor{comment}{Description:\ Base\ class\ for\ all\ the\ OGRE\ examples}}
+\DoxyCodeLine{00018\ \textcolor{comment}{-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/-\/}}
+\DoxyCodeLine{00019\ \textcolor{comment}{*/}}
+\DoxyCodeLine{00020\ }
+\DoxyCodeLine{00021\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixApplication\_H\_\_}}
+\DoxyCodeLine{00022\ \textcolor{preprocessor}{\#define\ \_\_MagixApplication\_H\_\_}}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}OgreConfigFile.h"{}}}
+\DoxyCodeLine{00026\ \textcolor{preprocessor}{\#include\ "{}MagixHandler.h"{}}}
+\DoxyCodeLine{00027\ \textcolor{preprocessor}{\#include\ "{}MagixFrameListener.h"{}}}
+\DoxyCodeLine{00028\ \textcolor{preprocessor}{\#include\ "{}MagixLoadingBar.h"{}}}
+\DoxyCodeLine{00029\ \textcolor{comment}{//\ protected\ zips\ from\ "{}https://wiki.ogre3d.org/Obfuscated\ Zip\ I/O"{}}}
+\DoxyCodeLine{00030\ \textcolor{preprocessor}{\#include\ "{}ObfuscatedZip.h"{}}}
+\DoxyCodeLine{00031\ }
+\DoxyCodeLine{00032\ \textcolor{preprocessor}{\#if\ OGRE\_PLATFORM\ ==\ OGRE\_PLATFORM\_APPLE}}
+\DoxyCodeLine{00033\ \textcolor{preprocessor}{\#include\ <CoreFoundation/CoreFoundation.h>}}
+\DoxyCodeLine{00034\ }
+\DoxyCodeLine{00035\ \textcolor{comment}{//\ This\ function\ will\ locate\ the\ path\ to\ our\ application\ on\ OS\ X,}}
+\DoxyCodeLine{00036\ \textcolor{comment}{//\ unlike\ windows\ you\ can\ not\ rely\ on\ the\ curent\ working\ directory}}
+\DoxyCodeLine{00037\ \textcolor{comment}{//\ for\ locating\ your\ configuration\ files\ and\ resources.}}
+\DoxyCodeLine{00038\ std::string\ macBundlePath()}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{char}\ path[1024];}
+\DoxyCodeLine{00041\ \ \ \ \ CFBundleRef\ mainBundle\ =\ CFBundleGetMainBundle();}
+\DoxyCodeLine{00042\ \ \ \ \ assert(mainBundle);}
+\DoxyCodeLine{00043\ }
+\DoxyCodeLine{00044\ \ \ \ \ CFURLRef\ mainBundleURL\ =\ CFBundleCopyBundleURL(mainBundle);}
+\DoxyCodeLine{00045\ \ \ \ \ assert(mainBundleURL);}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ CFStringRef\ cfStringRef\ =\ CFURLCopyFileSystemPath(\ mainBundleURL,\ kCFURLPOSIXPathStyle);}
+\DoxyCodeLine{00048\ \ \ \ \ assert(cfStringRef);}
+\DoxyCodeLine{00049\ }
+\DoxyCodeLine{00050\ \ \ \ \ CFStringGetCString(cfStringRef,\ path,\ 1024,\ kCFStringEncodingASCII);}
+\DoxyCodeLine{00051\ }
+\DoxyCodeLine{00052\ \ \ \ \ CFRelease(mainBundleURL);}
+\DoxyCodeLine{00053\ \ \ \ \ CFRelease(cfStringRef);}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordflow}{return}\ std::string(path);}
+\DoxyCodeLine{00056\ \}}
+\DoxyCodeLine{00057\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00058\ }
+\DoxyCodeLine{00059\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00064\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_magix_application_a4aea0f09a61394dc7510aa90d77088ee}{MagixApplication}}}
+\DoxyCodeLine{00065\ \{}
+\DoxyCodeLine{00066\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00068\ \ \ \ \ \mbox{\hyperlink{class_magix_application_a4aea0f09a61394dc7510aa90d77088ee}{MagixApplication}}(\mbox{\hyperlink{class_magix_handler}{MagixHandler}}\ *magixHandler):}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ mMagixHandler(magixHandler)}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ mFrameListener\ =\ 0;}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ mRoot\ =\ 0;}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ mLoadingBar\ =\ 0;}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Provide\ a\ nice\ cross\ platform\ solution\ for\ locating\ the\ configuration\ files}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ On\ windows\ files\ are\ searched\ for\ in\ the\ current\ working\ directory,\ on\ OS\ X\ however}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ you\ must\ provide\ the\ full\ path,\ the\ helper\ function\ macBundlePath\ does\ this\ for\ us.}}
+\DoxyCodeLine{00077\ \textcolor{preprocessor}{\#if\ OGRE\_PLATFORM\ ==\ OGRE\_PLATFORM\_APPLE}}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ mResourcePath\ =\ macBundlePath()\ +\ \textcolor{stringliteral}{"{}/Contents/Resources/"{}};}
+\DoxyCodeLine{00079\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ mResourcePath\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00081\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00084\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{class_magix_application_a5280bd628bc633fe25d4391466762ee2}{\string~MagixApplication}}()}
+\DoxyCodeLine{00085\ \ \ \ \ \{}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mFrameListener)}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mFrameListener;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRoot)}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ mRoot;}
+\DoxyCodeLine{00090\ }
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ no\ new\ school\ one\ liners,\ add\ bracing\ whenever.}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(\mbox{\hyperlink{class_magix_application_a8f6bdc53b469240984dabe6c9b515632}{mObfuscatedZipFactory}})}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00094\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}\ \mbox{\hyperlink{class_magix_application_a8f6bdc53b469240984dabe6c9b515632}{mObfuscatedZipFactory}};}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00096\ \ \ \ \ \}}
+\DoxyCodeLine{00097\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_application_adf168d67d9b21491983c65a498912b8c}{go}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!\mbox{\hyperlink{class_magix_application_a3c00f44f1b727c5a35dd35214a90506e}{setup}}())}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return};}
+\DoxyCodeLine{00103\ }
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ mRoot-\/>startRendering();}
+\DoxyCodeLine{00105\ }
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ clean\ up}}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ destroyScene();}
+\DoxyCodeLine{00108\ \ \ \ \ \}}
+\DoxyCodeLine{00109\ }
+\DoxyCodeLine{00110\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00111\ \ \ \ \ Root\ *mRoot;}
+\DoxyCodeLine{00112\ \ \ \ \ Camera*\ mCamera;}
+\DoxyCodeLine{00113\ \ \ \ \ SceneManager*\ mSceneMgr;}
+\DoxyCodeLine{00114\ \ \ \ \ \mbox{\hyperlink{class_magix_frame_listener}{MagixFrameListener}}*\ mFrameListener;}
+\DoxyCodeLine{00115\ \ \ \ \ RenderWindow*\ mWindow;}
+\DoxyCodeLine{00116\ \ \ \ \ Ogre::String\ mResourcePath;}
+\DoxyCodeLine{00117\ \ \ \ \ \mbox{\hyperlink{class_magix_handler}{MagixHandler}}\ *mMagixHandler;}
+\DoxyCodeLine{00118\ \ \ \ \ \mbox{\hyperlink{class_magix_loading_bar}{MagixLoadingBar}}*\ mLoadingBar;}
+\DoxyCodeLine{00119\ }
+\DoxyCodeLine{00123\ \ \ \ \ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory}{ObfuscatedZip::ObfuscatedZipFactory}}*\ \mbox{\hyperlink{class_magix_application_a8f6bdc53b469240984dabe6c9b515632}{mObfuscatedZipFactory}};}
+\DoxyCodeLine{00124\ }
+\DoxyCodeLine{00125\ \ \ \ \ \textcolor{comment}{//\ These\ internal\ methods\ package\ up\ the\ stages\ in\ the\ startup\ process}}
+\DoxyCodeLine{00127\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_magix_application_a3c00f44f1b727c5a35dd35214a90506e}{setup}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ }
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ String\ pluginsPath;}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ only\ use\ plugins.cfg\ if\ not\ static}}
+\DoxyCodeLine{00132\ \textcolor{preprocessor}{\#ifndef\ OGRE\_STATIC\_LIB}}
+\DoxyCodeLine{00133\ \textcolor{preprocessor}{\#ifdef\ \_DEBUG}}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ pluginsPath\ =\ mResourcePath\ +\ \textcolor{stringliteral}{"{}plugins\_d.cfg"{}};}
+\DoxyCodeLine{00135\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ pluginsPath\ =\ mResourcePath\ +\ \textcolor{stringliteral}{"{}plugins.cfg"{}};}
+\DoxyCodeLine{00137\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00138\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ mRoot\ =\ \textcolor{keyword}{new}\ Root(pluginsPath,\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ mResourcePath\ +\ \textcolor{stringliteral}{"{}ogre.cfg"{}},\ mResourcePath\ +\ \textcolor{stringliteral}{"{}Ogre.log"{}});}
+\DoxyCodeLine{00142\ }
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_application_a690278088e8b7e0c01598375c35fb760}{setupResources}}();}
+\DoxyCodeLine{00144\ }
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ carryOn\ =\ \mbox{\hyperlink{class_magix_application_adb1087954e6c39877cbdd863d98324ed}{configure}}();}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!carryOn)\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00149\ }
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Set\ default\ mipmap\ level\ (NB\ some\ APIs\ ignore\ this)}}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ TextureManager::getSingleton().setDefaultNumMipmaps(5);}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ chooseSceneManager();}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ createCamera();}
+\DoxyCodeLine{00154\ \ \ \ \ \ \ \ \ createViewports();}
+\DoxyCodeLine{00155\ }
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ any\ resource\ listeners\ (for\ loading\ screens)}}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_application_aa45bc324b4686199c6c78eb54310c9cd}{createResourceListener}}();}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ resources}}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_application_a998196b3ca9f4e49089c7d568f6cd71f}{loadResources}}();}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ scene}}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ createScene();}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ createFrameListener();}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ \ \ \ \ \}}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{class_magix_application_adb1087954e6c39877cbdd863d98324ed}{configure}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00170\ \ \ \ \ \{}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Show\ the\ configuration\ dialog\ and\ initialise\ the\ system}}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ You\ can\ skip\ this\ and\ use\ root.restoreConfig()\ to\ load\ configuration}}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ settings\ if\ you\ were\ sure\ there\ are\ valid\ ones\ saved\ in\ ogre.cfg}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRoot-\/>showConfigDialog())}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00176\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ returned\ true,\ user\ clicked\ OK\ so\ initialise}}
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Here\ we\ choose\ to\ let\ the\ system\ create\ a\ default\ rendering\ window\ by\ passing\ 'true'}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ mWindow\ =\ mRoot-\/>initialise(\textcolor{keyword}{true});}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ mWindow-\/>setDeactivateOnFocusChange(\textcolor{keyword}{false});}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00186\ \ \ \ \ \}}
+\DoxyCodeLine{00187\ }
+\DoxyCodeLine{00188\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ chooseSceneManager(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00189\ \ \ \ \ \{}
+\DoxyCodeLine{00190\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ SceneManager,\ in\ this\ case\ a\ generic\ one}}
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ mSceneMgr\ =\ mRoot-\/>createSceneManager(ST\_EXTERIOR\_CLOSE);}
+\DoxyCodeLine{00192\ \ \ \ \ \}}
+\DoxyCodeLine{00193\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ createCamera(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00194\ \ \ \ \ \{}
+\DoxyCodeLine{00195\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ the\ camera}}
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ mCamera\ =\ mSceneMgr-\/>createCamera(\textcolor{stringliteral}{"{}PlayerCam"{}});}
+\DoxyCodeLine{00197\ }
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Position\ it\ at\ 500\ in\ Z\ direction}}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ mCamera-\/>setPosition(Vector3(0,0,500));}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Look\ back\ along\ -\/Z}}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ mCamera-\/>lookAt(Vector3(0,0,-\/300));}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ mCamera-\/>setNearClipDistance(5);}
+\DoxyCodeLine{00203\ }
+\DoxyCodeLine{00204\ \ \ \ \ \}}
+\DoxyCodeLine{00205\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ createFrameListener(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00206\ \ \ \ \ \{}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ mFrameListener=\ \textcolor{keyword}{new}\ MagixFrameListener(mMagixHandler,\ mWindow,\ mCamera);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ mFrameListener-\/>showDebugOverlay(\textcolor{keyword}{true});}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ mRoot-\/>addFrameListener(mFrameListener);}
+\DoxyCodeLine{00210\ \ \ \ \ \}}
+\DoxyCodeLine{00211\ }
+\DoxyCodeLine{00212\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ createScene(\textcolor{keywordtype}{void})\ =\ 0;\ \ \ \ \textcolor{comment}{//\ pure\ virtual\ -\/\ this\ has\ to\ be\ overridden}}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ destroyScene(\textcolor{keywordtype}{void})\{\}\ \ \ \ \textcolor{comment}{//\ Optional\ to\ override\ this}}
+\DoxyCodeLine{00215\ }
+\DoxyCodeLine{00216\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ createViewports(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00217\ \ \ \ \ \{}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Create\ one\ viewport,\ entire\ window}}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ Viewport*\ vp\ =\ mWindow-\/>addViewport(mCamera);}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ vp-\/>setBackgroundColour(ColourValue(0,0,0));}
+\DoxyCodeLine{00221\ }
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Alter\ the\ camera\ aspect\ ratio\ to\ match\ the\ viewport}}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ mCamera-\/>setAspectRatio(}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ Real(vp-\/>getActualWidth())\ /\ Real(vp-\/>getActualHeight()));}
+\DoxyCodeLine{00225\ \ \ \ \ \}}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00228\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_application_a690278088e8b7e0c01598375c35fb760}{setupResources}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00229\ \ \ \ \ \{}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ initiate\ the\ protected\ zip\ factory}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_magix_application_a8f6bdc53b469240984dabe6c9b515632}{mObfuscatedZipFactory}}\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_obfuscated_zip_1_1_obfuscated_zip_factory}{ObfuscatedZip::ObfuscatedZipFactory}}();}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ ArchiveManager::getSingleton().addArchiveFactory(\mbox{\hyperlink{class_magix_application_a8f6bdc53b469240984dabe6c9b515632}{mObfuscatedZipFactory}});}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Load\ resource\ paths\ from\ config\ file}}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ ConfigFile\ cf;}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ cf.load(mResourcePath\ +\ \textcolor{stringliteral}{"{}resources.cfg"{}});}
+\DoxyCodeLine{00236\ }
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Go\ through\ all\ sections\ \&\ settings\ in\ the\ file}}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ ConfigFile::SectionIterator\ seci\ =\ cf.getSectionIterator();}
+\DoxyCodeLine{00239\ }
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ String\ secName,\ typeName,\ archName;}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (seci.hasMoreElements())}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ secName\ =\ seci.peekNextKey();}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap\ *settings\ =\ seci.getNext();}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ ConfigFile::SettingsMultiMap::iterator\ i;}
+\DoxyCodeLine{00246\ }
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (i\ =\ settings-\/>begin();\ i\ !=\ settings-\/>end();\ ++i)}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ typeName\ =\ i-\/>first;}
+\DoxyCodeLine{00252\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ archName\ =\ i-\/>second;}
+\DoxyCodeLine{00253\ }
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Check\ if\ file\ exists\ first\ if\ it's\ a\ preset\ file}}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{/*if(typeName=="{}Zip"{})}}
+\DoxyCodeLine{00256\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00257\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tFilename,tPath;}}
+\DoxyCodeLine{00258\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ StringUtil::splitFilename(archName,tFilename,tPath);}}
+\DoxyCodeLine{00259\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(StringUtil::startsWith(tFilename,"{}preset"{}))}}
+\DoxyCodeLine{00260\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00261\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ifstream\ inFile(archName.c\_str());}}
+\DoxyCodeLine{00262\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ if(!inFile.good())}}
+\DoxyCodeLine{00263\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}}
+\DoxyCodeLine{00264\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::LogManager::getSingleton().logMessage("{}Preset\ File\ not\ found:"{}+archName);}}
+\DoxyCodeLine{00265\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue;}}
+\DoxyCodeLine{00266\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00267\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}}
+\DoxyCodeLine{00268\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ continue;}}
+\DoxyCodeLine{00269\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}}
+\DoxyCodeLine{00270\ \textcolor{comment}{\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}*/}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Scan\ for\ wildcard\ filenames\ like\ media/terrains/(World.txt)}}
+\DoxyCodeLine{00273\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(archName.at(archName.length()-\/1)==\textcolor{charliteral}{')'})}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tFilenameVect\ =\ StringUtil::split(archName,\textcolor{stringliteral}{"{}()"{}});}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(tFilenameVect.size()>1)}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ tFilename\ =\ tFilenameVect[0]+tFilenameVect[1];}
+\DoxyCodeLine{00279\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ tSize\ =\ 0;}
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{char}\ *tBuffer;}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String\ tData=\textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ inFile;}
+\DoxyCodeLine{00284\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.open(tFilename.c\_str(),\ std::ifstream::in);}
+\DoxyCodeLine{00285\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())\textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00286\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,std::ios::end);}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tSize\ =\ (long)inFile.tellg();}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.seekg(0,std::ios::beg);}
+\DoxyCodeLine{00289\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tBuffer\ =\ \textcolor{keyword}{new}\ \textcolor{keywordtype}{char}[tSize];}
+\DoxyCodeLine{00290\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ strcpy(tBuffer,\textcolor{stringliteral}{"{}"{}});}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.getline(tBuffer,tSize,\textcolor{charliteral}{'\#'});}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tData\ =\ tBuffer;}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{delete}[]\ tBuffer;}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<String>::type\ tLine\ =\ StringUtil::split(tData,\textcolor{stringliteral}{"{}\(\backslash\)n\#"{}});}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<(int)tLine.size();j++)}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \textcolor{preprocessor}{\#if\ OGRE\_PLATFORM\ ==\ OGRE\_PLATFORM\_APPLE}}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().addResourceLocation(}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String(macBundlePath()\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ tFilenameVect[0]\ +\ tLine[j]),\ typeName,\ secName);}
+\DoxyCodeLine{00302\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00303\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().addResourceLocation(}
+\DoxyCodeLine{00304\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tFilenameVect[0]\ +\ tLine[j],\ typeName,\ secName);}
+\DoxyCodeLine{00305\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00310\ \textcolor{preprocessor}{\#if\ OGRE\_PLATFORM\ ==\ OGRE\_PLATFORM\_APPLE}}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OS\ X\ does\ not\ set\ the\ working\ directory\ relative\ to\ the\ app,}}
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ order\ to\ make\ things\ portable\ on\ OS\ X\ we\ need\ to\ provide}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ loading\ with\ it's\ own\ bundle\ path\ location}}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().addResourceLocation(}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String(macBundlePath()\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ archName),\ typeName,\ secName);}
+\DoxyCodeLine{00316\ \textcolor{preprocessor}{\#else}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().addResourceLocation(}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ archName,\ typeName,\ secName);}
+\DoxyCodeLine{00319\ \textcolor{preprocessor}{\#endif}}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ j=0;j<2;j++)}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=1;i<=200;i++)}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ String\ archName\ =\ \textcolor{stringliteral}{"{}media/materials/Presets/Preset"{}}+StringConverter::toString(j*200+i)+\textcolor{stringliteral}{"{}.dat"{}};}
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::ifstream\ inFile(archName.c\_str());}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!inFile.good())}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ Ogre::LogManager::getSingleton().logMessage(\textcolor{stringliteral}{"{}Preset\ File\ not\ found:\ "{}}+archName);}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00333\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ inFile.close();}
+\DoxyCodeLine{00335\ \textcolor{preprocessor}{\ \ \ \ \#if\ OGRE\_PLATFORM\ ==\ OGRE\_PLATFORM\_APPLE}}
+\DoxyCodeLine{00336\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ OS\ X\ does\ not\ set\ the\ working\ directory\ relative\ to\ the\ app,}}
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ In\ order\ to\ make\ things\ portable\ on\ OS\ X\ we\ need\ to\ provide}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ loading\ with\ it's\ own\ bundle\ path\ location}}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().addResourceLocation(}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ String(macBundlePath()\ +\ \textcolor{stringliteral}{"{}/"{}}\ +\ archName),\ \textcolor{stringliteral}{"{}Zip"{}},\ \textcolor{stringliteral}{"{}General"{}});}
+\DoxyCodeLine{00341\ \textcolor{preprocessor}{\ \ \ \ \#else}}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().addResourceLocation(}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ archName,\ \textcolor{stringliteral}{"{}Zip"{}},\ \textcolor{stringliteral}{"{}General"{}});}
+\DoxyCodeLine{00344\ \textcolor{preprocessor}{\ \ \ \ \#endif}}
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \}}
+\DoxyCodeLine{00348\ }
+\DoxyCodeLine{00350\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_application_aa45bc324b4686199c6c78eb54310c9cd}{createResourceListener}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00351\ \ \ \ \ \{}
+\DoxyCodeLine{00352\ \ \ \ \ \ \ \ \ mLoadingBar\ =\ \textcolor{keyword}{new}\ \mbox{\hyperlink{class_magix_loading_bar}{MagixLoadingBar}}();}
+\DoxyCodeLine{00353\ \ \ \ \ \}}
+\DoxyCodeLine{00354\ }
+\DoxyCodeLine{00357\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_magix_application_a998196b3ca9f4e49089c7d568f6cd71f}{loadResources}}(\textcolor{keywordtype}{void})}
+\DoxyCodeLine{00358\ \ \ \ \ \{}
+\DoxyCodeLine{00359\ \ \ \ \ \ \ \ \ mLoadingBar-\/>start(mWindow,\ 1,\ 1,\ 1);}
+\DoxyCodeLine{00360\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Initialise,\ parse\ scripts\ etc}}
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ ResourceGroupManager::getSingleton().initialiseAllResourceGroups();}
+\DoxyCodeLine{00362\ \ \ \ \ \ \ \ \ Ogre::ResourceManager::ResourceMapIterator\ iter\ =\ Ogre::FontManager::getSingleton().getResourceIterator();}
+\DoxyCodeLine{00363\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (iter.hasMoreElements())\ }
+\DoxyCodeLine{00364\ \ \ \ \ \ \ \ \ \{\ }
+\DoxyCodeLine{00365\ \ \ \ \ \ \ \ \ \ \ \ \ \ iter.getNext()-\/>load();\ }
+\DoxyCodeLine{00366\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00367\ \ \ \ \ \ \ \ \ mLoadingBar-\/>finish();}
+\DoxyCodeLine{00368\ \ \ \ \ \}}
+\DoxyCodeLine{00369\ }
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ }
+\DoxyCodeLine{00372\ \};}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ }
+\DoxyCodeLine{00375\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

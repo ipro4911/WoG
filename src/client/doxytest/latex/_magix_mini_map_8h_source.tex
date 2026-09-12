@@ -1,0 +1,330 @@
+\doxysection{Magix\+Mini\+Map.\+h}
+\hypertarget{_magix_mini_map_8h_source}{}\label{_magix_mini_map_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixMiniMap.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixMiniMap.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixMiniMap\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixMiniMap\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{keyword}{class\ }MagixMiniMap}
+\DoxyCodeLine{00005\ \{}
+\DoxyCodeLine{00006\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00007\ \ \ \ \ \mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *mDef;}
+\DoxyCodeLine{00008\ \ \ \ \ \mbox{\hyperlink{class_magix_unit_manager}{MagixUnitManager}}\ *mUnitManager;}
+\DoxyCodeLine{00009\ \ \ \ \ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *mCollisionManager;}
+\DoxyCodeLine{00010\ \ \ \ \ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *mCamera;}
+\DoxyCodeLine{00011\ \ \ \ \ OverlayContainer\ *mMap;}
+\DoxyCodeLine{00012\ \ \ \ \ OverlayElement\ *mMapCone;}
+\DoxyCodeLine{00013\ \ \ \ \ OverlayElement\ *mMapArrow;}
+\DoxyCodeLine{00014\ \ \ \ \ OverlayElement\ *mMapTag;}
+\DoxyCodeLine{00015\ \ \ \ \ vector<bool>::type\ hasPortalMarker;}
+\DoxyCodeLine{00016\ \ \ \ \ vector<bool>::type\ hasGateMarker;}
+\DoxyCodeLine{00017\ \ \ \ \ vector<std::pair<Vector2,String>>::type\ portalMap;}
+\DoxyCodeLine{00018\ \ \ \ \ vector<std::pair<Vector2,String>>::type\ gateMap;}
+\DoxyCodeLine{00019\ \ \ \ \ Real\ zoomRatio;}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{bool}\ mapTagUseCharName;}
+\DoxyCodeLine{00021\ \ \ \ \ vector<unsigned\ char>::type\ pingUnitMarkers;}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ pingCounter;}
+\DoxyCodeLine{00023\ \ \ \ \ Real\ pingTimer;}
+\DoxyCodeLine{00024\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00025\ \ \ \ \ MagixMiniMap()}
+\DoxyCodeLine{00026\ \ \ \ \ \{}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ mDef\ =\ 0;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ mUnitManager\ =\ 0;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ 0;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ mMap\ =\ 0;}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ mMapCone\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ mMapArrow\ =\ 0;}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ mMapTag\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ hasPortalMarker.clear();}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ hasGateMarker.clear();}
+\DoxyCodeLine{00036\ \ \ \ \ \ \ \ \ portalMap.clear();}
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ gateMap.clear();}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ zoomRatio\ =\ 1;}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ mapTagUseCharName\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ pingUnitMarkers.clear();}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ pingCounter\ =\ 0;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ pingTimer\ =\ 0;}
+\DoxyCodeLine{00043\ \ \ \ \ \}}
+\DoxyCodeLine{00044\ \ \ \ \ \string~MagixMiniMap()}
+\DoxyCodeLine{00045\ \ \ \ \ \{}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ Ogre::OverlayManager\ *overlayManager\ =\ Ogre::OverlayManager::getSingletonPtr();}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ overlayManager-\/>destroy(\textcolor{stringliteral}{"{}GUIOverlay/MiniMap2"{}});\ \textcolor{comment}{//\ must\ destroy\ manually}}
+\DoxyCodeLine{00048\ \ \ \ \ \}}
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ reset()}
+\DoxyCodeLine{00050\ \ \ \ \ \{}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ pingUnitMarkers.clear();}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ pingCounter\ =\ 0;}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ pingTimer\ =\ 0;}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize(\mbox{\hyperlink{class_magix_external_definitions}{MagixExternalDefinitions}}\ *def,\ \mbox{\hyperlink{class_magix_unit_manager}{MagixUnitManager}}\ *unitMgr,\ \mbox{\hyperlink{class_magix_collision_manager}{MagixCollisionManager}}\ *collisionMgr,\ \mbox{\hyperlink{class_magix_camera}{MagixCamera}}\ *camera)}
+\DoxyCodeLine{00056\ \ \ \ \ \{}
+\DoxyCodeLine{00057\ \ \ \ \ \ \ \ \ mDef\ =\ def;}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ mUnitManager\ =\ unitMgr;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ mCollisionManager\ =\ collisionMgr;}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ mCamera\ =\ camera;}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ mMap\ =\ \textcolor{keyword}{static\_cast<}OverlayContainer*\textcolor{keyword}{>}(OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}GUI/MiniMap"{}}));}
+\DoxyCodeLine{00063\ \ \ \ \ \ \ \ \ mMapCone\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}GUI/MiniMapCone"{}});}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ mMapArrow\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}GUI/MiniMapArrow"{}});}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ mMapTag\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}GUI/MiniMapTag"{}});}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ show(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(flag)}
+\DoxyCodeLine{00070\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().getByName(\textcolor{stringliteral}{"{}GUIOverlay/MiniMap"{}})-\/>show();}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().getByName(\textcolor{stringliteral}{"{}GUIOverlay/MiniMap2"{}})-\/>show();}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ mMap-\/>show();}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().getByName(\textcolor{stringliteral}{"{}GUIOverlay/MiniMap"{}})-\/>hide();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().getByName(\textcolor{stringliteral}{"{}GUIOverlay/MiniMap2"{}})-\/>hide();}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ mMap-\/>hide();}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00081\ \ \ \ \ \}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keywordtype}{void}\ flipVisibility()}
+\DoxyCodeLine{00083\ \ \ \ \ \{}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ show(!mMap-\/>isVisible());}
+\DoxyCodeLine{00085\ \ \ \ \ \}}
+\DoxyCodeLine{00086\ \ \ \ \ \textcolor{keywordtype}{void}\ update(\textcolor{keywordtype}{bool}\ cursorVisible,\ \textcolor{keyword}{const}\ Real\ \&cursorX,\ \textcolor{keyword}{const}\ Real\ \&cursorY,\ \textcolor{keyword}{const}\ FrameEvent\ \&evt)}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMap-\/>isVisible())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mUnitManager-\/>getPlayer()-\/>getObjectNode())\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Radian\ tCamYaw\ =\ mCamera-\/>getYaw()+Degree(180);}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Radian\ tPlayerYaw\ =\ mUnitManager-\/>getPlayer()-\/>getObjectNode()-\/>getOrientation().getYaw();}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mMapTag-\/>isVisible())mMapTag-\/>hide();}
+\DoxyCodeLine{00094\ }
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Rotations}}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ mMapCone-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(0)-\/>setTextureRotate(tCamYaw);}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ mMapArrow-\/>getTechnique()-\/>getPass(0)-\/>getTextureUnitState(0)-\/>setTextureRotate(tPlayerYaw);}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ Vector2\ tCenter\ =\ Vector2(mUnitManager-\/>getPlayer()-\/>getPosition().x,mUnitManager-\/>getPlayer()-\/>getPosition().z);}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Player}}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mCamera-\/>getCamera()-\/>isAttached())}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ tCamPosition\ =\ Vector2(mCamera-\/>getCamera()-\/>getPosition().x,mCamera-\/>getCamera()-\/>getPosition().z);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tMarkerPosition;}
+\DoxyCodeLine{00106\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mapPosition(tCamPosition,tCenter,tMarkerPosition))}
+\DoxyCodeLine{00107\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00108\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMapArrow-\/>isVisible())mMapArrow-\/>show();}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMapArrow-\/>setPosition(tMarkerPosition.x,tMarkerPosition.y);}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ mMapArrow-\/>hide();}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ tCenter\ =\ tCamPosition;}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ }
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \ \ \ \ mMapArrow-\/>setPosition(0.06,0.08);}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMapArrow-\/>isVisible())mMapArrow-\/>show();}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00120\ }
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Portals}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)portalMap.size();i++)}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ doMarker\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tMarkerPosition;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mapPosition(tCenter,portalMap[i].first,tMarkerPosition))}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ doMarker\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayElement\ *tPortalMarker\ =\ 0;}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!hasPortalMarker[i])}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tPortalMarker\ =\ OverlayManager::getSingleton().createOverlayElement(\textcolor{stringliteral}{"{}Panel"{}},\ \textcolor{stringliteral}{"{}PortalMarker"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tPortalMarker-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/MiniMapDotTeal"{}});}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tPortalMarker-\/>setDimensions(0.03,0.04);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMap-\/>addChild(tPortalMarker);}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPortalMarker[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ tPortalMarker\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}PortalMarker"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tPortalMarker-\/>setPosition(tMarkerPosition.x,tMarkerPosition.y);}
+\DoxyCodeLine{00140\ }
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Check\ cursor\ position,\ show\ portal\ name}}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(cursorVisible\ \&\&\ isInMarker(tPortalMarker,cursorX,cursorY))}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMapTag-\/>setCaption(portalMap[i].second);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMapTag-\/>setPosition(cursorX,cursorY);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMapTag-\/>isVisible())mMapTag-\/>show();}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!doMarker\ \&\&\ hasPortalMarker[i])}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().destroyOverlayElement(\textcolor{stringliteral}{"{}PortalMarker"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasPortalMarker[i]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00156\ }
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Gates}}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)gateMap.size();i++)}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{bool}\ doMarker\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00161\ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tMarkerPosition;}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mapPosition(tCenter,gateMap[i].first,tMarkerPosition))}
+\DoxyCodeLine{00163\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00164\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ doMarker\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00165\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayElement\ *tGateMarker\ =\ 0;}
+\DoxyCodeLine{00166\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!hasGateMarker[i])}
+\DoxyCodeLine{00167\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00168\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tGateMarker\ =\ OverlayManager::getSingleton().createOverlayElement(\textcolor{stringliteral}{"{}Panel"{}},\ \textcolor{stringliteral}{"{}GateMarker"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00169\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tGateMarker-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/MiniMapDotTeal"{}});}
+\DoxyCodeLine{00170\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tGateMarker-\/>setDimensions(0.03,0.04);}
+\DoxyCodeLine{00171\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMap-\/>addChild(tGateMarker);}
+\DoxyCodeLine{00172\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasGateMarker[i]\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00173\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00174\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ tGateMarker\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}GateMarker"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00175\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tGateMarker-\/>setPosition(tMarkerPosition.x,tMarkerPosition.y);}
+\DoxyCodeLine{00176\ }
+\DoxyCodeLine{00177\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Check\ cursor\ position,\ show\ gate\ name}}
+\DoxyCodeLine{00178\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(cursorVisible\ \&\&\ isInMarker(tGateMarker,cursorX,cursorY))}
+\DoxyCodeLine{00179\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00180\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMapTag-\/>setCaption(mDef-\/>getMapName(gateMap[i].second));}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMapTag-\/>setPosition(cursorX,cursorY);}
+\DoxyCodeLine{00182\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMapTag-\/>isVisible())mMapTag-\/>show();}
+\DoxyCodeLine{00183\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00184\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00185\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!doMarker\ \&\&\ hasGateMarker[i])}
+\DoxyCodeLine{00186\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00187\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().destroyOverlayElement(\textcolor{stringliteral}{"{}GateMarker"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00188\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ hasGateMarker[i]\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00189\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00190\ }
+\DoxyCodeLine{00191\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00192\ }
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Units}}
+\DoxyCodeLine{00194\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ vector<MagixIndexedUnit*>::type\ tUnitList\ =\ mUnitManager-\/>getUnitList();}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)tUnitList.size();i++)}
+\DoxyCodeLine{00197\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00198\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Vector2\ tUnitPosition\ =\ Vector2(tUnitList[i]-\/>getPosition().x,tUnitList[i]-\/>getPosition().z);}
+\DoxyCodeLine{00199\ \ \ \ \ \ \ \ \ \ \ \ \ Vector2\ tMarkerPosition;}
+\DoxyCodeLine{00200\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tUnitList[i]-\/>isHidden\ \&\&\ mapPosition(tCenter,tUnitPosition,tMarkerPosition))}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayElement\ *tUnitMarker\ =\ 0;}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tUnitList[i]-\/>hasMarker)}
+\DoxyCodeLine{00204\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tUnitMarker\ =\ OverlayManager::getSingleton().createOverlayElement(\textcolor{stringliteral}{"{}Panel"{}},\ \textcolor{stringliteral}{"{}UnitMarker"{}}+StringConverter::toString(tUnitList[i]-\/>getUnitID()));}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tUnitMarker-\/>setDimensions(0.03,0.04);}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMap-\/>addChild(tUnitMarker);}
+\DoxyCodeLine{00208\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tUnitList[i]-\/>hasMarker\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ updateUnitMarker(tUnitList[i]);}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ tUnitMarker\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}UnitMarker"{}}+StringConverter::toString(tUnitList[i]-\/>getUnitID()));}
+\DoxyCodeLine{00212\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tUnitMarker-\/>setPosition(tMarkerPosition.x,tMarkerPosition.y);}
+\DoxyCodeLine{00213\ }
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//Check\ cursor\ position,\ show\ unit\ name}}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(cursorVisible\ \&\&\ isInMarker(tUnitMarker,cursorX,cursorY))}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMapTag-\/>setCaption((!mapTagUseCharName\&\&tUnitList[i]-\/>getUser()!=\textcolor{stringliteral}{"{}"{}}?tUnitList[i]-\/>getUser():tUnitList[i]-\/>getName()));}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ mMapTag-\/>setPosition(cursorX,cursorY);}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMapTag-\/>isVisible())mMapTag-\/>show();}
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}(tUnitList[i]-\/>hasMarker)}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().destroyOverlayElement(\textcolor{stringliteral}{"{}UnitMarker"{}}+StringConverter::toString(tUnitList[i]-\/>getUnitID()));}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ tUnitList[i]-\/>hasMarker\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00226\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00228\ }
+\DoxyCodeLine{00229\ \ \ \ \ \ \ \ \ \textcolor{comment}{//Pinged\ Units}}
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pingCounter>0)}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ pingTimer\ -\/=\ evt.timeSinceLastFrame;}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pingTimer<=0)}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)pingUnitMarkers.size();i++)}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00237\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayElement\ *tUnitMarker\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}UnitMarker"{}}+StringConverter::toString(pingUnitMarkers[i]));}
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tUnitMarker)\textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pingCounter\%2==0)tUnitMarker-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/MiniMapDotRed"{}});}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ tUnitMarker-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/MiniMapDotYellow"{}});}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00242\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pingTimer\ =\ 0.25;}
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pingCounter-\/-\/;}
+\DoxyCodeLine{00244\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00245\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(pingCounter==0)}
+\DoxyCodeLine{00246\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00247\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pingTimer\ =\ 0;}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ pingUnitMarkers.clear();}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00251\ \ \ \ \ \}}
+\DoxyCodeLine{00252\ \ \ \ \ \textcolor{keywordtype}{bool}\ mapPosition(\textcolor{keyword}{const}\ Vector2\ \&center,\ \textcolor{keyword}{const}\ Vector2\ \&input,\ Vector2\ \&output)}
+\DoxyCodeLine{00253\ \ \ \ \ \{}
+\DoxyCodeLine{00254\ \ \ \ \ \ \ \ \ output\ =\ Vector2((center.x-\/input.x)*0.00006*zoomRatio+0.06,(center.y-\/input.y)*0.00008*zoomRatio+0.08);}
+\DoxyCodeLine{00255\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(output.x<-\/0.015\ ||\ output.x>0.135\ ||\ output.y<-\/0.02\ ||\ output.y>0.18)\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00256\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00257\ \ \ \ \ \}}
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordtype}{void}\ zoomIn()}
+\DoxyCodeLine{00259\ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(zoomRatio>=2)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ zoomRatio\ *=\ 2;}
+\DoxyCodeLine{00262\ \ \ \ \ \ \ \ \ mMapCone-\/>setDimensions(0.15*zoomRatio,\ 0.2*zoomRatio);}
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ mMapCone-\/>setPosition(mMap-\/>getWidth()*0.5\ -\/\ mMapCone-\/>getWidth()*0.5,mMap-\/>getHeight()*0.5\ -\/\ mMapCone-\/>getHeight()*0.5);}
+\DoxyCodeLine{00264\ \ \ \ \ \}}
+\DoxyCodeLine{00265\ \ \ \ \ \textcolor{keywordtype}{void}\ zoomOut()}
+\DoxyCodeLine{00266\ \ \ \ \ \{}
+\DoxyCodeLine{00267\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(zoomRatio<=0.03125)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00268\ \ \ \ \ \ \ \ \ zoomRatio\ *=\ 0.5;}
+\DoxyCodeLine{00269\ \ \ \ \ \ \ \ \ mMapCone-\/>setDimensions(0.15*zoomRatio,\ 0.2*zoomRatio);}
+\DoxyCodeLine{00270\ \ \ \ \ \ \ \ \ mMapCone-\/>setPosition(mMap-\/>getWidth()*0.5\ -\/\ mMapCone-\/>getWidth()*0.5,mMap-\/>getHeight()*0.5\ -\/\ mMapCone-\/>getHeight()*0.5);}
+\DoxyCodeLine{00271\ \ \ \ \ \}}
+\DoxyCodeLine{00272\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInMarker(OverlayElement\ *marker,\ \textcolor{keyword}{const}\ Real\ \&x,\ \textcolor{keyword}{const}\ Real\ \&y)}
+\DoxyCodeLine{00273\ \ \ \ \ \{}
+\DoxyCodeLine{00274\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!mMap-\/>contains(x,y))\textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00275\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tX\ =\ mMap-\/>getLeft()\ +\ marker-\/>getLeft();}
+\DoxyCodeLine{00276\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tY\ =\ mMap-\/>getTop()\ +\ marker-\/>getTop();}
+\DoxyCodeLine{00277\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tQuartWidth\ =\ marker-\/>getWidth()/4;}
+\DoxyCodeLine{00278\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ Real\ tQuartHeight\ =\ marker-\/>getHeight()/4;}
+\DoxyCodeLine{00279\ }
+\DoxyCodeLine{00280\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(x\ >=\ tX+tQuartWidth\ \&\&\ x\ <=\ tX+marker-\/>getWidth()-\/tQuartWidth}
+\DoxyCodeLine{00281\ \ \ \ \ \ \ \ \ \ \ \ \ \&\&\ y\ >=\ tY+tQuartHeight\ \&\&\ y\ <=\ tY+marker-\/>getHeight()-\/tQuartHeight)}
+\DoxyCodeLine{00282\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00283\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00284\ \ \ \ \ \}}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordtype}{void}\ setMapTagUseCharName(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00286\ \ \ \ \ \{}
+\DoxyCodeLine{00287\ \ \ \ \ \ \ \ \ mapTagUseCharName\ =\ flag;}
+\DoxyCodeLine{00288\ \ \ \ \ \}}
+\DoxyCodeLine{00289\ \ \ \ \ \textcolor{keywordtype}{void}\ updatePortalMap()}
+\DoxyCodeLine{00290\ \ \ \ \ \{}
+\DoxyCodeLine{00291\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)hasPortalMarker.size();i++)}
+\DoxyCodeLine{00292\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasPortalMarker[i])}
+\DoxyCodeLine{00293\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().destroyOverlayElement(\textcolor{stringliteral}{"{}PortalMarker"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00294\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)hasGateMarker.size();i++)}
+\DoxyCodeLine{00295\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(hasGateMarker[i])}
+\DoxyCodeLine{00296\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ OverlayManager::getSingleton().destroyOverlayElement(\textcolor{stringliteral}{"{}GateMarker"{}}+StringConverter::toString(i));}
+\DoxyCodeLine{00297\ \ \ \ \ \ \ \ \ mCollisionManager-\/>getPortalMap(portalMap);}
+\DoxyCodeLine{00298\ \ \ \ \ \ \ \ \ mCollisionManager-\/>getGateMap(gateMap);}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ hasPortalMarker.clear();}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ hasGateMarker.clear();}
+\DoxyCodeLine{00301\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)portalMap.size();i++)hasPortalMarker.push\_back(\textcolor{keyword}{false});}
+\DoxyCodeLine{00302\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}(\textcolor{keywordtype}{int}\ i=0;i<(int)gateMap.size();i++)hasGateMarker.push\_back(\textcolor{keyword}{false});}
+\DoxyCodeLine{00303\ \ \ \ \ \}}
+\DoxyCodeLine{00304\ \ \ \ \ \textcolor{keywordtype}{void}\ updateUnitMarker(\mbox{\hyperlink{class_magix_indexed_unit}{MagixIndexedUnit}}\ *unit)}
+\DoxyCodeLine{00305\ \ \ \ \ \{}
+\DoxyCodeLine{00306\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!unit)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00307\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!unit-\/>hasMarker)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ OverlayElement\ *tUnitMarker\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}UnitMarker"{}}+StringConverter::toString(unit-\/>getUnitID()));}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tUnitMarker)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mUnitManager-\/>isPartyMember(unit))tUnitMarker-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/MiniMapDotGreen"{}});}
+\DoxyCodeLine{00311\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ tUnitMarker-\/>setMaterialName(\textcolor{stringliteral}{"{}GUIMat/MiniMapDotYellow"{}});}
+\DoxyCodeLine{00312\ \ \ \ \ \}}
+\DoxyCodeLine{00313\ \ \ \ \ \textcolor{keywordtype}{void}\ pingUnitMarker(\mbox{\hyperlink{class_magix_indexed_unit}{MagixIndexedUnit}}\ *unit)}
+\DoxyCodeLine{00314\ \ \ \ \ \{}
+\DoxyCodeLine{00315\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!unit)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!unit-\/>hasMarker)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ OverlayElement\ *tUnitMarker\ =\ OverlayManager::getSingleton().getOverlayElement(\textcolor{stringliteral}{"{}UnitMarker"{}}+StringConverter::toString(unit-\/>getUnitID()));}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!tUnitMarker)\textcolor{keywordflow}{return};}
+\DoxyCodeLine{00319\ \ \ \ \ \ \ \ \ pingUnitMarkers.push\_back(unit-\/>getUnitID());}
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ pingCounter\ =\ 20;}
+\DoxyCodeLine{00321\ \ \ \ \ \}}
+\DoxyCodeLine{00322\ \};}
+\DoxyCodeLine{00323\ }
+\DoxyCodeLine{00324\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

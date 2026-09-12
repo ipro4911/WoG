@@ -1,0 +1,175 @@
+\doxysection{Magix\+Effects\+Manager Class Reference}
+\hypertarget{class_magix_effects_manager}{}\label{class_magix_effects_manager}\index{MagixEffectsManager@{MagixEffectsManager}}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_effects_manager_a9a5528ee2d2f95733db95045777a0b25}\label{class_magix_effects_manager_a9a5528ee2d2f95733db95045777a0b25} 
+void {\bfseries initialize} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+\Hypertarget{class_magix_effects_manager_a01766b62df6e67bdb6d5abf84d9a689b}\label{class_magix_effects_manager_a01766b62df6e67bdb6d5abf84d9a689b} 
+void {\bfseries reset} (bool ignore\+Unresettable=false)
+\item 
+\Hypertarget{class_magix_effects_manager_aaeb216f00405d69760b9002c142ea3d7}\label{class_magix_effects_manager_aaeb216f00405d69760b9002c142ea3d7} 
+void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_effects_manager_a44b9aee558d21b001fbd42aad86d6e54}\label{class_magix_effects_manager_a44b9aee558d21b001fbd42aad86d6e54} 
+void {\bfseries create\+Ribbon\+Trail} (Entity \texorpdfstring{$\ast$}{*}ent, const String \&bone\+Name, const String \&trail\+Mat, const Real \&trail\+Width=2, const Colour\+Value \&trail\+Colour=Colour\+Value(1, 0.\+9, 0.\+75, 1), const Colour\+Value \&colour\+Change=Colour\+Value(7, 7, 7, 7), const String \&head\+Mat="{}"{})
+\item 
+\Hypertarget{class_magix_effects_manager_a28260a4974bcfb8c3d1c2af141b5c1b9}\label{class_magix_effects_manager_a28260a4974bcfb8c3d1c2af141b5c1b9} 
+void {\bfseries destroy\+Ribbon\+Trail} (unsigned short t\+ID)
+\item 
+\Hypertarget{class_magix_effects_manager_ac0b5b50798127f2be12397c4243a93c8}\label{class_magix_effects_manager_ac0b5b50798127f2be12397c4243a93c8} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries create\+Particle} (Scene\+Node \texorpdfstring{$\ast$}{*}node, const String \&name, const Real \&duration, bool unresettable=false, bool attach\+To\+Bone=false, bool has\+Own\+Node=false, const Vector3 \&position=Vector3\+::\+ZERO, const String \&own\+Name="{}"{})
+\item 
+\Hypertarget{class_magix_effects_manager_a447a42aa88f860fe1efaeb5c223cca36}\label{class_magix_effects_manager_a447a42aa88f860fe1efaeb5c223cca36} 
+void {\bfseries destroy\+Particle} (unsigned short t\+ID)
+\item 
+\Hypertarget{class_magix_effects_manager_a5cc2735e325e519acaac4ec9dcd21267}\label{class_magix_effects_manager_a5cc2735e325e519acaac4ec9dcd21267} 
+void {\bfseries destroy\+Particle} (Particle\+System \texorpdfstring{$\ast$}{*}p\+Sys)
+\item 
+\Hypertarget{class_magix_effects_manager_abfae3ac4e287242852a47c9730004c55}\label{class_magix_effects_manager_abfae3ac4e287242852a47c9730004c55} 
+void {\bfseries destroy\+Particle} (const String \&name)
+\item 
+\Hypertarget{class_magix_effects_manager_a5a4b911dfbe65ef92f088b07e8fe9368}\label{class_magix_effects_manager_a5a4b911dfbe65ef92f088b07e8fe9368} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries get\+Particle} (const String \&name)
+\item 
+\Hypertarget{class_magix_effects_manager_a4de4d1ba402601c47444283b39f5ab87}\label{class_magix_effects_manager_a4de4d1ba402601c47444283b39f5ab87} 
+void {\bfseries destroy\+Ribbon\+Trail\+By\+Entity} (Entity \texorpdfstring{$\ast$}{*}ent)
+\item 
+\Hypertarget{class_magix_effects_manager_adb3042c4a1d48e87951905f1f8327e7f}\label{class_magix_effects_manager_adb3042c4a1d48e87951905f1f8327e7f} 
+void {\bfseries destroy\+Particle\+By\+Object\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}node, const String \&type="{}"{})
+\item 
+\Hypertarget{class_magix_effects_manager_ad049a43bdebe94188c16eaa7e8309276}\label{class_magix_effects_manager_ad049a43bdebe94188c16eaa7e8309276} 
+void {\bfseries stop\+Particle\+By\+Object\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}node, const String \&type="{}"{})
+\item 
+\Hypertarget{class_magix_effects_manager_ad2e6abc8ff9f57891e52561b1e0726ae}\label{class_magix_effects_manager_ad2e6abc8ff9f57891e52561b1e0726ae} 
+void {\bfseries create\+Water\+Ripple} (Scene\+Node \texorpdfstring{$\ast$}{*}owner, const Real \&water\+Height, const Real \&scale)
+\item 
+\Hypertarget{class_magix_effects_manager_aabb32cf88896a6213eced8579a4898e3}\label{class_magix_effects_manager_aabb32cf88896a6213eced8579a4898e3} 
+void {\bfseries destroy\+Water\+Ripple} (unsigned short t\+ID)
+\item 
+\Hypertarget{class_magix_effects_manager_a29136d3d007b5b8f61db050bb7557370}\label{class_magix_effects_manager_a29136d3d007b5b8f61db050bb7557370} 
+void {\bfseries destroy\+Water\+Ripple\+By\+Owner} (Scene\+Node \texorpdfstring{$\ast$}{*}node)
+\item 
+\Hypertarget{class_magix_effects_manager_ad685136a7b34526e7416651df1a2cf4a}\label{class_magix_effects_manager_ad685136a7b34526e7416651df1a2cf4a} 
+void {\bfseries set\+Water\+Ripple\+Emission\+By\+Owner} (Scene\+Node \texorpdfstring{$\ast$}{*}node, const Real \&rate)
+\item 
+\Hypertarget{class_magix_effects_manager_a3de68e6efd6c4ac94217a420d6dc88ca}\label{class_magix_effects_manager_a3de68e6efd6c4ac94217a420d6dc88ca} 
+void {\bfseries set\+Water\+Ripple\+Height\+By\+Owner} (Scene\+Node \texorpdfstring{$\ast$}{*}node, const Real \&height)
+\item 
+\Hypertarget{class_magix_effects_manager_a962d3f87a0fe4956a0195c31202292d3}\label{class_magix_effects_manager_a962d3f87a0fe4956a0195c31202292d3} 
+bool {\bfseries has\+Water\+Ripple\+Owner} (Scene\+Node \texorpdfstring{$\ast$}{*}node)
+\item 
+\Hypertarget{class_magix_effects_manager_acdf4b4c16fc94134e225d83cd0e64258}\label{class_magix_effects_manager_acdf4b4c16fc94134e225d83cd0e64258} 
+void {\bfseries create\+Breather} (Entity \texorpdfstring{$\ast$}{*}owner, const String \&type, const Vector3 \&offset, const Real \&scale)
+\item 
+\Hypertarget{class_magix_effects_manager_a959eee57d9f41f2c743e774ced3d5546}\label{class_magix_effects_manager_a959eee57d9f41f2c743e774ced3d5546} 
+void {\bfseries destroy\+Breather} (unsigned short t\+ID)
+\item 
+\Hypertarget{class_magix_effects_manager_a2ccf2ef8938ec8141a32c1eacd81e913}\label{class_magix_effects_manager_a2ccf2ef8938ec8141a32c1eacd81e913} 
+void {\bfseries destroy\+Breather\+By\+Owner} (Entity \texorpdfstring{$\ast$}{*}ent, const String \&type="{}"{})
+\item 
+\Hypertarget{class_magix_effects_manager_a9d59edad9382649c57401c340066d799}\label{class_magix_effects_manager_a9d59edad9382649c57401c340066d799} 
+void {\bfseries set\+Breather\+Emission\+By\+Owner} (Entity \texorpdfstring{$\ast$}{*}ent, const Real \&rate, const String \&type="{}"{})
+\item 
+\Hypertarget{class_magix_effects_manager_a4367a0fa1e04ea4f2f455596d39d1863}\label{class_magix_effects_manager_a4367a0fa1e04ea4f2f455596d39d1863} 
+bool {\bfseries has\+Breather\+Owner} (Entity \texorpdfstring{$\ast$}{*}ent, const String \&type="{}"{})
+\item 
+\Hypertarget{class_magix_effects_manager_ab2969894ff68fb0d91012a3247892d4b}\label{class_magix_effects_manager_ab2969894ff68fb0d91012a3247892d4b} 
+void {\bfseries create\+Item\+Particle} (Scene\+Node \texorpdfstring{$\ast$}{*}node)
+\item 
+\Hypertarget{class_magix_effects_manager_aadd5bc10be51ebf0bcfb76baadd26fed}\label{class_magix_effects_manager_aadd5bc10be51ebf0bcfb76baadd26fed} 
+void {\bfseries destroy\+Item\+Particle} (unsigned short t\+ID)
+\item 
+\Hypertarget{class_magix_effects_manager_aee667103c81c84d80fa9ffb6c33e629d}\label{class_magix_effects_manager_aee667103c81c84d80fa9ffb6c33e629d} 
+void {\bfseries destroy\+Item\+Particle\+By\+Object\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}node)
+\item 
+\Hypertarget{class_magix_effects_manager_adbd39959e31a2955506330ba4eaba085}\label{class_magix_effects_manager_adbd39959e31a2955506330ba4eaba085} 
+void {\bfseries create\+Item\+Effect} (Entity \texorpdfstring{$\ast$}{*}owner, const String \&type, const String \&bone, const Vector3 \&offset, const Real \&scale)
+\item 
+\Hypertarget{class_magix_effects_manager_aadf85c3699fc7c1d609cb03113564148}\label{class_magix_effects_manager_aadf85c3699fc7c1d609cb03113564148} 
+void {\bfseries destroy\+Item\+Effect} (unsigned short t\+ID)
+\item 
+\Hypertarget{class_magix_effects_manager_a89b89668251f20a94edae88b6fccb05e}\label{class_magix_effects_manager_a89b89668251f20a94edae88b6fccb05e} 
+void {\bfseries destroy\+Item\+Effect\+By\+Owner\+Node} (Scene\+Node \texorpdfstring{$\ast$}{*}node, const String \&type="{}"{})
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_effects_manager_ae5670e588416fdc981ed767723880e6e}\label{class_magix_effects_manager_ae5670e588416fdc981ed767723880e6e} 
+Scene\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Scene\+Mgr}
+\item 
+\Hypertarget{class_magix_effects_manager_a81a4ba7a817b1122339106e164df70e4}\label{class_magix_effects_manager_a81a4ba7a817b1122339106e164df70e4} 
+Ribbon\+Trail \texorpdfstring{$\ast$}{*} {\bfseries m\+Trail} \mbox{[}MAX\+\_\+\+RIBBONTRAILS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a9ed577f2625cd08b606bcec96acc6875}\label{class_magix_effects_manager_a9ed577f2625cd08b606bcec96acc6875} 
+Billboard\+Set \texorpdfstring{$\ast$}{*} {\bfseries m\+Trail\+Head} \mbox{[}MAX\+\_\+\+RIBBONTRAILS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_ab974790b7e8bbff86e6c03f5c56c0662}\label{class_magix_effects_manager_ab974790b7e8bbff86e6c03f5c56c0662} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Trail\+Head\+Ent} \mbox{[}MAX\+\_\+\+RIBBONTRAILS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a2140490af0b44348831749dea7f1c0d4}\label{class_magix_effects_manager_a2140490af0b44348831749dea7f1c0d4} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries m\+Particle} \mbox{[}MAX\+\_\+\+PARTICLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_abf4f490f9774a92fd1a0c0876acc742a}\label{class_magix_effects_manager_abf4f490f9774a92fd1a0c0876acc742a} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Particle\+Node} \mbox{[}MAX\+\_\+\+PARTICLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a7516a710e79bcd04943c16fdecae7d62}\label{class_magix_effects_manager_a7516a710e79bcd04943c16fdecae7d62} 
+Real {\bfseries particle\+Duration} \mbox{[}MAX\+\_\+\+PARTICLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a3cf96be66a2f77f2906eeddf5cfd0121}\label{class_magix_effects_manager_a3cf96be66a2f77f2906eeddf5cfd0121} 
+bool {\bfseries particle\+Unresettable} \mbox{[}MAX\+\_\+\+PARTICLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a817363cc719c5b58042caf79a064543d}\label{class_magix_effects_manager_a817363cc719c5b58042caf79a064543d} 
+bool {\bfseries particle\+Has\+Own\+Node} \mbox{[}MAX\+\_\+\+PARTICLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a8d0ac41222fd87c8658c5690b1530d35}\label{class_magix_effects_manager_a8d0ac41222fd87c8658c5690b1530d35} 
+String {\bfseries particle\+Type} \mbox{[}MAX\+\_\+\+PARTICLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a870114b0ae47d17d002765ce2df204c2}\label{class_magix_effects_manager_a870114b0ae47d17d002765ce2df204c2} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries m\+Water\+Ripple} \mbox{[}MAX\+\_\+\+WATERRIPPLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_add72f2635ae89a7b9302a599b5513632}\label{class_magix_effects_manager_add72f2635ae89a7b9302a599b5513632} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Water\+Ripple\+Node} \mbox{[}MAX\+\_\+\+WATERRIPPLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_aab67b609d9027fcf7e534aeef1fa4563}\label{class_magix_effects_manager_aab67b609d9027fcf7e534aeef1fa4563} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Water\+Ripple\+Owner} \mbox{[}MAX\+\_\+\+WATERRIPPLES\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a9f92318210bb679ecaee8da70b759d8f}\label{class_magix_effects_manager_a9f92318210bb679ecaee8da70b759d8f} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries m\+Breather} \mbox{[}MAX\+\_\+\+BREATHERS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_addf4672aae1264f3be227c6f4d8a8013}\label{class_magix_effects_manager_addf4672aae1264f3be227c6f4d8a8013} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Breather\+Owner} \mbox{[}MAX\+\_\+\+BREATHERS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_abd5772edd5f0606c4447657e9ee72b7f}\label{class_magix_effects_manager_abd5772edd5f0606c4447657e9ee72b7f} 
+String {\bfseries breather\+Type} \mbox{[}MAX\+\_\+\+BREATHERS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a9de424d0a3a748b846351a0f0d55f4be}\label{class_magix_effects_manager_a9de424d0a3a748b846351a0f0d55f4be} 
+Vector3 {\bfseries breather\+Offset} \mbox{[}MAX\+\_\+\+BREATHERS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a81ef0eac1bae6ce15483960d2edc3bb4}\label{class_magix_effects_manager_a81ef0eac1bae6ce15483960d2edc3bb4} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries m\+Item\+Particle} \mbox{[}MAX\+\_\+\+ITEMSPARKLE\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a5b4297308e1f48445a16c8eae795139e}\label{class_magix_effects_manager_a5b4297308e1f48445a16c8eae795139e} 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Item\+Particle\+Node} \mbox{[}MAX\+\_\+\+ITEMSPARKLE\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_aab05364fdda24237d17b97116ef83e37}\label{class_magix_effects_manager_aab05364fdda24237d17b97116ef83e37} 
+Particle\+System \texorpdfstring{$\ast$}{*} {\bfseries m\+Item\+Effect} \mbox{[}MAX\+\_\+\+ITEMEFFECTS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a3b4d04f0a620ee7a6e322f8184888cc8}\label{class_magix_effects_manager_a3b4d04f0a620ee7a6e322f8184888cc8} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Item\+Effect\+Owner} \mbox{[}MAX\+\_\+\+ITEMEFFECTS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a0bb02556499f8d7a90236ef0e3c6cdd4}\label{class_magix_effects_manager_a0bb02556499f8d7a90236ef0e3c6cdd4} 
+String {\bfseries item\+Effect\+Type} \mbox{[}MAX\+\_\+\+ITEMEFFECTS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_a88193b3fa76a202cb68e72edd69894f7}\label{class_magix_effects_manager_a88193b3fa76a202cb68e72edd69894f7} 
+Vector3 {\bfseries item\+Effect\+Offset} \mbox{[}MAX\+\_\+\+ITEMEFFECTS\mbox{]}
+\item 
+\Hypertarget{class_magix_effects_manager_af4d2d52f6faefeebb8a7556548b55b36}\label{class_magix_effects_manager_af4d2d52f6faefeebb8a7556548b55b36} 
+String {\bfseries item\+Effect\+Bone} \mbox{[}MAX\+\_\+\+ITEMEFFECTS\mbox{]}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Effects\+Manager.\+h\end{DoxyCompactItemize}

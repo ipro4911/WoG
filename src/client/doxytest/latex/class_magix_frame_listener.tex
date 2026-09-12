@@ -1,0 +1,70 @@
+\doxysection{Magix\+Frame\+Listener Class Reference}
+\hypertarget{class_magix_frame_listener}{}\label{class_magix_frame_listener}\index{MagixFrameListener@{MagixFrameListener}}
+Inheritance diagram for Magix\+Frame\+Listener\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=3.000000cm]{class_magix_frame_listener}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_frame_listener_ae21af7718ede3893cb7e21bbb75943d1}\label{class_magix_frame_listener_ae21af7718ede3893cb7e21bbb75943d1} 
+{\bfseries Magix\+Frame\+Listener} (\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*}magix\+Handler, Render\+Window \texorpdfstring{$\ast$}{*}win, Camera \texorpdfstring{$\ast$}{*}cam, bool buffered\+Keys=true, bool buffered\+Mouse=true)
+\item 
+\Hypertarget{class_magix_frame_listener_a9f192241db878feb351b0337e68fa769}\label{class_magix_frame_listener_a9f192241db878feb351b0337e68fa769} 
+virtual void {\bfseries window\+Resized} (Render\+Window \texorpdfstring{$\ast$}{*}rw)
+\item 
+\Hypertarget{class_magix_frame_listener_a95dc4e68ca039d384df672d5f9253388}\label{class_magix_frame_listener_a95dc4e68ca039d384df672d5f9253388} 
+virtual void {\bfseries window\+Closed} (Render\+Window \texorpdfstring{$\ast$}{*}rw)
+\item 
+\Hypertarget{class_magix_frame_listener_a6bf9797453e90b377e3f8d54a61f88ab}\label{class_magix_frame_listener_a6bf9797453e90b377e3f8d54a61f88ab} 
+void {\bfseries show\+Debug\+Overlay} (bool show)
+\item 
+\Hypertarget{class_magix_frame_listener_a3b576d484401fbd6dc41c71ae7624cb4}\label{class_magix_frame_listener_a3b576d484401fbd6dc41c71ae7624cb4} 
+bool {\bfseries frame\+Started} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_frame_listener_a135cd3e0dd48c462d7cfdc4ab5a2abcc}\label{class_magix_frame_listener_a135cd3e0dd48c462d7cfdc4ab5a2abcc} 
+bool {\bfseries frame\+Ended} (const Frame\+Event \&evt)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_frame_listener_a338c19f9d76b310beb42905717e352de}\label{class_magix_frame_listener_a338c19f9d76b310beb42905717e352de} 
+void {\bfseries update\+Stats} (void)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_frame_listener_ab5ace9f1e1e0cfaa2b19fabf0e1c7710}\label{class_magix_frame_listener_ab5ace9f1e1e0cfaa2b19fabf0e1c7710} 
+Render\+Window \texorpdfstring{$\ast$}{*} {\bfseries m\+Window}
+\item 
+\Hypertarget{class_magix_frame_listener_ac1d15731ad0ef0b60c4dafbb8876c530}\label{class_magix_frame_listener_ac1d15731ad0ef0b60c4dafbb8876c530} 
+bool {\bfseries is\+Stats\+On}
+\item 
+\Hypertarget{class_magix_frame_listener_a6733a5f598fbc77046b4d7cd74d10fd5}\label{class_magix_frame_listener_a6733a5f598fbc77046b4d7cd74d10fd5} 
+std\+::string {\bfseries m\+Debug\+Text}
+\item 
+\Hypertarget{class_magix_frame_listener_a17ec597e765867b12fd446c3184db6e6}\label{class_magix_frame_listener_a17ec597e765867b12fd446c3184db6e6} 
+Overlay \texorpdfstring{$\ast$}{*} {\bfseries m\+Debug\+Overlay}
+\item 
+\Hypertarget{class_magix_frame_listener_a0e6410632ddde3bd497bb8010191b7e4}\label{class_magix_frame_listener_a0e6410632ddde3bd497bb8010191b7e4} 
+OIS\+::\+Input\+Manager \texorpdfstring{$\ast$}{*} {\bfseries m\+Input\+Manager}
+\item 
+\Hypertarget{class_magix_frame_listener_ae42cfded12af470bbdee4b3d8717a000}\label{class_magix_frame_listener_ae42cfded12af470bbdee4b3d8717a000} 
+OIS\+::\+Mouse \texorpdfstring{$\ast$}{*} {\bfseries m\+Mouse}
+\item 
+\Hypertarget{class_magix_frame_listener_a769e93b82daf48c89c55609f0b472ce0}\label{class_magix_frame_listener_a769e93b82daf48c89c55609f0b472ce0} 
+OIS\+::\+Keyboard \texorpdfstring{$\ast$}{*} {\bfseries m\+Keyboard}
+\item 
+\Hypertarget{class_magix_frame_listener_a8c8bd1e50e26783f0dde9b3849b79a54}\label{class_magix_frame_listener_a8c8bd1e50e26783f0dde9b3849b79a54} 
+\mbox{\hyperlink{class_magix_handler}{Magix\+Handler}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Magix\+Handler}
+\item 
+\Hypertarget{class_magix_frame_listener_a4531b1d10de9aff87405718cdc56a6fc}\label{class_magix_frame_listener_a4531b1d10de9aff87405718cdc56a6fc} 
+bool {\bfseries m\+Continue}
+\end{DoxyCompactItemize}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Frame\+Listener.\+h\end{DoxyCompactItemize}

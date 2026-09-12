@@ -1,0 +1,385 @@
+\doxysection{Rect\+Layout\+Manager.\+h}
+\hypertarget{_rect_layout_manager_8h_source}{}\label{_rect_layout_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/RectLayoutManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/RectLayoutManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_RectLayoutManager\_H\_\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_RectLayoutManager\_H\_\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{comment}{//\#include\ <list>}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#include\ <algorithm>}}
+\DoxyCodeLine{00006\ }
+\DoxyCodeLine{00007\ \textcolor{comment}{//using\ namespace\ std;}}
+\DoxyCodeLine{00008\ }
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ It\ moves\ the\ rectangles\ on\ the\ Y\ axis\ so\ they\ won't\ overlap.}}
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }RectLayoutManager}
+\DoxyCodeLine{00011\ \{}
+\DoxyCodeLine{00012\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00013\ }
+\DoxyCodeLine{00014\ \ \ \ \ \textcolor{keyword}{enum}\ MethodType\ }
+\DoxyCodeLine{00015\ \ \ \ \ \{}
+\DoxyCodeLine{00016\ \ \ \ \ \ \ \ \ PLACE\_ABOVE\ =\ 0,\ \ \ \ \textcolor{comment}{//\ the\ overlapping\ rectangles\ are\ placed\ above\ the\ non-\/overlapping\ ones}}
+\DoxyCodeLine{00017\ \ \ \ \ \ \ \ \ PLACE\_BELOW\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ the\ overlapping\ rectangles\ are\ placed\ below\ the\ non-\/overlapping\ ones}}
+\DoxyCodeLine{00018\ \ \ \ \ \};}
+\DoxyCodeLine{00019\ }
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keyword}{class\ }Rect}
+\DoxyCodeLine{00021\ \ \ \ \ \{}
+\DoxyCodeLine{00022\ \ \ \ \ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00023\ \ \ \ \ \ \ \ \ Rect(\textcolor{keywordtype}{short}\ left,\ \textcolor{keywordtype}{short}\ top,\ \textcolor{keywordtype}{short}\ right,\ \textcolor{keywordtype}{short}\ bottom)}
+\DoxyCodeLine{00024\ \ \ \ \ \ \ \ \ \ \ \ \ :\ mLeft(left)}
+\DoxyCodeLine{00025\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ mTop(top)}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ mRight(right)}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ mBottom(bottom)}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ \ \ \ \ ,\ dy(0)}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBottom\ <=\ mTop)}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::exception(\textcolor{stringliteral}{"{}Condition\ Failure\ (top\ <\ bottom)\ in\ RectLayoutManager::Rect::Rect"{}});}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mRight\ <=\ mLeft)}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::exception(\textcolor{stringliteral}{"{}Condition\ Failure\ (left\ <\ right)\ in\ RectLayoutManager::Rect::Rect"{}});}
+\DoxyCodeLine{00035\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getTop()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mTop\ +\ dy;\}}
+\DoxyCodeLine{00038\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getBottom()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mBottom\ +\ dy;\}}
+\DoxyCodeLine{00039\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getLeft()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mLeft;\}}
+\DoxyCodeLine{00040\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{short}\ getRight()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mRight;\}}
+\DoxyCodeLine{00041\ }
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ STL\ needs\ this}}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keyword}{inline}\ \textcolor{keywordtype}{bool}\ operator\ <(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{RectLayoutManager::Rect}}\ \&R)\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ getBottom()\ <\ R.getBottom();\}}
+\DoxyCodeLine{00044\ }
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ displacement\ on\ Y\ axis}}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ dy;}
+\DoxyCodeLine{00047\ }
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ original\ rectangle\ coordinates}}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ mBottom;}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ mTop;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ mLeft;}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ mRight;}
+\DoxyCodeLine{00053\ \ \ \ \ \};}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{typedef}\ list<RectLayoutManager::Rect>::type\ RectList;}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ RectLayoutManager(\ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ leftBound,}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ topBound,}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ rightBound,}
+\DoxyCodeLine{00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ bottomBound,}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MethodType\ method\ =\ PLACE\_ABOVE)}
+\DoxyCodeLine{00062\ \ \ \ \ :\ mMethod(method)}
+\DoxyCodeLine{00063\ \ \ \ \ ,\ mBoundTop(topBound)}
+\DoxyCodeLine{00064\ \ \ \ \ ,\ mBoundLeft(leftBound)}
+\DoxyCodeLine{00065\ \ \ \ \ ,\ mBoundBottom(bottomBound)}
+\DoxyCodeLine{00066\ \ \ \ \ ,\ mBoundRight(rightBound)}
+\DoxyCodeLine{00067\ \ \ \ \ ,\ mMinDistance(1)}
+\DoxyCodeLine{00068\ \ \ \ \ ,\ mMaxRectHeight(0)}
+\DoxyCodeLine{00069\ \ \ \ \ ,\ mDepth(0)}
+\DoxyCodeLine{00070\ \ \ \ \ \{}
+\DoxyCodeLine{00071\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBoundBottom\ <=\ mBoundTop)}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::exception(\textcolor{stringliteral}{"{}Condition\ Failure\ (mBoundTop\ <\ mBoundBottom)\ in\ RectLayoutManager::RectLayoutManager"{}});}
+\DoxyCodeLine{00073\ }
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mBoundRight\ <=\ mBoundLeft)}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{throw}\ std::exception(\textcolor{stringliteral}{"{}Condition\ Failure\ (mBoundLeft\ <\ mBoundRight)\ in\ RectLayoutManager::RectLayoutManager"{}});}
+\DoxyCodeLine{00076\ \ \ \ \ \}}
+\DoxyCodeLine{00077\ \ \ \ \ }
+\DoxyCodeLine{00078\ \ \ \ \ \mbox{\hyperlink{class_rect_layout_manager}{\string~RectLayoutManager}}()\{clear();\}}
+\DoxyCodeLine{00079\ }
+\DoxyCodeLine{00080\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getMinDistance()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mMinDistance;\}}
+\DoxyCodeLine{00081\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getMaxRectHeight()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mMaxRectHeight;\}}
+\DoxyCodeLine{00082\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getDepth()\textcolor{keyword}{\ const\ }\{\textcolor{keywordflow}{return}\ mDepth;\}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{void}\ getBounds(\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&left,}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&top,}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&right,}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&bottom)}
+\DoxyCodeLine{00087\ \ \ \ \ \{}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ left\ =\ mBoundLeft;}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ top\ =\ mBoundTop;}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ right\ =\ mBoundRight;}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ bottom\ =\ mBoundBottom;}
+\DoxyCodeLine{00092\ \ \ \ \ \}}
+\DoxyCodeLine{00093\ }
+\DoxyCodeLine{00094\ \ \ \ \ \textcolor{keywordtype}{void}\ setMinDistance(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ minDistance)\{mMinDistance\ =\ minDistance;\}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ setDepth(\textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ depth)\{mDepth\ =\ depth;\}}
+\DoxyCodeLine{00096\ }
+\DoxyCodeLine{00097\ \ \ \ \ \textcolor{keywordtype}{bool}\ isOutOfBounds(RectLayoutManager::Rect\ \&r)}
+\DoxyCodeLine{00098\ \ \ \ \ \{}
+\DoxyCodeLine{00099\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r.getTop()\ <\ mBoundTop\ ||}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \ \ \ \ r.getBottom()\ >\ mBoundBottom\ ||}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ r.getLeft()\ <\ mBoundLeft\ ||}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ r.getRight()\ >\ mBoundRight)}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ RectList::iterator\ getListBegin()\{\textcolor{keywordflow}{return}\ mList.begin();\}}
+\DoxyCodeLine{00109\ \ \ \ \ RectList::iterator\ getListEnd()\{\textcolor{keywordflow}{return}\ mList.end();\}}
+\DoxyCodeLine{00110\ }
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keywordtype}{void}\ clear()\{mList.clear();\}}
+\DoxyCodeLine{00112\ }
+\DoxyCodeLine{00113\ \ \ \ \ RectList::iterator\ addData(\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect}}\ \&Data)}
+\DoxyCodeLine{00114\ \ \ \ \ \{}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(isOutOfBounds(Data))}
+\DoxyCodeLine{00116\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mList.end();\ \textcolor{comment}{//\ out\ of\ bounds,\ error}}
+\DoxyCodeLine{00117\ }
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{switch}\ (mMethod)}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PLACE\_ABOVE:}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ addDataAbove(Data);}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{case}\ PLACE\_BELOW:}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ addDataBelow(Data);}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{default}:}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mList.end();\ \textcolor{comment}{//\ incorrect\ method\ type,\ error}}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00127\ \ \ \ \ \}}
+\DoxyCodeLine{00128\ }
+\DoxyCodeLine{00129\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00130\ \ \ \ \ \textcolor{comment}{//\ List\ of\ orderedd\ rectangles}}
+\DoxyCodeLine{00131\ \ \ \ \ \textcolor{comment}{//\ All\ items\ in\ list\ are\ assumed\ ordered\ and\ within\ established\ Bounds}}
+\DoxyCodeLine{00132\ \ \ \ \ RectList\ mList;}
+\DoxyCodeLine{00133\ }
+\DoxyCodeLine{00134\ \ \ \ \ \textcolor{comment}{//\ The\ overlapping\ rectangles\ are\ placed\ at\ a\ mMinDistance\ from\ the\ other\ ones}}
+\DoxyCodeLine{00135\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mMinDistance;}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{comment}{//\ This\ gets\ calculated\ "{}on\ the\ fly"{}}}
+\DoxyCodeLine{00138\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mMaxRectHeight;}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \textcolor{comment}{//\ An\ overlapping\ rectangle\ is\ moved\ on\ Y\ axis\ (Above\ or\ Below)\ untill}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{comment}{//\ \ a\ place\ is\ found\ where\ it\ doesn't\ overlap\ any\ other\ rectangle.}}
+\DoxyCodeLine{00142\ \ \ \ \ \textcolor{comment}{//\ mDepth\ is\ the\ number\ of\ times\ an\ overlapping\ rectangle\ will\ be\ moved}}
+\DoxyCodeLine{00143\ \ \ \ \ \textcolor{comment}{//\ \ in\ order\ to\ find\ a\ non-\/overlapping\ place.}}
+\DoxyCodeLine{00144\ \ \ \ \ \textcolor{comment}{//}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{comment}{//\ (mDepth\ =\ 0)\ -\/\ the\ search\ will\ go\ on\ untill\ a\ place\ is\ found.}}
+\DoxyCodeLine{00146\ \ \ \ \ \textcolor{comment}{//\ (mDepth\ >\ 0)\ -\/\ the\ search\ will\ go\ on\ <mDepth>\ times}}
+\DoxyCodeLine{00147\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mDepth;\ \ }
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \ \ \ \ \textcolor{comment}{//\ Don't\ use\ these\ directly,\ use\ addData\ instead}}
+\DoxyCodeLine{00150\ \ \ \ \ RectList::iterator\ addDataAbove(\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect}}\ \&Data);}
+\DoxyCodeLine{00151\ \ \ \ \ RectList::iterator\ addDataBelow(\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{Rect}}\ \&Data);}
+\DoxyCodeLine{00152\ }
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{comment}{//\ Const\ variables\ can\ only\ be\ set\ in\ the\ constructor\ and\ certify\ the\ RectList\ integrity.}}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \textcolor{comment}{//\ Method\ Type}}
+\DoxyCodeLine{00156\ \ \ \ \ \textcolor{keyword}{const}\ MethodType\ mMethod;}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \textcolor{comment}{//\ Bounds}}
+\DoxyCodeLine{00159\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mBoundTop;}
+\DoxyCodeLine{00160\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mBoundLeft;}
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mBoundBottom;}
+\DoxyCodeLine{00162\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ mBoundRight;}
+\DoxyCodeLine{00163\ \};}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \_fLessBottom(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{RectLayoutManager::Rect}}\ \&L,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{RectLayoutManager::Rect}}\ \&R)\ \{\textcolor{keywordflow}{return}\ L.getBottom()\ <\ R.getBottom();\}}
+\DoxyCodeLine{00166\ }
+\DoxyCodeLine{00167\ RectLayoutManager::RectList::iterator\ RectLayoutManager::addDataBelow(\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{RectLayoutManager::Rect}}\ \&Data)}
+\DoxyCodeLine{00168\ \{}
+\DoxyCodeLine{00169\ \ \ \ \ \textcolor{keywordtype}{bool}\ MoveIt\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00170\ \ \ \ \ \textcolor{keywordtype}{bool}\ FoundIt\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00171\ \ \ \ \ RectList::iterator\ itStart;}
+\DoxyCodeLine{00172\ \ \ \ \ RectList::iterator\ itLastChecked;}
+\DoxyCodeLine{00173\ \ \ \ \ RectList::iterator\ itCurrent;}
+\DoxyCodeLine{00174\ \ \ \ \ RectList::iterator\ itInsert;}
+\DoxyCodeLine{00175\ }
+\DoxyCodeLine{00176\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ depth\ =\ 0;}
+\DoxyCodeLine{00177\ \ \ \ \ RectLayoutManager::Rect\ \&r\ =\ Data;}
+\DoxyCodeLine{00178\ \ \ \ \ \textcolor{keywordtype}{short}\ height\ =\ r.getBottom()\ -\/\ r.getTop();}
+\DoxyCodeLine{00179\ }
+\DoxyCodeLine{00180\ \ \ \ \ \textcolor{keywordflow}{if}(height\ >\ mMaxRectHeight)}
+\DoxyCodeLine{00181\ \ \ \ \ \ \ \ \ mMaxRectHeight\ =\ height;}
+\DoxyCodeLine{00182\ }
+\DoxyCodeLine{00183\ \ \ \ \ \textcolor{comment}{//\ find\ the\ first\ RECT\ \ that\ has\ .bottom\ >\ r.top}}
+\DoxyCodeLine{00184\ \ \ \ \ \textcolor{comment}{//\ first\ possible\ intersect}}
+\DoxyCodeLine{00185\ \ \ \ \ r.dy\ -\/=\ height;}
+\DoxyCodeLine{00186\ \ \ \ \ itStart\ =\ lower\_bound(mList.begin(),\ mList.end(),\ r,\ \&\_fLessBottom);}
+\DoxyCodeLine{00187\ \ \ \ \ r.dy\ +=\ height;}
+\DoxyCodeLine{00188\ }
+\DoxyCodeLine{00189\ \ \ \ \ \textcolor{comment}{//\ it's\ safe\ to\ add\ it\ at\ the\ back\ of\ the\ list}}
+\DoxyCodeLine{00190\ \ \ \ \ \textcolor{keywordflow}{if}(itStart\ ==\ mList.end())}
+\DoxyCodeLine{00191\ \ \ \ \ \{}
+\DoxyCodeLine{00192\ \ \ \ \ \ \ \ \ mList.push\_back(r);}
+\DoxyCodeLine{00193\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/-\/(mList.end());}
+\DoxyCodeLine{00194\ \ \ \ \ \}}
+\DoxyCodeLine{00195\ }
+\DoxyCodeLine{00196\ \ \ \ \ \textcolor{comment}{//\ insert\ it\ temporarily\ (we\ will\ move\ it\ at\ the\ right\ place,\ afterwords)}}
+\DoxyCodeLine{00197\ \ \ \ \ itInsert\ =\ mList.insert(itStart,r);}
+\DoxyCodeLine{00198\ }
+\DoxyCodeLine{00199\ \ \ \ \ \textcolor{keywordflow}{for}\ (itCurrent\ =\ itStart,\ itLastChecked\ =\ itInsert;itCurrent\ !=\ mList.end();itCurrent++)}
+\DoxyCodeLine{00200\ \ \ \ \ \{}
+\DoxyCodeLine{00201\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Can't\ intersect\ r\ so\ i\ skip\ it}}
+\DoxyCodeLine{00202\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((*itCurrent).getRight()\ <\ r.getLeft())}
+\DoxyCodeLine{00203\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00204\ }
+\DoxyCodeLine{00205\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Can't\ intersect\ r\ so\ i\ skip\ it}}
+\DoxyCodeLine{00206\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r.getRight()\ <\ (*itCurrent).getLeft())}
+\DoxyCodeLine{00207\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00208\ }
+\DoxyCodeLine{00209\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Can't\ intersect\ r\ so\ i\ skip\ it}}
+\DoxyCodeLine{00210\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r.getTop()\ >\ (*itCurrent).getBottom())}
+\DoxyCodeLine{00211\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00212\ }
+\DoxyCodeLine{00213\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ diff\ =\ (*itCurrent).getTop()\ -\/\ (*itLastChecked).getBottom();}
+\DoxyCodeLine{00214\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ diff2\ =\ mMaxRectHeight\ -\/\ ((*itCurrent).getBottom()\ -\/\ (*itCurrent).getTop());}
+\DoxyCodeLine{00215\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(diff\ >\ 0)\ \textcolor{comment}{//\ above\ the\ last\ checked}}
+\DoxyCodeLine{00216\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00217\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ no\ rect\ overlapped\ r,\ then\ there\ is\ no\ need\ to\ move\ it}}
+\DoxyCodeLine{00218\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!MoveIt\ \&\&\ (diff\ >\ diff2))}
+\DoxyCodeLine{00219\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00220\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FoundIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00221\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itLastChecked\ =\ itStart;}
+\DoxyCodeLine{00222\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00223\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00224\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00225\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MoveIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00226\ }
+\DoxyCodeLine{00227\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDepth\ \&\&\ (depth\ >=\ mDepth))}
+\DoxyCodeLine{00228\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00229\ }
+\DoxyCodeLine{00230\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ above\ r,\ so\ i\ check\ if\ its\ enought\ space\ to\ move\ r}}
+\DoxyCodeLine{00231\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(diff\ >\ height\ +\ diff2\ +\ 2*mMinDistance)}
+\DoxyCodeLine{00232\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00233\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ r.dy\ =\ ((*itLastChecked).getBottom()\ +\ mMinDistance\ +\ 1)\ -\/\ r.getTop();}
+\DoxyCodeLine{00234\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FoundIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00235\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00236\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00237\ }
+\DoxyCodeLine{00238\ \ \ \ \ \ \ \ \ \ \ \ \ depth++;}
+\DoxyCodeLine{00239\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00240\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ it\ overlaps}}
+\DoxyCodeLine{00241\ \ \ \ \ \ \ \ \ \ \ \ \ MoveIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00242\ }
+\DoxyCodeLine{00243\ \ \ \ \ \ \ \ \ itLastChecked\ =\ itCurrent;}
+\DoxyCodeLine{00244\ \ \ \ \ \}}
+\DoxyCodeLine{00245\ }
+\DoxyCodeLine{00246\ \ \ \ \ \textcolor{keywordflow}{if}(itCurrent\ ==\ mList.end())}
+\DoxyCodeLine{00247\ \ \ \ \ \{}
+\DoxyCodeLine{00248\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(MoveIt)}
+\DoxyCodeLine{00249\ \ \ \ \ \ \ \ \ \ \ \ \ r.dy\ =\ ((*itLastChecked).getBottom()\ +\ mMinDistance\ +\ 1)\ -\/\ r.getTop();}
+\DoxyCodeLine{00250\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00251\ \ \ \ \ \ \ \ \ \ \ \ \ itLastChecked\ =\ itStart;}
+\DoxyCodeLine{00252\ }
+\DoxyCodeLine{00253\ \ \ \ \ \ \ \ \ FoundIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00254\ \ \ \ \ \}}
+\DoxyCodeLine{00255\ }
+\DoxyCodeLine{00256\ \ \ \ \ mList.erase(itInsert);}
+\DoxyCodeLine{00257\ }
+\DoxyCodeLine{00258\ \ \ \ \ \textcolor{keywordflow}{if}(FoundIt)}
+\DoxyCodeLine{00259\ \ \ \ \ \{}
+\DoxyCodeLine{00260\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r.getBottom()\ >\ mBoundBottom)}
+\DoxyCodeLine{00261\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mList.end();\ \textcolor{comment}{//\ out\ of\ bounds}}
+\DoxyCodeLine{00262\ }
+\DoxyCodeLine{00263\ \ \ \ \ \ \ \ \ itInsert\ =\ lower\_bound(itLastChecked,\ itCurrent,\ r);\ \ \ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00264\ \ \ \ \ \ \ \ \ itInsert\ =\ mList.insert(itInsert,r);}
+\DoxyCodeLine{00265\ }
+\DoxyCodeLine{00266\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ itInsert;}
+\DoxyCodeLine{00267\ \ \ \ \ \};}
+\DoxyCodeLine{00268\ }
+\DoxyCodeLine{00269\ \ \ \ \ \textcolor{keywordflow}{return}\ mList.end();}
+\DoxyCodeLine{00270\ \}}
+\DoxyCodeLine{00271\ }
+\DoxyCodeLine{00272\ \textcolor{keyword}{static}\ \textcolor{keywordtype}{bool}\ \_fGreaterTop(\textcolor{keyword}{const}\ \mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{RectLayoutManager::Rect}}\ \&L,\ \textcolor{keyword}{const}\ \mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{RectLayoutManager::Rect}}\ \&R)\ \{\textcolor{keywordflow}{return}\ L.getTop()\ >\ R.getTop();\}}
+\DoxyCodeLine{00273\ }
+\DoxyCodeLine{00274\ RectLayoutManager::RectList::iterator\ RectLayoutManager::addDataAbove(\mbox{\hyperlink{class_rect_layout_manager_1_1_rect}{RectLayoutManager::Rect}}\ \&Data)}
+\DoxyCodeLine{00275\ \{}
+\DoxyCodeLine{00276\ \ \ \ \ \textcolor{keywordtype}{bool}\ MoveIt\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00277\ \ \ \ \ \textcolor{keywordtype}{bool}\ FoundIt\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00278\ \ \ \ \ RectList::iterator\ itStart;}
+\DoxyCodeLine{00279\ \ \ \ \ RectList::iterator\ itLastChecked;}
+\DoxyCodeLine{00280\ \ \ \ \ RectList::iterator\ itCurrent;}
+\DoxyCodeLine{00281\ \ \ \ \ RectList::iterator\ itInsert;}
+\DoxyCodeLine{00282\ }
+\DoxyCodeLine{00283\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ depth\ =\ 0;}
+\DoxyCodeLine{00284\ \ \ \ \ RectLayoutManager::Rect\ \&r\ =\ Data;}
+\DoxyCodeLine{00285\ \ \ \ \ \textcolor{keywordtype}{short}\ height\ =\ r.getBottom()\ -\/\ r.getTop();}
+\DoxyCodeLine{00286\ }
+\DoxyCodeLine{00287\ \ \ \ \ \textcolor{keywordflow}{if}(height\ >\ mMaxRectHeight)}
+\DoxyCodeLine{00288\ \ \ \ \ \ \ \ \ mMaxRectHeight\ =\ height;}
+\DoxyCodeLine{00289\ }
+\DoxyCodeLine{00290\ \ \ \ \ \textcolor{comment}{//\ find\ the\ first\ RECT\ \ that\ has\ .bottom\ >\ r.top}}
+\DoxyCodeLine{00291\ \ \ \ \ \textcolor{comment}{//\ first\ possible\ intersect}}
+\DoxyCodeLine{00292\ \ \ \ \ r.dy\ +=\ height;}
+\DoxyCodeLine{00293\ \ \ \ \ itStart\ =\ lower\_bound(mList.begin(),\ mList.end(),\ r,\ \&\_fGreaterTop);}
+\DoxyCodeLine{00294\ \ \ \ \ r.dy\ -\/=\ height;}
+\DoxyCodeLine{00295\ }
+\DoxyCodeLine{00296\ \ \ \ \ \textcolor{comment}{//\ it's\ safe\ to\ add\ it\ at\ the\ back\ of\ the\ list}}
+\DoxyCodeLine{00297\ \ \ \ \ \textcolor{keywordflow}{if}(itStart\ ==\ mList.end())}
+\DoxyCodeLine{00298\ \ \ \ \ \{}
+\DoxyCodeLine{00299\ \ \ \ \ \ \ \ \ mList.push\_back(r);}
+\DoxyCodeLine{00300\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ -\/-\/(mList.end());}
+\DoxyCodeLine{00301\ \ \ \ \ \}}
+\DoxyCodeLine{00302\ }
+\DoxyCodeLine{00303\ \ \ \ \ \textcolor{comment}{//\ insert\ it\ temporarily\ (we\ will\ move\ it\ at\ the\ right\ place,\ afterwords)}}
+\DoxyCodeLine{00304\ \ \ \ \ itInsert\ =\ mList.insert(itStart,r);}
+\DoxyCodeLine{00305\ }
+\DoxyCodeLine{00306\ \ \ \ \ \textcolor{keywordflow}{for}\ (itCurrent\ =\ itStart,\ itLastChecked\ =\ itInsert;itCurrent\ !=\ mList.end();itCurrent++)}
+\DoxyCodeLine{00307\ \ \ \ \ \{}
+\DoxyCodeLine{00308\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Can't\ intersect\ r\ so\ i\ skip\ it}}
+\DoxyCodeLine{00309\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}((*itCurrent).getRight()\ <\ r.getLeft())}
+\DoxyCodeLine{00310\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00311\ }
+\DoxyCodeLine{00312\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Can't\ intersect\ r\ so\ i\ skip\ it}}
+\DoxyCodeLine{00313\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r.getRight()\ <\ (*itCurrent).getLeft())}
+\DoxyCodeLine{00314\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00315\ }
+\DoxyCodeLine{00316\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Can't\ intersect\ r\ so\ i\ skip\ it}}
+\DoxyCodeLine{00317\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r.getBottom()\ <\ (*itCurrent).getTop())}
+\DoxyCodeLine{00318\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{continue};}
+\DoxyCodeLine{00319\ }
+\DoxyCodeLine{00320\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ diff\ =\ (*itLastChecked).getTop()\ -\/\ (*itCurrent).getBottom();}
+\DoxyCodeLine{00321\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{short}\ diff2\ =\ mMaxRectHeight\ -\/\ ((*itCurrent).getBottom()\ -\/\ (*itCurrent).getTop());}
+\DoxyCodeLine{00322\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(diff\ >\ 0)\ \textcolor{comment}{//\ above\ the\ last\ checked}}
+\DoxyCodeLine{00323\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00324\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ If\ no\ rect\ overlapped\ r,\ then\ there\ is\ no\ need\ to\ move\ it}}
+\DoxyCodeLine{00325\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(!MoveIt\ \&\&\ (diff\ >\ diff2))}
+\DoxyCodeLine{00326\ \ \ \ \ \ \ \ \ \ \ \ \ \{\ \ \ }
+\DoxyCodeLine{00327\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FoundIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00328\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ itLastChecked\ =\ itStart;}
+\DoxyCodeLine{00329\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00330\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00331\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00332\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ MoveIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00333\ }
+\DoxyCodeLine{00334\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(mDepth\ \&\&\ (depth\ >=\ mDepth))}
+\DoxyCodeLine{00335\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00336\ }
+\DoxyCodeLine{00337\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ This\ is\ above\ r,\ so\ i\ check\ if\ its\ enought\ space\ to\ move\ r}}
+\DoxyCodeLine{00338\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(diff\ >\ height\ +\ diff2\ +\ 2*mMinDistance)}
+\DoxyCodeLine{00339\ \ \ \ \ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00340\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ r.dy\ =\ -\/(r.getBottom()\ -\/\ ((*itLastChecked).getTop()\ -\/\ mMinDistance\ -\/\ 1));}
+\DoxyCodeLine{00341\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ FoundIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00342\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{break};}
+\DoxyCodeLine{00343\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00344\ }
+\DoxyCodeLine{00345\ \ \ \ \ \ \ \ \ \ \ \ \ depth++;}
+\DoxyCodeLine{00346\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00347\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{comment}{//\ it\ overlaps}}
+\DoxyCodeLine{00348\ \ \ \ \ \ \ \ \ \ \ \ \ MoveIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00349\ }
+\DoxyCodeLine{00350\ \ \ \ \ \ \ \ \ itLastChecked\ =\ itCurrent;}
+\DoxyCodeLine{00351\ \ \ \ \ \}}
+\DoxyCodeLine{00352\ }
+\DoxyCodeLine{00353\ \ \ \ \ \textcolor{keywordflow}{if}(itCurrent\ ==\ mList.end())}
+\DoxyCodeLine{00354\ \ \ \ \ \{}
+\DoxyCodeLine{00355\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(MoveIt)}
+\DoxyCodeLine{00356\ \ \ \ \ \ \ \ \ \ \ \ \ r.dy\ =\ -\/(r.getBottom()\ -\/\ ((*itLastChecked).getTop()\ -\/\ mMinDistance\ -\/\ 1));}
+\DoxyCodeLine{00357\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00358\ \ \ \ \ \ \ \ \ \ \ \ \ itLastChecked\ =\ itStart;}
+\DoxyCodeLine{00359\ }
+\DoxyCodeLine{00360\ }
+\DoxyCodeLine{00361\ \ \ \ \ \ \ \ \ FoundIt\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00362\ \ \ \ \ \}}
+\DoxyCodeLine{00363\ }
+\DoxyCodeLine{00364\ \ \ \ \ mList.erase(itInsert);}
+\DoxyCodeLine{00365\ }
+\DoxyCodeLine{00366\ \ \ \ \ \textcolor{keywordflow}{if}(FoundIt)}
+\DoxyCodeLine{00367\ \ \ \ \ \{}
+\DoxyCodeLine{00368\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}(r.getTop()\ <\ mBoundTop)}
+\DoxyCodeLine{00369\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mList.end();\ \textcolor{comment}{//\ out\ of\ bounds}}
+\DoxyCodeLine{00370\ }
+\DoxyCodeLine{00371\ \ \ \ \ \ \ \ \ itInsert\ =\ lower\_bound(itLastChecked,\ itCurrent,\ r,\ \_fGreaterTop);\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00372\ \ \ \ \ \ \ \ \ itInsert\ =\ mList.insert(itInsert,r);}
+\DoxyCodeLine{00373\ }
+\DoxyCodeLine{00374\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ itInsert;}
+\DoxyCodeLine{00375\ \ \ \ \ \};}
+\DoxyCodeLine{00376\ }
+\DoxyCodeLine{00377\ \ \ \ \ \textcolor{keywordflow}{return}\ mList.end();}
+\DoxyCodeLine{00378\ \}}
+\DoxyCodeLine{00379\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

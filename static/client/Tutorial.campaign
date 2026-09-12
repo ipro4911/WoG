@@ -1,0 +1,194 @@
+[Initialize]
+World_Load=Default
+Sky_DayTime=0550
+Unit_Create=PLAYER,Kov,Body,Head1,Mane7,Tail1,Wingless,KovMat,Tuftless
+IgnoreGameOver=true
+
+[]
+EventCondition=PROGRESS,0
+
+World_DestroyAllPortals
+Sky_WeatherCycle=None
+Unit_Reset=PLAYER
+Unit_SetHP=PLAYER,1000
+Unit_ClearAttackList=PLAYER
+Unit_PushAttackList=PLAYER,Dash
+Unit_PushAttackList=PLAYER,Slash
+Unit_PushAttackList=PLAYER,Roundhouse
+Music_Stop=true
+ToggleCinematic
+FadeIn=2
+
+[]
+EventCondition=PROGRESS,1
+
+Camera_ResetCameraTrack=8
+Camera_AddCameraTrack=0,CAMERA_POSITION,CAMERA_ORIENTATION
+Camera_AddCameraTrack=2,PLAYER_POSITION+(-200 70 0),-25 270 0
+Camera_AddCameraTrack=4,PLAYER_POSITION+(0 60 200),-20 360 0
+Camera_AddCameraTrack=6,PLAYER_POSITION+(200 40 0),5 450 0
+Camera_AddCameraTrack=8,CAMERA_POSITION,0 540 0
+Camera_DoCameraTrack=false
+
+Timer=8.1
+
+[]
+EventCondition=PROGRESS,2
+EventCondition=TIMER,0
+
+ChatBox_Show
+ChatBox_SayPlayer=Nice camera animation, ey? Well i put effort in it so you better liek it >:|
+Camera_StopCameraTrack
+ToggleCinematic
+
+Timer=6
+
+[]
+EventCondition=PROGRESS,3
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Music, please.
+Music_Play=credits.mp3
+
+Timer=3
+
+[]
+EventCondition=PROGRESS,4
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=So HAI C| If you're playing this tutorial then you must be pretty clueless. Start by running about!
+
+Timer=10
+
+[]
+EventCondition=PROGRESS,5
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Use the keys W, S, A and D to run, and the mouse to look around. You can use the arrow keys to look too.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,6
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=You might've noticed that i always turn my head to look at where you're looking at. Hit ALT if you want me to stop that, should it bother you in any way.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,7
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Hit the Right CTRL key to change the mode of running, currently it is in Absolute Mode, which means i'll run according to the orientation of the camera. The other is Relative Mode, which runs according to where i'm facing.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,8
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Use F1 to F4 to change the camera modes. The cursor appears in F2 and F3, and i'll run towards wherever you click. Switch back to F1 camera mode, so we can do some actions.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,9
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Hold SHIFT to walk, SPACE to jump, and Z to sit down. Yes, the keyboard is basically littered with hotkeys, because i'm lazy to design a user interface like that. If you've any bright ideas, do let me know c:
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,10
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Use the Left Mouse Button to attack. If you're using the cursor, Right Click on the enemy to attack.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,11
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Holding the Right Mouse Button and moving the mouse up and down will adjust the zoom level of the camera. For F2 camera mode, this is done by clicking both Left and Right Buttons.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,12
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Lovely, now that you've gotten a hang of the basics, let's add some action. Spawn generic shadowy enemies, please.
+
+Timer=10
+
+[]
+EventCondition=PROGRESS,13
+EventCondition=TIMER,0
+
+CreateSpawns=1
+ChatBox_SayPlayer=Tap Left Click repeatedly to unleash combos on the enemy!
+
+[]
+EventCondition=PROGRESS,14
+EventCondition=SPAWN_COUNT,0
+
+ChatBox_SayPlayer=Good job, let's have another go. This time, use the 'E' key to lock on to the target. You can toggle between targets by hitting 'E'.
+
+Timer=12
+
+[]
+EventCondition=PROGRESS,15
+EventCondition=TIMER,0
+
+CreateSpawns=2
+
+[]
+EventCondition=PROGRESS,16
+EventCondition=SPAWN_COUNT,0
+
+ChatBox_SayPlayer=Smooth work. Notice that you learn Skills from defeated enemies. Hit the '2' key to switch your active skill to Cure, and Left Click to use it. If you're using the cursor, Right Click on me to use it.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,17
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Ahh, that feels better. c| Now hit the '1' key to switch back to attack mode. Skills have limited stock, but you can always obtain them by defeating enemies.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,18
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=Finally, hit ESC to open the options menu. You may change the settings or quit the game from there. Notice that opening the options may change the camera mode, just so you can use the cursor.
+
+Timer=15
+
+[]
+EventCondition=PROGRESS,19
+EventCondition=TIMER,0
+
+ChatBox_SayPlayer=And that marks the end of this turotial. Thank you for flying with us. We hope you'll have a pleasant stay. C|
+
+Timer=12
+
+[]
+EventCondition=PROGRESS,20
+EventCondition=TIMER,0
+
+Music_Stop=true
+FadeOut=2
+ToggleCinematic=true
+
+Timer=2
+
+[End]
+EventCondition=PROGRESS,21
+EventCondition=TIMER,0
+
+CloseCampaign

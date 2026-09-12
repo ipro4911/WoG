@@ -1,0 +1,157 @@
+\doxysection{Magix\+Game\+State\+Manager.\+h}
+\hypertarget{_magix_game_state_manager_8h_source}{}\label{_magix_game_state_manager_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixGameStateManager.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixGameStateManager.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixGameStateManager\_h\_}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ \_\_MagixGameStateManager\_h\_}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#define\ GAMESTATE\_INITIALIZE\ 1}}
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#define\ GAMESTATE\_LOGO\ 2}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ GAMESTATE\_STARTSCREEN\ 3}}
+\DoxyCodeLine{00007\ \textcolor{preprocessor}{\#define\ GAMESTATE\_STARTCHARSCREEN\ 4}}
+\DoxyCodeLine{00008\ \textcolor{preprocessor}{\#define\ GAMESTATE\_RETURNSTARTSCREEN\ 5}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#define\ GAMESTATE\_QUIT\ 6}}
+\DoxyCodeLine{00010\ \textcolor{preprocessor}{\#define\ GAMESTATE\_CHARSCREEN\ 7}}
+\DoxyCodeLine{00011\ \textcolor{preprocessor}{\#define\ GAMESTATE\_STARTCONNECTION\ 8}}
+\DoxyCodeLine{00012\ \textcolor{preprocessor}{\#define\ GAMESTATE\_CONNECTING\ 9}}
+\DoxyCodeLine{00013\ \textcolor{preprocessor}{\#define\ GAMESTATE\_STARTGAME\ 10}}
+\DoxyCodeLine{00014\ \textcolor{preprocessor}{\#define\ GAMESTATE\_INGAME\ 11}}
+\DoxyCodeLine{00015\ \textcolor{preprocessor}{\#define\ GAMESTATE\_STARTCAMPAIGN\ 12}}
+\DoxyCodeLine{00016\ \textcolor{preprocessor}{\#define\ GAMESTATE\_INGAMECAMPAIGN\ 13}}
+\DoxyCodeLine{00017\ \textcolor{preprocessor}{\#define\ GAMESTATE\_CREDITS\ 14}}
+\DoxyCodeLine{00018\ \textcolor{preprocessor}{\#define\ GAMESTATE\_GAMEOVER\ 15}}
+\DoxyCodeLine{00019\ \textcolor{preprocessor}{\#define\ GAMESTATE\_CONTINUECAMPAIGN\ 16}}
+\DoxyCodeLine{00020\ \textcolor{preprocessor}{\#define\ GAMESTATE\_QUITCAMPAIGN\ 17}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \textcolor{keyword}{class\ }MagixGameStateManager}
+\DoxyCodeLine{00025\ \{}
+\DoxyCodeLine{00026\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ gameState;}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ tempGameState;}
+\DoxyCodeLine{00029\ \ \ \ \ Real\ gameStateCount;}
+\DoxyCodeLine{00030\ \ \ \ \ String\ campaignName;}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{bool}\ pause;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{bool}\ cinematic;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ serverID;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keywordtype}{bool}\ mapChange;}
+\DoxyCodeLine{00035\ \ \ \ \ \textcolor{keywordtype}{bool}\ mapChangeDone;}
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ dimension;}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{bool}\ gameStarted;}
+\DoxyCodeLine{00038\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00039\ \ \ \ \ MagixGameStateManager()}
+\DoxyCodeLine{00040\ \ \ \ \ \{}
+\DoxyCodeLine{00041\ \ \ \ \ \ \ \ \ gameState\ =\ GAMESTATE\_INITIALIZE;}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ tempGameState\ =\ gameState;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ gameStateCount\ =\ 0;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ campaignName\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ pause\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00046\ \ \ \ \ \ \ \ \ cinematic\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ serverID\ =\ 0;}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ mapChange\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ mapChangeDone\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ dimension\ =\ 0;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ gameStarted\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00052\ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \string~MagixGameStateManager()}
+\DoxyCodeLine{00054\ \ \ \ \ \{}
+\DoxyCodeLine{00055\ \ \ \ \ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keywordtype}{void}\ initialize()}
+\DoxyCodeLine{00057\ \ \ \ \ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \}}
+\DoxyCodeLine{00059\ \ \ \ \ \textcolor{keywordtype}{void}\ setGameState(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&state)}
+\DoxyCodeLine{00060\ \ \ \ \ \{}
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ gameState\ =\ state;}
+\DoxyCodeLine{00062\ \ \ \ \ \}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getGameState()}
+\DoxyCodeLine{00064\ \ \ \ \ \{}
+\DoxyCodeLine{00065\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ gameState;}
+\DoxyCodeLine{00066\ \ \ \ \ \}}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{void}\ setTempGameState(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&state)}
+\DoxyCodeLine{00068\ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ tempGameState\ =\ state;}
+\DoxyCodeLine{00070\ \ \ \ \ \}}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getTempGameState()}
+\DoxyCodeLine{00072\ \ \ \ \ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tempGameState;}
+\DoxyCodeLine{00074\ \ \ \ \ \}}
+\DoxyCodeLine{00075\ \ \ \ \ \textcolor{keywordtype}{void}\ setCampaign(\textcolor{keyword}{const}\ String\ \&name)}
+\DoxyCodeLine{00076\ \ \ \ \ \{}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ campaignName\ =\ name;}
+\DoxyCodeLine{00078\ \ \ \ \ \}}
+\DoxyCodeLine{00079\ \ \ \ \ \textcolor{keyword}{const}\ String\ getCampaignName()}
+\DoxyCodeLine{00080\ \ \ \ \ \{}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ campaignName;}
+\DoxyCodeLine{00082\ \ \ \ \ \}}
+\DoxyCodeLine{00083\ \ \ \ \ \textcolor{keywordtype}{bool}\ isInGame()}
+\DoxyCodeLine{00084\ \ \ \ \ \{}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ (gameState==GAMESTATE\_INGAME||gameState==GAMESTATE\_INGAMECAMPAIGN);}
+\DoxyCodeLine{00086\ \ \ \ \ \}}
+\DoxyCodeLine{00087\ \ \ \ \ \textcolor{keywordtype}{bool}\ isCampaign()}
+\DoxyCodeLine{00088\ \ \ \ \ \{}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ gameState==GAMESTATE\_INGAMECAMPAIGN;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \ \ \ \ \textcolor{keywordtype}{bool}\ isPaused()}
+\DoxyCodeLine{00092\ \ \ \ \ \{}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ pause;}
+\DoxyCodeLine{00094\ \ \ \ \ \}}
+\DoxyCodeLine{00095\ \ \ \ \ \textcolor{keywordtype}{void}\ togglePause()}
+\DoxyCodeLine{00096\ \ \ \ \ \{}
+\DoxyCodeLine{00097\ \ \ \ \ \ \ \ \ pause\ =\ !pause;}
+\DoxyCodeLine{00098\ \ \ \ \ \}}
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{bool}\ isCinematic()}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ cinematic;}
+\DoxyCodeLine{00102\ \ \ \ \ \}}
+\DoxyCodeLine{00103\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleCinematic()}
+\DoxyCodeLine{00104\ \ \ \ \ \{}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ cinematic\ =\ !cinematic;}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ \ \ \ \ \textcolor{keywordtype}{void}\ setServerID(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ \&iID)}
+\DoxyCodeLine{00108\ \ \ \ \ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ serverID\ =\ iID;}
+\DoxyCodeLine{00110\ \ \ \ \ \}}
+\DoxyCodeLine{00111\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ getServerID()}
+\DoxyCodeLine{00112\ \ \ \ \ \{}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ serverID;}
+\DoxyCodeLine{00114\ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ isMapChange()}
+\DoxyCodeLine{00116\ \ \ \ \ \{}
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ mapChange;}
+\DoxyCodeLine{00118\ \ \ \ \ \}}
+\DoxyCodeLine{00119\ \ \ \ \ \textcolor{keywordtype}{void}\ toggleMapChange()}
+\DoxyCodeLine{00120\ \ \ \ \ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ mapChange\ =\ !mapChange;}
+\DoxyCodeLine{00122\ \ \ \ \ \}}
+\DoxyCodeLine{00123\ \ \ \ \ \textcolor{keywordtype}{bool}\ popMapChangeDone()}
+\DoxyCodeLine{00124\ \ \ \ \ \{}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{bool}\ tFlag\ =\ mapChangeDone;}
+\DoxyCodeLine{00126\ \ \ \ \ \ \ \ \ mapChangeDone\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ tFlag;}
+\DoxyCodeLine{00128\ \ \ \ \ \}}
+\DoxyCodeLine{00129\ \ \ \ \ \textcolor{keywordtype}{void}\ pushMapChangeDone()}
+\DoxyCodeLine{00130\ \ \ \ \ \{}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ mapChangeDone\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00132\ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \textcolor{keywordtype}{void}\ setDimension(\textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ \&d)}
+\DoxyCodeLine{00134\ \ \ \ \ \{}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ dimension\ =\ d;\ \textcolor{comment}{//\%\ MAXDIMS;}}
+\DoxyCodeLine{00136\ \ \ \ \ \}}
+\DoxyCodeLine{00137\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ getDimension()}
+\DoxyCodeLine{00138\ \ \ \ \ \{}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ dimension;}
+\DoxyCodeLine{00140\ \ \ \ \ \}}
+\DoxyCodeLine{00141\ \ \ \ \ \textcolor{keywordtype}{void}\ setGameStarted(\textcolor{keywordtype}{bool}\ flag)}
+\DoxyCodeLine{00142\ \ \ \ \ \{}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ gameStarted\ =\ flag;}
+\DoxyCodeLine{00144\ \ \ \ \ \}}
+\DoxyCodeLine{00145\ \ \ \ \ \textcolor{keywordtype}{bool}\ getGameStarted()}
+\DoxyCodeLine{00146\ \ \ \ \ \{}
+\DoxyCodeLine{00147\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ gameStarted;}
+\DoxyCodeLine{00148\ \ \ \ \ \}}
+\DoxyCodeLine{00149\ \};}
+\DoxyCodeLine{00150\ }
+\DoxyCodeLine{00151\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

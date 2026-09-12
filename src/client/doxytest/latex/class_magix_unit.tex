@@ -1,0 +1,889 @@
+\doxysection{Magix\+Unit Class Reference}
+\hypertarget{class_magix_unit}{}\label{class_magix_unit}\index{MagixUnit@{MagixUnit}}
+Inheritance diagram for Magix\+Unit\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=5.000000cm]{class_magix_unit}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_unit_af2ae2592351577499809c70093a1a012}\label{class_magix_unit_af2ae2592351577499809c70093a1a012} 
+void {\bfseries create\+Unit} (const unsigned short i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&body\+Mesh, const String \&head\+Mesh, const String \&mane\+Mesh, const String \&tail\+Mesh, const String \&wing\+Mesh, const String \&mat\+Name, const String \&tuft\+Mesh)
+\item 
+\Hypertarget{class_magix_unit_a1818d26ac89bd67ef27eb6a819726827}\label{class_magix_unit_a1818d26ac89bd67ef27eb6a819726827} 
+void {\bfseries destroy\+Unit} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+\Hypertarget{class_magix_unit_a2175b8c9928baa1019ebbbbfdb988ae5}\label{class_magix_unit_a2175b8c9928baa1019ebbbbfdb988ae5} 
+void {\bfseries set\+Material} (const String \&mat\+Name)
+\item 
+\Hypertarget{class_magix_unit_ae6f762f383d9fa0c8b4110b9115a0114}\label{class_magix_unit_ae6f762f383d9fa0c8b4110b9115a0114} 
+void {\bfseries set\+Colours} (const Colour\+Value \&pelt, const Colour\+Value \&underfur, const Colour\+Value \&mane, const Colour\+Value \&nose, const Colour\+Value \&eye\+Top, const Colour\+Value \&eye\+Bot, const Colour\+Value \&ears, const Colour\+Value \&tailtip, const Colour\+Value \&eyes, const Colour\+Value \&wing, const Colour\+Value \&marking)
+\item 
+\Hypertarget{class_magix_unit_a7279261b7f2722a7e1bf8f109eb64a50}\label{class_magix_unit_a7279261b7f2722a7e1bf8f109eb64a50} 
+void {\bfseries set\+Full\+Colour} (const Colour\+Value \&full\+Colour)
+\item 
+\Hypertarget{class_magix_unit_aae805eb738b9ff0f7f2966318c46b55b}\label{class_magix_unit_aae805eb738b9ff0f7f2966318c46b55b} 
+void {\bfseries update\+Animation} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_unit_a202577fa8d07e46ba14a365b9c6c7b13}\label{class_magix_unit_a202577fa8d07e46ba14a365b9c6c7b13} 
+void {\bfseries update\+Anim\+Base} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_a803decef854291fbbdbe95d666cfc9d7}\label{class_magix_unit_a803decef854291fbbdbe95d666cfc9d7} 
+void {\bfseries update\+Anim\+Second} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_aa91d58c33651cb2824ce2e52ae6a0fd8}\label{class_magix_unit_aa91d58c33651cb2824ce2e52ae6a0fd8} 
+virtual void {\bfseries update\+Movement} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_a3992967af45c219fb4023843402ea414}\label{class_magix_unit_a3992967af45c219fb4023843402ea414} 
+void {\bfseries update\+Action} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_unit_a9c07c7a4371845f0b394b7a8e748477e}\label{class_magix_unit_a9c07c7a4371845f0b394b7a8e748477e} 
+void {\bfseries do\+Sit} (bool skip\+Transition=false)
+\item 
+\Hypertarget{class_magix_unit_a289950b030e6f3206b91f0448339927f}\label{class_magix_unit_a289950b030e6f3206b91f0448339927f} 
+bool {\bfseries is\+Sitting} (bool exclude\+Transition=false)
+\item 
+\Hypertarget{class_magix_unit_a75a2c9eeb0ece4342085702b1ffa3ac3}\label{class_magix_unit_a75a2c9eeb0ece4342085702b1ffa3ac3} 
+void {\bfseries do\+Side\+Lay} (bool skip\+Transition=false)
+\item 
+\Hypertarget{class_magix_unit_aa045f249c337976f12ab9c891be7da7a}\label{class_magix_unit_aa045f249c337976f12ab9c891be7da7a} 
+void {\bfseries do\+Curl} (bool skip\+Transition=false)
+\item 
+\Hypertarget{class_magix_unit_aa19638297db9002058166191be2c10bd}\label{class_magix_unit_aa19638297db9002058166191be2c10bd} 
+bool {\bfseries is\+Laying} (bool exclude\+Transition=false)
+\item 
+\Hypertarget{class_magix_unit_a4b243da1c0da09b790e3e4fde39a6579}\label{class_magix_unit_a4b243da1c0da09b790e3e4fde39a6579} 
+bool {\bfseries is\+Side\+Laying} (bool exclude\+Transition=false)
+\item 
+\Hypertarget{class_magix_unit_ac5085bc27e0ab12c61dc1fac69eb0163}\label{class_magix_unit_ac5085bc27e0ab12c61dc1fac69eb0163} 
+bool {\bfseries is\+Leaning} (bool exclude\+Transition=false)
+\item 
+\Hypertarget{class_magix_unit_a1075ee5e0c609c8bdc92a19264e7ef9f}\label{class_magix_unit_a1075ee5e0c609c8bdc92a19264e7ef9f} 
+bool {\bfseries is\+Rolled\+Over} ()
+\item 
+\Hypertarget{class_magix_unit_afea258b83f5426a02a382380968a9889}\label{class_magix_unit_afea258b83f5426a02a382380968a9889} 
+bool {\bfseries is\+Plopped} ()
+\item 
+\Hypertarget{class_magix_unit_aa409af001397eed1be8e2f3b62407e64}\label{class_magix_unit_aa409af001397eed1be8e2f3b62407e64} 
+bool {\bfseries is\+Curled} ()
+\item 
+\Hypertarget{class_magix_unit_a81e9cf2eeed71914dafbe9cd3c586646}\label{class_magix_unit_a81e9cf2eeed71914dafbe9cd3c586646} 
+virtual void {\bfseries update} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_unit_a3e21cc883525fe2f732e74676b93a5b6}\label{class_magix_unit_a3e21cc883525fe2f732e74676b93a5b6} 
+void {\bfseries update\+Auto\+Track} ()
+\item 
+\Hypertarget{class_magix_unit_a36c6fd71fdfd1da2715f48a43ff47adb}\label{class_magix_unit_a36c6fd71fdfd1da2715f48a43ff47adb} 
+void {\bfseries set\+Free\+Look} (bool flag, bool timeout=true)
+\item 
+\Hypertarget{class_magix_unit_a5b7fa563b7c80036b31e4aac52686ce2}\label{class_magix_unit_a5b7fa563b7c80036b31e4aac52686ce2} 
+bool {\bfseries get\+Free\+Look} ()
+\item 
+\Hypertarget{class_magix_unit_a03c3bfd0d58c69e8fdfed4adb7a46a90}\label{class_magix_unit_a03c3bfd0d58c69e8fdfed4adb7a46a90} 
+void {\bfseries set\+Target} (const Real \&x, const Real \&y, const Real \&z, const unsigned char \&action=TARGET\+\_\+\+RUNTO)
+\item 
+\Hypertarget{class_magix_unit_ac5aba52921001f7680563dc2d2b359b4}\label{class_magix_unit_ac5aba52921001f7680563dc2d2b359b4} 
+virtual void {\bfseries set\+Target} (const Vector3 \&dest, const unsigned char \&action=TARGET\+\_\+\+RUNTO)
+\item 
+\Hypertarget{class_magix_unit_a34263517b835df684804508e29164d19}\label{class_magix_unit_a34263517b835df684804508e29164d19} 
+const Vector3 {\bfseries get\+Target} ()
+\item 
+\Hypertarget{class_magix_unit_a05226a3caa956736392889a6f24960b0}\label{class_magix_unit_a05226a3caa956736392889a6f24960b0} 
+unsigned short {\bfseries get\+Target\+Action} ()
+\item 
+\Hypertarget{class_magix_unit_acff3c7c654506f3a90b97df284a30478}\label{class_magix_unit_acff3c7c654506f3a90b97df284a30478} 
+void {\bfseries reset\+Target} ()
+\item 
+\Hypertarget{class_magix_unit_ae37181b3377ac17f166ceb99c04c3466}\label{class_magix_unit_ae37181b3377ac17f166ceb99c04c3466} 
+virtual void {\bfseries stop\+Action} ()
+\item 
+\Hypertarget{class_magix_unit_a3aa6d5f27b54d5b8969395e9ead1b35b}\label{class_magix_unit_a3aa6d5f27b54d5b8969395e9ead1b35b} 
+void {\bfseries set\+Look\+Direction} (const Quaternion \&dir, bool set\+Buffer=false)
+\item 
+\Hypertarget{class_magix_unit_ae0b523b4af0adb880778418bbb7eb43e}\label{class_magix_unit_ae0b523b4af0adb880778418bbb7eb43e} 
+void {\bfseries set\+Look\+Target} (const Vector3 \&target, bool from\+Head=true)
+\item 
+\Hypertarget{class_magix_unit_a2d113c05881f63926f292dc1a4e93fc7}\label{class_magix_unit_a2d113c05881f63926f292dc1a4e93fc7} 
+void {\bfseries set\+Auto\+Track\+Object} (\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*}target)
+\item 
+\Hypertarget{class_magix_unit_afbfa42d0f8b12f9c5e4aef16c38485c8}\label{class_magix_unit_afbfa42d0f8b12f9c5e4aef16c38485c8} 
+\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Auto\+Track\+Object} ()
+\item 
+\Hypertarget{class_magix_unit_a008832abc0ee99d93917235250b44afd}\label{class_magix_unit_a008832abc0ee99d93917235250b44afd} 
+const Quaternion {\bfseries get\+Look\+Direction} ()
+\item 
+\Hypertarget{class_magix_unit_a122b15b509b1792ba048a9be94fb1a85}\label{class_magix_unit_a122b15b509b1792ba048a9be94fb1a85} 
+const Vector3 {\bfseries get\+Position} (bool head\+Position=false)
+\item 
+\Hypertarget{class_magix_unit_abc82ea6a92845f2025ac4b91abc014c7}\label{class_magix_unit_abc82ea6a92845f2025ac4b91abc014c7} 
+void {\bfseries change\+Anim\+Base} (const String \&type, const Real \&speed, bool reset\+Time\+Position=false, bool reverse\+Animation=false, bool loop=true)
+\item 
+\Hypertarget{class_magix_unit_ae12a87dce77bb549c9d9705f16537732}\label{class_magix_unit_ae12a87dce77bb549c9d9705f16537732} 
+void {\bfseries change\+Anim\+Second} (const String \&type, const Real \&speed, bool reset\+Time\+Position=false, bool reverse\+Animation=false, bool loop=true)
+\item 
+virtual const OBJECT\+\_\+\+TYPE \mbox{\hyperlink{class_magix_unit_a7179343e5d6206772a123dddda9c30a0}{get\+Type}} ()
+\item 
+\Hypertarget{class_magix_unit_af3d831a129c06413835cb63680d87f61}\label{class_magix_unit_af3d831a129c06413835cb63680d87f61} 
+const unsigned short {\bfseries get\+Unit\+ID} ()
+\item 
+\Hypertarget{class_magix_unit_a7a7b467e87139f50122282360d05c306}\label{class_magix_unit_a7a7b467e87139f50122282360d05c306} 
+void {\bfseries create\+Name\+Tag} (const String \&name, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs)
+\item 
+\Hypertarget{class_magix_unit_ab2776893c52499734a29b84192448bb3}\label{class_magix_unit_ab2776893c52499734a29b84192448bb3} 
+void {\bfseries create\+User\+Tag} (const String \&name, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs)
+\item 
+\Hypertarget{class_magix_unit_ad3a142105b52e13f77f175899569e458}\label{class_magix_unit_ad3a142105b52e13f77f175899569e458} 
+void {\bfseries create\+Chat\+Bubble} (String caption, \mbox{\hyperlink{class_movable_text_overlay_attributes}{Movable\+Text\+Overlay\+Attributes}} \texorpdfstring{$\ast$}{*}attrs, const Real \&t\+Left=0.\+0, const Real \&t\+Top=0.\+0)
+\item 
+\Hypertarget{class_magix_unit_a9d4d054978b8d17fdc06a25cdcbbf875}\label{class_magix_unit_a9d4d054978b8d17fdc06a25cdcbbf875} 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Name\+Tag} ()
+\item 
+\Hypertarget{class_magix_unit_ade5119ccd05a7a9e5750384ed786fdf8}\label{class_magix_unit_ade5119ccd05a7a9e5750384ed786fdf8} 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+User\+Tag} ()
+\item 
+\Hypertarget{class_magix_unit_ab79861e06764918cdb2e8d15e618c349}\label{class_magix_unit_ab79861e06764918cdb2e8d15e618c349} 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries get\+Chat\+Bubble} ()
+\item 
+\Hypertarget{class_magix_unit_a9c3d6f5936f49f8013e925c8b2ff0c58}\label{class_magix_unit_a9c3d6f5936f49f8013e925c8b2ff0c58} 
+void {\bfseries show\+Name\+Tag} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_a64bf08dc465f5f4ddf02115a3f8c2442}\label{class_magix_unit_a64bf08dc465f5f4ddf02115a3f8c2442} 
+void {\bfseries show\+User\+Tag} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_ae21544de738e0088147b518c9c16318f}\label{class_magix_unit_ae21544de738e0088147b518c9c16318f} 
+void {\bfseries show\+Chat\+Bubble} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_a4b47826d7d9611fc7a2b8ffbddc8bd36}\label{class_magix_unit_a4b47826d7d9611fc7a2b8ffbddc8bd36} 
+bool {\bfseries is\+Name\+Tag\+Visible} ()
+\item 
+\Hypertarget{class_magix_unit_a9b38c12e1384821dcceb56805678057c}\label{class_magix_unit_a9b38c12e1384821dcceb56805678057c} 
+bool {\bfseries is\+User\+Tag\+Visible} ()
+\item 
+\Hypertarget{class_magix_unit_a14451dd51bcab7e432bf2984c62a680f}\label{class_magix_unit_a14451dd51bcab7e432bf2984c62a680f} 
+bool {\bfseries is\+Chat\+Bubble\+Visible} ()
+\item 
+\Hypertarget{class_magix_unit_a68626878b748d350de3017c4cf399505}\label{class_magix_unit_a68626878b748d350de3017c4cf399505} 
+void {\bfseries update\+Name\+Tag} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_adfaa0116b44fa5299fe74d49a3a2f591}\label{class_magix_unit_adfaa0116b44fa5299fe74d49a3a2f591} 
+void {\bfseries update\+User\+Tag} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_a12a4028eafb72ebde42f11dbb7452bb4}\label{class_magix_unit_a12a4028eafb72ebde42f11dbb7452bb4} 
+void {\bfseries update\+Chat\+Bubble} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_a9425060af1f4048b9a2acee33c6b0b1d}\label{class_magix_unit_a9425060af1f4048b9a2acee33c6b0b1d} 
+void {\bfseries update\+Emote} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_unit_a754b44e2b911f41feb4a80d5fbb30243}\label{class_magix_unit_a754b44e2b911f41feb4a80d5fbb30243} 
+void {\bfseries set\+Emote} (const String \&mode, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_unit_a29a036f7f797e375b57f0cfe0acb0ba1}\label{class_magix_unit_a29a036f7f797e375b57f0cfe0acb0ba1} 
+void {\bfseries set\+Emote\+State} (const String \&mode, const Real \&weight, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_unit_a52f2d30486a97af17a5f87466b3c47ba}\label{class_magix_unit_a52f2d30486a97af17a5f87466b3c47ba} 
+void {\bfseries set\+Face\+Anim\+State} (const String \&anim, const Real \&weight, bool is\+Current)
+\item 
+\Hypertarget{class_magix_unit_a63d511b93ec7ff60f46bc16e3933d4cb}\label{class_magix_unit_a63d511b93ec7ff60f46bc16e3933d4cb} 
+void {\bfseries replace\+Head\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+\Hypertarget{class_magix_unit_aea80ff13ba1d340fa557a46c1e060936}\label{class_magix_unit_aea80ff13ba1d340fa557a46c1e060936} 
+void {\bfseries replace\+Mane\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+\Hypertarget{class_magix_unit_ae6aadc1eeafb24a6bd3514cd532e39d8}\label{class_magix_unit_ae6aadc1eeafb24a6bd3514cd532e39d8} 
+void {\bfseries replace\+Tail\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+\Hypertarget{class_magix_unit_a4bac9abf52376f6042d41232d5be3931}\label{class_magix_unit_a4bac9abf52376f6042d41232d5be3931} 
+void {\bfseries replace\+Wing\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+\Hypertarget{class_magix_unit_ad4ecfdf96ebfbf195b9b9487997a23db}\label{class_magix_unit_ad4ecfdf96ebfbf195b9b9487997a23db} 
+void {\bfseries replace\+Tuft\+Mesh} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&mesh\+Name, bool reset\+Material=false)
+\item 
+\Hypertarget{class_magix_unit_a3afe1588a59d92339b6335a19ddb8408}\label{class_magix_unit_a3afe1588a59d92339b6335a19ddb8408} 
+const String {\bfseries get\+Mat\+Group\+Name} ()
+\item 
+\Hypertarget{class_magix_unit_a6408a62e4e861b962482baf9fc29136d}\label{class_magix_unit_a6408a62e4e861b962482baf9fc29136d} 
+const String {\bfseries get\+Mesh\+String} ()
+\item 
+\Hypertarget{class_magix_unit_a292dfabb41372cd6c006caa1145a2e89}\label{class_magix_unit_a292dfabb41372cd6c006caa1145a2e89} 
+const String {\bfseries get\+Mesh\+String2} ()
+\item 
+\Hypertarget{class_magix_unit_af3d3a9e4c009c064e946b203edc7ffb3}\label{class_magix_unit_af3d3a9e4c009c064e946b203edc7ffb3} 
+const String {\bfseries get\+Colour\+String} ()
+\item 
+\Hypertarget{class_magix_unit_aa62986a75c300fa0a188e061124c0130}\label{class_magix_unit_aa62986a75c300fa0a188e061124c0130} 
+const String {\bfseries vect4\+To\+String} (Vector4 vect, const unsigned short \&t\+Deci)
+\item 
+\Hypertarget{class_magix_unit_a81c9e73036b69a65e7041f020de97217}\label{class_magix_unit_a81c9e73036b69a65e7041f020de97217} 
+void {\bfseries set\+Colours} (const String \&colour\+String)
+\item 
+\Hypertarget{class_magix_unit_afbbb15b72dd7e355c79c2f9bd2d6936e}\label{class_magix_unit_afbbb15b72dd7e355c79c2f9bd2d6936e} 
+const String {\bfseries get\+Name} ()
+\item 
+\Hypertarget{class_magix_unit_a2fb6ef3b0f6b86c026177b0de2858129}\label{class_magix_unit_a2fb6ef3b0f6b86c026177b0de2858129} 
+const String {\bfseries get\+User} ()
+\item 
+\Hypertarget{class_magix_unit_aa8ceffeca79341c824de6bcbb129ed6e}\label{class_magix_unit_aa8ceffeca79341c824de6bcbb129ed6e} 
+void {\bfseries set\+Jump} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_a99629b07898de3d3005c5a31986adba7}\label{class_magix_unit_a99629b07898de3d3005c5a31986adba7} 
+bool {\bfseries get\+Jump} ()
+\item 
+\Hypertarget{class_magix_unit_a04886ddfed678671a3cc514bbb65503c}\label{class_magix_unit_a04886ddfed678671a3cc514bbb65503c} 
+void {\bfseries set\+Is\+Walking} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_aafb623173d0f31c5bc298d20656c957c}\label{class_magix_unit_aafb623173d0f31c5bc298d20656c957c} 
+bool {\bfseries get\+Is\+Walking} ()
+\item 
+\Hypertarget{class_magix_unit_a6cd543241934262bf7b83288ccc542e0}\label{class_magix_unit_a6cd543241934262bf7b83288ccc542e0} 
+const String {\bfseries do\+Attack} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, bool do\+Emote=true)
+\item 
+\Hypertarget{class_magix_unit_a87e0ac2874ca83c7ab03158244036fd6}\label{class_magix_unit_a87e0ac2874ca83c7ab03158244036fd6} 
+void {\bfseries force\+Attack} (const String \&name)
+\item 
+\Hypertarget{class_magix_unit_aab69b82a9e87d4eab9e2858356ed0924}\label{class_magix_unit_aab69b82a9e87d4eab9e2858356ed0924} 
+bool {\bfseries is\+Ready\+To\+Attack} ()
+\item 
+\Hypertarget{class_magix_unit_a226a269535c5f425627046cc27bece57}\label{class_magix_unit_a226a269535c5f425627046cc27bece57} 
+virtual bool {\bfseries update\+Attack} (const Frame\+Event \&evt, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_unit_aea869d04011ce9a899169ec512b58d31}\label{class_magix_unit_aea869d04011ce9a899169ec512b58d31} 
+bool {\bfseries is\+Attacking} ()
+\item 
+\Hypertarget{class_magix_unit_ae015abf666c57431aaa33946af2136d5}\label{class_magix_unit_ae015abf666c57431aaa33946af2136d5} 
+void {\bfseries stop\+Stance} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def)
+\item 
+\Hypertarget{class_magix_unit_aacf2b34a53f4ed3c075f21b99d11f11f}\label{class_magix_unit_aacf2b34a53f4ed3c075f21b99d11f11f} 
+bool {\bfseries get\+Is\+Stance} ()
+\item 
+\Hypertarget{class_magix_unit_a9dac2f51a05f93792ca223ae23431204}\label{class_magix_unit_a9dac2f51a05f93792ca223ae23431204} 
+void {\bfseries toggle\+Stance} (\mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def, bool do\+Emote=true)
+\item 
+\Hypertarget{class_magix_unit_ab32f81fb2b67493a27e420ac383b2cdd}\label{class_magix_unit_ab32f81fb2b67493a27e420ac383b2cdd} 
+void {\bfseries stop\+Attack} ()
+\item 
+\Hypertarget{class_magix_unit_a753131ec42ae05499978665bf967dbaf}\label{class_magix_unit_a753131ec42ae05499978665bf967dbaf} 
+void {\bfseries set\+Attack} (const String \&name)
+\item 
+\Hypertarget{class_magix_unit_a15269be74c441b8ce5ed3c18f3fb9519}\label{class_magix_unit_a15269be74c441b8ce5ed3c18f3fb9519} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Body\+Ent} ()
+\item 
+\Hypertarget{class_magix_unit_a8746844198488e18021cb062311e2cb3}\label{class_magix_unit_a8746844198488e18021cb062311e2cb3} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Head\+Ent} ()
+\item 
+\Hypertarget{class_magix_unit_adc0befcb83b15f3a18c2a914f851cbd6}\label{class_magix_unit_adc0befcb83b15f3a18c2a914f851cbd6} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Tail\+Ent} ()
+\item 
+\Hypertarget{class_magix_unit_afadc5d249db3ff6ba9695771c9605050}\label{class_magix_unit_afadc5d249db3ff6ba9695771c9605050} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Mane\+Ent} ()
+\item 
+\Hypertarget{class_magix_unit_a4cd203b8ec2df6c410e687e5cc95d3ff}\label{class_magix_unit_a4cd203b8ec2df6c410e687e5cc95d3ff} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Wing\+Ent} ()
+\item 
+\Hypertarget{class_magix_unit_a6253c1ccb1193888875c354cf807ff2f}\label{class_magix_unit_a6253c1ccb1193888875c354cf807ff2f} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries get\+Tuft\+Ent} ()
+\item 
+\Hypertarget{class_magix_unit_ac195bc3107c708f7115512f30ad872ae}\label{class_magix_unit_ac195bc3107c708f7115512f30ad872ae} 
+bool {\bfseries pop\+Has\+New\+Attack} ()
+\item 
+\Hypertarget{class_magix_unit_a464998d5a93b8938628f158735781c12}\label{class_magix_unit_a464998d5a93b8938628f158735781c12} 
+bool {\bfseries pop\+Has\+Stopped\+Attack} ()
+\item 
+\Hypertarget{class_magix_unit_ae3671ea0f0675afa3bf43f99d208ac96}\label{class_magix_unit_ae3671ea0f0675afa3bf43f99d208ac96} 
+const String {\bfseries get\+Attack\+Name} ()
+\item 
+\Hypertarget{class_magix_unit_a3a270a188c6081e61daf3c672c959b71}\label{class_magix_unit_a3a270a188c6081e61daf3c672c959b71} 
+void {\bfseries cancel\+Action} (bool hit\+Anim, const Real \&duration=0, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}def=0)
+\item 
+\Hypertarget{class_magix_unit_a0379b8ab4e364ba813b047e4a17e9f6b}\label{class_magix_unit_a0379b8ab4e364ba813b047e4a17e9f6b} 
+void {\bfseries cancel\+Action} (const Real \&duration, const String \&anim, bool reverse\+Anim=false)
+\item 
+\Hypertarget{class_magix_unit_a5ffbef514308cac51a85cc5e8456f5ca}\label{class_magix_unit_a5ffbef514308cac51a85cc5e8456f5ca} 
+const Real {\bfseries get\+Hit\+Timeout} ()
+\item 
+\Hypertarget{class_magix_unit_a57055ee1366d67f07c4c31a1fbb0067e}\label{class_magix_unit_a57055ee1366d67f07c4c31a1fbb0067e} 
+bool {\bfseries is\+Disabled} ()
+\item 
+\Hypertarget{class_magix_unit_a4b89dba4272ccbdcacacbd037ed71111}\label{class_magix_unit_a4b89dba4272ccbdcacacbd037ed71111} 
+void {\bfseries set\+Death\+Timeout} (const Real \&duration)
+\item 
+\Hypertarget{class_magix_unit_aa832a38fead0c3b4b86120bc0d14c755}\label{class_magix_unit_aa832a38fead0c3b4b86120bc0d14c755} 
+const Real {\bfseries get\+Death\+Timeout} ()
+\item 
+\Hypertarget{class_magix_unit_a037a12f250a7084991126b0982ba4f70}\label{class_magix_unit_a037a12f250a7084991126b0982ba4f70} 
+bool {\bfseries is\+Dying} ()
+\item 
+\Hypertarget{class_magix_unit_a7a4642ddddd7084d51d31d8eb142eb0a}\label{class_magix_unit_a7a4642ddddd7084d51d31d8eb142eb0a} 
+void {\bfseries kill} ()
+\item 
+\Hypertarget{class_magix_unit_af65ebb62331a7ead1f86f0ffbfd2baa4}\label{class_magix_unit_af65ebb62331a7ead1f86f0ffbfd2baa4} 
+bool {\bfseries is\+Dead} ()
+\item 
+\Hypertarget{class_magix_unit_a07cd401188f12861c8b8007955709245}\label{class_magix_unit_a07cd401188f12861c8b8007955709245} 
+void {\bfseries clear\+Attack\+List} ()
+\item 
+\Hypertarget{class_magix_unit_a3c1520b3f1b6e71e7b98d5974a46a6d5}\label{class_magix_unit_a3c1520b3f1b6e71e7b98d5974a46a6d5} 
+void {\bfseries push\+Attack\+List} (const String \&attack\+Name)
+\item 
+\Hypertarget{class_magix_unit_a9cf12b771dc2040afb83f172390cfdf5}\label{class_magix_unit_a9cf12b771dc2040afb83f172390cfdf5} 
+void {\bfseries set\+Custom\+Animation} (bool flag, const String \&anim\+Name="{}"{}, Real anim\+Speed=1, bool loop=false, bool reverse=false)
+\item 
+\Hypertarget{class_magix_unit_a2b234e0bddb0a8d6b59477119be60041}\label{class_magix_unit_a2b234e0bddb0a8d6b59477119be60041} 
+virtual unsigned short {\bfseries get\+Control\+Mode} ()
+\item 
+\Hypertarget{class_magix_unit_a448a292577acae0b00b74cbb1a57f993}\label{class_magix_unit_a448a292577acae0b00b74cbb1a57f993} 
+void {\bfseries set\+Is\+Swimming} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_a4ee8af8b88dbb4df694cb1d790ce62e0}\label{class_magix_unit_a4ee8af8b88dbb4df694cb1d790ce62e0} 
+bool {\bfseries get\+Is\+Swimming} ()
+\item 
+\Hypertarget{class_magix_unit_af3e882554b30b6cc504370dc83c4eb1c}\label{class_magix_unit_af3e882554b30b6cc504370dc83c4eb1c} 
+void {\bfseries equip} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}m\+Def, const String \&mesh\+Name, const Vector3 \&offset=Vector3\+::\+ZERO, const short \&slot=-\/1, bool alt\+Anim=false)
+\item 
+\Hypertarget{class_magix_unit_aab7701dd4d8bc954094e85c7c6d02668}\label{class_magix_unit_aab7701dd4d8bc954094e85c7c6d02668} 
+const String {\bfseries unequip} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, \mbox{\hyperlink{class_magix_external_definitions}{Magix\+External\+Definitions}} \texorpdfstring{$\ast$}{*}m\+Def, const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_unit_a8e3af2e5c7717f3ac7cf9db6f2b21824}\label{class_magix_unit_a8e3af2e5c7717f3ac7cf9db6f2b21824} 
+const String {\bfseries get\+Equip} (const unsigned short \&i\+ID)
+\item 
+\Hypertarget{class_magix_unit_ab269ebcf6cc7841dfdfad3d94dabfdeb}\label{class_magix_unit_ab269ebcf6cc7841dfdfad3d94dabfdeb} 
+void {\bfseries do\+Crouch} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_a011b5e6ef39aa9aa7ef4a7848b8967d0}\label{class_magix_unit_a011b5e6ef39aa9aa7ef4a7848b8967d0} 
+bool {\bfseries get\+Is\+Crouching} ()
+\item 
+\Hypertarget{class_magix_unit_ad62a1a1aa3288e2d035e88388a27821d}\label{class_magix_unit_ad62a1a1aa3288e2d035e88388a27821d} 
+void {\bfseries do\+Headswing} ()
+\item 
+\Hypertarget{class_magix_unit_ae82f78e445d12e0905dc12dd68f2a6db}\label{class_magix_unit_ae82f78e445d12e0905dc12dd68f2a6db} 
+bool {\bfseries is\+Headswinging} ()
+\item 
+\Hypertarget{class_magix_unit_ae83991eb1ae6b951ed1cc6becc8bb8e6}\label{class_magix_unit_ae83991eb1ae6b951ed1cc6becc8bb8e6} 
+void {\bfseries do\+Headbang} ()
+\item 
+\Hypertarget{class_magix_unit_a082dc3de7aa194767712f89cbd3f2b78}\label{class_magix_unit_a082dc3de7aa194767712f89cbd3f2b78} 
+bool {\bfseries is\+Headbanging} ()
+\item 
+\Hypertarget{class_magix_unit_ac5a1feb93c0dcee5bb778aba50877a59}\label{class_magix_unit_ac5a1feb93c0dcee5bb778aba50877a59} 
+void {\bfseries do\+Buttswing} ()
+\item 
+\Hypertarget{class_magix_unit_a207b795e9d6b62f1c8801846c01ba08e}\label{class_magix_unit_a207b795e9d6b62f1c8801846c01ba08e} 
+bool {\bfseries is\+Buttswinging} ()
+\item 
+\Hypertarget{class_magix_unit_a7d9ae0ac0addf1c067e174a961da9722}\label{class_magix_unit_a7d9ae0ac0addf1c067e174a961da9722} 
+void {\bfseries do\+Wingwave} ()
+\item 
+\Hypertarget{class_magix_unit_a6eeaf78fa624220a0afce38c11baa17f}\label{class_magix_unit_a6eeaf78fa624220a0afce38c11baa17f} 
+bool {\bfseries is\+Wingwaving} ()
+\item 
+\Hypertarget{class_magix_unit_a2ff3620097a24b2193a0516b7eda2975}\label{class_magix_unit_a2ff3620097a24b2193a0516b7eda2975} 
+void {\bfseries do\+Moonwalk} ()
+\item 
+\Hypertarget{class_magix_unit_ab26842b671c77ad2bf237c572cdf5f28}\label{class_magix_unit_ab26842b671c77ad2bf237c572cdf5f28} 
+bool {\bfseries is\+Moonwalking} ()
+\item 
+\Hypertarget{class_magix_unit_ac30b4ebe022c5a280de8958104f7fcc3}\label{class_magix_unit_ac30b4ebe022c5a280de8958104f7fcc3} 
+void {\bfseries do\+Thriller} ()
+\item 
+\Hypertarget{class_magix_unit_a1a612f543fd24d3cceac88dab93cd080}\label{class_magix_unit_a1a612f543fd24d3cceac88dab93cd080} 
+bool {\bfseries is\+Thrillering} ()
+\item 
+\Hypertarget{class_magix_unit_a35d4eff8272d5591953082ce6d1d8d61}\label{class_magix_unit_a35d4eff8272d5591953082ce6d1d8d61} 
+void {\bfseries do\+Roar} ()
+\item 
+\Hypertarget{class_magix_unit_a908522195695b168256729852d29114e}\label{class_magix_unit_a908522195695b168256729852d29114e} 
+bool {\bfseries is\+Roaring} ()
+\item 
+\Hypertarget{class_magix_unit_a14d3110cf7846d474425f92d5e4c7445}\label{class_magix_unit_a14d3110cf7846d474425f92d5e4c7445} 
+void {\bfseries do\+Rofl} ()
+\item 
+\Hypertarget{class_magix_unit_a67d20a68938599895e25e4ac0bc04ee6}\label{class_magix_unit_a67d20a68938599895e25e4ac0bc04ee6} 
+bool {\bfseries is\+Rofling} ()
+\item 
+\Hypertarget{class_magix_unit_a45fb76f962b6a9e71e10dbda1178de5f}\label{class_magix_unit_a45fb76f962b6a9e71e10dbda1178de5f} 
+void {\bfseries do\+Faint} ()
+\item 
+\Hypertarget{class_magix_unit_a1cf7539df983cba49554fbe1d7247a7c}\label{class_magix_unit_a1cf7539df983cba49554fbe1d7247a7c} 
+bool {\bfseries is\+Fainting} ()
+\item 
+\Hypertarget{class_magix_unit_ac4c8447ebdb221e261f45797a6832cca}\label{class_magix_unit_ac4c8447ebdb221e261f45797a6832cca} 
+bool {\bfseries is\+Dancing} ()
+\item 
+\Hypertarget{class_magix_unit_a356c2a0f89573b91926ff633e33a7918}\label{class_magix_unit_a356c2a0f89573b91926ff633e33a7918} 
+void {\bfseries do\+Nod\+Head} ()
+\item 
+\Hypertarget{class_magix_unit_a988be43834a2434f5b4b77adf6d88053}\label{class_magix_unit_a988be43834a2434f5b4b77adf6d88053} 
+bool {\bfseries is\+Nod\+Head} ()
+\item 
+\Hypertarget{class_magix_unit_adf098cb4c64f27924f55e10c1c82c3ea}\label{class_magix_unit_adf098cb4c64f27924f55e10c1c82c3ea} 
+void {\bfseries do\+Shake\+Head} ()
+\item 
+\Hypertarget{class_magix_unit_a771fc28a191dd793dc11fe45c794ea20}\label{class_magix_unit_a771fc28a191dd793dc11fe45c794ea20} 
+bool {\bfseries is\+Shake\+Head} ()
+\item 
+\Hypertarget{class_magix_unit_a25ce80a85501d3681289b8933109230c}\label{class_magix_unit_a25ce80a85501d3681289b8933109230c} 
+void {\bfseries do\+Nod\+Head\+Slow} ()
+\item 
+\Hypertarget{class_magix_unit_a465ddc05a97af076b5eebbfbd30a6fb6}\label{class_magix_unit_a465ddc05a97af076b5eebbfbd30a6fb6} 
+bool {\bfseries is\+Nod\+Head\+Slow} ()
+\item 
+\Hypertarget{class_magix_unit_ae2ffe78c52583e7038256fbc7c9a516e}\label{class_magix_unit_ae2ffe78c52583e7038256fbc7c9a516e} 
+void {\bfseries do\+Shake\+Head\+Slow} ()
+\item 
+\Hypertarget{class_magix_unit_a051e0d456dd80042de00973a70387142}\label{class_magix_unit_a051e0d456dd80042de00973a70387142} 
+bool {\bfseries is\+Shake\+Head\+Slow} ()
+\item 
+\Hypertarget{class_magix_unit_a5508dd778c0f435d5ecc28818484c183}\label{class_magix_unit_a5508dd778c0f435d5ecc28818484c183} 
+void {\bfseries do\+Head\+Tilt} ()
+\item 
+\Hypertarget{class_magix_unit_a111980914561ec0489bf5403c83fe06a}\label{class_magix_unit_a111980914561ec0489bf5403c83fe06a} 
+bool {\bfseries is\+Head\+Tilt} ()
+\item 
+\Hypertarget{class_magix_unit_ab181b4a42b6c5813aea229e67631bdd5}\label{class_magix_unit_ab181b4a42b6c5813aea229e67631bdd5} 
+void {\bfseries toggle\+Lick} ()
+\item 
+\Hypertarget{class_magix_unit_a3127d5d5546a03819304b1c8e4af4107}\label{class_magix_unit_a3127d5d5546a03819304b1c8e4af4107} 
+bool {\bfseries is\+Lick} ()
+\item 
+\Hypertarget{class_magix_unit_a0ebff6098f70094c156461252a34ed62}\label{class_magix_unit_a0ebff6098f70094c156461252a34ed62} 
+void {\bfseries toggle\+Nuzzle} ()
+\item 
+\Hypertarget{class_magix_unit_a52aa19eeaec07016c7873a255b10fc10}\label{class_magix_unit_a52aa19eeaec07016c7873a255b10fc10} 
+bool {\bfseries is\+Nuzzle} ()
+\item 
+\Hypertarget{class_magix_unit_af3f2b9d7ce2c760fb156a3aef0a1cd89}\label{class_magix_unit_af3f2b9d7ce2c760fb156a3aef0a1cd89} 
+void {\bfseries do\+Sniff} ()
+\item 
+\Hypertarget{class_magix_unit_a910047203e9559328baf83b80f4f528a}\label{class_magix_unit_a910047203e9559328baf83b80f4f528a} 
+bool {\bfseries is\+Sniff} ()
+\item 
+\Hypertarget{class_magix_unit_acaccfe3c51aa5943d297754d7170dbf6}\label{class_magix_unit_acaccfe3c51aa5943d297754d7170dbf6} 
+void {\bfseries do\+Laugh} ()
+\item 
+\Hypertarget{class_magix_unit_a851a50ff9d429d65a9ced9826c3855a3}\label{class_magix_unit_a851a50ff9d429d65a9ced9826c3855a3} 
+bool {\bfseries is\+Laugh} ()
+\item 
+\Hypertarget{class_magix_unit_a99d13cd65dca32057ff776dc84596446}\label{class_magix_unit_a99d13cd65dca32057ff776dc84596446} 
+void {\bfseries do\+Chuckle} ()
+\item 
+\Hypertarget{class_magix_unit_ae36526f1cfa9321866f4ce391ace79e4}\label{class_magix_unit_ae36526f1cfa9321866f4ce391ace79e4} 
+bool {\bfseries is\+Chuckle} ()
+\item 
+\Hypertarget{class_magix_unit_aa6a2ddc0e40b3c6ab7cb328848dd6b23}\label{class_magix_unit_aa6a2ddc0e40b3c6ab7cb328848dd6b23} 
+void {\bfseries do\+Tail\+Flick} ()
+\item 
+\Hypertarget{class_magix_unit_a9538b8b4d52c320df4fc7490405cfd19}\label{class_magix_unit_a9538b8b4d52c320df4fc7490405cfd19} 
+bool {\bfseries is\+Tail\+Flick} ()
+\item 
+\Hypertarget{class_magix_unit_aadf6e69aeb40f2e34d3996b8bbe843ba}\label{class_magix_unit_aadf6e69aeb40f2e34d3996b8bbe843ba} 
+void {\bfseries do\+Point} ()
+\item 
+\Hypertarget{class_magix_unit_a4729a1e4ddff90356479fa9e9fa46664}\label{class_magix_unit_a4729a1e4ddff90356479fa9e9fa46664} 
+bool {\bfseries is\+Point} ()
+\item 
+\Hypertarget{class_magix_unit_ab42aaccecbc4af8b02b52b265e7d8beb}\label{class_magix_unit_ab42aaccecbc4af8b02b52b265e7d8beb} 
+void {\bfseries do\+Stretch} ()
+\item 
+\Hypertarget{class_magix_unit_a27d37860f58f5e85cd23b40551d5ef2c}\label{class_magix_unit_a27d37860f58f5e85cd23b40551d5ef2c} 
+bool {\bfseries is\+Stretch} ()
+\item 
+\Hypertarget{class_magix_unit_a9f3015ae327d88768be9bf5d071a5d6f}\label{class_magix_unit_a9f3015ae327d88768be9bf5d071a5d6f} 
+bool {\bfseries is\+One\+Time\+Action} ()
+\item 
+\Hypertarget{class_magix_unit_a166957ef7da0fa6bbf07a2d785fa7ce0}\label{class_magix_unit_a166957ef7da0fa6bbf07a2d785fa7ce0} 
+bool {\bfseries is\+One\+Time\+Head\+Action} ()
+\item 
+\Hypertarget{class_magix_unit_aee183da0db3fc45cd134a836915a7569}\label{class_magix_unit_aee183da0db3fc45cd134a836915a7569} 
+bool {\bfseries is\+One\+Time\+Tail\+Action} ()
+\item 
+\Hypertarget{class_magix_unit_ab55297584f181271d5051934dcb0a026}\label{class_magix_unit_ab55297584f181271d5051934dcb0a026} 
+void {\bfseries set\+Markings} (const unsigned char \&body\+ID, const unsigned char \&head\+ID, const unsigned char \&tail\+ID)
+\item 
+\Hypertarget{class_magix_unit_aac910c4532d949449fe541eb2bad0a8c}\label{class_magix_unit_aac910c4532d949449fe541eb2bad0a8c} 
+void {\bfseries get\+Markings} (short \&body\+ID, short \&head\+ID, short \&tail\+ID)
+\item 
+\Hypertarget{class_magix_unit_a38fe0dcfc822b912e4f33e4a34f5b3e1}\label{class_magix_unit_a38fe0dcfc822b912e4f33e4a34f5b3e1} 
+void {\bfseries set\+Is\+In\+Water} (bool flag)
+\item 
+\Hypertarget{class_magix_unit_a22dd63547f1633a082433c47ee829d37}\label{class_magix_unit_a22dd63547f1633a082433c47ee829d37} 
+bool {\bfseries get\+Is\+In\+Water} ()
+\item 
+\Hypertarget{class_magix_unit_a80eaa1590e7ffb0ac2cbeab8a866f0f5}\label{class_magix_unit_a80eaa1590e7ffb0ac2cbeab8a866f0f5} 
+void {\bfseries do\+Double\+Jump} ()
+\item 
+\Hypertarget{class_magix_unit_a9988bc05fdd9cbb2679daa84ff262fe8}\label{class_magix_unit_a9988bc05fdd9cbb2679daa84ff262fe8} 
+bool {\bfseries get\+Has\+Double\+Jumped} ()
+\item 
+\Hypertarget{class_magix_unit_ab8422a9e7e3d9143af1e838783172248}\label{class_magix_unit_ab8422a9e7e3d9143af1e838783172248} 
+void {\bfseries update\+Lip\+Sync} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_ad11c9e5d33d44b00498a2d825cdb95dd}\label{class_magix_unit_ad11c9e5d33d44b00498a2d825cdb95dd} 
+void {\bfseries do\+Lip\+Sync} (const String \&data)
+\item 
+\Hypertarget{class_magix_unit_a0058e7491f862586bf8731779cfb3b99}\label{class_magix_unit_a0058e7491f862586bf8731779cfb3b99} 
+void {\bfseries stop\+Lip\+Sync} ()
+\item 
+\Hypertarget{class_magix_unit_a62c228df9e8b98787bd14cdfb3788dd4}\label{class_magix_unit_a62c228df9e8b98787bd14cdfb3788dd4} 
+void {\bfseries resume\+Emote} (const Frame\+Event \&evt)
+\item 
+\Hypertarget{class_magix_unit_a1886142ec5174a0d55f75e47e3c0145f}\label{class_magix_unit_a1886142ec5174a0d55f75e47e3c0145f} 
+virtual bool {\bfseries is\+Indexed\+Unit} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+virtual void {\bfseries set\+HP} (const short \&i\+Max\+HP, const Real \&ratio=1)
+\item 
+virtual void {\bfseries set\+HPRatio} (const Real \&ratio)
+\item 
+virtual bool {\bfseries add\+HP} (const short \&value)
+\item 
+const Real {\bfseries get\+HPRatio} ()
+\item 
+const short {\bfseries get\+HP} ()
+\item 
+const short {\bfseries get\+Max\+HP} ()
+\item 
+void {\bfseries set\+Alliance} (const unsigned char \&ally)
+\item 
+const unsigned char {\bfseries get\+Alliance} ()
+\item 
+bool {\bfseries match\+Alliance} (const unsigned char \&ally)
+\item 
+bool {\bfseries is\+Invulnerable} ()
+\item 
+void {\bfseries set\+Invulnerable} (bool flag)
+\item 
+virtual const Real {\bfseries get\+Height} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+void {\bfseries create\+Object} (const unsigned short \&i\+ID, Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr, const String \&object\+Mesh, const String \&mat\+Name)
+\item 
+void {\bfseries destroy\+Object} (Scene\+Manager \texorpdfstring{$\ast$}{*}scene\+Mgr)
+\item 
+virtual void {\bfseries update\+Animation} (const Frame\+Event \&evt)
+\item 
+virtual void {\bfseries update} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Face\+Direction} (const Frame\+Event \&evt)
+\item 
+void {\bfseries update\+Physics} (const Frame\+Event \&evt)
+\item 
+void {\bfseries add\+Force} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Force} (const Vector3 \&value)
+\item 
+const Vector3 {\bfseries get\+Force} ()
+\item 
+void {\bfseries set\+Position} (const Real \&x, const Real \&y, const Real \&z)
+\item 
+void {\bfseries set\+Position} (const Vector3 \&position)
+\item 
+virtual const Vector3 \mbox{\hyperlink{class_magix_animated_a793515d34f0aea1719683ed834e9f013}{get\+Position}} ()
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{class_magix_animated_ac51fdd53bb77c9e8ba6191318e8de9b7}{get\+Object\+Node}} ()
+\item 
+void {\bfseries set\+Ground\+Height} (const Real \&value)
+\item 
+const Real {\bfseries get\+Ground\+Height} ()
+\item 
+const Real {\bfseries distance\+From\+Ground} ()
+\item 
+bool {\bfseries is\+Position\+Changed} (bool exclude\+YAxis=false)
+\item 
+const Vector3 {\bfseries get\+Last\+Position} ()
+\item 
+bool {\bfseries is\+Moving\+Reverse} ()
+\item 
+void {\bfseries yaw} (const Degree \&angle, bool instant=false)
+\item 
+void {\bfseries set\+Yaw} (const Degree \&angle, bool instant=false)
+\item 
+const Degree {\bfseries get\+Yaw} ()
+\item 
+const Quaternion {\bfseries get\+Face\+Direction} ()
+\item 
+void {\bfseries set\+Anti\+Gravity} (bool flag)
+\item 
+bool {\bfseries is\+Anti\+Gravity} ()
+\item 
+void {\bfseries toggle\+Anti\+Gravity} ()
+\item 
+void {\bfseries add\+Penalty\+Velocity} (const Vector3 \&value)
+\item 
+void {\bfseries set\+Speed\+Multiplier} (const Real \&value)
+\item 
+const Real {\bfseries get\+Speed\+Multiplier} ()
+\item 
+void {\bfseries set\+Max\+Speed} (const Real \&value)
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_unit_aefbc735e26597a870391d2f8e11c62f9}\label{class_magix_unit_aefbc735e26597a870391d2f8e11c62f9} 
+\mbox{\hyperlink{struct_alloc_flags}{Alloc\+Flags}} {\bfseries alloc\+Flags}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+bool {\bfseries is\+Hidden}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{class_magix_unit_aad4a7cf1270e6523656b21a914b3b2ae}\label{class_magix_unit_aad4a7cf1270e6523656b21a914b3b2ae} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Body\+Ent}
+\item 
+\Hypertarget{class_magix_unit_aea5a5a3bdc4706a9fe8e2ebf92ee5f2c}\label{class_magix_unit_aea5a5a3bdc4706a9fe8e2ebf92ee5f2c} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Head\+Ent}
+\item 
+\Hypertarget{class_magix_unit_acb4cf0251b9a5d6244a16b4d6d77b215}\label{class_magix_unit_acb4cf0251b9a5d6244a16b4d6d77b215} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Mane\+Ent}
+\item 
+\Hypertarget{class_magix_unit_af88f32aeaa435e1d11a72d603eb9123a}\label{class_magix_unit_af88f32aeaa435e1d11a72d603eb9123a} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Tail\+Ent}
+\item 
+\Hypertarget{class_magix_unit_af97e44e6f366026f6c8094e92194569d}\label{class_magix_unit_af97e44e6f366026f6c8094e92194569d} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Wing\+Ent}
+\item 
+\Hypertarget{class_magix_unit_a78bbb81bb124005faf69fb7bc87888bf}\label{class_magix_unit_a78bbb81bb124005faf69fb7bc87888bf} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Tuft\+Ent}
+\item 
+\Hypertarget{class_magix_unit_afeb25dddac5ed7bb9c774a2bc8bdffd8}\label{class_magix_unit_afeb25dddac5ed7bb9c774a2bc8bdffd8} 
+Entity \texorpdfstring{$\ast$}{*} {\bfseries m\+Equip\+Ent} \mbox{[}MAX\+\_\+\+EQUIP\mbox{]}
+\item 
+\Hypertarget{class_magix_unit_ae06dd980d16ac2a4674091d3c29bf286}\label{class_magix_unit_ae06dd980d16ac2a4674091d3c29bf286} 
+String {\bfseries mat\+Group\+Name}
+\item 
+\Hypertarget{class_magix_unit_a0f88469ee94f189cf6942d60fe68bddc}\label{class_magix_unit_a0f88469ee94f189cf6942d60fe68bddc} 
+unsigned char {\bfseries body\+Mark\+ID}
+\item 
+\Hypertarget{class_magix_unit_af9e42002c555232a93920a20eb7fcc02}\label{class_magix_unit_af9e42002c555232a93920a20eb7fcc02} 
+unsigned char {\bfseries head\+Mark\+ID}
+\item 
+\Hypertarget{class_magix_unit_a389dec0209d564ed7bac50ce7fea4ef4}\label{class_magix_unit_a389dec0209d564ed7bac50ce7fea4ef4} 
+unsigned char {\bfseries tail\+Mark\+ID}
+\item 
+\Hypertarget{class_magix_unit_ab3502144c329013755613006ad1657c0}\label{class_magix_unit_ab3502144c329013755613006ad1657c0} 
+String {\bfseries anim\+Base}
+\item 
+\Hypertarget{class_magix_unit_ad03e0199cb657793c82e0d27fc5e0ef6}\label{class_magix_unit_ad03e0199cb657793c82e0d27fc5e0ef6} 
+String {\bfseries prev\+Anim\+Base}
+\item 
+\Hypertarget{class_magix_unit_a4e90129991a89081aff4aba00958d34a}\label{class_magix_unit_a4e90129991a89081aff4aba00958d34a} 
+Real {\bfseries anim\+Speed}
+\item 
+\Hypertarget{class_magix_unit_a379ff498ef409e67de5465f439d25748}\label{class_magix_unit_a379ff498ef409e67de5465f439d25748} 
+Real {\bfseries anim\+Count}
+\item 
+\Hypertarget{class_magix_unit_a665a36ababaa33fb26ccb20baa0944b4}\label{class_magix_unit_a665a36ababaa33fb26ccb20baa0944b4} 
+String {\bfseries anim\+Second}
+\item 
+\Hypertarget{class_magix_unit_a6985ac27de4947344591354bc85bd855}\label{class_magix_unit_a6985ac27de4947344591354bc85bd855} 
+String {\bfseries prev\+Anim\+Second}
+\item 
+\Hypertarget{class_magix_unit_ad204fb86911792184f788e3205caf779}\label{class_magix_unit_ad204fb86911792184f788e3205caf779} 
+Real {\bfseries anim\+Second\+Count}
+\item 
+\Hypertarget{class_magix_unit_aa33fe5205a8a254dfb36b2a0370bd1a6}\label{class_magix_unit_aa33fe5205a8a254dfb36b2a0370bd1a6} 
+Real {\bfseries anim\+Second\+Speed}
+\item 
+\Hypertarget{class_magix_unit_a426b4ad2ecf1d1dc46e2cc291ebd6869}\label{class_magix_unit_a426b4ad2ecf1d1dc46e2cc291ebd6869} 
+short {\bfseries blink\+Flag}
+\item 
+\Hypertarget{class_magix_unit_a0a21ef95de454d83bd5c0338b1713c9e}\label{class_magix_unit_a0a21ef95de454d83bd5c0338b1713c9e} 
+short {\bfseries idle\+Turn\+Flag}
+\item 
+\Hypertarget{class_magix_unit_adb07277552ca8be68636c5139df93527}\label{class_magix_unit_adb07277552ca8be68636c5139df93527} 
+bool {\bfseries free\+Look}
+\item 
+\Hypertarget{class_magix_unit_a3079d7c1a392d6b7d5954402f58da5d7}\label{class_magix_unit_a3079d7c1a392d6b7d5954402f58da5d7} 
+bool {\bfseries free\+Look\+Timeout}
+\item 
+\Hypertarget{class_magix_unit_af0bd0b51b683bee7917fa173500dbd39}\label{class_magix_unit_af0bd0b51b683bee7917fa173500dbd39} 
+unsigned short {\bfseries unit\+ID}
+\item 
+\Hypertarget{class_magix_unit_a1f83a53c1e128c3ab54f3a3028abe0d6}\label{class_magix_unit_a1f83a53c1e128c3ab54f3a3028abe0d6} 
+Vector3 {\bfseries target\+Vector}
+\item 
+\Hypertarget{class_magix_unit_a71065cd2364de84e95619ba80fa1eddf}\label{class_magix_unit_a71065cd2364de84e95619ba80fa1eddf} 
+Vector3 {\bfseries look\+Target\+Vector}
+\item 
+\Hypertarget{class_magix_unit_a2aaa92ab50a310533be4f8c7aee8d1b9}\label{class_magix_unit_a2aaa92ab50a310533be4f8c7aee8d1b9} 
+Quaternion {\bfseries look\+Direction}
+\item 
+\Hypertarget{class_magix_unit_a89814bcac69a81f98bdfd7330f38da4a}\label{class_magix_unit_a89814bcac69a81f98bdfd7330f38da4a} 
+Quaternion {\bfseries look\+Direction\+Buffer}
+\item 
+\Hypertarget{class_magix_unit_a6d9be8577732a03f6fb88871c0206a23}\label{class_magix_unit_a6d9be8577732a03f6fb88871c0206a23} 
+unsigned char {\bfseries target\+Action}
+\item 
+\Hypertarget{class_magix_unit_adb4dd74c5b7943eacc49a7eda4c158a7}\label{class_magix_unit_adb4dd74c5b7943eacc49a7eda4c158a7} 
+\mbox{\hyperlink{class_magix_object}{Magix\+Object}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Auto\+Track\+Target}
+\item 
+\Hypertarget{class_magix_unit_a2a512d2374e0e68b02bb58e2a3efb65e}\label{class_magix_unit_a2a512d2374e0e68b02bb58e2a3efb65e} 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Name\+Text}
+\item 
+\Hypertarget{class_magix_unit_ad536cb31bc711bed1834d77055f7e24e}\label{class_magix_unit_ad536cb31bc711bed1834d77055f7e24e} 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+User\+Text}
+\item 
+\Hypertarget{class_magix_unit_add19531bd6c48fea61d3e22265f6fa6b}\label{class_magix_unit_add19531bd6c48fea61d3e22265f6fa6b} 
+bool {\bfseries name\+Tag\+Visible}
+\item 
+\Hypertarget{class_magix_unit_a980ccec64829618b8d9c5867c3f4f7b8}\label{class_magix_unit_a980ccec64829618b8d9c5867c3f4f7b8} 
+bool {\bfseries user\+Tag\+Visible}
+\item 
+\Hypertarget{class_magix_unit_ae3c7f2d58fc94aa6aa282f6754f9a7d1}\label{class_magix_unit_ae3c7f2d58fc94aa6aa282f6754f9a7d1} 
+\mbox{\hyperlink{class_movable_text_overlay}{Movable\+Text\+Overlay}} \texorpdfstring{$\ast$}{*} {\bfseries m\+Chat\+Text}
+\item 
+\Hypertarget{class_magix_unit_a65b6a18dce4b3b52b0c290dd376f74f0}\label{class_magix_unit_a65b6a18dce4b3b52b0c290dd376f74f0} 
+bool {\bfseries chat\+Bubble\+Visible}
+\item 
+\Hypertarget{class_magix_unit_a39e5c8d41cd9b7b4f6e62966f702992b}\label{class_magix_unit_a39e5c8d41cd9b7b4f6e62966f702992b} 
+Real {\bfseries chat\+Bubble\+Count}
+\item 
+\Hypertarget{class_magix_unit_aec05fe71dd923b63122edf42a62331b8}\label{class_magix_unit_aec05fe71dd923b63122edf42a62331b8} 
+String {\bfseries emote\+Mode}
+\item 
+\Hypertarget{class_magix_unit_a8181d22855e78a7c95a8cdad99c573a0}\label{class_magix_unit_a8181d22855e78a7c95a8cdad99c573a0} 
+String {\bfseries prev\+Emote\+Mode}
+\item 
+\Hypertarget{class_magix_unit_afe9108429692a1e46aa7164e5cade483}\label{class_magix_unit_afe9108429692a1e46aa7164e5cade483} 
+Real {\bfseries emote\+Count}
+\item 
+\Hypertarget{class_magix_unit_a39da6b632c1930965b67a83af724b1e6}\label{class_magix_unit_a39da6b632c1930965b67a83af724b1e6} 
+Real {\bfseries eyelid\+State}
+\item 
+\Hypertarget{class_magix_unit_afecde1adeafe16e9de9d2d68e3b8caac}\label{class_magix_unit_afecde1adeafe16e9de9d2d68e3b8caac} 
+bool {\bfseries jump}
+\item 
+\Hypertarget{class_magix_unit_abadf7e36b106912e3959b48f557326ee}\label{class_magix_unit_abadf7e36b106912e3959b48f557326ee} 
+bool {\bfseries is\+Walking}
+\item 
+\Hypertarget{class_magix_unit_a1516d0c337cf22e17812903e7e4c5947}\label{class_magix_unit_a1516d0c337cf22e17812903e7e4c5947} 
+bool {\bfseries is\+Stance}
+\item 
+\Hypertarget{class_magix_unit_afd1a83afb5e1ab96701e229199251060}\label{class_magix_unit_afd1a83afb5e1ab96701e229199251060} 
+bool {\bfseries is\+Custom\+Animation}
+\item 
+\Hypertarget{class_magix_unit_a34c3c76dd88147ac88225ba511835d93}\label{class_magix_unit_a34c3c76dd88147ac88225ba511835d93} 
+bool {\bfseries is\+Swimming}
+\item 
+\Hypertarget{class_magix_unit_a6e5fb983404c50409c60b762c3911d5f}\label{class_magix_unit_a6e5fb983404c50409c60b762c3911d5f} 
+bool {\bfseries is\+Crouching}
+\item 
+\Hypertarget{class_magix_unit_a63e1917348e27e9df39a6e515bce3c4a}\label{class_magix_unit_a63e1917348e27e9df39a6e515bce3c4a} 
+String {\bfseries attack\+Name}
+\item 
+\Hypertarget{class_magix_unit_a375c78744894b526aed7bbe3c3291e2d}\label{class_magix_unit_a375c78744894b526aed7bbe3c3291e2d} 
+String {\bfseries next\+Attack\+Name}
+\item 
+\Hypertarget{class_magix_unit_aecf45478a590f5a8e18431ffa5f647fe}\label{class_magix_unit_aecf45478a590f5a8e18431ffa5f647fe} 
+Real {\bfseries attack\+Timeout}
+\item 
+\Hypertarget{class_magix_unit_abeae300d167b468127d4b2c1ea1215bf}\label{class_magix_unit_abeae300d167b468127d4b2c1ea1215bf} 
+bool {\bfseries has\+New\+Attack}
+\item 
+\Hypertarget{class_magix_unit_afbf655bce08b2e7995a38319d951070b}\label{class_magix_unit_afbf655bce08b2e7995a38319d951070b} 
+bool {\bfseries has\+Stopped\+Attack}
+\item 
+\Hypertarget{class_magix_unit_a95e5d00f0d5d70b8f9a14222dbb986bc}\label{class_magix_unit_a95e5d00f0d5d70b8f9a14222dbb986bc} 
+Real {\bfseries hit\+Timeout}
+\item 
+\Hypertarget{class_magix_unit_a9bd4b35c1ac6d348afd2a33056ac297f}\label{class_magix_unit_a9bd4b35c1ac6d348afd2a33056ac297f} 
+vector$<$ String $>$\+::type {\bfseries attack\+List}
+\item 
+\Hypertarget{class_magix_unit_ab9bf9a2f409f4de033923e925173a3a6}\label{class_magix_unit_ab9bf9a2f409f4de033923e925173a3a6} 
+unsigned short {\bfseries attack\+Counter}
+\item 
+\Hypertarget{class_magix_unit_a39703f3a5be8af2b254d3994e6eb7173}\label{class_magix_unit_a39703f3a5be8af2b254d3994e6eb7173} 
+Real {\bfseries head\+Turn\+Count}
+\item 
+\Hypertarget{class_magix_unit_a7754b6e20e85bfceb66cfc99bd3f09cc}\label{class_magix_unit_a7754b6e20e85bfceb66cfc99bd3f09cc} 
+bool {\bfseries is\+In\+Water}
+\item 
+\Hypertarget{class_magix_unit_aada1337c0fbda4feef604356152adf98}\label{class_magix_unit_aada1337c0fbda4feef604356152adf98} 
+bool {\bfseries has\+Double\+Jumped}
+\item 
+\Hypertarget{class_magix_unit_a406c6c67168eaf865b3ba467807fb88c}\label{class_magix_unit_a406c6c67168eaf865b3ba467807fb88c} 
+String {\bfseries lip\+Sync}
+\item 
+\Hypertarget{class_magix_unit_ab4a52b1dea7c00b54833e7fbbe77c485}\label{class_magix_unit_ab4a52b1dea7c00b54833e7fbbe77c485} 
+String {\bfseries lip\+Sync\+Anim}
+\item 
+\Hypertarget{class_magix_unit_a7b12e1a596fa88bff05def796f5a641f}\label{class_magix_unit_a7b12e1a596fa88bff05def796f5a641f} 
+String {\bfseries prev\+Lip\+Sync\+Anim}
+\item 
+\Hypertarget{class_magix_unit_abd1579be816d7fef4cdcc0ffef0d58fb}\label{class_magix_unit_abd1579be816d7fef4cdcc0ffef0d58fb} 
+Real {\bfseries lip\+Sync\+Speed}
+\item 
+\Hypertarget{class_magix_unit_a32886ddddad72f9ae06c765e6f97b48e}\label{class_magix_unit_a32886ddddad72f9ae06c765e6f97b48e} 
+Real {\bfseries lip\+Sync\+Counter}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}}
+\begin{DoxyCompactItemize}
+\item 
+short {\bfseries max\+HP}
+\item 
+short {\bfseries hp}
+\item 
+unsigned char {\bfseries alliance}
+\item 
+bool {\bfseries invulnerable}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_animated}{Magix\+Animated}}}
+\begin{DoxyCompactItemize}
+\item 
+unsigned short {\bfseries object\+ID}
+\item 
+Vector3 {\bfseries m\+Force}
+\item 
+Real {\bfseries ground\+Height}
+\item 
+Real {\bfseries max\+Speed}
+\item 
+Real {\bfseries speed\+Multiplier}
+\item 
+Vector3 {\bfseries last\+Position}
+\item 
+Real {\bfseries update\+Time}
+\item 
+Degree {\bfseries face\+Direction\+Yaw}
+\item 
+bool {\bfseries anti\+Gravity}
+\item 
+Vector3 {\bfseries penalty\+Velocity}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{class_magix_object}{Magix\+Object}}}
+\begin{DoxyCompactItemize}
+\item 
+Scene\+Node \texorpdfstring{$\ast$}{*} {\bfseries m\+Object\+Node}
+\end{DoxyCompactItemize}
+
+
+\label{doc-func-members}
+\Hypertarget{class_magix_unit_doc-func-members}
+\doxysubsection{Member Function Documentation}
+\Hypertarget{class_magix_unit_a7179343e5d6206772a123dddda9c30a0}\index{MagixUnit@{MagixUnit}!getType@{getType}}
+\index{getType@{getType}!MagixUnit@{MagixUnit}}
+\doxysubsubsection{\texorpdfstring{getType()}{getType()}}
+{\footnotesize\ttfamily \label{class_magix_unit_a7179343e5d6206772a123dddda9c30a0} 
+virtual const OBJECT\+\_\+\+TYPE Magix\+Unit\+::get\+Type (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [inline]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{class_magix_living}{Magix\+Living}}.
+
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+D\+:/\+Curr\+Games\+Projects/\+Impressive\+Title\+Remake\+POCData/\+Kito\+\_\+\+Copyright\+Free/src/client/include/Magix\+Unit.\+h\end{DoxyCompactItemize}

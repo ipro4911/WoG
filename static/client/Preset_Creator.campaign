@@ -1,0 +1,6 @@
+[Initialize]
+World_Load=Default
+Unit_Create=PLAYER,Drekentai,Body,Head3,Mane9,Tail2,Wingless,DrekentaiMat,Tuftless
+Unit_SetScale=PLAYER,1.12 1.12 1.12
+Unit_ClampToTerrain=PLAYER,true
+FadeIn=2

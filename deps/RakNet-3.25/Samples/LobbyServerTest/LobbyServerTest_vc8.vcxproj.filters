@@ -1,0 +1,114 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="LobbyServer">
+      <UniqueIdentifier>{21e448a8-dda0-4abf-8a1d-98313d15179d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LobbyServer\LobbyDB">
+      <UniqueIdentifier>{eec73b93-5fd5-42c6-aa8c-04dbe9cf90ad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LobbyServer\RankingDB">
+      <UniqueIdentifier>{914893b3-2dec-40c6-9e29-218e44b284ed}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LobbyServer\TitleValidationDB">
+      <UniqueIdentifier>{de9ba5bc-189b-4d98-b2f5-6e859ca462b3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LobbyServer\LobbyServer">
+      <UniqueIdentifier>{818c562c-6b05-4bda-9e24-4bfbab9f3f50}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="LobbyServer\PostgreSQLInterface">
+      <UniqueIdentifier>{e9104a76-5c9f-4d04-bfee-458ef6cb329a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Main">
+      <UniqueIdentifier>{dff9fc8f-36e3-4bf7-82a5-a9941be8e076}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyDB_PostgreRepository\LobbyDB_PostgreSQL.cpp">
+      <Filter>LobbyServer\LobbyDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyDBSpec.cpp">
+      <Filter>LobbyServer\LobbyDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\RankingServerDB_PostgreRepository\Elo.cpp">
+      <Filter>LobbyServer\RankingDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\RankingServerDB_PostgreRepository\RankingServer_PostgreSQL.cpp">
+      <Filter>LobbyServer\RankingDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\RankingServerDBSpec.cpp">
+      <Filter>LobbyServer\RankingDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\TitleValidationDB_PostgreRepository\TitleValidationDB_PostgreSQL.cpp">
+      <Filter>LobbyServer\TitleValidationDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\TitleValidationDBSpec.cpp">
+      <Filter>LobbyServer\TitleValidationDB</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyPCCommon.cpp">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyServer.cpp">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyServer_PostgreSQL\LobbyServer_PostgreSQL.cpp">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\LobbyTypes.cpp">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\STDStringCompressor.cpp">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\PostgreSQLInterface\PostgreSQLInterface.cpp">
+      <Filter>LobbyServer\PostgreSQLInterface</Filter>
+    </ClCompile>
+    <ClCompile Include="LobbyServerTest.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyDB_PostgreRepository\LobbyDB_PostgreSQL.h">
+      <Filter>LobbyServer\LobbyDB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyDBSpec.h">
+      <Filter>LobbyServer\LobbyDB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\RankingServerDB_PostgreRepository\Elo.h">
+      <Filter>LobbyServer\RankingDB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\RankingServerDB_PostgreRepository\RankingServer_PostgreSQL.h">
+      <Filter>LobbyServer\RankingDB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\RankingServerDBSpec.h">
+      <Filter>LobbyServer\RankingDB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\TitleValidationDB_PostgreRepository\TitleValidationDB_PostgreSQL.h">
+      <Filter>LobbyServer\TitleValidationDB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\TitleValidationDBSpec.h">
+      <Filter>LobbyServer\TitleValidationDB</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyPCCommon.h">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyServer.h">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyServer_PostgreSQL\LobbyServer_PostgreSQL.h">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\LobbyTypes.h">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\STDStringCompressor.h">
+      <Filter>LobbyServer\LobbyServer</Filter>
+    </ClInclude>
+    <ClInclude Include="..\..\DependentExtensions\PostgreSQLInterface\PostgreSQLInterface.h">
+      <Filter>LobbyServer\PostgreSQLInterface</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
+</Project>

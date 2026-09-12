@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Main">
+      <UniqueIdentifier>{cd70a692-e713-4bf6-b936-cce77c242818}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="RankingServerDBTest.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+    <ClCompile Include="..\..\DependentExtensions\Lobby\STDStringCompressor.cpp">
+      <Filter>Main</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\..\DependentExtensions\Lobby\STDStringCompressor.h">
+      <Filter>Main</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="readme.txt" />
+  </ItemGroup>
+</Project>

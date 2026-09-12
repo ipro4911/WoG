@@ -1,0 +1,169 @@
+\doxysection{Magix\+Structs.\+h}
+\hypertarget{_magix_structs_8h_source}{}\label{_magix_structs_8h_source}\index{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixStructs.h@{D:/CurrGamesProjects/ImpressiveTitleRemakePOCData/Kito\_CopyrightFree/src/client/include/MagixStructs.h}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ master\ "{}structs"{}\ file,\ to\ be\ put\ in\ a\ namespace\ OR\ even\ a\ GameEngine\ class\ later}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#ifndef\ \_\_MagixStructs\_h\_}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#define\ \_\_MagixStructs\_h\_}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{comment}{//\#include\ "{}MagixNetworkDefines.h"{}}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\#include\ "{}GameConfig.h"{}}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\#include\ <OgreStreamSerialiser.h>}}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\#include\ <OgreException.h>}}
+\DoxyCodeLine{00009\ \textcolor{preprocessor}{\#include\ "{}Ogre.h"{}}}
+\DoxyCodeLine{00010\ }
+\DoxyCodeLine{00011\ \textcolor{keyword}{using\ namespace\ }Ogre;}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{struct\ }WeatherEvent}
+\DoxyCodeLine{00014\ \{}
+\DoxyCodeLine{00015\ \ \ \ \ Real\ start;}
+\DoxyCodeLine{00016\ \ \ \ \ Real\ end;}
+\DoxyCodeLine{00017\ \ \ \ \ ColourValue\ skyShader;}
+\DoxyCodeLine{00018\ \ \ \ \ ColourValue\ skyAdder;}
+\DoxyCodeLine{00019\ \ \ \ \ String\ type;}
+\DoxyCodeLine{00020\ \ \ \ \ Real\ rate;}
+\DoxyCodeLine{00021\ \ \ \ \ vector<String>::type\ effect;}
+\DoxyCodeLine{00022\ \ \ \ \ Real\ effectFrequency;}
+\DoxyCodeLine{00023\ \ \ \ \ \textcolor{keywordtype}{bool}\ isConstant;}
+\DoxyCodeLine{00024\ \ \ \ \ WeatherEvent()}
+\DoxyCodeLine{00025\ \ \ \ \ \{}
+\DoxyCodeLine{00026\ \ \ \ \ \ \ \ \ start\ =\ 0;}
+\DoxyCodeLine{00027\ \ \ \ \ \ \ \ \ end\ =\ 7000;}
+\DoxyCodeLine{00028\ \ \ \ \ \ \ \ \ skyShader\ =\ ColourValue::White;}
+\DoxyCodeLine{00029\ \ \ \ \ \ \ \ \ skyAdder\ =\ ColourValue::Black;}
+\DoxyCodeLine{00030\ \ \ \ \ \ \ \ \ type\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00031\ \ \ \ \ \ \ \ \ rate\ =\ 0;}
+\DoxyCodeLine{00032\ \ \ \ \ \ \ \ \ effect.clear();}
+\DoxyCodeLine{00033\ \ \ \ \ \ \ \ \ effectFrequency\ =\ 0;}
+\DoxyCodeLine{00034\ \ \ \ \ \ \ \ \ isConstant\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00035\ \ \ \ \ \}}
+\DoxyCodeLine{00036\ \};}
+\DoxyCodeLine{00037\ }
+\DoxyCodeLine{00038\ \textcolor{keyword}{struct\ }AttackFX}
+\DoxyCodeLine{00039\ \{}
+\DoxyCodeLine{00040\ \ \ \ \ String\ bone;}
+\DoxyCodeLine{00041\ \ \ \ \ String\ trailMat;}
+\DoxyCodeLine{00042\ \ \ \ \ Real\ trailWidth;}
+\DoxyCodeLine{00043\ \ \ \ \ ColourValue\ colour;}
+\DoxyCodeLine{00044\ \ \ \ \ ColourValue\ colourChange;}
+\DoxyCodeLine{00045\ \ \ \ \ String\ trailHeadMat;}
+\DoxyCodeLine{00046\ \ \ \ \ AttackFX()}
+\DoxyCodeLine{00047\ \ \ \ \ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ bone\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ trailMat\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ trailWidth\ =\ 2;}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ colour\ =\ ColourValue(1,\ 0.9,\ 0.75);}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ colourChange\ =\ ColourValue(7,\ 7,\ 7,\ 7);}
+\DoxyCodeLine{00053\ \ \ \ \ \ \ \ \ trailHeadMat\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00054\ \ \ \ \ \}}
+\DoxyCodeLine{00055\ \};}
+\DoxyCodeLine{00056\ \textcolor{keyword}{struct\ }Attack}
+\DoxyCodeLine{00057\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ String\ name;}
+\DoxyCodeLine{00059\ \ \ \ \ String\ anim;}
+\DoxyCodeLine{00060\ \ \ \ \ vector<AttackFX>::type\ FX;}
+\DoxyCodeLine{00061\ \ \ \ \ Real\ range;}
+\DoxyCodeLine{00062\ \ \ \ \ Vector3\ hitForce;}
+\DoxyCodeLine{00063\ \ \ \ \ Vector3\ offset;}
+\DoxyCodeLine{00064\ \ \ \ \ Real\ hpMin;}
+\DoxyCodeLine{00065\ \ \ \ \ Real\ hpMax;}
+\DoxyCodeLine{00066\ \ \ \ \ \textcolor{keywordtype}{bool}\ hitAlly;}
+\DoxyCodeLine{00067\ \ \ \ \ \textcolor{keywordtype}{bool}\ autoTarget;}
+\DoxyCodeLine{00068\ \ \ \ \ Vector3\ moveForce;}
+\DoxyCodeLine{00069\ \ \ \ \ \textcolor{keywordtype}{bool}\ singleTarget;}
+\DoxyCodeLine{00070\ \ \ \ \ Real\ speedMultiplier;}
+\DoxyCodeLine{00071\ \ \ \ \ \textcolor{keywordtype}{bool}\ soundRoar;}
+\DoxyCodeLine{00072\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ attackRange;}
+\DoxyCodeLine{00073\ \ \ \ \ Attack()}
+\DoxyCodeLine{00074\ \ \ \ \ \{}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ name\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ anim\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ FX.clear();}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ range\ =\ 0;}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ hitForce\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ offset\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ hpMin\ =\ 0;}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ hpMax\ =\ 0;}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ hitAlly\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ autoTarget\ =\ \textcolor{keyword}{true};}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ moveForce\ =\ Vector3::ZERO;}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ singleTarget\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ speedMultiplier\ =\ 1;}
+\DoxyCodeLine{00088\ \ \ \ \ \ \ \ \ soundRoar\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ attackRange\ =\ 0;}
+\DoxyCodeLine{00090\ \ \ \ \ \}}
+\DoxyCodeLine{00091\ \};}
+\DoxyCodeLine{00092\ }
+\DoxyCodeLine{00093\ \textcolor{keyword}{struct\ }CritterAttack}
+\DoxyCodeLine{00094\ \{}
+\DoxyCodeLine{00095\ \ \ \ \ Real\ hp;}
+\DoxyCodeLine{00096\ \ \ \ \ Real\ range;}
+\DoxyCodeLine{00097\ \ \ \ \ Vector3\ hitForce;}
+\DoxyCodeLine{00098\ \ \ \ \ \textcolor{keywordtype}{bool}\ hitAlly;}
+\DoxyCodeLine{00099\ \ \ \ \ CritterAttack(\textcolor{keyword}{const}\ Real\&\ h,\ \textcolor{keyword}{const}\ Real\&\ r,\ \textcolor{keyword}{const}\ Vector3\&\ hF,\ \textcolor{keywordtype}{bool}\ hA\ =\ \textcolor{keyword}{false})}
+\DoxyCodeLine{00100\ \ \ \ \ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ hp\ =\ h;}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ range\ =\ r;}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ hitForce\ =\ hF;}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ hitAlly\ =\ hA;}
+\DoxyCodeLine{00105\ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \};}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \textcolor{keyword}{struct\ }Critter}
+\DoxyCodeLine{00109\ \{}
+\DoxyCodeLine{00110\ \ \ \ \ String\ type;}
+\DoxyCodeLine{00111\ \ \ \ \ String\ mesh;}
+\DoxyCodeLine{00112\ \ \ \ \ Real\ hp;}
+\DoxyCodeLine{00113\ \ \ \ \ \textcolor{keywordtype}{bool}\ flying;}
+\DoxyCodeLine{00114\ \ \ \ \ \textcolor{keywordtype}{bool}\ friendly;}
+\DoxyCodeLine{00115\ \ \ \ \ \textcolor{keywordtype}{bool}\ invulnerable;}
+\DoxyCodeLine{00116\ \ \ \ \ \textcolor{keywordtype}{bool}\ isDrawPoint;}
+\DoxyCodeLine{00117\ \ \ \ \ \textcolor{keywordtype}{bool}\ isUncustomizable;}
+\DoxyCodeLine{00118\ \ \ \ \ vector<std::pair<String,\ Real>>::type\ dropList;}
+\DoxyCodeLine{00119\ \ \ \ \ std::pair<String,\ unsigned\ char>\ skillDrop;}
+\DoxyCodeLine{00120\ \ \ \ \ Real\ maxSpeed;}
+\DoxyCodeLine{00121\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ decisionMin;}
+\DoxyCodeLine{00122\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{char}\ decisionDeviation;}
+\DoxyCodeLine{00123\ \ \ \ \ Real\ scale;}
+\DoxyCodeLine{00124\ \ \ \ \ vector<CritterAttack>::type\ attackList;}
+\DoxyCodeLine{00125\ \ \ \ \ String\ sound;}
+\DoxyCodeLine{00126\ \ \ \ \ String\ material;}
+\DoxyCodeLine{00127\ \ \ \ \ Critter()}
+\DoxyCodeLine{00128\ \ \ \ \ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ type\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ mesh\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ hp\ =\ 100;}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ flying\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ friendly\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ invulnerable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ isDrawPoint\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00136\ \ \ \ \ \ \ \ \ isUncustomizable\ =\ \textcolor{keyword}{false};}
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ dropList.clear();}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ skillDrop\ =\ std::pair<String,\ unsigned\ char>(\textcolor{stringliteral}{"{}"{}},\ 0);}
+\DoxyCodeLine{00139\ \ \ \ \ \ \ \ \ maxSpeed\ =\ 100;}
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ decisionMin\ =\ 1;}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ decisionDeviation\ =\ 9;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ scale\ =\ 1;}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ attackList.clear();}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ sound\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ material\ =\ \textcolor{stringliteral}{"{}"{}};}
+\DoxyCodeLine{00146\ \ \ \ \ \}}
+\DoxyCodeLine{00147\ \};}
+\DoxyCodeLine{00148\ }
+\DoxyCodeLine{00149\ \textcolor{keyword}{struct\ }WorldCritter}
+\DoxyCodeLine{00150\ \{}
+\DoxyCodeLine{00151\ \ \ \ \ String\ type;}
+\DoxyCodeLine{00152\ \ \ \ \ Real\ spawnRate;}
+\DoxyCodeLine{00153\ \ \ \ \ \textcolor{keywordtype}{bool}\ hasRoamArea;}
+\DoxyCodeLine{00154\ \ \ \ \ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\ roamAreaID;}
+\DoxyCodeLine{00155\ \ \ \ \ WorldCritter(\textcolor{keyword}{const}\ String\&\ t\ =\ \textcolor{stringliteral}{"{}"{}},\ \textcolor{keyword}{const}\ Real\&\ sR\ =\ 0,\ \textcolor{keywordtype}{bool}\ hRA\ =\ \textcolor{keyword}{false},\ \textcolor{keyword}{const}\ \textcolor{keywordtype}{unsigned}\ \textcolor{keywordtype}{short}\&\ rAID\ =\ 0)}
+\DoxyCodeLine{00156\ \ \ \ \ \{}
+\DoxyCodeLine{00157\ \ \ \ \ \ \ \ \ type\ =\ t;}
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ spawnRate\ =\ sR;}
+\DoxyCodeLine{00159\ \ \ \ \ \ \ \ \ hasRoamArea\ =\ hRA;}
+\DoxyCodeLine{00160\ \ \ \ \ \ \ \ \ roamAreaID\ =\ rAID;}
+\DoxyCodeLine{00161\ \ \ \ \ \}}
+\DoxyCodeLine{00162\ \};}
+\DoxyCodeLine{00163\ \textcolor{preprocessor}{\#endif;}}
+
+\end{DoxyCode}
