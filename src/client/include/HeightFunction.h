@@ -26,6 +26,7 @@ namespace HeightFunction
 	};
 
 	bool initialized = false;
+	SceneManager *querySceneMgr = 0;
 	RaySceneQuery* raySceneQuery;
 	Ray updateRay;
 	MyRaySceneQueryListener *raySceneQueryListener;
@@ -34,6 +35,7 @@ namespace HeightFunction
 	void initialize(SceneManager *sceneMgr){
 		if (!initialized){
 			initialized = true;
+			querySceneMgr = sceneMgr;
 			updateRay.setOrigin(Vector3::ZERO);
 			updateRay.setDirection(Vector3::NEGATIVE_UNIT_Y);
 			raySceneQuery = sceneMgr->createRayQuery(updateRay);
@@ -41,6 +43,21 @@ namespace HeightFunction
 			raySceneQuery->setWorldFragmentType(Ogre::SceneQuery::WFT_SINGLE_INTERSECTION); 
 			raySceneQueryListener = new MyRaySceneQueryListener;
 		}
+	}
+
+	//Releases the ray query + listener. Call on world unload so a reload
+	// re-initializes cleanly instead of leaking (and never dangles if the
+	// SceneManager is ever recreated between maps).
+	void shutdown(){
+		if(!initialized)return;
+		initialized = false;
+		if(querySceneMgr){
+			querySceneMgr->destroyQuery(raySceneQuery);
+			querySceneMgr = 0;
+		}
+		raySceneQuery = 0;
+		delete raySceneQueryListener;
+		raySceneQueryListener = 0;
 	}
 
 	//Gets the height of the terrain at the specified x/z coordinate

@@ -24,6 +24,10 @@ using namespace Ogre;
 #include "TreeLoader3D.h"
 #include "HeightFunction.h"
 
+#include <windows.h>
+#include <psapi.h>
+#pragma comment(lib, "psapi.lib")
+
 using namespace Forests;
 
 #define MAX_LIGHTS 3
@@ -207,6 +211,20 @@ public:
 			}
 		}
 
+	}
+	void logMemory(const String &context)
+	{
+		// Leak-hunt instrumentation: PrivateBytes per map load/unload.
+		// SingletonPtr guard: unloadWorld also runs at teardown when Ogre may be gone.
+		if(!Ogre::LogManager::getSingletonPtr())return;
+		PROCESS_MEMORY_COUNTERS_EX pmc;
+		memset(&pmc,0,sizeof(pmc));
+		if(GetProcessMemoryInfo(GetCurrentProcess(),(PROCESS_MEMORY_COUNTERS*)&pmc,sizeof(pmc)))
+		{
+			char buf[192];
+			sprintf_s(buf,sizeof(buf),"[Memory] %s: PrivateBytes=%.1f MB",context.c_str(),pmc.PrivateUsage/1048576.0);
+			Ogre::LogManager::getSingleton().logMessage(buf);
+		}
 	}
 	void loadWorld(const String &name)
 	{
@@ -488,6 +506,9 @@ public:
 		{
 			//-------------------------------------- LOAD GRASS --------------------------------------
 			//Create and configure a new PagedGeometry instance for grass
+			// Defensive: loadWorld() normally unloads first, but overwriting a live
+			// instance would orphan the whole geometry (leak), so drop it here.
+			if(mGrass){ delete mGrass->getPageLoader(); delete mGrass; mGrass = 0; }
 			mGrass = new PagedGeometry(camera, 250);
 			mGrass->addDetailLevel<GrassPage>(1500);
 
@@ -543,9 +564,11 @@ public:
 			Entity *tree2 = 0;
 			Entity *tree3 = 0;
 			bool hasLargeTrees = false;
-			if(mDef->pagedGeometryOn)
-			{
-				mTrees = new PagedGeometry();
+		if(mDef->pagedGeometryOn)
+		{
+			// Defensive: see grass loader above — never orphan a live instance.
+			if(mTrees){ delete mTrees->getPageLoader(); delete mTrees; mTrees = 0; }
+			mTrees = new PagedGeometry();
 				mTrees->setCamera(camera);	//Set the camera so PagedGeometry knows how to calculate LODs
 				mTrees->setPageSize(250);	//Set the size of each page of geometry
 				//mTrees->setInfinite();		//Use infinite paging mode
@@ -560,7 +583,9 @@ public:
 				//HeightFunction::initialize(mSceneMgr);
 				treeLoader->setHeightFunction(&HeightFunction::getTerrainHeight);
 
-				mLargeTrees = new PagedGeometry(camera,250);
+				// Defensive: see grass loader above — never orphan a live instance.
+			if(mLargeTrees){ delete mLargeTrees->getPageLoader(); delete mLargeTrees; mLargeTrees = 0; }
+			mLargeTrees = new PagedGeometry(camera,250);
 				mLargeTrees->addDetailLevel<BatchPage>(1500, (mDef->hasVertexProgram?300:0));
 
 				largeTreeLoader = new TreeLoader2D(mLargeTrees, TBounds(0, 0, worldSize.x, worldSize.y));
@@ -731,6 +756,8 @@ public:
 			//Create and configure a new PagedGeometry instance for bushes
 			if(mDef->pagedGeometryOn)
 			{
+				// Defensive: see grass loader above — never orphan a live instance.
+				if(mBushes){ delete mBushes->getPageLoader(); delete mBushes; mBushes = 0; }
 				mBushes = new PagedGeometry(camera, 100);
 				mBushes->addDetailLevel<BatchPage>(1000, (mDef->hasVertexProgram?200:0));
 
@@ -877,6 +904,8 @@ public:
 			if(mDef->pagedGeometryOn)
 			{
 				//Create and configure a new PagedGeometry instance for bushes
+				// Defensive: also covers repeated loop iterations overwriting the previous instance.
+				if(mFloatingBushes){ delete mFloatingBushes->getPageLoader(); delete mFloatingBushes; mFloatingBushes = 0; }
 				mFloatingBushes = new PagedGeometry(camera, 100);
 				mFloatingBushes->addDetailLevel<BatchPage>(1000, (mDef->hasVertexProgram?200:0));
 
@@ -950,6 +979,7 @@ public:
 		{
 			buildStaticGeometry();
 		}
+		logMemory("World loaded: "+worldName);
 	}
 	void unloadWorld()
 	{
@@ -988,6 +1018,7 @@ public:
 		}
 		if(mSceneMgr)
 		{
+			HeightFunction::shutdown();
 			destroyStaticGeometry();
 			for(int i=1;i<=numTreeMeshes;i++)
 				if(mSceneMgr->hasEntity("Tree"+StringConverter::toString(i)))mSceneMgr->destroyEntity("Tree"+StringConverter::toString(i));
@@ -1005,6 +1036,7 @@ public:
 			mCollisionManager->destroyAllWaterBoxes();
 			mCeilingNode->setVisible(false);
 		}
+		logMemory("World unloaded");
 	}
 	const Vector3 getSpawnSquare()
 	{
