@@ -39,7 +39,7 @@ static unsigned __stdcall updateThread(void* arg){
 	std::string target= t? (t+1): ".";
 	free(arg);
 
-	PostMessageA(gStatus,WM_APP_STATUS,0,(LPARAM)"Contacting update server...");
+	PostMessageA(gStatus,WM_APP_STATUS,0,(LPARAM)_strdup("Contacting update server..."));
 	std::string manifest;
 	unsigned long st=0;
 	if(!httpGet(url,manifest,&st)){
@@ -50,7 +50,7 @@ static unsigned __stdcall updateThread(void* arg){
 	}
 	Manifest mf;
 	if(!mf.parse(manifest,url.substr(0,url.find_last_of('/')))){
-		PostMessageA(gStatus,WM_APP_STATUS,0,(LPARAM)"Manifest parse failed.");
+		PostMessageA(gStatus,WM_APP_STATUS,0,(LPARAM)_strdup("Manifest parse failed."));
 		PostMessageA(gTitle,WM_APP_DONE,0,2);
 		return 0;
 	}
@@ -164,7 +164,10 @@ static LRESULT CALLBACK WndProc(HWND hWnd,UINT msg,WPARAM wParam,LPARAM lParam){
 		if(LOWORD(wParam)==1001)gAbort=true;
 		break;
 	case WM_APP_STATUS:
+		// All senders pass heap strings (_strdup, mirroring KITFLauncher's
+		// WM_APP_VER); ownership transfers to the receiver, which frees.
 		SetWindowTextA(gStatus,(char*)lParam);
+		free((void*)lParam);
 		break;
 	case WM_APP_DONE:{
 		int res=(int)lParam;
