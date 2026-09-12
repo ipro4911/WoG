@@ -201,6 +201,10 @@ public:
 	{
 		if(!mSoundMgr)return;
 
+		if(mMusicChannel)mMusicChannel->stop();
+		// Single-slot handle: drop the previous track's FMOD sound or the
+		// instance cache keeps every played track alive for the session.
+		mSoundMgr->ReleaseSound(music);
 		music = mSoundMgr->CreateStream(String(type));
 		playMusic(music,loop);
 	}
@@ -325,7 +329,10 @@ public:
 		if(!mSoundMgr)return;
 		if(!node)return;
 
-		const int tLoopedSound = ( type=="" ? INVALID_SOUND_INDEX : mSoundMgr->CreateLoopedSound(String(type)) );
+		// Look up only: CreateLoopedSound would grow the instance cache
+		// on every stop call even when the sound was never created.
+		String tName(type);
+		const int tLoopedSound = ( type=="" ? INVALID_SOUND_INDEX : mSoundMgr->FindSound(tName,SOUND_TYPE_3D_SOUND_LOOPED) );
 		list<LoopedSound>::type::iterator it = loopedSound.begin();
 		while(it!=loopedSound.end())
 		{
@@ -337,7 +344,10 @@ public:
 	bool hasLoopedSound(const char *type,SceneNode *node=0)
 	{
 		if(!mSoundMgr)return false;
-		const int tLoopedSound = mSoundMgr->CreateLoopedSound(String(type));
+		// Look up only: see stopLoopedSoundByNode above.
+		String tName(type);
+		const int tLoopedSound = mSoundMgr->FindSound(tName,SOUND_TYPE_3D_SOUND_LOOPED);
+		if(tLoopedSound==INVALID_SOUND_INDEX)return false;
 		list<LoopedSound>::type::iterator it = loopedSound.begin();
 		while(it!=loopedSound.end())
 		{
@@ -356,6 +366,9 @@ public:
 	{
 		if(!mSoundMgr)return;
 
+		if(mAmbientChannel)mAmbientChannel->stop();
+		// Single-slot handle: see playMusic above.
+		mSoundMgr->ReleaseSound(ambientSound);
 		ambientSound = mSoundMgr->CreateLoopedStream(String(type));
 		if(mAmbientChannel)mAmbientChannel->stop();
 		mSoundMgr->PlayMusic(ambientSound,&mAmbientChannel);

@@ -82,11 +82,20 @@ SoundManager::SoundManager()
 
 SoundManager::~SoundManager()
    {
-   for (int vectorIndex = 0; vectorIndex < (int)soundInstanceVector->capacity(); vectorIndex++)
+   // NOTE: iterate size(), not capacity() — slots past size() don't exist,
+   // and several may never have held a sound. Release FMOD sounds before
+   // system->release() so nothing is left alive at exit.
+   for (int vectorIndex = 0; vectorIndex < (int)soundInstanceVector->size(); vectorIndex++)
       {
-      soundInstanceVector->at(vectorIndex)->fileName.clear();
-//      soundInstanceVector->at(vectorIndex)->streamPtr->close();
-      delete soundInstanceVector->at(vectorIndex);
+      SoundInstance *inst = soundInstanceVector->at(vectorIndex);
+      if(inst->fmodSound)
+         {
+         inst->fmodSound->release();
+         inst->fmodSound = NULL;
+         }
+      inst->streamPtr.setNull();
+      inst->fileName.clear();
+      delete inst;
       }
    delete soundInstanceVector;
    if(system)
@@ -656,6 +665,30 @@ int SoundManager::FindSound(String &fileName, SOUND_TYPE soundType)
       }
 
    return INVALID_SOUND_INDEX;
+    }
+
+
+
+// Frees the FMOD sound + stream behind a slot so single-slot handles
+// (music/ambient) can be dropped on overwrite instead of leaking.
+// Only call after stopping any channel playing this index.
+void SoundManager::ReleaseSound(int soundIndex)
+   {
+   if(soundIndex == INVALID_SOUND_INDEX)
+      return;
+   if(soundIndex <= 0 || soundIndex >= (int)soundInstanceVector->size())
+      return;
+
+   SoundInstance *inst = soundInstanceVector->at(soundIndex);
+   if(!inst)
+      return;
+   if(inst->fmodSound)
+      {
+      inst->fmodSound->release();
+      inst->fmodSound = NULL;
+      }
+   inst->streamPtr.setNull();
+   inst->Clear();
    }
 
 

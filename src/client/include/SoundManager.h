@@ -67,6 +67,7 @@ public:
    void					PlayMusic(int soundIndex, FMOD::Channel **channel);
    void                 StopSound(int *channelIndex);
    int                  FindSound(String &fileName, SOUND_TYPE soundType);    // returns soundIndex;
+   void                 ReleaseSound(int soundIndex);      // release FMOD sound + stream so a single-slot handle can be dropped on overwrite
 
    void                 Set3DMinMaxDistance(int channelIndex, float minDistance, float maxDistance);
 
